@@ -40,8 +40,8 @@
     "tileserver-gl-light": "^4.11.0",
     "use-http": "^1.0.28",
     "use-immer": "^0.9.0",
-    "vega": "^5.19.1",
-    "vega-lite": "^5.0.0"
+    "vega": "^5.29.0",
+    "vega-lite": "^5.18.1"
   },
   "devDependencies": {
     "@types/d3-array": "^3.0.2",
