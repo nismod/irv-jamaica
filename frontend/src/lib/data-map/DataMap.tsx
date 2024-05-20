@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { FC, useCallback, useEffect, useMemo } from 'react';
+import { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
 
 import { usePrevious } from '../hooks/use-previous';
 import { useTrackingRef } from '../hooks/use-tracking-ref';
