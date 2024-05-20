@@ -1,7 +1,7 @@
 # multistage build of nginx image
 
 # stage 1 of 2
-FROM node:18-bullseye AS builder
+FROM node:20-bullseye AS builder
 WORKDIR /app
 
 # install npm packages -- do this before copying everything else
