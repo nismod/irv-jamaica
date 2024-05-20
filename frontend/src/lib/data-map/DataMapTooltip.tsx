@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 
 import { hoverPositionState } from './interactions/interaction-state';
 
-export const DataMapTooltip: FC<{}> = ({ children }) => {
+export const DataMapTooltip: FC<{ children: React.ReactNode; }> = ({ children }) => {
   const tooltipXY = useRecoilValue(hoverPositionState);
 
   return tooltipXY && React.Children.count(children) ? (

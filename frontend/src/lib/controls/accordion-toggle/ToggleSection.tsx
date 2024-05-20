@@ -1,5 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, Checkbox, FormControlLabel, Radio } from '@mui/material';
-import { createContext, FC, useCallback, useContext } from 'react';
+import { createContext, FC, ReactNode, useCallback, useContext } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { RecoilStateFamily } from 'lib/recoil/types';
@@ -10,7 +10,10 @@ function useHandleCheckbox(onChecked: (checked: boolean) => void) {
 
 export const ToggleStateContext = createContext<RecoilStateFamily<boolean, string>>(null);
 
-export const ToggleSectionGroup: FC<{ toggleState: RecoilStateFamily<boolean, string> }> = ({
+export const ToggleSectionGroup: FC<{
+  children: ReactNode;
+  toggleState: RecoilStateFamily<boolean, string>
+}> = ({
   children,
   toggleState,
 }) => {
@@ -22,6 +25,7 @@ interface ToggleSectionProps {
   label: string;
   forceSingle?: boolean;
   disabled?: boolean;
+  children: ReactNode;
 }
 
 export const ToggleSection: FC<ToggleSectionProps> = ({

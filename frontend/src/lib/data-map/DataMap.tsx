@@ -14,6 +14,7 @@ export interface DataMapProps {
   viewLayers: ViewLayer[];
   viewLayersParams: Record<string, ViewLayerParams>;
   interactionGroups: any;
+  children?: ReactNode;
 }
 
 // set a convention where the view layer id is either the first part of the deck id before the @ sign, or it's the whole id
