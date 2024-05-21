@@ -67,7 +67,7 @@ export const ReturnPeriodDamageChart = ({ data, field_key, field_title, ...props
       field_key,
       field_title
     ),
-    [data]
+    [data, field_key, field_title]
   );
 
   return <VegaLite data={data} spec={spec as any} {...props} />;
