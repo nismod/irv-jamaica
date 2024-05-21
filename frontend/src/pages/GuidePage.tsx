@@ -1,6 +1,3 @@
-import React from 'react';
-import { Alert, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import ScrollToTop from 'lib/hooks/scroll-to-top';
 import { ExtLink } from 'lib/nav';
 
 export const GuidePage = () => (
