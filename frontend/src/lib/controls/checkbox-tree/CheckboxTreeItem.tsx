@@ -1,4 +1,4 @@
-import { TreeItem } from '@mui/lab';
+import { TreeItem } from '@mui/x-tree-view';
 import { Box, Checkbox } from '@mui/material';
 
 import { CheckboxTreeState } from './CheckboxTree';
@@ -22,7 +22,7 @@ export function CheckboxTreeItem<T>({
   return (
     <TreeItem
       key={root.id}
-      nodeId={root.id}
+      itemId={root.id}
       label={
         <Box display="flex" alignItems="center" width="100%">
           <Checkbox
