@@ -1,6 +1,5 @@
-import React, { useCallback } from 'react';
-import { TreeView } from '@mui/lab';
-import { ExpandMore as ExpandMoreIcon, ChevronRight as ChevronRightIcon } from '@mui/icons-material';
+import { useCallback } from 'react';
+import { SimpleTreeView } from '@mui/x-tree-view';
 import produce from 'immer';
 
 import { dfs, getDescendants, TreeNode } from './tree-node';
@@ -99,11 +98,11 @@ export function CheckboxTree<T>({
 
   return (
     <>
-      <TreeView
-        defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpandIcon={<ChevronRightIcon />}
-        expanded={expanded}
-        onNodeToggle={(e, nodeIds) => onExpanded(nodeIds)}
+      <SimpleTreeView
+        expandedItems={expanded}
+        onExpandedItemsChange={(e, nodeIds) => onExpanded(nodeIds)}
+        multiSelect
+        selectedItems={Object.keys(checkboxState.checked).filter((id) => checkboxState.checked[id])}
       >
         {nodes.map((node) => (
           <CheckboxTreeItem
@@ -115,7 +114,7 @@ export function CheckboxTree<T>({
             disableCheck={disableCheck}
           />
         ))}
-      </TreeView>
+      </SimpleTreeView>
     </>
   );
 }

@@ -1,7 +1,9 @@
 import { Box } from '@mui/system';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
-export const MapHud: FC<{ top?: number; right?: number; bottom?: number; left?: number }> = ({
+export const MapHud: FC<{
+  children: ReactNode; top?: number; right?: number; bottom?: number; left?: number
+}> = ({
   children,
   top = 0,
   right = 0,

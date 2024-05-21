@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { FC, useContext, useMemo } from 'react';
+import { FC, ReactNode, useContext, useMemo } from 'react';
 import { MapContext, MapContextProps } from 'react-map-gl';
 
 import { ViewStateContext } from './DeckMap';
@@ -15,7 +15,10 @@ import { ViewStateContext } from './DeckMap';
  * So users of the context can't use viewport.fitBounds(...) etc.
  * This was a side effect of deck passing its own viewport into the MapContext, anyway.
  */
-export const MapContextProviderWithLimits: FC<{ value: MapContextProps }> = ({ value, children }) => {
+export const MapContextProviderWithLimits: FC<{
+  children: ReactNode;
+  value: MapContextProps;
+}> = ({ value, children }) => {
   const baseContext = value;
   const {
     viewState: { minPitch, maxPitch, minZoom, maxZoom },

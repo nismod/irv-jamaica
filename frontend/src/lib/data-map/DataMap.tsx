@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { FC, useCallback, useEffect, useMemo } from 'react';
+import { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
 
 import { usePrevious } from '../hooks/use-previous';
 import { useTrackingRef } from '../hooks/use-tracking-ref';
@@ -14,6 +14,7 @@ export interface DataMapProps {
   viewLayers: ViewLayer[];
   viewLayersParams: Record<string, ViewLayerParams>;
   interactionGroups: any;
+  children?: ReactNode;
 }
 
 // set a convention where the view layer id is either the first part of the deck id before the @ sign, or it's the whole id

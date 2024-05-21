@@ -38,6 +38,7 @@ const hudRegions = {
 };
 
 export interface MapHudProps {
+  children: React.ReactNode;
   position: keyof typeof hudRegions;
   style?: PropsOf<typeof Box>['style'];
   StackProps?: PropsOf<typeof Stack>;

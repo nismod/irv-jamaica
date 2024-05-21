@@ -1,5 +1,5 @@
 import DeckGL, { DeckGLContextValue, DeckGLRef, DeckProps, MapView, MapViewState } from 'deck.gl/typed';
-import { FC, Provider, createContext, useRef, useState } from 'react';
+import { FC, Provider, ReactNode, createContext, useRef, useState } from 'react';
 
 import { useTriggerMemo } from '../hooks/use-trigger-memo';
 import { MapContextProviderWithLimits } from './MapContextProviderWithLimits';
@@ -12,6 +12,7 @@ interface DeckMapProps {
   onClick?: any;
   layerRenderFilter: DeckProps['layerFilter'];
   pickingRadius?: number;
+  children: ReactNode;
 }
 
 export const ViewStateContext = createContext<{
