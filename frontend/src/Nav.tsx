@@ -109,8 +109,8 @@ const DesktopNavContent: FC<{ navItems: NavItemConfig[] }> = ({ navItems }) => (
     <ToolbarNavLink to="/">J-SRAT</ToolbarNavLink>
 
     {navItems.map(({ to, title, tooltip }) => (
-      <NavTooltip title={tooltip} placement="bottom">
-        <ToolbarNavLink key={to} to={to}>
+      <NavTooltip key={to} title={tooltip} placement="bottom">
+        <ToolbarNavLink to={to}>
           {title}
         </ToolbarNavLink>
       </NavTooltip>
