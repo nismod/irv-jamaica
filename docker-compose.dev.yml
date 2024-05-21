@@ -53,9 +53,7 @@ services:
 
   vector-tileserver:
     image: ghcr.io/nismod/jsrat-vector-tileserver-dev:0.1
-    build:
-      context: ./tileserver/vector
-      dockerfile: dev.Dockerfile
+    build: ./tileserver/vector
     volumes:
       - ./tileserver/vector/data:/data
       - ./tileserver/vector/config.json:/config.json

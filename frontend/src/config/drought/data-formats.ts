@@ -1,5 +1,5 @@
 import { FormatConfig } from 'lib/data-map/view-layers';
-import { numFormat, numFormatMoney, toDictionary } from 'lib/helpers';
+import { numFormat, toDictionary } from 'lib/helpers';
 import {
   DroughtOptionsVariableType,
   DroughtRiskVariableType,

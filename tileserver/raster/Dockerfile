@@ -1,5 +1,6 @@
 FROM python:3.10
 
+RUN apt-get update && apt-get install -y libgdal-dev
 WORKDIR /code
 RUN python -m pip install --upgrade pip setuptools wheel
 RUN pip install cython "numpy>=1.15,!=1.17.0,<1.24"
