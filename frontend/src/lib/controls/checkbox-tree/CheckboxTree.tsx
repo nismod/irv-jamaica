@@ -101,6 +101,8 @@ export function CheckboxTree<T>({
       <SimpleTreeView
         expandedItems={expanded}
         onExpandedItemsChange={(e, nodeIds) => onExpanded(nodeIds)}
+        multiSelect
+        selectedItems={Object.keys(checkboxState.checked).filter((id) => checkboxState.checked[id])}
       >
         {nodes.map((node) => (
           <CheckboxTreeItem

@@ -4,6 +4,11 @@ import { Box, Checkbox } from '@mui/material';
 import { CheckboxTreeState } from './CheckboxTree';
 import { TreeNode } from './tree-node';
 
+function handleClick(e) {
+  e.stopPropagation();
+  return true;
+}
+
 export function CheckboxTreeItem<T>({
   root,
   handleChange,
@@ -19,17 +24,36 @@ export function CheckboxTreeItem<T>({
 }) {
   const indeterminate = checkboxState.indeterminate[root.id];
   const checked = indeterminate || checkboxState.checked[root.id];
+
+  function handleCheckboxChange(event) {
+    handleChange(event.currentTarget.checked, root);
+  }
+
+  function handleItemKeyDown(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleChange(!checked, root);
+      event.stopPropagation();
+    }
+  }
+
+  const checkedState = indeterminate
+    ? 'mixed'
+    : checked
+      ? 'true'
+      : 'false'
   return (
     <TreeItem
+      aria-checked={checkedState}
       key={root.id}
       itemId={root.id}
+      onKeyDown={handleItemKeyDown}
       label={
         <Box display="flex" alignItems="center" width="100%">
           <Checkbox
             checked={checked}
             indeterminate={indeterminate}
-            onChange={(event) => handleChange(event.currentTarget.checked, root)}
-            onClick={(e) => e.stopPropagation()}
+            onChange={handleCheckboxChange}
+            onClick={handleClick}
             disabled={disableCheck}
           />
           <Box flexGrow={1}>{getLabel(root, checked)}</Box>
