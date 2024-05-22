@@ -1,12 +1,19 @@
-import { default as CircleShapeSrc, ReactComponent as CircleShape } from './shapes/circle.svg';
-import { default as SquareShapeSrc, ReactComponent as SquareShape } from './shapes/square.svg';
-import { default as PolygonShapeSrc, ReactComponent as PolygonShape } from './shapes/polygon.svg';
-import { default as LineShapeSrc, ReactComponent as LineShape } from './shapes/line.svg';
-import {
-  default as InvTriangleShapeSrc,
-  ReactComponent as InvTriangleShape,
-} from './shapes/inv-triangle.svg';
-import { default as DiamondShapeSrc, ReactComponent as DiamondShape } from './shapes/diamond.svg';
+/*
+The Vite SVGR plugin exports SVG components and SVG URLs, but you have to know the magic
+URL query params. See https://stackoverflow.com/a/70314031
+*/
+import CircleShape from './shapes/circle.svg?react';
+import CircleShapeSrc from './shapes/circle.svg?url';
+import SquareShape from './shapes/square.svg?react';
+import SquareShapeSrc from './shapes/square.svg?url';
+import PolygonShape from './shapes/polygon.svg?react';
+import PolygonShapeSrc from './shapes/polygon.svg?url';
+import LineShape from './shapes/line.svg?react';
+import LineShapeSrc from './shapes/line.svg?url';
+import InvTriangleShape from './shapes/inv-triangle.svg?react';
+import InvTriangleShapeSrc from './shapes/inv-triangle.svg?url';
+import DiamondShape from './shapes/diamond.svg?react';
+import DiamondShapeSrc from './shapes/diamond.svg?url';
 
 export const MAP_SHAPE_TYPES = [
   'line',
