@@ -23,8 +23,8 @@
     "d3-scale": "^4.0.2",
     "d3-scale-chromatic": "^3.0.0",
     "deck.gl": "8.9",
-    "http-proxy-middleware": "^2.0.1",
-    "immer": "^9.0.21",
+    "http-proxy-middleware": "^3.0.0",
+    "immer": "^10.1.1",
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.21",
     "mapbox-gl": "^1.13.1",
@@ -62,7 +62,7 @@
     "@types/react-router-dom": "^5.1.8",
     "@types/react-transition-group": "^4.4.4",
     "openapi-typescript-codegen": "^0.21.0",
-    "prettier": "^2.3.2",
+    "prettier": "^3.2.5",
     "typescript": "^4.5.5"
   },
   "scripts": {

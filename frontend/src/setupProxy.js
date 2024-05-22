@@ -6,12 +6,12 @@
  *
  * See guide at https://create-react-app.dev/docs/proxying-api-requests-in-development/#configuring-the-proxy-manually
  */
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const { legacyCreateProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function (app) {
   app.use(
     '/vector',
-    createProxyMiddleware({
+    legacyCreateProxyMiddleware({
       target: 'http://localhost:8080',
       changeOrigin: true,
       pathRewrite: {
@@ -21,7 +21,7 @@ module.exports = function (app) {
   );
   app.use(
     '/raster',
-    createProxyMiddleware({
+    legacyCreateProxyMiddleware({
       target: 'http://localhost:5000',
       changeOrigin: true,
       pathRewrite: {
@@ -31,7 +31,7 @@ module.exports = function (app) {
   );
   app.use(
     '/api',
-    createProxyMiddleware({
+    legacyCreateProxyMiddleware({
       target: 'http://localhost:8888',
       changeOrigin: true,
       pathRewrite: {
