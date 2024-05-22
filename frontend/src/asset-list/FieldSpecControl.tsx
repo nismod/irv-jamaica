@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import produce from 'immer';
+import { produce } from 'immer';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { FieldSpec } from 'lib/data-map/view-layers';
 import { FC } from 'react';

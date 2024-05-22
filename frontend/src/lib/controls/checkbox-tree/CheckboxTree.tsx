@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { SimpleTreeView } from '@mui/x-tree-view';
-import produce from 'immer';
+import { produce } from 'immer';
 
 import { dfs, getDescendants, TreeNode } from './tree-node';
 import { CheckboxTreeItem } from './CheckboxTreeItem';
