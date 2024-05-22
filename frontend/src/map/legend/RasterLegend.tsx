@@ -14,7 +14,10 @@ export const RasterLegend: FC<{ viewLayer: ViewLayer }> = ({ viewLayer }) => {
 
   const { error, loading, colorMapValues } = useRasterColorMapValues(scheme, range);
 
-  const getValueLabel = useCallback((value: number) => `${value.toLocaleString()} ${dataUnit}`, [dataUnit]);
+  const getValueLabel = useCallback(
+    (value: number) => `${value.toLocaleString()} ${dataUnit}`,
+    [dataUnit],
+  );
 
   return (
     <GradientLegend

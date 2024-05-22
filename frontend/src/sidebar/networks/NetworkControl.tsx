@@ -26,7 +26,9 @@ export const NetworkControl: FC<{}> = () => {
     <>
       {showAdaptations ? (
         <Box my={1}>
-          <Alert severity="info">Infrastructure layers are currently following the Adaptation Options selection</Alert>
+          <Alert severity="info">
+            Infrastructure layers are currently following the Adaptation Options selection
+          </Alert>
         </Box>
       ) : null}
       <CheckboxTree

@@ -5,7 +5,9 @@ export type ParamDomain<PT extends Param = Param> = PT[];
 
 export type ParamGroup = Record<string, Param>;
 
-export type ParamDependency<PT extends Param, PGT extends ParamGroup> = (params: PGT) => ParamDomain<PT>;
+export type ParamDependency<PT extends Param, PGT extends ParamGroup> = (
+  params: PGT,
+) => ParamDomain<PT>;
 
 export type ParamGroupDomains<PGT extends ParamGroup = ParamGroup> = {
   [K in keyof PGT]: ParamDomain<PGT[K]>;
@@ -36,7 +38,11 @@ export function resolveParamDependencies<PGT extends ParamGroup = ParamGroup>(
   const newOptions: ParamGroupDomains<PGT> = {} as any;
 
   for (const [param, paramValue] of Object.entries(updatedParams)) {
-    const newParamOptions = getNewParamOptions(resolvedParams, paramDomains[param], paramDependencies[param]);
+    const newParamOptions = getNewParamOptions(
+      resolvedParams,
+      paramDomains[param],
+      paramDependencies[param],
+    );
 
     // if the new options don't include the current param value, switch value to the first option
     if (!newParamOptions.includes(paramValue)) {

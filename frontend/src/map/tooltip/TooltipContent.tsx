@@ -33,7 +33,11 @@ export const TooltipContent: FC = () => {
   const solutionsHovered = hasHover(hoveredSolution);
   const droughtHovered = hasHover(hoveredDrought);
   const doShow =
-    assetsHovered || hazardsHovered || (regionDataShown && regionsHovered) || solutionsHovered || droughtHovered;
+    assetsHovered ||
+    hazardsHovered ||
+    (regionDataShown && regionsHovered) ||
+    solutionsHovered ||
+    droughtHovered;
 
   if (!doShow) return null;
 
@@ -59,7 +63,10 @@ export const TooltipContent: FC = () => {
           {hazardsHovered ? (
             <TooltipSection>
               {hoveredRasters.map((hr) => (
-                <RasterHoverDescription hoveredObject={hr} key={`${hr.viewLayer.id}-${hr.target.id}`} />
+                <RasterHoverDescription
+                  hoveredObject={hr}
+                  key={`${hr.viewLayer.id}-${hr.target.id}`}
+                />
               ))}
             </TooltipSection>
           ) : null}

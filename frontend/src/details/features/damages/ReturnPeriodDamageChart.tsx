@@ -62,12 +62,15 @@ const makeSpec = (rpValues: number[], field_key: string, field_title: string) =>
 
 export const ReturnPeriodDamageChart = ({ data, field_key, field_title, ...props }) => {
   const spec = useMemo(
-    () => makeSpec(
-      unique<number>(data.table.map((d) => d.rp)).sort().reverse(),
-      field_key,
-      field_title
-    ),
-    [data, field_key, field_title]
+    () =>
+      makeSpec(
+        unique<number>(data.table.map((d) => d.rp))
+          .sort()
+          .reverse(),
+        field_key,
+        field_title,
+      ),
+    [data, field_key, field_title],
   );
 
   return <VegaLite data={data} spec={spec as any} {...props} />;

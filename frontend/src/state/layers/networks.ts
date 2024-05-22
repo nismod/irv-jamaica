@@ -6,7 +6,11 @@ import { StateEffect } from 'lib/recoil/state-effects/types';
 import { atom, selector } from 'recoil';
 import { damageMapStyleParamsState } from 'state/damage-mapping/damage-style-params';
 import { dataParamsByGroupState } from 'state/data-params';
-import { networkSelectionState, networkTreeCheckboxState, networkTreeConfig } from 'state/networks/network-selection';
+import {
+  networkSelectionState,
+  networkTreeCheckboxState,
+  networkTreeConfig,
+} from 'state/networks/network-selection';
 import { networksStyleState } from 'state/networks/networks-style';
 import { sectionVisibilityState } from 'state/sections';
 
@@ -48,7 +52,9 @@ export const adaptationDataParamsStateEffect: StateEffect<AdaptationOptionParams
 
   const layers = _.uniq(
     adaptationSectorLayers
-      .filter((x) => x.sector === sector && x.subsector === subsector && x.asset_type === asset_type)
+      .filter(
+        (x) => x.sector === sector && x.subsector === subsector && x.asset_type === asset_type,
+      )
       .map((x) => x.layer_name),
   );
 
@@ -85,7 +91,9 @@ export const adaptationFieldSpecState = selector<FieldSpec>({
   key: 'adaptationFieldSpecState',
   get: ({ get }) => {
     const field = get(adaptationFieldState);
-    const { hazard, rcp, adaptation_name, adaptation_protection_level } = get(dataParamsByGroupState('adaptation'));
+    const { hazard, rcp, adaptation_name, adaptation_protection_level } = get(
+      dataParamsByGroupState('adaptation'),
+    );
 
     let fieldParams: any = {};
     if (field === 'cost_benefit_ratio') {

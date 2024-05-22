@@ -18,14 +18,21 @@ interface SolutionsSidebarContentProps {
   showRiskSection?: boolean;
 }
 
-export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({ feature, solutionType }) => {
+export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
+  feature,
+  solutionType,
+}) => {
   return (
     <>
       <Typography variant="body2">{_.startCase(solutionType)}</Typography>
 
       {solutionType === 'terrestrial' && (
         <>
-          <DataItem label="Cell ID" value={feature.properties.cell_index} maximumSignificantDigits={21} />
+          <DataItem
+            label="Cell ID"
+            value={feature.properties.cell_index}
+            maximumSignificantDigits={21}
+          />
           <DataItem
             label="Land Use"
             value={
@@ -40,7 +47,9 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({ feat
             value={
               <>
                 <ColorBox color={slopeColorFunction(feature.properties.slope_degrees)} />
-                {feature.properties.slope_degrees.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                {feature.properties.slope_degrees.toLocaleString(undefined, {
+                  maximumFractionDigits: 0,
+                })}
               </>
             }
           />
@@ -62,23 +71,36 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({ feat
             value={
               <>
                 <ColorBox color={habitatColorMap(feature.properties.habitat)} />
-                {feature.properties.habitat ? MARINE_HABITATS_LOOKUP[feature.properties.habitat] : 'Buffer Zone'}
+                {feature.properties.habitat
+                  ? MARINE_HABITATS_LOOKUP[feature.properties.habitat]
+                  : 'Buffer Zone'}
               </>
             }
           />
-          {feature.properties.is_coral?
-            <DataItem label="Coral Type" value={feature.properties.coral_type} />: null
-          }
-          {feature.properties.is_mangrove?
-            <DataItem label="Mangrove Type" value={feature.properties.mangrove_type} />: null
-          }
-          <Typography variant="caption" component="h6">Proximity</Typography>
-          {feature.properties.within_coral_500m?
-            <Typography variant="body2" component="p">within 500m of coral</Typography> : null}
-          {feature.properties.within_mangrove_500m?
-            <Typography variant="body2" component="p">within 500m of mangrove</Typography> : null}
-          {feature.properties.within_seagrass_500m?
-            <Typography variant="body2" component="p">within 500m of seagrass</Typography> : null}
+          {feature.properties.is_coral ? (
+            <DataItem label="Coral Type" value={feature.properties.coral_type} />
+          ) : null}
+          {feature.properties.is_mangrove ? (
+            <DataItem label="Mangrove Type" value={feature.properties.mangrove_type} />
+          ) : null}
+          <Typography variant="caption" component="h6">
+            Proximity
+          </Typography>
+          {feature.properties.within_coral_500m ? (
+            <Typography variant="body2" component="p">
+              within 500m of coral
+            </Typography>
+          ) : null}
+          {feature.properties.within_mangrove_500m ? (
+            <Typography variant="body2" component="p">
+              within 500m of mangrove
+            </Typography>
+          ) : null}
+          {feature.properties.within_seagrass_500m ? (
+            <Typography variant="body2" component="p">
+              within 500m of seagrass
+            </Typography>
+          ) : null}
         </>
       )}
     </>

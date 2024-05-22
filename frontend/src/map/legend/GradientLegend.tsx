@@ -27,7 +27,9 @@ export const GradientLegend = ({ label, range, colorMapValues, getValueLabel }) 
       flexDirection="row"
       border="1px solid gray"
     >
-      {colorMapValues && <LegendGradient colorMapValues={colorMapValues} getValueLabel={getValueLabel} />}
+      {colorMapValues && (
+        <LegendGradient colorMapValues={colorMapValues} getValueLabel={getValueLabel} />
+      )}
     </Box>
     <Box height={10} position="relative">
       {colorMapValues && (

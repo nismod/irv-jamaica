@@ -12,7 +12,12 @@ export const EpochControl = ({ group, disabled = false }) => {
       <FormLabel>Epoch</FormLabel>
       <DataParam group={group} id="epoch">
         {({ value, onChange, options }) => (
-          <Select variant="standard" value={value} onChange={(e) => onChange(e.target.value)} fullWidth>
+          <Select
+            variant="standard"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            fullWidth
+          >
             {options.map((epoch) => (
               <MenuItem key={epoch} value={epoch}>
                 {epochLabel(epoch)}

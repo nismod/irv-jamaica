@@ -27,7 +27,9 @@ const buildingLayersState = selector<ViewLayer[]>({
   key: 'buildingLayersState',
   get: ({ get }) =>
     get(sectionVisibilityState('buildings'))
-      ? truthyKeys(get(buildingSelectionState)).map((buildingType) => buildingsViewLayer(buildingType))
+      ? truthyKeys(get(buildingSelectionState)).map((buildingType) =>
+          buildingsViewLayer(buildingType),
+        )
       : [],
 });
 
@@ -58,7 +60,9 @@ export const viewLayersState = selector<ConfigTree<ViewLayer>>({
     return [
       // administrative region boundaries or population density
       showRegions &&
-        (get(showPopulationState) ? populationViewLayer(regionLevel) : regionBoundariesViewLayer(regionLevel)),
+        (get(showPopulationState)
+          ? populationViewLayer(regionLevel)
+          : regionBoundariesViewLayer(regionLevel)),
 
       get(droughtRegionsLayerState),
 
@@ -83,7 +87,9 @@ export const viewLayersState = selector<ConfigTree<ViewLayer>>({
 
         // administrative regions labels
         showRegions &&
-          viewOnlyLayer(`boundaries_${regionLevel}-text`, () => regionLabelsDeckLayer(regionLevel, background)),
+          viewOnlyLayer(`boundaries_${regionLevel}-text`, () =>
+            regionLabelsDeckLayer(regionLevel, background),
+          ),
       ],
 
       /**

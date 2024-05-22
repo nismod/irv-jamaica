@@ -88,7 +88,8 @@ export function vectorColor(type: 'fill' | 'stroke' | 'icon', getColor: GetColor
   return {
     [propName]: getColor,
     updateTriggers: {
-      [propName]: (getColor as any)?.updateTriggers ?? (typeof getColor === 'function' ? [] : undefined),
+      [propName]:
+        (getColor as any)?.updateTriggers ?? (typeof getColor === 'function' ? [] : undefined),
     },
   };
 }

@@ -1,5 +1,8 @@
 import { FormControl, FormLabel, Slider } from '@mui/material';
-import { TerrestrialLocationFilterType, TERRESTRIAL_LOCATION_FILTERS } from 'config/solutions/domains';
+import {
+  TerrestrialLocationFilterType,
+  TERRESTRIAL_LOCATION_FILTERS,
+} from 'config/solutions/domains';
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { useRecoilState } from 'recoil';
 import { InputSection } from 'sidebar/ui/InputSection';
@@ -7,7 +10,9 @@ import { terrestrialNonLandUseFiltersState } from 'state/solutions/terrestrial-f
 import { TerrestrialLandUseTree } from './TerrestrialLandUseTree';
 
 export const TerrestrialControl = () => {
-  const [terrestrialFilters, setTerrestrialFilters] = useRecoilState(terrestrialNonLandUseFiltersState);
+  const [terrestrialFilters, setTerrestrialFilters] = useRecoilState(
+    terrestrialNonLandUseFiltersState,
+  );
 
   return (
     <>
@@ -21,7 +26,10 @@ export const TerrestrialControl = () => {
           <Slider
             value={terrestrialFilters.slope_degrees}
             onChange={(event, value) =>
-              setTerrestrialFilters({ ...terrestrialFilters, slope_degrees: value as [number, number] })
+              setTerrestrialFilters({
+                ...terrestrialFilters,
+                slope_degrees: value as [number, number],
+              })
             }
             min={0}
             max={90}
@@ -37,7 +45,10 @@ export const TerrestrialControl = () => {
           <Slider
             value={terrestrialFilters.elevation_m}
             onChange={(event, value) =>
-              setTerrestrialFilters({ ...terrestrialFilters, elevation_m: value as [number, number] })
+              setTerrestrialFilters({
+                ...terrestrialFilters,
+                elevation_m: value as [number, number],
+              })
             }
             min={0}
             max={2250}

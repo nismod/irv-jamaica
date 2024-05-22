@@ -12,7 +12,9 @@ import { DataItem } from 'details/features/detail-components';
 
 function useRasterColorMapLookup(colorMapValues) {
   return useMemo(
-    () => colorMapValues && Object.fromEntries(colorMapValues.map(({ value, color }) => [color, value])),
+    () =>
+      colorMapValues &&
+      Object.fromEntries(colorMapValues.map(({ value, color }) => [color, value])),
     [colorMapValues],
   );
 }
@@ -26,7 +28,9 @@ function formatHazardValue(color, value, dataUnit) {
   );
 }
 
-export const RasterHoverDescription: FC<{ hoveredObject: InteractionTarget<RasterTarget> }> = ({ hoveredObject }) => {
+export const RasterHoverDescription: FC<{ hoveredObject: InteractionTarget<RasterTarget> }> = ({
+  hoveredObject,
+}) => {
   const { color } = hoveredObject.target;
 
   const {

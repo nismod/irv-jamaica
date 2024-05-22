@@ -12,7 +12,11 @@ import { mapFitBoundsState } from 'map/MapView';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 import { useCallback, useMemo } from 'react';
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { adaptationColorSpecState, adaptationFieldSpecState, adaptationLayerSpecState } from 'state/layers/networks';
+import {
+  adaptationColorSpecState,
+  adaptationFieldSpecState,
+  adaptationLayerSpecState,
+} from 'state/layers/networks';
 
 import './asset-table.css';
 
@@ -42,7 +46,10 @@ export const FeatureAdaptationsTable = () => {
     [setMapFitBounds],
   );
 
-  const handleZoomOutJamaica = useCallback(() => setMapFitBounds([...JAMAICA_BBOX]), [setMapFitBounds]);
+  const handleZoomOutJamaica = useCallback(
+    () => setMapFitBounds([...JAMAICA_BBOX]),
+    [setMapFitBounds],
+  );
 
   const colorFn = useMemo(() => colorMap(colorSpec), [colorSpec]);
   const { getDataLabel, getValueFormatted } = getAssetDataFormats(fieldSpec);
@@ -73,7 +80,11 @@ export const FeatureAdaptationsTable = () => {
             onMouseLeave={() => setHoveredFeature(null)}
             expandableContent={
               <Box py={1}>
-                <FeatureSidebarContent feature={feature} assetType={feature.layer} showRiskSection={false} />
+                <FeatureSidebarContent
+                  feature={feature}
+                  assetType={feature.layer}
+                  showRiskSection={false}
+                />
               </Box>
             }
           >

@@ -56,6 +56,15 @@ const listenLocalStorage = ({ updateItem, updateAllKnownItems }) => {
   return () => window.removeEventListener('storage', onStorage);
 };
 
-export const RecoilLocalStorageSync: FC<SetOptional<RecoilSyncOptions, 'read' | 'write'>> = (props) => {
-  return <RecoilSync read={readLocalStorage} write={writeLocalStorage} listen={listenLocalStorage} {...props} />;
+export const RecoilLocalStorageSync: FC<SetOptional<RecoilSyncOptions, 'read' | 'write'>> = (
+  props,
+) => {
+  return (
+    <RecoilSync
+      read={readLocalStorage}
+      write={writeLocalStorage}
+      listen={listenLocalStorage}
+      {...props}
+    />
+  );
 };

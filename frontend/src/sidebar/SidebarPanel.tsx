@@ -6,7 +6,9 @@ import { sidebarSectionExpandedState } from 'state/sections';
 import { VisibilityToggle } from './VisibilityToggle';
 
 export const SidebarPanel: FC<{
-  id: string; title: string; children: ReactNode;
+  id: string;
+  title: string;
+  children: ReactNode;
 }> = ({ id, title, children }) => {
   const [expanded, setExpanded] = useRecoilState(sidebarSectionExpandedState(id));
 

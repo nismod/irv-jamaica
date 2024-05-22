@@ -6,7 +6,12 @@ import { useRecoilCallback, useSetRecoilState } from 'recoil';
 
 import { ViewLayer } from '../view-layers';
 
-import { hoverState, hoverPositionState, selectionState, allowedGroupLayersState } from './interaction-state';
+import {
+  hoverState,
+  hoverPositionState,
+  selectionState,
+  allowedGroupLayersState,
+} from './interaction-state';
 import { RecoilStateFamily } from 'lib/recoil/types';
 
 export type InteractionStyle = 'vector' | 'raster';
@@ -109,13 +114,22 @@ export function useInteractions(
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
   const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);
 
-  const interactionGroupLookup = useMemo(() => _.keyBy(interactionGroups, 'id'), [interactionGroups]);
+  const interactionGroupLookup = useMemo(
+    () => _.keyBy(interactionGroups, 'id'),
+    [interactionGroups],
+  );
 
   const primaryGroup = interactionGroups[0].id;
   const primaryGroupPickingRadius = interactionGroupLookup[primaryGroup].pickingRadius;
 
-  const interactiveLayers = useMemo(() => viewLayers.filter((x) => x.interactionGroup), [viewLayers]);
-  const viewLayerLookup = useMemo(() => _.keyBy(interactiveLayers, (layer) => layer.id), [interactiveLayers]);
+  const interactiveLayers = useMemo(
+    () => viewLayers.filter((x) => x.interactionGroup),
+    [viewLayers],
+  );
+  const viewLayerLookup = useMemo(
+    () => _.keyBy(interactiveLayers, (layer) => layer.id),
+    [interactiveLayers],
+  );
   const activeGroups = useMemo(
     () => _.groupBy(interactiveLayers, (viewLayer) => viewLayer.interactionGroup),
     [interactiveLayers],
@@ -124,7 +138,9 @@ export function useInteractions(
   const setAllowedGroupLayers = useSetRecoilState(allowedGroupLayersState);
 
   useEffect(() => {
-    setAllowedGroupLayers(_.mapValues(activeGroups, (viewLayers) => viewLayers.map((viewLayer) => viewLayer.id)));
+    setAllowedGroupLayers(
+      _.mapValues(activeGroups, (viewLayers) => viewLayers.map((viewLayer) => viewLayer.id)),
+    );
   }, [activeGroups, setAllowedGroupLayers]);
 
   const onHover = useCallback(
@@ -141,7 +157,9 @@ export function useInteractions(
         if (pickMultiple) {
           const pickedObjects: PickInfo<any>[] = deck.pickMultipleObjects(pickingParams);
           const interactionTargets: InteractionTarget<any>[] = pickedObjects
-            .map((info) => processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck))
+            .map((info) =>
+              processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck),
+            )
             .filter(Boolean);
 
           setInteractionGroupHover(groupName, interactionTargets);
@@ -156,7 +174,14 @@ export function useInteractions(
 
       setHoverXY([x, y]);
     },
-    [activeGroups, lookupViewForDeck, interactionGroupLookup, setHoverXY, setInteractionGroupHover, viewLayerLookup],
+    [
+      activeGroups,
+      lookupViewForDeck,
+      interactionGroupLookup,
+      setHoverXY,
+      setInteractionGroupHover,
+      viewLayerLookup,
+    ],
   );
 
   const onClick = useCallback(
@@ -171,13 +196,20 @@ export function useInteractions(
         // currently only supports selecting vector features
         if (interactionGroup.type === 'vector') {
           const info = deck.pickObject({ x, y, layerIds: viewLayerIds, radius });
-          let selectionTarget = info && processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck);
+          let selectionTarget =
+            info && processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck);
 
           setInteractionGroupSelection(groupName, selectionTarget);
         }
       }
     },
-    [activeGroups, lookupViewForDeck, interactionGroupLookup, setInteractionGroupSelection, viewLayerLookup],
+    [
+      activeGroups,
+      lookupViewForDeck,
+      interactionGroupLookup,
+      setInteractionGroupSelection,
+      viewLayerLookup,
+    ],
   );
 
   /**
@@ -186,9 +218,10 @@ export function useInteractions(
   const hoverPassGroups = useMemo(
     () =>
       new Set(
-        _.filter(interactionGroups, (group) => group.id === primaryGroup || group.usesAutoHighlight).map(
-          (group) => group.id,
-        ),
+        _.filter(
+          interactionGroups,
+          (group) => group.id === primaryGroup || group.usesAutoHighlight,
+        ).map((group) => group.id),
       ),
     [interactionGroups, primaryGroup],
   );

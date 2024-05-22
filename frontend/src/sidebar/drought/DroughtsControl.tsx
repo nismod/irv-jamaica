@@ -52,7 +52,9 @@ export const DroughtsControl: FC<{}> = () => {
       <InputSection>
         <FormControlLabel
           label="Adaptation Options"
-          control={<Checkbox checked={showOptions} onChange={(e, checked) => setShowOptions(checked)} />}
+          control={
+            <Checkbox checked={showOptions} onChange={(e, checked) => setShowOptions(checked)} />
+          }
         />
         <ParamDropdown<DroughtOptionsVariableType>
           title="Adaptation Options Variable"

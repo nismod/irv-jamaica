@@ -121,7 +121,9 @@ export const FeatureSidebarContent: FC<FeatureSidebarContentProps> = ({
       <pre style={{ display: 'none' }}>
         <code className="feature-debug">{JSON.stringify(f, null, 2)}</code>
         {featureDetails && (
-          <code className="feature-details-debug">{JSON.stringify(featureDetails.properties, null, 2)}</code>
+          <code className="feature-details-debug">
+            {JSON.stringify(featureDetails.properties, null, 2)}
+          </code>
         )}
       </pre>
       <Typography variant="caption">
@@ -140,7 +142,13 @@ export const FeatureSidebarContent: FC<FeatureSidebarContentProps> = ({
                   right: 30, // hack: larger right margin to allow space for close button
                 }}
                 title="Download CSV with feature metadata"
-                onClick={() => downloadFile(makeDetailsCsv(featureDetails), 'text/csv', `feature_${feature.id}.csv`)}
+                onClick={() =>
+                  downloadFile(
+                    makeDetailsCsv(featureDetails),
+                    'text/csv',
+                    `feature_${feature.id}.csv`,
+                  )
+                }
               >
                 <Download />
               </IconButton>

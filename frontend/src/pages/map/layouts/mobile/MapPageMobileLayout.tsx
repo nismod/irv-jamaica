@@ -103,9 +103,20 @@ export const MapPageMobileLayout = () => {
         ]}
         footer={
           <Box sx={{ cursor: 'default' }}>
-            <BottomNavigation showLabels value={bottomTabId} onChange={(e, value) => setBottomTabId(value)}>
+            <BottomNavigation
+              showLabels
+              value={bottomTabId}
+              onChange={(e, value) => setBottomTabId(value)}
+            >
               {mobileTabsConfig.map(({ id, label, IconComponent }) => {
-                return <TabNavigationAction key={id} label={label} IconComponent={IconComponent} value={id} />;
+                return (
+                  <TabNavigationAction
+                    key={id}
+                    label={label}
+                    IconComponent={IconComponent}
+                    value={id}
+                  />
+                );
               })}
             </BottomNavigation>
           </Box>

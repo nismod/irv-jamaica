@@ -16,7 +16,7 @@ export const BUILDING_TYPES = [
   'buildings_resort',
 ];
 
-export type BuildingType = typeof BUILDING_TYPES[number];
+export type BuildingType = (typeof BUILDING_TYPES)[number];
 
 export type BuildingSelection = Record<BuildingType, boolean>;
 
