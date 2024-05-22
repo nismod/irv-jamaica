@@ -9,12 +9,12 @@ import { viewState, viewStateEffect } from 'state/view';
 import { MapPageDesktopLayout } from './layouts/MapPageDesktopLayout';
 import { useIsMobile } from 'use-is-mobile';
 import { MapPageMobileLayout } from './layouts/mobile/MapPageMobileLayout';
+import { useParams } from 'react-router-dom';
 
-interface MapPageProps {
-  view: string;
-}
+interface MapPageProps {}
 
-export const MapPage: FC<MapPageProps> = ({ view }) => {
+export const MapPage: FC<MapPageProps> = () => {
+  const { view } = useParams();
   useSyncRecoilState(viewState, view);
 
   const isMobile = useIsMobile();

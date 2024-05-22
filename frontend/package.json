@@ -31,7 +31,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^5.3.21",
-    "react-router-dom": "^5.3.4",
+    "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.0",
     "react-spring-bottom-sheet": "^3.4.1",
     "react-transition-group": "^4.4.2",

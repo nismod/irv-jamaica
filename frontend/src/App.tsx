@@ -1,6 +1,6 @@
 import React from 'react';
 import { RecoilRoot } from 'recoil';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -67,21 +67,12 @@ export const App = () => {
                 left={0}
                 right={0}
               >
-                <Switch>
-                  <Route path="/" exact>
-                    <IntroPage />
-                  </Route>
-                  <Route
-                    path="/:view(exposure|risk|adaptation|nature-based-solutions)"
-                    render={({ match: { params } }) => <MapPage view={params.view} />}
-                  />
-                  <Route path="/data" exact>
-                    <DataPage />
-                  </Route>
-                  <Route path="/guide" exact>
-                    <GuidePage />
-                  </Route>
-                </Switch>
+                <Routes>
+                  <Route path="/" element={<IntroPage />} />
+                  <Route path="/:view" element={<MapPage />} />
+                  <Route path="/data" element={<DataPage />} />
+                  <Route path="/guide" element={<GuidePage />} />
+                </Routes>
               </Box>
             </Router>
           </ThemeProvider>
