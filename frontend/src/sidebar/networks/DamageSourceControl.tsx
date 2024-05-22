@@ -15,7 +15,11 @@ import { InputSection } from 'sidebar/ui/InputSection';
 import { InputRow } from 'sidebar/ui/InputRow';
 import { EpochControl } from 'sidebar/ui/params/EpochControl';
 import { RCPControl } from 'sidebar/ui/params/RCPControl';
-import { damageSourceState, damageSourceStateEffect, damageTypeState } from 'state/damage-mapping/damage-map';
+import {
+  damageSourceState,
+  damageSourceStateEffect,
+  damageTypeState,
+} from 'state/damage-mapping/damage-map';
 import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'config/hazards/metadata';
 import { LayerStylePanel } from 'sidebar/ui/LayerStylePanel';
 
@@ -30,7 +34,11 @@ export const DamageSourceControl = () => {
         <InputSection>
           <FormControl fullWidth>
             <FormLabel>Damage type</FormLabel>
-            <Select<string> variant="standard" value={damageType} onChange={(e) => setDamageType(e.target.value)}>
+            <Select<string>
+              variant="standard"
+              value={damageType}
+              onChange={(e) => setDamageType(e.target.value)}
+            >
               <MenuItem value="direct">Direct Damages</MenuItem>
               <MenuItem value="indirect">Economic Losses</MenuItem>
             </Select>

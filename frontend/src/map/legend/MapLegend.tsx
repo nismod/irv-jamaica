@@ -33,7 +33,8 @@ export const MapLegend: FC<{}> = () => {
        * or the style params set directly in the new layer
        * (new mechanism used for styleParams by NBS, drought, population etc)
        */
-      const { colorMap } = viewLayersParams[viewLayer.id].styleParams ?? viewLayer.styleParams ?? {};
+      const { colorMap } =
+        viewLayersParams[viewLayer.id].styleParams ?? viewLayer.styleParams ?? {};
 
       if (colorMap) {
         /**

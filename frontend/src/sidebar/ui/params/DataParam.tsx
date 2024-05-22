@@ -6,5 +6,7 @@ export const DataParam = ({ group, id, children }) => {
   const updateValue = useUpdateDataParam(group, id);
   const options = useRecoilValue(dataParamOptionsState({ group, param: id }));
 
-  return typeof children === 'function' ? children({ value: value, onChange: updateValue, options }) : children;
+  return typeof children === 'function'
+    ? children({ value: value, onChange: updateValue, options })
+    : children;
 };

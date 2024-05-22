@@ -1,5 +1,15 @@
 import React from 'react';
-import { Alert, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import {
+  Alert,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import ScrollToTop from 'lib/hooks/scroll-to-top';
 import { ExtLink } from 'lib/nav';
 
@@ -8,9 +18,10 @@ export const DataPage = () => (
     <ScrollToTop />
     <p>
       <Alert severity="info">
-        The systemic risk analysis results shown in this tool contain licensed data that must not be shared outside the
-        Government of Jamaica. By accessing the tool, you acknowledge that you understand this and agree not to download
-        any data or share your access credentials with anyone else.
+        The systemic risk analysis results shown in this tool contain licensed data that must not be
+        shared outside the Government of Jamaica. By accessing the tool, you acknowledge that you
+        understand this and agree not to download any data or share your access credentials with
+        anyone else.
       </Alert>
     </p>
     <p>
@@ -22,14 +33,14 @@ export const DataPage = () => (
           </Button>
         }
       >
-        The tool has recently been released. Please tell us if anything is not working as it should and suggest
-        potential improvements.
+        The tool has recently been released. Please tell us if anything is not working as it should
+        and suggest potential improvements.
       </Alert>
     </p>
 
     <p>
-      The modelling and analysis presented here aim to support climate adaptation decision-making by identifying spatial
-      criticalities and risks under current and future climate scenarios.
+      The modelling and analysis presented here aim to support climate adaptation decision-making by
+      identifying spatial criticalities and risks under current and future climate scenarios.
     </p>
 
     <p>The following table summarises the data and model results presented.</p>
@@ -53,7 +64,9 @@ export const DataPage = () => (
           </TableRow>
           <TableRow>
             <TableCell>Energy</TableCell>
-            <TableCell>Electricity transmission and distribution: generation, lines, poles and substations</TableCell>
+            <TableCell>
+              Electricity transmission and distribution: generation, lines, poles and substations
+            </TableCell>
             <TableCell>Cost of rehabilitation/reinstating damaged assets</TableCell>
             <TableCell>Wider effects of service disruption</TableCell>
           </TableRow>
@@ -73,12 +86,12 @@ export const DataPage = () => (
 
     <ul>
       <li>
-        Expected Annual Damages (EAD) (direct physical risks) estimated as the area under the direct damage vs
-        exceedance probability curve{' '}
+        Expected Annual Damages (EAD) (direct physical risks) estimated as the area under the direct
+        damage vs exceedance probability curve{' '}
       </li>
       <li>
-        Expected Annual Economic Losses (EAEL) (indirect economic risks) estimated as the area under the economic loss
-        vs exceedance probability curve{' '}
+        Expected Annual Economic Losses (EAEL) (indirect economic risks) estimated as the area under
+        the economic loss vs exceedance probability curve{' '}
       </li>
     </ul>
 
@@ -88,7 +101,9 @@ export const DataPage = () => (
 
     <ul>
       <li>
-        <ExtLink href="https://github.com/nismod/infra-risk-vis">github.com/nismod/infra-risk-vis</ExtLink>
+        <ExtLink href="https://github.com/nismod/infra-risk-vis">
+          github.com/nismod/infra-risk-vis
+        </ExtLink>
       </li>
     </ul>
 
@@ -104,14 +119,15 @@ export const DataPage = () => (
     <h1>Data Sources and Access</h1>
 
     <p>
-      Data comes from multiple sources, including Government of Jamaica bodies, private sector entities, and open data
-      sources.
+      Data comes from multiple sources, including Government of Jamaica bodies, private sector
+      entities, and open data sources.
     </p>
 
     <Alert severity="info">
-      The systemic risk analysis results shown in this tool contain licensed data that must not be shared outside the
-      Government of Jamaica. By accessing the tool, you acknowledge that you understand this and agree not to download
-      any data or share your access credentials with anyone else.
+      The systemic risk analysis results shown in this tool contain licensed data that must not be
+      shared outside the Government of Jamaica. By accessing the tool, you acknowledge that you
+      understand this and agree not to download any data or share your access credentials with
+      anyone else.
     </Alert>
 
     <h2>Hazard Data</h2>
@@ -131,7 +147,11 @@ export const DataPage = () => (
           <TableRow>
             <TableCell>Fluvial (river) and pluvial (surface) flooding</TableCell>
             <TableCell>
-              <img src="/logo-jba.png" alt="JBA Risk Management. The Flood People (R)." width="180" />
+              <img
+                src="/logo-jba.png"
+                alt="JBA Risk Management. The Flood People (R)."
+                width="180"
+              />
               <br />
               <ExtLink href="https://www.jbarisk.com/flood-services/maps-and-analytics/global-flood-maps/">
                 JBA global flood map product
@@ -168,7 +188,9 @@ export const DataPage = () => (
               </ExtLink>
             </TableCell>
             <TableCell>26 different exceedance probabilities from 1/1 to 1/10000</TableCell>
-            <TableCell>10 minute sustained maximum wind speeds in m/s at 10km grid squares</TableCell>
+            <TableCell>
+              10 minute sustained maximum wind speeds in m/s at 10km grid squares
+            </TableCell>
             <TableCell>
               RCP 4.5 &amp; 8.5 emission scenarios.
               <br />
@@ -210,7 +232,9 @@ export const DataPage = () => (
           <TableRow>
             <TableCell>Transmission &amp; Distribution</TableCell>
             <TableCell>59 Substations, 30,000 Poles, 11,440 kms of overhead lines</TableCell>
-            <TableCell>Damage costs (J$ or J$/m), Population served, GDP disrupted (J$/day)</TableCell>
+            <TableCell>
+              Damage costs (J$ or J$/m), Population served, GDP disrupted (J$/day)
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell rowSpan={4}>Transport</TableCell>
@@ -233,15 +257,17 @@ export const DataPage = () => (
             <TableCell>Roads</TableCell>
             <TableCell>572 bridges, 23,200 kms of roads</TableCell>
             <TableCell>
-              Damage costs (J$ or J$/m), Reopening costs (J$ or J$/m), Road traffic counts, Trade flow disruptions
-              (J$/day)
+              Damage costs (J$ or J$/m), Reopening costs (J$ or J$/m), Road traffic counts, Trade
+              flow disruptions (J$/day)
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell rowSpan={3}>Water</TableCell>
             <TableCell>Potable water</TableCell>
             <TableCell>1,208 point assets, 10,500 kms of pipelines</TableCell>
-            <TableCell>Damage costs (J$ or J$/m), Population served, GDP disrupted (J$/day)</TableCell>
+            <TableCell>
+              Damage costs (J$ or J$/m), Population served, GDP disrupted (J$/day)
+            </TableCell>
             <TableCell rowSpan={3}>NSDMD, WRA, NWC, NIC, STATIN</TableCell>
           </TableRow>
           <TableRow>
@@ -257,7 +283,8 @@ export const DataPage = () => (
           <TableRow>
             <TableCell>Buildings</TableCell>
             <TableCell>
-              Commercial, Industrial, Institutional, Mixed Use, Other, Recreation, Residential, Resort
+              Commercial, Industrial, Institutional, Mixed Use, Other, Recreation, Residential,
+              Resort
             </TableCell>
             <TableCell>996,682 buildings</TableCell>
             <TableCell>Damage costs (J$/m2), GDP disrupted (J$/day)</TableCell>
@@ -270,14 +297,16 @@ export const DataPage = () => (
     <h2>Contextual Map Data</h2>
 
     <p>
-      Background map data is &copy; <ExtLink href="https://www.openstreetmap.org/copyright">OpenStreetMap</ExtLink>{' '}
-      contributors, style &copy; <ExtLink href="https://carto.com/attributions">CARTO</ExtLink>.
+      Background map data is &copy;{' '}
+      <ExtLink href="https://www.openstreetmap.org/copyright">OpenStreetMap</ExtLink> contributors,
+      style &copy; <ExtLink href="https://carto.com/attributions">CARTO</ExtLink>.
     </p>
 
     <p>
       Satellite imagery background is derived from{' '}
       <ExtLink href="https://s2maps.eu">Sentinel-2 cloudless - https://s2maps.eu</ExtLink> by{' '}
-      <ExtLink href="https://eox.at">EOX IT Services GmbH</ExtLink> (Contains modified Copernicus Sentinel data 2020).
+      <ExtLink href="https://eox.at">EOX IT Services GmbH</ExtLink> (Contains modified Copernicus
+      Sentinel data 2020).
     </p>
   </article>
 );

@@ -15,8 +15,11 @@ export const LANDUSE_HIERARCHY: TreeNode<LanduseTypeData>[] = [
         id: 'Fields: Herbaceous crops, fallow, cultivated vegetables',
         label: 'Fields: Herbaceous crops, fallow, cultivated vegetables',
       },
-      { id: 'Fields: Pasture,Human disturbed, grassland', label: 'Fields: Pasture, human-disturbed, grassland' },
-    ]
+      {
+        id: 'Fields: Pasture,Human disturbed, grassland',
+        label: 'Fields: Pasture, human-disturbed, grassland',
+      },
+    ],
   },
   { id: 'Bare Rock', label: 'Bare Rock' },
   {
@@ -27,14 +30,17 @@ export const LANDUSE_HIERARCHY: TreeNode<LanduseTypeData>[] = [
       { id: 'Bamboo and Fields', label: 'Bamboo and Fields' },
       { id: 'Bamboo and Secondary Forest', label: 'Bamboo and Secondary Forest' },
       { id: 'Fields  and Bamboo', label: 'Fields and Bamboo' },
-    ]
+    ],
   },
   { id: 'Buildings and other infrastructures', label: 'Built-up areas' },
   {
     id: 'forest',
     label: 'Forest',
     children: [
-      { id: 'Closed broadleaved forest (Primary Forest)', label: 'Closed broadleaved forest (Primary Forest)' },
+      {
+        id: 'Closed broadleaved forest (Primary Forest)',
+        label: 'Closed broadleaved forest (Primary Forest)',
+      },
       {
         id: 'Disturbed broadleaved forest (Secondary Forest)',
         label: 'Disturbed broadleaved forest (Secondary Forest)',
@@ -42,7 +48,7 @@ export const LANDUSE_HIERARCHY: TreeNode<LanduseTypeData>[] = [
       { id: 'Secondary Forest', label: 'Secondary Forest' },
       { id: 'Swamp Forest', label: 'Swamp Forest' },
       { id: 'Mangrove Forest', label: 'Mangrove Forest' },
-    ]
+    ],
   },
   {
     id: 'mining',
@@ -57,7 +63,10 @@ export const LANDUSE_HIERARCHY: TreeNode<LanduseTypeData>[] = [
     label: 'Mixed Use',
     children: [
       { id: 'Fields and Secondary Forest', label: 'Fields and Secondary Forest' },
-      { id: 'Fields or Secondary Forest/Pine Plantation', label: 'Fields or Secondary Forest/Pine Plantation' },
+      {
+        id: 'Fields or Secondary Forest/Pine Plantation',
+        label: 'Fields or Secondary Forest/Pine Plantation',
+      },
     ],
   },
   {
@@ -65,8 +74,11 @@ export const LANDUSE_HIERARCHY: TreeNode<LanduseTypeData>[] = [
     label: 'Open dry forest',
     children: [
       { id: 'Open dry forest - Short', label: 'Open dry forest - Short' },
-      { id: 'Open dry forest - Tall (Woodland/Savanna)', label: 'Open dry forest - Tall (Woodland/Savanna)' },
-    ]
+      {
+        id: 'Open dry forest - Tall (Woodland/Savanna)',
+        label: 'Open dry forest - Tall (Woodland/Savanna)',
+      },
+    ],
   },
   {
     id: 'plantation',
@@ -80,14 +92,12 @@ export const LANDUSE_HIERARCHY: TreeNode<LanduseTypeData>[] = [
         id: 'Plantation: Tree crops, shrub crops, sugar cane, banana',
         label: 'Plantation: Tree crops, shrub crops, sugar cane, banana',
       },
-    ]
+    ],
   },
   { id: 'Water Body', label: 'Water Body' },
   {
     id: 'wetland',
     label: 'Wetland',
-    children: [
-      { id: 'Herbaceous Wetland', label: 'Herbaceous Wetland' },
-    ]
+    children: [{ id: 'Herbaceous Wetland', label: 'Herbaceous Wetland' }],
   },
 ];

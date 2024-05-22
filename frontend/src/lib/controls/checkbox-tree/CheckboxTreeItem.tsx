@@ -36,11 +36,7 @@ export function CheckboxTreeItem<T>({
     }
   }
 
-  const checkedState = indeterminate
-    ? 'mixed'
-    : checked
-      ? 'true'
-      : 'false'
+  const checkedState = indeterminate ? 'mixed' : checked ? 'true' : 'false';
   return (
     <TreeItem
       aria-checked={checkedState}

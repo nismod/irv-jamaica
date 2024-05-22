@@ -3,7 +3,11 @@ import { LANDUSE_HIERARCHY } from 'config/solutions/landuse-hierarchy';
 import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { useRecoilState } from 'recoil';
 import { LayerLabel } from 'sidebar/ui/LayerLabel';
-import { landuseTreeCheckboxState, landuseTreeConfig, landuseTreeExpandedState } from 'state/solutions/landuse-tree';
+import {
+  landuseTreeCheckboxState,
+  landuseTreeConfig,
+  landuseTreeExpandedState,
+} from 'state/solutions/landuse-tree';
 
 export const TerrestrialLandUseTree = () => {
   const [checkboxState, setCheckboxState] = useRecoilState(landuseTreeCheckboxState);

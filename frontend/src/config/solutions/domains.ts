@@ -32,7 +32,7 @@ const landUseValuesConst = [
 
 export const LAND_USE_VALUES = [...landUseValuesConst];
 
-export type LandUseOption = typeof LAND_USE_VALUES[number];
+export type LandUseOption = (typeof LAND_USE_VALUES)[number];
 
 export const TERRESTRIAL_LOCATION_FILTERS = [
   {
@@ -61,7 +61,7 @@ export const TERRESTRIAL_LOCATION_FILTERS = [
   },
 ] as const;
 
-export type TerrestrialLocationFilterType = typeof TERRESTRIAL_LOCATION_FILTERS[number]['value'];
+export type TerrestrialLocationFilterType = (typeof TERRESTRIAL_LOCATION_FILTERS)[number]['value'];
 
 const marineHabitatsConst = [
   {
@@ -94,8 +94,8 @@ const marineHabitatsConst = [
   },
   {
     value: 'other',
-    label: 'Buffer Zone'
-  }
+    label: 'Buffer Zone',
+  },
 ] as const;
 
 export const MARINE_HABITATS = [...marineHabitatsConst];
@@ -105,7 +105,7 @@ export const MARINE_HABITATS_LOOKUP = toDictionary(
   (x) => x.label,
 );
 
-export type MarineHabitatType = typeof MARINE_HABITATS[number]['value'];
+export type MarineHabitatType = (typeof MARINE_HABITATS)[number]['value'];
 
 export const MARINE_LOCATION_FILTERS = [
   {
@@ -122,4 +122,4 @@ export const MARINE_LOCATION_FILTERS = [
   },
 ] as const;
 
-export type MarineLocationFilterType = typeof MARINE_LOCATION_FILTERS[number]['value'];
+export type MarineLocationFilterType = (typeof MARINE_LOCATION_FILTERS)[number]['value'];

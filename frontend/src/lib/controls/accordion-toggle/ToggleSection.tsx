@@ -1,4 +1,11 @@
-import { Accordion, AccordionDetails, AccordionSummary, Checkbox, FormControlLabel, Radio } from '@mui/material';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Checkbox,
+  FormControlLabel,
+  Radio,
+} from '@mui/material';
 import { createContext, FC, ReactNode, useCallback, useContext } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -12,11 +19,8 @@ export const ToggleStateContext = createContext<RecoilStateFamily<boolean, strin
 
 export const ToggleSectionGroup: FC<{
   children: ReactNode;
-  toggleState: RecoilStateFamily<boolean, string>
-}> = ({
-  children,
-  toggleState,
-}) => {
+  toggleState: RecoilStateFamily<boolean, string>;
+}> = ({ children, toggleState }) => {
   return <ToggleStateContext.Provider value={toggleState}>{children}</ToggleStateContext.Provider>;
 };
 

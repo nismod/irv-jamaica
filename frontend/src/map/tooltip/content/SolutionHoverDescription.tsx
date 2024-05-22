@@ -34,7 +34,11 @@ export const SolutionHoverDescription: FC<{
 
       {viewLayer.id === 'terrestrial' && (
         <>
-          <DataItem label="Cell ID" value={feature.properties.cell_id} maximumSignificantDigits={21} />
+          <DataItem
+            label="Cell ID"
+            value={feature.properties.cell_id}
+            maximumSignificantDigits={21}
+          />
           {/* not using DataDescription for Land Use because currently it only works for colorSpec-based color maps (not categorical) */}
           <DataItem
             label="Land Use"
@@ -71,7 +75,9 @@ export const SolutionHoverDescription: FC<{
             value={
               <>
                 <ColorBox color={habitatColorMap(feature.properties.habitat)} />
-                {feature.properties.habitat ? MARINE_HABITATS_LOOKUP[feature.properties.habitat] : 'Buffer Zone'}
+                {feature.properties.habitat
+                  ? MARINE_HABITATS_LOOKUP[feature.properties.habitat]
+                  : 'Buffer Zone'}
               </>
             }
           />

@@ -19,7 +19,10 @@ export const NetworksSection: FC<{}> = () => {
   return (
     <SidebarPanel id="assets" title="Infrastructure">
       <ErrorBoundary message="There was a problem displaying this section.">
-        <StateEffectRoot state={sectionStyleValueState('assets')} effect={networksStyleStateEffect} />
+        <StateEffectRoot
+          state={sectionStyleValueState('assets')}
+          effect={networksStyleStateEffect}
+        />
         <SidebarPanelSection>
           <NetworkControl />
         </SidebarPanelSection>

@@ -196,7 +196,12 @@ export const terrestrialLayerState = selector<ViewLayer>({
               pointRadiusMaxPixels: 7,
             },
             fillColor(dataColorMap(dataFn, colorFn)),
-            terrestrialFilters(filters, landuseFilterSet, locationFilterKeys, zoom < switchoverZoom),
+            terrestrialFilters(
+              filters,
+              landuseFilterSet,
+              locationFilterKeys,
+              zoom < switchoverZoom,
+            ),
           ),
           selectableMvtLayer(
             {
@@ -219,7 +224,12 @@ export const terrestrialLayerState = selector<ViewLayer>({
             },
             border(),
             fillColor(dataColorMap(dataFn, colorFn)),
-            terrestrialFilters(filters, landuseFilterSet, locationFilterKeys, zoom >= switchoverZoom),
+            terrestrialFilters(
+              filters,
+              landuseFilterSet,
+              locationFilterKeys,
+              zoom >= switchoverZoom,
+            ),
           ),
         ];
       },

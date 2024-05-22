@@ -11,7 +11,9 @@ function getExpectedDamageKey(direct: boolean, hazard: string, rcp: string, epoc
 const hazardTypes = ['fluvial', 'surface', 'coastal', 'cyclone'];
 
 function totalExpectedDamagesProperty(direct: boolean, { rcp, epoch }) {
-  const hazardProperties = hazardTypes.map((ht) => featureProperty(getExpectedDamageKey(direct, ht, rcp, epoch)));
+  const hazardProperties = hazardTypes.map((ht) =>
+    featureProperty(getExpectedDamageKey(direct, ht, rcp, epoch)),
+  );
 
   return withTriggers((f) => sumOrNone(hazardProperties.map((p) => p(f))), [direct, rcp, epoch]);
 }

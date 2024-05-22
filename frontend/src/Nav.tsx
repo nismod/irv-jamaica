@@ -110,9 +110,7 @@ const DesktopNavContent: FC<{ navItems: NavItemConfig[] }> = ({ navItems }) => (
 
     {navItems.map(({ to, title, tooltip }) => (
       <NavTooltip key={to} title={tooltip} placement="bottom">
-        <ToolbarNavLink to={to}>
-          {title}
-        </ToolbarNavLink>
+        <ToolbarNavLink to={to}>{title}</ToolbarNavLink>
       </NavTooltip>
     ))}
   </>
@@ -139,7 +137,11 @@ export const Nav: FC<{ height: number; navItems: NavItemConfig[] }> = ({ height,
           height: height - topStripeHeight,
         }}
       >
-        {isMobile ? <MobileNavContent navItems={navItems} /> : <DesktopNavContent navItems={navItems} />}
+        {isMobile ? (
+          <MobileNavContent navItems={navItems} />
+        ) : (
+          <DesktopNavContent navItems={navItems} />
+        )}
       </Toolbar>
     </AppBar>
   );

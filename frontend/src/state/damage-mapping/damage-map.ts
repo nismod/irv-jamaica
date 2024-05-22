@@ -25,8 +25,11 @@ export const damageSourceStateEffect = ({ get, set }, damageSource) => {
   syncHazardsWithDamageSourceStateEffect({ get, set }, damageSource);
 
   if (damageSource !== 'all') {
-    const damageSourceReturnPeriodDomain = get(dataParamOptionsState({ group: damageSource, param: 'returnPeriod' }));
-    const topReturnPeriod = damageSourceReturnPeriodDomain[damageSourceReturnPeriodDomain.length - 1];
+    const damageSourceReturnPeriodDomain = get(
+      dataParamOptionsState({ group: damageSource, param: 'returnPeriod' }),
+    );
+    const topReturnPeriod =
+      damageSourceReturnPeriodDomain[damageSourceReturnPeriodDomain.length - 1];
 
     // CAUTION: this won't resolve the dependencies between data params if any depend on the return period
     set(dataParamState({ group: damageSource, param: 'returnPeriod' }), topReturnPeriod);

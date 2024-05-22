@@ -3,7 +3,13 @@ import { VegaLite } from 'react-vega';
 
 import { unique } from 'lib/helpers';
 
-const makeSpec = (yearValues: number[], field_min: string, field: string, field_max: string, field_title: string) => ({
+const makeSpec = (
+  yearValues: number[],
+  field_min: string,
+  field: string,
+  field_max: string,
+  field_title: string,
+) => ({
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {
     name: 'table',
@@ -59,16 +65,24 @@ const makeSpec = (yearValues: number[], field_min: string, field: string, field_
   },
 });
 
-export const ExpectedDamageChart = ({ data, field, field_min, field_max, field_title, ...props }) => {
+export const ExpectedDamageChart = ({
+  data,
+  field,
+  field_min,
+  field_max,
+  field_title,
+  ...props
+}) => {
   const spec = useMemo(
-    () => makeSpec(
-      unique<number>(data.table.map((d) => d.epoch)).sort(),
-      field_min,
-      field,
-      field_max,
-      field_title
-    ),
-    [data, field_min, field, field_max, field_title]
+    () =>
+      makeSpec(
+        unique<number>(data.table.map((d) => d.epoch)).sort(),
+        field_min,
+        field,
+        field_max,
+        field_title,
+      ),
+    [data, field_min, field, field_max, field_title],
   );
 
   return <VegaLite data={data} spec={spec as any} {...props} />;

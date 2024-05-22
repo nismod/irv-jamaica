@@ -26,15 +26,17 @@ export const IntroPage = () => (
         <Grid item md={6} sx={{ width: '100%' }}>
           <HeadingBox sx={{ mt: -2, pt: 8 }}>
             <Typography variant="h1">
-              Climate-related risk analytics for transport, energy &amp; water infrastructure in Jamaica
+              Climate-related risk analytics for transport, energy &amp; water infrastructure in
+              Jamaica
             </Typography>
           </HeadingBox>
         </Grid>
         <Grid item md={6}>
           <TextBox sx={{ mt: -2, pt: 8 }}>
             <p>
-              The Jamaica Systemic Risk Assessment Tool (J&#8209;SRAT) supports climate adaptation decision-making by
-              identifying spatial criticalities and risks under current and future climate scenarios.
+              The Jamaica Systemic Risk Assessment Tool (J&#8209;SRAT) supports climate adaptation
+              decision-making by identifying spatial criticalities and risks under current and
+              future climate scenarios.
             </p>
             <Typography variant="h2">Transport</Typography>
             <p>Roads, rail, ports and airports.</p>
@@ -51,8 +53,9 @@ export const IntroPage = () => (
               <ExtLink href="https://opsis.eci.ox.ac.uk/">
                 Oxford Programme for Sustainable Infrastructure Systems
               </ExtLink>
-              , University of Oxford, in collaboration with the Planning Institute of Jamaica and supported by
-              engagement with infrastructure and climate specialists and related government bodies.
+              , University of Oxford, in collaboration with the Planning Institute of Jamaica and
+              supported by engagement with infrastructure and climate specialists and related
+              government bodies.
             </p>
             <p>
               <Stack
@@ -85,10 +88,11 @@ export const IntroPage = () => (
               <ExtLink href="https://opsis.eci.ox.ac.uk/">
                 Oxford Programme for Sustainable Infrastructure Systems
               </ExtLink>{' '}
-              in the Environmental Change Institute, University of Oxford, with the Government of Jamaica (GoJ), funded
-              by UK Aid through the UK Foreign and Commonwealth Development Office (FCDO). The initiative forms part of
-              the Coalition for Climate Resilient Investment&rsquo;s (CCRI) work on "Systemic Resilience" in
-              collaboration with the Green Climate Fund.
+              in the Environmental Change Institute, University of Oxford, with the Government of
+              Jamaica (GoJ), funded by UK Aid through the UK Foreign and Commonwealth Development
+              Office (FCDO). The initiative forms part of the Coalition for Climate Resilient
+              Investment&rsquo;s (CCRI) work on "Systemic Resilience" in collaboration with the
+              Green Climate Fund.
             </p>
 
             <Stack
@@ -105,14 +109,18 @@ export const IntroPage = () => (
                 <img height="100" src="/logo-gcf.png" alt="Green Climate Fund" />
               </ExtLink>
               <ExtLink href="https://resilientinvestment.org/">
-                <img height="100" src="/logo-ccri.png" alt="Coalition for Climate Resilient Investment" />
+                <img
+                  height="100"
+                  src="/logo-ccri.png"
+                  alt="Coalition for Climate Resilient Investment"
+                />
               </ExtLink>
             </Stack>
 
             <p>
               <small>
-                Photo credit: Hurricane Irma, 7 September 2017. Data: MODIS/Terra (NASA WorldView). Processed by Antti
-                Lipponen&nbsp;(
+                Photo credit: Hurricane Irma, 7 September 2017. Data: MODIS/Terra (NASA WorldView).
+                Processed by Antti Lipponen&nbsp;(
                 <ExtLink href="https://twitter.com/anttilip">@anttilip</ExtLink>)&nbsp;
                 <ExtLink href="https://creativecommons.org/licenses/by/2.0/">CC-BY</ExtLink>
               </small>

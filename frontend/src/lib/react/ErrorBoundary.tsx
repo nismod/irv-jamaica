@@ -28,7 +28,12 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     if (this.state.hasError) {
       return (
         <Box p={1}>
-          <Stack direction="row" alignItems="center" justifyContent={this.props.justifyErrorContent} gap={1}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent={this.props.justifyErrorContent}
+            gap={1}
+          >
             <ErrorOutline />
             <Typography>{this.props.message}</Typography>
           </Stack>

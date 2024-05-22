@@ -37,13 +37,25 @@ const SidebarLayout = ({ top, bottom, left, right, width, children }) => (
 export const MapPageDesktopLayout = () => {
   return (
     <>
-      <SidebarLayout top={0} left={0} bottom={0} right={undefined} width={globalStyleVariables.controlSidebarWidth}>
+      <SidebarLayout
+        top={0}
+        left={0}
+        bottom={0}
+        right={undefined}
+        width={globalStyleVariables.controlSidebarWidth}
+      >
         <LayersSidebar />
       </SidebarLayout>
       <Box position="absolute" overflow="clip" top={0} left={0} right={0} bottom={0}>
         <MapView />
       </Box>
-      <SidebarLayout top={0} left={undefined} bottom={70} right={70} width={globalStyleVariables.detailSidebarWidth}>
+      <SidebarLayout
+        top={0}
+        left={undefined}
+        bottom={70}
+        right={70}
+        width={globalStyleVariables.detailSidebarWidth}
+      >
         <DetailsSidebar />
       </SidebarLayout>
     </>

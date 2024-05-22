@@ -36,9 +36,10 @@ export const Notice = () => {
             <InfoOutlined color="primary" />
           </Box>
           <Typography paragraph>
-            The systemic risk analysis data and results shown in this tool contain licensed data that must not be shared
-            outside the Government of Jamaica. By accessing the tool, you acknowledge that you understand this and agree
-            not to download any data or share your access credentials with anyone else.{' '}
+            The systemic risk analysis data and results shown in this tool contain licensed data
+            that must not be shared outside the Government of Jamaica. By accessing the tool, you
+            acknowledge that you understand this and agree not to download any data or share your
+            access credentials with anyone else.{' '}
             <AppLink to="/data">Read more about the data</AppLink>.
           </Typography>
           <DialogActions>

@@ -1,5 +1,12 @@
 import { makeConfig } from 'lib/helpers';
-import { ScaleLevel, border, iconColor, iconSize, lineStyle, pointRadius } from 'lib/deck/props/style';
+import {
+  ScaleLevel,
+  border,
+  iconColor,
+  iconSize,
+  lineStyle,
+  pointRadius,
+} from 'lib/deck/props/style';
 
 import { COLORS } from '../colors';
 import { infrastructureViewLayer } from './infrastructure-view-layer';
@@ -218,7 +225,9 @@ export const INFRASTRUCTURE_VIEW_LAYERS = makeConfig<ViewLayer, string>([
   ]),
   infrastructureViewLayer('water_waste_sewer_pressure', ({ zoom, styleParams }) => [
     lineStyle(zoom),
-    strokeColor(infraStyle('water_waste_sewer_pressure', COLORS.water_wastewater.deck, styleParams)),
+    strokeColor(
+      infraStyle('water_waste_sewer_pressure', COLORS.water_wastewater.deck, styleParams),
+    ),
   ]),
   wastewaterNodesViewLayer('water_waste_nodes_sump'),
   wastewaterNodesViewLayer('water_waste_nodes_pump'),

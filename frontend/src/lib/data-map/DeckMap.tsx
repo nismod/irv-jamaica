@@ -1,4 +1,10 @@
-import DeckGL, { DeckGLContextValue, DeckGLRef, DeckProps, MapView, MapViewState } from 'deck.gl/typed';
+import DeckGL, {
+  DeckGLContextValue,
+  DeckGLRef,
+  DeckProps,
+  MapView,
+  MapViewState,
+} from 'deck.gl/typed';
 import { FC, Provider, ReactNode, createContext, useRef, useState } from 'react';
 
 import { useTriggerMemo } from '../hooks/use-trigger-memo';
@@ -36,7 +42,11 @@ export const DeckMap: FC<DeckMapProps> = ({
 
   const zoom = viewState.zoom;
 
-  const layers = useTriggerMemo(() => layersFunction({ zoom }), [layersFunction, zoom], dataLoadTrigger);
+  const layers = useTriggerMemo(
+    () => layersFunction({ zoom }),
+    [layersFunction, zoom],
+    dataLoadTrigger,
+  );
 
   return (
     <ViewStateContext.Provider value={{ viewState, setViewState }}>

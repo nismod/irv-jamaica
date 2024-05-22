@@ -8,7 +8,11 @@ import { DataMapTooltip } from 'lib/data-map/DataMapTooltip';
 import { MapBoundsFitter } from 'lib/map/MapBoundsFitter';
 import { MapHud } from 'lib/map/hud/MapHud';
 import { MapHudRegion } from 'lib/map/hud/MapHudRegion';
-import { MapHudAttributionControl, MapHudNavigationControl, MapHudScaleControl } from 'lib/map/hud/mapbox-controls';
+import {
+  MapHudAttributionControl,
+  MapHudNavigationControl,
+  MapHudScaleControl,
+} from 'lib/map/hud/mapbox-controls';
 import { MapSearch } from 'lib/map/place-search/MapSearch';
 import { PlaceSearchResult } from 'lib/map/place-search/use-place-search';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';

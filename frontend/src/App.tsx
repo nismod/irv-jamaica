@@ -60,7 +60,13 @@ export const App = () => {
               <CssBaseline />
               <Nav height={globalStyleVariables.navbarHeight} navItems={navItems} />
               <Notice />
-              <Box position="absolute" top={globalStyleVariables.navbarHeight} bottom={0} left={0} right={0}>
+              <Box
+                position="absolute"
+                top={globalStyleVariables.navbarHeight}
+                bottom={0}
+                left={0}
+                right={0}
+              >
                 <Switch>
                   <Route path="/" exact>
                     <IntroPage />

@@ -21,7 +21,10 @@ export const viewStateEffect: StateEffect<string> = ({ get, set }, view, previou
   const viewSectionsConfig = VIEW_SECTIONS[view];
 
   const previousViewSectionsConfig = VIEW_SECTIONS[previousView];
-  const removedSections = _.difference(_.keys(previousViewSectionsConfig), _.keys(viewSectionsConfig));
+  const removedSections = _.difference(
+    _.keys(previousViewSectionsConfig),
+    _.keys(viewSectionsConfig),
+  );
 
   removedSections.forEach((section) => {
     set(sectionVisibilityState(section), false);
@@ -30,7 +33,9 @@ export const viewStateEffect: StateEffect<string> = ({ get, set }, view, previou
   _.forEach(viewSectionsConfig, (sectionConfig, section) => {
     set(sectionVisibilityState(section), sectionConfig.visible);
     set(sidebarSectionExpandedState(section), sectionConfig.expanded);
-    const styleOptions = sectionConfig.styles?.map((style) => SECTIONS_CONFIG[section].styles[style]);
+    const styleOptions = sectionConfig.styles?.map(
+      (style) => SECTIONS_CONFIG[section].styles[style],
+    );
     set(sectionStyleOptionsState(section), styleOptions);
     set(sectionStyleValueState(section), sectionConfig.defaultStyle);
   });
