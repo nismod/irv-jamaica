@@ -28,7 +28,7 @@ import { AdaptationSection } from './adaptation/AdaptationSection';
 import { Download } from '@mui/icons-material';
 import { downloadFile } from 'lib/helpers';
 
-var componentMapping: Record<keyof typeof NETWORKS_METADATA, DetailsComponent> = {
+const componentMapping: Record<keyof typeof NETWORKS_METADATA, DetailsComponent> = {
   airport_terminals: AirportDetails,
   airport_runways: AirportDetails,
 

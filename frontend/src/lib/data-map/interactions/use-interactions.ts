@@ -165,7 +165,7 @@ export function useInteractions(
           setInteractionGroupHover(groupName, interactionTargets);
         } else {
           const info: PickInfo<any> = deck.pickObject(pickingParams);
-          let interactionTarget: InteractionTarget<any> =
+          const interactionTarget: InteractionTarget<any> =
             info && processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck);
 
           setInteractionGroupHover(groupName, interactionTarget);
@@ -196,7 +196,7 @@ export function useInteractions(
         // currently only supports selecting vector features
         if (interactionGroup.type === 'vector') {
           const info = deck.pickObject({ x, y, layerIds: viewLayerIds, radius });
-          let selectionTarget =
+          const selectionTarget =
             info && processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck);
 
           setInteractionGroupSelection(groupName, selectionTarget);
