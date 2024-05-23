@@ -15,7 +15,7 @@ export const MapLegend: FC<{}> = () => {
 
   const hazardViewLayers = [];
 
-  let dataColorMaps: Record<
+  const dataColorMaps: Record<
     string,
     {
       colorMap: ColorMap;

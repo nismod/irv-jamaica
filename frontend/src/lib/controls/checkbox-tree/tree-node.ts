@@ -50,7 +50,7 @@ export function getNodeById<T>(node: TreeNode<T>, id: string) {
 }
 
 export function getDescendants<T>(node: TreeNode<T>) {
-  let array: string[] = [];
+  const array: string[] = [];
   dfs(node, (n) => array.push(n.id), true);
 
   return array;
