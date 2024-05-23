@@ -13,7 +13,7 @@ const riskLabelLookup = toDictionary(
   (x) => x.label,
 );
 
-const riskValueFormatLookup: Record<DroughtRiskVariableType, (x: any) => string> = {
+const riskValueFormatLookup: Record<DroughtRiskVariableType, (x: number) => string> = {
   mean_monthly_water_stress_: (x) => numFormat(x),
   epd: (x) => numFormat(x),
   eael: (x) => `$${numFormat(x)}`,
@@ -32,7 +32,7 @@ const optionsLabelLookup = toDictionary(
   (x) => x.label,
 );
 
-const optionsValueFormatLookup: Record<DroughtOptionsVariableType, (x: any) => string> = {
+const optionsValueFormatLookup: Record<DroughtOptionsVariableType, (x: number) => string> = {
   cost_jmd: (x) => `$${numFormat(x)}`,
   population_protected: (x) => numFormat(x, 21),
   net_present_value_benefit: (x) => `$${numFormat(x)}`,

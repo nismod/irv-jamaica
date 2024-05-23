@@ -4,7 +4,7 @@ import { SidebarPanel } from 'sidebar/SidebarPanel';
 import { SidebarPanelSection } from 'sidebar/ui/SidebarPanelSection';
 import { DroughtsControl } from './DroughtsControl';
 
-export const DroughtsSection: FC<{}> = () => {
+export const DroughtsSection: FC = () => {
   return (
     <SidebarPanel id="drought" title="Drought">
       <ErrorBoundary message="There was a problem displaying this section.">

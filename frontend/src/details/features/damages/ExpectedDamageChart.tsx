@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { VegaLite } from 'react-vega';
+import { PlainObject, VegaLite } from 'react-vega';
 
 import { unique } from 'lib/helpers';
 
@@ -85,5 +85,5 @@ export const ExpectedDamageChart = ({
     [data, field_min, field, field_max, field_title],
   );
 
-  return <VegaLite data={data} spec={spec as any} {...props} />;
+  return <VegaLite data={data} spec={spec as PlainObject} {...props} />;
 };

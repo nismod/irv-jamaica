@@ -21,7 +21,7 @@ const viewLabels = {
   'nature-based-solutions': 'Nature-based Solutions',
 };
 
-const SidebarContent: FC<{}> = () => {
+const SidebarContent: FC = () => {
   const view = useRecoilValue(viewState);
   switch (view) {
     case 'exposure':

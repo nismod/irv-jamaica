@@ -5,7 +5,7 @@ import { StyleSelection } from 'sidebar/StyleSelection';
 import { SidebarPanelSection } from 'sidebar/ui/SidebarPanelSection';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 
-export const RegionsSection: FC<{}> = () => {
+export const RegionsSection: FC = () => {
   return (
     <SidebarPanel id="regions" title="Regions">
       <ErrorBoundary message="There was a problem displaying this section.">

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { VegaLite } from 'react-vega';
+import { PlainObject, VegaLite } from 'react-vega';
 
 import { unique } from 'lib/helpers';
 
@@ -73,5 +73,5 @@ export const ReturnPeriodDamageChart = ({ data, field_key, field_title, ...props
     [data, field_key, field_title],
   );
 
-  return <VegaLite data={data} spec={spec as any} {...props} />;
+  return <VegaLite data={data} spec={spec as PlainObject} {...props} />;
 };

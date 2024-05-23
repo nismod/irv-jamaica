@@ -15,7 +15,7 @@ import { showAdaptationsState } from 'state/layers/networks';
 import { Box } from '@mui/system';
 import { Alert } from '@mui/material';
 
-export const NetworkControl: FC<{}> = () => {
+export const NetworkControl: FC = () => {
   const [checkboxState, setCheckboxState] = useRecoilState(networkTreeCheckboxState);
   const [expanded, setExpanded] = useRecoilState(networkTreeExpandedState);
 
