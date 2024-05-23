@@ -47,7 +47,7 @@ export function buildingsViewLayer(building_type_id): ViewLayer {
       interactionGroup: 'assets',
     },
     -1000,
-    ({ zoom, styleParams }) => [{ minZoom: 11 }, border(color), fillColor(color)],
+    () => [{ minZoom: 11 }, border(color), fillColor(color)],
     assetDataAccessFunction(building_type_id),
   );
 }

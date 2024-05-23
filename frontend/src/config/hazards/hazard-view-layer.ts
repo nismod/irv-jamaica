@@ -42,7 +42,7 @@ export function hazardViewLayer(hazardType: string, hazardParams: HazardParams):
     spatialType: 'raster',
     interactionGroup: 'hazards',
     params: { hazardType, hazardParams },
-    fn: ({ deckProps, zoom }) => {
+    fn: ({ deckProps }) => {
       const { scheme, range } = RASTER_COLOR_MAPS[hazardType];
 
       return rasterTileLayer(

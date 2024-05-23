@@ -22,7 +22,7 @@ export const damageTypeState = atom({
 });
 
 export const damageSourceStateEffect = ({ get, set }, damageSource) => {
-  syncHazardsWithDamageSourceStateEffect({ get, set }, damageSource);
+  syncHazardsWithDamageSourceStateEffect({ set }, damageSource);
 
   if (damageSource !== 'all') {
     const damageSourceReturnPeriodDomain = get(
@@ -36,7 +36,7 @@ export const damageSourceStateEffect = ({ get, set }, damageSource) => {
   }
 };
 
-function syncHazardsWithDamageSourceStateEffect({ get, set }, damageSource) {
+function syncHazardsWithDamageSourceStateEffect({ set }, damageSource) {
   _.forEach(HAZARD_DOMAINS, (groupConfig, group) => {
     set(hazardSelectionState(group), group === damageSource);
   });

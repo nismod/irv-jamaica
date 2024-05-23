@@ -19,11 +19,11 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
-  componentDidCatch(error, errorInfo) {}
+  componentDidCatch() {}
   render() {
     if (this.state.hasError) {
       return (

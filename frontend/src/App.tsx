@@ -1,4 +1,3 @@
-import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';

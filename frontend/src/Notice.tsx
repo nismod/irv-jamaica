@@ -22,7 +22,7 @@ export const Notice = () => {
   const [acceptedDate, setAcceptedDate] = useRecoilState(noticeAcceptedDateState);
 
   const handleAccept = useCallback(
-    (e) => {
+    () => {
       setAcceptedDate(new Date());
     },
     [setAcceptedDate],
