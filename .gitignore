@@ -44,3 +44,6 @@ terracotta.sqlite
 __pycache__
 *.egg-info
 *.pyc
+
+# frontend config
+proxy-table.json

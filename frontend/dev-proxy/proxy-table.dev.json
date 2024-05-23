@@ -1,0 +1,23 @@
+{
+  "/raster": {
+    "target": "http://localhost:5000",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/raster": "/"
+    }
+  },
+  "/vector": {
+    "target": "http://localhost:8080",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/vector": "/"
+    }
+  },
+  "/api": {
+    "target": "http://localhost:8888",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": "/"
+    }
+  }
+}
