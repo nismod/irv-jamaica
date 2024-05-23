@@ -1,5 +1,14 @@
 module.exports = {
-  extends: ['react-app', 'eslint:recommended', 'eslint-config-prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'eslint-config-prettier'
+  ],
+  parser: '@typescript-eslint/parser',
+  plugins: ['react', 'react-hooks', '@typescript-eslint'],
   rules: {
     'react/prop-types': 'off',
     'no-unused-vars': 'off',
