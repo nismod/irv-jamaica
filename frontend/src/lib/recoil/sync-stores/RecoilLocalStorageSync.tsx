@@ -35,7 +35,7 @@ const writeLocalStorage = ({ diff }) => {
   }
 };
 
-const listenLocalStorage = ({ updateItem, updateAllKnownItems }) => {
+const listenLocalStorage = ({ updateItem }) => {
   const onStorage = (event: StorageEvent) => {
     // ignore clear() calls
     if (event.storageArea === localStorage && event.key !== null) {

@@ -1,4 +1,4 @@
-import { FieldSpec, FormatConfig } from 'lib/data-map/view-layers';
+import { FormatConfig } from 'lib/data-map/view-layers';
 
 const variableLabelLookup = {
   landuse_desc: 'Land Use',
@@ -11,7 +11,7 @@ const valueFormatLookup = {
   elevation_m: (x) => x,
 };
 
-export function getTerrestrialDataFormats(fieldSpec: FieldSpec): FormatConfig {
+export function getTerrestrialDataFormats(): FormatConfig {
   return {
     getDataLabel: ({ field }) => variableLabelLookup[field],
     getValueFormatted: (value, { field }) => valueFormatLookup[field](value),

@@ -28,7 +28,7 @@ export const AdaptationTable = ({ options }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {options.map((d, i) => (
+          {options.map((d) => (
             <TableRow>
               <TableCell sx={{ pl: 0, pr: padding.px, py: padding.py }}>{d.hazard}</TableCell>
               <TableCell sx={padding}>{d.rcp}</TableCell>

@@ -11,7 +11,7 @@ export const MapSearch = ({ onSelectedResult }) => {
   const [expanded, setExpanded] = useRecoilState(placeSearchActiveState);
 
   return (
-    <ClickAwayListener onClickAway={(e) => setExpanded(false)}>
+    <ClickAwayListener onClickAway={() => setExpanded(false)}>
       <Box style={{ display: 'inline-flex' }}>
         {/* display: inline-flex causes box to shrink to contents */}
         <Paper elevation={1}>

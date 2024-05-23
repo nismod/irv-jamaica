@@ -17,7 +17,7 @@ export const viewState = atom({
   default: 'exposure',
 });
 
-export const viewStateEffect: StateEffect<string> = ({ get, set }, view, previousView) => {
+export const viewStateEffect: StateEffect<string> = ({ set }, view, previousView) => {
   const viewSectionsConfig = VIEW_SECTIONS[view];
 
   const previousViewSectionsConfig = VIEW_SECTIONS[previousView];

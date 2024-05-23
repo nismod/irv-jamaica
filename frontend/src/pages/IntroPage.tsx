@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Divider, Grid, Paper, Stack, Typography } from '@mui/material';
 import ScrollToTop from 'lib/hooks/scroll-to-top';
