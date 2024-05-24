@@ -23,15 +23,16 @@ export const MapContextProviderWithLimits: FC<{
   const {
     viewState: { minPitch, maxPitch, minZoom, maxZoom },
   } = useContext(ViewStateContext);
-  const viewLimits = { minPitch, maxPitch, minZoom, maxZoom };
 
   // need to make a plain object out of viewport, and then assign the missing fields
   const plainViewport = Object.fromEntries(Object.entries(baseContext.viewport ?? {}));
-  const viewport: any = { ...plainViewport, ...viewLimits };
 
   const extendedContext = useMemo(
-    () => ({ ...omit(baseContext, 'viewport'), viewport }),
-    [baseContext, viewport],
+    () => ({
+        ...omit(baseContext, 'viewport'),
+        viewport: { ...plainViewport, minPitch, maxPitch, minZoom, maxZoom } as any
+      }),
+    [baseContext, plainViewport, minPitch, maxPitch, minZoom, maxZoom],
   );
   return <MapContext.Provider value={extendedContext}>{children}</MapContext.Provider>;
 };
