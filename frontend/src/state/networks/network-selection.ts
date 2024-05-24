@@ -1,6 +1,6 @@
 import { NETWORK_LAYERS_HIERARCHY } from 'config/networks/hierarchy';
 import { buildTreeConfig, CheckboxTreeState } from 'lib/controls/checkbox-tree/CheckboxTree';
-import _ from 'lodash';
+import mapValues from 'lodash/mapValues';
 import { atom, selector } from 'recoil';
 
 export const networkTreeExpandedState = atom<string[]>({
@@ -13,8 +13,8 @@ export const networkTreeConfig = buildTreeConfig(NETWORK_LAYERS_HIERARCHY);
 export const networkTreeCheckboxState = atom<CheckboxTreeState>({
   key: 'networkTreeSelectionState',
   default: {
-    checked: _.mapValues(networkTreeConfig.nodes, () => false),
-    indeterminate: _.mapValues(networkTreeConfig.nodes, () => false),
+    checked: mapValues(networkTreeConfig.nodes, () => false),
+    indeterminate: mapValues(networkTreeConfig.nodes, () => false),
   },
 });
 

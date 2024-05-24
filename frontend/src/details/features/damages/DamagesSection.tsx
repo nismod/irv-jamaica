@@ -5,7 +5,7 @@ import { HAZARD_DOMAINS } from 'config/hazards/domains';
 import { ExpectedDamage, ReturnPeriodDamage } from 'lib/api-client';
 import { downloadFile, titleCase, unique } from 'lib/helpers';
 import { useSelect } from 'lib/hooks/use-select';
-import _ from 'lodash';
+import fromPairs from 'lodash/fromPairs';
 import { useMemo } from 'react';
 import { DamageTable } from './DamageTable';
 import { RPDamageTable } from './RPDamageTable';
@@ -122,7 +122,7 @@ function prepareRPDamages(rpDamages: ReturnPeriodDamage[]) {
 }
 
 function orderDamages(damages: ExpectedDamageCell[]) {
-  const lookup = _.fromPairs(damages.map((d) => [d.key, d]));
+  const lookup = fromPairs(damages.map((d) => [d.key, d]));
 
   return DAMAGES_ORDERING.map(getDamageKey)
     .map((key) => lookup[key])
@@ -130,7 +130,7 @@ function orderDamages(damages: ExpectedDamageCell[]) {
 }
 
 function orderRPDamages(damages: RPDamageCell[]) {
-  const lookup = _.fromPairs(damages.map((d) => [d.key, d]));
+  const lookup = fromPairs(damages.map((d) => [d.key, d]));
 
   return RP_ORDERING.map(getRPDamageKey)
     .map((key) => lookup[key])

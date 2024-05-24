@@ -4,7 +4,7 @@ import bbox from '@turf/bbox';
 import { ApiClient, FeatureListItemOut_float_ } from 'lib/api-client';
 import { BoundingBox } from 'lib/bounding-box';
 import { FieldSpec } from 'lib/data-map/view-layers';
-import _ from 'lodash';
+import pick from 'lodash/pick';
 import { useCallback, useEffect, useState } from 'react';
 
 const apiClient = new ApiClient({
@@ -69,7 +69,7 @@ export const useSortedFeatures = (
       const features = (response.items as FeatureListItemOut_float_[]).map(processFeature);
       setFeatures(features);
 
-      setPageInfo(_.pick(response, ['page', 'size', 'total']));
+      setPageInfo(pick(response, ['page', 'size', 'total']));
     } catch (error) {
       setError(error);
     }

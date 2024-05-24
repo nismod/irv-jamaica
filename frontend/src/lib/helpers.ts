@@ -1,5 +1,6 @@
 import * as d3 from 'd3-color';
-import _ from 'lodash';
+import mapValues from 'lodash/mapValues';
+import fromPairs from 'lodash/fromPairs';
 
 /**
  * Common helper functions
@@ -73,7 +74,7 @@ export function makeConfig<C, K extends string>(cfg: (C & { id: K })[]) {
 }
 
 export function makeColorConfig<K extends string>(cfg: Record<K, string>) {
-  return _.mapValues(cfg, (c) => ({ css: c, deck: colorCssToRgb(c) }));
+  return mapValues(cfg, (c) => ({ css: c, deck: colorCssToRgb(c) }));
 }
 
 // see discussion at https://stackoverflow.com/questions/23437476/in-typescript-how-to-check-if-a-string-is-numeric
@@ -86,7 +87,7 @@ export function truthyKeys<K extends string = string>(obj: Record<K, any>) {
 }
 
 export function fromKeys<K extends string, T>(keys: K[], values: T): Record<K, T> {
-  return _.fromPairs(keys.map((key) => [key, values])) as Record<K, T>;
+  return fromPairs(keys.map((key) => [key, values])) as Record<K, T>;
 }
 
 /**

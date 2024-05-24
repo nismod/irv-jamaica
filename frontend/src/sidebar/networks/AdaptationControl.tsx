@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import startCase from 'lodash/startCase';
+import lowerCase from 'lodash/lowerCase';
 import { FormLabel, Slider, Typography } from '@mui/material';
 import { CustomNumberSlider } from 'lib/controls/CustomSlider';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
@@ -29,7 +30,7 @@ function hazardLabel(val) {
 }
 
 function autoLabel(x) {
-  return _.startCase(_.lowerCase(x));
+  return startCase(lowerCase(x));
 }
 
 function makeOptions(values, labelFn = (x) => x) {

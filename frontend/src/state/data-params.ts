@@ -8,7 +8,9 @@ import {
 } from 'lib/controls/data-params';
 import { toDictionary } from 'lib/helpers';
 import { groupedFamily } from 'lib/recoil/grouped-family';
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
+import mapValues from 'lodash/mapValues';
+import keys from 'lodash/keys';
 import { atomFamily, useRecoilTransaction_UNSTABLE } from 'recoil';
 import { adaptationDomainsConfig } from 'config/domains/adaptation';
 
@@ -23,11 +25,11 @@ export const dataParamConfig: Record<string, DataParamGroupConfig> = {
   adaptation: adaptationDomainsConfig,
 };
 
-export const dataParamNamesByGroup = _.mapValues(dataParamConfig, (groupConfig) =>
-  _.keys(groupConfig.paramDefaults),
+export const dataParamNamesByGroup = mapValues(dataParamConfig, (groupConfig) =>
+  keys(groupConfig.paramDefaults),
 );
 
-const dataParamDefaultsByGroup = _.mapValues(dataParamConfig, (groupConfig) =>
+const dataParamDefaultsByGroup = mapValues(dataParamConfig, (groupConfig) =>
   resolveParamDependencies(groupConfig.paramDefaults, groupConfig),
 );
 
@@ -77,7 +79,7 @@ export function useUpdateDataParam(group: string, paramId: string) {
           groupConfig,
         );
 
-        _.forEach(resolvedParams, (resolvedParamValue, paramId) => {
+        forEach(resolvedParams, (resolvedParamValue, paramId) => {
           const recoilParam = { group, param: paramId };
           set(dataParamState(recoilParam), resolvedParamValue);
           set(dataParamOptionsState(recoilParam), resolvedOptions[paramId]);

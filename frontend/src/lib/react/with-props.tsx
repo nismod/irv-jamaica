@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import merge from 'lodash/merge';
 import { ComponentType, FC, memo } from 'react';
 
 /**
@@ -16,7 +16,7 @@ export function withProps<P, AppliedT extends Partial<P>>(
   displayName: string = 'WithProps',
 ): FC<Omit<P, keyof AppliedT> & Partial<AppliedT>> {
   const WithProps: FC<Omit<P, keyof AppliedT> & Partial<AppliedT>> = memo((props) => {
-    const mergedProps = _.merge({}, applyProps, props);
+    const mergedProps = merge({}, applyProps, props);
 
     return <ComponentClass {...(mergedProps as any)} />;
   });

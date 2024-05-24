@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import difference from 'lodash/difference';
 import { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
 
 import { usePrevious } from '../hooks/use-previous';
@@ -53,11 +53,11 @@ export const DataMap: FC<DataMapProps> = ({
 
   useEffect(() => {
     // destroy removed data loaders to free up memory
-    const removedLoaders = _.difference(previousLoaders ?? [], dataLoaders);
+    const removedLoaders = difference(previousLoaders ?? [], dataLoaders);
     removedLoaders.forEach((dl) => dl.destroy());
 
     // subscribe to new data loaders to get notified when data is loaded
-    const addedLoaders = _.difference(dataLoaders, previousLoaders ?? []);
+    const addedLoaders = difference(dataLoaders, previousLoaders ?? []);
     addedLoaders.forEach((dl) => dl.subscribe(doTrigger));
 
     // if there was a change in data loaders, trigger an update to the data map

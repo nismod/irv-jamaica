@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
 import { atom, atomFamily, selector } from 'recoil';
 
 import { isReset } from 'lib/recoil/is-reset';
@@ -55,7 +55,7 @@ export const allowedGroupLayersState = selector<AllowedGroupLayers>({
   set: ({ get, set, reset }, newAllowedGroups) => {
     const oldAllowedGroupLayers = get(allowedGroupLayersImpl);
     if (isReset(newAllowedGroups)) {
-      _.forEach(oldAllowedGroupLayers, (layers, group) => {
+      forEach(oldAllowedGroupLayers, (layers, group) => {
         reset(hoverState(group));
         reset(selectionState(group));
       });

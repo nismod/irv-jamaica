@@ -19,7 +19,7 @@ export function CheckboxTreeItem<T>({
   root: TreeNode<T>;
   handleChange: (checked: boolean, node: TreeNode<T>) => void;
   checkboxState: CheckboxTreeState;
-  getLabel: (node: TreeNode<T>, checked: boolean) => any;
+  getLabel: (node: TreeNode<T>, checked: boolean) => string | JSX.Element;
   disableCheck?: boolean;
 }) {
   const indeterminate = checkboxState.indeterminate[root.id];

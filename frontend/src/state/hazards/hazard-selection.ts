@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import fromPairs from 'lodash/fromPairs';
 import { atomFamily, RecoilValue } from 'recoil';
 
 export const hazardSelectionState = atomFamily({
@@ -14,5 +14,5 @@ export function getHazardSelectionAggregate(
   { get }: TransactionGetterInterface,
   hazards: string[],
 ) {
-  return _.fromPairs(hazards.map((group) => [group, get(hazardSelectionState(group))]));
+  return fromPairs(hazards.map((group) => [group, get(hazardSelectionState(group))]));
 }

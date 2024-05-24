@@ -15,7 +15,9 @@ import { networksStyleState } from 'state/networks/networks-style';
 import { sectionVisibilityState } from 'state/sections';
 
 import adaptationSectorLayers from 'config/domains/adaptation-sector-layers.json';
-import _ from 'lodash';
+import uniq from 'lodash/uniq';
+import fromPairs from 'lodash/fromPairs';
+import mapValues from 'lodash/mapValues';
 import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { LayerSpec } from 'asset-list/use-sorted-features';
 
@@ -50,7 +52,7 @@ export const adaptationDataParamsStateEffect: StateEffect<AdaptationOptionParams
 ) => {
   const { sector, subsector, asset_type } = adaptationParams;
 
-  const layers = _.uniq(
+  const layers = uniq(
     adaptationSectorLayers
       .filter(
         (x) => x.sector === sector && x.subsector === subsector && x.asset_type === asset_type,
@@ -61,8 +63,8 @@ export const adaptationDataParamsStateEffect: StateEffect<AdaptationOptionParams
   const currentSelection = get(networkTreeCheckboxState);
   const updatedTreeState = {
     checked: {
-      ..._.mapValues(currentSelection.checked, () => false),
-      ..._.fromPairs(layers.map((layer) => [layer, true])),
+      ...mapValues(currentSelection.checked, () => false),
+      ...fromPairs(layers.map((layer) => [layer, true])),
     },
     indeterminate: {},
   };

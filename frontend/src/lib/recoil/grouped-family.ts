@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import fromPairs from 'lodash/fromPairs';
 import { selectorFamily, waitForAll } from 'recoil';
 import { RecoilReadableStateFamily } from './types';
 
@@ -14,7 +14,7 @@ export function groupedFamily<FVT, FPT>(
       (group) =>
       ({ get }) => {
         const groupParams = get(paramsFamily(group));
-        const deps = _.fromPairs(
+        const deps = fromPairs(
           groupParams.map((param) => [param, family(paramFn(group, param))]),
         );
         return get(waitForAll(deps));

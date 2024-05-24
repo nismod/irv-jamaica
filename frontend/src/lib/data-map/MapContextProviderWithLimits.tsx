@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import omit from 'lodash/omit';
 import { FC, ReactNode, useContext, useMemo } from 'react';
 import { MapContext, MapContextProps } from 'react-map-gl';
 
@@ -27,10 +27,10 @@ export const MapContextProviderWithLimits: FC<{
 
   // need to make a plain object out of viewport, and then assign the missing fields
   const plainViewport = Object.fromEntries(Object.entries(baseContext.viewport ?? {}));
-  const viewport: any = Object.assign(plainViewport, viewLimits);
+  const viewport: any = { ...plainViewport, ...viewLimits };
 
   const extendedContext = useMemo(
-    () => ({ ..._.omit(baseContext, 'viewport'), viewport }),
+    () => ({ ...omit(baseContext, 'viewport'), viewport }),
     [baseContext, viewport],
   );
   return <MapContext.Provider value={extendedContext}>{children}</MapContext.Provider>;

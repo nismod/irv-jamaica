@@ -7,7 +7,7 @@ export function isValueLabel(value): value is ValueLabel {
   return typeof value === 'object' && 'value' in value && 'label' in value;
 }
 
-export function getValueLabel(value: any): ValueLabel {
+export function getValueLabel(value: ValueLabel | string): ValueLabel {
   if (isValueLabel(value)) {
     return value;
   }

@@ -13,10 +13,10 @@ export type TreeNode<T> = {
  */
 export function dfs<T>(
   node: TreeNode<T>,
-  action: (node: TreeNode<T>) => any,
+  action: (node: TreeNode<T>) => number | void | false,
   skipRoot = false,
   order: 'pre' | 'post' = 'pre',
-): any {
+) {
   if (order === 'pre' && !skipRoot) {
     const continueTraversal = action(node);
 
