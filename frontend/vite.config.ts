@@ -2,7 +2,8 @@ import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
-import svgrPlugin from 'vite-plugin-svgr';
+import url from '@rollup/plugin-url';
+import svgr from '@svgr/rollup';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 /**
@@ -25,7 +26,7 @@ try {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
+  plugins: [react(), viteTsconfigPaths(), url(), svgr()],
   build: {
     outDir: 'build',
   },
