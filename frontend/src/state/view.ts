@@ -23,10 +23,7 @@ export const viewStateEffect: StateEffect<string> = ({ set }, view, previousView
   const viewSectionsConfig = VIEW_SECTIONS[view];
 
   const previousViewSectionsConfig = VIEW_SECTIONS[previousView];
-  const removedSections = difference(
-    keys(previousViewSectionsConfig),
-    keys(viewSectionsConfig),
-  );
+  const removedSections = difference(keys(previousViewSectionsConfig), keys(viewSectionsConfig));
 
   removedSections.forEach((section) => {
     set(sectionVisibilityState(section), false);

@@ -14,9 +14,7 @@ export function groupedFamily<FVT, FPT>(
       (group) =>
       ({ get }) => {
         const groupParams = get(paramsFamily(group));
-        const deps = fromPairs(
-          groupParams.map((param) => [param, family(paramFn(group, param))]),
-        );
+        const deps = fromPairs(groupParams.map((param) => [param, family(paramFn(group, param))]));
         return get(waitForAll(deps));
       },
   });

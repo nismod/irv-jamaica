@@ -29,9 +29,9 @@ export const MapContextProviderWithLimits: FC<{
 
   const extendedContext = useMemo(
     () => ({
-        ...omit(baseContext, 'viewport'),
-        viewport: { ...plainViewport, minPitch, maxPitch, minZoom, maxZoom } as any
-      }),
+      ...omit(baseContext, 'viewport'),
+      viewport: { ...plainViewport, minPitch, maxPitch, minZoom, maxZoom } as any,
+    }),
     [baseContext, plainViewport, minPitch, maxPitch, minZoom, maxZoom],
   );
   return <MapContext.Provider value={extendedContext}>{children}</MapContext.Provider>;

@@ -117,10 +117,7 @@ export function useInteractions(
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
   const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);
 
-  const interactionGroupLookup = useMemo(
-    () => keyBy(interactionGroups, 'id'),
-    [interactionGroups],
-  );
+  const interactionGroupLookup = useMemo(() => keyBy(interactionGroups, 'id'), [interactionGroups]);
 
   const primaryGroup = interactionGroups[0].id;
   const primaryGroupPickingRadius = interactionGroupLookup[primaryGroup].pickingRadius;

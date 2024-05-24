@@ -48,8 +48,10 @@ const ToolbarLink = styled(Link)({
 
 const ToolbarLinkWithRef = (props, ref) => (
   <ToolbarLink component={RouterNavLink} ref={ref} {...props} />
-);  
-const ToolbarNavLink = forwardRef<HTMLAnchorElement, LinkProps & RouterLinkProps>(ToolbarLinkWithRef);
+);
+const ToolbarNavLink = forwardRef<HTMLAnchorElement, LinkProps & RouterLinkProps>(
+  ToolbarLinkWithRef,
+);
 
 const DrawerLinkWithRef = (props, ref) => (
   <DrawerLink component={RouterNavLink} ref={ref} {...props} />
@@ -94,18 +96,18 @@ const MobileNavContent: FC<{ navItems: NavItemConfig[] }> = ({ navItems }) => {
       <MobileDrawer open={drawerOpen} onClose={closeDrawer}>
         <Toolbar /> {/* Prevents app bar from concealing content*/}
         <List>
-          <ListItem disablePadding >
+          <ListItem disablePadding>
             <DrawerNavLink to="/" onClick={closeDrawer}>
               Home
             </DrawerNavLink>
           </ListItem>
           {navItems.map(({ to, title, tooltip }) => (
             <NavTooltip key={to} title={tooltip} placement="right">
-              <ListItem disablePadding >
+              <ListItem disablePadding>
                 <DrawerNavLink to={to} onClick={closeDrawer}>
                   {title}
                 </DrawerNavLink>
-            </ListItem>
+              </ListItem>
             </NavTooltip>
           ))}
         </List>
