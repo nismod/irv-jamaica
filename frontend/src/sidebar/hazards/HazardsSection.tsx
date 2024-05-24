@@ -4,7 +4,7 @@ import { SidebarPanel } from 'sidebar/SidebarPanel';
 import { Box } from '@mui/system';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 
-export const HazardsSection: FC<{}> = () => {
+export const HazardsSection: FC = () => {
   return (
     <SidebarPanel id="hazards" title="Hazards">
       <Box p={2}>

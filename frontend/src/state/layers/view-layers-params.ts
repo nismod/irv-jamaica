@@ -1,6 +1,6 @@
 import { atomFamily, selector, selectorFamily, useRecoilTransaction_UNSTABLE } from 'recoil';
 
-import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
+import { StyleParams, ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
 
 import { viewLayersFlatState } from './view-layers-flat';
 import _ from 'lodash';
@@ -27,7 +27,10 @@ export const singleViewLayerParamsState = selectorFamily<ViewLayerParams, string
     ({ get }) => {
       const viewLayer = get(viewLayerState(viewLayerId));
 
-      const layerParams: any = {};
+      const layerParams: {
+        selection?: ViewLayerParams['selection'];
+        styleParams?: StyleParams;
+      } = {};
 
       if (viewLayer == null) return layerParams;
 

@@ -90,7 +90,7 @@ export const IntroPage = () => (
               in the Environmental Change Institute, University of Oxford, with the Government of
               Jamaica (GoJ), funded by UK Aid through the UK Foreign and Commonwealth Development
               Office (FCDO). The initiative forms part of the Coalition for Climate Resilient
-              Investment&rsquo;s (CCRI) work on "Systemic Resilience" in collaboration with the
+              Investment&rsquo;s (CCRI) work on &ldquo;Systemic Resilience&rdquo; in collaboration with the
               Green Climate Fund.
             </p>
 

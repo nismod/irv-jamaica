@@ -9,7 +9,7 @@ import { VectorLegend } from './VectorLegend';
 import { Stack, Box, Paper, Divider } from '@mui/material';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
 
-export const MapLegend: FC<{}> = () => {
+export const MapLegend: FC = () => {
   const viewLayers = useRecoilValue(viewLayersFlatState);
   const viewLayersParams = useRecoilValue(viewLayersParamsState);
 

@@ -63,7 +63,7 @@ const CostBenefitRatioInputs: FC = () => {
   );
 };
 
-export const AdaptationControl: FC<{}> = () => {
+export const AdaptationControl: FC = () => {
   const [adaptationField, setAdaptationField] = useRecoilState(adaptationFieldState);
   return (
     <LayerStylePanel>

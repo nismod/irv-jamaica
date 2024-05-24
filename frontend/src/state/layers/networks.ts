@@ -95,7 +95,9 @@ export const adaptationFieldSpecState = selector<FieldSpec>({
       dataParamsByGroupState('adaptation'),
     );
 
-    let fieldParams: any = {};
+    let fieldParams: {
+      eael_days?: number;
+    } = {};
     if (field === 'cost_benefit_ratio') {
       fieldParams = {
         eael_days: get(adaptationCostBenefitRatioEaelDaysState),

@@ -6,7 +6,7 @@ import { FC } from 'react';
 import { FeatureAdaptationsTable } from './FeatureAdaptationsTable';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
 
-export const AdaptationsSidebar: FC<{}> = () => {
+export const AdaptationsSidebar: FC = () => {
   return (
     <SidePanel height="80vh" pb={1} px={0} pt={0}>
       <MobileTabContentWatcher tabId="details" />

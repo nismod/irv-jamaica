@@ -309,7 +309,7 @@ export const GuidePage = () => (
     <p>
       On the “Adaptation” page, the second sidebar section contains controls to show drought risk
       and drought-related adaptation options. Select for example “Population at risk” to see areas
-      coloured by risk and "Population protected" to see points representing approximate locations
+      coloured by risk and &ldquo;Population protected&rdquo; to see points representing approximate locations
       of options to reduce the impacts of drought.
     </p>
     <p>

@@ -8,7 +8,7 @@ import { useRecoilValue } from 'recoil';
 import { SolutionsSidebarContent } from './SolutionsSidebarContent';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
 
-export const SolutionsSidebar: FC<{}> = () => {
+export const SolutionsSidebar: FC = () => {
   const featureSelection = useRecoilValue(selectionState('solutions'));
 
   if (!featureSelection) return null;

@@ -9,7 +9,7 @@ import { Box } from '@mui/system';
 import { DeselectButton } from 'details/DeselectButton';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
 
-export const FeatureSidebar: FC<{}> = () => {
+export const FeatureSidebar: FC = () => {
   const featureSelection = useRecoilValue(selectionState('assets'));
 
   if (!featureSelection) return null;

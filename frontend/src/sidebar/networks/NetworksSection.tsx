@@ -14,7 +14,7 @@ import { networksStyleStateEffect, sectionStyleValueState } from 'state/sections
 import { AdaptationControl } from './AdaptationControl';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 
-export const NetworksSection: FC<{}> = () => {
+export const NetworksSection: FC = () => {
   const style = useRecoilValue(sectionStyleValueState('assets'));
   return (
     <SidebarPanel id="assets" title="Infrastructure">

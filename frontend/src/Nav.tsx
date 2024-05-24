@@ -7,13 +7,14 @@ import {
   List,
   ListItem,
   Link as MuiLink,
+  LinkProps,
   Toolbar,
   Tooltip,
   styled,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { FC, forwardRef, useCallback, useState } from 'react';
-import { NavLink as RouterNavLink } from 'react-router-dom';
+import { NavLink as RouterNavLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
 import { useIsMobile } from '../src/use-is-mobile';
 import { withProps } from 'lib/react/with-props';
@@ -25,6 +26,9 @@ const Link = styled(MuiLink)({
 });
 
 const DrawerLink = styled(Link)({
+  height: '100%',
+  width: '100%',
+  padding: '0.5rem 1rem',
   '&.active': {
     backgroundColor: '#eeeeee',
   },
@@ -42,13 +46,15 @@ const ToolbarLink = styled(Link)({
   },
 });
 
-const ToolbarNavLink = forwardRef<any, any>(({ ...others }, ref) => (
-  <ToolbarLink variant="h6" component={RouterNavLink} ref={ref} {...others} />
-));
+const ToolbarLinkWithRef = (props, ref) => (
+  <ToolbarLink component={RouterNavLink} ref={ref} {...props} />
+);  
+const ToolbarNavLink = forwardRef<HTMLAnchorElement, LinkProps & RouterLinkProps>(ToolbarLinkWithRef);
 
-const DrawerNavLink = forwardRef<any, any>(({ ...others }, ref) => (
-  <DrawerLink component={RouterNavLink} ref={ref} {...others} />
-));
+const DrawerLinkWithRef = (props, ref) => (
+  <DrawerLink component={RouterNavLink} ref={ref} {...props} />
+);
+const DrawerNavLink = forwardRef<HTMLAnchorElement, LinkProps & RouterLinkProps>(DrawerLinkWithRef);
 
 const GrowingDivider = styled(Divider)({
   flexGrow: 1,
@@ -88,14 +94,18 @@ const MobileNavContent: FC<{ navItems: NavItemConfig[] }> = ({ navItems }) => {
       <MobileDrawer open={drawerOpen} onClose={closeDrawer}>
         <Toolbar /> {/* Prevents app bar from concealing content*/}
         <List>
-          <ListItem component={DrawerNavLink} to="/" exact onClick={closeDrawer}>
-            Home
+          <ListItem disablePadding >
+            <DrawerNavLink to="/" onClick={closeDrawer}>
+              Home
+            </DrawerNavLink>
           </ListItem>
           {navItems.map(({ to, title, tooltip }) => (
             <NavTooltip key={to} title={tooltip} placement="right">
-              <ListItem component={DrawerNavLink} to={to} onClick={closeDrawer}>
-                {title}
-              </ListItem>
+              <ListItem disablePadding >
+                <DrawerNavLink to={to} onClick={closeDrawer}>
+                  {title}
+                </DrawerNavLink>
+            </ListItem>
             </NavTooltip>
           ))}
         </List>

@@ -21,12 +21,9 @@ const noticeAcceptedDateState = atom<Date | null>({
 export const Notice = () => {
   const [acceptedDate, setAcceptedDate] = useRecoilState(noticeAcceptedDateState);
 
-  const handleAccept = useCallback(
-    () => {
-      setAcceptedDate(new Date());
-    },
-    [setAcceptedDate],
-  );
+  const handleAccept = useCallback(() => {
+    setAcceptedDate(new Date());
+  }, [setAcceptedDate]);
 
   return (
     <Drawer variant="persistent" anchor="bottom" open={acceptedDate == null}>

@@ -5,7 +5,7 @@ import { StyleSelection } from 'sidebar/StyleSelection';
 import { SidebarPanelSection } from 'sidebar/ui/SidebarPanelSection';
 import { TerrestrialControl } from './TerrestrialControl';
 
-export const TerrestrialSection: FC<{}> = () => {
+export const TerrestrialSection: FC = () => {
   return (
     <SidebarPanel id="terrestrial" title="Terrestrial">
       <ErrorBoundary message="There was a problem displaying this section.">
