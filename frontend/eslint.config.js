@@ -24,6 +24,7 @@ export default [
       'react/prop-types': 'off',
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
       eqeqeq: ['warn', 'smart'],
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': [
