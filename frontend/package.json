@@ -41,6 +41,8 @@
     "vega-lite": "^5.18.1"
   },
   "devDependencies": {
+    "@rollup/plugin-url": "^8.0.2",
+    "@svgr/rollup": "^8.1.0",
     "@types/d3-array": "^3.0.2",
     "@types/d3-color": "^3.0.2",
     "@types/d3-ease": "^3.0.0",
@@ -65,12 +67,11 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.10.0",
     "vite": "^5.2.11",
-    "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.3.2"
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint src",
     "format": "prettier --write ./src",
