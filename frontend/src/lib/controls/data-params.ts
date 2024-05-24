@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import groupBy from 'lodash/groupBy';
+import mapValues from 'lodash/mapValues';
+import uniq from 'lodash/uniq';
 
 export type Param = any;
 export type ParamDomain<PT extends Param = Param> = PT[];
@@ -65,12 +67,12 @@ function getGroupKey<T>(keys: (keyof T)[]) {
 }
 
 function groupByMulti<T>(data: T[], properties: (keyof T)[]) {
-  return _.groupBy(data, getGroupKey(properties));
+  return groupBy(data, getGroupKey(properties));
 }
 
 function makeDependencyFunction<T extends object>(data: T[], param: keyof T, inputs: (keyof T)[]) {
   const grouped = groupByMulti(data, inputs);
-  const groupedDomains = _.mapValues(grouped, (g) => _.uniq(g.map((d) => d[param])));
+  const groupedDomains = mapValues(grouped, (g) => uniq(g.map((d) => d[param])));
 
   return (params: T) => groupedDomains[getGroupKey(inputs)(params)];
 }
@@ -93,7 +95,7 @@ export function inferDomainsFromData<T extends object>(data: T[]): ParamGroupDom
   const keys = Object.keys(data[0]);
   for (const key of keys) {
     const values = data.map((d) => d[key]);
-    domains[key] = _.uniq(values);
+    domains[key] = uniq(values);
   }
   return domains;
 }

@@ -1,6 +1,9 @@
 import DeckGL, { Deck, PickInfo } from 'deck.gl';
 import { readPixelsToArray } from '@luma.gl/core';
-import _ from 'lodash';
+import keyBy from 'lodash/keyBy';
+import filter from 'lodash/filter';
+import groupBy from 'lodash/groupBy';
+import mapValues from 'lodash/mapValues';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useRecoilCallback, useSetRecoilState } from 'recoil';
 
@@ -115,7 +118,7 @@ export function useInteractions(
   const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);
 
   const interactionGroupLookup = useMemo(
-    () => _.keyBy(interactionGroups, 'id'),
+    () => keyBy(interactionGroups, 'id'),
     [interactionGroups],
   );
 
@@ -127,11 +130,11 @@ export function useInteractions(
     [viewLayers],
   );
   const viewLayerLookup = useMemo(
-    () => _.keyBy(interactiveLayers, (layer) => layer.id),
+    () => keyBy(interactiveLayers, (layer) => layer.id),
     [interactiveLayers],
   );
   const activeGroups = useMemo(
-    () => _.groupBy(interactiveLayers, (viewLayer) => viewLayer.interactionGroup),
+    () => groupBy(interactiveLayers, (viewLayer) => viewLayer.interactionGroup),
     [interactiveLayers],
   );
 
@@ -139,7 +142,7 @@ export function useInteractions(
 
   useEffect(() => {
     setAllowedGroupLayers(
-      _.mapValues(activeGroups, (viewLayers) => viewLayers.map((viewLayer) => viewLayer.id)),
+      mapValues(activeGroups, (viewLayers) => viewLayers.map((viewLayer) => viewLayer.id)),
     );
   }, [activeGroups, setAllowedGroupLayers]);
 
@@ -218,7 +221,7 @@ export function useInteractions(
   const hoverPassGroups = useMemo(
     () =>
       new Set(
-        _.filter(
+        filter(
           interactionGroups,
           (group) => group.id === primaryGroup || group.usesAutoHighlight,
         ).map((group) => group.id),

@@ -1,11 +1,11 @@
-import _ from 'lodash';
+import memoize from 'lodash/memoize';
 import { MapboxGeoJSONFeature } from 'mapbox-gl';
 
 import { DataLoader } from 'lib/data-loader/data-loader';
 
 import { Accessor, withLoaderTriggers, withTriggers } from './getters';
 
-export const featureProperty = _.memoize(
+export const featureProperty = memoize(
   (field: string | Accessor<any, MapboxGeoJSONFeature>): Accessor<any, MapboxGeoJSONFeature> => {
     return typeof field === 'string' ? withTriggers((f) => f.properties[field], [field]) : field;
   },

@@ -34,23 +34,23 @@ export interface ViewLayerFunctionOptions {
 }
 
 export interface DataManager {
-  getDataAccessor: (layer: string, fieldSpec: any) => (d: any) => any;
-  getDataLoader: (layer: string, fieldSpec: any) => DataLoader;
+  getDataAccessor: (layer: string, fieldSpec: FieldSpec) => Accessor<string>;
+  getDataLoader: (layer: string, fieldSpec: FieldSpec) => DataLoader;
 }
 
-export interface FormatConfig<D = any> {
+export interface FormatConfig<D = unknown> {
   getDataLabel: (fieldSpec: FieldSpec) => string;
   getValueFormatted: (value: D, fieldSpec: FieldSpec) => string;
 }
 
-export type ViewLayerDataAccessFunction = (fieldSpec: FieldSpec) => Accessor<any>;
+export type ViewLayerDataAccessFunction = (fieldSpec: FieldSpec) => Accessor<string>;
 export type ViewLayerDataFormatFunction = (fieldSpec: FieldSpec) => FormatConfig;
 export interface ViewLayer {
   id: string;
   params?: any;
   styleParams?: StyleParams;
   group: string;
-  fn: (options: ViewLayerFunctionOptions) => any;
+  fn: (options: ViewLayerFunctionOptions) => unknown;
   dataAccessFn?: ViewLayerDataAccessFunction;
   dataFormatsFn?: ViewLayerDataFormatFunction;
   legendDataFormatsFn?: ViewLayerDataFormatFunction;

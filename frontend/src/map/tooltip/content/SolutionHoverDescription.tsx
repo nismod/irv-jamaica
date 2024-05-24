@@ -3,7 +3,7 @@ import { VECTOR_COLOR_MAPS } from 'config/color-maps';
 import { MARINE_HABITATS_LOOKUP } from 'config/solutions/domains';
 import { DataItem } from 'details/features/detail-components';
 import { InteractionTarget, VectorTarget } from 'lib/data-map/interactions/use-interactions';
-import _ from 'lodash';
+import startCase from 'lodash/startCase';
 import { FC } from 'react';
 import { habitatColorMap } from 'state/layers/marine';
 import { landuseColorMap } from 'state/layers/terrestrial';
@@ -30,7 +30,7 @@ export const SolutionHoverDescription: FC<{
 
   return (
     <>
-      <Typography variant="body2">{_.startCase(viewLayer.id)}</Typography>
+      <Typography variant="body2">{startCase(viewLayer.id)}</Typography>
 
       {viewLayer.id === 'terrestrial' && (
         <>

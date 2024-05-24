@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
 import { atom, selector } from 'recoil';
 
 import { HAZARD_DOMAINS } from 'config/hazards/domains';
@@ -37,7 +37,7 @@ export const damageSourceStateEffect = ({ get, set }, damageSource) => {
 };
 
 function syncHazardsWithDamageSourceStateEffect({ set }, damageSource) {
-  _.forEach(HAZARD_DOMAINS, (groupConfig, group) => {
+  forEach(HAZARD_DOMAINS, (groupConfig, group) => {
     set(hazardSelectionState(group), group === damageSource);
   });
 }

@@ -3,7 +3,7 @@ import { VECTOR_COLOR_MAPS } from 'config/color-maps';
 import { MARINE_HABITATS_LOOKUP } from 'config/solutions/domains';
 import { DataItem } from 'details/features/detail-components';
 import { colorMap } from 'lib/color-map';
-import _ from 'lodash';
+import startCase from 'lodash/startCase';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 import { FC } from 'react';
 import { habitatColorMap } from 'state/layers/marine';
@@ -24,7 +24,7 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
 }) => {
   return (
     <>
-      <Typography variant="body2">{_.startCase(solutionType)}</Typography>
+      <Typography variant="body2">{startCase(solutionType)}</Typography>
 
       {solutionType === 'terrestrial' && (
         <>

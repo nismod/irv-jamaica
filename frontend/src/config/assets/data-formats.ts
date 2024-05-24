@@ -1,7 +1,7 @@
 import { HAZARDS_METADATA } from 'config/hazards/metadata';
 import { FieldSpec, FormatConfig } from 'lib/data-map/view-layers';
 import { isNullish, numFormat, numFormatMoney, paren } from 'lib/helpers';
-import _ from 'lodash';
+import startCase from 'lodash/startCase';
 
 function getSourceLabel(eadSource: string) {
   if (eadSource === 'all') return 'All Hazards';
@@ -43,7 +43,7 @@ const adaptationFieldLabels = {
 };
 
 function getAdaptationFieldLabel(field: string) {
-  return adaptationFieldLabels[field] || _.startCase(field);
+  return adaptationFieldLabels[field] || startCase(field);
 }
 
 function formatAdaptationValue(value: number, { field }: FieldSpec) {

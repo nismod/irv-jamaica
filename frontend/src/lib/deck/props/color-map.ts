@@ -1,8 +1,8 @@
 import { colorCssToRgb } from 'lib/helpers';
-import _ from 'lodash';
+import memoize from 'lodash/memoize';
 import { Accessor, mergeTriggers, withTriggers } from './getters';
 
-const memoizedColorCssToRgb = _.memoize(colorCssToRgb);
+const memoizedColorCssToRgb = memoize(colorCssToRgb);
 
 export function dataColorMap<T>(dataSource: Accessor<T>, colorSource: Accessor<string, T>) {
   return withTriggers(
