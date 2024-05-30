@@ -22,6 +22,7 @@ import {
 } from 'state/data-selection/damage-mapping/damage-map';
 import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'config/view-layers/hazards/metadata';
 import { LayerStylePanel } from 'sidebar/ui/LayerStylePanel';
+import { SidebarUrlStateSyncRoot } from '../url-state';
 
 export const DamageSourceControl = () => {
   const [damageSource, setDamageSource] = useRecoilState(damageSourceState);
@@ -29,6 +30,7 @@ export const DamageSourceControl = () => {
 
   return (
     <>
+      <SidebarUrlStateSyncRoot />
       <StateEffectRoot state={damageSourceState} effect={damageSourceStateEffect} />
       <LayerStylePanel>
         <InputSection>

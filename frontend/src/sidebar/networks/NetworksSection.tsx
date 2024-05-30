@@ -13,12 +13,14 @@ import { SidebarPanelSection } from 'sidebar/ui/SidebarPanelSection';
 import { networksStyleStateEffect, sectionStyleValueState } from 'state/sections';
 import { AdaptationControl } from './AdaptationControl';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
+import { SidebarUrlStateSyncRoot } from '../url-state';
 
 export const NetworksSection: FC = () => {
   const style = useRecoilValue(sectionStyleValueState('assets'));
   return (
     <SidebarPanel id="assets" title="Infrastructure">
       <ErrorBoundary message="There was a problem displaying this section.">
+        <SidebarUrlStateSyncRoot />
         <StateEffectRoot
           state={sectionStyleValueState('assets')}
           effect={networksStyleStateEffect}

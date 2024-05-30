@@ -17,6 +17,7 @@ import {
   adaptationFieldState,
 } from 'state/layers/view-layers/networks';
 import { Box } from '@mui/system';
+import { SidebarUrlStateSyncRoot } from '../url-state';
 
 function hazardLabel(val) {
   switch (val) {
@@ -68,6 +69,7 @@ export const AdaptationControl: FC = () => {
   const [adaptationField, setAdaptationField] = useRecoilState(adaptationFieldState);
   return (
     <LayerStylePanel>
+      <SidebarUrlStateSyncRoot />
       <StateEffectRoot
         state={dataParamsByGroupState('adaptation')}
         effect={adaptationDataParamsStateEffect}
