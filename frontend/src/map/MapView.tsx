@@ -1,8 +1,15 @@
-import { Suspense, useCallback, useContext, useEffect, useLayoutEffect } from 'react';
-import { StaticMap } from 'react-map-gl';
-import { atom, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { Suspense, useCallback, useEffect } from 'react';
+import {
+  atom,
+  useRecoilState,
+  useRecoilValue,
+  useResetRecoilState,
+  useSetRecoilState
+} from 'recoil';
 
+import { mapViewStateState, useSyncMapUrl } from '../state/map-view/map-view-state';
 import { BoundingBox } from 'lib/bounding-box';
+import { BaseMap } from 'lib/data-map/BaseMap';
 import { DataMap } from 'lib/data-map/DataMap';
 import { DataMapTooltip } from 'lib/data-map/DataMapTooltip';
 import { MapBoundsFitter } from 'lib/map/MapBoundsFitter';
@@ -12,7 +19,7 @@ import {
   MapHudAttributionControl,
   MapHudNavigationControl,
   MapHudScaleControl,
-} from 'lib/map/hud/mapbox-controls';
+} from 'lib/map/hud/map-controls';
 import { MapSearch } from 'lib/map/place-search/MapSearch';
 import { PlaceSearchResult } from 'lib/map/place-search/use-place-search';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
@@ -26,13 +33,10 @@ import { globalStyleVariables } from '../theme';
 import { useIsMobile } from '../use-is-mobile';
 
 import { MapLayerSelection } from './layers/MapLayerSelection';
-import { backgroundState } from './layers/layers-state';
+import { backgroundState, showLabelsState } from './layers/layers-state';
 import { MapLegend } from './legend/MapLegend';
 import { TooltipContent } from './tooltip/TooltipContent';
-import { useBackgroundConfig } from './use-background-config';
-// import { ViewStateDebug } from 'lib/data-map/ViewStateDebug';
-import { zoomState } from 'state/zoom';
-import { ViewStateContext } from 'lib/data-map/DeckMap';
+import { useBasemapStyle } from './use-basemap-style';
 
 export const mapFitBoundsState = atom<BoundingBox>({
   key: 'mapFitBoundsState',
@@ -116,9 +120,12 @@ const MapHudMobileLayout = () => {
 };
 
 const MapViewContent = () => {
+  const [viewState, setViewState] = useRecoilState(mapViewStateState);
   const background = useRecoilValue(backgroundState);
+  const showLabels = useRecoilValue(showLabelsState);
   const viewLayers = useRecoilValue(viewLayersFlatState);
   const saveViewLayers = useSaveViewLayers();
+  const { mapStyle, firstLabelId } = useBasemapStyle(background, showLabels);
 
   useEffect(() => {
     saveViewLayers(viewLayers);
@@ -127,8 +134,6 @@ const MapViewContent = () => {
   const viewLayersParams = useRecoilValue(viewLayersParamsState);
 
   const interactionGroups = useRecoilValue(interactionGroupsState);
-
-  const backgroundStyle = useBackgroundConfig(background);
 
   const fitBounds = useRecoilValue(mapFitBoundsState);
 
@@ -141,35 +146,26 @@ const MapViewContent = () => {
   const isMobile = useIsMobile();
 
   return (
-    <DataMap
-      initialViewState={INITIAL_VIEW_STATE}
-      viewLayers={viewLayers}
-      viewLayersParams={viewLayersParams}
-      interactionGroups={interactionGroups}
+    <BaseMap
+      mapStyle={mapStyle}
+      viewState={viewState}
+      onViewState={setViewState}
     >
-      <StaticMap mapStyle={backgroundStyle} attributionControl={false} />
-      <ZoomSetter />
+      <DataMap
+        beforeId={firstLabelId}
+        viewLayers={viewLayers}
+        viewLayersParams={viewLayersParams}
+        interactionGroups={interactionGroups}
+      />
       <MapBoundsFitter boundingBox={fitBounds} />
       <DataMapTooltip>
         <TooltipContent />
       </DataMapTooltip>
       {isMobile ? <MapHudMobileLayout /> : <MapHudDesktopLayout />}
-    </DataMap>
+    </BaseMap>
   );
 };
 
-function ZoomSetter() {
-  const setZoom = useSetRecoilState(zoomState);
-  const {
-    viewState: { zoom },
-  } = useContext(ViewStateContext);
-
-  useLayoutEffect(() => {
-    setZoom(zoom);
-  }, [zoom, setZoom]);
-
-  return null;
-}
 export const MapView = () => (
   <ErrorBoundary message="There was a problem displaying the map." justifyErrorContent="center">
     <Suspense fallback={null}>
