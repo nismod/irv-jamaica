@@ -8,7 +8,7 @@ import { getAssetDataFormats } from 'config/assets/data-formats';
 import { FeatureSidebarContent } from 'details/features/FeatureSidebarContent';
 import { BoundingBox, extendBbox } from 'lib/bounding-box';
 import { colorMap } from 'lib/color-map';
-import { mapFitBoundsState } from 'map/MapView';
+import { mapFitBoundsState } from 'lib/map/MapBoundsFitter';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 import { useCallback, useMemo } from 'react';
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
