@@ -6,11 +6,12 @@
 # - assuming this script is run as a user in groups sudo and jsrat_admin
 #
 
-# Install helper apt packages
+# Install helper apt packages and nginx
 sudo apt-get update
 sudo apt-get install -y \
   ca-certificates curl gnupg \
-  apache2-utils
+  apache2-utils \
+  nginx
 
 # Install docker
 sudo install -m 0755 -d /etc/apt/keyrings
