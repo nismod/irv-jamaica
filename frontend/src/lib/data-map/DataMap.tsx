@@ -1,20 +1,20 @@
-import difference from 'lodash/difference';
-import { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
+import type { MapboxOverlay } from '@deck.gl/mapbox/typed';
+import { useMap } from 'react-map-gl/maplibre';
+import { FC, useCallback, useMemo, useRef } from 'react';
 
-import { usePrevious } from '../hooks/use-previous';
-import { useTrackingRef } from '../hooks/use-tracking-ref';
-import { useTrigger } from '../hooks/use-trigger';
+import { useTriggerMemo } from '../hooks/use-trigger-memo';
+import { useDataLoadTrigger } from './use-data-load-trigger';
 
-import { DeckMap } from './DeckMap';
+import { DeckGLOverlay } from '../map/DeckGLOverlay';
 import { useInteractions } from './interactions/use-interactions';
 import { ViewLayer, ViewLayerParams } from './view-layers';
+import { LayersList } from 'deck.gl/typed';
 
 export interface DataMapProps {
-  initialViewState: any;
+  beforeId: string;
   viewLayers: ViewLayer[];
   viewLayersParams: Record<string, ViewLayerParams>;
   interactionGroups: any;
-  children?: ReactNode;
 }
 
 // set a convention where the view layer id is either the first part of the deck id before the @ sign, or it's the whole id
@@ -23,17 +23,14 @@ function lookupViewForDeck(deckLayerId: string) {
 }
 
 export const DataMap: FC<DataMapProps> = ({
-  initialViewState,
+  beforeId,
   viewLayers,
   viewLayersParams,
   interactionGroups,
-  children,
 }) => {
-  const { onHover, onClick, layerFilter, pickingRadius } = useInteractions(
-    viewLayers,
-    lookupViewForDeck,
-    interactionGroups,
-  );
+  const deckRef = useRef<MapboxOverlay>();
+  const { current: map } = useMap();
+  const zoom = map.getMap().getZoom();
 
   const dataLoaders = useMemo(
     () =>
@@ -43,66 +40,53 @@ export const DataMap: FC<DataMapProps> = ({
     [viewLayers],
   );
 
-  const [dataLoadTrigger, triggerDataUpdate] = useTrigger();
+  const dataLoadTrigger = useDataLoadTrigger(dataLoaders);
 
-  const doTrigger = useCallback(() => {
-    triggerDataUpdate();
-  }, [triggerDataUpdate]);
-
-  const previousLoaders = usePrevious(dataLoaders);
-
-  useEffect(() => {
-    // destroy removed data loaders to free up memory
-    const removedLoaders = difference(previousLoaders ?? [], dataLoaders);
-    removedLoaders.forEach((dl) => dl.destroy());
-
-    // subscribe to new data loaders to get notified when data is loaded
-    const addedLoaders = difference(dataLoaders, previousLoaders ?? []);
-    addedLoaders.forEach((dl) => dl.subscribe(doTrigger));
-
-    // if there was a change in data loaders, trigger an update to the data map
-    if (addedLoaders.length > 0 || removedLoaders.length > 0) {
-      doTrigger();
-    }
-  }, [dataLoaders, previousLoaders, doTrigger]);
-
-  /* store current value of dataLoaders so that we can clean up data on component unmount
-   * this is necessary because we don't want to keep the data loaders around after the component is unmounted
-   */
-  const currentLoadersRef = useTrackingRef(dataLoaders);
-  useEffect(() => {
-    return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      currentLoadersRef.current?.forEach((dl) => dl.destroy());
-    };
-  }, [currentLoadersRef]);
-
-  const deckLayersFunction = useCallback(
+  const layersFunction = useCallback(
     ({ zoom }: { zoom: number }) =>
       viewLayers.map((viewLayer) =>
-        makeDeckLayers(viewLayer, viewLayersParams[viewLayer.id], zoom),
-      ),
-    [viewLayers, viewLayersParams],
+        makeDeckLayers(viewLayer, viewLayersParams[viewLayer.id], zoom, beforeId),
+      ) as LayersList,
+    [beforeId, viewLayers, viewLayersParams],
+  );
+
+  const { onHover, onClick, layerFilter, pickingRadius } = useInteractions(
+    viewLayers,
+    lookupViewForDeck,
+    interactionGroups,
+  );
+
+  const layers = useTriggerMemo(
+    () => layersFunction({ zoom }),
+    [layersFunction, zoom],
+    dataLoadTrigger,
   );
 
   return (
-    <DeckMap
-      initialViewState={initialViewState}
-      layersFunction={deckLayersFunction}
-      dataLoadTrigger={dataLoadTrigger}
-      onHover={onHover}
-      onClick={onClick}
-      layerRenderFilter={layerFilter}
+    <DeckGLOverlay
+      interleaved={true}
+      ref={deckRef}
+      style={{
+        overflow: 'hidden',
+      }}
+      getCursor={() => 'default'}
+      layers={layers}
+      layerFilter={layerFilter}
+      onHover={(info) => deckRef.current && onHover?.(info, deckRef.current)}
+      onClick={(info) => deckRef.current && onClick?.(info, deckRef.current)}
       pickingRadius={pickingRadius}
-    >
-      {children}
-    </DeckMap>
+    />
   );
 };
 
-function makeDeckLayers(viewLayer: ViewLayer, viewLayerParams: ViewLayerParams, zoom: number) {
+function makeDeckLayers(
+  viewLayer: ViewLayer,
+  viewLayerParams: ViewLayerParams,
+  zoom: number,
+  beforeId: string | undefined,
+) {
   return viewLayer.fn({
-    deckProps: { id: viewLayer.id, pickable: !!viewLayer.interactionGroup },
+    deckProps: { id: viewLayer.id, pickable: !!viewLayer.interactionGroup, beforeId },
     zoom,
     ...viewLayerParams,
   });

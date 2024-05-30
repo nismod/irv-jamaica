@@ -4,6 +4,14 @@ import { ViewLayer } from 'lib/data-map/view-layers';
 import { FC, useCallback } from 'react';
 import { GradientLegend } from './GradientLegend';
 import { useRasterColorMapValues } from './use-color-map-values';
+export interface ColorValue {
+  color: string;
+  value: any;
+}
+export interface RasterColorMapValues {
+  colorMapValues: ColorValue[];
+  rangeTruncated: [boolean, boolean];
+}
 
 export const RasterLegend: FC<{ viewLayer: ViewLayer }> = ({ viewLayer }) => {
   const {

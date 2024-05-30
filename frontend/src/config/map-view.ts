@@ -20,7 +20,7 @@ export const mapViewConfig: MapViewConfig = {
   },
   viewLimits: {
     minZoom: 3,
-    maxZoom: 16,
+    maxZoom: 12,
     maxPitch: 0,
   },
 };

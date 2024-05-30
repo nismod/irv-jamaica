@@ -12,7 +12,7 @@ import { Nav, NavItemConfig } from './Nav';
 
 import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { Notice } from 'Notice';
 import { RecoilLocalStorageSync } from 'lib/recoil/sync-stores/RecoilLocalStorageSync';
 

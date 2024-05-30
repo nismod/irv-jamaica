@@ -1,5 +1,5 @@
 import { DataLoader } from 'lib/data-loader/data-loader';
-import { MapboxGeoJSONFeature } from 'mapbox-gl';
+import { MapGeoJSONFeature } from 'maplibre-gl';
 
 export interface DataLoaderOptions {
   dataLoader: DataLoader;
@@ -10,7 +10,7 @@ export function dataLoaderLayer(tileProps, { dataLoader }: DataLoaderOptions) {
     tile: { content },
   } = tileProps;
   if (content && dataLoader) {
-    const ids: number[] = content.map((f: MapboxGeoJSONFeature) => f.id);
+    const ids: number[] = content.map((f: MapGeoJSONFeature) => f.id);
 
     dataLoader.loadDataForIds(ids);
   }
