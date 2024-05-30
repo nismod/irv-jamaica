@@ -1,6 +1,6 @@
 import { mvtLayer } from 'lib/deck/layers/base';
 
-import { BackgroundName } from 'config/backgrounds';
+import { BackgroundName } from 'config/basemaps';
 import { RegionLevel, REGIONS_METADATA } from './metadata';
 
 const LIGHT_TEXT = [240, 240, 240, 255];
