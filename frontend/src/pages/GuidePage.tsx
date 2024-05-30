@@ -105,8 +105,8 @@ export const GuidePage = () => (
     </p>
     <p>
       For developers, the source code for the tool is developed and documented at{' '}
-      <ExtLink href="https://github.com/nismod/infra-risk-vis/tree/release/jamaica">
-        github.com/nismod/infra-risk-vis/tree/release/jamaica
+      <ExtLink href="https://github.com/nismod/irv-jamaica">
+        github.com/nismod/irv-jamaica
       </ExtLink>
       . The analysis for Jamaica is produced using the code and models at{' '}
       <ExtLink href="https://github.com/nismod/jamaica-infrastructure">
