@@ -28,7 +28,7 @@ export const DataPage = () => (
         severity="success"
         action={
           <Button color="inherit" size="small">
-            <ExtLink href="https://github.com/nismod/infra-risk-vis/issues">REPORT</ExtLink>
+            <ExtLink href="https://github.com/nismod/irv-jamaica/issues">REPORT</ExtLink>
           </Button>
         }
       >
@@ -100,8 +100,8 @@ export const DataPage = () => (
 
     <ul>
       <li>
-        <ExtLink href="https://github.com/nismod/infra-risk-vis">
-          github.com/nismod/infra-risk-vis
+        <ExtLink href="https://github.com/nismod/irv-jamaica">
+          github.com/nismod/irv-jamaica
         </ExtLink>
       </li>
     </ul>
