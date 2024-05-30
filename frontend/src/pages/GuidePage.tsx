@@ -131,7 +131,7 @@ export const GuidePage = () => (
     <p>“Nature-based Solutions” includes information about land-use and nature-based solutions.</p>
     <p>“Data” includes a summary of data used in the tool.</p>
     <p>
-      <img alt="Jamaica Systemic Risk Assessment Tool (J-SRAT) homepage" src="/guide_media/image2.png" />
+      <img alt="Jamaica Systemic Risk Assessment Tool (J-SRAT) homepage." src="/guide_media/image2.png" />
     </p>
     <p>
       Click on “Exposure” to show the map view. The main controls on this screen are used
@@ -139,7 +139,7 @@ export const GuidePage = () => (
     </p>
     <p>The left sidebar has various sections which control the data that is shown on the map.</p>
     <p>
-      <img alt="Map of Jamaica showing point locations of substations" src="/guide_media/image3.png" />
+      <img alt="Map of Jamaica showing point locations of substations." src="/guide_media/image3.png" />
     </p>
     <p>
       Click the search icon which is just to the right of the sidebar sections to search for places.
@@ -147,11 +147,11 @@ export const GuidePage = () => (
       some addresses by name. For example, search for “Norman Manley International”.
     </p>
     <p>
-      <img alt="Search box showing 'Norman Manley International'" src="/guide_media/image4.png" />
+      <img alt="Search box showing 'Norman Manley International'." src="/guide_media/image4.png" />
     </p>
     <p>Click the first result to zoom to the airport.</p>
     <p>
-      <img alt="Map zoomed to Norman Manley International Airport" src="/guide_media/image5.png" />
+      <img alt="Map zoomed to Norman Manley International Airport." src="/guide_media/image5.png" />
     </p>
     <p>
       Below the search box, there is a map layer control. Hover over the layers icon to show it.
@@ -163,7 +163,7 @@ export const GuidePage = () => (
     </p>
     <p>Check or uncheck the box to hide or “Show labels”</p>
     <p>
-      <img alt="Satellite image map of Kingston Harbour" src="/guide_media/image6.png" />
+      <img alt="Satellite image map of Kingston Harbour." src="/guide_media/image6.png" />
     </p>
     <p>
       In the top-right corner of the map, the plus and minus buttons control the map zoom. You can
@@ -194,18 +194,18 @@ export const GuidePage = () => (
       in the analysis.
     </p>
     <p>
-      <img alt="Map of Jamaica showing High Voltage power lines" src="/guide_media/image7.png" />
+      <img alt="Map of Jamaica showing High Voltage power lines." src="/guide_media/image7.png" />
     </p>
     <p>
       Use the top “Power” checkbox to deselect all power assets, and expand “Transport” to bring in
       roads layers.
     </p>
     <p>
-      <img alt="Map of Jamaica showing Class A and B roads" src="/guide_media/image8.png" />
+      <img alt="Map of Jamaica showing Class A and B roads." src="/guide_media/image8.png" />
     </p>
     <p>Similarly, under “Water”, bring in the water supply, irrigation and wastewater systems.</p>
     <p>
-      <img alt="Map of Jamaica showing water and wastewater pipelines and irrigation canals" src="/guide_media/image9.png" />
+      <img alt="Map of Jamaica showing water and wastewater pipelines and irrigation canals." src="/guide_media/image9.png" />
     </p>
     <h2 id="how-are-flooding-and-hurricanes-represented">
       How are flooding and hurricanes represented?
@@ -217,7 +217,7 @@ export const GuidePage = () => (
       Hover over shaded blue areas to see the depth of flooding in metres.
     </p>
     <p>
-      <img alt="Map of a flooded area, highlighting an exposed electricity substation" src="/guide_media/image10.png" />
+      <img alt="Map of a flooded area, highlighting an exposed electricity substation." src="/guide_media/image10.png" />
     </p>
     <p>
       In the sidebar, move the slider to show flooding for different return periods. A 500-year
@@ -225,21 +225,21 @@ export const GuidePage = () => (
       area covered by the flood.
     </p>
     <p>
-      <img alt="Map of a flooded area, highlighting an exposed electricity substation under a more severe flood" src="/guide_media/image11.png" />
+      <img alt="Map of a flooded area, highlighting an exposed electricity substation under a more severe flood." src="/guide_media/image11.png" />
     </p>
     <p>
       While looking at the hazards, we can overlay infrastructure networks to see where they might
       be affected.
     </p>
     <p>
-      <img alt="Map of Jamaica, showing roads exposed to 100-year return period river flooding" src="/guide_media/image12.png" />
+      <img alt="Map of Jamaica, showing roads exposed to 100-year return period river flooding." src="/guide_media/image12.png" />
     </p>
     <p>
       Click on a road, for example, to see details of the asset damage calculated from the length of
       road exposed to different depths of flooding at each return period.
     </p>
     <p>
-      <img alt="Highlighted map of a road section, showing a chart and table of return period damages and indirect losses" src="/guide_media/image13.png" />
+      <img alt="Highlighted map of a road section, showing a chart and table of return period damages and indirect losses." src="/guide_media/image13.png" />
     </p>
     <h2 id="how-are-people-and-economic-activities-represented">
       How are people and economic activities represented?
@@ -253,11 +253,11 @@ export const GuidePage = () => (
       top-level regions.
     </p>
     <p>
-      <img alt="Map of Jamaica with parish boundaries, focussing St Andrew Parish" src="/guide_media/image14.png" />
+      <img alt="Map of Jamaica with parish boundaries, focussing St Andrew Parish." src="/guide_media/image14.png" />
     </p>
     <p>Select “Enumeration Districts” to see the small areas.</p>
     <p>
-      <img alt="Map of Jamaica with Enumeration District boundaries, focussing on ER88" src="/guide_media/image15.png" />
+      <img alt="Map of Jamaica with Enumeration District boundaries, focussing on ER88." src="/guide_media/image15.png" />
     </p>
     <p>
       Change the “Layer Style” to “Population” to show population density on the map. Hover over
@@ -265,7 +265,7 @@ export const GuidePage = () => (
       the right of the screen.
     </p>
     <p>
-      <img alt="Map of Jamaica showing population density per Enumeration District, with a concentration of high density around Kingston and other towns" src="/guide_media/image16.png" />
+      <img alt="Map of Jamaica showing population density per Enumeration District, with a concentration of high density around Kingston and other towns." src="/guide_media/image16.png" />
     </p>
     <p>
       Expand the “Buildings” section in the left sidebar and check that the eye icon is toggled on,
@@ -273,7 +273,7 @@ export const GuidePage = () => (
       levels.
     </p>
     <p>
-      <img alt="Zoomed in map showing individual building footprints, coloured by general use (commercial, residential, etc.)" src="/guide_media/image17.png" />
+      <img alt="Zoomed in map showing individual building footprints, coloured by general use (commercial, residential, etc.)." src="/guide_media/image17.png" />
     </p>
     <p>
       Click on a building to see details, including the total assigned GDP and estimated
@@ -286,7 +286,7 @@ export const GuidePage = () => (
     </p>
     <p>Toggle the “Hazards” section visibility to show flood maps under buildings.</p>
     <p>
-      <img alt="Zoomed in map showing buildings exposed to river flooding, with a focus on damages and losses arising from a specific commercial building" src="/guide_media/image19.png" />
+      <img alt="Zoomed in map showing buildings exposed to river flooding, with a focus on damages and losses arising from a specific commercial building." src="/guide_media/image19.png" />
     </p>
     <h2 id="how-is-climate-risk-from-flooding-or-cyclones-represented">
       How is climate risk from flooding or cyclones represented?
@@ -297,7 +297,7 @@ export const GuidePage = () => (
       damages or economic losses as evaluated for all of the substations across the island.
     </p>
     <p>
-      <img alt="Map of Jamaica showing electricity substations, coloured by all-hazard economic losses arising from failures" src="/guide_media/image20.png" />
+      <img alt="Map of Jamaica showing electricity substations, coloured by all-hazard economic losses arising from failures." src="/guide_media/image20.png" />
     </p>
     <p>
       From the controls in the sidebar, explore the contribution of individual hazards, and select
@@ -313,7 +313,7 @@ export const GuidePage = () => (
       locations of options to reduce the impacts of drought.
     </p>
     <p>
-      <img alt="Map of Parishes of Jamaica showing expected population disrupted by drought, and potential adaptation optiosn" src="/guide_media/image21.png" />
+      <img alt="Map of Parishes of Jamaica showing expected population disrupted by drought, and potential adaptation options." src="/guide_media/image21.png" />
     </p>
     <h2 id="how-are-adaptation-options-presented">How are adaptation options presented?</h2>
     <p>
@@ -323,7 +323,7 @@ export const GuidePage = () => (
       roads” or a combined upgrade option.
     </p>
     <p>
-      <img alt="Table of adaptation prioritisation for all Class A roads, ordered by Cost-Benefit Ratio" src="/guide_media/image22.png" />
+      <img alt="Table of adaptation prioritisation for all Class A roads, ordered by Cost-Benefit Ratio." src="/guide_media/image22.png" />
     </p>
     <p>
       From here, the assets are shown on the map and ranked in the table on the right, according to
@@ -343,7 +343,7 @@ export const GuidePage = () => (
       particular asset.
     </p>
     <p>
-      <img alt="Table of adaptation options, costs and benefits calculated for a specific stretch of road, showing a map of the road and coastal flood hazard" src="/guide_media/image23.png" />
+      <img alt="Table of adaptation options, costs and benefits calculated for a specific stretch of road, showing a map of the road and coastal flood hazard." src="/guide_media/image23.png" />
     </p>
     <h2 id="how-are-nature-based-solutions-represented">
       How are nature-based solutions represented?
@@ -354,7 +354,7 @@ export const GuidePage = () => (
     </p>
     <p>Expand the “Terrestrial” section to show a long list of Land Use/Land Cover classes.</p>
     <p>
-      <img alt="Map of land-use/land-cover, filtered to highlight certain areas according to user-selected criteria" src="/guide_media/image24.png" />
+      <img alt="Map of land-use/land-cover, filtered to highlight certain areas according to user-selected criteria." src="/guide_media/image24.png" />
     </p>
     <p>
       Change the maximum or minimum values for elevation or slope to constrain the areas displayed –
@@ -370,7 +370,7 @@ export const GuidePage = () => (
       around each habitat area.
     </p>
     <p>
-      <img alt="Map of marine habitats (coral, seagrass and mangroves) showing overlap and areas in proximity to existing habitats" src="/guide_media/image25.png" />
+      <img alt="Map of marine habitats (coral, seagrass and mangroves) showing overlap and areas in proximity to existing habitats." src="/guide_media/image25.png" />
     </p>
     <h2 id="trace-the-climate-risk-and-adaptation-analysis-for-a-single-asset">
       Trace the climate risk and adaptation analysis for a single asset
@@ -403,7 +403,7 @@ export const GuidePage = () => (
     </p>
     <p>Hover over the asset to see its ID and depth of flooding.</p>
     <p>
-      <img alt="Map of an electricity substation exposed to river flooding, with nearby transmission lines" src="/guide_media/image26.png" />
+      <img alt="Map of an electricity substation exposed to river flooding, with nearby transmission lines." src="/guide_media/image26.png" />
     </p>
     <p>
       The substation intersects with different fluvial (river) flood outlines under baseline and
@@ -422,7 +422,7 @@ export const GuidePage = () => (
       probability).
     </p>
     <p>
-      <img alt="Detail of an electricity substation, with damages and losses due to river flooding under current climate conditions" src="/guide_media/image27.png" />
+      <img alt="Detail of an electricity substation, with damages and losses due to river flooding under current climate conditions." src="/guide_media/image27.png" />
     </p>
     <p>
       In the “Return Period Damages” section, change the “Epoch” dropdown from 2010 to 2080 to see
@@ -430,7 +430,7 @@ export const GuidePage = () => (
       Concentration Pathways [RCP] 2.6, 4.5 and 8.5).
     </p>
     <p>
-      <img alt="Detail of an electricity substation, with damages and losses due to river flooding under future climate scenarios" src="/guide_media/image28.png" />
+      <img alt="Detail of an electricity substation, with damages and losses due to river flooding under future climate scenarios." src="/guide_media/image28.png" />
     </p>
     <p>
       In the top menu, click on the “Risk” tab. This may change the background flood map but should
@@ -438,7 +438,7 @@ export const GuidePage = () => (
     </p>
     <p>Scroll back up to the “Risk” section in the right-hand sidebar.</p>
     <p>
-      <img alt="Detail of an electricity substation, with expected annual damages and expected annual economic losses across current and future scenarios" src="/guide_media/image29.png" />
+      <img alt="Detail of an electricity substation, with expected annual damages and expected annual economic losses across current and future scenarios." src="/guide_media/image29.png" />
     </p>
     <p>
       One important thing to note is that (so far) only the flood hazard part of the equation has
@@ -463,7 +463,7 @@ export const GuidePage = () => (
     </p>
     <p>Scroll down to the “Adaptation Options” section.</p>
     <p>
-      <img alt="Detail of potential adaptation options for an electricity substation, with costs and benefits in terms of avoided risk" src="/guide_media/image30.png" />
+      <img alt="Detail of potential adaptation options for an electricity substation, with costs and benefits in terms of avoided risk." src="/guide_media/image30.png" />
     </p>
     <p>
       Here we see that building a protective wall that is 1-meter high would incur an NPV cost of J$
@@ -504,7 +504,7 @@ export const GuidePage = () => (
       the top.
     </p>
     <p>
-      <img alt="Map showing electricity substations coloured by cost-benefit ratio of an adaptation option, with table in sorted order" src="/guide_media/image31.png" />
+      <img alt="Map showing electricity substations coloured by cost-benefit ratio of an adaptation option, with table in sorted order." src="/guide_media/image31.png" />
     </p>
     <p>
       Hover over a row to indicate the asset on the map, drawing a dashed bright blue line around
@@ -523,7 +523,7 @@ export const GuidePage = () => (
       sign, which is at the top-right corner of the sidebar.
     </p>
     <p>
-      <img alt="Zoomed in map focussing on a substation with a high cost-benefit ratio of adaptation" src="/guide_media/image32.png" />
+      <img alt="Zoomed in map focussing on a substation with a high cost-benefit ratio of adaptation." src="/guide_media/image32.png" />
     </p>
     <p>
       Once you have identified a candidate for prioritisation, zoom to its location so that it is
@@ -538,7 +538,7 @@ export const GuidePage = () => (
       losses.
     </p>
     <p>
-      <img alt="Detail of the substation, expected damages and losses due to Cyclone hazard" src="/guide_media/image33.png" />
+      <img alt="Detail of the substation, expected damages and losses due to Cyclone hazard." src="/guide_media/image33.png" />
     </p>
     <p>
       Scroll down to the “Adaptation Options” section to find the evaluated Net Present Value costs
@@ -546,7 +546,7 @@ export const GuidePage = () => (
       scenarios.
     </p>
     <p>
-      <img alt="Detail of the substation, available adaptation options with costs and benefits in terms of avoided risk" src="/guide_media/image34.png" />
+      <img alt="Detail of the substation, available adaptation options with costs and benefits in terms of avoided risk." src="/guide_media/image34.png" />
     </p>
     <p>
       From any of the asset details sections (e.g. Adaptation Options as shown above), click on the
