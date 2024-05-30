@@ -32,9 +32,9 @@ export const mapZoomUrlState = atom({
   effects: [
     urlSyncEffect({
       storeKey: 'url-json',
-      itemKey: 'z',
+      itemKey: 'zoom',
       refine: number(),
-      write: makeWriteNumber('z', 2),
+      write: makeWriteNumber('zoom', 2),
       syncDefault: true,
     }),
   ],
@@ -46,9 +46,9 @@ export const mapLonUrlState = atom({
   effects: [
     urlSyncEffect({
       storeKey: 'url-json',
-      itemKey: 'x',
+      itemKey: 'lon',
       refine: number(),
-      write: makeWriteNumber('x', 5),
+      write: makeWriteNumber('lon', 5),
       syncDefault: true,
     }),
   ],
@@ -60,9 +60,9 @@ export const mapLatUrlState = atom({
   effects: [
     urlSyncEffect({
       storeKey: 'url-json',
-      itemKey: 'y',
+      itemKey: 'lat',
       refine: number(),
-      write: makeWriteNumber('y', 5),
+      write: makeWriteNumber('lat', 5),
       syncDefault: true,
     }),
   ],

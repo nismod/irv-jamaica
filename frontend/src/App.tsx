@@ -1,4 +1,5 @@
 import { RecoilRoot } from 'recoil';
+import { RecoilURLSyncJSON } from 'recoil-sync';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -53,29 +54,31 @@ export const App = () => {
   return (
     <RecoilRoot>
       <RecoilLocalStorageSync storeKey="local-storage">
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <Router>
-              <CssBaseline />
-              <Nav height={globalStyleVariables.navbarHeight} navItems={navItems} />
-              <Notice />
-              <Box
-                position="absolute"
-                top={globalStyleVariables.navbarHeight}
-                bottom={0}
-                left={0}
-                right={0}
-              >
-                <Routes>
-                  <Route path="/" element={<IntroPage />} />
-                  <Route path="/:view" element={<MapPage />} />
-                  <Route path="/data" element={<DataPage />} />
-                  <Route path="/guide" element={<GuidePage />} />
-                </Routes>
-              </Box>
-            </Router>
-          </ThemeProvider>
-        </StyledEngineProvider>
+        <RecoilURLSyncJSON storeKey="url-json" location={{ part: 'queryParams' }}>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <Router>
+                <CssBaseline />
+                <Nav height={globalStyleVariables.navbarHeight} navItems={navItems} />
+                <Notice />
+                <Box
+                  position="absolute"
+                  top={globalStyleVariables.navbarHeight}
+                  bottom={0}
+                  left={0}
+                  right={0}
+                >
+                  <Routes>
+                    <Route path="/" element={<IntroPage />} />
+                    <Route path="/:view" element={<MapPage />} />
+                    <Route path="/data" element={<DataPage />} />
+                    <Route path="/guide" element={<GuidePage />} />
+                  </Routes>
+                </Box>
+              </Router>
+            </ThemeProvider>
+          </StyledEngineProvider>
+        </RecoilURLSyncJSON>
       </RecoilLocalStorageSync>
     </RecoilRoot>
   );
