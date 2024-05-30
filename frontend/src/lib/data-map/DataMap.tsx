@@ -8,6 +8,7 @@ import { useDataLoadTrigger } from './use-data-load-trigger';
 import { DeckGLOverlay } from '../map/DeckGLOverlay';
 import { useInteractions } from './interactions/use-interactions';
 import { ViewLayer, ViewLayerParams } from './view-layers';
+import { LayersList } from 'deck.gl/typed';
 
 export interface DataMapProps {
   beforeId: string,
@@ -46,7 +47,7 @@ export const DataMap: FC<DataMapProps> = ({
     ({ zoom }: { zoom: number }) =>
       viewLayers.map((viewLayer) =>
         makeDeckLayers(viewLayer, viewLayersParams[viewLayer.id], zoom, beforeId),
-      ),
+      ) as LayersList,
     [beforeId, viewLayers, viewLayersParams],
   );
 
