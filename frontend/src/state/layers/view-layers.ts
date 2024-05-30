@@ -72,7 +72,7 @@ export const viewLayersState = selector<ConfigTree<ViewLayer>>({
 
       get(droughtOptionsLayerState),
 
-      get(featureBoundingBoxLayerState)
+      get(featureBoundingBoxLayerState),
     ];
   },
 });

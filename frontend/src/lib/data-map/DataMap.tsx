@@ -11,7 +11,7 @@ import { ViewLayer, ViewLayerParams } from './view-layers';
 import { LayersList } from 'deck.gl/typed';
 
 export interface DataMapProps {
-  beforeId: string,
+  beforeId: string;
   viewLayers: ViewLayer[];
   viewLayersParams: Record<string, ViewLayerParams>;
   interactionGroups: any;
@@ -41,7 +41,6 @@ export const DataMap: FC<DataMapProps> = ({
   );
 
   const dataLoadTrigger = useDataLoadTrigger(dataLoaders);
-
 
   const layersFunction = useCallback(
     ({ zoom }: { zoom: number }) =>

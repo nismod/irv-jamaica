@@ -4,7 +4,7 @@ import {
   useRecoilState,
   useRecoilValue,
   useResetRecoilState,
-  useSetRecoilState
+  useSetRecoilState,
 } from 'recoil';
 
 import { mapViewStateState, useSyncMapUrl } from '../state/map-view/map-view-state';
@@ -146,11 +146,7 @@ const MapViewContent = () => {
   const isMobile = useIsMobile();
 
   return (
-    <BaseMap
-      mapStyle={mapStyle}
-      viewState={viewState}
-      onViewState={setViewState}
-    >
+    <BaseMap mapStyle={mapStyle} viewState={viewState} onViewState={setViewState}>
       <DataMap
         beforeId={firstLabelId}
         viewLayers={viewLayers}
