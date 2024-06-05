@@ -12,7 +12,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 COPY public public
 COPY src src
-COPY tsconfig.json tsconfig-typings.json .eslintrc.js ./
+COPY tsconfig.json tsconfig.vite.json eslint.config.js vite.config.ts index.html ./
 # build to static site
 RUN npm run build
 
