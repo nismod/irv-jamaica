@@ -2,12 +2,14 @@
 services:
   frontend:
     image: ghcr.io/nismod/jsrat-frontend:0.1
+    platform: linux/amd64
     build: ./frontend
     ports:
       - "3000:80"
 
   backend:
     image: ghcr.io/nismod/jsrat-backend:0.1
+    platform: linux/amd64
     build: ./backend
     ports:
       - "3001:80"
@@ -16,6 +18,7 @@ services:
 
   vector-tileserver:
     image: ghcr.io/nismod/jsrat-vector-tileserver:0.1
+    platform: linux/amd64
     build:
       context: ./tileserver/vector
     command:
@@ -37,6 +40,7 @@ services:
 
   raster-tileserver:
     image: ghcr.io/nismod/jsrat-raster-tileserver:0.1
+    platform: linux/amd64
     build: ./tileserver/raster
     ports:
       - "3003:5000"
