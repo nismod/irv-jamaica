@@ -9,6 +9,35 @@ import { RCPControl } from 'sidebar/ui/params/RCPControl';
 import { useRecoilValue } from 'recoil';
 import { showDamagesState } from 'state/damage-mapping/damage-map';
 import { Alert, Box } from '@mui/material';
+import { HAZARDS_UI_ORDER, HAZARDS_METADATA } from 'config/hazards/metadata';
+
+function HazardToggleSection({ hazard, disabled }) {
+  const otherProps =
+    hazard === 'cyclone'
+      ? {
+          showMarkLabelsFor: [10, 50, 100, 500, 1000, 5000, 10000],
+          valueLabelDisplay: 'auto',
+        }
+      : {};
+  return (
+    <ToggleSection id={hazard} label={HAZARDS_METADATA[hazard].label} disabled={disabled}>
+      <InputSection>
+        <ReturnPeriodControl
+          group={hazard}
+          param="returnPeriod"
+          disabled={disabled}
+          {...otherProps}
+        />
+      </InputSection>
+      <InputSection>
+        <InputRow>
+          <EpochControl group={hazard} disabled={disabled} />
+          <RCPControl group={hazard} disabled={disabled} />
+        </InputRow>
+      </InputSection>
+    </ToggleSection>
+  );
+}
 
 export const HazardsControl = () => {
   const showDirectDamages = useRecoilValue(showDamagesState);
@@ -24,58 +53,9 @@ export const HazardsControl = () => {
         </Box>
       ) : null}
       <ToggleSectionGroup toggleState={hazardSelectionState}>
-        <ToggleSection id="fluvial" label="River Flooding" disabled={disabled}>
-          <InputSection>
-            <ReturnPeriodControl group="fluvial" param="returnPeriod" disabled={disabled} />
-          </InputSection>
-          <InputSection>
-            <InputRow>
-              <EpochControl group="fluvial" disabled={disabled} />
-              <RCPControl group="fluvial" disabled={disabled} />
-            </InputRow>
-          </InputSection>
-        </ToggleSection>
-
-        <ToggleSection id="surface" label="Surface Flooding" disabled={disabled}>
-          <InputSection>
-            <ReturnPeriodControl group="surface" param="returnPeriod" disabled={disabled} />
-          </InputSection>
-          <InputSection>
-            <InputRow>
-              <EpochControl group="surface" disabled={disabled} />
-              <RCPControl group="surface" disabled={disabled} />
-            </InputRow>
-          </InputSection>
-        </ToggleSection>
-
-        <ToggleSection id="coastal" label="Coastal Flooding" disabled={disabled}>
-          <InputSection>
-            <ReturnPeriodControl group="coastal" param="returnPeriod" disabled={disabled} />
-          </InputSection>
-          <InputSection>
-            <InputRow>
-              <EpochControl group="coastal" disabled={disabled} />
-              <RCPControl group="coastal" disabled={disabled} />
-            </InputRow>
-          </InputSection>
-        </ToggleSection>
-
-        <ToggleSection id="cyclone" label="Cyclones" disabled={disabled}>
-          <InputSection>
-            <ReturnPeriodControl
-              group="cyclone"
-              valueLabelDisplay="auto"
-              showMarkLabelsFor={[10, 50, 100, 500, 1000, 5000, 10000]}
-              disabled={disabled}
-            />
-          </InputSection>
-          <InputSection>
-            <InputRow>
-              <EpochControl group="cyclone" disabled={disabled} />
-              <RCPControl group="cyclone" disabled={disabled} />
-            </InputRow>
-          </InputSection>
-        </ToggleSection>
+        {HAZARDS_UI_ORDER.map((hazard) => (
+          <HazardToggleSection key={hazard} hazard={hazard} disabled={disabled} />
+        ))}
       </ToggleSectionGroup>
     </>
   );
