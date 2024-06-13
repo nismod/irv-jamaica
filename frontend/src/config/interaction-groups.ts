@@ -20,6 +20,14 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
     },
   ],
   [
+    'risks',
+    {
+      id: 'risks',
+      type: 'raster',
+      pickMultiple: false,
+    },
+  ],
+  [
     'regions',
     {
       id: 'regions',
