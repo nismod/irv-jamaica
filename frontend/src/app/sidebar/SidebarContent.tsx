@@ -9,6 +9,7 @@ import { DroughtsSection } from 'data-layers/droughtRisks/sidebar/DroughtsSectio
 import { HazardsSection } from 'data-layers/hazards/sidebar/HazardsSection';
 import { NetworksSection } from 'data-layers/networks/sidebar/NetworksSection';
 import { RegionsSection } from 'data-layers/regions/sidebar/RegionsSection';
+import { RisksSection } from 'data-layers/risks/sidebar/RisksSection';
 import { MarineSection } from 'data-layers/marine/sidebar/MarineSection';
 import { TerrestrialSection } from 'data-layers/terrestrial/sidebar/TerrestrialSection';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
@@ -29,6 +30,7 @@ const SidebarContent: FC = () => {
       return (
         <>
           <NetworksSection />
+          <RisksSection />
           <HazardsSection />
           <BuildingsSection />
           <RegionsSection />
