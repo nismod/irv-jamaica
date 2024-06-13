@@ -1,4 +1,5 @@
 import { HAZARD_DOMAINS } from 'config/hazards/domains';
+import { RISK_DOMAINS } from 'config/risks/domains';
 import { totalDamagesConfig } from 'config/domains/total-damages';
 import {
   DataParamGroupConfig,
@@ -21,6 +22,7 @@ export type DataParamParam = Readonly<{
 
 export const dataParamConfig: Record<string, DataParamGroupConfig> = {
   ...HAZARD_DOMAINS,
+  risks: RISK_DOMAINS,
   all: totalDamagesConfig,
   adaptation: adaptationDomainsConfig,
 };
