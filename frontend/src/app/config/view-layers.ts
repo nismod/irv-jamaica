@@ -4,6 +4,7 @@ export const VIEW_LAYERS = [
   'terrestrial',
   'marine',
   'hazards',
+  'risks',
   'buildings',
   'networks',
   'droughtOptions',
