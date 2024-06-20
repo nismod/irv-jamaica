@@ -7,7 +7,7 @@ import {
   useSetRecoilState,
 } from 'recoil';
 
-import { mapViewStateState, useSyncMapUrl } from '../state/map-view/map-view-state';
+import { mapViewStateState } from '../state/map-view/map-view-state';
 import { BoundingBox } from 'lib/bounding-box';
 import { BaseMap } from 'lib/data-map/BaseMap';
 import { DataMap } from 'lib/data-map/DataMap';
@@ -25,7 +25,6 @@ import { PlaceSearchResult } from 'lib/map/place-search/use-place-search';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { withProps } from 'lib/react/with-props';
 
-import { mapViewConfig } from 'config/map-view';
 import { interactionGroupsState } from 'state/layers/interaction-groups';
 import { viewLayersFlatState } from 'state/layers/view-layers-flat';
 import { useSaveViewLayers, viewLayersParamsState } from 'state/layers/view-layers-params';
@@ -42,11 +41,6 @@ export const mapFitBoundsState = atom<BoundingBox>({
   key: 'mapFitBoundsState',
   default: null,
 });
-
-const INITIAL_VIEW_STATE = {
-  ...mapViewConfig.initialViewState,
-  ...mapViewConfig.viewLimits,
-};
 
 const AppPlaceSearch = () => {
   const setFitBounds = useSetRecoilState(mapFitBoundsState);

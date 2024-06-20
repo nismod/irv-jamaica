@@ -4,11 +4,12 @@ import { useControl } from 'react-map-gl/maplibre';
 
 type DeckGLOverlayProps = MapboxOverlayProps;
 
-export const DeckGLOverlay = forwardRef<MapboxOverlay, DeckGLOverlayProps>((props, ref) => {
-  const overlay = useControl<MapboxOverlay>(() => new MapboxOverlay(props));
+const DeckGLOverlayWithRef = (props, ref) => {
+  const overlay = useControl(() => new MapboxOverlay(props));
   overlay.setProps(props);
 
   useImperativeHandle(ref, () => overlay);
 
   return null;
-});
+};
+export const DeckGLOverlay = forwardRef<MapboxOverlay, DeckGLOverlayProps>(DeckGLOverlayWithRef);
