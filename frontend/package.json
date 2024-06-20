@@ -81,5 +81,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "overrides": {
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  }
 }
