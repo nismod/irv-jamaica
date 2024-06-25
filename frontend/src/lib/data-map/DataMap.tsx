@@ -1,6 +1,13 @@
 import type { MapboxOverlay } from '@deck.gl/mapbox/typed';
 import { useMap } from 'react-map-gl/maplibre';
-import { FC, useCallback, useMemo, useRef } from 'react';
+import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { interactionGroupsState } from 'state/layers/interaction-groups';
+import { viewLayersFlatState } from 'state/layers/view-layers-flat';
+import { useSaveViewLayers, viewLayersParamsState } from 'state/layers/view-layers-params';
+import { backgroundState, showLabelsState } from 'map/layers/layers-state';
+import { useBasemapStyle } from 'map/use-basemap-style';
 
 import { useTriggerMemo } from '../hooks/use-trigger-memo';
 import { useDataLoadTrigger } from './use-data-load-trigger';
@@ -10,27 +17,28 @@ import { useInteractions } from './interactions/use-interactions';
 import { ViewLayer, ViewLayerParams } from './view-layers';
 import { LayersList } from 'deck.gl/typed';
 
-export interface DataMapProps {
-  beforeId: string;
-  viewLayers: ViewLayer[];
-  viewLayersParams: Record<string, ViewLayerParams>;
-  interactionGroups: any;
-}
-
 // set a convention where the view layer id is either the first part of the deck id before the @ sign, or it's the whole id
 function lookupViewForDeck(deckLayerId: string) {
   return deckLayerId.split('@')[0];
 }
 
-export const DataMap: FC<DataMapProps> = ({
-  beforeId,
-  viewLayers,
-  viewLayersParams,
-  interactionGroups,
-}) => {
+export const DataMap: FC = () => {
   const deckRef = useRef<MapboxOverlay>();
   const { current: map } = useMap();
   const zoom = map.getMap().getZoom();
+  const background = useRecoilValue(backgroundState);
+  const showLabels = useRecoilValue(showLabelsState);
+  const viewLayers = useRecoilValue(viewLayersFlatState);
+  const saveViewLayers = useSaveViewLayers();
+  const { firstLabelId } = useBasemapStyle(background, showLabels);
+
+  useEffect(() => {
+    saveViewLayers(viewLayers);
+  }, [saveViewLayers, viewLayers]);
+
+  const viewLayersParams = useRecoilValue(viewLayersParamsState);
+
+  const interactionGroups = useRecoilValue(interactionGroupsState);
 
   const dataLoaders = useMemo(
     () =>
@@ -45,9 +53,9 @@ export const DataMap: FC<DataMapProps> = ({
   const layersFunction = useCallback(
     ({ zoom }: { zoom: number }) =>
       viewLayers.map((viewLayer) =>
-        makeDeckLayers(viewLayer, viewLayersParams[viewLayer.id], zoom, beforeId),
+        makeDeckLayers(viewLayer, viewLayersParams[viewLayer.id], zoom, firstLabelId),
       ) as LayersList,
-    [beforeId, viewLayers, viewLayersParams],
+    [firstLabelId, viewLayers, viewLayersParams],
   );
 
   const { onHover, onClick, layerFilter, pickingRadius } = useInteractions(

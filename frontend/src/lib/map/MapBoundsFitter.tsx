@@ -1,15 +1,24 @@
 import { WebMercatorViewport } from 'deck.gl/typed';
 import { FC, useEffect } from 'react';
 import { useMap } from 'react-map-gl/maplibre';
+import { atom, useRecoilValue, useResetRecoilState } from 'recoil';
 
 import { BoundingBox, appToDeckBoundingBox } from '../bounding-box';
 
-interface MapBoundsFitterProps {
-  boundingBox: BoundingBox;
-}
+export const mapFitBoundsState = atom<BoundingBox>({
+  key: 'mapFitBoundsState',
+  default: null,
+});
 
-export const MapBoundsFitter: FC<MapBoundsFitterProps> = ({ boundingBox }) => {
+export const MapBoundsFitter: FC = () => {
   const { current: map } = useMap();
+  const boundingBox = useRecoilValue(mapFitBoundsState);
+
+  const resetFitBounds = useResetRecoilState(mapFitBoundsState);
+  useEffect(() => {
+    // reset map fit bounds whenever map is mounted
+    resetFitBounds();
+  }, [resetFitBounds]);
 
   useEffect(() => {
     if (boundingBox != null && map != null) {
