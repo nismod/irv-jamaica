@@ -1,35 +1,21 @@
-import { regionLabelsDeckLayer } from 'config/regions/region-labels-deck-layer';
-import { regionBoundariesViewLayer } from 'config/regions/boundaries-view-layer';
-import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';
-import { backgroundState, showLabelsState } from 'map/layers/layers-state';
-import { selector } from 'recoil';
-import { truthyKeys } from 'lib/helpers';
-import { ConfigTree } from 'lib/nested-config/config-tree';
-
-import { populationViewLayer } from 'config/regions/population-view-layer';
-import { regionLevelState, showPopulationState } from 'state/regions';
-import { sectionVisibilityState } from 'state/sections';
-import { buildingsViewLayer } from 'config/buildings/buildings-view-layer';
-import { buildingSelectionState } from 'state/buildings';
-import { networkLayersState } from './networks';
-import { hazardLayerState } from './hazards';
-import { hoveredAdaptationFeatureState } from 'details/adaptations/FeatureAdaptationsTable';
+import { waitForAll } from 'recoil';
 import bboxPolygon from '@turf/bbox-polygon';
+
+import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';
+import { selector } from 'recoil';
+import { ConfigTree } from 'lib/nested-config/config-tree';
+import { hoveredAdaptationFeatureState } from 'details/adaptations/FeatureAdaptationsTable';
 import { extendBbox } from 'lib/bounding-box';
 import { boundingBoxLayer } from 'lib/deck/layers/bounding-box-layer';
-import { terrestrialLayerState } from './terrestrial';
-import { marineLayerState } from './marine';
-import { droughtOptionsLayerState, droughtRegionsLayerState } from './drought';
 
-const buildingLayersState = selector<ViewLayer[]>({
-  key: 'buildingLayersState',
-  get: ({ get }) =>
-    get(sectionVisibilityState('buildings'))
-      ? truthyKeys(get(buildingSelectionState)).map((buildingType) =>
-          buildingsViewLayer(buildingType),
-        )
-      : [],
-});
+import { buildingLayersState } from './buildings';
+import { droughtOptionsLayerState, droughtRegionsLayerState } from './drought';
+import { marineLayerState } from './marine';
+import { networkLayersState } from './networks';
+import { hazardLayerState } from './hazards';
+import { regionsLayerState } from './regions';
+import { terrestrialLayerState } from './terrestrial';
+import { labelsLayerState } from './labels';
 
 export const featureBoundingBoxLayerState = selector<ViewLayer>({
   key: 'featureBoundingBoxLayerState',
@@ -48,47 +34,20 @@ export const featureBoundingBoxLayerState = selector<ViewLayer>({
 
 export const viewLayersState = selector<ConfigTree<ViewLayer>>({
   key: 'viewLayersState',
-  get: ({ get }) => {
-    const showRegions = get(sectionVisibilityState('regions'));
-    const regionLevel = get(regionLevelState);
-    const background = get(backgroundState);
-    const showLabels = get(showLabelsState);
-
-    return [
-      // administrative region boundaries or population density
-      showRegions &&
-        (get(showPopulationState)
-          ? populationViewLayer(regionLevel)
-          : regionBoundariesViewLayer(regionLevel)),
-
-      get(droughtRegionsLayerState),
-
-      get(terrestrialLayerState),
-      get(marineLayerState),
-
-      // hazard data layers
-      get(hazardLayerState),
-
-      get(buildingLayersState),
-
-      // network data layers
-      get(networkLayersState),
-
-      get(droughtOptionsLayerState),
-
-      get(featureBoundingBoxLayerState),
-
-      showLabels && [
-        // administrative regions labels
-        showRegions &&
-          viewOnlyLayer(`boundaries_${regionLevel}-text`, () =>
-            regionLabelsDeckLayer(regionLevel, background),
-          ),
-      ],
-
-      /**
-       * CAUTION: for some reason, vector layers put here are obscured by the 'labels' semi-transparent raster layer
-       */
-    ];
-  },
+  get: ({ get }) => [
+    get(
+      waitForAll([
+        regionsLayerState,
+        droughtRegionsLayerState,
+        terrestrialLayerState,
+        marineLayerState,
+        hazardLayerState,
+        buildingLayersState,
+        networkLayersState,
+        droughtOptionsLayerState,
+        featureBoundingBoxLayerState,
+        labelsLayerState,
+      ]),
+    ),
+  ],
 });
