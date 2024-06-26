@@ -7,7 +7,7 @@ import {
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { getAssetDataFormats } from './data-formats';
 import { ASSETS_SOURCE } from './source';
-import { VectorTarget } from 'lib/data-map/interactions/use-interactions';
+import { VectorTarget } from 'state/interactions/use-interactions';
 
 interface ViewLayerMetadata {
   group: string;

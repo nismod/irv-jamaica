@@ -13,7 +13,7 @@ import { useTriggerMemo } from '../hooks/use-trigger-memo';
 import { useDataLoadTrigger } from './use-data-load-trigger';
 
 import { DeckGLOverlay } from '../map/DeckGLOverlay';
-import { useInteractions } from './interactions/use-interactions';
+import { useInteractions } from 'state/interactions/use-interactions';
 import { ViewLayer, ViewLayerParams } from './view-layers';
 import { LayersList } from 'deck.gl/typed';
 

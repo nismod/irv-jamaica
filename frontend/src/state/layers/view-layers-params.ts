@@ -4,7 +4,7 @@ import { StyleParams, ViewLayer, ViewLayerParams } from 'lib/data-map/view-layer
 
 import { viewLayersFlatState } from './view-layers-flat';
 import _ from 'lodash';
-import { selectionState } from 'lib/data-map/interactions/interaction-state';
+import { selectionState } from 'state/interactions/interaction-state';
 import { networkStyleParamsState } from './networks';
 
 export const viewLayerState = atomFamily<ViewLayer, string>({

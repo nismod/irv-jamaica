@@ -2,13 +2,13 @@ import { FC } from 'react';
 
 import { FeatureSidebarContent } from './FeatureSidebarContent';
 import { useRecoilValue } from 'recoil';
-import { selectionState } from 'lib/data-map/interactions/interaction-state';
+import { selectionState } from 'state/interactions/interaction-state';
 import { SidePanel } from 'details/SidePanel';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { Box } from '@mui/system';
 import { DeselectButton } from 'details/DeselectButton';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
-import { InteractionTarget, VectorTarget } from 'lib/data-map/interactions/use-interactions';
+import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
 
 export const FeatureSidebar: FC = () => {
   const featureSelection = useRecoilValue(selectionState('assets'));

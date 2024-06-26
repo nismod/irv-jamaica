@@ -7,7 +7,7 @@ import { featureProperty } from 'lib/deck/props/data-source';
 import { border, fillColor } from 'lib/deck/props/style';
 import { RegionLevel } from './metadata';
 import { REGIONS_SOURCE } from './source';
-import { VectorTarget } from 'lib/data-map/interactions/use-interactions';
+import { VectorTarget } from 'state/interactions/use-interactions';
 
 export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
   const source = REGIONS_SOURCE;

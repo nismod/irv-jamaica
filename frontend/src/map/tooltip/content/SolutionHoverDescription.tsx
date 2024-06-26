@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
 import { MARINE_HABITATS_LOOKUP } from 'config/solutions/domains';
 import { DataItem } from 'details/features/detail-components';
-import { InteractionTarget, VectorTarget } from 'lib/data-map/interactions/use-interactions';
+import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
 import { habitatColorMap } from 'state/layers/marine';

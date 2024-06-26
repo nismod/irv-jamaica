@@ -5,7 +5,7 @@ import mapValues from 'lodash/mapValues';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useRecoilCallback, useSetRecoilState } from 'recoil';
 
-import { ViewLayer } from '../view-layers';
+import { ViewLayer } from 'lib/data-map/view-layers';
 
 import {
   hoverState,

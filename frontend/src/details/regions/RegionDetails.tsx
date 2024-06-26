@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 
-import { selectionState } from 'lib/data-map/interactions/interaction-state';
+import { selectionState } from 'state/interactions/interaction-state';
 import { Box } from '@mui/material';
 import { RegionDetailsContent } from './RegionDetailsContent';
 import { SidePanel } from 'details/SidePanel';
