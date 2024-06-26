@@ -13,12 +13,14 @@ export interface RasterColorMapValues {
   rangeTruncated: [boolean, boolean];
 }
 
+const metadata = {
+  ...HAZARDS_METADATA,
+};
+
 export const RasterLegend: FC<{ viewLayer: ViewLayer }> = ({ viewLayer }) => {
-  const {
-    params: { hazardType },
-  } = viewLayer;
-  const { label, dataUnit } = HAZARDS_METADATA[hazardType];
-  const { scheme, range } = RASTER_COLOR_MAPS[hazardType];
+  const { id } = viewLayer;
+  const { label, dataUnit } = metadata[id];
+  const { scheme, range } = RASTER_COLOR_MAPS[id];
 
   const { error, loading, colorMapValues } = useRasterColorMapValues(scheme, range);
 
