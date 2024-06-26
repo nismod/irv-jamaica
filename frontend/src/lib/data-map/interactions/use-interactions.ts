@@ -1,7 +1,5 @@
 import DeckGL, { Deck, PickInfo } from 'deck.gl';
 import { readPixelsToArray } from '@luma.gl/core';
-import keyBy from 'lodash/keyBy';
-import filter from 'lodash/filter';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -80,7 +78,7 @@ function processPickedObject(
   info: PickInfo<any>,
   type: InteractionStyle,
   groupName: string,
-  viewLayerLookup: Record<string, ViewLayer>,
+  viewLayerLookup: (id: string) => ViewLayer,
   lookupViewForDeck: (deckLayerId: string) => string,
 ) {
   const deckLayerId = info.layer.id;
@@ -91,7 +89,7 @@ function processPickedObject(
     target && {
       interactionGroup: groupName,
       interactionStyle: type,
-      viewLayer: viewLayerLookup[viewLayerId],
+      viewLayer: viewLayerLookup(viewLayerId),
       target,
     }
   );
@@ -110,26 +108,18 @@ function useSetInteractionGroupState(
 export function useInteractions(
   viewLayers: ViewLayer[],
   lookupViewForDeck: (deckLayerId: string) => string,
-  interactionGroups: InteractionGroupConfig[],
+  interactionGroups: Map<string, InteractionGroupConfig>,
 ) {
   const setHoverXY = useSetRecoilState(hoverPositionState);
 
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
   const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);
 
-  const interactionGroupLookup = useMemo(() => keyBy(interactionGroups, 'id'), [interactionGroups]);
+  const [primaryGroup] = [...interactionGroups.keys()];
+  const primaryGroupPickingRadius = interactionGroups.get(primaryGroup).pickingRadius;
 
-  const primaryGroup = interactionGroups[0].id;
-  const primaryGroupPickingRadius = interactionGroupLookup[primaryGroup].pickingRadius;
+  const interactiveLayers = viewLayers.filter((x) => x.interactionGroup);
 
-  const interactiveLayers = useMemo(
-    () => viewLayers.filter((x) => x.interactionGroup),
-    [viewLayers],
-  );
-  const viewLayerLookup = useMemo(
-    () => keyBy(interactiveLayers, (layer) => layer.id),
-    [interactiveLayers],
-  );
   const activeGroups = useMemo(
     () => groupBy(interactiveLayers, (viewLayer) => viewLayer.interactionGroup),
     [interactiveLayers],
@@ -146,10 +136,11 @@ export function useInteractions(
   const onHover = useCallback(
     (info: any, deck: Deck) => {
       const { x, y } = info;
+      const viewLayerLookup = (id: string) => viewLayers.find((x) => x.id === id);
 
       for (const [groupName, layers] of Object.entries(activeGroups)) {
         const layerIds = layers.map((layer) => layer.id);
-        const interactionGroup = interactionGroupLookup[groupName];
+        const interactionGroup = interactionGroups.get(groupName);
         const { type, pickingRadius: radius, pickMultiple } = interactionGroup;
 
         const pickingParams = { x, y, layerIds, radius };
@@ -176,21 +167,23 @@ export function useInteractions(
     },
     [
       activeGroups,
+      interactionGroups,
       lookupViewForDeck,
-      interactionGroupLookup,
       setHoverXY,
       setInteractionGroupHover,
-      viewLayerLookup,
+      viewLayers,
     ],
   );
 
   const onClick = useCallback(
     (info: any, deck: DeckGL) => {
       const { x, y } = info;
+      const viewLayerLookup = (id: string) => viewLayers.find((x) => x.id === id);
+
       for (const [groupName, viewLayers] of Object.entries(activeGroups)) {
         const viewLayerIds = viewLayers.map((layer) => layer.id);
 
-        const interactionGroup = interactionGroupLookup[groupName];
+        const interactionGroup = interactionGroups.get(groupName);
         const { type, pickingRadius: radius } = interactionGroup;
 
         // currently only supports selecting vector features
@@ -203,35 +196,23 @@ export function useInteractions(
         }
       }
     },
-    [
-      activeGroups,
-      lookupViewForDeck,
-      interactionGroupLookup,
-      setInteractionGroupSelection,
-      viewLayerLookup,
-    ],
+    [activeGroups, interactionGroups, lookupViewForDeck, setInteractionGroupSelection, viewLayers],
   );
 
   /**
    * Interaction groups which should be rendered during the hover picking pass
    */
-  const hoverPassGroups = useMemo(
-    () =>
-      new Set(
-        filter(
-          interactionGroups,
-          (group) => group.id === primaryGroup || group.usesAutoHighlight,
-        ).map((group) => group.id),
-      ),
-    [interactionGroups, primaryGroup],
-  );
+  const hoverPassGroups = [...interactionGroups.values()]
+    .filter((group) => group.usesAutoHighlight || group.id === primaryGroup)
+    .map((group) => group.id);
 
   const layerFilter = ({ layer: deckLayer, renderPass }) => {
     if (renderPass === 'picking:hover') {
       const viewLayerId = lookupViewForDeck(deckLayer.id);
-      const interactionGroup = viewLayerId && viewLayerLookup[viewLayerId]?.interactionGroup;
+      const viewLayerLookup = (id: string) => viewLayers.find((x) => x.id === id);
+      const interactionGroup = viewLayerLookup(viewLayerId)?.interactionGroup;
 
-      return interactionGroup ? hoverPassGroups.has(interactionGroup) : false;
+      return interactionGroup ? hoverPassGroups.includes(interactionGroup) : false;
     }
     return true;
   };

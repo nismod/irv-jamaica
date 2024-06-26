@@ -6,16 +6,11 @@ export const interactionGroupsState = selector({
   key: 'interactionGroupsState',
   get: ({ get }) => {
     const regionDataShown = get(showPopulationState);
+    if (INTERACTION_GROUPS.has('regions')) {
+      const regionsGroup = INTERACTION_GROUPS.get('regions');
+      INTERACTION_GROUPS.set('regions', { ...regionsGroup, usesAutoHighlight: regionDataShown });
+    }
 
-    return [
-      INTERACTION_GROUPS.assets,
-      INTERACTION_GROUPS.hazards,
-      {
-        ...INTERACTION_GROUPS.regions,
-        usesAutoHighlight: regionDataShown,
-      },
-      INTERACTION_GROUPS.solutions,
-      INTERACTION_GROUPS.drought,
-    ];
+    return INTERACTION_GROUPS;
   },
 });
