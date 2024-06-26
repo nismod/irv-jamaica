@@ -3,9 +3,10 @@ import { atom, atomFamily, selector } from 'recoil';
 
 import { isReset } from 'lib/recoil/is-reset';
 
-import { InteractionTarget } from './use-interactions';
+import { InteractionTarget, RasterTarget, VectorTarget } from './use-interactions';
 
-type IT = InteractionTarget<any> | InteractionTarget<any>[];
+type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
+type IT = InteractionLayer | InteractionLayer[];
 
 export function hasHover(target: IT) {
   if (Array.isArray(target)) {
@@ -24,7 +25,7 @@ export const hoverPositionState = atom({
   default: null,
 });
 
-export const selectionState = atomFamily<InteractionTarget<any>, string>({
+export const selectionState = atomFamily<InteractionLayer, string>({
   key: 'selectionState',
   default: null,
 });

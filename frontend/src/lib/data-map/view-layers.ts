@@ -1,7 +1,7 @@
 import { ScaleSequential } from 'd3-scale';
 import { DataLoader } from 'lib/data-loader/data-loader';
 import { Accessor } from 'lib/deck/props/getters';
-import { InteractionTarget } from './interactions/use-interactions';
+import { InteractionTarget, VectorTarget, RasterTarget } from './interactions/use-interactions';
 
 export interface FieldSpec {
   fieldGroup: string;
@@ -30,7 +30,7 @@ export interface ViewLayerFunctionOptions {
   deckProps: any;
   zoom: number;
   styleParams?: StyleParams;
-  selection?: InteractionTarget<any>;
+  selection?: InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
 }
 
 export interface DataManager {

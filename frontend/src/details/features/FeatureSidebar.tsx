@@ -8,6 +8,7 @@ import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { Box } from '@mui/system';
 import { DeselectButton } from 'details/DeselectButton';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
+import { InteractionTarget, VectorTarget } from 'lib/data-map/interactions/use-interactions';
 
 export const FeatureSidebar: FC = () => {
   const featureSelection = useRecoilValue(selectionState('assets'));
@@ -17,7 +18,7 @@ export const FeatureSidebar: FC = () => {
   const {
     target: { feature },
     viewLayer,
-  } = featureSelection;
+  } = featureSelection as InteractionTarget<VectorTarget>;
 
   return (
     <SidePanel position="relative">

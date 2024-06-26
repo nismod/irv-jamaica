@@ -9,6 +9,7 @@ import { fillColor } from 'lib/deck/props/style';
 import { Accessor } from 'lib/deck/props/getters';
 import { marineFiltersState } from 'state/solutions/marine-filters';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
+import { VectorTarget } from 'lib/data-map/interactions/use-interactions';
 
 export function habitatColorMap(x: string) {
   return MARINE_HABITAT_COLORS[x]?.css ?? MARINE_HABITAT_COLORS['other'].css;
@@ -71,10 +72,12 @@ export const marineLayerState = selector<ViewLayer>({
       group: null,
       interactionGroup: 'solutions',
       fn: ({ deckProps, selection }) => {
+        const target = selection.target as VectorTarget;
+        const selectedFeatureId = target?.feature.id;
         return selectableMvtLayer(
           {
             selectionOptions: {
-              selectedFeatureId: selection?.target?.feature.id,
+              selectedFeatureId,
               polygonOffset: -3000,
             },
           },

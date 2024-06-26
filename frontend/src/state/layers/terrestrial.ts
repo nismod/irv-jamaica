@@ -20,6 +20,7 @@ import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { getTerrestrialDataFormats } from 'config/solutions/data-formats';
 import { getSolutionsDataAccessor } from 'config/solutions/data-access';
 import { landuseFilterState } from 'state/solutions/landuse-tree';
+import { VectorTarget } from 'lib/data-map/interactions/use-interactions';
 
 export function landuseColorMap(x: string) {
   return TERRESTRIAL_LANDUSE_COLORS[x].css;
@@ -170,12 +171,14 @@ export const terrestrialLayerState = selector<ViewLayer>({
       dataFormatsFn: getTerrestrialDataFormats,
       fn: ({ deckProps, zoom, selection }) => {
         const switchoverZoom = 14.5;
+        const target = selection.target as VectorTarget;
+        const selectedFeatureId = target?.feature.id;
 
         return [
           selectableMvtLayer(
             {
               selectionOptions: {
-                selectedFeatureId: selection?.target?.feature.id,
+                selectedFeatureId,
                 polygonOffset: -1000,
               },
             },
@@ -206,7 +209,7 @@ export const terrestrialLayerState = selector<ViewLayer>({
           selectableMvtLayer(
             {
               selectionOptions: {
-                selectedFeatureId: selection?.target?.feature.id,
+                selectedFeatureId,
                 polygonOffset: -1000,
               },
             },

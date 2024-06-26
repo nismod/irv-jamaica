@@ -7,6 +7,7 @@ import { featureProperty } from 'lib/deck/props/data-source';
 import { border, fillColor } from 'lib/deck/props/style';
 import { RegionLevel } from './metadata';
 import { REGIONS_SOURCE } from './source';
+import { VectorTarget } from 'lib/data-map/interactions/use-interactions';
 
 export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
   const source = REGIONS_SOURCE;
@@ -35,9 +36,11 @@ export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
       getDataLabel: () => 'Population density',
       getValueFormatted: (value: number) => `${value.toLocaleString()}/km²`,
     }),
-    fn: ({ deckProps, zoom, selection }) =>
-      selectableMvtLayer(
-        { selectionOptions: { selectedFeatureId: selection?.target.feature.id } },
+    fn: ({ deckProps, zoom, selection }) => {
+      const target = selection.target as VectorTarget;
+      const selectedFeatureId = target?.feature.id;
+      return selectableMvtLayer(
+        { selectionOptions: { selectedFeatureId } },
         deckProps,
         {
           data: source.getDataUrl({ regionLevel }),
@@ -47,6 +50,7 @@ export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
         {
           highlightColor: [0, 255, 255, 100],
         },
-      ),
+      );
+    },
   };
 }
