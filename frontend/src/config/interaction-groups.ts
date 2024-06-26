@@ -1,4 +1,4 @@
-import { InteractionGroupConfig } from 'lib/data-map/interactions/use-interactions';
+import { InteractionGroupConfig } from 'state/interactions/use-interactions';
 
 export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
   [

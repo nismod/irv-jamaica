@@ -20,7 +20,7 @@ import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { getTerrestrialDataFormats } from 'config/solutions/data-formats';
 import { getSolutionsDataAccessor } from 'config/solutions/data-access';
 import { landuseFilterState } from 'state/solutions/landuse-tree';
-import { VectorTarget } from 'lib/data-map/interactions/use-interactions';
+import { VectorTarget } from 'state/interactions/use-interactions';
 
 export function landuseColorMap(x: string) {
   return TERRESTRIAL_LANDUSE_COLORS[x].css;

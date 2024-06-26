@@ -1,12 +1,16 @@
 import forEach from 'lodash/forEach';
 import { atom, atomFamily, selector } from 'recoil';
 
+import { INTERACTION_GROUPS } from 'config/interaction-groups';
 import { isReset } from 'lib/recoil/is-reset';
+import { showPopulationState } from 'state/regions';
 
 import { InteractionTarget, RasterTarget, VectorTarget } from './use-interactions';
 
 type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
 type IT = InteractionLayer | InteractionLayer[];
+
+const interactionGroupIds = [...INTERACTION_GROUPS.keys()];
 
 export function hasHover(target: IT) {
   if (Array.isArray(target)) {
@@ -18,6 +22,21 @@ export function hasHover(target: IT) {
 export const hoverState = atomFamily<IT, string>({
   key: 'hoverState',
   default: null,
+});
+
+type LayerHoverState = { isHovered: boolean; target: IT };
+export const layerHoverStates = selector({
+  key: 'layerHoverStates',
+  get: ({ get }) => {
+    const regionDataShown = get(showPopulationState);
+    const mapEntries = interactionGroupIds.map((group) => {
+      const target = get(hoverState(group));
+      const isHovered =
+        group === 'regions' ? regionDataShown && hasHover(target) : hasHover(target);
+      return [group, { isHovered, target }] as [string, LayerHoverState];
+    });
+    return new Map<string, LayerHoverState>(mapEntries);
+  },
 });
 
 export const hoverPositionState = atom({

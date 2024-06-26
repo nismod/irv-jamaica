@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { hoverPositionState } from './interactions/interaction-state';
+import { hoverPositionState } from 'state/interactions/interaction-state';
 
 export const DataMapTooltip: FC<{ children: React.ReactNode }> = ({ children }) => {
   const tooltipXY = useRecoilValue(hoverPositionState);

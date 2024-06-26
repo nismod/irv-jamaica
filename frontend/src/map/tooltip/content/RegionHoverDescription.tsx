@@ -1,5 +1,5 @@
 import { REGIONS_METADATA } from '../../../config/regions/metadata';
-import { InteractionTarget, VectorTarget } from 'lib/data-map/interactions/use-interactions';
+import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
 import { useRecoilValue } from 'recoil';
 import { showPopulationState } from 'state/regions';
 import { DataItem } from 'details/features/detail-components';

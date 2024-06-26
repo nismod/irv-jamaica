@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react';
 
-import { InteractionTarget, RasterTarget } from 'lib/data-map/interactions/use-interactions';
+import { InteractionTarget, RasterTarget } from 'state/interactions/use-interactions';
 
 import { RASTER_COLOR_MAPS } from 'config/color-maps';
 import { HAZARDS_METADATA } from 'config/hazards/metadata';
