@@ -1,5 +1,5 @@
 import { RASTER_COLOR_MAPS } from 'config/color-maps';
-import { HAZARDS_METADATA } from 'config/hazards/metadata';
+import { labelsMetadata } from 'config/interaction-groups';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { FC, useCallback } from 'react';
 import { GradientLegend } from './GradientLegend';
@@ -13,13 +13,9 @@ export interface RasterColorMapValues {
   rangeTruncated: [boolean, boolean];
 }
 
-const metadata = {
-  ...HAZARDS_METADATA,
-};
-
 export const RasterLegend: FC<{ viewLayer: ViewLayer }> = ({ viewLayer }) => {
   const { id } = viewLayer;
-  const { label, dataUnit } = metadata[id];
+  const { label, dataUnit } = labelsMetadata[id];
   const { scheme, range } = RASTER_COLOR_MAPS[id];
 
   const { error, loading, colorMapValues } = useRasterColorMapValues(scheme, range);
