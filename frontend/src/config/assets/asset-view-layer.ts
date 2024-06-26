@@ -7,6 +7,7 @@ import {
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { getAssetDataFormats } from './data-formats';
 import { ASSETS_SOURCE } from './source';
+import { VectorTarget } from 'lib/data-map/interactions/use-interactions';
 
 interface ViewLayerMetadata {
   group: string;
@@ -31,11 +32,13 @@ export function assetViewLayer(
     params: {
       assetId,
     },
-    fn: ({ deckProps, zoom, styleParams, selection }: ViewLayerFunctionOptions) =>
-      selectableMvtLayer(
+    fn: ({ deckProps, zoom, styleParams, selection }: ViewLayerFunctionOptions) => {
+      const target = selection.target as VectorTarget;
+      const selectedFeatureId = target?.feature.id;
+      return selectableMvtLayer(
         {
           selectionOptions: {
-            selectedFeatureId: selection?.target.feature.id,
+            selectedFeatureId,
             polygonOffset: selectionPolygonOffset,
           },
           dataLoaderOptions: {
@@ -47,7 +50,8 @@ export function assetViewLayer(
           data: ASSETS_SOURCE.getDataUrl({ assetId }),
         },
         ...customFn({ zoom, styleParams }),
-      ),
+      );
+    },
     dataAccessFn: customDataAccessFn,
     dataFormatsFn: getAssetDataFormats,
   };

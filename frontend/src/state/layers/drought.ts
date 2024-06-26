@@ -12,6 +12,7 @@ import {
   DROUGHT_RISK_VARIABLES_WITH_RCP,
 } from 'config/drought/metadata';
 import { colorMap } from 'lib/color-map';
+import { VectorTarget } from 'lib/data-map/interactions/use-interactions';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { dataColorMap } from 'lib/deck/props/color-map';
@@ -87,11 +88,13 @@ export const droughtRegionsLayerState = selector<ViewLayer>({
         },
       },
 
-      fn: ({ deckProps, selection }) =>
-        selectableMvtLayer(
+      fn: ({ deckProps, selection }) => {
+        const target = selection.target as VectorTarget;
+        const selectedFeatureId = target?.feature.id;
+        return selectableMvtLayer(
           {
             selectionOptions: {
-              selectedFeatureId: selection?.target?.feature.id,
+              selectedFeatureId,
             },
           },
           deckProps,
@@ -102,7 +105,8 @@ export const droughtRegionsLayerState = selector<ViewLayer>({
           },
           border([255, 255, 255]),
           fillColor(dataColorMap(dataFn, colorFn)),
-        ),
+        );
+      },
     };
   },
 });
@@ -168,11 +172,13 @@ export const droughtOptionsLayerState = selector<ViewLayer>({
           colorSpec,
         },
       },
-      fn: ({ deckProps, selection, zoom }) =>
+      fn: ({ deckProps, selection, zoom }) => {
+        const target = selection.target as VectorTarget;
+        const selectedFeatureId = target?.feature.id;
         selectableMvtLayer(
           {
             selectionOptions: {
-              selectedFeatureId: selection?.target?.feature.id,
+              selectedFeatureId,
             },
           },
           deckProps,
@@ -184,7 +190,8 @@ export const droughtOptionsLayerState = selector<ViewLayer>({
           pointRadius(zoom),
           border([255, 255, 255]),
           fillColor(dataColorMap(dataFn, colorFn)),
-        ),
+        );
+      },
     };
   },
 });

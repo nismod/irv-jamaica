@@ -85,21 +85,21 @@ function processPickedObject(
   const viewLayerId = lookupViewForDeck(deckLayerId);
   const target = processTargetByType(type, info);
 
-  return (
-    target && {
-      interactionGroup: groupName,
-      interactionStyle: type,
-      viewLayer: viewLayerLookup(viewLayerId),
-      target,
-    }
-  );
+  return (target && {
+    interactionGroup: groupName,
+    interactionStyle: type,
+    viewLayer: viewLayerLookup(viewLayerId),
+    target,
+  }) as InteractionLayer;
 }
 
+type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
+
 function useSetInteractionGroupState(
-  stateFamily: RecoilStateFamily<InteractionTarget<any> | InteractionTarget<any>[], string>,
+  stateFamily: RecoilStateFamily<InteractionLayer | InteractionLayer[], string>,
 ) {
   return useRecoilCallback(({ set }) => {
-    return (groupName: string, value: InteractionTarget<any> | InteractionTarget<any>[]) => {
+    return (groupName: string, value: InteractionLayer | InteractionLayer[]) => {
       set(stateFamily(groupName), value);
     };
   });
@@ -147,7 +147,7 @@ export function useInteractions(
 
         if (pickMultiple) {
           const pickedObjects: PickInfo<any>[] = deck.pickMultipleObjects(pickingParams);
-          const interactionTargets: InteractionTarget<any>[] = pickedObjects
+          const interactionTargets: InteractionLayer[] = pickedObjects
             .map((info) =>
               processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck),
             )
@@ -156,7 +156,7 @@ export function useInteractions(
           setInteractionGroupHover(groupName, interactionTargets);
         } else {
           const info: PickInfo<any> = deck.pickObject(pickingParams);
-          const interactionTarget: InteractionTarget<any> =
+          const interactionTarget: InteractionLayer =
             info && processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck);
 
           setInteractionGroupHover(groupName, interactionTarget);
