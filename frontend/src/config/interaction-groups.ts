@@ -1,4 +1,5 @@
 import { InteractionGroupConfig } from 'state/interactions/use-interactions';
+import { HAZARDS_METADATA } from './hazards/metadata';
 
 export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
   [
@@ -49,3 +50,7 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
     },
   ],
 ]);
+
+export const labelsMetadata = {
+  ...HAZARDS_METADATA,
+};

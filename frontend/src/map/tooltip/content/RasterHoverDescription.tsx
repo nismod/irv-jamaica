@@ -3,7 +3,7 @@ import { FC, useMemo } from 'react';
 import { InteractionTarget, RasterTarget } from 'state/interactions/use-interactions';
 
 import { RASTER_COLOR_MAPS } from 'config/color-maps';
-import { HAZARDS_METADATA } from 'config/hazards/metadata';
+import { labelsMetadata } from 'config/interaction-groups';
 
 import { useRasterColorMapValues } from '../../legend/use-color-map-values';
 import { ColorBox } from './ColorBox';
@@ -28,10 +28,6 @@ function formatHazardValue(color, value, dataUnit) {
   );
 }
 
-const metadata = {
-  ...HAZARDS_METADATA,
-};
-
 export const RasterHoverDescription: FC<{ hoveredObject: InteractionTarget<RasterTarget> }> = ({
   hoveredObject,
 }) => {
@@ -40,7 +36,7 @@ export const RasterHoverDescription: FC<{ hoveredObject: InteractionTarget<Raste
   const {
     viewLayer: { id },
   } = hoveredObject;
-  const { label, dataUnit } = metadata[id];
+  const { label, dataUnit } = labelsMetadata[id];
   const { scheme, range } = RASTER_COLOR_MAPS[id];
 
   const title = `${label}`;
