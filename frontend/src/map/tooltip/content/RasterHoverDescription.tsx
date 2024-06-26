@@ -28,19 +28,20 @@ function formatHazardValue(color, value, dataUnit) {
   );
 }
 
+const metadata = {
+  ...HAZARDS_METADATA,
+};
+
 export const RasterHoverDescription: FC<{ hoveredObject: InteractionTarget<RasterTarget> }> = ({
   hoveredObject,
 }) => {
   const { color } = hoveredObject.target;
 
   const {
-    viewLayer: {
-      id,
-      params: { hazardType },
-    },
+    viewLayer: { id },
   } = hoveredObject;
-  const { label, dataUnit } = HAZARDS_METADATA[id];
-  const { scheme, range } = RASTER_COLOR_MAPS[hazardType];
+  const { label, dataUnit } = metadata[id];
+  const { scheme, range } = RASTER_COLOR_MAPS[id];
 
   const title = `${label}`;
 

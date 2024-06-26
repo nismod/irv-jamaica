@@ -19,7 +19,6 @@ const TooltipSection = ({ children }) => (
   </Box>
 );
 
-
 const tooltipLayers: Map<string, FC<{ hoveredObject: MapDataLayer }>> = new Map<
   string,
   FC<{ hoveredObject: MapDataLayer }>
