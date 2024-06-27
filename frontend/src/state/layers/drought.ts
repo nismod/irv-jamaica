@@ -89,7 +89,7 @@ export const droughtRegionsLayerState = selector<ViewLayer>({
       },
 
       fn: ({ deckProps, selection }) => {
-        const target = selection.target as VectorTarget;
+        const target = selection?.target as VectorTarget;
         const selectedFeatureId = target?.feature.id;
         return selectableMvtLayer(
           {
@@ -173,7 +173,7 @@ export const droughtOptionsLayerState = selector<ViewLayer>({
         },
       },
       fn: ({ deckProps, selection, zoom }) => {
-        const target = selection.target as VectorTarget;
+        const target = selection?.target as VectorTarget;
         const selectedFeatureId = target?.feature.id;
         selectableMvtLayer(
           {

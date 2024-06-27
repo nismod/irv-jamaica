@@ -33,7 +33,7 @@ export function assetViewLayer(
       assetId,
     },
     fn: ({ deckProps, zoom, styleParams, selection }: ViewLayerFunctionOptions) => {
-      const target = selection.target as VectorTarget;
+      const target = selection?.target as VectorTarget;
       const selectedFeatureId = target?.feature.id;
       return selectableMvtLayer(
         {

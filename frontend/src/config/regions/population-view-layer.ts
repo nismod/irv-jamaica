@@ -37,7 +37,7 @@ export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
       getValueFormatted: (value: number) => `${value.toLocaleString()}/km²`,
     }),
     fn: ({ deckProps, zoom, selection }) => {
-      const target = selection.target as VectorTarget;
+      const target = selection?.target as VectorTarget;
       const selectedFeatureId = target?.feature.id;
       return selectableMvtLayer(
         { selectionOptions: { selectedFeatureId } },
