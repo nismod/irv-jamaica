@@ -171,7 +171,7 @@ export const terrestrialLayerState = selector<ViewLayer>({
       dataFormatsFn: getTerrestrialDataFormats,
       fn: ({ deckProps, zoom, selection }) => {
         const switchoverZoom = 14.5;
-        const target = selection.target as VectorTarget;
+        const target = selection?.target as VectorTarget;
         const selectedFeatureId = target?.feature.id;
 
         return [

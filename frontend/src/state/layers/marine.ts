@@ -72,7 +72,7 @@ export const marineLayerState = selector<ViewLayer>({
       group: null,
       interactionGroup: 'solutions',
       fn: ({ deckProps, selection }) => {
-        const target = selection.target as VectorTarget;
+        const target = selection?.target as VectorTarget;
         const selectedFeatureId = target?.feature.id;
         return selectableMvtLayer(
           {
