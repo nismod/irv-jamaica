@@ -21,7 +21,7 @@ import mapValues from 'lodash/mapValues';
 import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { LayerSpec } from 'asset-list/use-sorted-features';
 
-export const networkLayersState = selector<ViewLayer[]>({
+export const networksLayerState = selector<ViewLayer[]>({
   key: 'networkLayersState',
   get: ({ get }) =>
     get(sectionVisibilityState('assets'))

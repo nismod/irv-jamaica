@@ -6,7 +6,7 @@ import { buildingsViewLayer } from 'config/buildings/buildings-view-layer';
 import { buildingSelectionState } from 'state/buildings';
 import { sectionVisibilityState } from 'state/sections';
 
-export const buildingLayersState = selector<ViewLayer[]>({
+export const buildingsLayerState = selector<ViewLayer[]>({
   key: 'buildingLayersState',
   get: ({ get }) =>
     get(sectionVisibilityState('buildings'))

@@ -5,8 +5,8 @@ import { DataItem } from 'details/features/detail-components';
 import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
-import { habitatColorMap } from 'state/layers/marine';
-import { landuseColorMap } from 'state/layers/terrestrial';
+import { habitatColorMap } from 'state/layers/modules/marine';
+import { landuseColorMap } from 'state/layers/modules/terrestrial';
 import { DataDescription } from '../DataDescription';
 import { ColorBox } from './ColorBox';
 
