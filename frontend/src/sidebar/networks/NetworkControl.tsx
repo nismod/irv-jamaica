@@ -11,7 +11,7 @@ import {
 } from 'state/networks/network-selection';
 import { NETWORKS_METADATA } from 'config/networks/metadata';
 import { LayerLabel } from 'sidebar/ui/LayerLabel';
-import { showAdaptationsState } from 'state/layers/networks';
+import { showAdaptationsState } from 'state/layers/modules/networks';
 import { Box } from '@mui/system';
 import { Alert } from '@mui/material';
 

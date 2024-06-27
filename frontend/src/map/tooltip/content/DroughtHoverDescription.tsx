@@ -8,7 +8,7 @@ import {
   droughtOptionsFieldSpecState,
   droughtRegionsColorSpecState,
   droughtRegionsFieldSpecState,
-} from 'state/layers/drought';
+} from 'state/layers/modules/drought';
 import { DataDescription } from '../DataDescription';
 
 const DroughtRiskDescription: FC<{

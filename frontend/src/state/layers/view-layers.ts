@@ -1,53 +1,18 @@
-import { waitForAll } from 'recoil';
-import bboxPolygon from '@turf/bbox-polygon';
+import { RecoilValueReadOnly, waitForAll, selector } from 'recoil';
 
-import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';
-import { selector } from 'recoil';
+import { VIEW_LAYERS } from 'config/view-layers';
+import { ViewLayer } from 'lib/data-map/view-layers';
 import { ConfigTree } from 'lib/nested-config/config-tree';
-import { hoveredAdaptationFeatureState } from 'details/adaptations/FeatureAdaptationsTable';
-import { extendBbox } from 'lib/bounding-box';
-import { boundingBoxLayer } from 'lib/deck/layers/bounding-box-layer';
 
-import { buildingLayersState } from './buildings';
-import { droughtOptionsLayerState, droughtRegionsLayerState } from './drought';
-import { marineLayerState } from './marine';
-import { networkLayersState } from './networks';
-import { hazardLayerState } from './hazards';
-import { regionsLayerState } from './regions';
-import { terrestrialLayerState } from './terrestrial';
-import { labelsLayerState } from './labels';
+async function importLayerState(type: string): Promise<RecoilValueReadOnly<ViewLayer>> {
+  const filename = type === 'droughtOptions' || type === 'droughtRegions' ? 'drought' : type;
+  const module = await import(`./modules/${filename}.ts`);
+  return module[`${type}LayerState`];
+}
 
-export const featureBoundingBoxLayerState = selector<ViewLayer>({
-  key: 'featureBoundingBoxLayerState',
-  get: ({ get }) => {
-    const hoveredAdaptationFeature = get(hoveredAdaptationFeatureState);
-
-    if (!hoveredAdaptationFeature) return null;
-
-    const geom = bboxPolygon(extendBbox(hoveredAdaptationFeature.bbox, 5));
-
-    return viewOnlyLayer(`feature-bounding-box-${hoveredAdaptationFeature.id}`, ({ deckProps }) =>
-      boundingBoxLayer({ bboxGeom: geom }, deckProps),
-    );
-  },
-});
+const loadLayers = Promise.all(VIEW_LAYERS.map(importLayerState));
 
 export const viewLayersState = selector<ConfigTree<ViewLayer>>({
   key: 'viewLayersState',
-  get: ({ get }) => [
-    get(
-      waitForAll([
-        regionsLayerState,
-        droughtRegionsLayerState,
-        terrestrialLayerState,
-        marineLayerState,
-        hazardLayerState,
-        buildingLayersState,
-        networkLayersState,
-        droughtOptionsLayerState,
-        featureBoundingBoxLayerState,
-        labelsLayerState,
-      ]),
-    ),
-  ],
+  get: ({ get }) => loadLayers.then((layers) => get(waitForAll(layers))),
 });

@@ -7,8 +7,8 @@ import { dataParamsByGroupState } from 'state/data-params';
 import { hazardVisibilityState } from 'state/hazards/hazard-visibility';
 import { sectionVisibilityState } from 'state/sections';
 
-export const hazardLayerState = selector<ViewLayer[]>({
-  key: 'hazardLayerState',
+export const hazardsLayerState = selector<ViewLayer[]>({
+  key: 'hazardsLayerState',
   get: ({ get }) =>
     get(sectionVisibilityState('hazards'))
       ? truthyKeys(get(hazardVisibilityState)).map((hazard) =>
