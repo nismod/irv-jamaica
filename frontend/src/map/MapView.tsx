@@ -1,8 +1,8 @@
 import { Suspense, useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
 
-import { BaseMap } from 'lib/data-map/BaseMap';
-import { DataMap } from 'lib/data-map/DataMap';
+import { BaseMap } from './BaseMap';
+import { DataMap } from './DataMap';
 import { DataMapTooltip } from 'lib/data-map/DataMapTooltip';
 import { MapBoundsFitter, mapFitBoundsState } from 'lib/map/MapBoundsFitter';
 import { MapHud } from 'lib/map/hud/MapHud';
