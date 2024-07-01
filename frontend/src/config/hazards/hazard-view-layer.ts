@@ -4,7 +4,7 @@ import { HazardParams } from 'config/hazards/domains';
 
 import { rasterTileLayer } from 'lib/deck/layers/raster-tile-layer';
 import { ViewLayer } from 'lib/data-map/view-layers';
-import { InteractionTarget, RasterTarget } from 'state/interactions/use-interactions';
+import { InteractionTarget, RasterTarget } from 'lib/data-map/types';
 
 import { HazardLegend } from './HazardLegend';
 import { HazardHoverDescription } from './HazardHoverDescription';

@@ -4,7 +4,7 @@ import {
   InteractionTarget,
   VectorTarget,
   RasterTarget,
-} from 'state/interactions/use-interactions';
+} from 'lib/data-map/types';
 
 import { AssetHoverDescription } from './assets/AssetHoverDescription';
 import { HazardHoverDescription } from './hazards/HazardHoverDescription';

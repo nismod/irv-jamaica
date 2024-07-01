@@ -2,10 +2,9 @@ import forEach from 'lodash/forEach';
 import { atom, atomFamily, selector } from 'recoil';
 
 import { INTERACTION_GROUPS, tooltipLayers } from 'config/interaction-groups';
+import { InteractionTarget, RasterTarget, VectorTarget } from 'lib/data-map/types';
 import { isReset } from 'lib/recoil/is-reset';
 import { showPopulationState } from 'state/regions';
-
-import { InteractionTarget, RasterTarget, VectorTarget } from './use-interactions';
 
 type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
 type IT = InteractionLayer | InteractionLayer[];

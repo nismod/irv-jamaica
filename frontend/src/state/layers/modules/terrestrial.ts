@@ -10,6 +10,7 @@ import {
 } from 'state/solutions/terrestrial-filters';
 import { colorMap } from 'lib/color-map';
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
+import { VectorTarget } from 'lib/data-map/types';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { dataColorMap } from 'lib/deck/props/color-map';
 import { border, fillColor } from 'lib/deck/props/style';
@@ -20,7 +21,6 @@ import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { getTerrestrialDataFormats } from 'config/solutions/data-formats';
 import { getSolutionsDataAccessor } from 'config/solutions/data-access';
 import { landuseFilterState } from 'state/solutions/landuse-tree';
-import { VectorTarget } from 'state/interactions/use-interactions';
 
 export function landuseColorMap(x: string) {
   return TERRESTRIAL_LANDUSE_COLORS[x].css;

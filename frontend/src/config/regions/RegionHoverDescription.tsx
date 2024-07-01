@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { REGIONS_METADATA } from './metadata';
-import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
+import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 import { useRecoilValue } from 'recoil';
 import { showPopulationState } from 'state/regions';
 import { DataItem } from 'details/features/detail-components';

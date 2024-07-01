@@ -1,6 +1,7 @@
 import { DataFilterExtension } from '@deck.gl/extensions';
 import { MARINE_HABITAT_COLORS } from 'config/solutions/colors';
 import { ViewLayer, FieldSpec } from 'lib/data-map/view-layers';
+import { VectorTarget } from 'lib/data-map/types';
 import { selector } from 'recoil';
 import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';
 import { featureProperty } from 'lib/deck/props/data-source';
@@ -9,7 +10,6 @@ import { fillColor } from 'lib/deck/props/style';
 import { Accessor } from 'lib/deck/props/getters';
 import { marineFiltersState } from 'state/solutions/marine-filters';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
-import { VectorTarget } from 'state/interactions/use-interactions';
 
 export function habitatColorMap(x: string) {
   return MARINE_HABITAT_COLORS[x]?.css ?? MARINE_HABITAT_COLORS['other'].css;
