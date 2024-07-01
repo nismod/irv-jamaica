@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { DeselectButton } from 'details/DeselectButton';
 import { SidePanel } from 'details/SidePanel';
-import { selectionState } from 'state/interactions/interaction-state';
+import { selectionState } from 'lib/state/interactions/interaction-state';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
