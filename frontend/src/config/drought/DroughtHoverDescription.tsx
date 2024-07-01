@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { DataItem } from 'details/features/detail-components';
-import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
+import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 import { FC, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import {

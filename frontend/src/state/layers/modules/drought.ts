@@ -12,7 +12,7 @@ import {
   DROUGHT_RISK_VARIABLES_WITH_RCP,
 } from 'config/drought/metadata';
 import { colorMap } from 'lib/color-map';
-import { VectorTarget } from 'state/interactions/use-interactions';
+import { VectorTarget } from 'lib/data-map/types';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { dataColorMap } from 'lib/deck/props/color-map';

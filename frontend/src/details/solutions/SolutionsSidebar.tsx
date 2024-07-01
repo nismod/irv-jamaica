@@ -7,7 +7,7 @@ import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { SolutionsSidebarContent } from './SolutionsSidebarContent';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
-import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
+import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 
 export const SolutionsSidebar: FC = () => {
   const featureSelection = useRecoilValue(selectionState('solutions'));

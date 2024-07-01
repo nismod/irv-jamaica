@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { NETWORKS_METADATA } from 'config/networks/metadata';
 import { DataItem } from 'details/features/detail-components';
-import { VectorTarget } from 'state/interactions/use-interactions';
+import { VectorTarget } from 'lib/data-map/types';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { singleViewLayerParamsState } from 'state/layers/view-layers-params';

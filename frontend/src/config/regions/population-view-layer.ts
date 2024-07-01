@@ -1,13 +1,14 @@
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
 import { colorMap } from 'lib/color-map';
 import { FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
+import { VectorTarget } from 'lib/data-map/types';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { dataColorMap } from 'lib/deck/props/color-map';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { border, fillColor } from 'lib/deck/props/style';
+
 import { RegionLevel } from './metadata';
 import { REGIONS_SOURCE } from './source';
-import { VectorTarget } from 'state/interactions/use-interactions';
 
 export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
   const source = REGIONS_SOURCE;

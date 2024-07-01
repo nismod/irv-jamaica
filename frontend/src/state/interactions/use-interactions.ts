@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useRecoilCallback, useSetRecoilState } from 'recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
+import { InteractionGroupConfig, InteractionStyle, InteractionTarget, RasterTarget, VectorTarget } from 'lib/data-map/types';
 
 import {
   hoverState,
@@ -14,29 +15,6 @@ import {
   allowedGroupLayersState,
 } from './interaction-state';
 import { RecoilStateFamily } from 'lib/recoil/types';
-
-export type InteractionStyle = 'vector' | 'raster';
-export interface InteractionGroupConfig {
-  id: string;
-  type: InteractionStyle;
-  pickingRadius?: number;
-  pickMultiple?: boolean;
-  usesAutoHighlight?: boolean;
-}
-
-export interface InteractionTarget<T> {
-  interactionGroup: string;
-  interactionStyle: string;
-
-  viewLayer: ViewLayer;
-  // logicalLayer: string;
-
-  target: T;
-}
-
-export interface RasterTarget {
-  color: [number, number, number, number];
-}
 
 function processRasterTarget(info: any): RasterTarget {
   const { bitmap, sourceLayer } = info;
@@ -55,9 +33,6 @@ function processRasterTarget(info: any): RasterTarget {
         }
       : null;
   }
-}
-export interface VectorTarget {
-  feature: any;
 }
 
 function processVectorTarget(info: PickInfo<any>): VectorTarget {

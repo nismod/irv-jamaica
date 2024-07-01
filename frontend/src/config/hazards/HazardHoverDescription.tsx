@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { InteractionTarget, RasterTarget } from 'state/interactions/use-interactions';
+import { InteractionTarget, RasterTarget } from 'lib/data-map/types';
 import { RasterHoverDescription } from 'map/tooltip/content/RasterHoverDescription';
 
 import { HAZARDS_METADATA, HAZARD_COLOR_MAPS } from './metadata';
