@@ -56,6 +56,8 @@ export interface ViewLayer {
   legendDataFormatsFn?: ViewLayerDataFormatFunction;
   spatialType?: string;
   interactionGroup?: string;
+  renderLegend?: () => JSX.Element;
+  renderTooltip?: (hoveredObject: InteractionTarget<RasterTarget>) => JSX.Element;
 }
 
 export function viewOnlyLayer(id, fn): ViewLayer {

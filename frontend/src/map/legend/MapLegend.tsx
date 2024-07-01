@@ -4,7 +4,6 @@ import { ColorMap, FormatConfig } from 'lib/data-map/view-layers';
 import { useRecoilValue } from 'recoil';
 import { viewLayersFlatState } from 'state/layers/view-layers-flat';
 import { viewLayersParamsState } from 'state/layers/view-layers-params';
-import { RasterLegend } from './RasterLegend';
 import { VectorLegend } from './VectorLegend';
 import { Stack, Box, Paper, Divider } from '@mui/material';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
@@ -63,9 +62,7 @@ export const MapLegend: FC = () => {
       <MobileTabContentWatcher tabId="legend" />
       <Box p={1} maxWidth={270}>
         <Stack gap={0.3} divider={<Divider />}>
-          {hazardViewLayers.map((viewLayer) => (
-            <RasterLegend key={viewLayer.id} viewLayer={viewLayer} />
-          ))}
+          {hazardViewLayers.map((viewLayer) => viewLayer.renderLegend())}
           {Object.entries(dataColorMaps).map(([legendKey, { colorMap, formatConfig }]) => (
             <VectorLegend key={legendKey} colorMap={colorMap} legendFormatConfig={formatConfig} />
           ))}

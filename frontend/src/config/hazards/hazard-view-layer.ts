@@ -1,10 +1,14 @@
+import { createElement } from 'react';
 import GL from '@luma.gl/constants';
 import { HazardParams } from 'config/hazards/domains';
 
 import { rasterTileLayer } from 'lib/deck/layers/raster-tile-layer';
 import { ViewLayer } from 'lib/data-map/view-layers';
+import { InteractionTarget, RasterTarget } from 'state/interactions/use-interactions';
 
-import { RASTER_COLOR_MAPS } from '../color-maps';
+import { HazardLegend } from './HazardLegend';
+import { HazardHoverDescription } from './HazardHoverDescription';
+import { HAZARD_COLOR_MAPS } from './metadata';
 import { HAZARD_SOURCE } from './source';
 
 export function getHazardId<
@@ -43,7 +47,7 @@ export function hazardViewLayer(hazardType: string, hazardParams: HazardParams):
     interactionGroup: 'hazards',
     params: { hazardType, hazardParams },
     fn: ({ deckProps }) => {
-      const { scheme, range } = RASTER_COLOR_MAPS[hazardType];
+      const { scheme, range } = HAZARD_COLOR_MAPS[hazardType];
 
       return rasterTileLayer(
         {
@@ -60,6 +64,17 @@ export function hazardViewLayer(hazardType: string, hazardParams: HazardParams):
           refinementStrategy: 'no-overlap',
         },
       );
+    },
+    renderLegend() {
+      return createElement(HazardLegend, {
+        key: hazardType,
+        viewLayer: this,
+      });
+    },
+    renderTooltip(hover: InteractionTarget<RasterTarget>) {
+      return createElement(HazardHoverDescription, {
+        hoveredObject: hover,
+      });
     },
   };
 }
