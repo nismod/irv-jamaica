@@ -4,7 +4,7 @@ import { HazardParams } from 'config/hazards/domains';
 
 import { rasterTileLayer } from 'lib/deck/layers/raster-tile-layer';
 import { ViewLayer } from 'lib/data-map/view-layers';
-import { InteractionTarget, RasterTarget } from 'lib/data-map/types';
+import { RasterTarget } from 'lib/data-map/types';
 
 import { HazardLegend } from './HazardLegend';
 import { HazardHoverDescription } from './HazardHoverDescription';
@@ -71,10 +71,16 @@ export function hazardViewLayer(hazardType: string, hazardParams: HazardParams):
         viewLayer: this,
       });
     },
-    renderTooltip(hover: InteractionTarget<RasterTarget>) {
-      return createElement(HazardHoverDescription, {
-        hoveredObject: hover,
-      });
+    renderTooltip({
+      key,
+      target,
+      viewLayer,
+    }: {
+      key?: string;
+      target: RasterTarget;
+      viewLayer: ViewLayer;
+    }) {
+      return createElement(HazardHoverDescription, { key, target, viewLayer });
     },
   };
 }

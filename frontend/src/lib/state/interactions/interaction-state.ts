@@ -1,10 +1,9 @@
 import forEach from 'lodash/forEach';
 import { atom, atomFamily, selector } from 'recoil';
 
-import { InteractionTarget, RasterTarget, VectorTarget } from 'lib/data-map/types';
+import { InteractionLayer } from 'lib/data-map/types';
 import { isReset } from 'lib/recoil/is-reset';
 
-type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
 type IT = InteractionLayer | InteractionLayer[];
 
 export function hasHover(target: IT) {
@@ -18,12 +17,6 @@ export const hoverState = atomFamily<IT, string>({
   key: 'hoverState',
   default: null,
 });
-
-type LayerHoverState = {
-  isHovered: boolean;
-  target: IT;
-  Component: React.ComponentType<{ hoveredObject: InteractionLayer }>;
-};
 
 export const hoverPositionState = atom({
   key: 'hoverPosition',

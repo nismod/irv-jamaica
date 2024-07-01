@@ -57,7 +57,15 @@ export interface ViewLayer {
   spatialType?: string;
   interactionGroup?: string;
   renderLegend?: () => JSX.Element;
-  renderTooltip?: (hoveredObject: InteractionTarget<RasterTarget>) => JSX.Element;
+  renderTooltip?: ({
+    key,
+    target,
+    viewLayer,
+  }: {
+    key?: string;
+    target: RasterTarget | VectorTarget;
+    viewLayer: ViewLayer;
+  }) => JSX.Element;
 }
 
 export function viewOnlyLayer(id, fn): ViewLayer {

@@ -1,10 +1,4 @@
-import { FC } from 'react';
-import {
-  InteractionGroupConfig,
-  InteractionTarget,
-  VectorTarget,
-  RasterTarget,
-} from 'lib/data-map/types';
+import { InteractionGroupConfig } from 'lib/data-map/types';
 
 import { AssetHoverDescription } from './assets/AssetHoverDescription';
 import { HazardHoverDescription } from './hazards/HazardHoverDescription';
@@ -21,6 +15,7 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       pickingRadius: 8,
       pickMultiple: false,
       usesAutoHighlight: true,
+      Component: AssetHoverDescription,
     },
   ],
   [
@@ -29,6 +24,7 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       id: 'hazards',
       type: 'raster',
       pickMultiple: true,
+      Component: HazardHoverDescription,
     },
   ],
   [
@@ -38,6 +34,7 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       type: 'vector',
       pickingRadius: 8,
       pickMultiple: false,
+      Component: RegionHoverDescription,
     },
   ],
   [
@@ -48,6 +45,7 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       pickingRadius: 8,
       usesAutoHighlight: true,
       pickMultiple: false,
+      Component: SolutionHoverDescription,
     },
   ],
   [
@@ -58,19 +56,7 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       pickingRadius: 8,
       usesAutoHighlight: true,
       pickMultiple: false,
+      Component: DroughtHoverDescription,
     },
   ],
-]);
-
-type MapDataLayer = InteractionTarget<VectorTarget | RasterTarget>;
-
-export const tooltipLayers: Map<string, FC<{ hoveredObject: MapDataLayer }>> = new Map<
-  string,
-  FC<{ hoveredObject: MapDataLayer }>
->([
-  ['assets', AssetHoverDescription],
-  ['hazards', HazardHoverDescription],
-  ['regions', RegionHoverDescription],
-  ['solutions', SolutionHoverDescription],
-  ['drought', DroughtHoverDescription],
 ]);
