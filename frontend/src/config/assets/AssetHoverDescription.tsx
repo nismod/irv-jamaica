@@ -11,10 +11,5 @@ export const AssetHoverDescription: FC<{ hoveredObject: InteractionTarget<Vector
     target: { feature },
   } = hoveredObject;
 
-  return (
-    <VectorHoverDescription
-      viewLayer={viewLayer}
-      feature={feature}
-    />
-  );
+  return <VectorHoverDescription viewLayer={viewLayer} feature={feature} />;
 };

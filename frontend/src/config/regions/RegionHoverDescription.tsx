@@ -1,14 +1,14 @@
+import { FC } from 'react';
+
 import { REGIONS_METADATA } from './metadata';
 import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
 import { useRecoilValue } from 'recoil';
 import { showPopulationState } from 'state/regions';
 import { DataItem } from 'details/features/detail-components';
 
-export const RegionHoverDescription = ({
-  hoveredObject,
-}: {
+export const RegionHoverDescription: FC<{
   hoveredObject: InteractionTarget<VectorTarget>;
-}) => {
+}> = ({ hoveredObject }) => {
   const metadata = REGIONS_METADATA[hoveredObject.viewLayer.params.regionLevel];
 
   const showPopulation = useRecoilValue(showPopulationState);
