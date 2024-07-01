@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { DataItem } from 'details/features/detail-components';
-import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
+import { VectorTarget } from 'lib/data-map/types';
 import { FC, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import {
@@ -10,15 +10,12 @@ import {
   droughtRegionsFieldSpecState,
 } from 'state/layers/modules/drought';
 import { DataDescription } from 'map/tooltip/DataDescription';
+import { ViewLayer } from 'lib/data-map/view-layers';
 
 const DroughtRiskDescription: FC<{
-  hoveredObject: InteractionTarget<VectorTarget>;
-}> = ({ hoveredObject }) => {
-  const {
-    viewLayer,
-    target: { feature },
-  } = hoveredObject;
-
+  target: VectorTarget;
+  viewLayer: ViewLayer;
+}> = ({ target, viewLayer }) => {
   const fieldSpec = useRecoilValue(droughtRegionsFieldSpecState);
   const colorSpec = useRecoilValue(droughtRegionsColorSpecState);
 
@@ -34,20 +31,16 @@ const DroughtRiskDescription: FC<{
     <>
       <Typography variant="body2">Drought Risk</Typography>
 
-      <DataItem label="Region" value={feature.properties.HYDROLOGIC} />
-      <DataDescription viewLayer={viewLayer} feature={feature} colorMap={colorMap} />
+      <DataItem label="Region" value={target.feature.properties.HYDROLOGIC} />
+      <DataDescription viewLayer={viewLayer} feature={target.feature} colorMap={colorMap} />
     </>
   );
 };
 
 const DroughtOptionDescription: FC<{
-  hoveredObject: InteractionTarget<VectorTarget>;
-}> = ({ hoveredObject }) => {
-  const {
-    viewLayer,
-    target: { feature },
-  } = hoveredObject;
-
+  target: VectorTarget;
+  viewLayer: ViewLayer;
+}> = ({ target, viewLayer }) => {
   const fieldSpec = useRecoilValue(droughtOptionsFieldSpecState);
   const colorSpec = useRecoilValue(droughtOptionsColorSpecState);
 
@@ -63,21 +56,20 @@ const DroughtOptionDescription: FC<{
     <>
       <Typography variant="body2">Drought Adaptation Option</Typography>
 
-      <DataItem label="Name" value={feature.properties.project_name} />
-      <DataItem label="Type" value={feature.properties.project_type} />
-      <DataDescription viewLayer={viewLayer} feature={feature} colorMap={colorMap} />
+      <DataItem label="Name" value={target.feature.properties.project_name} />
+      <DataItem label="Type" value={target.feature.properties.project_type} />
+      <DataDescription viewLayer={viewLayer} feature={target.feature} colorMap={colorMap} />
     </>
   );
 };
 
 export const DroughtHoverDescription: FC<{
-  hoveredObject: InteractionTarget<VectorTarget>;
-}> = ({ hoveredObject }) => {
-  const { viewLayer } = hoveredObject;
-
+  target: VectorTarget;
+  viewLayer: ViewLayer;
+}> = ({ target, viewLayer }) => {
   if (viewLayer.id === 'drought_risk') {
-    return <DroughtRiskDescription hoveredObject={hoveredObject} />;
+    return <DroughtRiskDescription target={target} viewLayer={viewLayer} />;
   } else if (viewLayer.id === 'drought_options') {
-    return <DroughtOptionDescription hoveredObject={hoveredObject} />;
+    return <DroughtOptionDescription target={target} viewLayer={viewLayer} />;
   }
 };

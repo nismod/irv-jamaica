@@ -6,7 +6,13 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useRecoilCallback, useSetRecoilState } from 'recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
-import { InteractionGroupConfig, InteractionStyle, InteractionTarget, RasterTarget, VectorTarget } from 'lib/data-map/types';
+import {
+  InteractionGroupConfig,
+  InteractionStyle,
+  InteractionTarget,
+  RasterTarget,
+  VectorTarget,
+} from 'lib/data-map/types';
 
 import {
   hoverState,

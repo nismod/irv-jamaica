@@ -2,13 +2,14 @@ import { Typography } from '@mui/material';
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
 import { MARINE_HABITATS_LOOKUP } from 'config/solutions/domains';
 import { DataItem } from 'details/features/detail-components';
-import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
+import { VectorTarget } from 'lib/data-map/types';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
 import { habitatColorMap } from 'state/layers/modules/marine';
 import { landuseColorMap } from 'state/layers/modules/terrestrial';
 import { DataDescription } from 'map/tooltip/DataDescription';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
+import { ViewLayer } from 'lib/data-map/view-layers';
 
 const slopeFieldSpec = {
   fieldGroup: 'properties',
@@ -21,13 +22,9 @@ const elevationFieldSpec = {
 };
 
 export const SolutionHoverDescription: FC<{
-  hoveredObject: InteractionTarget<VectorTarget>;
-}> = ({ hoveredObject }) => {
-  const {
-    viewLayer,
-    target: { feature },
-  } = hoveredObject;
-
+  target: VectorTarget;
+  viewLayer: ViewLayer;
+}> = ({ target, viewLayer }) => {
   return (
     <>
       <Typography variant="body2">{startCase(viewLayer.id)}</Typography>
@@ -36,7 +33,7 @@ export const SolutionHoverDescription: FC<{
         <>
           <DataItem
             label="Cell ID"
-            value={feature.properties.cell_id}
+            value={target.feature.properties.cell_id}
             maximumSignificantDigits={21}
           />
           {/* not using DataDescription for Land Use because currently it only works for colorSpec-based color maps (not categorical) */}
@@ -44,8 +41,8 @@ export const SolutionHoverDescription: FC<{
             label="Land Use"
             value={
               <>
-                <ColorBox color={landuseColorMap(feature.properties.landuse_desc)} />
-                {feature.properties.landuse_desc}
+                <ColorBox color={landuseColorMap(target.feature.properties.landuse_desc)} />
+                {target.feature.properties.landuse_desc}
               </>
             }
           />
@@ -54,7 +51,7 @@ export const SolutionHoverDescription: FC<{
               fieldSpec: slopeFieldSpec,
               colorSpec: VECTOR_COLOR_MAPS.terrestrialSlope,
             }}
-            feature={feature}
+            feature={target.feature}
             viewLayer={viewLayer}
           />
           <DataDescription
@@ -62,7 +59,7 @@ export const SolutionHoverDescription: FC<{
               fieldSpec: elevationFieldSpec,
               colorSpec: VECTOR_COLOR_MAPS.terrestrialElevation,
             }}
-            feature={feature}
+            feature={target.feature}
             viewLayer={viewLayer}
           />
         </>
@@ -74,9 +71,9 @@ export const SolutionHoverDescription: FC<{
             label="Habitat"
             value={
               <>
-                <ColorBox color={habitatColorMap(feature.properties.habitat)} />
-                {feature.properties.habitat
-                  ? MARINE_HABITATS_LOOKUP[feature.properties.habitat]
+                <ColorBox color={habitatColorMap(target.feature.properties.habitat)} />
+                {target.feature.properties.habitat
+                  ? MARINE_HABITATS_LOOKUP[target.feature.properties.habitat]
                   : 'Buffer Zone'}
               </>
             }
