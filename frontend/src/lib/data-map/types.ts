@@ -8,7 +8,7 @@ export interface InteractionGroupConfig {
   pickingRadius?: number;
   pickMultiple?: boolean;
   usesAutoHighlight?: boolean;
-  Component: React.ComponentType<{
+  Component?: React.ComponentType<{
     target: RasterTarget | VectorTarget;
     viewLayer: ViewLayer;
   }>;
@@ -33,3 +33,18 @@ export interface VectorTarget {
 }
 
 export type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
+
+export interface RasterHoverDescription {
+  target: RasterTarget;
+  viewLayer: ViewLayer;
+}
+
+export interface VectorHoverDescription {
+  target: VectorTarget;
+  viewLayer: ViewLayer;
+}
+
+export interface HoverDescription {
+  target: RasterTarget | VectorTarget;
+  viewLayer: ViewLayer;
+}

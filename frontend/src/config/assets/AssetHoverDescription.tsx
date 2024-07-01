@@ -1,12 +1,8 @@
 import { FC } from 'react';
 
-import { VectorTarget } from 'lib/data-map/types';
-import { VectorHoverDescription } from 'map/tooltip/content/VectorHoverDescription';
-import { ViewLayer } from 'lib/data-map/view-layers';
+import { VectorHoverDescription } from 'lib/data-map/types';
+import { VectorHoverDescription as VectorTooltip } from 'map/tooltip/content/VectorHoverDescription';
 
-export const AssetHoverDescription: FC<{ target: VectorTarget; viewLayer: ViewLayer }> = ({
-  target,
-  viewLayer,
-}) => {
-  return <VectorHoverDescription viewLayer={viewLayer} feature={target.feature} />;
+export const AssetHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
+  return <VectorTooltip viewLayer={viewLayer} feature={target.feature} />;
 };

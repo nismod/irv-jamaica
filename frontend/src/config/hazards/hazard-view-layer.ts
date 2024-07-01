@@ -71,16 +71,8 @@ export function hazardViewLayer(hazardType: string, hazardParams: HazardParams):
         viewLayer: this,
       });
     },
-    renderTooltip({
-      key,
-      target,
-      viewLayer,
-    }: {
-      key?: string;
-      target: RasterTarget;
-      viewLayer: ViewLayer;
-    }) {
-      return createElement(HazardHoverDescription, { key, target, viewLayer });
+    renderTooltip({ target }: { target: RasterTarget }) {
+      return createElement(HazardHoverDescription, { key: this.id, target, viewLayer: this });
     },
   };
 }

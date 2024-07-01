@@ -1,7 +1,6 @@
 import { InteractionGroupConfig } from 'lib/data-map/types';
 
 import { AssetHoverDescription } from './assets/AssetHoverDescription';
-import { HazardHoverDescription } from './hazards/HazardHoverDescription';
 import { SolutionHoverDescription } from './solutions/SolutionHoverDescription';
 import { RegionHoverDescription } from './regions/RegionHoverDescription';
 import { DroughtHoverDescription } from './drought/DroughtHoverDescription';
@@ -24,7 +23,6 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       id: 'hazards',
       type: 'raster',
       pickMultiple: true,
-      Component: HazardHoverDescription,
     },
   ],
   [

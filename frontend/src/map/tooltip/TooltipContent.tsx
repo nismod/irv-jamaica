@@ -4,7 +4,11 @@ import { useRecoilValue } from 'recoil';
 
 import { layerHoverStates } from 'state/interactions/interaction-state';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
-import { RasterTarget, VectorTarget } from 'lib/data-map/types';
+import {
+  HoverDescription,
+  RasterTarget,
+  VectorTarget,
+} from 'lib/data-map/types';
 import { ViewLayer } from 'lib/data-map/view-layers';
 
 const TooltipSection = ({ children }) => (
@@ -22,11 +26,11 @@ function renderTooltip({
   key?: string;
   target: VectorTarget | RasterTarget;
   viewLayer: ViewLayer;
-  Component: FC<{ target: VectorTarget | RasterTarget; viewLayer: ViewLayer }>;
+  Component: FC<HoverDescription>;
 }) {
   // renderTooltip isn't implemented on all view layers yet.
   if (viewLayer.renderTooltip) {
-    return viewLayer.renderTooltip({ key, target, viewLayer });
+    return viewLayer.renderTooltip({ target });
   }
   // Fallback to the default tooltip component for older layers.
   return <Component key={key} target={target} viewLayer={viewLayer} />;
