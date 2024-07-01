@@ -7,8 +7,8 @@ import startCase from 'lodash/startCase';
 import { FC } from 'react';
 import { habitatColorMap } from 'state/layers/modules/marine';
 import { landuseColorMap } from 'state/layers/modules/terrestrial';
-import { DataDescription } from '../DataDescription';
-import { ColorBox } from './ColorBox';
+import { DataDescription } from 'map/tooltip/DataDescription';
+import { ColorBox } from 'map/tooltip/content/ColorBox';
 
 const slopeFieldSpec = {
   fieldGroup: 'properties',

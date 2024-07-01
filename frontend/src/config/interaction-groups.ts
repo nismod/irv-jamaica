@@ -6,12 +6,11 @@ import {
   RasterTarget,
 } from 'state/interactions/use-interactions';
 
+import { AssetHoverDescription } from './assets/AssetHoverDescription';
 import { HazardHoverDescription } from './hazards/HazardHoverDescription';
-
-import { VectorHoverDescription } from 'map/tooltip/content/VectorHoverDescription';
-import { RegionHoverDescription } from 'map/tooltip/content/RegionHoverDescription';
-import { SolutionHoverDescription } from 'map/tooltip/content/SolutionHoverDescription';
-import { DroughtHoverDescription } from 'map/tooltip/content/DroughtHoverDescription';
+import { SolutionHoverDescription } from './solutions/SolutionHoverDescription';
+import { RegionHoverDescription } from './regions/RegionHoverDescription';
+import { DroughtHoverDescription } from './drought/DroughtHoverDescription';
 
 export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
   [
@@ -69,7 +68,7 @@ export const tooltipLayers: Map<string, FC<{ hoveredObject: MapDataLayer }>> = n
   string,
   FC<{ hoveredObject: MapDataLayer }>
 >([
-  ['assets', VectorHoverDescription],
+  ['assets', AssetHoverDescription],
   ['hazards', HazardHoverDescription],
   ['regions', RegionHoverDescription],
   ['solutions', SolutionHoverDescription],

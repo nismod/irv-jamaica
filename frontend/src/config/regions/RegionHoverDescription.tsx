@@ -1,4 +1,4 @@
-import { REGIONS_METADATA } from '../../../config/regions/metadata';
+import { REGIONS_METADATA } from './metadata';
 import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
 import { useRecoilValue } from 'recoil';
 import { showPopulationState } from 'state/regions';
