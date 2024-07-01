@@ -8,12 +8,12 @@ import { viewLayersFlatState } from 'state/layers/view-layers-flat';
 import { useSaveViewLayers, viewLayersParamsState } from 'state/layers/view-layers-params';
 import { backgroundState, showLabelsState } from 'map/layers/layers-state';
 import { useBasemapStyle } from 'map/use-basemap-style';
+import { useInteractions } from 'lib/state/interactions/use-interactions';
 
 import { useTriggerMemo } from '../hooks/use-trigger-memo';
 import { useDataLoadTrigger } from './use-data-load-trigger';
 
 import { DeckGLOverlay } from '../map/DeckGLOverlay';
-import { useInteractions } from 'state/interactions/use-interactions';
 import { ViewLayer, ViewLayerParams } from './view-layers';
 import { LayersList } from 'deck.gl/typed';
 
