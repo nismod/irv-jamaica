@@ -9,7 +9,7 @@ import {
   droughtRegionsColorSpecState,
   droughtRegionsFieldSpecState,
 } from 'state/layers/modules/drought';
-import { DataDescription } from '../DataDescription';
+import { DataDescription } from 'map/tooltip/DataDescription';
 
 const DroughtRiskDescription: FC<{
   hoveredObject: InteractionTarget<VectorTarget>;

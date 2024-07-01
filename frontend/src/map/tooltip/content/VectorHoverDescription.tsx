@@ -1,21 +1,18 @@
 import { Typography } from '@mui/material';
 import { NETWORKS_METADATA } from 'config/networks/metadata';
 import { DataItem } from 'details/features/detail-components';
-import { InteractionTarget, VectorTarget } from 'state/interactions/use-interactions';
+import { VectorTarget } from 'state/interactions/use-interactions';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { singleViewLayerParamsState } from 'state/layers/view-layers-params';
 import { DataDescription } from '../DataDescription';
 import { ColorBox } from './ColorBox';
+import { ViewLayer } from 'lib/data-map/view-layers';
 
 export const VectorHoverDescription: FC<{
-  hoveredObject: InteractionTarget<VectorTarget>;
-}> = ({ hoveredObject }) => {
-  const {
-    viewLayer,
-    target: { feature },
-  } = hoveredObject;
-
+  viewLayer: ViewLayer;
+  feature: VectorTarget['feature'];
+}> = ({ viewLayer, feature }) => {
   const layerParams = useRecoilValue(singleViewLayerParamsState(viewLayer.id));
   const { styleParams } = layerParams;
   const { colorMap } = styleParams ?? {};
