@@ -1,7 +1,7 @@
 import forEach from 'lodash/forEach';
 import { atom, atomFamily, selector } from 'recoil';
 
-import { INTERACTION_GROUPS } from 'config/interaction-groups';
+import { INTERACTION_GROUPS, tooltipLayers } from 'config/interaction-groups';
 import { isReset } from 'lib/recoil/is-reset';
 import { showPopulationState } from 'state/regions';
 
@@ -24,16 +24,22 @@ export const hoverState = atomFamily<IT, string>({
   default: null,
 });
 
-type LayerHoverState = { isHovered: boolean; target: IT };
+type LayerHoverState = {
+  isHovered: boolean;
+  target: IT;
+  Component: React.ComponentType<{ hoveredObject: InteractionLayer }>;
+};
+
 export const layerHoverStates = selector({
   key: 'layerHoverStates',
   get: ({ get }) => {
     const regionDataShown = get(showPopulationState);
     const mapEntries = interactionGroupIds.map((group) => {
       const target = get(hoverState(group));
+      const Component = tooltipLayers.get(group);
       const isHovered =
         group === 'regions' ? regionDataShown && hasHover(target) : hasHover(target);
-      return [group, { isHovered, target }] as [string, LayerHoverState];
+      return [group, { isHovered, target, Component }] as [string, LayerHoverState];
     });
     return new Map<string, LayerHoverState>(mapEntries);
   },
