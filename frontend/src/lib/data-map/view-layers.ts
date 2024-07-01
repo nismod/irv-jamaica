@@ -57,15 +57,7 @@ export interface ViewLayer {
   spatialType?: string;
   interactionGroup?: string;
   renderLegend?: () => JSX.Element;
-  renderTooltip?: ({
-    key,
-    target,
-    viewLayer,
-  }: {
-    key?: string;
-    target: RasterTarget | VectorTarget;
-    viewLayer: ViewLayer;
-  }) => JSX.Element;
+  renderTooltip?: ({ target }: { target: RasterTarget | VectorTarget }) => JSX.Element;
 }
 
 export function viewOnlyLayer(id, fn): ViewLayer {

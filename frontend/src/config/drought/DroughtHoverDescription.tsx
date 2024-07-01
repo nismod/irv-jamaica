@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { DataItem } from 'details/features/detail-components';
-import { VectorTarget } from 'lib/data-map/types';
+import { VectorHoverDescription } from 'lib/data-map/types';
 import { FC, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import {
@@ -10,12 +10,8 @@ import {
   droughtRegionsFieldSpecState,
 } from 'state/layers/modules/drought';
 import { DataDescription } from 'map/tooltip/DataDescription';
-import { ViewLayer } from 'lib/data-map/view-layers';
 
-const DroughtRiskDescription: FC<{
-  target: VectorTarget;
-  viewLayer: ViewLayer;
-}> = ({ target, viewLayer }) => {
+const DroughtRiskDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
   const fieldSpec = useRecoilValue(droughtRegionsFieldSpecState);
   const colorSpec = useRecoilValue(droughtRegionsColorSpecState);
 
@@ -37,10 +33,7 @@ const DroughtRiskDescription: FC<{
   );
 };
 
-const DroughtOptionDescription: FC<{
-  target: VectorTarget;
-  viewLayer: ViewLayer;
-}> = ({ target, viewLayer }) => {
+const DroughtOptionDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
   const fieldSpec = useRecoilValue(droughtOptionsFieldSpecState);
   const colorSpec = useRecoilValue(droughtOptionsColorSpecState);
 
@@ -63,10 +56,7 @@ const DroughtOptionDescription: FC<{
   );
 };
 
-export const DroughtHoverDescription: FC<{
-  target: VectorTarget;
-  viewLayer: ViewLayer;
-}> = ({ target, viewLayer }) => {
+export const DroughtHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
   if (viewLayer.id === 'drought_risk') {
     return <DroughtRiskDescription target={target} viewLayer={viewLayer} />;
   } else if (viewLayer.id === 'drought_options') {

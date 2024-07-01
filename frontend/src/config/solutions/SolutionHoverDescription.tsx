@@ -2,14 +2,13 @@ import { Typography } from '@mui/material';
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
 import { MARINE_HABITATS_LOOKUP } from 'config/solutions/domains';
 import { DataItem } from 'details/features/detail-components';
-import { VectorTarget } from 'lib/data-map/types';
+import { VectorHoverDescription } from 'lib/data-map/types';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
 import { habitatColorMap } from 'state/layers/modules/marine';
 import { landuseColorMap } from 'state/layers/modules/terrestrial';
 import { DataDescription } from 'map/tooltip/DataDescription';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
-import { ViewLayer } from 'lib/data-map/view-layers';
 
 const slopeFieldSpec = {
   fieldGroup: 'properties',
@@ -21,10 +20,7 @@ const elevationFieldSpec = {
   field: 'elevation_m',
 };
 
-export const SolutionHoverDescription: FC<{
-  target: VectorTarget;
-  viewLayer: ViewLayer;
-}> = ({ target, viewLayer }) => {
+export const SolutionHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
   return (
     <>
       <Typography variant="body2">{startCase(viewLayer.id)}</Typography>
