@@ -14,20 +14,18 @@ import { networksLayerState } from './modules/networks';
 import { regionsLayerState } from './modules/regions';
 import { terrestrialLayerState } from './modules/terrestrial';
 
-const layerDisplayOrder = [
-  regionsLayerState,
-  droughtRegionsLayerState,
-  terrestrialLayerState,
-  marineLayerState,
-  hazardsLayerState,
-  buildingsLayerState,
-  networksLayerState,
-  droughtOptionsLayerState,
-  featureBoundingBoxLayerState,
-  labelsLayerState,
-];
-
 export const viewLayersState = selector<ConfigTree<ViewLayer>>({
   key: 'viewLayersState',
-  get: ({ get }) => get(waitForAll(layerDisplayOrder)),
+  get: ({ get }) => get(waitForAll([
+    regionsLayerState,
+    droughtRegionsLayerState,
+    terrestrialLayerState,
+    marineLayerState,
+    hazardsLayerState,
+    buildingsLayerState,
+    networksLayerState,
+    droughtOptionsLayerState,
+    featureBoundingBoxLayerState,
+    labelsLayerState,
+  ])),
 });
