@@ -1,19 +1,19 @@
 import { DataFilterExtension } from '@deck.gl/extensions';
 import { createElement } from 'react';
 
-import { VectorTarget } from "lib/data-map/types";
-import { ViewLayer } from "lib/data-map/view-layers";
-import { selectableMvtLayer } from "lib/deck/layers/selectable-mvt-layer";
+import { VectorTarget } from 'lib/data-map/types';
+import { ViewLayer } from 'lib/data-map/view-layers';
+import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { dataColorMap } from 'lib/deck/props/color-map';
 import { fillColor } from 'lib/deck/props/style';
 
-import { SolutionHoverDescription } from "./SolutionHoverDescription";
+import { SolutionHoverDescription } from './SolutionHoverDescription';
 
 function filterRange(value: boolean) {
   return value ? [1, 1] : [0, 1];
 }
 
-export function marineViewLayer({ dataFn, colorFn, filters}): ViewLayer {
+export function marineViewLayer({ dataFn, colorFn, filters }): ViewLayer {
   return {
     id: 'marine',
     group: null,

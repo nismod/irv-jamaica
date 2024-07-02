@@ -16,16 +16,19 @@ import { terrestrialLayerState } from './modules/terrestrial';
 
 export const viewLayersState = selector<ConfigTree<ViewLayer>>({
   key: 'viewLayersState',
-  get: ({ get }) => get(waitForAll([
-    regionsLayerState,
-    droughtRegionsLayerState,
-    terrestrialLayerState,
-    marineLayerState,
-    hazardsLayerState,
-    buildingsLayerState,
-    networksLayerState,
-    droughtOptionsLayerState,
-    featureBoundingBoxLayerState,
-    labelsLayerState,
-  ])),
+  get: ({ get }) =>
+    get(
+      waitForAll([
+        regionsLayerState,
+        droughtRegionsLayerState,
+        terrestrialLayerState,
+        marineLayerState,
+        hazardsLayerState,
+        buildingsLayerState,
+        networksLayerState,
+        droughtOptionsLayerState,
+        featureBoundingBoxLayerState,
+        labelsLayerState,
+      ]),
+    ),
 });

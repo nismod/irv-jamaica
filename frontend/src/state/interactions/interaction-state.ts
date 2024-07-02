@@ -1,14 +1,7 @@
-import { FC } from 'react';
 import { selector } from 'recoil';
 
 import { INTERACTION_GROUPS } from 'config/interaction-groups';
-import {
-  InteractionTarget,
-  RasterHoverDescription,
-  RasterTarget,
-  VectorHoverDescription,
-  VectorTarget,
-} from 'lib/data-map/types';
+import { InteractionTarget, RasterTarget, VectorTarget } from 'lib/data-map/types';
 import { hoverState, hasHover } from 'lib/state/interactions/interaction-state';
 import { showPopulationState } from 'state/regions';
 

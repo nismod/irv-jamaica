@@ -4,8 +4,6 @@ import { useRecoilValue } from 'recoil';
 
 import { layerHoverStates } from 'state/interactions/interaction-state';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
-import { HoverDescription, RasterTarget, VectorTarget } from 'lib/data-map/types';
-import { ViewLayer } from 'lib/data-map/view-layers';
 
 const TooltipSection = ({ children }) => (
   <Box p={1} borderBottom="1px solid #ccc">
@@ -39,9 +37,7 @@ export const TooltipContent: FC = () => {
               }
               const { target, viewLayer } = hoverTarget;
               return (
-                <TooltipSection key={type}>
-                  {viewLayer.renderTooltip({ target })}
-                </TooltipSection>
+                <TooltipSection key={type}>{viewLayer.renderTooltip({ target })}</TooltipSection>
               );
             }
             return null;
