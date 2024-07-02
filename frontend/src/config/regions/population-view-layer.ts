@@ -1,3 +1,5 @@
+import { createElement } from 'react';
+
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
 import { colorMap } from 'lib/color-map';
 import { FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
@@ -9,6 +11,7 @@ import { border, fillColor } from 'lib/deck/props/style';
 
 import { RegionLevel } from './metadata';
 import { REGIONS_SOURCE } from './source';
+import { RegionHoverDescription } from './RegionHoverDescription';
 
 export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
   const source = REGIONS_SOURCE;
@@ -52,6 +55,9 @@ export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
           highlightColor: [0, 255, 255, 100],
         },
       );
+    },
+    renderTooltip({ target }: { target: VectorTarget }) {
+      return createElement(RegionHoverDescription, { key: this.id, target, viewLayer: this });
     },
   };
 }

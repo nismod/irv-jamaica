@@ -1,22 +1,13 @@
-import { ASSETS_SOURCE } from 'config/assets/source';
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
-import { getDroughtDataAccessor } from 'config/drought/data-access';
-import {
-  getDroughtOptionsDataFormats,
-  getDroughtRiskDataFormats,
-} from 'config/drought/data-formats';
+import { droughtOptionsViewLayer } from 'config/drought/drought-options-view-layer';
+import { droughtRiskViewLayer } from 'config/drought/drought-risk-view-layer';
 import {
   DroughtOptionsVariableType,
   DroughtRiskVariableType,
   DROUGHT_OPTIONS_VARIABLES_WITH_RCP,
   DROUGHT_RISK_VARIABLES_WITH_RCP,
 } from 'config/drought/metadata';
-import { colorMap } from 'lib/color-map';
-import { VectorTarget } from 'lib/data-map/types';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
-import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
-import { dataColorMap } from 'lib/deck/props/color-map';
-import { border, fillColor, pointRadius } from 'lib/deck/props/style';
 import { selector } from 'recoil';
 import {
   droughtOptionsVariableState,
@@ -72,42 +63,7 @@ export const droughtRegionsLayerState = selector<ViewLayer>({
     const fieldSpec = get(droughtRegionsFieldSpecState);
     const colorSpec = get(droughtRegionsColorSpecState);
 
-    const dataFn = getDroughtDataAccessor(fieldSpec);
-    const colorFn = colorMap(colorSpec);
-
-    return {
-      id: 'drought_risk',
-      group: null,
-      interactionGroup: 'drought',
-      dataAccessFn: getDroughtDataAccessor,
-      dataFormatsFn: getDroughtRiskDataFormats,
-      styleParams: {
-        colorMap: {
-          fieldSpec,
-          colorSpec,
-        },
-      },
-
-      fn: ({ deckProps, selection }) => {
-        const target = selection?.target as VectorTarget;
-        const selectedFeatureId = target?.feature.id;
-        return selectableMvtLayer(
-          {
-            selectionOptions: {
-              selectedFeatureId,
-            },
-          },
-          deckProps,
-          {
-            data: ASSETS_SOURCE.getDataUrl({ assetId: 'drought_combined' }),
-
-            filled: true,
-          },
-          border([255, 255, 255]),
-          fillColor(dataColorMap(dataFn, colorFn)),
-        );
-      },
-    };
+    return droughtRiskViewLayer({ fieldSpec, colorSpec });
   },
 });
 
@@ -157,41 +113,6 @@ export const droughtOptionsLayerState = selector<ViewLayer>({
     const fieldSpec = get(droughtOptionsFieldSpecState);
     const colorSpec = get(droughtOptionsColorSpecState);
 
-    const dataFn = getDroughtDataAccessor(fieldSpec);
-    const colorFn = colorMap(colorSpec);
-
-    return {
-      id: 'drought_options',
-      group: null,
-      interactionGroup: 'drought',
-      dataAccessFn: getDroughtDataAccessor,
-      dataFormatsFn: getDroughtOptionsDataFormats,
-      styleParams: {
-        colorMap: {
-          fieldSpec,
-          colorSpec,
-        },
-      },
-      fn: ({ deckProps, selection, zoom }) => {
-        const target = selection?.target as VectorTarget;
-        const selectedFeatureId = target?.feature.id;
-        selectableMvtLayer(
-          {
-            selectionOptions: {
-              selectedFeatureId,
-            },
-          },
-          deckProps,
-          {
-            data: ASSETS_SOURCE.getDataUrl({ assetId: 'drought_options' }),
-
-            filled: true,
-          },
-          pointRadius(zoom),
-          border([255, 255, 255]),
-          fillColor(dataColorMap(dataFn, colorFn)),
-        );
-      },
-    };
+    return droughtOptionsViewLayer({ fieldSpec, colorSpec });
   },
 });

@@ -20,19 +20,17 @@ const interactionGroupEntries = [...INTERACTION_GROUPS.entries()];
 type LayerHoverState = {
   isHovered: boolean;
   hoverTarget: IT;
-  Component: FC<RasterHoverDescription> | FC<VectorHoverDescription>;
 };
 
 export const layerHoverStates = selector({
   key: 'layerHoverStates',
   get: ({ get }) => {
     const regionDataShown = get(showPopulationState);
-    const mapEntries = interactionGroupEntries.map(([groupId, group]) => {
+    const mapEntries = interactionGroupEntries.map(([groupId]) => {
       const hoverTarget = get(hoverState(groupId));
-      const Component = group.Component;
       const isHovered =
         groupId === 'regions' ? regionDataShown && hasHover(hoverTarget) : hasHover(hoverTarget);
-      return [groupId, { isHovered, hoverTarget, Component }] as [string, LayerHoverState];
+      return [groupId, { isHovered, hoverTarget }] as [string, LayerHoverState];
     });
     return new Map<string, LayerHoverState>(mapEntries);
   },

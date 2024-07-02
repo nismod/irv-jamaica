@@ -1,3 +1,5 @@
+import { createElement } from 'react';
+
 import {
   StyleParams,
   ViewLayer,
@@ -6,8 +8,10 @@ import {
 } from 'lib/data-map/view-layers';
 import { VectorTarget } from 'lib/data-map/types';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
+
 import { getAssetDataFormats } from './data-formats';
 import { ASSETS_SOURCE } from './source';
+import { AssetHoverDescription } from './AssetHoverDescription';
 
 interface ViewLayerMetadata {
   group: string;
@@ -54,5 +58,8 @@ export function assetViewLayer(
     },
     dataAccessFn: customDataAccessFn,
     dataFormatsFn: getAssetDataFormats,
+    renderTooltip({ target }: { target: VectorTarget }) {
+      return createElement(AssetHoverDescription, { key: this.id, target, viewLayer: this });
+    },
   };
 }

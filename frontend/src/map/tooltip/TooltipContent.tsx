@@ -13,25 +13,6 @@ const TooltipSection = ({ children }) => (
   </Box>
 );
 
-function renderTooltip({
-  key,
-  target,
-  viewLayer,
-  Component,
-}: {
-  key?: string;
-  target: VectorTarget | RasterTarget;
-  viewLayer: ViewLayer;
-  Component: FC<HoverDescription>;
-}) {
-  // renderTooltip isn't implemented on all view layers yet.
-  if (viewLayer.renderTooltip) {
-    return viewLayer.renderTooltip({ target });
-  }
-  // Fallback to the default tooltip component for older layers.
-  return <Component key={key} target={target} viewLayer={viewLayer} />;
-}
-
 export const TooltipContent: FC = () => {
   const layerStates = useRecoilValue(layerHoverStates);
   const layerStateEntries = [...layerStates.entries()];
@@ -45,13 +26,13 @@ export const TooltipContent: FC = () => {
       <Box minWidth={200}>
         <ErrorBoundary message="There was a problem displaying the tooltip.">
           {layerStateEntries.map(([type, layerState]) => {
-            const { isHovered, hoverTarget, Component } = layerState;
+            const { isHovered, hoverTarget } = layerState;
             if (isHovered) {
               if (Array.isArray(hoverTarget)) {
                 return (
                   <TooltipSection key={type}>
                     {hoverTarget.map(({ target, viewLayer }) =>
-                      renderTooltip({ key: viewLayer.id, target, viewLayer, Component }),
+                      viewLayer.renderTooltip({ target }),
                     )}
                   </TooltipSection>
                 );
@@ -59,7 +40,7 @@ export const TooltipContent: FC = () => {
               const { target, viewLayer } = hoverTarget;
               return (
                 <TooltipSection key={type}>
-                  {renderTooltip({ target, viewLayer, Component })}
+                  {viewLayer.renderTooltip({ target })}
                 </TooltipSection>
               );
             }

@@ -1,10 +1,5 @@
 import { InteractionGroupConfig } from 'lib/data-map/types';
 
-import { AssetHoverDescription } from './assets/AssetHoverDescription';
-import { SolutionHoverDescription } from './solutions/SolutionHoverDescription';
-import { RegionHoverDescription } from './regions/RegionHoverDescription';
-import { DroughtHoverDescription } from './drought/DroughtHoverDescription';
-
 export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
   [
     'assets',
@@ -14,7 +9,6 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       pickingRadius: 8,
       pickMultiple: false,
       usesAutoHighlight: true,
-      Component: AssetHoverDescription,
     },
   ],
   [
@@ -32,7 +26,6 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       type: 'vector',
       pickingRadius: 8,
       pickMultiple: false,
-      Component: RegionHoverDescription,
     },
   ],
   [
@@ -43,7 +36,6 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       pickingRadius: 8,
       usesAutoHighlight: true,
       pickMultiple: false,
-      Component: SolutionHoverDescription,
     },
   ],
   [
@@ -54,7 +46,6 @@ export const INTERACTION_GROUPS = new Map<string, InteractionGroupConfig>([
       pickingRadius: 8,
       usesAutoHighlight: true,
       pickMultiple: false,
-      Component: DroughtHoverDescription,
     },
   ],
 ]);
