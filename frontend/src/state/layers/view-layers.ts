@@ -1,18 +1,33 @@
-import { RecoilValueReadOnly, waitForAll, selector } from 'recoil';
+import { waitForAll, selector } from 'recoil';
 
-import { VIEW_LAYERS } from 'config/view-layers';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { ConfigTree } from 'lib/nested-config/config-tree';
 
-async function importLayerState(type: string): Promise<RecoilValueReadOnly<ViewLayer>> {
-  const filename = type === 'droughtOptions' || type === 'droughtRegions' ? 'drought' : type;
-  const module = await import(`./modules/${filename}.ts`);
-  return module[`${type}LayerState`];
-}
+import { buildingsLayerState } from './modules/buildings';
+import { droughtOptionsLayerState } from './modules/drought';
+import { droughtRegionsLayerState } from './modules/drought';
+import { featureBoundingBoxLayerState } from './modules/featureBoundingBox';
+import { hazardsLayerState } from './modules/hazards';
+import { labelsLayerState } from './modules/labels';
+import { marineLayerState } from './modules/marine';
+import { networksLayerState } from './modules/networks';
+import { regionsLayerState } from './modules/regions';
+import { terrestrialLayerState } from './modules/terrestrial';
 
-const loadLayers = Promise.all(VIEW_LAYERS.map(importLayerState));
+const layerDisplayOrder = [
+  regionsLayerState,
+  droughtRegionsLayerState,
+  terrestrialLayerState,
+  marineLayerState,
+  hazardsLayerState,
+  buildingsLayerState,
+  networksLayerState,
+  droughtOptionsLayerState,
+  featureBoundingBoxLayerState,
+  labelsLayerState,
+]
 
 export const viewLayersState = selector<ConfigTree<ViewLayer>>({
   key: 'viewLayersState',
-  get: ({ get }) => loadLayers.then((layers) => get(waitForAll(layers))),
+  get: ({ get }) => get(waitForAll(layerDisplayOrder)),
 });
