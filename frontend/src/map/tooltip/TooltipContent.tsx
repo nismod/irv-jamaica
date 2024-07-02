@@ -4,11 +4,7 @@ import { useRecoilValue } from 'recoil';
 
 import { layerHoverStates } from 'state/interactions/interaction-state';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
-import {
-  HoverDescription,
-  RasterTarget,
-  VectorTarget,
-} from 'lib/data-map/types';
+import { HoverDescription, RasterTarget, VectorTarget } from 'lib/data-map/types';
 import { ViewLayer } from 'lib/data-map/view-layers';
 
 const TooltipSection = ({ children }) => (

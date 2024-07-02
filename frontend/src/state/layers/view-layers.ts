@@ -25,7 +25,7 @@ const layerDisplayOrder = [
   droughtOptionsLayerState,
   featureBoundingBoxLayerState,
   labelsLayerState,
-]
+];
 
 export const viewLayersState = selector<ConfigTree<ViewLayer>>({
   key: 'viewLayersState',
