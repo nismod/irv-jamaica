@@ -5,7 +5,7 @@ import { ConfigTree } from 'lib/nested-config/config-tree';
 
 import { buildingsLayerState } from './modules/buildings';
 import { droughtOptionsLayerState } from './modules/droughtOptions';
-import { droughtRegionsLayerState } from './modules/droughtRegions';
+import { droughtRisksLayerState } from './modules/droughtRisks';
 import { featureBoundingBoxLayerState } from './modules/featureBoundingBox';
 import { hazardsLayerState } from './modules/hazards';
 import { labelsLayerState } from './modules/labels';
@@ -20,7 +20,7 @@ export const viewLayersState = selector<ConfigTree<ViewLayer>>({
     get(
       waitForAll([
         regionsLayerState,
-        droughtRegionsLayerState,
+        droughtRisksLayerState,
         terrestrialLayerState,
         marineLayerState,
         hazardsLayerState,

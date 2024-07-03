@@ -6,7 +6,7 @@ import {
 import {
   DroughtRiskVariableType,
   DROUGHT_RISK_VARIABLE_LABELS,
-} from 'config/droughtRegions/metadata';
+} from 'config/droughtRisks/metadata';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { FC } from 'react';
 import { useRecoilState } from 'recoil';

@@ -4,17 +4,14 @@ import { VectorHoverDescription } from 'lib/data-map/types';
 import { FC, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import {
-  droughtRegionsColorSpecState,
-  droughtRegionsFieldSpecState,
-} from 'state/layers/modules/droughtRegions';
+  droughtRisksColorSpecState,
+  droughtRisksFieldSpecState,
+} from 'state/layers/modules/droughtRisks';
 import { DataDescription } from 'map/tooltip/DataDescription';
 
-export const DroughtRegionsHoverDescription: FC<VectorHoverDescription> = ({
-  target,
-  viewLayer,
-}) => {
-  const fieldSpec = useRecoilValue(droughtRegionsFieldSpecState);
-  const colorSpec = useRecoilValue(droughtRegionsColorSpecState);
+export const DroughtRisksHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
+  const fieldSpec = useRecoilValue(droughtRisksFieldSpecState);
+  const colorSpec = useRecoilValue(droughtRisksColorSpecState);
 
   const colorMap = useMemo(
     () => ({

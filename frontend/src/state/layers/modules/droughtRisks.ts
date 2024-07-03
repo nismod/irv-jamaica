@@ -1,9 +1,9 @@
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
-import { droughtRiskViewLayer } from 'config/droughtRegions/drought-risk-view-layer';
+import { droughtRiskViewLayer } from 'config/droughtRisks/drought-risk-view-layer';
 import {
   DroughtRiskVariableType,
   DROUGHT_RISK_VARIABLES_WITH_RCP,
-} from 'config/droughtRegions/metadata';
+} from 'config/droughtRisks/metadata';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import {
@@ -13,8 +13,8 @@ import {
 } from 'state/drought/drought-parameters';
 import { sectionVisibilityState } from 'state/sections';
 
-export const droughtRegionsFieldSpecState = selector<FieldSpec>({
-  key: 'droughtRegionsFieldSpecState',
+export const droughtRisksFieldSpecState = selector<FieldSpec>({
+  key: 'droughtRisksFieldSpecState',
   get: ({ get }) => {
     const field = get(droughtRiskVariableState);
 
@@ -38,15 +38,15 @@ const droughtRiskColorSpecLookup: Record<DroughtRiskVariableType, ColorSpec> = {
   eael: VECTOR_COLOR_MAPS.droughtRiskEael,
 };
 
-export const droughtRegionsColorSpecState = selector<ColorSpec>({
-  key: 'droughtRegionsColorSpecState',
+export const droughtRisksColorSpecState = selector<ColorSpec>({
+  key: 'droughtRisksColorSpecState',
   get: ({ get }) => {
     const field = get(droughtRiskVariableState);
     return droughtRiskColorSpecLookup[field];
   },
 });
 
-export const droughtRegionsLayerState = selector<ViewLayer>({
+export const droughtRisksLayerState = selector<ViewLayer>({
   key: 'droughtRegionsLayerState',
   get: ({ get }) => {
     const showDroughts = get(sectionVisibilityState('drought')) && get(droughtShowRiskState);
@@ -55,8 +55,8 @@ export const droughtRegionsLayerState = selector<ViewLayer>({
       return null;
     }
 
-    const fieldSpec = get(droughtRegionsFieldSpecState);
-    const colorSpec = get(droughtRegionsColorSpecState);
+    const fieldSpec = get(droughtRisksFieldSpecState);
+    const colorSpec = get(droughtRisksColorSpecState);
 
     return droughtRiskViewLayer({ fieldSpec, colorSpec });
   },
