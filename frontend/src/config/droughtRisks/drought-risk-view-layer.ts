@@ -10,7 +10,7 @@ import { dataColorMap } from 'lib/deck/props/color-map';
 
 import { getDroughtDataAccessor } from './data-access';
 import { getDroughtRiskDataFormats } from './data-formats';
-import { DroughtHoverDescription } from './DroughtHoverDescription';
+import { DroughtRisksHoverDescription } from './DroughtRisksHoverDescription';
 
 export function droughtRiskViewLayer({ fieldSpec, colorSpec }): ViewLayer {
   const dataFn = getDroughtDataAccessor(fieldSpec);
@@ -48,7 +48,11 @@ export function droughtRiskViewLayer({ fieldSpec, colorSpec }): ViewLayer {
       );
     },
     renderTooltip({ target }: { target: VectorTarget }) {
-      return createElement(DroughtHoverDescription, { key: this.id, target, viewLayer: this });
+      return createElement(DroughtRisksHoverDescription, {
+        key: this.id,
+        target,
+        viewLayer: this,
+      });
     },
   };
 }

@@ -1,4 +1,5 @@
-import { DroughtOptionsVariableType, DroughtRiskVariableType } from 'config/drought/metadata';
+import { DroughtOptionsVariableType } from 'config/droughtOptions/metadata';
+import { DroughtRiskVariableType } from 'config/droughtRisks/metadata';
 import { atom } from 'recoil';
 
 export const droughtRcpParamState = atom<string>({

@@ -1,6 +1,6 @@
 export const VIEW_LAYERS = [
   'regions',
-  'droughtRegions',
+  'droughtRisks',
   'terrestrial',
   'marine',
   'hazards',
