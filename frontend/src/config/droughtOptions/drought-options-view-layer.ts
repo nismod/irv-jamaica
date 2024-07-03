@@ -5,30 +5,29 @@ import { colorMap } from 'lib/color-map';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { VectorTarget } from 'lib/data-map/types';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
-import { border, fillColor } from 'lib/deck/props/style';
+import { border, fillColor, pointRadius } from 'lib/deck/props/style';
 import { dataColorMap } from 'lib/deck/props/color-map';
 
 import { getDroughtDataAccessor } from './data-access';
-import { getDroughtRiskDataFormats } from './data-formats';
-import { DroughtHoverDescription } from './DroughtHoverDescription';
+import { getDroughtOptionsDataFormats } from './data-formats';
+import { DroughtOptionsHoverDescription } from './DroughtOptionsHoverDescription';
 
-export function droughtRiskViewLayer({ fieldSpec, colorSpec }): ViewLayer {
+export function droughtOptionsViewLayer({ fieldSpec, colorSpec }): ViewLayer {
   const dataFn = getDroughtDataAccessor(fieldSpec);
   const colorFn = colorMap(colorSpec);
   return {
-    id: 'drought_risk',
+    id: 'drought_options',
     group: null,
     interactionGroup: 'drought',
     dataAccessFn: getDroughtDataAccessor,
-    dataFormatsFn: getDroughtRiskDataFormats,
+    dataFormatsFn: getDroughtOptionsDataFormats,
     styleParams: {
       colorMap: {
         fieldSpec,
         colorSpec,
       },
     },
-
-    fn: ({ deckProps, selection }) => {
+    fn: ({ deckProps, selection, zoom }) => {
       const target = selection?.target as VectorTarget;
       const selectedFeatureId = target?.feature.id;
       return selectableMvtLayer(
@@ -39,16 +38,21 @@ export function droughtRiskViewLayer({ fieldSpec, colorSpec }): ViewLayer {
         },
         deckProps,
         {
-          data: ASSETS_SOURCE.getDataUrl({ assetId: 'drought_combined' }),
+          data: ASSETS_SOURCE.getDataUrl({ assetId: 'drought_options' }),
 
           filled: true,
         },
+        pointRadius(zoom),
         border([255, 255, 255]),
         fillColor(dataColorMap(dataFn, colorFn)),
       );
     },
     renderTooltip({ target }: { target: VectorTarget }) {
-      return createElement(DroughtHoverDescription, { key: this.id, target, viewLayer: this });
+      return createElement(DroughtOptionsHoverDescription, {
+        key: this.id,
+        target,
+        viewLayer: this,
+      });
     },
   };
 }

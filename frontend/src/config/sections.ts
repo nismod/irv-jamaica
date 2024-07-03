@@ -1,6 +1,6 @@
 import { StyleSelectionOption } from 'state/sections';
 import { BUILDING_STYLES } from './buildings/styles';
-import { DROUGHT_STYLES } from './drought/styles';
+import { DROUGHT_STYLES } from './droughtRegions/styles';
 import { NETWORK_STYLES } from './networks/styles';
 import { REGION_STYLES } from './regions/styles';
 import { MARINE_STYLES, TERRESTRIAL_STYLES } from './solutions/styles';
