@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
-import { MARINE_HABITATS_LOOKUP } from 'config/solutions/domains';
+import { MARINE_HABITATS_LOOKUP } from 'config/marine/domains';
 import { DataItem } from 'details/features/detail-components';
 import { colorMap } from 'lib/color-map';
 import startCase from 'lodash/startCase';

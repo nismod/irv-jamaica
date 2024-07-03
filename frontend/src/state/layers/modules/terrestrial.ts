@@ -1,5 +1,5 @@
-import { TERRESTRIAL_LANDUSE_COLORS } from 'config/solutions/colors';
-import { terrestrialViewLayer } from 'config/solutions/terrestrial-view-layer';
+import { TERRESTRIAL_LANDUSE_COLORS } from 'config/terrestrial/colors';
+import { terrestrialViewLayer } from 'config/terrestrial/terrestrial-view-layer';
 import { ViewLayer, FieldSpec, ColorSpec } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';
@@ -11,7 +11,7 @@ import { colorMap } from 'lib/color-map';
 import { VECTOR_COLOR_MAPS } from 'config/color-maps';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { Accessor } from 'lib/deck/props/getters';
-import { LandUseOption, TerrestrialLocationFilterType } from 'config/solutions/domains';
+import { LandUseOption, TerrestrialLocationFilterType } from 'config/terrestrial/domains';
 import { truthyKeys } from 'lib/helpers';
 import { landuseFilterState } from 'state/solutions/landuse-tree';
 
