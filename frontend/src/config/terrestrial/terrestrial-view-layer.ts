@@ -11,7 +11,7 @@ import { TerrestrialFilters } from 'state/solutions/terrestrial-filters';
 import { getSolutionsDataAccessor } from './data-access';
 import { getTerrestrialDataFormats } from './data-formats';
 import { LandUseOption, TerrestrialLocationFilterType } from './domains';
-import { SolutionHoverDescription } from './SolutionHoverDescription';
+import { TerrestrialHoverDescription } from './TerrestrialHoverDescription';
 
 function landuseFilterValue(p, landuseFilters: Set<LandUseOption>) {
   return landuseFilters.has(p.landuse_desc) ? 1 : 0;
@@ -129,7 +129,7 @@ export function terrestrialViewLayer({
       ];
     },
     renderTooltip({ target }: { target: VectorTarget }) {
-      return createElement(SolutionHoverDescription, { key: this.id, target, viewLayer: this });
+      return createElement(TerrestrialHoverDescription, { key: this.id, target, viewLayer: this });
     },
   };
 }

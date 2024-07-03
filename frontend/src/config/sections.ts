@@ -3,7 +3,8 @@ import { BUILDING_STYLES } from './buildings/styles';
 import { DROUGHT_STYLES } from './droughtRisks/styles';
 import { NETWORK_STYLES } from './networks/styles';
 import { REGION_STYLES } from './regions/styles';
-import { MARINE_STYLES, TERRESTRIAL_STYLES } from './solutions/styles';
+import { MARINE_STYLES } from './marine/styles';
+import { TERRESTRIAL_STYLES } from './terrestrial/styles';
 
 export const SECTIONS_CONFIG: Record<string, { styles?: Record<string, StyleSelectionOption> }> = {
   assets: {

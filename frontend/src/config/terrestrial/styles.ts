@@ -5,5 +5,3 @@ export const TERRESTRIAL_STYLES = makeConfig([
   { id: 'slope', label: 'Slope' },
   { id: 'elevation', label: 'Elevation' },
 ]);
-
-export const MARINE_STYLES = makeConfig([{ id: 'habitat', label: 'Habitat' }]);
