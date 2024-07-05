@@ -1,6 +1,5 @@
 import * as networkColorMaps from 'config/networks/color-maps';
 import { AdaptationOptionParams } from 'config/domains/adaptation';
-import { INFRASTRUCTURE_VIEW_LAYERS } from 'config/networks/view-layers';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
 import { atom, selector } from 'recoil';
@@ -20,12 +19,18 @@ import fromPairs from 'lodash/fromPairs';
 import mapValues from 'lodash/mapValues';
 import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { LayerSpec } from 'asset-list/use-sorted-features';
+import { networkViewLayer } from 'config/networks/network-view-layer';
 
 export const networksLayerState = selector<ViewLayer[]>({
   key: 'networkLayersState',
   get: ({ get }) =>
     get(sectionVisibilityState('assets'))
-      ? get(networkSelectionState).map((network) => INFRASTRUCTURE_VIEW_LAYERS[network])
+      ? get(networkSelectionState).map((network) => {
+          return networkViewLayer({
+            network,
+            styleParams: get(networkStyleParamsState),
+          });
+        })
       : [],
 });
 

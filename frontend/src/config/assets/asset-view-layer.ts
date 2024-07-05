@@ -37,7 +37,8 @@ export function assetViewLayer(
     params: {
       assetId,
     },
-    fn: ({ deckProps, zoom, styleParams, selection }: ViewLayerFunctionOptions) => {
+    fn({ deckProps, zoom, selection }: ViewLayerFunctionOptions) {
+      const styleParams = this?.styleParams;
       const target = selection?.target as VectorTarget;
       const selectedFeatureId = target?.feature.id;
       return selectableMvtLayer(
@@ -59,7 +60,8 @@ export function assetViewLayer(
     },
     dataAccessFn: customDataAccessFn,
     dataFormatsFn: getAssetDataFormats,
-    renderLegend({ colorMap }) {
+    renderLegend() {
+      const { colorMap } = this.styleParams;
       const key = `${colorMap.fieldSpec.fieldGroup}-${colorMap.fieldSpec.field}`;
       const legendFormatConfig = this.dataFormatsFn(colorMap.fieldSpec);
       return createElement(VectorLegend, { key, colorMap, legendFormatConfig });
