@@ -12,6 +12,7 @@ import { getSolutionsDataAccessor } from './data-access';
 import { getTerrestrialDataFormats } from './data-formats';
 import { LandUseOption, TerrestrialLocationFilterType } from './domains';
 import { TerrestrialHoverDescription } from './TerrestrialHoverDescription';
+import { VectorLegend } from 'map/legend/VectorLegend';
 
 function landuseFilterValue(p, landuseFilters: Set<LandUseOption>) {
   return landuseFilters.has(p.landuse_desc) ? 1 : 0;
@@ -127,6 +128,12 @@ export function terrestrialViewLayer({
           terrestrialFilters(filters, landuseFilterSet, locationFilterKeys, zoom >= switchoverZoom),
         ),
       ];
+    },
+    renderLegend() {
+      const { colorMap } = this.styleParams;
+      const key = `${colorMap.fieldSpec.fieldGroup}-${colorMap.fieldSpec.field}`;
+      const legendFormatConfig = this.dataFormatsFn(colorMap.fieldSpec);
+      return createElement(VectorLegend, { key, colorMap, legendFormatConfig });
     },
     renderTooltip({ target }: { target: VectorTarget }) {
       return createElement(TerrestrialHoverDescription, { key: this.id, target, viewLayer: this });

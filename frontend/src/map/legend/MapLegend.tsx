@@ -1,10 +1,9 @@
 import { FC } from 'react';
 
-import { ColorMap, FormatConfig } from 'lib/data-map/view-layers';
+import { ViewLayer } from 'lib/data-map/view-layers';
 import { useRecoilValue } from 'recoil';
 import { viewLayersFlatState } from 'state/layers/view-layers-flat';
 import { viewLayersParamsState } from 'state/layers/view-layers-params';
-import { VectorLegend } from './VectorLegend';
 import { Stack, Box, Paper, Divider } from '@mui/material';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
 
@@ -12,19 +11,13 @@ export const MapLegend: FC = () => {
   const viewLayers = useRecoilValue(viewLayersFlatState);
   const viewLayersParams = useRecoilValue(viewLayersParamsState);
 
-  const hazardViewLayers = [];
+  const rasterViewLayers = [];
 
-  const dataColorMaps: Record<
-    string,
-    {
-      colorMap: ColorMap;
-      formatConfig: FormatConfig;
-    }
-  > = {};
+  const dataColorMaps: Record<string, ViewLayer> = {};
 
   viewLayers.forEach((viewLayer) => {
     if (viewLayer.spatialType === 'raster') {
-      hazardViewLayers.push(viewLayer);
+      rasterViewLayers.push(viewLayer);
     } else {
       /**
        * get style params from the viewLayerParams mechanism
@@ -46,26 +39,23 @@ export const MapLegend: FC = () => {
 
         // save the colorMap and formatConfig for first layer of each group
         if (dataColorMaps[colorMapKey] == null) {
-          const { legendDataFormatsFn, dataFormatsFn } = viewLayer;
-
-          const formatFn = legendDataFormatsFn ?? dataFormatsFn;
-          const formatConfig = formatFn(colorMap.fieldSpec);
-
-          dataColorMaps[colorMapKey] = { colorMap, formatConfig };
+          dataColorMaps[colorMapKey] = viewLayer;
         }
       }
     }
   });
 
-  return hazardViewLayers.length || Object.keys(dataColorMaps).length ? (
+  return rasterViewLayers.length || Object.keys(dataColorMaps).length ? (
     <Paper>
       <MobileTabContentWatcher tabId="legend" />
       <Box p={1} maxWidth={270}>
         <Stack gap={0.3} divider={<Divider />}>
-          {hazardViewLayers.map((viewLayer) => viewLayer.renderLegend())}
-          {Object.entries(dataColorMaps).map(([legendKey, { colorMap, formatConfig }]) => (
-            <VectorLegend key={legendKey} colorMap={colorMap} legendFormatConfig={formatConfig} />
-          ))}
+          {rasterViewLayers.map((viewLayer) => viewLayer.renderLegend())}
+          {Object.values(dataColorMaps).map((viewLayer) => {
+            const { colorMap } =
+              viewLayer.styleParams ?? viewLayersParams[viewLayer.id].styleParams ?? {};
+            return viewLayer.renderLegend({ colorMap });
+          })}
         </Stack>
       </Box>
     </Paper>

@@ -45,6 +45,10 @@ export interface FormatConfig<D = unknown> {
 
 export type ViewLayerDataAccessFunction = (fieldSpec: FieldSpec) => Accessor<string>;
 export type ViewLayerDataFormatFunction = (fieldSpec: FieldSpec) => FormatConfig;
+
+interface LegendProps {
+  colorMap?: ColorMap;
+}
 export interface ViewLayer {
   id: string;
   params?: any;
@@ -56,7 +60,7 @@ export interface ViewLayer {
   legendDataFormatsFn?: ViewLayerDataFormatFunction;
   spatialType?: string;
   interactionGroup?: string;
-  renderLegend?: () => JSX.Element;
+  renderLegend?: (legendProps: LegendProps) => JSX.Element;
   renderTooltip?: ({ target }: { target: RasterTarget | VectorTarget }) => JSX.Element;
 }
 
