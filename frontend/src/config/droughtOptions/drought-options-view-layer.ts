@@ -7,6 +7,7 @@ import { VectorTarget } from 'lib/data-map/types';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { border, fillColor, pointRadius } from 'lib/deck/props/style';
 import { dataColorMap } from 'lib/deck/props/color-map';
+import { VectorLegend } from 'map/legend/VectorLegend';
 
 import { getDroughtDataAccessor } from './data-access';
 import { getDroughtOptionsDataFormats } from './data-formats';
@@ -46,6 +47,12 @@ export function droughtOptionsViewLayer({ fieldSpec, colorSpec }): ViewLayer {
         border([255, 255, 255]),
         fillColor(dataColorMap(dataFn, colorFn)),
       );
+    },
+    renderLegend() {
+      const { colorMap } = this.styleParams;
+      const key = `${colorMap.fieldSpec.fieldGroup}-${colorMap.fieldSpec.field}`;
+      const legendFormatConfig = this.dataFormatsFn(colorMap.fieldSpec);
+      return createElement(VectorLegend, { key, colorMap, legendFormatConfig });
     },
     renderTooltip({ target }: { target: VectorTarget }) {
       return createElement(DroughtOptionsHoverDescription, {

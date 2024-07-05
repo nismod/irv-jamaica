@@ -6,6 +6,7 @@ import { ViewLayer } from 'lib/data-map/view-layers';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { dataColorMap } from 'lib/deck/props/color-map';
 import { fillColor } from 'lib/deck/props/style';
+import { VectorLegend } from 'map/legend/VectorLegend';
 
 import { SolutionHoverDescription } from './MarineHoverDescription';
 
@@ -55,6 +56,12 @@ export function marineViewLayer({ dataFn, colorFn, filters }): ViewLayer {
         },
         fillColor(dataColorMap(dataFn, colorFn)),
       );
+    },
+    renderLegend() {
+      const { colorMap } = this.styleParams;
+      const key = `${colorMap.fieldSpec.fieldGroup}-${colorMap.fieldSpec.field}`;
+      const legendFormatConfig = this.dataFormatsFn(colorMap.fieldSpec);
+      return createElement(VectorLegend, { key, colorMap, legendFormatConfig });
     },
     renderTooltip({ target }: { target: VectorTarget }) {
       return createElement(SolutionHoverDescription, { key: this.id, target, viewLayer: this });
