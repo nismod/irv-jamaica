@@ -8,6 +8,7 @@ import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { dataColorMap } from 'lib/deck/props/color-map';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { border, fillColor } from 'lib/deck/props/style';
+import { VectorLegend } from 'map/legend/VectorLegend';
 
 import { RegionLevel } from './metadata';
 import { REGIONS_SOURCE } from './source';
@@ -55,6 +56,12 @@ export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
           highlightColor: [0, 255, 255, 100],
         },
       );
+    },
+    renderLegend() {
+      const { colorMap } = this.styleParams;
+      const key = `${colorMap.fieldSpec.fieldGroup}-${colorMap.fieldSpec.field}`;
+      const legendFormatConfig = this.dataFormatsFn(colorMap.fieldSpec);
+      return createElement(VectorLegend, { key, colorMap, legendFormatConfig });
     },
     renderTooltip({ target }: { target: VectorTarget }) {
       return createElement(RegionHoverDescription, { key: this.id, target, viewLayer: this });
