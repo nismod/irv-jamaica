@@ -1,4 +1,4 @@
-import { VECTOR_COLOR_MAPS } from 'config/color-maps';
+import * as networkColorMaps from 'config/networks/color-maps';
 import { AdaptationOptionParams } from 'config/domains/adaptation';
 import { INFRASTRUCTURE_VIEW_LAYERS } from 'config/networks/view-layers';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
@@ -124,17 +124,7 @@ export const adaptationColorSpecState = selector<ColorSpec>({
   key: 'adaptationColorSpecState',
   get: ({ get }) => {
     const field = get(adaptationFieldState);
-
-    let colorSpec: ColorSpec;
-    if (field === 'adaptation_cost') {
-      colorSpec = VECTOR_COLOR_MAPS.adaptationCost;
-    } else if (field === 'avoided_ead_mean' || field === 'avoided_eael_mean') {
-      colorSpec = VECTOR_COLOR_MAPS.adaptationAvoided;
-    } else if (field === 'cost_benefit_ratio') {
-      colorSpec = VECTOR_COLOR_MAPS.costBenefitRatio;
-    }
-
-    return colorSpec;
+    return networkColorMaps[field];
   },
 });
 

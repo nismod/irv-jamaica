@@ -1,9 +1,6 @@
-import { VECTOR_COLOR_MAPS } from 'config/color-maps';
+import * as droughtOptionsColorSpecLookup from 'config/droughtOptions/color-maps';
 import { droughtOptionsViewLayer } from 'config/droughtOptions/drought-options-view-layer';
-import {
-  DroughtOptionsVariableType,
-  DROUGHT_OPTIONS_VARIABLES_WITH_RCP,
-} from 'config/droughtOptions/metadata';
+import { DROUGHT_OPTIONS_VARIABLES_WITH_RCP } from 'config/droughtOptions/metadata';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import {
@@ -31,13 +28,6 @@ export const droughtOptionsFieldSpecState = selector<FieldSpec>({
     };
   },
 });
-
-const droughtOptionsColorSpecLookup: Record<DroughtOptionsVariableType, ColorSpec> = {
-  cost_jmd: VECTOR_COLOR_MAPS.droughtOptionsCost,
-  population_protected: VECTOR_COLOR_MAPS.droughtOptionsPopulationProtected,
-  net_present_value_benefit: VECTOR_COLOR_MAPS.droughtOptionsNPVBenefit,
-  benefit_cost_ratio: VECTOR_COLOR_MAPS.droughtOptionsBenefitCost,
-};
 
 export const droughtOptionsColorSpecState = selector<ColorSpec>({
   key: 'droughtOptionsColorSpecState',

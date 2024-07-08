@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { VECTOR_COLOR_MAPS } from 'config/color-maps';
+import { terrestrialSlope, terrestrialElevation } from 'config/terrestrial/color-maps';
 import { MARINE_HABITATS_LOOKUP } from 'config/marine/domains';
 import { DataItem } from 'details/features/detail-components';
 import { colorMap } from 'lib/color-map';
@@ -9,8 +9,8 @@ import { FC } from 'react';
 import { habitatColorMap } from 'state/layers/modules/marine';
 import { landuseColorMap } from 'state/layers/modules/terrestrial';
 
-const slopeColorFunction = colorMap(VECTOR_COLOR_MAPS.terrestrialSlope);
-const elevationColorFunction = colorMap(VECTOR_COLOR_MAPS.terrestrialElevation);
+const slopeColorFunction = colorMap(terrestrialSlope);
+const elevationColorFunction = colorMap(terrestrialElevation);
 
 interface SolutionsSidebarContentProps {
   feature: any;

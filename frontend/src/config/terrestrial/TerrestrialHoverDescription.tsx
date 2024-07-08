@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { VECTOR_COLOR_MAPS } from 'config/color-maps';
+import { terrestrialSlope, terrestrialElevation } from 'config/terrestrial/color-maps';
 import { DataItem } from 'details/features/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import startCase from 'lodash/startCase';
@@ -41,7 +41,7 @@ export const TerrestrialHoverDescription: FC<VectorHoverDescription> = ({ target
         <DataDescription
           colorMap={{
             fieldSpec: slopeFieldSpec,
-            colorSpec: VECTOR_COLOR_MAPS.terrestrialSlope,
+            colorSpec: terrestrialSlope,
           }}
           feature={target.feature}
           viewLayer={viewLayer}
@@ -49,7 +49,7 @@ export const TerrestrialHoverDescription: FC<VectorHoverDescription> = ({ target
         <DataDescription
           colorMap={{
             fieldSpec: elevationFieldSpec,
-            colorSpec: VECTOR_COLOR_MAPS.terrestrialElevation,
+            colorSpec: terrestrialElevation,
           }}
           feature={target.feature}
           viewLayer={viewLayer}

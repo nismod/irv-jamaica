@@ -8,7 +8,7 @@ import {
   TerrestrialLocationFilters,
 } from 'state/solutions/terrestrial-filters';
 import { colorMap } from 'lib/color-map';
-import { VECTOR_COLOR_MAPS } from 'config/color-maps';
+import { terrestrialElevation, terrestrialSlope } from 'config/terrestrial/color-maps';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { Accessor } from 'lib/deck/props/getters';
 import { LandUseOption, TerrestrialLocationFilterType } from 'config/terrestrial/domains';
@@ -25,9 +25,9 @@ export const terrestrialColorSpecState = selector<ColorSpec>({
     const style = get(sectionStyleValueState('terrestrial'));
 
     if (style === 'elevation') {
-      return VECTOR_COLOR_MAPS.terrestrialElevation;
+      return terrestrialElevation;
     } else if (style === 'slope') {
-      return VECTOR_COLOR_MAPS.terrestrialSlope;
+      return terrestrialSlope;
     } else {
       // land use will not have a colorSpec, because it's categorical
       return null;
