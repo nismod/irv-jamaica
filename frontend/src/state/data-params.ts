@@ -1,5 +1,5 @@
 import { HAZARD_DOMAINS } from 'config/view-layers/hazards/domains';
-import { totalDamagesConfig } from 'config/domains/total-damages';
+import { adaptationDomainsConfig, totalDamagesConfig } from 'config/view-layers/networks/domains';
 import {
   DataParamGroupConfig,
   Param,
@@ -12,7 +12,6 @@ import forEach from 'lodash/forEach';
 import mapValues from 'lodash/mapValues';
 import keys from 'lodash/keys';
 import { atomFamily, useRecoilTransaction_UNSTABLE } from 'recoil';
-import { adaptationDomainsConfig } from 'config/domains/adaptation';
 
 export type DataParamParam = Readonly<{
   group: string;
