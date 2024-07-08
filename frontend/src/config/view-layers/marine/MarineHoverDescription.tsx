@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
-import { MARINE_HABITATS_LOOKUP } from 'config/marine/domains';
+import { MARINE_HABITATS_LOOKUP } from './domains';
 import { DataItem } from 'details/features/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
-import { habitatColorMap } from 'state/layers/modules/marine';
+import { habitatColorMap } from 'state/layers/view-layers/marine';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 
 export const SolutionHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {

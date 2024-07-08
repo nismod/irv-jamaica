@@ -1,4 +1,7 @@
-import { MarineLocationFilterType, MARINE_LOCATION_FILTERS } from 'config/marine/domains';
+import {
+  MarineLocationFilterType,
+  MARINE_LOCATION_FILTERS,
+} from 'config/view-layers/marine/domains';
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { useRecoilState } from 'recoil';
 import { InputSection } from 'sidebar/ui/InputSection';

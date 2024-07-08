@@ -1,5 +1,5 @@
-import { MARINE_HABITAT_COLORS } from 'config/marine/colors';
-import { marineViewLayer } from 'config/marine/marine-view-layer';
+import { MARINE_HABITAT_COLORS } from 'config/view-layers/marine/colors';
+import { marineViewLayer } from 'config/view-layers/marine/marine-view-layer';
 import { ViewLayer, FieldSpec } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';

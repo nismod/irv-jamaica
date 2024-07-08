@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { RasterLegend } from 'map/legend/RasterLegend';
 import { ViewLayer } from 'lib/data-map/view-layers';
 
-import { HAZARD_COLOR_MAPS, HAZARDS_METADATA } from 'config/hazards/metadata';
+import { HAZARD_COLOR_MAPS, HAZARDS_METADATA } from './metadata';
 
 export const HazardLegend: FC<{ viewLayer: ViewLayer }> = ({ viewLayer }) => {
   const { id } = viewLayer;

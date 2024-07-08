@@ -1,4 +1,4 @@
-import { HAZARDS_METADATA } from 'config/hazards/metadata';
+import { HAZARDS_METADATA } from 'config/view-layers/hazards/metadata';
 import { FieldSpec, FormatConfig } from 'lib/data-map/view-layers';
 import { isNullish, numFormat, numFormatMoney, paren } from 'lib/helpers';
 import startCase from 'lodash/startCase';

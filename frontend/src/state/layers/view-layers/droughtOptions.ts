@@ -1,6 +1,6 @@
-import * as droughtOptionsColorSpecLookup from 'config/droughtOptions/color-maps';
-import { droughtOptionsViewLayer } from 'config/droughtOptions/drought-options-view-layer';
-import { DROUGHT_OPTIONS_VARIABLES_WITH_RCP } from 'config/droughtOptions/metadata';
+import * as droughtOptionsColorSpecLookup from 'config/view-layers/droughtOptions/color-maps';
+import { droughtOptionsViewLayer } from 'config/view-layers/droughtOptions/drought-options-view-layer';
+import { DROUGHT_OPTIONS_VARIABLES_WITH_RCP } from 'config/view-layers/droughtOptions/metadata';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import {

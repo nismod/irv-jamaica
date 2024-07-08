@@ -1,13 +1,13 @@
 import { Typography } from '@mui/material';
-import { terrestrialSlope, terrestrialElevation } from 'config/terrestrial/color-maps';
-import { MARINE_HABITATS_LOOKUP } from 'config/marine/domains';
+import { terrestrialSlope, terrestrialElevation } from 'config/view-layers/terrestrial/color-maps';
+import { MARINE_HABITATS_LOOKUP } from 'config/view-layers/marine/domains';
 import { DataItem } from 'details/features/detail-components';
 import { colorMap } from 'lib/color-map';
 import startCase from 'lodash/startCase';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 import { FC } from 'react';
-import { habitatColorMap } from 'state/layers/modules/marine';
-import { landuseColorMap } from 'state/layers/modules/terrestrial';
+import { habitatColorMap } from 'state/layers/view-layers/marine';
+import { landuseColorMap } from 'state/layers/view-layers/terrestrial';
 
 const slopeColorFunction = colorMap(terrestrialSlope);
 const elevationColorFunction = colorMap(terrestrialElevation);

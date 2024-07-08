@@ -1,4 +1,4 @@
-import { NETWORKS_METADATA } from 'config/networks/metadata';
+import { NETWORKS_METADATA } from 'config/view-layers/networks/metadata';
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { useRecoilState } from 'recoil';
 import { LayerLabel } from 'sidebar/ui/LayerLabel';

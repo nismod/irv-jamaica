@@ -1,4 +1,4 @@
-import { HAZARD_DOMAINS } from 'config/hazards/domains';
+import { HAZARD_DOMAINS } from 'config/view-layers/hazards/domains';
 import { totalDamagesConfig } from 'config/domains/total-damages';
 import {
   DataParamGroupConfig,
