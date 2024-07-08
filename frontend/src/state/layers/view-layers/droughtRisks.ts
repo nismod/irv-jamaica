@@ -1,6 +1,6 @@
-import * as droughtRiskColorSpecLookup from 'config/droughtRisks/color-maps';
-import { droughtRiskViewLayer } from 'config/droughtRisks/drought-risk-view-layer';
-import { DROUGHT_RISK_VARIABLES_WITH_RCP } from 'config/droughtRisks/metadata';
+import * as droughtRiskColorSpecLookup from 'config/view-layers/droughtRisks/color-maps';
+import { droughtRiskViewLayer } from 'config/view-layers/droughtRisks/drought-risk-view-layer';
+import { DROUGHT_RISK_VARIABLES_WITH_RCP } from 'config/view-layers/droughtRisks/metadata';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import {

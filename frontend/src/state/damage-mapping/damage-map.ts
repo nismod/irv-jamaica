@@ -1,7 +1,7 @@
 import forEach from 'lodash/forEach';
 import { atom, selector } from 'recoil';
 
-import { HAZARD_DOMAINS } from 'config/hazards/domains';
+import { HAZARD_DOMAINS } from 'config/view-layers/hazards/domains';
 import { dataParamOptionsState, dataParamState } from 'state/data-params';
 import { hazardSelectionState } from 'state/hazards/hazard-selection';
 import { networksStyleState } from 'state/networks/networks-style';

@@ -3,16 +3,16 @@ import { waitForAll, selector } from 'recoil';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { ConfigTree } from 'lib/nested-config/config-tree';
 
-import { buildingsLayerState } from './modules/buildings';
-import { droughtOptionsLayerState } from './modules/droughtOptions';
-import { droughtRisksLayerState } from './modules/droughtRisks';
-import { featureBoundingBoxLayerState } from './modules/featureBoundingBox';
-import { hazardsLayerState } from './modules/hazards';
-import { labelsLayerState } from './modules/labels';
-import { marineLayerState } from './modules/marine';
-import { networksLayerState } from './modules/networks';
-import { regionsLayerState } from './modules/regions';
-import { terrestrialLayerState } from './modules/terrestrial';
+import { buildingsLayerState } from './view-layers/buildings';
+import { droughtOptionsLayerState } from './view-layers/droughtOptions';
+import { droughtRisksLayerState } from './view-layers/droughtRisks';
+import { featureBoundingBoxLayerState } from './ui/featureBoundingBox';
+import { hazardsLayerState } from './view-layers/hazards';
+import { labelsLayerState } from './view-layers/labels';
+import { marineLayerState } from './view-layers/marine';
+import { networksLayerState } from './view-layers/networks';
+import { regionsLayerState } from './view-layers/regions';
+import { terrestrialLayerState } from './view-layers/terrestrial';
 
 export const viewLayersState = selector<ConfigTree<ViewLayer>>({
   key: 'viewLayersState',

@@ -8,7 +8,7 @@ import { SortedAssetTable } from '../asset-list/SortedAssetTable';
 import { ListFeature } from '../asset-list/use-sorted-features';
 import { ExpandableRow } from 'asset-list/ExpandableRow';
 import { FeatureSidebarContent } from 'details/features/FeatureSidebarContent';
-import { getAssetDataFormats } from 'config/assets/data-formats';
+import { getAssetDataFormats } from 'config/view-layers/assets/data-formats';
 
 export const AssetListPage = () => {
   const [layerSpec] = useState({

@@ -1,10 +1,10 @@
 import { StyleSelectionOption } from 'state/sections';
-import { BUILDING_STYLES } from './buildings/styles';
-import { DROUGHT_STYLES } from './droughtRisks/styles';
-import { NETWORK_STYLES } from './networks/styles';
-import { REGION_STYLES } from './regions/styles';
-import { MARINE_STYLES } from './marine/styles';
-import { TERRESTRIAL_STYLES } from './terrestrial/styles';
+import { BUILDING_STYLES } from './view-layers/buildings/styles';
+import { DROUGHT_STYLES } from './view-layers/droughtRisks/styles';
+import { NETWORK_STYLES } from './view-layers/networks/styles';
+import { REGION_STYLES } from './view-layers/regions/styles';
+import { MARINE_STYLES } from './view-layers/marine/styles';
+import { TERRESTRIAL_STYLES } from './view-layers/terrestrial/styles';
 
 export const SECTIONS_CONFIG: Record<string, { styles?: Record<string, StyleSelectionOption> }> = {
   assets: {

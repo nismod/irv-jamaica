@@ -2,16 +2,16 @@ import { FC } from 'react';
 
 import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
 
-import { NETWORK_LAYERS_HIERARCHY } from 'config/networks/hierarchy';
+import { NETWORK_LAYERS_HIERARCHY } from 'config/view-layers/networks/hierarchy';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   networkTreeCheckboxState,
   networkTreeConfig,
   networkTreeExpandedState,
 } from 'state/networks/network-selection';
-import { NETWORKS_METADATA } from 'config/networks/metadata';
+import { NETWORKS_METADATA } from 'config/view-layers/networks/metadata';
 import { LayerLabel } from 'sidebar/ui/LayerLabel';
-import { showAdaptationsState } from 'state/layers/modules/networks';
+import { showAdaptationsState } from 'state/layers/view-layers/networks';
 import { Box } from '@mui/system';
 import { Alert } from '@mui/material';
 

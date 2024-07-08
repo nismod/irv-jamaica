@@ -1,7 +1,7 @@
 import { Download } from '@mui/icons-material';
 import { FormControl, InputLabel, IconButton, MenuItem, Select, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { HAZARD_DOMAINS } from 'config/hazards/domains';
+import { HAZARD_DOMAINS } from 'config/view-layers/hazards/domains';
 import { ExpectedDamage, ReturnPeriodDamage } from 'lib/api-client';
 import { downloadFile, titleCase, unique } from 'lib/helpers';
 import { useSelect } from 'lib/hooks/use-select';

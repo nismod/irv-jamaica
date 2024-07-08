@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
-import { terrestrialSlope, terrestrialElevation } from 'config/terrestrial/color-maps';
+import { terrestrialSlope, terrestrialElevation } from './color-maps';
 import { DataItem } from 'details/features/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
-import { landuseColorMap } from 'state/layers/modules/terrestrial';
+import { landuseColorMap } from 'state/layers/view-layers/terrestrial';
 import { DataDescription } from 'map/tooltip/DataDescription';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 

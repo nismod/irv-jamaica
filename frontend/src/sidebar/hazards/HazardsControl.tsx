@@ -9,7 +9,7 @@ import { RCPControl } from 'sidebar/ui/params/RCPControl';
 import { useRecoilValue } from 'recoil';
 import { showDamagesState } from 'state/damage-mapping/damage-map';
 import { Alert, Box } from '@mui/material';
-import { HAZARDS_UI_ORDER, HAZARDS_METADATA } from 'config/hazards/metadata';
+import { HAZARDS_UI_ORDER, HAZARDS_METADATA } from 'config/view-layers/hazards/metadata';
 
 function HazardToggleSection({ hazard, disabled }) {
   const otherProps =

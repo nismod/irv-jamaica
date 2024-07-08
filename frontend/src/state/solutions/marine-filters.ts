@@ -1,4 +1,4 @@
-import { MarineLocationFilterType } from 'config/marine/domains';
+import { MarineLocationFilterType } from 'config/view-layers/marine/domains';
 import { atom } from 'recoil';
 
 export type MarineLocationFilters = Record<MarineLocationFilterType, boolean>;

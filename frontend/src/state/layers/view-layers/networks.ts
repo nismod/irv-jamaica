@@ -1,4 +1,4 @@
-import * as networkColorMaps from 'config/networks/color-maps';
+import * as networkColorMaps from 'config/view-layers/networks/color-maps';
 import { AdaptationOptionParams } from 'config/domains/adaptation';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
@@ -19,7 +19,7 @@ import fromPairs from 'lodash/fromPairs';
 import mapValues from 'lodash/mapValues';
 import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { LayerSpec } from 'asset-list/use-sorted-features';
-import { networkViewLayer } from 'config/networks/network-view-layer';
+import { networkViewLayer } from 'config/view-layers/networks/network-view-layer';
 
 export const networksLayerState = selector<ViewLayer[]>({
   key: 'networkLayersState',
