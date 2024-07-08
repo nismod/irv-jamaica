@@ -1,9 +1,6 @@
-import { VECTOR_COLOR_MAPS } from 'config/color-maps';
+import * as droughtRiskColorSpecLookup from 'config/droughtRisks/color-maps';
 import { droughtRiskViewLayer } from 'config/droughtRisks/drought-risk-view-layer';
-import {
-  DroughtRiskVariableType,
-  DROUGHT_RISK_VARIABLES_WITH_RCP,
-} from 'config/droughtRisks/metadata';
+import { DROUGHT_RISK_VARIABLES_WITH_RCP } from 'config/droughtRisks/metadata';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import {
@@ -31,12 +28,6 @@ export const droughtRisksFieldSpecState = selector<FieldSpec>({
     };
   },
 });
-
-const droughtRiskColorSpecLookup: Record<DroughtRiskVariableType, ColorSpec> = {
-  mean_monthly_water_stress_: VECTOR_COLOR_MAPS.droughtRiskWaterStress,
-  epd: VECTOR_COLOR_MAPS.droughtRiskEpd,
-  eael: VECTOR_COLOR_MAPS.droughtRiskEael,
-};
 
 export const droughtRisksColorSpecState = selector<ColorSpec>({
   key: 'droughtRisksColorSpecState',

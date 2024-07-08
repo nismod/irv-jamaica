@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 
-import { VECTOR_COLOR_MAPS } from 'config/color-maps';
+import { population } from './color-maps';
 import { colorMap } from 'lib/color-map';
 import { FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { VectorTarget } from 'lib/data-map/types';
@@ -20,7 +20,7 @@ export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
     fieldGroup: 'properties',
     field: 'population_density_per_km2',
   };
-  const colorSpec = VECTOR_COLOR_MAPS.population;
+  const colorSpec = population;
 
   return {
     id: `population_${regionLevel}`,
