@@ -1,5 +1,5 @@
 import * as networkColorMaps from 'config/view-layers/networks/color-maps';
-import { AdaptationOptionParams } from 'config/domains/adaptation';
+import { AdaptationOptionParams } from 'config/view-layers/networks/domains';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
 import { atom, selector } from 'recoil';
@@ -13,7 +13,7 @@ import {
 import { networksStyleState } from 'state/networks/networks-style';
 import { sectionVisibilityState } from 'state/sections';
 
-import adaptationSectorLayers from 'config/domains/adaptation-sector-layers.json';
+import adaptationSectorLayers from 'config/view-layers/networks/adaptation-sector-layers.json';
 import uniq from 'lodash/uniq';
 import fromPairs from 'lodash/fromPairs';
 import mapValues from 'lodash/mapValues';
