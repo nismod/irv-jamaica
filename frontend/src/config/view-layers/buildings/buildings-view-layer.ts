@@ -1,5 +1,5 @@
 import { ViewLayer } from 'lib/data-map/view-layers';
-import { COLORS } from 'config/colors';
+import { COLORS } from './colors';
 import { assetViewLayer } from 'config/view-layers/assets/asset-view-layer';
 import { border, fillColor } from 'lib/deck/props/style';
 import { assetDataAccessFunction } from 'config/view-layers/assets/data-access';

@@ -1,4 +1,4 @@
-import { COLORS } from 'config/colors';
+import { COLORS } from './colors';
 import { makeConfig } from 'lib/helpers';
 
 /* Line widths:
