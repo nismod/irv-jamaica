@@ -8,7 +8,7 @@ import {
   pointRadius,
 } from 'lib/deck/props/style';
 
-import { COLORS } from 'config/colors';
+import { COLORS } from './colors';
 import { infrastructureViewLayer } from './infrastructure-view-layer';
 import { StyleParams, ViewLayer } from 'lib/data-map/view-layers';
 import { fillColor, strokeColor } from 'lib/deck/props/style';
