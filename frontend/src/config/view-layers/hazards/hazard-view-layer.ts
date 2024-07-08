@@ -8,7 +8,7 @@ import { RasterTarget } from 'lib/data-map/types';
 
 import { HazardLegend } from './HazardLegend';
 import { HazardHoverDescription } from './HazardHoverDescription';
-import { HAZARD_COLOR_MAPS } from './metadata';
+import * as HAZARD_COLOR_MAPS from './color-maps';
 import { HAZARD_SOURCE } from './source';
 
 export function getHazardId<
