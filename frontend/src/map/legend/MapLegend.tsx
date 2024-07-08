@@ -3,13 +3,11 @@ import { FC } from 'react';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { useRecoilValue } from 'recoil';
 import { viewLayersFlatState } from 'state/layers/view-layers-flat';
-import { viewLayersParamsState } from 'state/layers/view-layers-params';
 import { Stack, Box, Paper, Divider } from '@mui/material';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
 
 export const MapLegend: FC = () => {
   const viewLayers = useRecoilValue(viewLayersFlatState);
-  const viewLayersParams = useRecoilValue(viewLayersParamsState);
 
   const rasterViewLayers = [];
 
@@ -20,13 +18,10 @@ export const MapLegend: FC = () => {
       rasterViewLayers.push(viewLayer);
     } else {
       /**
-       * get style params from the viewLayerParams mechanism
-       * (old mechanism for styleParams used by asset layers),
-       * or the style params set directly in the new layer
-       * (new mechanism used for styleParams by NBS, drought, population etc)
+       * get style params from the style params set directly in the new layer
+       * (new mechanism used for styleParams by assets, NBS, drought, population etc)
        */
-      const { colorMap } =
-        viewLayersParams[viewLayer.id].styleParams ?? viewLayer.styleParams ?? {};
+      const { colorMap } = viewLayer.styleParams ?? {};
 
       if (colorMap) {
         /**
@@ -44,18 +39,14 @@ export const MapLegend: FC = () => {
       }
     }
   });
+  const layersToShow = [...rasterViewLayers, ...Object.values(dataColorMaps)];
 
   return rasterViewLayers.length || Object.keys(dataColorMaps).length ? (
     <Paper>
       <MobileTabContentWatcher tabId="legend" />
       <Box p={1} maxWidth={270}>
         <Stack gap={0.3} divider={<Divider />}>
-          {rasterViewLayers.map((viewLayer) => viewLayer.renderLegend())}
-          {Object.values(dataColorMaps).map((viewLayer) => {
-            const { colorMap } =
-              viewLayer.styleParams ?? viewLayersParams[viewLayer.id].styleParams ?? {};
-            return viewLayer.renderLegend({ colorMap });
-          })}
+          {layersToShow.map((viewLayer) => viewLayer.renderLegend())}
         </Stack>
       </Box>
     </Paper>

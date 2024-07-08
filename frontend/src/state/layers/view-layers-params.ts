@@ -1,11 +1,10 @@
 import { atomFamily, selector, selectorFamily, useRecoilTransaction_UNSTABLE } from 'recoil';
 
-import { StyleParams, ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
+import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
 
 import { viewLayersFlatState } from './view-layers-flat';
 import _ from 'lodash';
 import { selectionState } from 'lib/state/interactions/interaction-state';
-import { networkStyleParamsState } from './modules/networks';
 
 export const viewLayerState = atomFamily<ViewLayer, string>({
   key: 'viewLayerState',
@@ -29,7 +28,6 @@ export const singleViewLayerParamsState = selectorFamily<ViewLayerParams, string
 
       const layerParams: {
         selection?: ViewLayerParams['selection'];
-        styleParams?: StyleParams;
       } = {};
 
       if (viewLayer == null) return layerParams;
@@ -38,10 +36,6 @@ export const singleViewLayerParamsState = selectorFamily<ViewLayerParams, string
       const groupSelection = get(selectionState(interactionGroup));
 
       layerParams.selection = groupSelection?.viewLayer.id === viewLayer.id ? groupSelection : null;
-
-      if (viewLayer?.group === 'networks') {
-        layerParams.styleParams = get(networkStyleParamsState);
-      }
 
       return layerParams;
     },
