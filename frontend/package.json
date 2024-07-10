@@ -6,8 +6,8 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@loaders.gl/core": "^3.1.8",
-    "@loaders.gl/wkt": "^3.1.8",
+    "@loaders.gl/core": "^4.2.2",
+    "@loaders.gl/wkt": "^4.2.2",
     "@mui/icons-material": "^5.15.15",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.15",
