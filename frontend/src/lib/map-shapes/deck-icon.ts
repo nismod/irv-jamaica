@@ -11,7 +11,9 @@ const iconWidthAtlas = 21;
 const iconAtlas = (async function () {
   const n = MAP_SHAPE_TYPES.length;
   const canvasWidth = iconWidthAtlas * n;
-  const images = await Promise.all(MAP_SHAPE_TYPES.map((x) => load(shapeUrls[x], ImageLoader, {})));
+  const images = (await Promise.all(
+    MAP_SHAPE_TYPES.map((x) => load(shapeUrls[x], ImageLoader, {})),
+  )) as CanvasImageSource[];
 
   const offscreen = new OffscreenCanvas(canvasWidth, iconHeight);
   const ctx = offscreen.getContext('2d');
