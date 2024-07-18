@@ -7,7 +7,7 @@ import {
   droughtRcpParamState,
   droughtRiskVariableState,
   droughtShowRiskState,
-} from 'state/drought/drought-parameters';
+} from 'state/data-selection/drought/drought-parameters';
 import { sectionVisibilityState } from 'state/sections';
 
 export const droughtRisksFieldSpecState = selector<FieldSpec>({

@@ -4,8 +4,8 @@ import { truthyKeys } from 'lib/helpers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
 
 import { HAZARDS_UI_ORDER } from 'config/view-layers/hazards/metadata';
-import { damageSourceState } from './damage-mapping/damage-map';
-import { getHazardSelectionAggregate } from './hazards/hazard-selection';
+import { damageSourceState } from './data-selection/damage-mapping/damage-map';
+import { getHazardSelectionAggregate } from './data-selection/hazards/hazard-selection';
 
 export const sectionVisibilityState = atomFamily<boolean, string>({
   key: 'sectionVisibilityState',

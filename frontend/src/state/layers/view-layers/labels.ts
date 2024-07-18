@@ -3,7 +3,7 @@ import { selector } from 'recoil';
 import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';
 import { regionLabelsDeckLayer } from 'config/view-layers/regions/region-labels-deck-layer';
 import { sectionVisibilityState } from 'state/sections';
-import { regionLevelState } from 'state/regions';
+import { regionLevelState } from 'state/data-selection/regions';
 import { backgroundState, showLabelsState } from 'map/layers/layers-state';
 
 export const labelsLayerState = selector<ViewLayer[]>({

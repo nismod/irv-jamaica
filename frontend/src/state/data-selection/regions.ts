@@ -1,6 +1,6 @@
 import { RegionLevel } from 'config/view-layers/regions/metadata';
 import { atom, selector } from 'recoil';
-import { sectionStyleValueState } from './sections';
+import { sectionStyleValueState } from '../sections';
 
 export const regionLevelState = atom<RegionLevel>({
   key: 'regionLevelState',

@@ -17,7 +17,7 @@ import {
   droughtRiskVariableState,
   droughtShowOptionsState,
   droughtShowRiskState,
-} from 'state/drought/drought-parameters';
+} from 'state/data-selection/drought/drought-parameters';
 
 export const DroughtsControl: FC = () => {
   const [rcp, setRcp] = useRecoilState(droughtRcpParamState);

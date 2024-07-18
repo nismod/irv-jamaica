@@ -1,7 +1,10 @@
 import { selector } from 'recoil';
 
 import { HAZARDS_MAP_ORDER } from 'config/view-layers/hazards/metadata';
-import { damageSourceState, showDamagesState } from 'state/damage-mapping/damage-map';
+import {
+  damageSourceState,
+  showDamagesState,
+} from 'state/data-selection/damage-mapping/damage-map';
 import { getHazardSelectionAggregate } from './hazard-selection';
 
 export const hazardVisibilityState = selector({

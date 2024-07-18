@@ -6,7 +6,7 @@ import {
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { useRecoilState } from 'recoil';
 import { InputSection } from 'sidebar/ui/InputSection';
-import { terrestrialNonLandUseFiltersState } from 'state/solutions/terrestrial-filters';
+import { terrestrialNonLandUseFiltersState } from 'state/data-selection/solutions/terrestrial-filters';
 import { TerrestrialLandUseTree } from './TerrestrialLandUseTree';
 
 export const TerrestrialControl = () => {

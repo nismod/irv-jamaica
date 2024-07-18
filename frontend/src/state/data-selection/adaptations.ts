@@ -1,5 +1,5 @@
 import { selector } from 'recoil';
-import { sectionStyleValueState, sectionVisibilityState } from './sections';
+import { sectionStyleValueState, sectionVisibilityState } from '../sections';
 
 export const showAdaptationsTableState = selector<boolean>({
   key: 'showAdaptationsTable',

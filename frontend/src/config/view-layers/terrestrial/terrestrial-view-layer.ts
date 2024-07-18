@@ -6,7 +6,7 @@ import { ViewLayer } from 'lib/data-map/view-layers';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { border, fillColor } from 'lib/deck/props/style';
 import { dataColorMap } from 'lib/deck/props/color-map';
-import { TerrestrialFilters } from 'state/solutions/terrestrial-filters';
+import { TerrestrialFilters } from 'state/data-selection/solutions/terrestrial-filters';
 
 import { getSolutionsDataAccessor } from './data-access';
 import { getTerrestrialDataFormats } from './data-formats';

@@ -2,7 +2,7 @@ import { selector } from 'recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { sectionVisibilityState } from 'state/sections';
-import { regionLevelState, showPopulationState } from 'state/regions';
+import { regionLevelState, showPopulationState } from 'state/data-selection/regions';
 import { populationViewLayer } from 'config/view-layers/regions/population-view-layer';
 import { regionBoundariesViewLayer } from 'config/view-layers/regions/boundaries-view-layer';
 
