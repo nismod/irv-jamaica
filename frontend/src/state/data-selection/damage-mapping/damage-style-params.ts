@@ -1,5 +1,5 @@
 import { damageSourceState, damageTypeState } from './damage-map';
-import { dataParamsByGroupState } from '../data-params';
+import { dataParamsByGroupState } from 'state/data-params';
 import { selector } from 'recoil';
 import { FieldSpec, StyleParams } from 'lib/data-map/view-layers';
 import { damages } from 'config/view-layers/networks/color-maps';

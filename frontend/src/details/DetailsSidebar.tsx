@@ -4,7 +4,7 @@ import { FeatureSidebar } from './features/FeatureSidebar';
 import { RegionDetails } from './regions/RegionDetails';
 import { SolutionsSidebar } from './solutions/SolutionsSidebar';
 import { useRecoilValue } from 'recoil';
-import { showAdaptationsTableState } from 'state/adaptations';
+import { showAdaptationsTableState } from 'state/data-selection/adaptations';
 
 export const DetailsSidebar = () => {
   const showAdaptationsTable = useRecoilValue(showAdaptationsTableState);

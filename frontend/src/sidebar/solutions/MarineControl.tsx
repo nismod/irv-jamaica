@@ -5,7 +5,7 @@ import {
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { useRecoilState } from 'recoil';
 import { InputSection } from 'sidebar/ui/InputSection';
-import { marineFiltersState } from 'state/solutions/marine-filters';
+import { marineFiltersState } from 'state/data-selection/solutions/marine-filters';
 
 export const MarineControl = () => {
   const [marineFilters, setMarineFilters] = useRecoilState(marineFiltersState);

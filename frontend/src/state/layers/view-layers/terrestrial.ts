@@ -6,7 +6,7 @@ import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';
 import {
   terrestrialFiltersState,
   TerrestrialLocationFilters,
-} from 'state/solutions/terrestrial-filters';
+} from 'state/data-selection/solutions/terrestrial-filters';
 import { colorMap } from 'lib/color-map';
 import { terrestrialElevation, terrestrialSlope } from 'config/view-layers/terrestrial/color-maps';
 import { featureProperty } from 'lib/deck/props/data-source';
@@ -16,7 +16,7 @@ import {
   TerrestrialLocationFilterType,
 } from 'config/view-layers/terrestrial/domains';
 import { truthyKeys } from 'lib/helpers';
-import { landuseFilterState } from 'state/solutions/landuse-tree';
+import { landuseFilterState } from 'state/data-selection/solutions/landuse-tree';
 
 export function landuseColorMap(x: string) {
   return TERRESTRIAL_LANDUSE_COLORS[x].css;

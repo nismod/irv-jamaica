@@ -8,7 +8,7 @@ import {
   networkTreeCheckboxState,
   networkTreeConfig,
   networkTreeExpandedState,
-} from 'state/networks/network-selection';
+} from 'state/data-selection/networks/network-selection';
 import { NETWORKS_METADATA } from 'config/view-layers/networks/metadata';
 import { LayerLabel } from 'sidebar/ui/LayerLabel';
 import { showAdaptationsState } from 'state/layers/view-layers/networks';

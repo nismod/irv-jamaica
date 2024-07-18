@@ -3,14 +3,14 @@ import { AdaptationOptionParams } from 'config/view-layers/networks/domains';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
 import { atom, selector } from 'recoil';
-import { damageMapStyleParamsState } from 'state/damage-mapping/damage-style-params';
+import { damageMapStyleParamsState } from 'state/data-selection/damage-mapping/damage-style-params';
 import { dataParamsByGroupState } from 'state/data-params';
 import {
   networkSelectionState,
   networkTreeCheckboxState,
   networkTreeConfig,
-} from 'state/networks/network-selection';
-import { networksStyleState } from 'state/networks/networks-style';
+} from 'state/data-selection/networks/network-selection';
+import { networksStyleState } from 'state/data-selection/networks/networks-style';
 import { sectionVisibilityState } from 'state/sections';
 
 import adaptationSectorLayers from 'config/view-layers/networks/adaptation-sector-layers.json';

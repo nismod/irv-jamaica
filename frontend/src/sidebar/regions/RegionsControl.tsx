@@ -1,7 +1,7 @@
 import { ToggleButtonGroup, ToggleButton } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { RegionLevel } from 'config/view-layers/regions/metadata';
-import { regionLevelState } from 'state/regions';
+import { regionLevelState } from 'state/data-selection/regions';
 import { useCallback } from 'react';
 
 export const RegionLevelSelection = () => {
