@@ -1,6 +1,6 @@
 import { TabContext, useTabContext } from '@mui/lab';
 import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, Suspense, useRef, useState } from 'react';
 import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet';
 import { useRecoilValue } from 'recoil';
 
@@ -125,7 +125,9 @@ export const MapPageMobileLayout = () => {
       >
         <TabContext value={bottomTabId}>
           {mobileTabsConfig.map((tabConfig) => (
-            <MobileTabPanel key={tabConfig.id} tabConfig={tabConfig} />
+            <Suspense key={tabConfig.id} fallback={null}>
+              <MobileTabPanel tabConfig={tabConfig} />
+            </Suspense>
           ))}
         </TabContext>
       </BottomSheet>

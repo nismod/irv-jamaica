@@ -1,34 +1,38 @@
-import { waitForAll, selector } from 'recoil';
+import { RecoilValueReadOnly, waitForAll, selector, selectorFamily } from 'recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { ConfigTree } from 'lib/nested-config/config-tree';
 
-import { buildingsLayerState } from './view-layers/buildings';
-import { droughtOptionsLayerState } from './view-layers/droughtOptions';
-import { droughtRisksLayerState } from './view-layers/droughtRisks';
+import { VIEW_LAYERS } from 'config/view-layers';
+
 import { featureBoundingBoxLayerState } from './ui/featureBoundingBox';
-import { hazardsLayerState } from './view-layers/hazards';
-import { labelsLayerState } from './view-layers/labels';
-import { marineLayerState } from './view-layers/marine';
-import { networksLayerState } from './view-layers/networks';
-import { regionsLayerState } from './view-layers/regions';
-import { terrestrialLayerState } from './view-layers/terrestrial';
+import { labelsLayerState } from './ui/labels';
+
+async function importLayerState(type: string): Promise<RecoilValueReadOnly<ViewLayer>> {
+  const importName = `${type}LayerState`;
+  const module = await import(`./view-layers/${type}.ts`);
+  return module[importName];
+}
+
+const viewLayerState = selectorFamily<ViewLayer, string>({
+  key: 'viewLayerState',
+  get:
+    (type) =>
+    async ({ get }) => {
+      const layer = await importLayerState(type);
+      return get(layer);
+    },
+});
 
 export const viewLayersState = selector<ConfigTree<ViewLayer>>({
   key: 'viewLayersState',
-  get: ({ get }) =>
-    get(
+  get: ({ get }) => {
+    return get(
       waitForAll([
-        regionsLayerState,
-        droughtRisksLayerState,
-        terrestrialLayerState,
-        marineLayerState,
-        hazardsLayerState,
-        buildingsLayerState,
-        networksLayerState,
-        droughtOptionsLayerState,
+        ...VIEW_LAYERS.map(viewLayerState),
         featureBoundingBoxLayerState,
         labelsLayerState,
       ]),
-    ),
+    );
+  },
 });

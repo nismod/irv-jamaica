@@ -7,6 +7,4 @@ export const VIEW_LAYERS = [
   'buildings',
   'networks',
   'droughtOptions',
-  'featureBoundingBox',
-  'labels',
 ] as string[];
