@@ -1,5 +1,5 @@
 import { HAZARD_DOMAINS } from 'config/view-layers/hazards/domains';
-import { adaptationDomainsConfig, totalDamagesConfig } from 'config/view-layers/networks/domains';
+import { NETWORK_DOMAINS } from 'config/view-layers/networks/domains';
 import {
   DataParamGroupConfig,
   Param,
@@ -20,8 +20,7 @@ export type DataParamParam = Readonly<{
 
 export const dataParamConfig: Record<string, DataParamGroupConfig> = {
   ...HAZARD_DOMAINS,
-  all: totalDamagesConfig,
-  adaptation: adaptationDomainsConfig,
+  ...NETWORK_DOMAINS,
 };
 
 export const dataParamNamesByGroup = mapValues(dataParamConfig, (groupConfig) =>
