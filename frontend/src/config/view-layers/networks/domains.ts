@@ -59,3 +59,11 @@ export const adaptationDomainsConfig: DataParamGroupConfig<AdaptationOptionParam
     adaptation_protection_level: ['sector', 'subsector', 'asset_type', 'hazard', 'adaptation_name'],
   }),
 };
+
+export const NETWORK_DOMAINS: Record<
+  string,
+  DataParamGroupConfig<AdaptationOptionParams | TotalDamagesParams>
+> = {
+  all: totalDamagesConfig,
+  adaptation: adaptationDomainsConfig,
+};
