@@ -5,7 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { backgroundState, showLabelsState } from 'map/layers/layers-state';
 import { useBasemapStyle } from 'map/use-basemap-style';
-import { mapViewStateState } from 'state/map-view/map-view-state';
+import { mapViewStateState, useSyncMapUrl } from 'state/map-view/map-view-state';
 
 export interface BaseMapProps {
   children?: ReactNode;
@@ -20,6 +20,7 @@ export const BaseMap: FC<BaseMapProps> = ({ children }) => {
   const showLabels = useRecoilValue(showLabelsState);
   const [viewState, setViewState] = useRecoilState(mapViewStateState);
   const { mapStyle } = useBasemapStyle(background, showLabels);
+  useSyncMapUrl();
 
   function handleViewStateChange({ viewState }: { viewState: MapViewState }) {
     setViewState(viewState);

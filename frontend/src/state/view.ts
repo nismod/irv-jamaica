@@ -1,7 +1,9 @@
 import difference from 'lodash/difference';
 import forEach from 'lodash/forEach';
 import keys from 'lodash/keys';
+import { string } from '@recoiljs/refine';
 import { atom } from 'recoil';
+import { syncEffect } from 'recoil-sync';
 
 import { StateEffect } from 'lib/recoil/state-effects/types';
 
@@ -16,7 +18,13 @@ import {
 
 export const viewState = atom({
   key: 'viewState',
-  default: 'exposure',
+  effects: [
+    syncEffect({
+      storeKey: 'map-view-route',
+      itemKey: 'view',
+      refine: string(),
+    }),
+  ],
 });
 
 export const viewStateEffect: StateEffect<string> = ({ set }, view, previousView) => {
