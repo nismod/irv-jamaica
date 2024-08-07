@@ -18,7 +18,9 @@ import { NavLink as RouterNavLink, LinkProps as RouterLinkProps } from 'react-ro
 
 import { useIsMobile } from '../src/use-is-mobile';
 import { withProps } from 'lib/react/with-props';
+import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from 'state/map-view/map-url';
 import { globalStyleVariables } from 'theme';
+import { useRecoilValue } from 'recoil';
 
 const Link = styled(MuiLink)({
   color: 'inherit',
@@ -46,16 +48,31 @@ const ToolbarLink = styled(Link)({
   },
 });
 
-const ToolbarLinkWithRef = (props, ref) => (
-  <ToolbarLink component={RouterNavLink} ref={ref} {...props} />
-);
+function useMapQueryParams() {
+  const lat = useRecoilValue(mapLatUrlState).toFixed(5);
+  const lon = useRecoilValue(mapLonUrlState).toFixed(5);
+  const zoom = useRecoilValue(mapZoomUrlState).toFixed(2);
+  return new URLSearchParams({ lat, lon, zoom });
+}
+
+const mapPages = ['/exposure', '/risk', '/adaptation', '/nature-based-solutions'];
+
+const ToolbarLinkWithRef = (props, ref) => {
+  const search = useMapQueryParams();
+  const { to, ...rest } = props;
+  const pageLink = mapPages.includes(to) ? `${to}?${search}` : to;
+  return <ToolbarLink component={RouterNavLink} ref={ref} to={pageLink} {...rest} />;
+};
 const ToolbarNavLink = forwardRef<HTMLAnchorElement, LinkProps & RouterLinkProps>(
   ToolbarLinkWithRef,
 );
 
-const DrawerLinkWithRef = (props, ref) => (
-  <DrawerLink component={RouterNavLink} ref={ref} {...props} />
-);
+const DrawerLinkWithRef = (props, ref) => {
+  const search = useMapQueryParams();
+  const { to, ...rest } = props;
+  const pageLink = mapPages.includes(to) ? `${to}?${search}` : to;
+  return <DrawerLink component={RouterNavLink} ref={ref} to={pageLink} {...rest} />;
+};
 const DrawerNavLink = forwardRef<HTMLAnchorElement, LinkProps & RouterLinkProps>(DrawerLinkWithRef);
 
 const GrowingDivider = styled(Divider)({
