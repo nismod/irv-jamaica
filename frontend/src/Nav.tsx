@@ -58,9 +58,9 @@ function useMapQueryParams() {
 const mapPages = ['/exposure', '/risk', '/adaptation', '/nature-based-solutions'];
 
 const ToolbarLinkWithRef = (props, ref) => {
-  const search = useMapQueryParams();
+  const mapParams = useMapQueryParams();
   const { to, ...rest } = props;
-  const pageLink = mapPages.includes(to) ? `${to}?${search}` : to;
+  const pageLink = mapPages.includes(to) ? `${to}?${mapParams}` : to;
   return <ToolbarLink component={RouterNavLink} ref={ref} to={pageLink} {...rest} />;
 };
 const ToolbarNavLink = forwardRef<HTMLAnchorElement, LinkProps & RouterLinkProps>(
@@ -68,9 +68,9 @@ const ToolbarNavLink = forwardRef<HTMLAnchorElement, LinkProps & RouterLinkProps
 );
 
 const DrawerLinkWithRef = (props, ref) => {
-  const search = useMapQueryParams();
+  const mapParams = useMapQueryParams();
   const { to, ...rest } = props;
-  const pageLink = mapPages.includes(to) ? `${to}?${search}` : to;
+  const pageLink = mapPages.includes(to) ? `${to}?${mapParams}` : to;
   return <DrawerLink component={RouterNavLink} ref={ref} to={pageLink} {...rest} />;
 };
 const DrawerNavLink = forwardRef<HTMLAnchorElement, LinkProps & RouterLinkProps>(DrawerLinkWithRef);

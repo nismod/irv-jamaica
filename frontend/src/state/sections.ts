@@ -1,4 +1,6 @@
+import { bool } from '@recoiljs/refine';
 import { atomFamily } from 'recoil';
+import { urlSyncEffect } from 'recoil-sync';
 
 import { truthyKeys } from 'lib/helpers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
@@ -10,6 +12,13 @@ import { getHazardSelectionAggregate } from './data-selection/hazards/hazard-sel
 export const sectionVisibilityState = atomFamily<boolean, string>({
   key: 'sectionVisibilityState',
   default: false,
+  effects: (id) => [
+    urlSyncEffect({
+      storeKey: 'url-json',
+      itemKey: id,
+      refine: bool(),
+    }),
+  ],
 });
 
 export const sidebarSectionExpandedState = atomFamily({
