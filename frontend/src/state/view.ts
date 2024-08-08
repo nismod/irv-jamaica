@@ -27,6 +27,11 @@ export const viewState = atom({
   ],
 });
 
+function sectionVisibility(section, sectionConfig) {
+  const searchParams = new URLSearchParams(window.location.search);
+  return searchParams.has(section) ? searchParams.get(section) === 'true' : sectionConfig.visible;
+}
+
 export const viewStateEffect: StateEffect<string> = ({ set }, view, previousView) => {
   const viewSectionsConfig = VIEW_SECTIONS[view];
 
@@ -38,7 +43,7 @@ export const viewStateEffect: StateEffect<string> = ({ set }, view, previousView
   });
 
   forEach(viewSectionsConfig, (sectionConfig, section) => {
-    set(sectionVisibilityState(section), sectionConfig.visible);
+    set(sectionVisibilityState(section), sectionVisibility(section, sectionConfig));
     set(sidebarSectionExpandedState(section), sectionConfig.expanded);
     const styleOptions = sectionConfig.styles?.map(
       (style) => SECTIONS_CONFIG[section].styles[style],
