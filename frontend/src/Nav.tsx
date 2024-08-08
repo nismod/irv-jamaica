@@ -16,6 +16,7 @@ import { Box } from '@mui/system';
 import { FC, forwardRef, useCallback, useState } from 'react';
 import { NavLink as RouterNavLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
+import { VIEW_SECTIONS } from 'config/views';
 import { useIsMobile } from '../src/use-is-mobile';
 import { withProps } from 'lib/react/with-props';
 import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from 'state/map-view/map-url';
@@ -55,7 +56,7 @@ function useMapQueryParams() {
   return new URLSearchParams({ lat, lon, zoom });
 }
 
-const mapPages = ['/exposure', '/risk', '/adaptation', '/nature-based-solutions'];
+const mapPages = Object.keys(VIEW_SECTIONS).map((view) => `/${view}`);
 
 const ToolbarLinkWithRef = (props, ref) => {
   const mapParams = useMapQueryParams();
