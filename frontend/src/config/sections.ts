@@ -5,6 +5,7 @@ import { NETWORK_STYLES } from './view-layers/networks/styles';
 import { REGION_STYLES } from './view-layers/regions/styles';
 import { MARINE_STYLES } from './view-layers/marine/styles';
 import { TERRESTRIAL_STYLES } from './view-layers/terrestrial/styles';
+import { RISK_STYLES } from './view-layers/risks/styles';
 
 export const SECTIONS_CONFIG: Record<string, { styles?: Record<string, StyleSelectionOption> }> = {
   assets: {
@@ -14,6 +15,9 @@ export const SECTIONS_CONFIG: Record<string, { styles?: Record<string, StyleSele
     styles: DROUGHT_STYLES,
   },
   hazards: {},
+  risks: {
+    styles: RISK_STYLES,
+  },
   buildings: {
     styles: BUILDING_STYLES,
   },

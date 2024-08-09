@@ -11,6 +11,7 @@ import { NetworksSection } from './networks/NetworksSection';
 import { RegionsSection } from './regions/RegionsSection';
 import { MarineSection } from './solutions/MarineSection';
 import { TerrestrialSection } from './solutions/TerrestrialSection';
+import { RisksSection } from './risks/RisksSection';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
 
@@ -29,6 +30,7 @@ const SidebarContent: FC = () => {
       return (
         <>
           <NetworksSection />
+          <RisksSection />
           <HazardsSection />
           <BuildingsSection />
           <RegionsSection />
