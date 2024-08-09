@@ -1,5 +1,5 @@
-import * as networkColorMaps from 'config/view-layers/networks/color-maps';
-import { AdaptationOptionParams } from 'config/view-layers/networks/domains';
+import * as networkColorMaps from 'config/data-layers/networks/color-maps';
+import { AdaptationOptionParams } from 'config/data-layers/networks/domains';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
 import { atom, selector } from 'recoil';
@@ -13,13 +13,13 @@ import {
 import { networksStyleState } from 'state/data-selection/networks/networks-style';
 import { sectionVisibilityState } from 'state/sections';
 
-import adaptationSectorLayers from 'config/view-layers/networks/adaptation-sector-layers.json';
+import adaptationSectorLayers from 'config/data-layers/networks/adaptation-sector-layers.json';
 import uniq from 'lodash/uniq';
 import fromPairs from 'lodash/fromPairs';
 import mapValues from 'lodash/mapValues';
 import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { LayerSpec } from 'asset-list/use-sorted-features';
-import { networkViewLayer } from 'config/view-layers/networks/network-view-layer';
+import { networkViewLayer } from 'config/data-layers/networks/network-view-layer';
 
 export const networksLayerState = selector<ViewLayer[]>({
   key: 'networkLayersState',

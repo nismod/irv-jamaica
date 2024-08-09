@@ -2,7 +2,7 @@ import { FormControl, FormLabel, Slider } from '@mui/material';
 import {
   TerrestrialLocationFilterType,
   TERRESTRIAL_LOCATION_FILTERS,
-} from 'config/view-layers/terrestrial/domains';
+} from 'config/data-layers/terrestrial/domains';
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { useRecoilState } from 'recoil';
 import { InputSection } from 'sidebar/ui/InputSection';

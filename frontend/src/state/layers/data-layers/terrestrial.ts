@@ -1,5 +1,5 @@
-import { TERRESTRIAL_LANDUSE_COLORS } from 'config/view-layers/terrestrial/colors';
-import { terrestrialViewLayer } from 'config/view-layers/terrestrial/terrestrial-view-layer';
+import { TERRESTRIAL_LANDUSE_COLORS } from 'config/data-layers/terrestrial/colors';
+import { terrestrialViewLayer } from 'config/data-layers/terrestrial/terrestrial-view-layer';
 import { ViewLayer, FieldSpec, ColorSpec } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';
@@ -8,13 +8,13 @@ import {
   TerrestrialLocationFilters,
 } from 'state/data-selection/solutions/terrestrial-filters';
 import { colorMap } from 'lib/color-map';
-import { terrestrialElevation, terrestrialSlope } from 'config/view-layers/terrestrial/color-maps';
+import { terrestrialElevation, terrestrialSlope } from 'config/data-layers/terrestrial/color-maps';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { Accessor } from 'lib/deck/props/getters';
 import {
   LandUseOption,
   TerrestrialLocationFilterType,
-} from 'config/view-layers/terrestrial/domains';
+} from 'config/data-layers/terrestrial/domains';
 import { truthyKeys } from 'lib/helpers';
 import { landuseFilterState } from 'state/data-selection/solutions/landuse-tree';
 

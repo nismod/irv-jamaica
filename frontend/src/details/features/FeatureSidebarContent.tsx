@@ -20,7 +20,7 @@ import {
   WaterPipelineDetails,
   WaterSupplyNodeDetails,
 } from './detail-components';
-import { NETWORKS_METADATA } from 'config/view-layers/networks/metadata';
+import { NETWORKS_METADATA } from 'config/data-layers/networks/metadata';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 import { ApiClient } from 'lib/api-client';
 import { DamagesSection } from './damages/DamagesSection';

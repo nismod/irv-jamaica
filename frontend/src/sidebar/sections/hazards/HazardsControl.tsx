@@ -1,6 +1,6 @@
 import { ToggleSection, ToggleSectionGroup } from 'lib/controls/accordion-toggle/ToggleSection';
 
-import { hazardSelectionState } from '../../state/data-selection/hazards/hazard-selection';
+import { hazardSelectionState } from 'state/data-selection/hazards/hazard-selection';
 import { InputRow } from 'sidebar/ui/InputRow';
 import { InputSection } from 'sidebar/ui/InputSection';
 import { ReturnPeriodControl } from 'sidebar/ui/params/ReturnPeriodControl';
@@ -9,7 +9,7 @@ import { RCPControl } from 'sidebar/ui/params/RCPControl';
 import { useRecoilValue } from 'recoil';
 import { showDamagesState } from 'state/data-selection/damage-mapping/damage-map';
 import { Alert, Box } from '@mui/material';
-import { HAZARDS_UI_ORDER, HAZARDS_METADATA } from 'config/view-layers/hazards/metadata';
+import { HAZARDS_UI_ORDER, HAZARDS_METADATA } from 'config/data-layers/hazards/metadata';
 
 function HazardToggleSection({ hazard, disabled }) {
   const otherProps =

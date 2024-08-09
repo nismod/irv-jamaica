@@ -1,5 +1,5 @@
-import { LANDUSE_HIERARCHY } from 'config/view-layers/terrestrial/landuse-hierarchy';
-import { LandUseOption } from 'config/view-layers/terrestrial/domains';
+import { LANDUSE_HIERARCHY } from 'config/data-layers/terrestrial/landuse-hierarchy';
+import { LandUseOption } from 'config/data-layers/terrestrial/domains';
 import { buildTreeConfig, CheckboxTreeState } from 'lib/controls/checkbox-tree/CheckboxTree';
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
