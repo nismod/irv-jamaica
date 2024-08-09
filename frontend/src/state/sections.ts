@@ -5,7 +5,7 @@ import { urlSyncEffect } from 'recoil-sync';
 import { truthyKeys } from 'lib/helpers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
 
-import { HAZARDS_UI_ORDER } from 'config/view-layers/hazards/metadata';
+import { HAZARDS_UI_ORDER } from 'config/data-layers/hazards/metadata';
 import { damageSourceState } from './data-selection/damage-mapping/damage-map';
 import { getHazardSelectionAggregate } from './data-selection/hazards/hazard-selection';
 

@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
-import { terrestrialSlope, terrestrialElevation } from 'config/view-layers/terrestrial/color-maps';
-import { MARINE_HABITATS_LOOKUP } from 'config/view-layers/marine/domains';
+import { terrestrialSlope, terrestrialElevation } from 'config/data-layers/terrestrial/color-maps';
+import { MARINE_HABITATS_LOOKUP } from 'config/data-layers/marine/domains';
 import { DataItem } from 'details/features/detail-components';
 import { colorMap } from 'lib/color-map';
 import startCase from 'lodash/startCase';

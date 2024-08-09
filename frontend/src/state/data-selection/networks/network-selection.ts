@@ -1,4 +1,4 @@
-import { NETWORK_LAYERS_HIERARCHY } from 'config/view-layers/networks/hierarchy';
+import { NETWORK_LAYERS_HIERARCHY } from 'config/data-layers/networks/hierarchy';
 import { buildTreeConfig, CheckboxTreeState } from 'lib/controls/checkbox-tree/CheckboxTree';
 import mapValues from 'lodash/mapValues';
 import { atom, selector } from 'recoil';

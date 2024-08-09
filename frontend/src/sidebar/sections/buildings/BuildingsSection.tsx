@@ -1,7 +1,7 @@
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { StyleSelection } from 'sidebar/StyleSelection';
 import { SidebarPanelSection } from 'sidebar/ui/SidebarPanelSection';
-import { SidebarPanel } from '../SidebarPanel';
+import { SidebarPanel } from 'sidebar/SidebarPanel';
 import { BuildingsControl } from './BuildingsControl';
 
 export const BuildingsSection = () => {

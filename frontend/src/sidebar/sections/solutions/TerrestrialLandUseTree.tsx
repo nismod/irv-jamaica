@@ -1,5 +1,5 @@
-import { TERRESTRIAL_LANDUSE_COLORS } from 'config/view-layers/terrestrial/colors';
-import { LANDUSE_HIERARCHY } from 'config/view-layers/terrestrial/landuse-hierarchy';
+import { TERRESTRIAL_LANDUSE_COLORS } from 'config/data-layers/terrestrial/colors';
+import { LANDUSE_HIERARCHY } from 'config/data-layers/terrestrial/landuse-hierarchy';
 import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { useRecoilState } from 'recoil';
 import { LayerLabel } from 'sidebar/ui/LayerLabel';
