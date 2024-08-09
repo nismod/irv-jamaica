@@ -10,7 +10,7 @@ import { labelsLayerState } from './ui/labels';
 
 async function importLayerState(type: string): Promise<RecoilValueReadOnly<ViewLayer>> {
   const importName = `${type}LayerState`;
-  const module = await import(`./view-layers/${type}.ts`);
+  const module = await import(`./data-layers/${type}.ts`);
   return module[importName];
 }
 

@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import {
   droughtOptionsColorSpecState,
   droughtOptionsFieldSpecState,
-} from 'state/layers/view-layers/droughtOptions';
+} from 'state/layers/data-layers/droughtOptions';
 import { DataDescription } from 'map/tooltip/DataDescription';
 
 export const DroughtOptionsHoverDescription: FC<VectorHoverDescription> = ({

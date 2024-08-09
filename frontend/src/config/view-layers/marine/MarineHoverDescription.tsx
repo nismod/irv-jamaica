@@ -4,7 +4,7 @@ import { DataItem } from 'details/features/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
-import { habitatColorMap } from 'state/layers/view-layers/marine';
+import { habitatColorMap } from 'state/layers/data-layers/marine';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 
 export const SolutionHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
