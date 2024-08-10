@@ -10,7 +10,7 @@ import { dataColorMap } from 'lib/deck/props/color-map';
 import { getSolutionsDataAccessor } from './data-access';
 import { getTerrestrialDataFormats } from './data-formats';
 import { LandUseOption, TerrestrialLocationFilterType } from './domains';
-import { TerrestrialFilters } from './terrestrial-filters';
+import { TerrestrialFilters } from './state/terrestrial-filters';
 import { TerrestrialHoverDescription } from './TerrestrialHoverDescription';
 import { VectorLegend } from 'map/legend/VectorLegend';
 
