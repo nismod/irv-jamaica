@@ -17,13 +17,13 @@ feature details.
 ### Add a new view layer
 
 1. Add a new layer name to `config/viewLayers.ts` (eg. `'hazards'`.) This name will be used to name folders and files in subsequent steps.
-2. Create a folder for the new dataset inside `config/view-layers/`, named after the new layer. For example,
-   `config/view-layers/hazards/`.
+2. Create a folder for the new dataset inside `data-layers/`, named after the new layer. For example,
+   `data-layers/hazards/`.
 3. Define a helper function that will create a ViewLayer object, given some
-   arguments (or no arguments.) eg. `config/hazards/hazards-view-layer.ts`.
-4. Define the corresponding layer selection state in `state/data-selection/` (eg. `state/data-selection/hazards/`) and `state/data-params.ts`.
-5. Add a new sidebar section folder (eg. `sidebar/hazards/`) with React components that control the layer selection state. Import the new section into `sidebar/SidebarContent.tsx`, and add it to the views that use it. Define a default view state (eg. visible/hidden, expanded/collapsed) in `config/views.ts`.
-6. Define the view layer state in `state/layers/data-layers/` (eg. `state/layers/data-layers/hazards.ts`.) This file must export a named `LayerState` export derived from the layer name eg. `export const hazardsLayerState`.
+   arguments (or no arguments.) eg. `data-layers/hazards/hazards-view-layer.ts`.
+4. Define any corresponding layer selection state in the same folder (eg. `data-layers/hazards/data-selection.ts`) and `state/data-params.ts`.
+5. Define the view layer state in a file named `state.ts` eg. `data-layers/hazards/state.ts`. This file must export a named `LayerState` export derived from the layer name eg. `export const hazardsLayerState`.
+6. Add a new sidebar section folder (eg. `sidebar/hazards/`) with React components that control the layer selection state. Import the new section into `sidebar/SidebarContent.tsx`, and add it to the views that use it. Define a default view state (eg. visible/hidden, expanded/collapsed) in `config/views.ts`.
 
 NOTE: the framework does not define the structure for the code surrounding a
 view layer definition. The main consideration is to avoid circular dependencies
@@ -60,10 +60,9 @@ their internal organisation should be possible to rework without significantly
 modifying the other parts of the app:
 
 - default map view parameters in `config/map-view.ts`.
-- config/definitions of view layers (in `config/view-layers`)
+- view layer config and Recoil state in folders under `data-layers/`.
 - data/layer selection sidebar UI and its Recoil state (in `sidebar/` and
-  `state/data-selection/`, `state/data-params.ts`)
-- view layers Recoil state (`state/layers/`)
+  `state/data-params.ts`.)
 - app components for the map view:
   - `pages/map/MapPage.tsx`
   - `map/MapView.tsx`
@@ -81,7 +80,7 @@ with the following crucial dependencies / interactions:
   etc (these are all components that depend on the view state of the map.) `BaseMap` and `DataMap` each use Recoil state to render the base map and data layers respectively.
 
 NOTE that with the current setup, the `ViewLayer` objects are created inside
-corresponding Recoil state in `state/layers/data-layers/`, and are therefore
+corresponding Recoil state in `data-layers/[layer-name]/state.ts`, and are therefore
 recreated only when the dependencies of the state change. So the view layers are
 not recreated on every frame, which helps with performance especially if the
 view layer helper function contains some more time-consuming logic. The `fn`
