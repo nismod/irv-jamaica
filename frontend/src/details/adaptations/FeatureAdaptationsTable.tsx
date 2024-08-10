@@ -4,7 +4,7 @@ import { Box } from '@mui/system';
 import { ExpandableRow } from 'asset-list/ExpandableRow';
 import { SortedAssetTable } from 'asset-list/SortedAssetTable';
 import { ListFeature } from 'asset-list/use-sorted-features';
-import { getAssetDataFormats } from 'config/data-layers/assets/data-formats';
+import { getAssetDataFormats } from 'data-layers/assets/data-formats';
 import { FeatureSidebarContent } from 'details/features/FeatureSidebarContent';
 import { BoundingBox, extendBbox } from 'lib/bounding-box';
 import { colorMap } from 'lib/color-map';
@@ -16,7 +16,7 @@ import {
   adaptationColorSpecState,
   adaptationFieldSpecState,
   adaptationLayerSpecState,
-} from 'state/layers/data-layers/networks';
+} from 'data-layers/networks/state';
 
 import './asset-table.css';
 

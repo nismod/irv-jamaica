@@ -1,4 +1,4 @@
-import { RegionLevel } from 'config/data-layers/regions/metadata';
+import { RegionLevel } from 'data-layers/regions/metadata';
 import { atom, selector } from 'recoil';
 import { sectionStyleValueState } from '../sections';
 

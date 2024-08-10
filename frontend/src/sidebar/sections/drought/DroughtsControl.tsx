@@ -2,11 +2,11 @@ import { Checkbox, Divider, FormControlLabel } from '@mui/material';
 import {
   DroughtOptionsVariableType,
   DROUGHT_OPTIONS_VARIABLE_LABELS,
-} from 'config/data-layers/droughtOptions/metadata';
+} from 'data-layers/droughtOptions/metadata';
 import {
   DroughtRiskVariableType,
   DROUGHT_RISK_VARIABLE_LABELS,
-} from 'config/data-layers/droughtRisks/metadata';
+} from 'data-layers/droughtRisks/metadata';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { FC } from 'react';
 import { useRecoilState } from 'recoil';

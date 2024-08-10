@@ -20,7 +20,7 @@ import {
   damageSourceStateEffect,
   damageTypeState,
 } from 'state/data-selection/damage-mapping/damage-map';
-import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'config/data-layers/hazards/metadata';
+import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'data-layers/hazards/metadata';
 import { LayerStylePanel } from 'sidebar/ui/LayerStylePanel';
 
 export const DamageSourceControl = () => {

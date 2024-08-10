@@ -7,9 +7,6 @@ Date: 9 August 2024
 - `src/`
   - `config/` - contains the configuration and code related to the various
     datasets and visualisation layers, as well as other pieces of configuration.
-    - `data-layers/` - config for individual data layers. There should be a folder here for each entry in `config/view-layers.ts`
-      - `assets/` - common functionality for "vector assets" - vector feature
-        layers that can have damages data visualised on them.
     - `basemaps.ts` - configuration of basemap styles.
     - `interaction-groups.ts` - configuration of all the interaction groups
       available in the app.
@@ -20,6 +17,8 @@ Date: 9 August 2024
       vector/raster backends.
     - `view-layers.ts` - a list of the view layer IDs used by the map.
     - `views.ts` - default sidebar state (visible/hidden, expanded/collapsed etc.) for the individual map views.
+  - `data-layers/` - config and state for individual data layers. There should be a folder here for each entry in `config/view-layers.ts`
+    - `assets/` - common functionality for "vector assets" - vector feature layers that can have damages data visualised on them.
   - `details/` - UI and logic for displaying details when a vector feature is clicked in the map.
   - `lib/` - self-contained library code which should be unrelated to the specific
     datasets/content of the app. **NOTE** there is an ESLint rule enforcing that
@@ -42,7 +41,6 @@ Date: 9 August 2024
     - `data-selection/` - state used by layer selection sidebar.
     - `layers/` - state which creates the view layer instances based on app
       state and data selection state.
-      - `data-layers/` - state of the layers pertaining to individual datasets. There should be one file here for each identifier in `config/view-layers.ts`.
       - `ui/` - special layers for UI (e.g. feature bounding box layer.)
       - `interaction-groups.ts` - state containing all active interaction groups.
       - `view-layers.ts` - state combining all active view layers.

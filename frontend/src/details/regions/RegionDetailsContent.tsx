@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { REGIONS_METADATA } from 'config/data-layers/regions/metadata';
+import { REGIONS_METADATA } from 'data-layers/regions/metadata';
 import { DataItem } from 'details/features/detail-components';
 import { InteractionTarget } from 'lib/data-map/types';
 import { numFormat } from 'lib/helpers';

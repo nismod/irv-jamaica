@@ -4,7 +4,7 @@ import { DataItem } from 'details/features/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
-import { landuseColorMap } from 'state/layers/data-layers/terrestrial';
+import { landuseColorMap } from 'data-layers/terrestrial/state';
 import { DataDescription } from 'map/tooltip/DataDescription';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 

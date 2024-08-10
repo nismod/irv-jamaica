@@ -15,7 +15,7 @@ import {
   adaptationCostBenefitRatioEaelDaysState,
   adaptationDataParamsStateEffect,
   adaptationFieldState,
-} from 'state/layers/data-layers/networks';
+} from 'data-layers/networks/state';
 import { Box } from '@mui/system';
 
 function hazardLabel(val) {
