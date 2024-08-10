@@ -38,7 +38,7 @@ Date: 9 August 2024
     - `url-state.tsx` - Recoil state synchronising the state of the sidebar
       sections to the URL.
   - `state/` - Recoil state for the app.
-    - `data-selection/` - state used by layer selection sidebar.
+    - `damage-mapping/` - damage mapping from hazards to network assets.
     - `layers/` - state which creates the view layer instances based on app
       state and data selection state.
       - `ui/` - special layers for UI (e.g. feature bounding box layer.)

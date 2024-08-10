@@ -1,11 +1,13 @@
-import { HazardParams } from 'data-layers/hazards/domains';
-import { hazardViewLayer } from 'data-layers/hazards/hazard-view-layer';
+import { selector } from 'recoil';
+
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { truthyKeys } from 'lib/helpers';
-import { selector } from 'recoil';
 import { dataParamsByGroupState } from 'state/data-params';
-import { hazardVisibilityState } from 'state/data-selection/hazards/hazard-visibility';
 import { sectionVisibilityState } from 'state/sections';
+
+import { hazardVisibilityState } from './hazard-visibility';
+import { HazardParams } from './domains';
+import { hazardViewLayer } from './hazard-view-layer';
 
 export const hazardsLayerState = selector<ViewLayer[]>({
   key: 'hazardsLayerState',

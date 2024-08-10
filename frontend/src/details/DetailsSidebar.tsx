@@ -1,10 +1,18 @@
 import { Box } from '@mui/material';
+import { selector, useRecoilValue } from 'recoil';
+
+import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';
+
 import { AdaptationsSidebar } from './adaptations/AdaptationsSidebar';
 import { FeatureSidebar } from './features/FeatureSidebar';
 import { RegionDetails } from './regions/RegionDetails';
 import { SolutionsSidebar } from './solutions/SolutionsSidebar';
-import { useRecoilValue } from 'recoil';
-import { showAdaptationsTableState } from 'state/data-selection/adaptations';
+
+export const showAdaptationsTableState = selector<boolean>({
+  key: 'showAdaptationsTable',
+  get: ({ get }) =>
+    get(sectionVisibilityState('assets')) && get(sectionStyleValueState('assets')) === 'adaptation',
+});
 
 export const DetailsSidebar = () => {
   const showAdaptationsTable = useRecoilValue(showAdaptationsTableState);

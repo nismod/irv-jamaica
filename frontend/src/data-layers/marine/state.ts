@@ -1,11 +1,12 @@
-import { MARINE_HABITAT_COLORS } from 'data-layers/marine/colors';
-import { marineViewLayer } from 'data-layers/marine/marine-view-layer';
 import { ViewLayer, FieldSpec } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { Accessor } from 'lib/deck/props/getters';
-import { marineFiltersState } from 'state/data-selection/solutions/marine-filters';
+
+import { MARINE_HABITAT_COLORS } from './colors';
+import { marineViewLayer } from './marine-view-layer';
+import { marineFiltersState } from './marine-filters';
 
 export function habitatColorMap(x: string) {
   return MARINE_HABITAT_COLORS[x]?.css ?? MARINE_HABITAT_COLORS['other'].css;

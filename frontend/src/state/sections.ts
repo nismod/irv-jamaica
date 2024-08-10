@@ -4,10 +4,10 @@ import { urlSyncEffect } from 'recoil-sync';
 
 import { truthyKeys } from 'lib/helpers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
-
+import { getHazardSelectionAggregate } from 'data-layers/hazards/data-selection';
 import { HAZARDS_UI_ORDER } from 'data-layers/hazards/metadata';
-import { damageSourceState } from './data-selection/damage-mapping/damage-map';
-import { getHazardSelectionAggregate } from './data-selection/hazards/hazard-selection';
+
+import { damageSourceState } from './damage-mapping/damage-map';
 
 export const sectionVisibilityState = atomFamily<boolean, string>({
   key: 'sectionVisibilityState',

@@ -1,14 +1,13 @@
-import * as droughtOptionsColorSpecLookup from 'data-layers/droughtOptions/color-maps';
-import { droughtOptionsViewLayer } from 'data-layers/droughtOptions/drought-options-view-layer';
-import { DROUGHT_OPTIONS_VARIABLES_WITH_RCP } from 'data-layers/droughtOptions/metadata';
-import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
-import {
-  droughtOptionsVariableState,
-  droughtRcpParamState,
-  droughtShowOptionsState,
-} from 'state/data-selection/drought/drought-parameters';
+
+import { droughtRcpParamState } from 'data-layers/droughtRisks/data-selection';
+import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { sectionVisibilityState } from 'state/sections';
+
+import * as droughtOptionsColorSpecLookup from './color-maps';
+import { droughtOptionsViewLayer } from './drought-options-view-layer';
+import { DROUGHT_OPTIONS_VARIABLES_WITH_RCP } from './metadata';
+import { droughtOptionsVariableState, droughtShowOptionsState } from './data-selection';
 
 export const droughtOptionsFieldSpecState = selector<FieldSpec>({
   key: 'droughtOptionsFieldSpecState',

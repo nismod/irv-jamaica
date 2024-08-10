@@ -2,7 +2,7 @@ import { MarineLocationFilterType, MARINE_LOCATION_FILTERS } from 'data-layers/m
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { useRecoilState } from 'recoil';
 import { InputSection } from 'sidebar/ui/InputSection';
-import { marineFiltersState } from 'state/data-selection/solutions/marine-filters';
+import { marineFiltersState } from 'data-layers/marine/marine-filters';
 
 export const MarineControl = () => {
   const [marineFilters, setMarineFilters] = useRecoilState(marineFiltersState);
