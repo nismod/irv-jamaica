@@ -1,25 +1,26 @@
-import * as networkColorMaps from 'data-layers/networks/color-maps';
-import { AdaptationOptionParams } from 'data-layers/networks/domains';
+import { atom, selector } from 'recoil';
+import uniq from 'lodash/uniq';
+import fromPairs from 'lodash/fromPairs';
+import mapValues from 'lodash/mapValues';
+
+import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
+import { LayerSpec } from 'asset-list/use-sorted-features';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
-import { atom, selector } from 'recoil';
-import { damageMapStyleParamsState } from 'state/data-selection/damage-mapping/damage-style-params';
+import { damageMapStyleParamsState } from 'state/damage-mapping/damage-style-params';
 import { dataParamsByGroupState } from 'state/data-params';
+import { networksStyleState } from 'data-layers/networks/networks-style';
+import { sectionVisibilityState } from 'state/sections';
+
+import adaptationSectorLayers from './adaptation-sector-layers.json';
+import * as networkColorMaps from './color-maps';
+import { AdaptationOptionParams } from './domains';
+import { networkViewLayer } from './network-view-layer';
 import {
   networkSelectionState,
   networkTreeCheckboxState,
   networkTreeConfig,
-} from 'state/data-selection/networks/network-selection';
-import { networksStyleState } from 'state/data-selection/networks/networks-style';
-import { sectionVisibilityState } from 'state/sections';
-
-import adaptationSectorLayers from 'data-layers/networks/adaptation-sector-layers.json';
-import uniq from 'lodash/uniq';
-import fromPairs from 'lodash/fromPairs';
-import mapValues from 'lodash/mapValues';
-import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
-import { LayerSpec } from 'asset-list/use-sorted-features';
-import { networkViewLayer } from 'data-layers/networks/network-view-layer';
+} from './data-selection';
 
 export const networksLayerState = selector<ViewLayer[]>({
   key: 'networkLayersState',

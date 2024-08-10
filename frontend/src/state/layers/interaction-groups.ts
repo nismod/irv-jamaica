@@ -1,6 +1,6 @@
 import { INTERACTION_GROUPS } from 'config/interaction-groups';
 import { selector } from 'recoil';
-import { showPopulationState } from 'state/data-selection/regions';
+import { showPopulationState } from 'data-layers/regions/data-selection';
 
 export const interactionGroupsState = selector({
   key: 'interactionGroupsState',

@@ -13,11 +13,13 @@ import { useRecoilState } from 'recoil';
 import { InputSection } from 'sidebar/ui/InputSection';
 import {
   droughtOptionsVariableState,
+  droughtShowOptionsState,
+} from 'data-layers/droughtOptions/data-selection';
+import {
   droughtRcpParamState,
   droughtRiskVariableState,
-  droughtShowOptionsState,
   droughtShowRiskState,
-} from 'state/data-selection/drought/drought-parameters';
+} from 'data-layers/droughtRisks/data-selection';
 
 export const DroughtsControl: FC = () => {
   const [rcp, setRcp] = useRecoilState(droughtRcpParamState);

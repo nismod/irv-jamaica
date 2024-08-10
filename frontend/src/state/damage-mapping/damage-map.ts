@@ -3,8 +3,8 @@ import { atom, selector } from 'recoil';
 
 import { HAZARD_DOMAINS } from 'data-layers/hazards/domains';
 import { dataParamOptionsState, dataParamState } from 'state/data-params';
-import { hazardSelectionState } from 'state/data-selection/hazards/hazard-selection';
-import { networksStyleState } from 'state/data-selection/networks/networks-style';
+import { hazardSelectionState } from 'data-layers/hazards/data-selection';
+import { networksStyleState } from 'data-layers/networks/networks-style';
 
 export const showDamagesState = selector({
   key: 'showDamagesState',

@@ -1,10 +1,11 @@
 import { FC } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { VectorHoverDescription } from 'lib/data-map/types';
+import { DataItem } from 'details/features/detail-components';
 
 import { REGIONS_METADATA } from './metadata';
-import { VectorHoverDescription } from 'lib/data-map/types';
-import { useRecoilValue } from 'recoil';
-import { showPopulationState } from 'state/data-selection/regions';
-import { DataItem } from 'details/features/detail-components';
+import { showPopulationState } from './data-selection';
 
 export const RegionHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
   const metadata = REGIONS_METADATA[viewLayer.params.regionLevel];

@@ -2,9 +2,10 @@ import { selector } from 'recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { sectionVisibilityState } from 'state/sections';
-import { regionLevelState, showPopulationState } from 'state/data-selection/regions';
-import { populationViewLayer } from 'data-layers/regions/population-view-layer';
-import { regionBoundariesViewLayer } from 'data-layers/regions/boundaries-view-layer';
+
+import { regionLevelState, showPopulationState } from './data-selection';
+import { populationViewLayer } from './population-view-layer';
+import { regionBoundariesViewLayer } from './boundaries-view-layer';
 
 export const regionsLayerState = selector<ViewLayer>({
   key: 'regionsLayerState',

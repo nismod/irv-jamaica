@@ -1,14 +1,16 @@
-import * as droughtRiskColorSpecLookup from 'data-layers/droughtRisks/color-maps';
-import { droughtRiskViewLayer } from 'data-layers/droughtRisks/drought-risk-view-layer';
-import { DROUGHT_RISK_VARIABLES_WITH_RCP } from 'data-layers/droughtRisks/metadata';
-import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
+
+import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
+import { sectionVisibilityState } from 'state/sections';
+
+import * as droughtRiskColorSpecLookup from './color-maps';
+import { droughtRiskViewLayer } from './drought-risk-view-layer';
+import { DROUGHT_RISK_VARIABLES_WITH_RCP } from './metadata';
 import {
   droughtRcpParamState,
   droughtRiskVariableState,
   droughtShowRiskState,
-} from 'state/data-selection/drought/drought-parameters';
-import { sectionVisibilityState } from 'state/sections';
+} from './data-selection';
 
 export const droughtRisksFieldSpecState = selector<FieldSpec>({
   key: 'droughtRisksFieldSpecState',

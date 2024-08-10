@@ -3,7 +3,7 @@ import { selector } from 'recoil';
 import { INTERACTION_GROUPS } from 'config/interaction-groups';
 import { InteractionTarget, RasterTarget, VectorTarget } from 'lib/data-map/types';
 import { hoverState, hasHover } from 'lib/state/interactions/interaction-state';
-import { showPopulationState } from 'state/data-selection/regions';
+import { showPopulationState } from 'data-layers/regions/data-selection';
 
 type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
 type IT = InteractionLayer | InteractionLayer[];

@@ -1,19 +1,17 @@
-import { TERRESTRIAL_LANDUSE_COLORS } from 'data-layers/terrestrial/colors';
-import { terrestrialViewLayer } from 'data-layers/terrestrial/terrestrial-view-layer';
 import { ViewLayer, FieldSpec, ColorSpec } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
 import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';
-import {
-  terrestrialFiltersState,
-  TerrestrialLocationFilters,
-} from 'state/data-selection/solutions/terrestrial-filters';
 import { colorMap } from 'lib/color-map';
-import { terrestrialElevation, terrestrialSlope } from 'data-layers/terrestrial/color-maps';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { Accessor } from 'lib/deck/props/getters';
-import { LandUseOption, TerrestrialLocationFilterType } from 'data-layers/terrestrial/domains';
 import { truthyKeys } from 'lib/helpers';
-import { landuseFilterState } from 'state/data-selection/solutions/landuse-tree';
+
+import { LandUseOption, TerrestrialLocationFilterType } from './domains';
+import { TERRESTRIAL_LANDUSE_COLORS } from './colors';
+import { terrestrialElevation, terrestrialSlope } from './color-maps';
+import { terrestrialViewLayer } from './terrestrial-view-layer';
+import { landuseFilterState } from './landuse-tree';
+import { terrestrialFiltersState, TerrestrialLocationFilters } from './terrestrial-filters';
 
 export function landuseColorMap(x: string) {
   return TERRESTRIAL_LANDUSE_COLORS[x].css;

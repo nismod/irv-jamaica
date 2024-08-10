@@ -7,7 +7,7 @@ import {
   landuseTreeCheckboxState,
   landuseTreeConfig,
   landuseTreeExpandedState,
-} from 'state/data-selection/solutions/landuse-tree';
+} from 'data-layers/terrestrial/landuse-tree';
 
 export const TerrestrialLandUseTree = () => {
   const [checkboxState, setCheckboxState] = useRecoilState(landuseTreeCheckboxState);

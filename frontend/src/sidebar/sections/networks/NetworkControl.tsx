@@ -1,19 +1,18 @@
+import { Box } from '@mui/system';
+import { Alert } from '@mui/material';
 import { FC } from 'react';
-
-import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
-
-import { NETWORK_LAYERS_HIERARCHY } from 'data-layers/networks/hierarchy';
 import { useRecoilState, useRecoilValue } from 'recoil';
+
 import {
   networkTreeCheckboxState,
   networkTreeConfig,
   networkTreeExpandedState,
-} from 'state/data-selection/networks/network-selection';
+} from 'data-layers/networks/data-selection';
+import { NETWORK_LAYERS_HIERARCHY } from 'data-layers/networks/hierarchy';
 import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
-import { LayerLabel } from 'sidebar/ui/LayerLabel';
 import { showAdaptationsState } from 'data-layers/networks/state';
-import { Box } from '@mui/system';
-import { Alert } from '@mui/material';
+import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
+import { LayerLabel } from 'sidebar/ui/LayerLabel';
 
 export const NetworkControl: FC = () => {
   const [checkboxState, setCheckboxState] = useRecoilState(networkTreeCheckboxState);
