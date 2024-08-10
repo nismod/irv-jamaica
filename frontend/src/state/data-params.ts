@@ -1,5 +1,5 @@
-import { HAZARD_DOMAINS } from 'config/data-layers/hazards/domains';
-import { NETWORK_DOMAINS } from 'config/data-layers/networks/domains';
+import { HAZARD_DOMAINS } from 'data-layers/hazards/domains';
+import { NETWORK_DOMAINS } from 'data-layers/networks/domains';
 import {
   DataParamGroupConfig,
   Param,

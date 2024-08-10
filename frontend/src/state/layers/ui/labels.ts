@@ -1,7 +1,7 @@
 import { selector } from 'recoil';
 
 import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';
-import { regionLabelsDeckLayer } from 'config/data-layers/regions/region-labels-deck-layer';
+import { regionLabelsDeckLayer } from 'data-layers/regions/region-labels-deck-layer';
 import { sectionVisibilityState } from 'state/sections';
 import { regionLevelState } from 'state/data-selection/regions';
 import { backgroundState, showLabelsState } from 'map/layers/layers-state';

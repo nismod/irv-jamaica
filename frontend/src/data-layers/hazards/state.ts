@@ -1,5 +1,5 @@
-import { HazardParams } from 'config/data-layers/hazards/domains';
-import { hazardViewLayer } from 'config/data-layers/hazards/hazard-view-layer';
+import { HazardParams } from 'data-layers/hazards/domains';
+import { hazardViewLayer } from 'data-layers/hazards/hazard-view-layer';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { truthyKeys } from 'lib/helpers';
 import { selector } from 'recoil';

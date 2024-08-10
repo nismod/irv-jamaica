@@ -1,8 +1,8 @@
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { COLORS } from './colors';
-import { assetViewLayer } from 'config/data-layers/assets/asset-view-layer';
+import { assetViewLayer } from 'data-layers/assets/asset-view-layer';
 import { border, fillColor } from 'lib/deck/props/style';
-import { assetDataAccessFunction } from 'config/data-layers/assets/data-access';
+import { assetDataAccessFunction } from 'data-layers/assets/data-access';
 
 enum BuildingType {
   commercial = 'commercial',

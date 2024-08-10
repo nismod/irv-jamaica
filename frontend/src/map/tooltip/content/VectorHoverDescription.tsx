@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { NETWORKS_METADATA } from 'config/data-layers/networks/metadata';
+import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
 import { DataItem } from 'details/features/detail-components';
 import { VectorTarget } from 'lib/data-map/types';
 import { FC } from 'react';
