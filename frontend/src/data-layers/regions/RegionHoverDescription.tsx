@@ -5,7 +5,7 @@ import { VectorHoverDescription } from 'lib/data-map/types';
 import { DataItem } from 'details/features/detail-components';
 
 import { REGIONS_METADATA } from './metadata';
-import { showPopulationState } from './data-selection';
+import { showPopulationState } from './state/data-selection';
 
 export const RegionHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
   const metadata = REGIONS_METADATA[viewLayer.params.regionLevel];

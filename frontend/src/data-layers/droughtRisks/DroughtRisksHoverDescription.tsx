@@ -3,11 +3,9 @@ import { DataItem } from 'details/features/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import { FC, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
-import {
-  droughtRisksColorSpecState,
-  droughtRisksFieldSpecState,
-} from 'data-layers/droughtRisks/state';
 import { DataDescription } from 'map/tooltip/DataDescription';
+
+import { droughtRisksColorSpecState, droughtRisksFieldSpecState } from './state/layer';
 
 export const DroughtRisksHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
   const fieldSpec = useRecoilValue(droughtRisksFieldSpecState);

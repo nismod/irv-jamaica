@@ -19,6 +19,11 @@ Date: 9 August 2024
     - `views.ts` - default sidebar state (visible/hidden, expanded/collapsed etc.) for the individual map views.
   - `data-layers/` - config and state for individual data layers. There should be a folder here for each entry in `config/view-layers.ts`
     - `assets/` - common functionality for "vector assets" - vector feature layers that can have damages data visualised on them.
+    - `[layer-name]` - config for layer `layer-name`. should include the following subfolders:
+      - `sidebar/` - sidebar React components to control this layer.
+      - `state/` - Recoil state for this layer, including:
+        - `data-selection.ts` - Data selection state.
+        - `layer.ts` - creates a view layer to display in the map. The app will error if this file doesn't exist.
   - `details/` - UI and logic for displaying details when a vector feature is clicked in the map.
   - `lib/` - self-contained library code which should be unrelated to the specific
     datasets/content of the app. **NOTE** there is an ESLint rule enforcing that
@@ -30,8 +35,6 @@ Date: 9 August 2024
     tooltip for current hover.
   - `pages/` - contents and layouts of the main pages of the app.
   - `sidebar/` - the main layer selection sidebar.
-    - `sections/` - UI components for the controls displayed in various sidebar
-      sections. Specific to the datasets displayed in the app.
     - `ui/` - components shared by the sidebar contents.
     - `SidebarContent.tsx` - defining the overall contents of the sidebar.
     - `SidebarPanel.tsx` - each section in the sidebar should be composed from `SidebarPanel`.

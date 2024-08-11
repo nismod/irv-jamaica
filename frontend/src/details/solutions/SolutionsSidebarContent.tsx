@@ -6,8 +6,8 @@ import { colorMap } from 'lib/color-map';
 import startCase from 'lodash/startCase';
 import { ColorBox } from 'map/tooltip/content/ColorBox';
 import { FC } from 'react';
-import { habitatColorMap } from 'data-layers/marine/state';
-import { landuseColorMap } from 'data-layers/terrestrial/state';
+import { habitatColorMap } from 'data-layers/marine/state/layer';
+import { landuseColorMap } from 'data-layers/terrestrial/state/layer';
 
 const slopeColorFunction = colorMap(terrestrialSlope);
 const elevationColorFunction = colorMap(terrestrialElevation);

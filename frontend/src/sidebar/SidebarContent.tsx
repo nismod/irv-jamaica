@@ -4,13 +4,13 @@ import { useRecoilValue } from 'recoil';
 
 import { viewState } from 'state/view';
 
-import { BuildingsSection } from './sections/buildings/BuildingsSection';
-import { DroughtsSection } from './sections/drought/DroughtsSection';
-import { HazardsSection } from './sections/hazards/HazardsSection';
-import { NetworksSection } from './sections/networks/NetworksSection';
-import { RegionsSection } from './sections/regions/RegionsSection';
-import { MarineSection } from './sections/solutions/MarineSection';
-import { TerrestrialSection } from './sections/solutions/TerrestrialSection';
+import { BuildingsSection } from 'data-layers/buildings/sidebar/BuildingsSection';
+import { DroughtsSection } from 'data-layers/droughtRisks/sidebar/DroughtsSection';
+import { HazardsSection } from 'data-layers/hazards/sidebar/HazardsSection';
+import { NetworksSection } from 'data-layers/networks/sidebar/NetworksSection';
+import { RegionsSection } from 'data-layers/regions/sidebar/RegionsSection';
+import { MarineSection } from 'data-layers/marine/sidebar/MarineSection';
+import { TerrestrialSection } from 'data-layers/terrestrial/sidebar/TerrestrialSection';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
 
