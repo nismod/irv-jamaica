@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { selector, useRecoilValue } from 'recoil';
 
-import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';
+import { sectionStyleValueState, sectionVisibilityState } from 'app/state/sections';
 
 import { AdaptationsSidebar } from './adaptations/AdaptationsSidebar';
 import { FeatureSidebar } from './features/FeatureSidebar';

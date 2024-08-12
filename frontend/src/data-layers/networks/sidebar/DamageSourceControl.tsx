@@ -18,7 +18,7 @@ import {
   damageSourceState,
   damageSourceStateEffect,
   damageTypeState,
-} from 'state/damage-mapping/damage-map';
+} from 'app/state/damage-mapping/damage-map';
 import { LayerStylePanel } from 'sidebar/ui/LayerStylePanel';
 
 import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'data-layers/hazards/metadata';

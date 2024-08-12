@@ -11,7 +11,7 @@ import {
   BackgroundName,
   BackgroundSpecification,
   LABELS_LAYERS,
-} from '../config/basemaps';
+} from 'app/config/basemaps';
 
 function visible(isVisible: boolean): 'visible' | 'none' {
   return isVisible ? 'visible' : 'none';

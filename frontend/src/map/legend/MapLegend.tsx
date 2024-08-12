@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { useRecoilValue } from 'recoil';
-import { viewLayersFlatState } from 'state/layers/view-layers-flat';
+import { viewLayersFlatState } from 'app/state/layers/view-layers-flat';
 import { Stack, Box, Paper, Divider } from '@mui/material';
 import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
 

@@ -3,9 +3,9 @@ import { useMap } from 'react-map-gl/maplibre';
 import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { interactionGroupsState } from 'state/layers/interaction-groups';
-import { viewLayersFlatState } from 'state/layers/view-layers-flat';
-import { useSaveViewLayers, viewLayersParamsState } from 'state/layers/view-layers-params';
+import { interactionGroupsState } from 'app/state/layers/interaction-groups';
+import { viewLayersFlatState } from 'app/state/layers/view-layers-flat';
+import { useSaveViewLayers, viewLayersParamsState } from 'app/state/layers/view-layers-params';
 import { backgroundState, showLabelsState } from 'map/layers/layers-state';
 import { useBasemapStyle } from 'map/use-basemap-style';
 import { useInteractions } from 'lib/state/interactions/use-interactions';

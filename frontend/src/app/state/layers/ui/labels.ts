@@ -2,7 +2,7 @@ import { selector } from 'recoil';
 
 import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';
 import { regionLabelsDeckLayer } from 'data-layers/regions/region-labels-deck-layer';
-import { sectionVisibilityState } from 'state/sections';
+import { sectionVisibilityState } from 'app/state/sections';
 import { regionLevelState } from 'data-layers/regions/state/data-selection';
 import { backgroundState, showLabelsState } from 'map/layers/layers-state';
 

@@ -1,4 +1,4 @@
-import { StyleSelectionOption } from 'state/sections';
+import { StyleSelectionOption } from 'app/state/sections';
 import { BUILDING_STYLES } from 'data-layers/buildings/styles';
 import { DROUGHT_STYLES } from 'data-layers/droughtRisks/styles';
 import { NETWORK_STYLES } from 'data-layers/networks/styles';

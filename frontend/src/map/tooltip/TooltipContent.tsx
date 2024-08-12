@@ -2,7 +2,7 @@ import { Box, Paper } from '@mui/material';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { layerHoverStates } from 'state/interactions/interaction-state';
+import { layerHoverStates } from 'app/state/interactions/interaction-state';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 
 const TooltipSection = ({ children }) => (

@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-import { BackgroundName } from '../../config/basemaps';
+import { BackgroundName } from 'app/config/basemaps';
 
 export const backgroundState = atom<BackgroundName>({
   key: 'background',

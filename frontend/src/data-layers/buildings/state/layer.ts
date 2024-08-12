@@ -3,7 +3,7 @@ import { selector } from 'recoil';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { truthyKeys } from 'lib/helpers';
 import { buildingsViewLayer } from 'data-layers/buildings/buildings-view-layer';
-import { sectionVisibilityState } from 'state/sections';
+import { sectionVisibilityState } from 'app/state/sections';
 
 import { buildingSelectionState } from './data-selection';
 

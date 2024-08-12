@@ -1,7 +1,7 @@
 import { selector } from 'recoil';
 
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
-import { sectionVisibilityState } from 'state/sections';
+import { sectionVisibilityState } from 'app/state/sections';
 
 import * as droughtRiskColorSpecLookup from '../color-maps';
 import { droughtRiskViewLayer } from '../drought-risk-view-layer';

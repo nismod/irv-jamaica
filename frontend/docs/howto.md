@@ -16,14 +16,14 @@ feature details.
 
 ### Add a new view layer
 
-1. Add a new layer name to `config/viewLayers.ts` (eg. `'hazards'`.) This name will be used to name folders and files in subsequent steps.
+1. Add a new layer name to `app/config/viewLayers.ts` (eg. `'hazards'`.) This name will be used to name folders and files in subsequent steps.
 2. Create a folder for the new dataset inside `data-layers/`, named after the new layer. For example,
    `data-layers/hazards/`.
 3. Define a helper function that will create a ViewLayer object, given some
    arguments (or no arguments.) eg. `data-layers/hazards/hazards-view-layer.ts`.
 4. Define any corresponding layer selection state in a `state/` subfolder (eg. `data-layers/hazards/state/data-selection.ts`) and `state/data-params.ts`.
 5. Define the view layer state in a file named `state/layer.ts` eg. `data-layers/hazards/state/layer.ts`. This file must export a named `LayerState` export derived from the layer name eg. `export const hazardsLayerState`.
-6. Add a sidebar subfolder (eg. `data-layers/hazards/sidebar/`) with React components that control the layer selection state. Import the new section into `sidebar/SidebarContent.tsx`, and add it to the views that use it. Define a default view state (eg. visible/hidden, expanded/collapsed) in `config/views.ts`.
+6. Add a sidebar subfolder (eg. `data-layers/hazards/sidebar/`) with React components that control the layer selection state. Import the new section into `sidebar/SidebarContent.tsx`, and add it to the views that use it. Define a default view state (eg. visible/hidden, expanded/collapsed) in `app/config/views.ts`.
 
 NOTE: the framework does not define the structure for the code surrounding a
 view layer definition. The main consideration is to avoid circular dependencies
@@ -43,7 +43,7 @@ framework. An interaction group defines:
 
 ### Add a new interaction group
 
-1. Define a new interaction group in `config/interaction-groups.ts`
+1. Define a new interaction group in `app/config/interaction-groups.ts`
 2. If appropriate, add `renderLegend` and `renderTooltip` methods to each view layer that has tooltips.
 3. For vector layers, update `details/DetailsSidebar` to show popup details when a vector asset is clicked on the map.
 
@@ -59,7 +59,7 @@ The following parts of the application structure are fairly independent and
 their internal organisation should be possible to rework without significantly
 modifying the other parts of the app:
 
-- default map view parameters in `config/map-view.ts`.
+- default map view parameters in `app/config/map-view.ts`.
 - view layer config and Recoil state in folders under `data-layers/`.
 - data/layer selection sidebar UI and its Recoil state (in `data-layers/[layer-name/sidebar/` and
   `state/data-params.ts`.)

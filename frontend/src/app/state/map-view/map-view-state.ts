@@ -1,9 +1,9 @@
 import omit from 'lodash/omit';
 import { DefaultValue, atom, selector } from 'recoil';
 
-import { useSyncStateThrottled } from '../../lib/recoil/sync-state-throttled';
+import { useSyncStateThrottled } from 'lib/recoil/sync-state-throttled';
 
-import { mapViewConfig } from '../../config/map-view';
+import { mapViewConfig } from 'app/config/map-view';
 
 import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from './map-url';
 

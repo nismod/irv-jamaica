@@ -8,7 +8,7 @@ import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
 import { SidebarPanel } from 'sidebar/SidebarPanel';
 import { StyleSelection } from 'sidebar/StyleSelection';
 import { SidebarPanelSection } from 'sidebar/ui/SidebarPanelSection';
-import { networksStyleStateEffect, sectionStyleValueState } from 'state/sections';
+import { networksStyleStateEffect, sectionStyleValueState } from 'app/state/sections';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 
 import { DamageSourceControl } from './DamageSourceControl';

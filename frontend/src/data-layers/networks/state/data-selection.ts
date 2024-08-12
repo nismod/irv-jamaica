@@ -2,7 +2,7 @@ import { NETWORK_LAYERS_HIERARCHY } from '../sidebar/hierarchy';
 import { buildTreeConfig, CheckboxTreeState } from 'lib/controls/checkbox-tree/CheckboxTree';
 import mapValues from 'lodash/mapValues';
 import { atom, selector } from 'recoil';
-import { sectionStyleValueState } from 'state/sections';
+import { sectionStyleValueState } from 'app/state/sections';
 
 export const networkTreeExpandedState = atom<string[]>({
   key: 'networkTreeExpandedState',

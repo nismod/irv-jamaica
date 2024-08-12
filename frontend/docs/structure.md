@@ -5,18 +5,32 @@ Author: Jim O'Donnell
 Date: 9 August 2024
 
 - `src/`
-  - `config/` - contains the configuration and code related to the various
-    datasets and visualisation layers, as well as other pieces of configuration.
-    - `basemaps.ts` - configuration of basemap styles.
-    - `interaction-groups.ts` - configuration of all the interaction groups
-      available in the app.
-    - `map-view.ts` - configuration of the initial map view coordinates, zoom
-      etc.
-    - `sections.ts` - style config for the sidebar sections.
-    - `sources.ts` - functions to build URLs to access datasets in the
-      vector/raster backends.
-    - `view-layers.ts` - a list of the view layer IDs used by the map.
-    - `views.ts` - default sidebar state (visible/hidden, expanded/collapsed etc.) for the individual map views.
+  - `app/` - app config and state.
+    - `config/` - contains the configuration and code related to the various
+      datasets and visualisation layers, as well as other pieces of configuration.
+      - `basemaps.ts` - configuration of basemap styles.
+      - `interaction-groups.ts` - configuration of all the interaction groups
+        available in the app.
+      - `map-view.ts` - configuration of the initial map view coordinates, zoom
+        etc.
+      - `sections.ts` - style config for the sidebar sections.
+      - `sources.ts` - functions to build URLs to access datasets in the
+        vector/raster backends.
+      - `view-layers.ts` - a list of the view layer IDs used by the map.
+      - `views.ts` - default sidebar state (visible/hidden, expanded/collapsed etc.) for the individual map views.
+    - `state/` - Recoil state for the app.
+      - `damage-mapping/` - damage mapping from hazards to network assets.
+      - `layers/` - state which creates the view layer instances based on app
+        state and data selection state.
+        - `ui/` - special layers for UI (e.g. feature bounding box layer.)
+        - `interaction-groups.ts` - state containing all active interaction groups.
+        - `view-layers.ts` - state combining all active view layers.
+        - `view-layer-params.ts` - state setting up the dynamic view layer
+          parameters.
+      - `map-view/` - map view state and syncing it to the URL.
+      - `data-params.ts` - view layer data parameters. Updated from the sidebar and used to construct map tile URLs.
+      - `sections.ts` - section state for individual sidebar sections.
+      - `view.ts` - view state for individual map views.
   - `data-layers/` - config and state for individual data layers. There should be a folder here for each entry in `config/view-layers.ts`
     - `assets/` - common functionality for "vector assets" - vector feature layers that can have damages data visualised on them.
     - `[layer-name]` - config for layer `layer-name`. should include the following subfolders:
@@ -40,19 +54,6 @@ Date: 9 August 2024
     - `SidebarPanel.tsx` - each section in the sidebar should be composed from `SidebarPanel`.
     - `url-state.tsx` - Recoil state synchronising the state of the sidebar
       sections to the URL.
-  - `state/` - Recoil state for the app.
-    - `damage-mapping/` - damage mapping from hazards to network assets.
-    - `layers/` - state which creates the view layer instances based on app
-      state and data selection state.
-      - `ui/` - special layers for UI (e.g. feature bounding box layer.)
-      - `interaction-groups.ts` - state containing all active interaction groups.
-      - `view-layers.ts` - state combining all active view layers.
-      - `view-layer-params.ts` - state setting up the dynamic view layer
-        parameters.
-    - `map-view/` - map view state and syncing it to the URL.
-    - `data-params.ts` - view layer data parameters. Updated from the sidebar and used to construct map tile URLs.
-    - `sections.ts` - section state for individual sidebar sections.
-    - `view.ts` - view state for individual map views.
   - `api-client.ts` - singleton instances of API clients.
   - `App.ts` - main React app component.
   - `index.css` - global styles (avoid, set styles in components instead.)

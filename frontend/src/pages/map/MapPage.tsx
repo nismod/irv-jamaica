@@ -4,7 +4,7 @@ import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
 import { useSyncRecoilState } from 'lib/recoil/sync-state';
 
-import { viewState, viewStateEffect } from 'state/view';
+import { viewState, viewStateEffect } from 'app/state/view';
 
 import { MapViewRouteSync } from './MapViewRouteSync';
 import { MapPageDesktopLayout } from './layouts/MapPageDesktopLayout';

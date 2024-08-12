@@ -5,7 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { backgroundState, showLabelsState } from 'map/layers/layers-state';
 import { useBasemapStyle } from 'map/use-basemap-style';
-import { mapViewStateState, useSyncMapUrl } from 'state/map-view/map-view-state';
+import { mapViewStateState, useSyncMapUrl } from 'app/state/map-view/map-view-state';
 
 export interface BaseMapProps {
   children?: ReactNode;
