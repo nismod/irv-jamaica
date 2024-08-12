@@ -3,10 +3,10 @@ import { Box, Stack, TableCell, Typography } from '@mui/material';
 
 import { FieldSpec } from 'lib/data-map/view-layers';
 
-import { FieldSpecControl } from 'asset-list/FieldSpecControl';
-import { SortedAssetTable } from 'asset-list/SortedAssetTable';
-import { ListFeature } from 'asset-list/use-sorted-features';
-import { ExpandableRow } from 'asset-list/ExpandableRow';
+import { FieldSpecControl } from 'app/asset-list/FieldSpecControl';
+import { SortedAssetTable } from 'app/asset-list/SortedAssetTable';
+import { ListFeature } from 'app/asset-list/use-sorted-features';
+import { ExpandableRow } from 'app/asset-list/ExpandableRow';
 import { FeatureSidebarContent } from 'details/features/FeatureSidebarContent';
 import { getAssetDataFormats } from 'data-layers/assets/data-formats';
 

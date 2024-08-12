@@ -9,12 +9,12 @@ import { MapPage } from './app/pages/map/MapPage';
 import { DataPage } from './app/pages/DataPage';
 import { GuidePage } from './app/pages/GuidePage';
 import { globalStyleVariables, theme } from './app/theme';
-import { Nav, NavItemConfig } from './Nav';
+import { Nav, NavItemConfig } from './app/Nav';
 
 import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { Notice } from 'Notice';
+import { Notice } from 'app/Notice';
 import { RecoilLocalStorageSync } from 'lib/recoil/sync-stores/RecoilLocalStorageSync';
 
 const navItems: NavItemConfig[] = [

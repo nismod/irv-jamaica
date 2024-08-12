@@ -4,7 +4,7 @@ import fromPairs from 'lodash/fromPairs';
 import mapValues from 'lodash/mapValues';
 
 import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
-import { LayerSpec } from 'asset-list/use-sorted-features';
+import { LayerSpec } from 'app/asset-list/use-sorted-features';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
 import { damageMapStyleParamsState } from 'app/state/damage-mapping/damage-style-params';

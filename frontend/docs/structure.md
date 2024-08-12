@@ -41,6 +41,9 @@ Date: 9 August 2024
       - `data-params.ts` - view layer data parameters. Updated from the sidebar and used to construct map tile URLs.
       - `sections.ts` - section state for individual sidebar sections.
       - `view.ts` - view state for individual map views.
+    - `Nav.tsx` - main navigation component.
+    - `theme.ts` - MUI theme configuration.
+    - `use-is-mobile.ts` - util hook.
   - `data-layers/` - config and state for individual data layers. There should be a folder here for each entry in `config/view-layers.ts`
     - `assets/` - common functionality for "vector assets" - vector feature layers that can have damages data visualised on them.
     - `[layer-name]` - config for layer `layer-name`. should include the following subfolders:
@@ -54,12 +57,7 @@ Date: 9 August 2024
     files inside the `lib` folder cannot import code from any other folder in
     the project, to enforce the separation between generic and content-specific
     code.
-  - `api-client.ts` - singleton instances of API clients.
   - `App.ts` - main React app component.
   - `index.css` - global styles (avoid, set styles in components instead.)
   - `index.tsx` - Vite app entry point.
-  - `Nav.tsx` - main navigation component.
-  - `query-client.ts` - singleton instance of react-query client.
-  - `theme.ts` - MUI theme configuration.
-  - `use-is-mobile.ts` - util hook.
   - `vite-env.d.ts` - Vite types inclusion.
