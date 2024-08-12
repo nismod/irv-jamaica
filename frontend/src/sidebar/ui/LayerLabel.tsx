@@ -2,7 +2,7 @@ import { VisibilityOff } from '@mui/icons-material';
 import { Box, Stack, Typography } from '@mui/material';
 import { ShapeLegend, LegendShapeType } from 'lib/map-shapes/ShapeLegend';
 import { useRecoilValue } from 'recoil';
-import { zoomState } from 'state/zoom';
+import { zoomState } from 'app/state/zoom';
 
 export const LayerLabel = ({
   label,

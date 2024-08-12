@@ -1,6 +1,6 @@
 import { selector } from 'recoil';
 
-import { damageSourceState, showDamagesState } from 'state/damage-mapping/damage-map';
+import { damageSourceState, showDamagesState } from 'app/state/damage-mapping/damage-map';
 
 import { HAZARDS_MAP_ORDER } from '../metadata';
 import { getHazardSelectionAggregate } from './data-selection';

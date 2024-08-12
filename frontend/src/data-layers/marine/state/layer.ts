@@ -1,6 +1,6 @@
 import { ViewLayer, FieldSpec } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
-import { sectionStyleValueState, sectionVisibilityState } from 'state/sections';
+import { sectionStyleValueState, sectionVisibilityState } from 'app/state/sections';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { Accessor } from 'lib/deck/props/getters';
 

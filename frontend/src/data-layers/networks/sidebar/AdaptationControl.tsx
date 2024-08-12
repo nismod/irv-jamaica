@@ -12,7 +12,7 @@ import { InputRow } from 'sidebar/ui/InputRow';
 import { InputSection } from 'sidebar/ui/InputSection';
 import { LayerStylePanel } from 'sidebar/ui/LayerStylePanel';
 import { DataParam } from 'sidebar/ui/params/DataParam';
-import { dataParamsByGroupState } from 'state/data-params';
+import { dataParamsByGroupState } from 'app/state/data-params';
 
 import {
   adaptationCostBenefitRatioEaelDaysState,

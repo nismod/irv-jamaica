@@ -7,9 +7,9 @@ import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTr
 import { LayerSpec } from 'asset-list/use-sorted-features';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
-import { damageMapStyleParamsState } from 'state/damage-mapping/damage-style-params';
-import { dataParamsByGroupState } from 'state/data-params';
-import { sectionVisibilityState } from 'state/sections';
+import { damageMapStyleParamsState } from 'app/state/damage-mapping/damage-style-params';
+import { dataParamsByGroupState } from 'app/state/data-params';
+import { sectionVisibilityState } from 'app/state/sections';
 
 import adaptationSectorLayers from '../adaptation-sector-layers.json';
 import * as networkColorMaps from '../color-maps';

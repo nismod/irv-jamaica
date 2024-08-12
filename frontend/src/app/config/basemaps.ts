@@ -1,4 +1,4 @@
-import { makeConfig } from '../lib/helpers';
+import { makeConfig } from 'lib/helpers';
 
 export interface BackgroundSpecification {
   id: string;

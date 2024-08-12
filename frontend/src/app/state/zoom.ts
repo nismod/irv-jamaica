@@ -1,4 +1,4 @@
-import { mapViewConfig } from 'config/map-view';
+import { mapViewConfig } from 'app/config/map-view';
 import { atom } from 'recoil';
 
 export const zoomState = atom({

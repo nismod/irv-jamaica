@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil';
 
-import { sectionStyleValueState } from 'state/sections';
+import { sectionStyleValueState } from 'app/state/sections';
 
 import { RegionLevel } from '../metadata';
 

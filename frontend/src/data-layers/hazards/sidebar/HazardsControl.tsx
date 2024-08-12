@@ -6,7 +6,7 @@ import { ReturnPeriodControl } from 'sidebar/ui/params/ReturnPeriodControl';
 import { EpochControl } from 'sidebar/ui/params/EpochControl';
 import { RCPControl } from 'sidebar/ui/params/RCPControl';
 import { useRecoilValue } from 'recoil';
-import { showDamagesState } from 'state/damage-mapping/damage-map';
+import { showDamagesState } from 'app/state/damage-mapping/damage-map';
 import { Alert, Box } from '@mui/material';
 
 import { hazardSelectionState } from '../state/data-selection';

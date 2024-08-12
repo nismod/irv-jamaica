@@ -16,10 +16,10 @@ import { Box } from '@mui/system';
 import { FC, forwardRef, useCallback, useState } from 'react';
 import { NavLink as RouterNavLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
-import { VIEW_SECTIONS } from 'config/views';
+import { VIEW_SECTIONS } from 'app/config/views';
 import { useIsMobile } from '../src/use-is-mobile';
 import { withProps } from 'lib/react/with-props';
-import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from 'state/map-view/map-url';
+import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from 'app/state/map-view/map-url';
 import { globalStyleVariables } from 'theme';
 import { useRecoilValue } from 'recoil';
 

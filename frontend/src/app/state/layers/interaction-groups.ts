@@ -1,4 +1,4 @@
-import { INTERACTION_GROUPS } from 'config/interaction-groups';
+import { INTERACTION_GROUPS } from 'app/config/interaction-groups';
 import { selector } from 'recoil';
 import { showPopulationState } from 'data-layers/regions/state/data-selection';
 
