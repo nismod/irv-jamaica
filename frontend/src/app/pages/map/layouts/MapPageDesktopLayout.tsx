@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 
 import { DetailsSidebar } from 'details/DetailsSidebar';
-import { MapView } from 'map/MapView';
-import { LayersSidebar } from 'sidebar/SidebarContent';
+import { MapView } from 'app/map/MapView';
+import { LayersSidebar } from 'app/sidebar/SidebarContent';
 import { globalStyleVariables } from '../../../theme';
 
 const SidebarLayout = ({ top, bottom, left, right, width, children }) => (

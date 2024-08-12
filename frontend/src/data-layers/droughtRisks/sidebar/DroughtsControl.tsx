@@ -2,7 +2,7 @@ import { Checkbox, Divider, FormControlLabel } from '@mui/material';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { FC } from 'react';
 import { useRecoilState } from 'recoil';
-import { InputSection } from 'sidebar/ui/InputSection';
+import { InputSection } from 'app/sidebar/ui/InputSection';
 
 import {
   DroughtOptionsVariableType,

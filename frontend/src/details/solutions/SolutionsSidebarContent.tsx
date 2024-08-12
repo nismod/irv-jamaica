@@ -4,7 +4,7 @@ import { MARINE_HABITATS_LOOKUP } from 'data-layers/marine/domains';
 import { DataItem } from 'details/features/detail-components';
 import { colorMap } from 'lib/color-map';
 import startCase from 'lodash/startCase';
-import { ColorBox } from 'map/tooltip/content/ColorBox';
+import { ColorBox } from 'app/map/tooltip/content/ColorBox';
 import { FC } from 'react';
 import { habitatColorMap } from 'data-layers/marine/state/layer';
 import { landuseColorMap } from 'data-layers/terrestrial/state/layer';

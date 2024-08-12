@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { RasterHoverDescription } from 'lib/data-map/types';
-import { RasterHoverDescription as RasterTooltip } from 'map/tooltip/content/RasterHoverDescription';
+import { RasterHoverDescription as RasterTooltip } from 'app/map/tooltip/content/RasterHoverDescription';
 
 import * as HAZARD_COLOR_MAPS from './color-maps';
 import { HAZARDS_METADATA } from './metadata';

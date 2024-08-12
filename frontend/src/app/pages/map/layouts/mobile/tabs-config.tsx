@@ -2,8 +2,8 @@ import { Layers, Palette, TableRows } from '@mui/icons-material';
 import { SvgIconProps } from '@mui/material';
 import { ComponentType } from 'react';
 
-import { MapLegend } from 'map/legend/MapLegend';
-import { LayersSidebar } from 'sidebar/SidebarContent';
+import { MapLegend } from 'app/map/legend/MapLegend';
+import { LayersSidebar } from 'app/sidebar/SidebarContent';
 import { DetailsSidebar } from 'details/DetailsSidebar';
 
 export interface TabConfig {

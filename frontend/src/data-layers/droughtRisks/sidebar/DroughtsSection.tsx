@@ -1,7 +1,7 @@
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { FC } from 'react';
-import { SidebarPanel } from 'sidebar/SidebarPanel';
-import { SidebarPanelSection } from 'sidebar/ui/SidebarPanelSection';
+import { SidebarPanel } from 'app/sidebar/SidebarPanel';
+import { SidebarPanelSection } from 'app/sidebar/ui/SidebarPanelSection';
 
 import { DroughtsControl } from './DroughtsControl';
 

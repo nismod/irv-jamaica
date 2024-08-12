@@ -1,10 +1,10 @@
 import { ToggleSection, ToggleSectionGroup } from 'lib/controls/accordion-toggle/ToggleSection';
 
-import { InputRow } from 'sidebar/ui/InputRow';
-import { InputSection } from 'sidebar/ui/InputSection';
-import { ReturnPeriodControl } from 'sidebar/ui/params/ReturnPeriodControl';
-import { EpochControl } from 'sidebar/ui/params/EpochControl';
-import { RCPControl } from 'sidebar/ui/params/RCPControl';
+import { InputRow } from 'app/sidebar/ui/InputRow';
+import { InputSection } from 'app/sidebar/ui/InputSection';
+import { ReturnPeriodControl } from 'app/sidebar/ui/params/ReturnPeriodControl';
+import { EpochControl } from 'app/sidebar/ui/params/EpochControl';
+import { RCPControl } from 'app/sidebar/ui/params/RCPControl';
 import { useRecoilValue } from 'recoil';
 import { showDamagesState } from 'app/state/damage-mapping/damage-map';
 import { Alert, Box } from '@mui/material';

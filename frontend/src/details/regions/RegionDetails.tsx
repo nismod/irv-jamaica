@@ -6,7 +6,7 @@ import { RegionDetailsContent } from './RegionDetailsContent';
 import { SidePanel } from 'details/SidePanel';
 import { DeselectButton } from 'details/DeselectButton';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
-import { MobileTabContentWatcher } from 'pages/map/layouts/mobile/tab-has-content';
+import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
 
 export const RegionDetails = () => {
   const selectedRegion = useRecoilValue(selectionState('regions'));

@@ -8,7 +8,7 @@ import {
 } from 'lib/data-map/view-layers';
 import { VectorTarget } from 'lib/data-map/types';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
-import { VectorLegend } from 'map/legend/VectorLegend';
+import { VectorLegend } from 'app/map/legend/VectorLegend';
 
 import { getAssetDataFormats } from './data-formats';
 import { ASSETS_SOURCE } from './source';

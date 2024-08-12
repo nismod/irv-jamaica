@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
-import { LayerLabel } from 'sidebar/ui/LayerLabel';
+import { LayerLabel } from 'app/sidebar/ui/LayerLabel';
 
 import {
   networkTreeCheckboxState,

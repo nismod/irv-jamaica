@@ -1,7 +1,7 @@
 import { FormControl, FormLabel, Slider } from '@mui/material';
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { useRecoilState } from 'recoil';
-import { InputSection } from 'sidebar/ui/InputSection';
+import { InputSection } from 'app/sidebar/ui/InputSection';
 
 import { TerrestrialLocationFilterType, TERRESTRIAL_LOCATION_FILTERS } from '../domains';
 import { terrestrialNonLandUseFiltersState } from '../state/terrestrial-filters';

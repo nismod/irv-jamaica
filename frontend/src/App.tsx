@@ -4,11 +4,11 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 
-import { IntroPage } from './pages/IntroPage';
-import { MapPage } from './pages/map/MapPage';
-import { DataPage } from './pages/DataPage';
-import { GuidePage } from './pages/GuidePage';
-import { globalStyleVariables, theme } from './theme';
+import { IntroPage } from './app/pages/IntroPage';
+import { MapPage } from './app/pages/map/MapPage';
+import { DataPage } from './app/pages/DataPage';
+import { GuidePage } from './app/pages/GuidePage';
+import { globalStyleVariables, theme } from './app/theme';
 import { Nav, NavItemConfig } from './Nav';
 
 import 'react-spring-bottom-sheet/dist/style.css';

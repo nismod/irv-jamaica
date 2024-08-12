@@ -18,6 +18,16 @@ Date: 9 August 2024
         vector/raster backends.
       - `view-layers.ts` - a list of the view layer IDs used by the map.
       - `views.ts` - default sidebar state (visible/hidden, expanded/collapsed etc.) for the individual map views.
+    - `map/` - UI, layout and behaviour of the main map view of the app. Contains
+      also the code for displaying basemap selection, legend for current layers,
+      tooltip for current hover.
+    - `pages/` - contents and layouts of the main pages of the app.
+    - `sidebar/` - the main layer selection sidebar.
+      - `ui/` - components shared by the sidebar contents.
+      - `SidebarContent.tsx` - defining the overall contents of the sidebar.
+      - `SidebarPanel.tsx` - each section in the sidebar should be composed from `SidebarPanel`.
+      - `url-state.tsx` - Recoil state synchronising the state of the sidebar
+        sections to the URL.
     - `state/` - Recoil state for the app.
       - `damage-mapping/` - damage mapping from hazards to network assets.
       - `layers/` - state which creates the view layer instances based on app
@@ -44,16 +54,6 @@ Date: 9 August 2024
     files inside the `lib` folder cannot import code from any other folder in
     the project, to enforce the separation between generic and content-specific
     code.
-  - `map/` - UI, layout and behaviour of the main map view of the app. Contains
-    also the code for displaying basemap selection, legend for current layers,
-    tooltip for current hover.
-  - `pages/` - contents and layouts of the main pages of the app.
-  - `sidebar/` - the main layer selection sidebar.
-    - `ui/` - components shared by the sidebar contents.
-    - `SidebarContent.tsx` - defining the overall contents of the sidebar.
-    - `SidebarPanel.tsx` - each section in the sidebar should be composed from `SidebarPanel`.
-    - `url-state.tsx` - Recoil state synchronising the state of the sidebar
-      sections to the URL.
   - `api-client.ts` - singleton instances of API clients.
   - `App.ts` - main React app component.
   - `index.css` - global styles (avoid, set styles in components instead.)

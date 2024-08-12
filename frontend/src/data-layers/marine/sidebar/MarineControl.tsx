@@ -1,6 +1,6 @@
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { useRecoilState } from 'recoil';
-import { InputSection } from 'sidebar/ui/InputSection';
+import { InputSection } from 'app/sidebar/ui/InputSection';
 
 import { MarineLocationFilterType, MARINE_LOCATION_FILTERS } from '../domains';
 import { marineFiltersState } from '../state/marine-filters';

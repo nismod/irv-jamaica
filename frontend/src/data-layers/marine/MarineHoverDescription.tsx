@@ -3,7 +3,7 @@ import { DataItem } from 'details/features/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
-import { ColorBox } from 'map/tooltip/content/ColorBox';
+import { ColorBox } from 'app/map/tooltip/content/ColorBox';
 
 import { MARINE_HABITATS_LOOKUP } from './domains';
 import { habitatColorMap } from './state/layer';

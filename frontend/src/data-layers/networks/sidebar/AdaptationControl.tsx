@@ -8,10 +8,10 @@ import { Box } from '@mui/system';
 import { CustomNumberSlider } from 'lib/controls/CustomSlider';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
-import { InputRow } from 'sidebar/ui/InputRow';
-import { InputSection } from 'sidebar/ui/InputSection';
-import { LayerStylePanel } from 'sidebar/ui/LayerStylePanel';
-import { DataParam } from 'sidebar/ui/params/DataParam';
+import { InputRow } from 'app/sidebar/ui/InputRow';
+import { InputSection } from 'app/sidebar/ui/InputSection';
+import { LayerStylePanel } from 'app/sidebar/ui/LayerStylePanel';
+import { DataParam } from 'app/sidebar/ui/params/DataParam';
 import { dataParamsByGroupState } from 'app/state/data-params';
 
 import {
