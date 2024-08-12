@@ -10,16 +10,16 @@ import {
 import { useRecoilState } from 'recoil';
 
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
-import { InputSection } from 'sidebar/ui/InputSection';
-import { InputRow } from 'sidebar/ui/InputRow';
-import { EpochControl } from 'sidebar/ui/params/EpochControl';
-import { RCPControl } from 'sidebar/ui/params/RCPControl';
+import { InputSection } from 'app/sidebar/ui/InputSection';
+import { InputRow } from 'app/sidebar/ui/InputRow';
+import { EpochControl } from 'app/sidebar/ui/params/EpochControl';
+import { RCPControl } from 'app/sidebar/ui/params/RCPControl';
 import {
   damageSourceState,
   damageSourceStateEffect,
   damageTypeState,
 } from 'app/state/damage-mapping/damage-map';
-import { LayerStylePanel } from 'sidebar/ui/LayerStylePanel';
+import { LayerStylePanel } from 'app/sidebar/ui/LayerStylePanel';
 
 import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'data-layers/hazards/metadata';
 

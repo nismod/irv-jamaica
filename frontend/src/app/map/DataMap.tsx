@@ -6,8 +6,6 @@ import { useRecoilValue } from 'recoil';
 import { interactionGroupsState } from 'app/state/layers/interaction-groups';
 import { viewLayersFlatState } from 'app/state/layers/view-layers-flat';
 import { useSaveViewLayers, viewLayersParamsState } from 'app/state/layers/view-layers-params';
-import { backgroundState, showLabelsState } from 'map/layers/layers-state';
-import { useBasemapStyle } from 'map/use-basemap-style';
 import { useInteractions } from 'lib/state/interactions/use-interactions';
 
 import { useTriggerMemo } from 'lib/hooks/use-trigger-memo';
@@ -16,6 +14,9 @@ import { useDataLoadTrigger } from 'lib/data-map/use-data-load-trigger';
 import { DeckGLOverlay } from 'lib/map/DeckGLOverlay';
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
 import { LayersList } from 'deck.gl/typed';
+
+import { backgroundState, showLabelsState } from './layers/layers-state';
+import { useBasemapStyle } from './use-basemap-style';
 
 // set a convention where the view layer id is either the first part of the deck id before the @ sign, or it's the whole id
 function lookupViewForDeck(deckLayerId: string) {

@@ -3,7 +3,7 @@ import { DataItem } from 'details/features/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import { FC, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
-import { DataDescription } from 'map/tooltip/DataDescription';
+import { DataDescription } from 'app/map/tooltip/DataDescription';
 
 import { droughtRisksColorSpecState, droughtRisksFieldSpecState } from './state/layer';
 

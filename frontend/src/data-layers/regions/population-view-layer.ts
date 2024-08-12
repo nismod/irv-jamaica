@@ -8,7 +8,7 @@ import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { dataColorMap } from 'lib/deck/props/color-map';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { border, fillColor } from 'lib/deck/props/style';
-import { VectorLegend } from 'map/legend/VectorLegend';
+import { VectorLegend } from 'app/map/legend/VectorLegend';
 
 import { RegionLevel } from './metadata';
 import { REGIONS_SOURCE } from './source';

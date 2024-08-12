@@ -3,9 +3,9 @@ import { FC, ReactNode } from 'react';
 import { Map } from 'react-map-gl/maplibre';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { backgroundState, showLabelsState } from 'map/layers/layers-state';
-import { useBasemapStyle } from 'map/use-basemap-style';
 import { mapViewStateState, useSyncMapUrl } from 'app/state/map-view/map-view-state';
+import { backgroundState, showLabelsState } from './layers/layers-state';
+import { useBasemapStyle } from './use-basemap-style';
 
 export interface BaseMapProps {
   children?: ReactNode;

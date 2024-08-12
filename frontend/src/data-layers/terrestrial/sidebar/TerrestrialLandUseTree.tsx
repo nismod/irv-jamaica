@@ -1,6 +1,6 @@
 import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { useRecoilState } from 'recoil';
-import { LayerLabel } from 'sidebar/ui/LayerLabel';
+import { LayerLabel } from 'app/sidebar/ui/LayerLabel';
 
 import { TERRESTRIAL_LANDUSE_COLORS } from '../colors';
 import { LANDUSE_HIERARCHY } from './landuse-hierarchy';

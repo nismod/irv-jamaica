@@ -4,7 +4,7 @@ import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';
 import { regionLabelsDeckLayer } from 'data-layers/regions/region-labels-deck-layer';
 import { sectionVisibilityState } from 'app/state/sections';
 import { regionLevelState } from 'data-layers/regions/state/data-selection';
-import { backgroundState, showLabelsState } from 'map/layers/layers-state';
+import { backgroundState, showLabelsState } from 'app/map/layers/layers-state';
 
 export const labelsLayerState = selector<ViewLayer[]>({
   key: 'labelsLayerState',

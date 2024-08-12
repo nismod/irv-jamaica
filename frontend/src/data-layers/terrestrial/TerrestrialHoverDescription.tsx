@@ -3,8 +3,8 @@ import { DataItem } from 'details/features/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import startCase from 'lodash/startCase';
 import { FC } from 'react';
-import { DataDescription } from 'map/tooltip/DataDescription';
-import { ColorBox } from 'map/tooltip/content/ColorBox';
+import { DataDescription } from 'app/map/tooltip/DataDescription';
+import { ColorBox } from 'app/map/tooltip/content/ColorBox';
 
 import { terrestrialSlope, terrestrialElevation } from './color-maps';
 import { landuseColorMap } from './state/layer';

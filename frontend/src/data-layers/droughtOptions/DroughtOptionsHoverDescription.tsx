@@ -7,7 +7,7 @@ import {
   droughtOptionsColorSpecState,
   droughtOptionsFieldSpecState,
 } from 'data-layers/droughtOptions/state/layer';
-import { DataDescription } from 'map/tooltip/DataDescription';
+import { DataDescription } from 'app/map/tooltip/DataDescription';
 
 export const DroughtOptionsHoverDescription: FC<VectorHoverDescription> = ({
   target,

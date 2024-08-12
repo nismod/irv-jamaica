@@ -5,9 +5,9 @@ import { TransitionGroup } from 'react-transition-group';
 
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
 
-import { SidebarPanel } from 'sidebar/SidebarPanel';
-import { StyleSelection } from 'sidebar/StyleSelection';
-import { SidebarPanelSection } from 'sidebar/ui/SidebarPanelSection';
+import { SidebarPanel } from 'app/sidebar/SidebarPanel';
+import { StyleSelection } from 'app/sidebar/StyleSelection';
+import { SidebarPanelSection } from 'app/sidebar/ui/SidebarPanelSection';
 import { networksStyleStateEffect, sectionStyleValueState } from 'app/state/sections';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 

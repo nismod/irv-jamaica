@@ -6,7 +6,7 @@ import { ViewLayer } from 'lib/data-map/view-layers';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { dataColorMap } from 'lib/deck/props/color-map';
 import { fillColor } from 'lib/deck/props/style';
-import { VectorLegend } from 'map/legend/VectorLegend';
+import { VectorLegend } from 'app/map/legend/VectorLegend';
 
 import { SolutionHoverDescription } from './MarineHoverDescription';
 

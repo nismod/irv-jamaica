@@ -8,7 +8,7 @@ import { viewState, viewStateEffect } from 'app/state/view';
 
 import { MapViewRouteSync } from './MapViewRouteSync';
 import { MapPageDesktopLayout } from './layouts/MapPageDesktopLayout';
-import { useIsMobile } from 'use-is-mobile';
+import { useIsMobile } from 'app/use-is-mobile';
 import { MapPageMobileLayout } from './layouts/mobile/MapPageMobileLayout';
 import { useParams } from 'react-router-dom';
 

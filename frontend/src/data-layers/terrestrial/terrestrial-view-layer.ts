@@ -12,7 +12,7 @@ import { getTerrestrialDataFormats } from './data-formats';
 import { LandUseOption, TerrestrialLocationFilterType } from './domains';
 import { TerrestrialFilters } from './state/terrestrial-filters';
 import { TerrestrialHoverDescription } from './TerrestrialHoverDescription';
-import { VectorLegend } from 'map/legend/VectorLegend';
+import { VectorLegend } from 'app/map/legend/VectorLegend';
 
 function landuseFilterValue(p, landuseFilters: Set<LandUseOption>) {
   return landuseFilters.has(p.landuse_desc) ? 1 : 0;

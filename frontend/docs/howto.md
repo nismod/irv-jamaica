@@ -64,19 +64,19 @@ modifying the other parts of the app:
 - data/layer selection sidebar UI and its Recoil state (in `data-layers/[layer-name/sidebar/` and
   `state/data-params.ts`.)
 - app components for the map view:
-  - `pages/map/MapPage.tsx`
-  - `map/MapView.tsx`
-  - `map/BaseMap.tsx`
-  - `map/DataMap.tsx`
+  - `app/pages/map/MapPage.tsx`
+  - `app/map/MapView.tsx`
+  - `app/map/BaseMap.tsx`
+  - `app/map/DataMap.tsx`
 
 with the following crucial dependencies / interactions:
 
 - Sidebar components control data selection state for individual view layers.
 - View layer state uses data selection state and view layer config. Changes to view layer state are rendered on the map data layers.
-- `pages/map/MapPage` and its desktop/mobile layout components, assemble
+- `app/pages/map/MapPage` and its desktop/mobile layout components, assemble
   together all elements of the interactive map layout - sidebar, legend, feature
   selection sidebar, map HUD, the map itself
-- `map/MapView` combines `map/BaseMap`, `map/DataMap`, tooltip
+- `app/map/MapView` combines `app/map/BaseMap`, `app/map/DataMap`, tooltip
   etc (these are all components that depend on the view state of the map.) `BaseMap` and `DataMap` each use Recoil state to render the base map and data layers respectively.
 
 NOTE that with the current setup, the `ViewLayer` objects are created inside

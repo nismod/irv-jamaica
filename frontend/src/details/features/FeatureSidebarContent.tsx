@@ -21,7 +21,7 @@ import {
   WaterSupplyNodeDetails,
 } from './detail-components';
 import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
-import { ColorBox } from 'map/tooltip/content/ColorBox';
+import { ColorBox } from 'app/map/tooltip/content/ColorBox';
 import { ApiClient } from 'lib/api-client';
 import { DamagesSection } from './damages/DamagesSection';
 import { AdaptationSection } from './adaptation/AdaptationSection';
