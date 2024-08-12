@@ -17,7 +17,7 @@ import { FC, forwardRef, useCallback, useState } from 'react';
 import { NavLink as RouterNavLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
 import { VIEW_SECTIONS } from 'app/config/views';
-import { useIsMobile } from './app/use-is-mobile';
+import { useIsMobile } from './use-is-mobile';
 import { withProps } from 'lib/react/with-props';
 import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from 'app/state/map-view/map-url';
 import { globalStyleVariables } from 'app/theme';
