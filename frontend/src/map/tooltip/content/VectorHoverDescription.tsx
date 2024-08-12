@@ -28,7 +28,7 @@ export const VectorHoverDescription: FC<{
         {title}
       </Typography>
 
-      <DataItem label="ID" value={feature.properties.asset_id} />
+      <DataItem label="ID" value={`${feature.properties.asset_id}`} />
       {colorMap && <DataDescription viewLayer={viewLayer} feature={feature} colorMap={colorMap} />}
     </>
   );
