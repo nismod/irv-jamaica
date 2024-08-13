@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { Preview } from '@storybook/react';
 import { atom, RecoilRoot } from 'recoil';
 import { useSyncRecoilState } from '../src/lib/recoil/sync-state';
-import { viewStateEffect } from '../src/state/view';
+import { viewStateEffect } from '../src/app/state/view';
 import { useStateEffect } from '../src/lib/recoil/state-effects/use-state-effect';
 
 const mockViewState = atom({
