@@ -1,0 +1,34 @@
+{
+  "interactionGroup": "regions",
+  "interactionStyle": "vector",
+  "viewLayer": {
+    "id": "population_enumeration",
+    "interactionGroup": "regions",
+    "spatialType": "vector",
+    "group": "regions",
+    "params": {
+      "regionLevel": "enumeration"
+    }
+  },
+  "target": {
+    "feature": {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon"
+      },
+      "properties": {
+        "ED_CLASS": "URBAN",
+        "ED_ID": 1234567,
+        "AREA": 401610.89,
+        "PERIMETER": 2758,
+        "PARISH": "EXAMPLE PARISH",
+        "CONST_NAME": "SOUTH EAST",
+        "ED": "SE 999",
+        "population": 975,
+        "population_density_per_km2": 2427.737849485618,
+        "layerName": "population"
+      },
+      "id": 12345678
+    }
+  }
+}

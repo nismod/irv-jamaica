@@ -1,0 +1,27 @@
+{
+  "id": 123456789,
+  "properties": {
+    "asset_id": "node_123456",
+    "_asset_type": "junction",
+    "asset_type": "pole",
+    "capacity": 8.4,
+    "uc_min": 1000,
+    "uc_max": 5000,
+    "uc_avg": 3000,
+    "uc_uom": "USD",
+    "cost_min": 155000,
+    "cost_max": 775000,
+    "cost_mean": 465000,
+    "cost_unit": "J$",
+    "degree": 4,
+    "population": 0,
+    "ei": 0.000126738458173,
+    "ei_uom": "KW/person",
+    "parish": "Example Parish",
+    "title": null,
+    "source": null,
+    "uid": 1100018779,
+    "sector": "power",
+    "subsector": "transmission"
+  }
+}

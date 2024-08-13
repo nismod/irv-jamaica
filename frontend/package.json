@@ -75,6 +75,8 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-storybook": "^0.8.0",
+    "msw": "^2.3.5",
+    "msw-storybook-addon": "^2.0.3",
     "openapi-typescript-codegen": "^0.21.0",
     "prettier": "^3.2.5",
     "storybook": "^8.2.8",
@@ -107,6 +109,11 @@
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
+    ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
     ]
   }
 }

@@ -1,0 +1,38 @@
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "LineString"
+  },
+  "properties": {
+    "asset_id": "example_road_12345",
+    "asset_type": "CLASS B",
+    "ead__fluvial__rcp_2.6__epoch_2050__conf_None": 654.9977648163444,
+    "eael__fluvial__rcp_2.6__epoch_2050__conf_None": 2.8651382222680457,
+    "ead__fluvial__rcp_2.6__epoch_2080__conf_None": 733.5935769378004,
+    "eael__fluvial__rcp_2.6__epoch_2080__conf_None": 2.8651382222680457,
+    "ead__fluvial__rcp_4.5__epoch_2050__conf_None": 766.4011283676974,
+    "eael__fluvial__rcp_4.5__epoch_2050__conf_None": 2.8651382222680457,
+    "ead__fluvial__rcp_4.5__epoch_2080__conf_None": 552.0132196633816,
+    "eael__fluvial__rcp_4.5__epoch_2080__conf_None": 2.8651382222680457,
+    "ead__fluvial__rcp_8.5__epoch_2050__conf_None": 253.75512546195085,
+    "eael__fluvial__rcp_8.5__epoch_2050__conf_None": 2.8651382222680457,
+    "ead__fluvial__rcp_baseline__epoch_2010__conf_None": 3346.289085559888,
+    "eael__fluvial__rcp_baseline__epoch_2010__conf_None": 2.8651382222680457,
+    "ead__surface__rcp_2.6__epoch_2050__conf_None": 3514.535728810853,
+    "eael__surface__rcp_2.6__epoch_2050__conf_None": 29.36766677824747,
+    "ead__surface__rcp_2.6__epoch_2080__conf_None": 3514.535728810853,
+    "eael__surface__rcp_2.6__epoch_2080__conf_None": 29.36766677824747,
+    "ead__surface__rcp_4.5__epoch_2050__conf_None": 3805.873483715005,
+    "eael__surface__rcp_4.5__epoch_2050__conf_None": 29.36766677824747,
+    "ead__surface__rcp_4.5__epoch_2080__conf_None": 3805.873483715005,
+    "eael__surface__rcp_4.5__epoch_2080__conf_None": 29.36766677824747,
+    "ead__surface__rcp_8.5__epoch_2050__conf_None": 3514.535728810853,
+    "eael__surface__rcp_8.5__epoch_2050__conf_None": 29.36766677824747,
+    "ead__surface__rcp_8.5__epoch_2080__conf_None": 4133.002221143524,
+    "eael__surface__rcp_8.5__epoch_2080__conf_None": 29.36766677824747,
+    "ead__surface__rcp_baseline__epoch_2010__conf_None": 4664.595752553787,
+    "eael__surface__rcp_baseline__epoch_2010__conf_None": 61.60047177876298,
+    "layerName": "road_edges_class_b"
+  },
+  "id": 1000036526
+}
