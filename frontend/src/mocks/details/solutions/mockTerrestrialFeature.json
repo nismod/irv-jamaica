@@ -1,0 +1,24 @@
+{
+  "type": "Feature",
+  "geometry": { "type": "Point" },
+  "properties": {
+    "landuse_desc": "Buildings and other infrastructures",
+    "landuse_code": "BA",
+    "cell_index": 60204525,
+    "slope_degrees": 3.7629384994506836,
+    "elevation_m": 41,
+    "soil_type": "Clay",
+    "hydrologic_soil_group_code": "D",
+    "within_bauxite_area": "0",
+    "within_forest_100m": "0",
+    "within_forest_reserve": "0",
+    "protected_area_PROTECTED_AREA_name": "Example Protected Area",
+    "is_protected": "1",
+    "is_proposed_protected": "0",
+    "within_major_river_50m": "0",
+    "within_large_stream_50m": "false",
+    "within_headwater_stream_50m": false,
+    "layerName": "natural_terrestrial_combined_points"
+  },
+  "id": 1234567
+}

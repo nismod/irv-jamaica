@@ -1,0 +1,148 @@
+{
+  "items": [
+    {
+      "id": 1100021723,
+      "string_id": "node_21847",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.10387418236505 18.274396684183213)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020360,
+      "string_id": "node_20477",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.11063693200619 18.275868650885847)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020559,
+      "string_id": "node_20677",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.10992233186853 18.278361477767437)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020566,
+      "string_id": "node_20684",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.11061904865835 18.27719232760382)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020353,
+      "string_id": "node_20470",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.11153779473679 18.27156252204142)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020357,
+      "string_id": "node_20474",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.10603701539358 18.277140485558967)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020554,
+      "string_id": "node_20672",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.10741041380685 18.278193155443148)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020557,
+      "string_id": "node_20675",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.10958017350045 18.278462158339096)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020563,
+      "string_id": "node_20681",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.10648558101032 18.27818056480247)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020564,
+      "string_id": "node_20682",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.1105797328665 18.276467734016933)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020350,
+      "string_id": "node_20467",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.11156334829772 18.274543134652784)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020352,
+      "string_id": "node_20469",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.11320869898016 18.271958836122522)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020354,
+      "string_id": "node_20471",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.1088091442301 18.27260794939098)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020355,
+      "string_id": "node_20472",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.1082030820493 18.27213781868278)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020348,
+      "string_id": "node_20465",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.11058328202644 18.275726801109816)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020553,
+      "string_id": "node_20671",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.1075711530118 18.27809327861013)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020555,
+      "string_id": "node_20673",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.10598892522904 18.277677358574607)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020556,
+      "string_id": "node_20674",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.10597373247143 18.277846967311064)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100020561,
+      "string_id": "node_20679",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.1068663527804 18.277904527368324)",
+      "value": 1466.5405443779705
+    },
+    {
+      "id": 1100021751,
+      "string_id": "node_21875",
+      "layer": "elec_nodes_pole",
+      "bbox_wkt": "POINT(-77.11342623933814 18.267993273596883)",
+      "value": 1466.5405443779705
+    }
+  ],
+  "total": 29934,
+  "page": 1,
+  "size": 20,
+  "pages": 1497
+}
