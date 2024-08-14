@@ -12,7 +12,6 @@ import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 
 export const FeatureSidebar: FC = () => {
   const featureSelection = useRecoilValue(selectionState('assets'));
-  console.log('featureSelection:', featureSelection);
 
   if (!featureSelection) return null;
 
