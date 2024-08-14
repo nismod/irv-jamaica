@@ -4,6 +4,8 @@ import { buildTreeConfig, CheckboxTreeState } from 'lib/controls/checkbox-tree/C
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
 import { atom, selector } from 'recoil';
+import { object, bool, dict } from '@recoiljs/refine';
+import { urlSyncEffect } from 'recoil-sync';
 
 export const landuseTreeExpandedState = atom<string[]>({
   key: 'landuseTreeExpandedState',
@@ -18,6 +20,16 @@ export const landuseTreeCheckboxState = atom<CheckboxTreeState>({
     checked: mapValues(landuseTreeConfig.nodes, () => true),
     indeterminate: mapValues(landuseTreeConfig.nodes, () => false),
   },
+  effects: [
+    urlSyncEffect({
+      storeKey: 'url-json',
+      itemKey: 'landTree',
+      refine: object({
+        checked: dict(bool()),
+        indeterminate: dict(bool()),
+      }),
+    }),
+  ],
 });
 
 export const landuseFilterState = selector<Record<LandUseOption, boolean>>({

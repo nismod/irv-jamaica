@@ -1,5 +1,7 @@
+import { bool, dict, object } from '@recoiljs/refine';
 import { MarineLocationFilterType } from 'data-layers/marine/domains';
 import { atom } from 'recoil';
+import { urlSyncEffect } from 'recoil-sync';
 
 export type MarineLocationFilters = Record<MarineLocationFilterType, boolean>;
 
@@ -16,4 +18,13 @@ export const marineFiltersState = atom<MarineFilters>({
       within_mangrove_500m: false,
     },
   },
+  effects: [
+    urlSyncEffect({
+      storeKey: 'url-json',
+      itemKey: 'marFilt',
+      refine: object({
+        location_filters: dict(bool()),
+      }),
+    }),
+  ],
 });
