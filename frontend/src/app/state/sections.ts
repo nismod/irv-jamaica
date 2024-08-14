@@ -1,4 +1,4 @@
-import { bool, string } from '@recoiljs/refine';
+import { bool } from '@recoiljs/refine';
 import { atomFamily } from 'recoil';
 import { urlSyncEffect } from 'recoil-sync';
 
@@ -29,13 +29,6 @@ export const sidebarSectionExpandedState = atomFamily({
 export const sectionStyleValueState = atomFamily<string, string>({
   key: 'sectionStyleValueState',
   default: '',
-  effects: (id) => [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: id,
-      refine: string(),
-    }),
-  ],
 });
 
 export const networksStyleStateEffect: StateEffect<string> = ({ get, set }, style) => {
