@@ -1,6 +1,8 @@
 import { LandUseOption, TerrestrialLocationFilterType } from 'data-layers/terrestrial/domains';
 import { atom, selector } from 'recoil';
+import { urlSyncEffect } from 'recoil-sync';
 import { landuseFilterState } from '../sidebar/landuse-tree';
+import { array, bool, dict, number, object } from '@recoiljs/refine';
 
 export type TerrestrialLocationFilters = Record<TerrestrialLocationFilterType, boolean>;
 
@@ -28,6 +30,17 @@ export const terrestrialNonLandUseFiltersState = atom<TerrestrialNonLandUseFilte
       within_headwater_stream_50m: false,
     },
   },
+  effects: [
+    urlSyncEffect({
+      storeKey: 'url-json',
+      itemKey: 'terrFilt',
+      refine: object({
+        slope_degrees: array(number()),
+        elevation_m: array(number()),
+        location_filters: dict(bool()),
+      }),
+    }),
+  ],
 });
 
 export const terrestrialFiltersState = selector<TerrestrialFilters>({

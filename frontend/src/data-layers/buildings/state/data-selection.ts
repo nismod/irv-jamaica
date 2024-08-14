@@ -1,4 +1,6 @@
+import { bool, dict } from '@recoiljs/refine';
 import { atom } from 'recoil';
+import { urlSyncEffect } from 'recoil-sync';
 
 export const buildingsStyleState = atom({
   key: 'buildingsStyleState',
@@ -32,4 +34,11 @@ export const buildingSelectionState = atom<BuildingSelection>({
     buildings_other: true,
     buildings_resort: true,
   },
+  effects: [
+    urlSyncEffect({
+      storeKey: 'url-json',
+      itemKey: 'buiSel',
+      refine: dict(bool()),
+    }),
+  ],
 });

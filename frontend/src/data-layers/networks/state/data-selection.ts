@@ -3,6 +3,8 @@ import { buildTreeConfig, CheckboxTreeState } from 'lib/controls/checkbox-tree/C
 import mapValues from 'lodash/mapValues';
 import { atom, selector } from 'recoil';
 import { sectionStyleValueState } from 'app/state/sections';
+import { urlSyncEffect } from 'recoil-sync';
+import { bool, dict, object } from '@recoiljs/refine';
 
 export const networkTreeExpandedState = atom<string[]>({
   key: 'networkTreeExpandedState',
@@ -17,6 +19,16 @@ export const networkTreeCheckboxState = atom<CheckboxTreeState>({
     checked: mapValues(networkTreeConfig.nodes, () => false),
     indeterminate: mapValues(networkTreeConfig.nodes, () => false),
   },
+  effects: [
+    urlSyncEffect({
+      storeKey: 'url-json',
+      itemKey: 'netTree',
+      refine: object({
+        checked: dict(bool()),
+        indeterminate: dict(bool()),
+      }),
+    }),
+  ],
 });
 
 export const networkSelectionState = selector<string[]>({
