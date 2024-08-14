@@ -48,7 +48,9 @@ export const networkTreeCheckboxState = atom<CheckboxTreeState>({
           reset('netTree');
           return;
         }
-        const checked = Object.keys(value.checked).filter((id) => value.checked[id]);
+        const checked = Object.keys(value.checked).filter(
+          (id) => value.checked[id] && !networkTreeConfig.nodes[id].children,
+        );
         write('netTree', checked.join(','));
       },
     }),
