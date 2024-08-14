@@ -32,6 +32,14 @@ function sectionVisibility(section, sectionConfig) {
   return searchParams.has(section) ? searchParams.get(section) === 'true' : sectionConfig.visible;
 }
 
+function sectionStyle(section, sectionConfig) {
+  const searchParams = new URLSearchParams(window.location.search);
+  const styleParam = `${section}Style`;
+  return searchParams.has(styleParam)
+    ? searchParams.get(styleParam).replaceAll('"', '')
+    : sectionConfig.defaultStyle;
+}
+
 export const viewStateEffect: StateEffect<string> = ({ set }, view, previousView) => {
   const viewSectionsConfig = VIEW_SECTIONS[view];
 
@@ -49,6 +57,6 @@ export const viewStateEffect: StateEffect<string> = ({ set }, view, previousView
       (style) => SECTIONS_CONFIG[section].styles[style],
     );
     set(sectionStyleOptionsState(section), styleOptions);
-    set(sectionStyleValueState(section), sectionConfig.defaultStyle);
+    set(sectionStyleValueState(section), sectionStyle(section, sectionConfig));
   });
 };
