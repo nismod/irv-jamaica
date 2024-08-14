@@ -1,5 +1,9 @@
 import { NETWORK_LAYERS_HIERARCHY } from '../sidebar/hierarchy';
-import { buildTreeConfig, CheckboxTreeState } from 'lib/controls/checkbox-tree/CheckboxTree';
+import {
+  buildTreeConfig,
+  recalculateCheckboxStates,
+  CheckboxTreeState,
+} from 'lib/controls/checkbox-tree/CheckboxTree';
 import mapValues from 'lodash/mapValues';
 import { atom, DefaultValue, selector } from 'recoil';
 import { sectionStyleValueState } from 'app/state/sections';
@@ -37,10 +41,7 @@ export const networkTreeCheckboxState = atom<CheckboxTreeState>({
         checkedFields.forEach((id) => {
           checked[id] = true;
         });
-        return {
-          checked,
-          indeterminate: {},
-        };
+        return recalculateCheckboxStates({ checked, indeterminate: {} }, networkTreeConfig);
       },
       write: ({ write, reset }, value) => {
         if (value instanceof DefaultValue) {
