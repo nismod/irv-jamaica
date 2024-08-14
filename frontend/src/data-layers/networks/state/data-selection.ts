@@ -1,7 +1,7 @@
 import { NETWORK_LAYERS_HIERARCHY } from '../sidebar/hierarchy';
 import { buildTreeConfig, CheckboxTreeState } from 'lib/controls/checkbox-tree/CheckboxTree';
 import mapValues from 'lodash/mapValues';
-import { atom, selector } from 'recoil';
+import { atom, DefaultValue, selector } from 'recoil';
 import { sectionStyleValueState } from 'app/state/sections';
 import { urlSyncEffect } from 'recoil-sync';
 import { bool, dict, object } from '@recoiljs/refine';
@@ -27,6 +27,29 @@ export const networkTreeCheckboxState = atom<CheckboxTreeState>({
         checked: dict(bool()),
         indeterminate: dict(bool()),
       }),
+      read: ({ read }) => {
+        const value = read('netTree');
+        if (value instanceof DefaultValue) {
+          return value;
+        }
+        const checkedFields = (value as string).split(',');
+        const checked = {};
+        checkedFields.forEach((id) => {
+          checked[id] = true;
+        });
+        return {
+          checked,
+          indeterminate: {},
+        };
+      },
+      write: ({ write, reset }, value) => {
+        if (value instanceof DefaultValue) {
+          reset('netTree');
+          return;
+        }
+        const checked = Object.keys(value.checked).filter((id) => value.checked[id]);
+        write('netTree', checked.join(','));
+      },
     }),
   ],
 });
