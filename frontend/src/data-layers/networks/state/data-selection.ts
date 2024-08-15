@@ -40,6 +40,13 @@ function stringifyTree(tree: CheckboxTreeState) {
   return checked.join('.');
 }
 
+function writeTreeToUrl(tree: CheckboxTreeState, param: string) {
+  const urlTree = stringifyTree(tree);
+  const url = new URL(window.location.href);
+  url.searchParams.set(param, urlTree);
+  window.history.replaceState({}, '', url.toString());
+}
+
 export const networkTreeCheckboxState = atom<CheckboxTreeState>({
   key: 'networkTreeSelectionState',
   default: {
@@ -47,6 +54,14 @@ export const networkTreeCheckboxState = atom<CheckboxTreeState>({
     indeterminate: mapValues(networkTreeConfig.nodes, () => false),
   },
   effects: [
+    ({ onSet }) => {
+      onSet((newTree) => {
+        if (newTree instanceof DefaultValue) {
+          return;
+        }
+        writeTreeToUrl(newTree, 'netTree');
+      });
+    },
     urlSyncEffect({
       storeKey: 'url-json',
       itemKey: 'netTree',
