@@ -16,21 +16,28 @@ export const networkTreeExpandedState = atom<string[]>({
 });
 
 export const networkTreeConfig = buildTreeConfig(NETWORK_LAYERS_HIERARCHY);
+const networkTreeURLs = mapValues(networkTreeConfig.nodes, (node) => node.url);
+const networkTreeIDs = Object.keys(networkTreeURLs);
 
 function parseTreeFromString(value: string) {
-  const checkedFields = value.split(',').filter(Boolean);
+  const separator = value.includes('.') ? '.' : ',';
+  const checkedFields = value.split(separator).filter(Boolean);
   const checked = {};
-  checkedFields.forEach((id) => {
+  checkedFields.forEach((url) => {
+    const id = networkTreeIDs.includes(url)
+      ? url // url is a layer ID.
+      : networkTreeIDs.find((id) => networkTreeURLs[id] === url); // url is the hex code for a layer.
     checked[id] = true;
   });
   return recalculateCheckboxStates({ checked, indeterminate: {} }, networkTreeConfig);
 }
 
 function stringifyTree(tree: CheckboxTreeState) {
-  const checked = Object.keys(tree.checked).filter(
+  const checkedLayers = Object.keys(tree.checked).filter(
     (id) => tree.checked[id] && !networkTreeConfig.nodes[id].children,
   );
-  return checked.join(',');
+  const checked = checkedLayers.map((id) => networkTreeURLs[id]);
+  return checked.join('.');
 }
 
 export const networkTreeCheckboxState = atom<CheckboxTreeState>({
@@ -49,7 +56,6 @@ export const networkTreeCheckboxState = atom<CheckboxTreeState>({
       }),
       read: ({ read }) => {
         const value = read('netTree');
-        console.log('read', value);
         if (value instanceof DefaultValue) {
           return value;
         }
