@@ -5,7 +5,7 @@ import { sectionVisibilityState, sidebarSectionExpandedState } from 'app/state/s
 
 export const VisibilityToggle = ({ id }) => {
   const [visibility, setVisibility] = useRecoilState(sectionVisibilityState(id));
-  const [expanded, setExpanded] = useRecoilState(sidebarSectionExpandedState(id));
+  const [, setExpanded] = useRecoilState(sidebarSectionExpandedState(id));
 
   function handleClick(e) {
     setVisibility(!visibility);
