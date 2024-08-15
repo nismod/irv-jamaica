@@ -1,5 +1,5 @@
 import { RecoilRoot } from 'recoil';
-import { RecoilURLSyncJSON } from 'recoil-sync';
+import { RecoilURLSync } from 'recoil-sync';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -50,11 +50,37 @@ const navItems: NavItemConfig[] = [
   },
 ];
 
+const serialise = (value) => {
+  if (typeof value === 'undefined') {
+    return '';
+  }
+  if (typeof value === 'string') {
+    return value;
+  }
+  if (typeof value === 'number') {
+    return value.toString();
+  }
+  return JSON.stringify(value);
+};
+
+const deserialise = (value) => {
+  try {
+    return JSON.parse(value);
+  } catch (e) {
+    return value;
+  }
+};
+
 export const App = () => {
   return (
     <RecoilRoot>
       <RecoilLocalStorageSync storeKey="local-storage">
-        <RecoilURLSyncJSON storeKey="url-json" location={{ part: 'queryParams' }}>
+        <RecoilURLSync
+          storeKey="url-json"
+          location={{ part: 'queryParams' }}
+          serialize={serialise}
+          deserialize={deserialise}
+        >
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
               <Router>
@@ -78,7 +104,7 @@ export const App = () => {
               </Router>
             </ThemeProvider>
           </StyledEngineProvider>
-        </RecoilURLSyncJSON>
+        </RecoilURLSync>
       </RecoilLocalStorageSync>
     </RecoilRoot>
   );
