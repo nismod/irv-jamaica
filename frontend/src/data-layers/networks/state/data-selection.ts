@@ -9,6 +9,7 @@ import { atom, DefaultValue, selector } from 'recoil';
 import { sectionStyleValueState } from 'app/state/sections';
 import { urlSyncEffect } from 'recoil-sync';
 import { bool, dict, object } from '@recoiljs/refine';
+import { stringify } from 'querystring';
 
 export const networkTreeExpandedState = atom<string[]>({
   key: 'networkTreeExpandedState',
@@ -16,6 +17,22 @@ export const networkTreeExpandedState = atom<string[]>({
 });
 
 export const networkTreeConfig = buildTreeConfig(NETWORK_LAYERS_HIERARCHY);
+
+function parseTreeFromString(value: string) {
+  const checkedFields = value.split(',').filter(Boolean);
+  const checked = {};
+  checkedFields.forEach((id) => {
+    checked[id] = true;
+  });
+  return recalculateCheckboxStates({ checked, indeterminate: {} }, networkTreeConfig);
+}
+
+function stringifyTree(tree: CheckboxTreeState) {
+  const checked = Object.keys(tree.checked).filter(
+    (id) => tree.checked[id] && !networkTreeConfig.nodes[id].children,
+  );
+  return checked.join(',');
+}
 
 export const networkTreeCheckboxState = atom<CheckboxTreeState>({
   key: 'networkTreeSelectionState',
@@ -37,22 +54,14 @@ export const networkTreeCheckboxState = atom<CheckboxTreeState>({
         if (value instanceof DefaultValue) {
           return value;
         }
-        const checkedFields = (value as string).split(',').filter(Boolean);
-        const checked = {};
-        checkedFields.forEach((id) => {
-          checked[id] = true;
-        });
-        return recalculateCheckboxStates({ checked, indeterminate: {} }, networkTreeConfig);
+        return parseTreeFromString(value as string);
       },
       write: ({ write, reset }, value) => {
         if (value instanceof DefaultValue) {
           reset('netTree');
           return;
         }
-        const checked = Object.keys(value.checked).filter(
-          (id) => value.checked[id] && !networkTreeConfig.nodes[id].children,
-        );
-        write('netTree', checked.join(','));
+        write('netTree', stringifyTree(value));
       },
     }),
   ],

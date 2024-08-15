@@ -18,6 +18,22 @@ export const landuseTreeExpandedState = atom<string[]>({
 
 export const landuseTreeConfig = buildTreeConfig(LANDUSE_HIERARCHY);
 
+function parseTreeFromString(value: string) {
+  const checkedFields = value.split(',').filter(Boolean);
+  const checked = {};
+  checkedFields.forEach((id) => {
+    checked[id] = true;
+  });
+  return recalculateCheckboxStates({ checked, indeterminate: {} }, landuseTreeConfig);
+}
+
+function stringifyTree(tree: CheckboxTreeState) {
+  const checked = Object.keys(tree.checked).filter(
+    (id) => tree.checked[id] && !landuseTreeConfig.nodes[id].children,
+  );
+  return checked.join(',');
+}
+
 export const landuseTreeCheckboxState = atom<CheckboxTreeState>({
   key: 'landuseTreeCheckboxState',
   default: {
@@ -37,22 +53,14 @@ export const landuseTreeCheckboxState = atom<CheckboxTreeState>({
         if (value instanceof DefaultValue) {
           return value;
         }
-        const checkedFields = (value as string).split(',').filter(Boolean);
-        const checked = {};
-        checkedFields.forEach((id) => {
-          checked[id] = true;
-        });
-        return recalculateCheckboxStates({ checked, indeterminate: {} }, landuseTreeConfig);
+        return parseTreeFromString(value as string);
       },
       write: ({ write, reset }, value) => {
         if (value instanceof DefaultValue) {
           reset('landTree');
           return;
         }
-        const checked = Object.keys(value.checked).filter(
-          (id) => value.checked[id] && !landuseTreeConfig.nodes[id].children,
-        );
-        write('landTree', checked.join(','));
+        write('landTree', stringifyTree(value));
       },
     }),
   ],
