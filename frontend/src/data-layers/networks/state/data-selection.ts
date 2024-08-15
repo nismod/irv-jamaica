@@ -9,7 +9,6 @@ import { atom, DefaultValue, selector } from 'recoil';
 import { sectionStyleValueState } from 'app/state/sections';
 import { urlSyncEffect } from 'recoil-sync';
 import { bool, dict, object } from '@recoiljs/refine';
-import { stringify } from 'querystring';
 
 export const networkTreeExpandedState = atom<string[]>({
   key: 'networkTreeExpandedState',
