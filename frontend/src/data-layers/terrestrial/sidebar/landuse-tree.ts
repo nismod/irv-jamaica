@@ -1,9 +1,13 @@
 import { LANDUSE_HIERARCHY } from 'data-layers/terrestrial/sidebar/landuse-hierarchy';
 import { LandUseOption } from 'data-layers/terrestrial/domains';
-import { buildTreeConfig, CheckboxTreeState } from 'lib/controls/checkbox-tree/CheckboxTree';
+import {
+  buildTreeConfig,
+  recalculateCheckboxStates,
+  CheckboxTreeState,
+} from 'lib/controls/checkbox-tree/CheckboxTree';
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
-import { atom, selector } from 'recoil';
+import { atom, DefaultValue, selector } from 'recoil';
 import { object, bool, dict } from '@recoiljs/refine';
 import { urlSyncEffect } from 'recoil-sync';
 
@@ -28,6 +32,28 @@ export const landuseTreeCheckboxState = atom<CheckboxTreeState>({
         checked: dict(bool()),
         indeterminate: dict(bool()),
       }),
+      read: ({ read }) => {
+        const value = read('landTree');
+        if (value instanceof DefaultValue) {
+          return value;
+        }
+        const checkedFields = (value as string).split(',');
+        const checked = {};
+        checkedFields.forEach((id) => {
+          checked[id] = true;
+        });
+        return recalculateCheckboxStates({ checked, indeterminate: {} }, landuseTreeConfig);
+      },
+      write: ({ write, reset }, value) => {
+        if (value instanceof DefaultValue) {
+          reset('landTree');
+          return;
+        }
+        const checked = Object.keys(value.checked).filter(
+          (id) => value.checked[id] && !landuseTreeConfig.nodes[id].children,
+        );
+        write('landTree', checked.join(','));
+      },
     }),
   ],
 });
