@@ -7,7 +7,7 @@ import mockTerrestrialFeature from 'mocks/details/solutions/mockTerrestrialFeatu
 import mockMarineFeature from 'mocks/details/solutions/mockMarineFeature.json';
 import { SolutionsSidebar } from './SolutionsSidebar';
 
-function fixedWidthDecorator(Story) {
+function FixedWidthDecorator(Story) {
   return (
     <div style={{ width: '300px' }}>
       <Story />
@@ -15,23 +15,25 @@ function fixedWidthDecorator(Story) {
   );
 }
 
-function dataLoaderDecorator(Story, { args }) {
+function DataLoaderDecorator(Story, { args }) {
+  const { feature, id } = args;
   const [, setFeatureSelection] = useRecoilState(selectionState('solutions'));
-  const mockSelection = {
-    interactionGroup: 'solutions',
-    interactionStyle: 'vector',
-    target: {
-      feature: args.feature,
-    },
-    viewLayer: {
-      id: args.id,
-      group: null,
-      fn: () => {},
-    },
-  };
+
   useEffect(() => {
+    const mockSelection = {
+      interactionGroup: 'solutions',
+      interactionStyle: 'vector',
+      target: {
+        feature: feature,
+      },
+      viewLayer: {
+        id: id,
+        group: null,
+        fn: () => {},
+      },
+    };
     setFeatureSelection(mockSelection);
-  }, []);
+  }, [feature, id, setFeatureSelection]);
 
   return <Story />;
 }
@@ -39,7 +41,7 @@ function dataLoaderDecorator(Story, { args }) {
 const meta = {
   title: 'Details/SolutionsSidebar',
   component: SolutionsSidebar,
-  decorators: [fixedWidthDecorator, dataLoaderDecorator],
+  decorators: [FixedWidthDecorator, DataLoaderDecorator],
 } as Meta;
 
 export default meta;

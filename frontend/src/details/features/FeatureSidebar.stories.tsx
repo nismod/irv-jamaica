@@ -1,5 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react';
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -8,7 +8,7 @@ import mockFeature from 'mocks/details/features/mockFeature.json';
 import mockFeatureDetails from 'mocks/details/features/mockFeatureDetails.json';
 import { FeatureSidebar } from './FeatureSidebar';
 
-function fixedWidthDecorator(Story) {
+function FixedWidthDecorator(Story) {
   return (
     <div style={{ width: '45ch' }}>
       <Story />
@@ -16,7 +16,7 @@ function fixedWidthDecorator(Story) {
   );
 }
 
-function dataLoaderDecorator(Story, { args }) {
+function DataLoaderDecorator(Story, { args }) {
   const [, setFeatureSelection] = useRecoilState(selectionState('assets'));
   const mockSelection = {
     interactionGroup: 'assets',
@@ -41,7 +41,7 @@ function dataLoaderDecorator(Story, { args }) {
 const meta = {
   title: 'Details/FeatureSidebar',
   component: FeatureSidebar,
-  decorators: [fixedWidthDecorator, dataLoaderDecorator],
+  decorators: [FixedWidthDecorator, DataLoaderDecorator],
 } as Meta;
 
 export default meta;
