@@ -37,7 +37,7 @@ export const landuseTreeCheckboxState = atom<CheckboxTreeState>({
         if (value instanceof DefaultValue) {
           return value;
         }
-        const checkedFields = (value as string).split(',');
+        const checkedFields = (value as string).split(',').filter(Boolean);
         const checked = {};
         checkedFields.forEach((id) => {
           checked[id] = true;
