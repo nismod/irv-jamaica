@@ -1,7 +1,13 @@
 import * as React from 'react';
+import { CssBaseline } from '@mui/material';
+import { StyledEngineProvider } from '@mui/styled-engine';
+import { ThemeProvider } from '@mui/material/styles';
 import type { Preview } from '@storybook/react';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { atom, RecoilRoot } from 'recoil';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import { theme } from '../src/app/theme';
 import { useSyncRecoilState } from '../src/lib/recoil/sync-state';
 import { viewStateEffect } from '../src/app/state/view';
 import { useStateEffect } from '../src/lib/recoil/state-effects/use-state-effect';
@@ -36,9 +42,16 @@ const preview: Preview = {
   decorators: [
     (Story, { args }) => (
       <RecoilRoot>
-        <SectionStyle view={args.view}>
-          <Story />
-        </SectionStyle>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <Router>
+              <CssBaseline />
+              <SectionStyle view={args.view}>
+                <Story />
+              </SectionStyle>
+            </Router>
+          </ThemeProvider>
+        </StyledEngineProvider>
       </RecoilRoot>
     ),
   ],

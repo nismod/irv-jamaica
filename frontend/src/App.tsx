@@ -17,7 +17,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { Notice } from 'app/Notice';
 import { RecoilLocalStorageSync } from 'lib/recoil/sync-stores/RecoilLocalStorageSync';
 
-const navItems: NavItemConfig[] = [
+export const navItems: NavItemConfig[] = [
   {
     to: '/exposure',
     title: 'Exposure',
