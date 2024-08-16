@@ -53,7 +53,11 @@ function useMapQueryParams() {
   const lat = useRecoilValue(mapLatUrlState).toFixed(5);
   const lon = useRecoilValue(mapLonUrlState).toFixed(5);
   const zoom = useRecoilValue(mapZoomUrlState).toFixed(2);
-  return new URLSearchParams({ lat, lon, zoom });
+  const url = new URL(window.location.href);
+  url.searchParams.set('lat', lat);
+  url.searchParams.set('lon', lon);
+  url.searchParams.set('zoom', zoom);
+  return url.searchParams;
 }
 
 const mapPages = Object.keys(VIEW_SECTIONS).map((view) => `/${view}`);

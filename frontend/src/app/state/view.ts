@@ -35,6 +35,9 @@ function sectionVisibility(section, sectionConfig) {
 function sectionStyle(section, sectionConfig) {
   const searchParams = new URLSearchParams(window.location.search);
   const styleParam = `${section}Style`;
+  if (styleParam === 'assetsStyle') {
+    return sectionConfig.defaultStyle;
+  }
   return searchParams.has(styleParam)
     ? searchParams.get(styleParam).replaceAll('"', '')
     : sectionConfig.defaultStyle;
