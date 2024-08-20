@@ -57,6 +57,12 @@ function useMapQueryParams() {
   url.searchParams.set('lat', lat);
   url.searchParams.set('lon', lon);
   url.searchParams.set('zoom', zoom);
+  // ignore user settings for assetsStyle, marine, and terrestrial parameters.
+  ['assetsStyle', 'marine', 'terrestrial'].forEach((param) => {
+    if (url.searchParams.has(param)) {
+      url.searchParams.delete(param);
+    }
+  });
   return url.searchParams;
 }
 
