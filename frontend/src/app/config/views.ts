@@ -151,6 +151,13 @@ export const VIEW_SECTIONS: Record<string, Record<string, ViewSectionConfig>> = 
       expanded: false,
       visible: false,
     },
+    buildings: {
+      expanded: false,
+      visible: false,
+
+      styles: ['type'],
+      defaultStyle: 'type',
+    },
     regions: {
       expanded: false,
       visible: false,
