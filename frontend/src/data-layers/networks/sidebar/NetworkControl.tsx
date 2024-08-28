@@ -14,13 +14,34 @@ import {
 import { NETWORK_LAYERS_HIERARCHY } from './hierarchy';
 import { NETWORKS_METADATA } from '../metadata';
 import { showAdaptationsState } from '../state/layer';
+import adaptationSectorLayers from '../adaptation-sector-layers.json';
+import { useUpdateDataParam } from 'app/state/data-params';
 
 export const NetworkControl: FC = () => {
   const [checkboxState, setCheckboxState] = useRecoilState(networkTreeCheckboxState);
   const [expanded, setExpanded] = useRecoilState(networkTreeExpandedState);
+  const updateSector = useUpdateDataParam('adaptation', 'sector');
+  const updateSubsector = useUpdateDataParam('adaptation', 'subsector');
+  const updateAssetType = useUpdateDataParam('adaptation', 'asset_type');
 
   const showAdaptations = useRecoilValue(showAdaptationsState);
   const disableCheck = showAdaptations;
+
+  function onCheckboxState(newTree) {
+    setCheckboxState(newTree);
+    const selectedLayers = Object.keys(newTree.checked).filter(
+      (id) => newTree.checked[id] && !networkTreeConfig.nodes[id].children,
+    );
+    const adaptationLayer = adaptationSectorLayers.find((x) =>
+      selectedLayers.includes(x.layer_name),
+    );
+    if (adaptationLayer) {
+      const { sector, subsector, asset_type } = adaptationLayer;
+      updateSector(sector);
+      updateSubsector(subsector);
+      updateAssetType(asset_type);
+    }
+  }
 
   return (
     <>
@@ -42,7 +63,7 @@ export const NetworkControl: FC = () => {
           )
         }
         checkboxState={checkboxState}
-        onCheckboxState={setCheckboxState}
+        onCheckboxState={onCheckboxState}
         expanded={expanded}
         onExpanded={setExpanded}
         disableCheck={disableCheck}
