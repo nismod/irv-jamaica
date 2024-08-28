@@ -27,20 +27,15 @@ export const NetworkControl: FC = () => {
   const showAdaptations = useRecoilValue(showAdaptationsState);
   const disableCheck = showAdaptations;
 
-  function onCheckboxState(newTree) {
-    setCheckboxState(newTree);
-    const selectedLayers = Object.keys(newTree.checked).filter(
-      (id) => newTree.checked[id] && !networkTreeConfig.nodes[id].children,
-    );
-    const adaptationLayer = adaptationSectorLayers.find((x) =>
-      selectedLayers.includes(x.layer_name),
-    );
-    if (adaptationLayer) {
-      const { sector, subsector, asset_type } = adaptationLayer;
-      updateSector(sector);
-      updateSubsector(subsector);
-      updateAssetType(asset_type);
-    }
+  const selectedLayers = Object.keys(checkboxState.checked).filter(
+    (id) => checkboxState.checked[id] && !networkTreeConfig.nodes[id].children,
+  );
+  const adaptationLayer = adaptationSectorLayers.find((x) => selectedLayers.includes(x.layer_name));
+  if (adaptationLayer) {
+    const { sector, subsector, asset_type } = adaptationLayer;
+    updateSector(sector);
+    updateSubsector(subsector);
+    updateAssetType(asset_type);
   }
 
   return (
@@ -63,7 +58,7 @@ export const NetworkControl: FC = () => {
           )
         }
         checkboxState={checkboxState}
-        onCheckboxState={onCheckboxState}
+        onCheckboxState={setCheckboxState}
         expanded={expanded}
         onExpanded={setExpanded}
         disableCheck={disableCheck}
