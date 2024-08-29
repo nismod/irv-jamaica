@@ -15,6 +15,14 @@ import { DamageSourceControl } from './DamageSourceControl';
 import { AdaptationControl } from './AdaptationControl';
 import { NetworkControl } from './NetworkControl';
 
+/**
+ * Sidebar controls for the `networks` layer.
+ * Select infrastructure networks to display on the map.
+ * Each view has its own set of parameters:
+ * - Exposure: displays asset types for the selected infrastucture networks.
+ * - Risk: displays damages as a function of hazard type, epoch and RCP (climate scenario.)
+ * - Adaptation: displays adaptation options for the selected infrastructure networks.
+ */
 export const NetworksSection: FC = () => {
   const style = useRecoilValue(sectionStyleValueState('assets'));
   return (

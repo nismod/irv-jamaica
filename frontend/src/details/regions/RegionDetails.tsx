@@ -8,6 +8,9 @@ import { DeselectButton } from 'details/DeselectButton';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
 
+/**
+ * Display detailed information about a selected region (parish or enumeration district.)
+ */
 export const RegionDetails = () => {
   const selectedRegion = useRecoilValue(selectionState('regions'));
 

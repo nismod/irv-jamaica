@@ -9,6 +9,10 @@ import { SolutionsSidebarContent } from './SolutionsSidebarContent';
 import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
 import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 
+/**
+ * Display detailed information about a selected feature
+ * from either the `marine` or `terrestrial` data layers.
+ */
 export const SolutionsSidebar: FC = () => {
   const featureSelection = useRecoilValue(selectionState('solutions'));
 

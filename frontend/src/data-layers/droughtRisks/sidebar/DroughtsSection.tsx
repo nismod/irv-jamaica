@@ -5,6 +5,10 @@ import { SidebarPanelSection } from 'app/sidebar/ui/SidebarPanelSection';
 
 import { DroughtsControl } from './DroughtsControl';
 
+/**
+ * Sidebar controls for the `droughtRisks` and `droughtOptions` layers.
+ * Select RCP (climate scenario), drought risk variable and adaptation options.
+ */
 export const DroughtsSection: FC = () => {
   return (
     <SidebarPanel id="drought" title="Drought">
