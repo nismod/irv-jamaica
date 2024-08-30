@@ -6,6 +6,10 @@ import { FC } from 'react';
 import { FeatureAdaptationsTable } from './FeatureAdaptationsTable';
 import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
 
+/**
+ * List adaptation options for a selected infrastructure network
+ * eg. power lines, roads, railway tracks etc.
+ */
 export const AdaptationsSidebar: FC = () => {
   return (
     <SidePanel height="80vh" pb={1} px={0} pt={0}>

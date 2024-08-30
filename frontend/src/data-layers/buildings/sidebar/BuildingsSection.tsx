@@ -5,6 +5,11 @@ import { SidebarPanel } from 'app/sidebar/SidebarPanel';
 
 import { BuildingsControl } from './BuildingsControl';
 
+/**
+ * Sidebar controls for the `buildings` layer.
+ * Select building types to display on the map.
+ * All building types are selected by default.
+ */
 export const BuildingsSection = () => {
   return (
     <SidebarPanel id="buildings" title="Buildings">

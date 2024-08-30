@@ -6,6 +6,14 @@ import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 
 import { HazardsControl } from './HazardsControl';
 
+/**
+ * Sidebar controls for the `hazards` layer.
+ * Select hazard types to display on the map.
+ * Each hazard type has its own set of parameters:
+ * - Return period in years.
+ * - Epoch.
+ * - RCP (climate scenario.)
+ */
 export const HazardsSection: FC = () => {
   return (
     <SidebarPanel id="hazards" title="Hazards">

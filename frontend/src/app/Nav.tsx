@@ -164,6 +164,10 @@ export interface NavItemConfig {
   tooltip?: string;
 }
 
+/**
+ * Client-side navigation for both mobile and desktop viewports.
+ * Stores a subset of map layer state in the map view URLs.
+ */
 export const Nav: FC<{ height: number; navItems: NavItemConfig[] }> = ({ height, navItems }) => {
   const isMobile = useIsMobile();
 

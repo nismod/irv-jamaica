@@ -14,6 +14,14 @@ const meta = {
   title: 'Sidebar/NetworksSection',
   component: NetworksSection,
   decorators: [fixedWidthDecorator],
+  argTypes: {
+    view: {
+      control: {
+        type: 'select',
+      },
+      options: ['exposure', 'risk', 'adaptation'],
+    },
+  },
 } as Meta;
 
 export default meta;

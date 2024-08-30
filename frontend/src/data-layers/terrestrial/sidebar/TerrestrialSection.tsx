@@ -6,6 +6,11 @@ import { SidebarPanelSection } from 'app/sidebar/ui/SidebarPanelSection';
 
 import { TerrestrialControl } from './TerrestrialControl';
 
+/**
+ * Sidebar controls for the `terrestrial` layer.
+ * Select land use types to display on the map,
+ * optionally filtered by slope and elevation.
+ */
 export const TerrestrialSection: FC = () => {
   return (
     <SidebarPanel id="terrestrial" title="Terrestrial">

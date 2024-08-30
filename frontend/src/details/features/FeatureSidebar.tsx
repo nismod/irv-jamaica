@@ -10,6 +10,10 @@ import { DeselectButton } from 'details/DeselectButton';
 import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
 import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 
+/**
+ * A detailed report that appears when you select an infrastructure asset on the map.
+ * Includes a description of the asset, a risk assessment, and a list of adaptation options.
+ */
 export const FeatureSidebar: FC = () => {
   const featureSelection = useRecoilValue(selectionState('assets'));
 
