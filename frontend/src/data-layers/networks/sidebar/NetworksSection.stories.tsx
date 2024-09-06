@@ -64,7 +64,7 @@ export const Adaptation: Story = {
     const canvas = within(canvasElement);
     expect(
       canvas.queryByText(
-        'Infrastructure layers are currently following the Adaptation Options selection',
+        'Infrastructure layers are currently following the Adaptation Options selection blah blah',
       ),
     ).toBeTruthy();
   },
