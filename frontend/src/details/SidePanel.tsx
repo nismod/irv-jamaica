@@ -5,7 +5,7 @@ import { FC } from 'react';
 export const SidePanel: FC<BoxProps> = ({ children, ...props }) => {
   return (
     <Paper>
-      <Box px={3} py={2} {...props}>
+      <Box px={3} py={2} {...(props as any)}>
         {children}
       </Box>
     </Paper>
