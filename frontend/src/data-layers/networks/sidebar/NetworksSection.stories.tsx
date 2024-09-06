@@ -1,4 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 
 import { NetworksSection } from './NetworksSection';
 
@@ -31,16 +32,40 @@ export const Exposure: Story = {
   args: {
     view: 'exposure',
   },
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(
+      canvas.queryByText(
+        'Infrastructure layers are currently following the Adaptation Options selection',
+      ),
+    ).toBeFalsy();
+  },
 };
 
 export const Risk: Story = {
   args: {
     view: 'risk',
   },
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(
+      canvas.queryByText(
+        'Infrastructure layers are currently following the Adaptation Options selection',
+      ),
+    ).toBeFalsy();
+  },
 };
 
 export const Adaptation: Story = {
   args: {
     view: 'adaptation',
+  },
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(
+      canvas.queryByText(
+        'Infrastructure layers are currently following the Adaptation Options selection',
+      ),
+    ).toBeTruthy();
   },
 };
