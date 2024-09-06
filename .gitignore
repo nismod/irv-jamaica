@@ -49,3 +49,4 @@ __pycache__
 proxy-table.json
 
 *storybook.log
+storybook-static/
