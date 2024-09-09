@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BASE_PATH: /irv-jamaica
     defaults:
       run:
         working-directory: ./frontend

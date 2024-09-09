@@ -17,7 +17,11 @@ import { useStateEffect } from '../src/lib/recoil/state-effects/use-state-effect
  * See https://github.com/mswjs/msw-storybook-addon#configuring-msw
  * to learn how to customize it
  */
-initialize();
+initialize({
+  serviceWorker: {
+    url: './mockServiceWorker.js',
+  },
+});
 
 const mockViewState = atom({
   key: 'mockViewState',

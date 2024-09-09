@@ -15,5 +15,9 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ['../public'],
+  viteFinal: (config) => {
+    config.base = process.env.BASE_PATH || config.base;
+    return config;
+  },
 };
 export default config;
