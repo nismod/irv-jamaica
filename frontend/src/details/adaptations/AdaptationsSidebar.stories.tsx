@@ -5,6 +5,11 @@ import { http, HttpResponse } from 'msw';
 import mockItemSearch from 'mocks/details/adaptations/mockItemSearch.json';
 import mockItem from 'mocks/details/adaptations/mockItem.json';
 
+const API_SEARCH_PATH =
+  location.hostname === 'nismod.github.io'
+    ? '/irv-jamaica/api/features/sorted-by/adaptation'
+    : '/api/features/sorted-by/adaptation';
+
 const meta = {
   title: 'Details/AdaptationsSidebar',
   component: AdaptationsSidebar,
@@ -18,7 +23,7 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get('/api/features/sorted-by/adaptation', ({ request }) => {
+        http.get(API_SEARCH_PATH, ({ request }) => {
           const url = new URL(request.url);
           if (
             url.searchParams.get('asset_type') === 'pole' &&
