@@ -1,5 +1,6 @@
 import { FormControl, FormLabel, MenuItem, Select, SelectProps } from '@mui/material';
-import { PropsWithChildren, useCallback } from 'react';
+import uniqueId from 'lodash/uniqueId';
+import { PropsWithChildren, useCallback, useRef } from 'react';
 import { isValueLabel, ValueLabel } from './params/value-label';
 
 interface ParamDropdownProps<V extends string | number = string> {
@@ -19,11 +20,14 @@ export const ParamDropdown = <V extends string | number = string>({
   disabled = false,
   variant = undefined,
 }: PropsWithChildren<ParamDropdownProps<V>>) => {
+  const htmlId = useRef(uniqueId('param-dropdown-'));
+  const labelId = `${htmlId.current}-input-label`;
   const handleChange = useCallback((e) => onChange(e.target.value), [onChange]);
   return (
     <FormControl fullWidth>
-      <FormLabel>{title}</FormLabel>
+      <FormLabel id={labelId}>{title}</FormLabel>
       <Select
+        labelId={labelId}
         value={value}
         onChange={handleChange}
         size="small"
