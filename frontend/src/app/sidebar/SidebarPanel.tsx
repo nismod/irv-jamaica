@@ -1,6 +1,7 @@
 import { ArrowRight } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
-import { FC, ReactNode } from 'react';
+import uniqueId from 'lodash/uniqueId';
+import { FC, ReactNode, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { sidebarSectionExpandedState } from 'app/state/sections';
 import { VisibilityToggle } from './VisibilityToggle';
@@ -11,6 +12,7 @@ export const SidebarPanel: FC<{
   children: ReactNode;
 }> = ({ id, title, children }) => {
   const [expanded, setExpanded] = useRecoilState(sidebarSectionExpandedState(id));
+  const htmlId = useRef(uniqueId('sidebar-panel-'));
 
   return (
     <Accordion
@@ -34,6 +36,8 @@ export const SidebarPanel: FC<{
               flexDirection: 'row-reverse', // this puts the expand icon to the left of the summary bar
             }}
             expandIcon={<ArrowRight />}
+            id={`${htmlId.current}-header`}
+            aria-controls={`${htmlId.current}-details`}
           >
             <Typography>{title}</Typography>
           </AccordionSummary>
@@ -42,7 +46,14 @@ export const SidebarPanel: FC<{
           <VisibilityToggle id={id} />
         </Box>
       </Box>
-      <AccordionDetails sx={{ padding: 0 }}>{children}</AccordionDetails>
+      <AccordionDetails
+        id={`${htmlId.current}-details`}
+        role="region"
+        aria-labelledby={`${htmlId.current}-header`}
+        sx={{ padding: 0 }}
+      >
+        {children}
+      </AccordionDetails>
     </Accordion>
   );
 };
