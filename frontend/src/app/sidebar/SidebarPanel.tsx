@@ -20,28 +20,28 @@ export const SidebarPanel: FC<{
       onChange={(e, expanded) => setExpanded(expanded)}
       sx={{ pointerEvents: 'auto', marginBottom: 1, borderRadius: 1, overflow: 'hidden' }}
     >
-      <AccordionSummary
-        sx={{
-          '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-            transform: 'rotate(90deg)',
-          },
-          '& .MuiAccordionSummary-content': {
-            marginY: '6px',
-          },
-          paddingX: '6px',
-          flexDirection: 'row-reverse', // this puts the expand icon to the left of the summary bar
-        }}
-        expandIcon={<ArrowRight />}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-          <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', paddingRight: '6px', width: '100%' }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <AccordionSummary
+            sx={{
+              '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+                transform: 'rotate(90deg)',
+              },
+              '& .MuiAccordionSummary-content': {
+                marginY: '6px',
+              },
+              paddingLeft: '6px',
+              flexDirection: 'row-reverse', // this puts the expand icon to the left of the summary bar
+            }}
+            expandIcon={<ArrowRight />}
+          >
             <Typography>{title}</Typography>
-          </Box>
-          <Box>
-            <VisibilityToggle id={id} />
-          </Box>
+          </AccordionSummary>
         </Box>
-      </AccordionSummary>
+        <Box>
+          <VisibilityToggle id={id} />
+        </Box>
+      </Box>
       <AccordionDetails sx={{ padding: 0 }}>{children}</AccordionDetails>
     </Accordion>
   );
