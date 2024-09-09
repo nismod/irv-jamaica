@@ -1,4 +1,7 @@
 import { FormControl, FormLabel, MenuItem, Select } from '@mui/material';
+import uniqueId from 'lodash/uniqueId';
+import { useRef } from 'react';
+
 import { DataParam } from './DataParam';
 
 function epochLabel(value) {
@@ -7,12 +10,15 @@ function epochLabel(value) {
 }
 
 export const EpochControl = ({ group, disabled = false }) => {
+  const labelId = useRef(uniqueId('epoch-'));
+
   return (
     <FormControl fullWidth disabled={disabled}>
-      <FormLabel>Epoch</FormLabel>
+      <FormLabel id={labelId.current}>Epoch</FormLabel>
       <DataParam group={group} id="epoch">
         {({ value, onChange, options }) => (
           <Select
+            labelId={labelId.current}
             variant="standard"
             value={value}
             onChange={(e) => onChange(e.target.value)}
