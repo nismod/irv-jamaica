@@ -4,16 +4,12 @@ import {
   AccordionSummary,
   Checkbox,
   FormControlLabel,
-  Radio,
 } from '@mui/material';
-import { createContext, FC, ReactNode, useCallback, useContext } from 'react';
+import uniqueId from 'lodash/uniqueId';
+import { createContext, FC, ReactNode, useContext, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { RecoilStateFamily } from 'lib/recoil/types';
-
-function useHandleCheckbox(onChecked: (checked: boolean) => void) {
-  return useCallback((e, checked: boolean) => onChecked(checked), [onChecked]);
-}
 
 export const ToggleStateContext = createContext<RecoilStateFamily<boolean, string>>(null);
 
@@ -24,10 +20,13 @@ export const ToggleSectionGroup: FC<{
   return <ToggleStateContext.Provider value={toggleState}>{children}</ToggleStateContext.Provider>;
 };
 
+function cancelEvent(e) {
+  e.preventDefault();
+  return false;
+}
 interface ToggleSectionProps {
   id: string;
   label: string;
-  forceSingle?: boolean;
   disabled?: boolean;
   children: ReactNode;
 }
@@ -35,30 +34,21 @@ interface ToggleSectionProps {
 export const ToggleSection: FC<ToggleSectionProps> = ({
   id,
   label,
-  forceSingle = false,
   disabled = false,
   children,
 }) => {
   const toggleState = useContext(ToggleStateContext);
   const [show, setShow] = useRecoilState(toggleState(id));
-  const handleShow = useHandleCheckbox(setShow);
+  const handleShow = (e, checked: boolean) => setShow(checked);
+  const htmlId = useRef(uniqueId('toggle-section-'));
 
   return (
     <Accordion disableGutters disabled={disabled} expanded={show} onChange={handleShow}>
-      <AccordionSummary>
+      <AccordionSummary id={`${htmlId.current}-header`} aria-controls={`${htmlId.current}-details`}>
         <FormControlLabel
-          control={
-            forceSingle ? (
-              <Radio checked={show} onChange={handleShow} />
-            ) : (
-              <Checkbox checked={show} onChange={handleShow} />
-            )
-          }
+          control={<Checkbox checked={show} tabIndex={-1} />}
           label={label}
-          onClick={
-            // clicking on checkbox label shouldn't also trigger accordion change because then nothing happens
-            (e) => e.preventDefault()
-          }
+          onClick={cancelEvent}
         />
       </AccordionSummary>
       <AccordionDetails style={{ display: 'block' }}>{children}</AccordionDetails>
