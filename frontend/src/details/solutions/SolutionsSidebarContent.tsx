@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { List, ListItem, Typography } from '@mui/material';
 import { terrestrialSlope, terrestrialElevation } from 'data-layers/terrestrial/color-maps';
 import { MARINE_HABITATS_LOOKUP } from 'data-layers/marine/domains';
 import { DataItem } from 'details/features/detail-components';
@@ -27,7 +27,7 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
       <Typography variant="body2">{startCase(solutionType)}</Typography>
 
       {solutionType === 'terrestrial' && (
-        <>
+        <List>
           <DataItem
             label="Cell ID"
             value={feature.properties.cell_index}
@@ -62,10 +62,10 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
               </>
             }
           />
-        </>
+        </List>
       )}
       {solutionType === 'marine' && (
-        <>
+        <List>
           <DataItem
             label="Habitat"
             value={
@@ -83,25 +83,25 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
           {feature.properties.is_mangrove ? (
             <DataItem label="Mangrove Type" value={feature.properties.mangrove_type} />
           ) : null}
-          <Typography variant="caption" component="h6">
-            Proximity
-          </Typography>
-          {feature.properties.within_coral_500m ? (
-            <Typography variant="body2" component="p">
-              within 500m of coral
-            </Typography>
-          ) : null}
-          {feature.properties.within_mangrove_500m ? (
-            <Typography variant="body2" component="p">
-              within 500m of mangrove
-            </Typography>
-          ) : null}
-          {feature.properties.within_seagrass_500m ? (
-            <Typography variant="body2" component="p">
-              within 500m of seagrass
-            </Typography>
-          ) : null}
-        </>
+          <DataItem
+            label="Proximity"
+            value={
+              <List disablePadding dense>
+                {[
+                  feature.properties.within_coral_500m ? (
+                    <ListItem disablePadding>within 500m of coral</ListItem>
+                  ) : null,
+                  feature.properties.within_mangrove_500m ? (
+                    <ListItem disablePadding>within 500m of mangrove</ListItem>
+                  ) : null,
+                  feature.properties.within_seagrass_500m ? (
+                    <ListItem disablePadding>within 500m of seagrass</ListItem>
+                  ) : null,
+                ]}
+              </List>
+            }
+          />
+        </List>
       )}
     </>
   );

@@ -67,8 +67,7 @@ export const FeatureAdaptationsTable = () => {
         header={
           <>
             <TableCell width={10}>#</TableCell>
-            <TableCell>{getDataLabel(fieldSpec)}</TableCell>
-            <TableCell width={10}> </TableCell>
+            <TableCell colSpan={2}>{getDataLabel(fieldSpec)}</TableCell>
           </>
         }
         renderRow={(feature, localIndex, globalIndex) => (

@@ -6,6 +6,7 @@
   "properties": {
     "mangrove_type": "Fringing",
     "is_mangrove": "1",
+    "within_coral_500m": "1",
     "within_mangrove_500m": "1",
     "habitat": "mangrove",
     "layerName": "natural_marine_combined"
