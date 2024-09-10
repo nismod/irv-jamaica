@@ -1,10 +1,5 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Checkbox,
-  FormControlLabel,
-} from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import uniqueId from 'lodash/uniqueId';
 import { createContext, FC, ReactNode, useContext, useRef } from 'react';
 import { useRecoilState } from 'recoil';
@@ -20,10 +15,6 @@ export const ToggleSectionGroup: FC<{
   return <ToggleStateContext.Provider value={toggleState}>{children}</ToggleStateContext.Provider>;
 };
 
-function cancelEvent(e) {
-  e.preventDefault();
-  return false;
-}
 interface ToggleSectionProps {
   id: string;
   label: string;
@@ -43,13 +34,13 @@ export const ToggleSection: FC<ToggleSectionProps> = ({
   const htmlId = useRef(uniqueId('toggle-section-'));
 
   return (
-    <Accordion disableGutters disabled={disabled} expanded={show} onChange={handleShow}>
-      <AccordionSummary id={`${htmlId.current}-header`} aria-controls={`${htmlId.current}-details`}>
-        <FormControlLabel
-          control={<Checkbox checked={show} tabIndex={-1} />}
-          label={label}
-          onClick={cancelEvent}
-        />
+    <Accordion disabled={disabled} expanded={show} onChange={handleShow}>
+      <AccordionSummary
+        id={`${htmlId.current}-header`}
+        aria-controls={`${htmlId.current}-details`}
+        expandIcon={show ? <Visibility /> : <VisibilityOff />}
+      >
+        {label}
       </AccordionSummary>
       <AccordionDetails style={{ display: 'block' }}>{children}</AccordionDetails>
     </Accordion>
