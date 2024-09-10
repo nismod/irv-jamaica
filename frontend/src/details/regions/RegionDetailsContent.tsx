@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { List, Typography } from '@mui/material';
 import { REGIONS_METADATA } from 'data-layers/regions/metadata';
 import { DataItem } from 'details/features/detail-components';
 import { InteractionTarget } from 'lib/data-map/types';
@@ -18,9 +18,11 @@ export const RegionDetailsContent: FC<{ selectedRegion: InteractionTarget<any> }
       <Typography variant="h6">
         {selectedRegion.target.feature.properties[metadata.fieldName]}
       </Typography>
-      <DataItem label="Population" value={f['population'].toLocaleString()} />
-      <DataItem label="Area (km²)" value={numFormat(area)} />
-      <DataItem label="Population per km²" value={numFormat(f['population_density_per_km2'])} />
+      <List>
+        <DataItem label="Population" value={f['population'].toLocaleString()} />
+        <DataItem label="Area (km²)" value={numFormat(area)} />
+        <DataItem label="Population per km²" value={numFormat(f['population_density_per_km2'])} />
+      </List>
     </>
   );
 };
