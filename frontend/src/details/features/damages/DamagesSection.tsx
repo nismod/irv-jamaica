@@ -193,7 +193,9 @@ export const DamagesSection = ({ fd }) => {
     <>
       <Box py={2}>
         <Box position="relative">
-          <Typography variant="h6">Risk</Typography>
+          <Typography variant="h6" component="h2">
+            Risk
+          </Typography>
           <IconButton
             sx={{
               position: 'absolute',
@@ -210,9 +212,9 @@ export const DamagesSection = ({ fd }) => {
         </Box>
         {hazards.length ? (
           <FormControl fullWidth sx={{ my: 2 }} disabled={hazards.length === 1}>
-            <InputLabel>Hazard</InputLabel>
+            <InputLabel id={`feature-${fd.id}-hazard`}>Hazard</InputLabel>
             <Select
-              label="Hazard"
+              labelId={`feature-${fd.id}-hazard`}
               value={selectedHazard ?? ''}
               onChange={(e) => setSelectedHazard(e.target.value as string)}
             >
@@ -227,7 +229,9 @@ export const DamagesSection = ({ fd }) => {
         {selectedData ? (
           <>
             <Box mt={1}>
-              <Typography variant="subtitle2">Expected Annual Damages</Typography>
+              <Typography component="h3" variant="subtitle2">
+                Expected Annual Damages
+              </Typography>
               <ExpectedDamageChart
                 data={{
                   table: selectedData,
@@ -245,7 +249,9 @@ export const DamagesSection = ({ fd }) => {
             </Box>
             {has_eael ? (
               <Box mt={1}>
-                <Typography variant="subtitle2">Expected Annual Economic Losses</Typography>
+                <Typography component="h3" variant="subtitle2">
+                  Expected Annual Economic Losses
+                </Typography>
                 <ExpectedDamageChart
                   data={{
                     table: selectedData,
@@ -274,7 +280,9 @@ export const DamagesSection = ({ fd }) => {
       </Box>
       <Box py={2}>
         <Box position="relative">
-          <Typography variant="h6">Return Period Damages</Typography>
+          <Typography variant="h6" component="h2">
+            Return Period Damages
+          </Typography>
           <IconButton
             sx={{
               position: 'absolute',
@@ -295,9 +303,9 @@ export const DamagesSection = ({ fd }) => {
         </Box>
         {epochs.length ? (
           <FormControl fullWidth sx={{ my: 2 }} disabled={epochs.length === 1}>
-            <InputLabel>Epoch</InputLabel>
+            <InputLabel id={`feature-${fd.id}-epoch`}>Epoch</InputLabel>
             <Select
-              label="Epoch"
+              labelId={`feature-${fd.id}-epoch`}
               value={selectedEpoch ?? ''}
               onChange={(e) => setSelectedEpoch(e.target.value as string)}
             >

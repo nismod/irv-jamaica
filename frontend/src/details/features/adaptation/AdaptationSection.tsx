@@ -76,7 +76,9 @@ export const AdaptationSection = ({ fd }) => {
     <>
       <Box py={2}>
         <Box position="relative">
-          <Typography variant="h6">Adaptation Options</Typography>
+          <Typography variant="h6" component="h2">
+            Adaptation Options
+          </Typography>
           <IconButton
             sx={{
               position: 'absolute',
@@ -101,7 +103,7 @@ export const AdaptationSection = ({ fd }) => {
               const filteredOptions = options.filter((o) => o.adaptation_name === name);
               return (
                 <>
-                  <Typography variant="subtitle2" component="h2" sx={{ mt: 2, mb: 1 }}>
+                  <Typography variant="subtitle2" component="h3" sx={{ mt: 2, mb: 1 }}>
                     {name}
                   </Typography>
                   <Typography variant="body2" component="p" sx={{ mb: 2 }}>
