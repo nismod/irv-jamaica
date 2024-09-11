@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import { numFormat, numRangeFormat } from 'lib/helpers';
 const padding = { px: 0.25, py: 0.25 };
 export const DamageTable = ({ damages }) => (
-  <TableContainer sx={{ maxHeight: 260 }}>
+  <TableContainer sx={{ maxHeight: 260 }} tabIndex={0}>
     <Table size="small" padding="none" stickyHeader>
       <TableHead>
         <TableRow>

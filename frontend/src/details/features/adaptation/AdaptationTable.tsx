@@ -7,7 +7,7 @@ const padding = { px: 0.25, py: 0.25 };
 export const AdaptationTable = ({ options }) => {
   const numDays = 15;
   return (
-    <TableContainer sx={{ maxHeight: 260 }}>
+    <TableContainer sx={{ maxHeight: 260 }} tabIndex={0}>
       <Table size="small" padding="none" stickyHeader>
         <TableHead>
           <TableRow>
