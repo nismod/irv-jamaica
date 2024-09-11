@@ -1,6 +1,7 @@
 export type TreeNode<T> = {
   id: string;
   children?: TreeNode<T>[];
+  label?: string;
 } & T;
 
 /**

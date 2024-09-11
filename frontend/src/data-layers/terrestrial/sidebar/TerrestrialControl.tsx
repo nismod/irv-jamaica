@@ -22,6 +22,7 @@ export const TerrestrialControl = () => {
         <FormControl fullWidth>
           <FormLabel>Slope (degrees)</FormLabel>
           <Slider
+            getAriaLabel={(index) => `${index === 0 ? 'Minimum' : 'Maximum'} slope (degrees)`}
             value={terrestrialFilters.slope_degrees}
             onChange={(event, value) =>
               setTerrestrialFilters({
@@ -41,6 +42,7 @@ export const TerrestrialControl = () => {
         <FormControl fullWidth>
           <FormLabel>Elevation (m)</FormLabel>
           <Slider
+            getAriaLabel={(index) => `${index === 0 ? 'Minimum' : 'Maximum'} elevation (m)`}
             value={terrestrialFilters.elevation_m}
             onChange={(event, value) =>
               setTerrestrialFilters({
