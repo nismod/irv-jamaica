@@ -68,7 +68,7 @@
     "@types/react-router": "^5.1.16",
     "@types/react-router-dom": "^5.1.8",
     "@vitejs/plugin-react": "^4.3.0",
-    "concurrently": "^8.2.2",
+    "concurrently": "^9.0.1",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "^3.6.0",
