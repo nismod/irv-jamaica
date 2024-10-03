@@ -1,4 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 
 import { MarineSection } from './MarineSection';
 
@@ -22,5 +23,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     view: 'nature-based-solutions',
+  },
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.queryByText('Marine')).toBeTruthy();
   },
 };

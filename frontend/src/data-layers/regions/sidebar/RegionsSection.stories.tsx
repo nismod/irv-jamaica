@@ -1,4 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 
 import { RegionsSection } from './RegionsSection';
 
@@ -22,5 +23,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     view: 'exposure',
+  },
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.queryByText('Regions')).toBeTruthy();
   },
 };
