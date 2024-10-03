@@ -1,4 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -35,5 +36,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     region: mockRegion,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await canvas.findByText('Enumeration District');
+    expect(canvas.queryByText('Population')).toBeTruthy();
+    expect(canvas.queryByText('Area (km²)')).toBeTruthy();
+    expect(canvas.queryByText('Population per km²')).toBeTruthy();
   },
 };

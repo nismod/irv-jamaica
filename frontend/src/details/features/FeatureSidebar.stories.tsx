@@ -1,4 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 import { http, HttpResponse } from 'msw';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
@@ -61,5 +62,12 @@ export const Default: Story = {
         }),
       ],
     },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await canvas.findByText('Roads (Class B)');
+    expect(await canvas.findByText('Risk')).toBeTruthy();
+    expect(await canvas.findByText('Return Period Damages')).toBeTruthy();
+    expect(await canvas.findByText('Adaptation Options')).toBeTruthy();
   },
 };
