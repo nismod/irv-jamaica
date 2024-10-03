@@ -1,4 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -52,11 +53,26 @@ export const Terrestrial: Story = {
     feature: mockTerrestrialFeature,
     id: 'terrestrial',
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await canvas.findByText('Terrestrial');
+    expect(canvas.queryByText('Cell ID')).toBeTruthy();
+    expect(canvas.queryByText('Land Use')).toBeTruthy();
+    expect(canvas.queryByText('Slope (deg)')).toBeTruthy();
+    expect(canvas.queryByText('Elevation (m)')).toBeTruthy();
+  },
 };
 
 export const Marine: Story = {
   args: {
     feature: mockMarineFeature,
     id: 'marine',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await canvas.findByText('Marine');
+    expect(canvas.queryByText('Habitat')).toBeTruthy();
+    expect(canvas.queryByText('Mangrove Type')).toBeTruthy();
+    expect(canvas.queryByText('Proximity')).toBeTruthy();
   },
 };
