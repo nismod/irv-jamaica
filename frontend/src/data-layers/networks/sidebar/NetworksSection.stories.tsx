@@ -34,6 +34,7 @@ export const Exposure: Story = {
   },
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    expect(canvas.queryByText('Infrastructure')).toBeTruthy();
     expect(
       canvas.queryByText(
         'Infrastructure layers are currently following the Adaptation Options selection',
@@ -48,6 +49,7 @@ export const Risk: Story = {
   },
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    expect(canvas.queryByText('Infrastructure')).toBeTruthy();
     expect(
       canvas.queryByText(
         'Infrastructure layers are currently following the Adaptation Options selection',
@@ -62,6 +64,7 @@ export const Adaptation: Story = {
   },
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
+    expect(canvas.queryByText('Infrastructure')).toBeTruthy();
     expect(
       canvas.queryByText(
         'Infrastructure layers are currently following the Adaptation Options selection',

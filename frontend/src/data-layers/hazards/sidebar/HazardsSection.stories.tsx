@@ -1,4 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 
 import { HazardsSection } from './HazardsSection';
 
@@ -23,10 +24,18 @@ export const Exposure: Story = {
   args: {
     view: 'exposure',
   },
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.queryByText('Hazards')).toBeTruthy();
+  },
 };
 
 export const Risk: Story = {
   args: {
     view: 'risk',
+  },
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.queryByText('Hazards')).toBeTruthy();
   },
 };
