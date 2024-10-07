@@ -1,8 +1,9 @@
 import forEach from 'lodash/forEach';
-import { atom, atomFamily, selector } from 'recoil';
+import { atom, AtomEffect, atomFamily, selector } from 'recoil';
 
 import { InteractionLayer } from 'lib/data-map/types';
 import { isReset } from 'lib/recoil/is-reset';
+import { viewLayersFlatState } from 'app/state/layers/view-layers-flat';
 
 type IT = InteractionLayer | InteractionLayer[];
 
@@ -23,9 +24,54 @@ export const hoverPositionState = atom({
   default: null,
 });
 
+function readFromUrl(param: string) {
+  const url = new URL(window.location.href);
+  return url.searchParams.get(param)?.split('.') || [];
+}
+
+function writeToUrl(param: string, featureId: number, viewLayerId: string) {
+  const url = new URL(window.location.href);
+  if (featureId) {
+    const value = `${viewLayerId}.${featureId}`;
+    url.searchParams.set(param, value);
+  } else {
+    url.searchParams.delete(param);
+  }
+  window.history.replaceState({}, '', url.toString());
+}
+
+const selectionChangeEffect =
+  (id: string) =>
+  ({ getPromise, onSet, setSelf, trigger }) => {
+    const param = `selected${id}`;
+    onSet((newSelection) => {
+      // regions and solutions aren't supported yet.
+      if (id === 'assets') {
+        writeToUrl(param, newSelection?.target?.feature?.id, newSelection?.viewLayer?.id);
+      }
+    });
+
+    if (trigger === 'get') {
+      const [viewLayerId, featureId] = readFromUrl(param);
+      if (viewLayerId && featureId) {
+        getPromise(viewLayersFlatState).then((viewLayers) => {
+          setSelf({
+            interactionGroup: id,
+            interactionStyle: 'vector', // raster selection is not supported at present.
+            viewLayer: viewLayers.find((vl) => vl.id === viewLayerId),
+            target: { feature: { id: parseInt(featureId) } },
+          });
+        });
+      } else {
+        setSelf(null);
+      }
+    }
+  };
+
 export const selectionState = atomFamily<InteractionLayer, string>({
   key: 'selectionState',
   default: null,
+  effects: (id) => [selectionChangeEffect(id)],
 });
 
 type AllowedGroupLayers = Record<string, string[]>;
