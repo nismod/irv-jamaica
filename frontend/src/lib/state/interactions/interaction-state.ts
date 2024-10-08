@@ -1,9 +1,8 @@
 import forEach from 'lodash/forEach';
-import { atom, AtomEffect, atomFamily, selector } from 'recoil';
+import { atom, atomFamily, selector } from 'recoil';
 
 import { InteractionLayer } from 'lib/data-map/types';
 import { isReset } from 'lib/recoil/is-reset';
-import { viewLayersFlatState } from 'app/state/layers/view-layers-flat';
 
 type IT = InteractionLayer | InteractionLayer[];
 
@@ -42,7 +41,7 @@ function writeToUrl(param: string, featureId: number, viewLayerId: string) {
 
 const selectionChangeEffect =
   (id: string) =>
-  ({ getPromise, onSet, setSelf, trigger }) => {
+  ({ onSet, setSelf, trigger }) => {
     const param = `selected${id}`;
     onSet((newSelection) => {
       // regions and solutions aren't supported yet.
@@ -54,13 +53,11 @@ const selectionChangeEffect =
     if (trigger === 'get') {
       const [viewLayerId, featureId] = readFromUrl(param);
       if (viewLayerId && featureId) {
-        getPromise(viewLayersFlatState).then((viewLayers) => {
-          setSelf({
-            interactionGroup: id,
-            interactionStyle: 'vector', // raster selection is not supported at present.
-            viewLayer: viewLayers.find((vl) => vl.id === viewLayerId),
-            target: { feature: { id: parseInt(featureId) } },
-          });
+        setSelf({
+          interactionGroup: id,
+          interactionStyle: 'vector', // raster selection is not supported at present.
+          viewLayer: { id: viewLayerId },
+          target: { feature: { id: parseInt(featureId) } },
         });
       } else {
         setSelf(null);
