@@ -26,7 +26,7 @@ export const TerrestrialHoverDescription: FC<VectorHoverDescription> = ({ target
       <>
         <DataItem
           label="Cell ID"
-          value={target.feature.properties.cell_id}
+          value={target.feature.properties.cell_index}
           maximumSignificantDigits={21}
         />
         {/* not using DataDescription for Land Use because currently it only works for colorSpec-based color maps (not categorical) */}
