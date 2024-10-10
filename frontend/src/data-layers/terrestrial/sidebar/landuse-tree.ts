@@ -75,7 +75,7 @@ export const landuseTreeCheckboxState = atom<CheckboxTreeState>({
         if (value instanceof DefaultValue) {
           return value;
         }
-        return parseTreeFromString(value as string);
+        return parseTreeFromString(`${value}`);
       },
       write: ({ write, reset }, value) => {
         if (value instanceof DefaultValue) {
