@@ -1,9 +1,8 @@
 import type { MapboxOverlay } from '@deck.gl/mapbox/typed';
 import { useMap } from 'react-map-gl/maplibre';
-import { FC, useMemo, useRef } from 'react';
+import { FC, useRef } from 'react';
 
 import { useInteractions } from 'lib/state/interactions/use-interactions';
-import { useTriggerMemo } from 'lib/hooks/use-trigger-memo';
 import { useDataLoadTrigger } from 'lib/data-map/use-data-load-trigger';
 import { InteractionGroupConfig } from 'lib/data-map/types';
 import { DeckGLOverlay } from 'lib/map/DeckGLOverlay';
@@ -40,13 +39,9 @@ function buildLayers(
 }
 
 function useTrigger(viewLayers: ViewLayer[]) {
-  const dataLoaders = useMemo(
-    () =>
-      viewLayers
-        .map((vl) => vl.dataAccessFn?.(vl.styleParams?.colorMap?.fieldSpec)?.dataLoader)
-        .filter(Boolean),
-    [viewLayers],
-  );
+  const dataLoaders = viewLayers
+    .map((vl) => vl.dataAccessFn?.(vl.styleParams?.colorMap?.fieldSpec)?.dataLoader)
+    .filter(Boolean);
 
   return useDataLoadTrigger(dataLoaders);
 }
@@ -61,7 +56,7 @@ export const DataMap: FC<{
   const { current: map } = useMap();
   const zoom = map.getMap().getZoom();
 
-  const dataLoadTrigger = useTrigger(viewLayers);
+  useTrigger(viewLayers);
 
   const { onHover, onClick, layerFilter, pickingRadius } = useInteractions(
     viewLayers,
@@ -69,11 +64,7 @@ export const DataMap: FC<{
     interactionGroups,
   );
 
-  const layers = useTriggerMemo(
-    () => buildLayers(viewLayers, viewLayersParams, zoom, firstLabelId),
-    [viewLayers, viewLayersParams, zoom, firstLabelId],
-    dataLoadTrigger,
-  );
+  const layers = buildLayers(viewLayers, viewLayersParams, zoom, firstLabelId);
 
   return (
     <DeckGLOverlay
