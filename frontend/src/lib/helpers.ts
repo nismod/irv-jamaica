@@ -28,6 +28,9 @@ export function numFormatMoney(value: number) {
   return value.toLocaleString(undefined, {
     maximumSignificantDigits: 3,
     maximumFractionDigits: 2,
+    style: 'currency',
+    currency: 'JMD',
+    currencyDisplay: 'narrowSymbol',
   });
 }
 

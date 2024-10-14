@@ -4,6 +4,7 @@ import { useRasterColorMapValues } from '../../legend/use-color-map-values';
 import { ColorBox } from './ColorBox';
 import { Box } from '@mui/material';
 import { DataItem } from 'details/features/detail-components';
+import { numFormatMoney } from 'lib/helpers';
 
 function useRasterColorMapLookup(colorMapValues) {
   return useMemo(
@@ -14,11 +15,26 @@ function useRasterColorMapLookup(colorMapValues) {
   );
 }
 
-function formatHazardValue(color, value, dataUnit) {
+const formatter = {
+  hazard: (value, dataUnit) => value.toFixed(1) + dataUnit,
+  financial: numFormatMoney,
+  integer: (value) =>
+    value.toLocaleString(undefined, {
+      maximumSignificantDigits: 3,
+      maximumFractionDigits: 0,
+      roundingPriority: 'lessPrecision',
+    }),
+  population: (value) =>
+    value.toLocaleString(undefined, {
+      maximumSignificantDigits: 3,
+    }),
+};
+
+function formatValue(color, value, dataUnit, type) {
   return (
     <>
       <ColorBox color={color} />
-      {value == null ? '' : value.toFixed(1) + dataUnit}
+      {value == null ? '' : formatter[type](value, dataUnit)}
     </>
   );
 }
@@ -29,7 +45,8 @@ export const RasterHoverDescription: FC<{
   dataUnit: string;
   scheme: string;
   range: [number, number];
-}> = ({ color, label, dataUnit, scheme, range }) => {
+  type?: string;
+}> = ({ color, label, dataUnit, scheme, range, type = 'hazard' }) => {
   const title = `${label}`;
 
   const { colorMapValues } = useRasterColorMapValues(scheme, range);
@@ -37,9 +54,10 @@ export const RasterHoverDescription: FC<{
 
   const colorString = `rgb(${color[0]},${color[1]},${color[2]})`;
   const value = rasterValueLookup?.[colorString];
+
   return (
     <Box>
-      <DataItem label={title} value={formatHazardValue(colorString, value, dataUnit)} />
+      <DataItem label={title} value={formatValue(colorString, value, dataUnit, type)} />
     </Box>
   );
 };
