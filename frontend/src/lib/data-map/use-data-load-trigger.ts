@@ -1,46 +1,47 @@
 import difference from 'lodash/difference';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { DataLoader } from '../data-loader/data-loader';
 import { usePrevious } from '../hooks/use-previous';
-import { useTrackingRef } from '../hooks/use-tracking-ref';
-import { useTrigger } from '../hooks/use-trigger';
+
+const DEFAULT_LOADERS: DataLoader[] = [];
 
 /**
  * Based on a list of data loaders extracted from view layers,
  * returns a number which can be used as a trigger to recalculate a list of deck layers.
  *
  */
-export function useDataLoadTrigger(dataLoaders: DataLoader<any>[]) {
-  const [dataLoadTrigger, doTriggerDataUpdate] = useTrigger();
-
-  const previousLoaders = usePrevious(dataLoaders);
+export function useDataLoadTrigger(dataLoaders: DataLoader[]) {
+  const [trigger, setTrigger] = useState(0);
+  const previousLoaders = usePrevious(dataLoaders) ?? DEFAULT_LOADERS;
+  const removedLoaders = difference(previousLoaders, dataLoaders);
+  const addedLoaders = difference(dataLoaders, previousLoaders);
 
   useEffect(() => {
+    function incrementTrigger() {
+      setTrigger((trigger) => trigger + 1);
+    }
     // destroy removed data loaders to free up memory
-    const removedLoaders = difference(previousLoaders ?? [], dataLoaders);
     removedLoaders.forEach((dl) => dl.destroy());
 
-    // subscribe to new data loaders to get notified when data is loaded
-    const addedLoaders = difference(dataLoaders, previousLoaders ?? []);
-    addedLoaders.forEach((dl) => dl.subscribe(doTriggerDataUpdate));
+    // subscribe to new data loaders to trigger an update to the data map when data is loaded
+    addedLoaders.forEach((dl) => dl.subscribe(incrementTrigger));
 
     // if there was a change in data loaders, trigger an update to the data map
     if (addedLoaders.length > 0 || removedLoaders.length > 0) {
-      doTriggerDataUpdate();
+      incrementTrigger();
     }
-  }, [dataLoaders, previousLoaders, doTriggerDataUpdate]);
+  }, [addedLoaders, removedLoaders]);
 
   /* store current value of dataLoaders so that we can clean up data on component unmount
    * this is necessary because we don't want to keep the data loaders around after the component is unmounted
    */
-  const currentLoadersRef = useTrackingRef(dataLoaders);
   useEffect(() => {
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      currentLoadersRef.current?.forEach((dl) => dl.destroy());
+      previousLoaders?.forEach((dl) => dl.destroy());
     };
-  }, [currentLoadersRef]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return dataLoadTrigger;
+  return trigger;
 }
