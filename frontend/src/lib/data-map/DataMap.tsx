@@ -1,6 +1,6 @@
 import type { MapboxOverlay } from '@deck.gl/mapbox/typed';
 import { useMap } from 'react-map-gl/maplibre';
-import { FC, useCallback, useMemo, useRef } from 'react';
+import { FC, useMemo, useRef } from 'react';
 
 import { useInteractions } from 'lib/state/interactions/use-interactions';
 import { useTriggerMemo } from 'lib/hooks/use-trigger-memo';
@@ -15,6 +15,42 @@ function lookupViewForDeck(deckLayerId: string) {
   return deckLayerId.split('@')[0];
 }
 
+function makeDeckLayers(
+  viewLayer: ViewLayer,
+  viewLayerParams: ViewLayerParams,
+  zoom: number,
+  beforeId: string | undefined,
+) {
+  return viewLayer.fn({
+    deckProps: { id: viewLayer.id, pickable: !!viewLayer.interactionGroup, beforeId },
+    zoom,
+    ...viewLayerParams,
+  });
+}
+
+function buildLayers(
+  viewLayers: ViewLayer[],
+  viewLayersParams: Record<string, ViewLayerParams>,
+  zoom: number,
+  beforeId: string | undefined,
+) {
+  return viewLayers.map((viewLayer) =>
+    makeDeckLayers(viewLayer, viewLayersParams[viewLayer.id], zoom, beforeId),
+  ) as LayersList;
+}
+
+function useTrigger(viewLayers: ViewLayer[]) {
+  const dataLoaders = useMemo(
+    () =>
+      viewLayers
+        .map((vl) => vl.dataAccessFn?.(vl.styleParams?.colorMap?.fieldSpec)?.dataLoader)
+        .filter(Boolean),
+    [viewLayers],
+  );
+
+  return useDataLoadTrigger(dataLoaders);
+}
+
 export const DataMap: FC<{
   firstLabelId: string;
   interactionGroups: Map<string, InteractionGroupConfig>;
@@ -25,23 +61,7 @@ export const DataMap: FC<{
   const { current: map } = useMap();
   const zoom = map.getMap().getZoom();
 
-  const dataLoaders = useMemo(
-    () =>
-      viewLayers
-        .map((vl) => vl.dataAccessFn?.(vl.styleParams?.colorMap?.fieldSpec)?.dataLoader)
-        .filter(Boolean),
-    [viewLayers],
-  );
-
-  const dataLoadTrigger = useDataLoadTrigger(dataLoaders);
-
-  const layersFunction = useCallback(
-    ({ zoom }: { zoom: number }) =>
-      viewLayers.map((viewLayer) =>
-        makeDeckLayers(viewLayer, viewLayersParams[viewLayer.id], zoom, firstLabelId),
-      ) as LayersList,
-    [firstLabelId, viewLayers, viewLayersParams],
-  );
+  const dataLoadTrigger = useTrigger(viewLayers);
 
   const { onHover, onClick, layerFilter, pickingRadius } = useInteractions(
     viewLayers,
@@ -50,8 +70,8 @@ export const DataMap: FC<{
   );
 
   const layers = useTriggerMemo(
-    () => layersFunction({ zoom }),
-    [layersFunction, zoom],
+    () => buildLayers(viewLayers, viewLayersParams, zoom, firstLabelId),
+    [viewLayers, viewLayersParams, zoom, firstLabelId],
     dataLoadTrigger,
   );
 
@@ -71,16 +91,3 @@ export const DataMap: FC<{
     />
   );
 };
-
-function makeDeckLayers(
-  viewLayer: ViewLayer,
-  viewLayerParams: ViewLayerParams,
-  zoom: number,
-  beforeId: string | undefined,
-) {
-  return viewLayer.fn({
-    deckProps: { id: viewLayer.id, pickable: !!viewLayer.interactionGroup, beforeId },
-    zoom,
-    ...viewLayerParams,
-  });
-}
