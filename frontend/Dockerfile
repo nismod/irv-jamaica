@@ -1,13 +1,12 @@
 # multistage build of nginx image
 
 # stage 1 of 2
-FROM node:20-bullseye AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 # install npm packages -- do this before copying everything else
 # to enable more efficient caching by docker (we don't reinstall packages when
 # we've only changed application code)
-RUN apt-get update && apt-get install -y build-essential python3 python-is-python3
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY public public
