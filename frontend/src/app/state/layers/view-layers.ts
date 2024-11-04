@@ -9,8 +9,8 @@ import { importLayerState } from 'data-layers/state';
 import { featureBoundingBoxLayerState } from './ui/featureBoundingBox';
 import { labelsLayerState } from './ui/labels';
 
-const viewLayerState = selectorFamily<ViewLayer, string>({
-  key: 'viewLayerState',
+const viewLayerConfig = selectorFamily<ViewLayer, string>({
+  key: 'viewLayerConfig',
   get:
     (type) =>
     async ({ get }) => {
@@ -19,12 +19,12 @@ const viewLayerState = selectorFamily<ViewLayer, string>({
     },
 });
 
-export const viewLayersState = selector<ConfigTree<ViewLayer>>({
-  key: 'viewLayersState',
+export const viewLayerConfigs = selector<ConfigTree<ViewLayer>>({
+  key: 'viewLayerConfigs',
   get: ({ get }) => {
     return get(
       waitForAll([
-        ...VIEW_LAYERS.map(viewLayerState),
+        ...VIEW_LAYERS.map(viewLayerConfig),
         featureBoundingBoxLayerState,
         labelsLayerState,
       ]),
