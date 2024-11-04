@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { selector } from 'recoil';
 
 import { ViewLayerParams } from 'lib/data-map/view-layers';
@@ -6,14 +5,18 @@ import { singleViewLayerParamsState } from 'lib/state/layers/view-layers';
 
 import { viewLayersFlatState } from './view-layers-flat';
 
-export const viewLayersParamsState = selector<Record<string, ViewLayerParams>>({
+/**
+ * View layer selection and style parameters, mapped by view layer ID.
+ */
+export const viewLayersParamsState = selector<Map<string, ViewLayerParams>>({
   key: 'viewLayersParamsState',
   get: ({ get }) => {
     const viewLayers = get(viewLayersFlatState);
+    const viewLayersParams = new Map() as Map<string, ViewLayerParams>;
+    viewLayers.forEach((viewLayer) => {
+      viewLayersParams.set(viewLayer.id, get(singleViewLayerParamsState(viewLayer.id)));
+    });
 
-    return _(viewLayers)
-      .keyBy('id')
-      .mapValues((viewLayer) => get(singleViewLayerParamsState(viewLayer.id)))
-      .value();
+    return viewLayersParams;
   },
 });

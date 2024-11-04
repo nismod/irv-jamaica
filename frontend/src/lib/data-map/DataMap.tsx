@@ -25,12 +25,12 @@ function lookupViewForDeck(deckLayerId: string) {
  */
 function buildLayers(
   viewLayers: ViewLayer[],
-  viewLayersParams: Record<string, ViewLayerParams>,
+  viewLayersParams: Map<string, ViewLayerParams>,
   zoom: number,
   beforeId: string | undefined,
 ) {
   return viewLayers.map((viewLayer) => {
-    const viewLayerParams = viewLayersParams[viewLayer.id];
+    const viewLayerParams = viewLayersParams.get(viewLayer.id);
     const deckProps = {
       id: viewLayer.id,
       pickable: !!viewLayer.interactionGroup,
@@ -62,7 +62,7 @@ export const DataMap: FC<{
   firstLabelId: string;
   interactionGroups: Map<string, InteractionGroupConfig>;
   viewLayers: ViewLayer[];
-  viewLayersParams: Record<string, ViewLayerParams>;
+  viewLayersParams: Map<string, ViewLayerParams>;
 }> = ({ firstLabelId, interactionGroups, viewLayers, viewLayersParams }) => {
   const deckRef = useRef<MapboxOverlay>();
   const { current: map } = useMap();
