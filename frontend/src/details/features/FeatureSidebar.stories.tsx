@@ -20,22 +20,22 @@ function FixedWidthDecorator(Story) {
 
 function DataLoaderDecorator(Story, { args }) {
   const [, setFeatureSelection] = useRecoilState(selectionState('assets'));
-  const mockSelection = {
-    interactionGroup: 'assets',
-    interactionStyle: 'vector',
-    target: {
-      feature: args.feature,
-    },
-    viewLayer: {
-      id: args.id,
-      group: 'networks',
-      fn: () => ({}) as Layer,
-    },
-  };
 
   useEffect(() => {
+    const mockSelection = {
+      interactionGroup: 'assets',
+      interactionStyle: 'vector',
+      target: {
+        feature: args.feature,
+      },
+      viewLayer: {
+        id: args.id,
+        group: 'networks',
+        fn: () => ({}) as Layer,
+      },
+    };
     setFeatureSelection(mockSelection);
-  }, []);
+  }, [setFeatureSelection, args]);
 
   return <Story />;
 }
