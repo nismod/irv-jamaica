@@ -4,7 +4,7 @@ import { DataItem } from 'details/features/detail-components';
 import { VectorTarget } from 'lib/data-map/types';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
-import { singleViewLayerParamsState } from 'app/state/layers/view-layers-params';
+import { singleViewLayerParamsState } from 'lib/state/layers/view-layers';
 import { DataDescription } from '../DataDescription';
 import { ColorBox } from './ColorBox';
 import { ViewLayer } from 'lib/data-map/view-layers';

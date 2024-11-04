@@ -5,6 +5,7 @@ import { FC, useRef } from 'react';
 import { useInteractions } from 'lib/state/interactions/use-interactions';
 import { useDataLoadTrigger } from 'lib/data-map/use-data-load-trigger';
 import { InteractionGroupConfig } from 'lib/data-map/types';
+import { useSaveViewLayers } from 'lib/state/layers/view-layers';
 import { DeckGLOverlay } from 'lib/map/DeckGLOverlay';
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
 import { LayersList } from 'deck.gl/typed';
@@ -14,36 +15,47 @@ function lookupViewForDeck(deckLayerId: string) {
   return deckLayerId.split('@')[0];
 }
 
-function makeDeckLayers(
-  viewLayer: ViewLayer,
-  viewLayerParams: ViewLayerParams,
-  zoom: number,
-  beforeId: string | undefined,
-) {
-  return viewLayer.fn({
-    deckProps: { id: viewLayer.id, pickable: !!viewLayer.interactionGroup, beforeId },
-    zoom,
-    ...viewLayerParams,
-  });
-}
-
+/**
+ * Map an array of view layer objects to an array of Deck.GL layers.
+ * @param viewLayers - Array of view layer objects.
+ * @param viewLayersParams - View layer selection and style parameters, mapped by view layer ID.
+ * @param zoom - Current map zoom level.
+ * @param beforeId - ID of the first labels layer.
+ * @returns Array of Deck.GL layers.
+ */
 function buildLayers(
   viewLayers: ViewLayer[],
   viewLayersParams: Record<string, ViewLayerParams>,
   zoom: number,
   beforeId: string | undefined,
 ) {
-  return viewLayers.map((viewLayer) =>
-    makeDeckLayers(viewLayer, viewLayersParams[viewLayer.id], zoom, beforeId),
-  ) as LayersList;
+  return viewLayers.map((viewLayer) => {
+    const viewLayerParams = viewLayersParams[viewLayer.id];
+    const deckProps = {
+      id: viewLayer.id,
+      pickable: !!viewLayer.interactionGroup,
+      beforeId,
+    };
+    return viewLayer.fn({
+      deckProps,
+      zoom,
+      ...viewLayerParams,
+    });
+  }) as LayersList;
 }
 
+/**
+ * Register data loaders for an array of view layers.
+ * Adds data loaders for any new layers. Destroys data loaders for any layers that have been removed.
+ * @param viewLayers
+ * @returns
+ */
 function useTrigger(viewLayers: ViewLayer[]) {
   const dataLoaders = viewLayers
     .map((vl) => vl.dataAccessFn?.(vl.styleParams?.colorMap?.fieldSpec)?.dataLoader)
     .filter(Boolean);
 
-  return useDataLoadTrigger(dataLoaders);
+  useDataLoadTrigger(dataLoaders);
 }
 
 export const DataMap: FC<{
@@ -55,6 +67,7 @@ export const DataMap: FC<{
   const deckRef = useRef<MapboxOverlay>();
   const { current: map } = useMap();
   const zoom = map.getMap().getZoom();
+  const saveViewLayers = useSaveViewLayers();
 
   useTrigger(viewLayers);
 
@@ -65,6 +78,14 @@ export const DataMap: FC<{
   );
 
   const layers = buildLayers(viewLayers, viewLayersParams, zoom, firstLabelId);
+  const onClickFeature = (info: any) => {
+    onClick?.(info, deckRef.current);
+    saveViewLayers(viewLayers);
+  };
+  const onHoverFeature = (info: any) => {
+    onHover?.(info, deckRef.current);
+    saveViewLayers(viewLayers);
+  };
 
   return (
     <DeckGLOverlay
@@ -76,8 +97,8 @@ export const DataMap: FC<{
       getCursor={() => 'default'}
       layers={layers}
       layerFilter={layerFilter}
-      onHover={(info) => deckRef.current && onHover?.(info, deckRef.current)}
-      onClick={(info) => deckRef.current && onClick?.(info, deckRef.current)}
+      onHover={onHoverFeature}
+      onClick={onClickFeature}
       pickingRadius={pickingRadius}
     />
   );
