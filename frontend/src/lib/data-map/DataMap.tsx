@@ -28,7 +28,7 @@ function buildLayers(
   viewLayersParams: Map<string, ViewLayerParams>,
   zoom: number,
   beforeId: string | undefined,
-) {
+): LayersList {
   return viewLayers.map((viewLayer) => {
     const viewLayerParams = viewLayersParams.get(viewLayer.id);
     const deckProps = {
@@ -41,7 +41,7 @@ function buildLayers(
       zoom,
       ...viewLayerParams,
     });
-  }) as LayersList;
+  });
 }
 
 /**

@@ -8,6 +8,7 @@ import { selectionState } from 'lib/state/interactions/interaction-state';
 import mockFeature from 'mocks/details/features/mockFeature.json';
 import mockFeatureDetails from 'mocks/details/features/mockFeatureDetails.json';
 import { FeatureSidebar } from './FeatureSidebar';
+import { Layer } from 'deck.gl/typed';
 
 function FixedWidthDecorator(Story) {
   return (
@@ -28,7 +29,7 @@ function DataLoaderDecorator(Story, { args }) {
     viewLayer: {
       id: args.id,
       group: 'networks',
-      fn: () => {},
+      fn: () => ({}) as Layer,
     },
   };
 
