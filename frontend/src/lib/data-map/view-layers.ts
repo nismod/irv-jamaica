@@ -2,6 +2,7 @@ import { ScaleSequential } from 'd3-scale';
 import { DataLoader } from 'lib/data-loader/data-loader';
 import { Accessor } from 'lib/deck/props/getters';
 import { InteractionTarget, VectorTarget, RasterTarget } from './types';
+import { Layer } from 'deck.gl/typed';
 
 export interface FieldSpec {
   fieldGroup: string;
@@ -51,7 +52,7 @@ export interface ViewLayer {
   params?: any;
   styleParams?: StyleParams;
   group: string;
-  fn: (options: ViewLayerFunctionOptions) => unknown;
+  fn: (options: ViewLayerFunctionOptions) => Layer | Layer[];
   dataAccessFn?: ViewLayerDataAccessFunction;
   dataFormatsFn?: ViewLayerDataFormatFunction;
   legendDataFormatsFn?: ViewLayerDataFormatFunction;

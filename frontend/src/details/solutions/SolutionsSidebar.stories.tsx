@@ -7,6 +7,7 @@ import { selectionState } from 'lib/state/interactions/interaction-state';
 import mockTerrestrialFeature from 'mocks/details/solutions/mockTerrestrialFeature.json';
 import mockMarineFeature from 'mocks/details/solutions/mockMarineFeature.json';
 import { SolutionsSidebar } from './SolutionsSidebar';
+import { Layer } from 'deck.gl/typed';
 
 function FixedWidthDecorator(Story) {
   return (
@@ -30,7 +31,7 @@ function DataLoaderDecorator(Story, { args }) {
       viewLayer: {
         id: id,
         group: null,
-        fn: () => {},
+        fn: () => ({}) as Layer,
       },
     };
     setFeatureSelection(mockSelection);

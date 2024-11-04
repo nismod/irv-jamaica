@@ -8,6 +8,7 @@ import { selectionState } from 'lib/state/interactions/interaction-state';
 import mockFeature from 'mocks/details/features/mockFeature.json';
 import mockFeatureDetails from 'mocks/details/features/mockFeatureDetails.json';
 import { FeatureSidebar } from './FeatureSidebar';
+import { Layer } from 'deck.gl/typed';
 
 function FixedWidthDecorator(Story) {
   return (
@@ -19,22 +20,22 @@ function FixedWidthDecorator(Story) {
 
 function DataLoaderDecorator(Story, { args }) {
   const [, setFeatureSelection] = useRecoilState(selectionState('assets'));
-  const mockSelection = {
-    interactionGroup: 'assets',
-    interactionStyle: 'vector',
-    target: {
-      feature: args.feature,
-    },
-    viewLayer: {
-      id: args.id,
-      group: 'networks',
-      fn: () => {},
-    },
-  };
 
   useEffect(() => {
+    const mockSelection = {
+      interactionGroup: 'assets',
+      interactionStyle: 'vector',
+      target: {
+        feature: args.feature,
+      },
+      viewLayer: {
+        id: args.id,
+        group: 'networks',
+        fn: () => ({}) as Layer,
+      },
+    };
     setFeatureSelection(mockSelection);
-  }, []);
+  }, [setFeatureSelection, args]);
 
   return <Story />;
 }
