@@ -1,4 +1,6 @@
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
+
+import { numFormatMoney } from 'lib/helpers';
 import { GradientLegend } from './GradientLegend';
 import { useRasterColorMapValues } from './use-color-map-values';
 export interface ColorValue {
@@ -10,18 +12,31 @@ export interface RasterColorMapValues {
   rangeTruncated: [boolean, boolean];
 }
 
+const formatter = {
+  hazard: (value, dataUnit) => `${value.toLocaleString()} ${dataUnit}`,
+  financial: numFormatMoney,
+  integer: (value) =>
+    value.toLocaleString(undefined, {
+      maximumSignificantDigits: 3,
+      maximumFractionDigits: 0,
+      roundingPriority: 'lessPrecision',
+    }),
+  population: (value) =>
+    value.toLocaleString(undefined, {
+      maximumSignificantDigits: 3,
+    }),
+};
+
 export const RasterLegend: FC<{
   label: string;
   dataUnit: string;
   scheme: string;
   range: [number, number];
-}> = ({ label, dataUnit, scheme, range }) => {
+  type?: string;
+}> = ({ label, dataUnit, scheme, range, type = 'hazard' }) => {
   const { error, loading, colorMapValues } = useRasterColorMapValues(scheme, range);
 
-  const getValueLabel = useCallback(
-    (value: number) => `${value.toLocaleString()} ${dataUnit}`,
-    [dataUnit],
-  );
+  const getValueLabel = (value: number) => formatter[type](value, dataUnit);
 
   return (
     <GradientLegend

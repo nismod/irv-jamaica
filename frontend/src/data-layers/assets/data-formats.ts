@@ -9,15 +9,15 @@ function getSourceLabel(eadSource: string) {
   return HAZARDS_METADATA[eadSource].label;
 }
 
-function getDamageTypeLabel(field) {
+function getDamageTypeLabel(field: string) {
   if (field === 'ead_mean') return 'Direct Damages';
   else if (field === 'eael_mean') return 'Economic Losses';
 }
 
-function formatDamageValue(value) {
+function formatDamageValue(value: number) {
   if (isNullish(value)) return value;
 
-  return `$${numFormatMoney(value)}`;
+  return numFormatMoney(value);
 }
 const DAMAGES_EXPECTED_DEFAULT_FORMAT: FormatConfig = {
   getDataLabel: (colorField) => {
