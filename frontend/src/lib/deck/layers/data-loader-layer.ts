@@ -5,6 +5,9 @@ export interface DataLoaderOptions {
   dataLoader: DataLoader;
 }
 
+/**
+ * Load data from the attributes API for every feature in a tile.
+ */
 export function dataLoaderLayer(tileProps, { dataLoader }: DataLoaderOptions) {
   const {
     tile: { content },

@@ -21,11 +21,11 @@ export function marineViewLayer({ dataFn, colorFn, filters }): ViewLayer {
     interactionGroup: 'solutions',
     fn: ({ deckProps, selection }) => {
       const target = selection?.target as VectorTarget;
-      const selectedFeatureId = target?.feature.id;
+      const selectedFeatureIds = [target?.feature.id];
       return selectableMvtLayer(
         {
           selectionOptions: {
-            selectedFeatureId,
+            selectedFeatureIds,
             polygonOffset: -3000,
           },
         },
