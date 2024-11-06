@@ -1,7 +1,7 @@
 # Staging environment - as production except for domain
 services:
   frontend:
-    image: ghcr.io/nismod/jsrat-frontend:0.4.13
+    image: ghcr.io/nismod/jsrat-frontend:0.4.14
     platform: linux/amd64
     build: ./frontend
     ports:
