@@ -55,8 +55,8 @@ export const VIEW_SECTIONS: Record<string, Record<string, ViewSectionConfig>> = 
       defaultStyle: 'damages',
     },
     risks: {
-      expanded: true,
-      visible: true,
+      expanded: false,
+      visible: false,
 
       styles: Object.keys(RISKS_METADATA),
       defaultStyle: Object.keys(RISKS_METADATA)[0],
