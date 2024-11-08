@@ -7,6 +7,9 @@ interface SelectableMvtLayerOptions {
   dataLoaderOptions?: DataLoaderOptions;
 }
 
+/**
+ * MVT layer with sublayers for feature selection and data loading.
+ */
 export function selectableMvtLayer(
   { selectionOptions, dataLoaderOptions }: SelectableMvtLayerOptions,
   ...props
@@ -23,7 +26,7 @@ export function selectableMvtLayer(
         dataLoaderOptions && dataLoaderLayer(tileProps, dataLoaderOptions),
       ],
       updateTriggers: {
-        renderSubLayers: [selectionOptions.selectedFeatureId],
+        renderSubLayers: selectionOptions.selectedFeatureIds,
       },
     },
     props,

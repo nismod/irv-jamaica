@@ -6,6 +6,13 @@ export type DataLoaderSubscriber = (loader: DataLoader) => void;
 const apiClient = new ApiClient({
   BASE: '/api',
 });
+/**
+ * Data loader that fetches data from the attributes API for a layer and field spec.
+ * The data is stored in a map with feature IDs as keys.
+ * @param id Unique ID for the data loader.
+ * @param layer Layer ID.
+ * @param fieldSpec Field specification.
+ */
 export class DataLoader<T = any> {
   constructor(
     public readonly id: string,

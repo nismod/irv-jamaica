@@ -40,11 +40,11 @@ export function assetViewLayer(
     fn({ deckProps, zoom, selection }: ViewLayerFunctionOptions) {
       const styleParams = this?.styleParams;
       const target = selection?.target as VectorTarget;
-      const selectedFeatureId = target?.feature.id;
+      const selectedFeatureIds = [target?.feature.id];
       return selectableMvtLayer(
         {
           selectionOptions: {
-            selectedFeatureId,
+            selectedFeatureIds,
             polygonOffset: selectionPolygonOffset,
           },
           dataLoaderOptions: {
