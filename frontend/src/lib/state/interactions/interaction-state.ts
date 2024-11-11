@@ -132,10 +132,12 @@ export const allowedGroupLayersState = selector<AllowedGroupLayers>({
           reset(selectionState(group));
         } else {
           const oldHoverTargets = get(hoverState(group));
-          set(hoverState(group), filterTargets(oldHoverTargets, newAllowedLayers));
+          const newHoverTargets = filterTargets(oldHoverTargets, newAllowedLayers);
+          set(hoverState(group), newHoverTargets);
 
           const oldSelectionTargets = get(selectionState(group));
-          set(selectionState(group), filterTargets(oldSelectionTargets, newAllowedLayers));
+          const newSelectionTargets = filterTargets(oldSelectionTargets, newAllowedLayers);
+          set(selectionState(group), newSelectionTargets);
         }
       }
     }
