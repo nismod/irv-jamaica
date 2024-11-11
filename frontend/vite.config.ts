@@ -1,3 +1,4 @@
+import MillionLint from '@million/lint';
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
@@ -26,7 +27,9 @@ try {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), viteTsconfigPaths(), url(), svgr()],
+  plugins: [MillionLint.vite({
+    enabled: true
+  }), react(), viteTsconfigPaths(), url(), svgr()],
   build: {
     outDir: 'build',
   },
