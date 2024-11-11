@@ -1,29 +1,27 @@
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { interactionGroupsState } from 'app/state/layers/interaction-groups';
-import { viewLayersFlatState } from 'app/state/layers/view-layers-flat';
-import { viewLayersParamsState } from 'app/state/layers/view-layers-params';
+import { viewLayerConfigs } from 'app/state/layers/view-layers';
 
 import { DataMap } from 'lib/data-map/DataMap';
+import { viewLayersFlatState } from 'lib/state/layers/view-layers';
 
 import { backgroundState, showLabelsState } from './layers/layers-state';
 import { useBasemapStyle } from './use-basemap-style';
+import { flattenConfig } from 'lib/nested-config/flatten-config';
 
 export const DataMapContainer: FC = () => {
   const background = useRecoilValue(backgroundState);
   const showLabels = useRecoilValue(showLabelsState);
-  const viewLayers = useRecoilValue(viewLayersFlatState);
+  const viewLayers = useRecoilValue(viewLayerConfigs);
+  const [viewLayersFlat, setViewLayersFlat] = useRecoilState(viewLayersFlatState);
   const { firstLabelId } = useBasemapStyle(background, showLabels);
-  const viewLayersParams = useRecoilValue(viewLayersParamsState);
   const interactionGroups = useRecoilValue(interactionGroupsState);
 
-  return (
-    <DataMap
-      firstLabelId={firstLabelId}
-      interactionGroups={interactionGroups}
-      viewLayers={viewLayers}
-      viewLayersParams={viewLayersParams}
-    />
-  );
+  if (viewLayersFlat.length === 0) {
+    setViewLayersFlat(flattenConfig(viewLayers));
+  }
+
+  return <DataMap firstLabelId={firstLabelId} interactionGroups={interactionGroups} />;
 };
