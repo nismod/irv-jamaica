@@ -1,4 +1,4 @@
-import { atomFamily, selectorFamily, useRecoilTransaction_UNSTABLE } from 'recoil';
+import { atom, atomFamily, selectorFamily, useRecoilTransaction_UNSTABLE } from 'recoil';
 
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
 import { selectionState } from 'lib/state/interactions/interaction-state';
@@ -6,6 +6,11 @@ import { selectionState } from 'lib/state/interactions/interaction-state';
 const viewLayerState = atomFamily<ViewLayer, string>({
   key: 'viewLayerState',
   default: null,
+});
+
+export const viewLayersFlatState = atom<ViewLayer[]>({
+  key: 'viewLayersFlatState',
+  default: [],
 });
 
 export const useSaveViewLayers = () => {

@@ -1,11 +1,13 @@
 import type { MapboxOverlay } from '@deck.gl/mapbox/typed';
 import { useMap } from 'react-map-gl/maplibre';
 import { FC, useRef } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import { useInteractions } from 'lib/state/interactions/use-interactions';
 import { useDataLoadTrigger } from 'lib/data-map/use-data-load-trigger';
 import { InteractionGroupConfig } from 'lib/data-map/types';
-import { useSaveViewLayers } from 'lib/state/layers/view-layers';
+import { useSaveViewLayers, viewLayersFlatState } from 'lib/state/layers/view-layers';
+import { viewLayersParamsState } from 'lib/state/layers/view-layers-params';
 import { DeckGLOverlay } from 'lib/map/DeckGLOverlay';
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
 import { LayersList } from 'deck.gl/typed';
@@ -61,12 +63,12 @@ function useTrigger(viewLayers: ViewLayer[]) {
 export const DataMap: FC<{
   firstLabelId: string;
   interactionGroups: Map<string, InteractionGroupConfig>;
-  viewLayers: ViewLayer[];
-  viewLayersParams: Map<string, ViewLayerParams>;
-}> = ({ firstLabelId, interactionGroups, viewLayers, viewLayersParams }) => {
+}> = ({ firstLabelId, interactionGroups }) => {
   const deckRef = useRef<MapboxOverlay>();
   const { current: map } = useMap();
   const zoom = map.getMap().getZoom();
+  const viewLayers = useRecoilValue(viewLayersFlatState);
+  const viewLayersParams = useRecoilValue(viewLayersParamsState);
   const saveViewLayers = useSaveViewLayers();
 
   useTrigger(viewLayers);

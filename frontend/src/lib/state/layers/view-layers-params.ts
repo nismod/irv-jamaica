@@ -1,9 +1,7 @@
 import { selector } from 'recoil';
 
 import { ViewLayerParams } from 'lib/data-map/view-layers';
-import { singleViewLayerParamsState } from 'lib/state/layers/view-layers';
-
-import { viewLayersFlatState } from './view-layers-flat';
+import { singleViewLayerParamsState, viewLayersFlatState } from 'lib/state/layers/view-layers';
 
 /**
  * View layer selection and style parameters, mapped by view layer ID.
