@@ -1,8 +1,9 @@
 import forEach from 'lodash/forEach';
 import { atom, atomFamily, selector } from 'recoil';
 
-import { InteractionLayer } from 'lib/data-map/types';
+import { InteractionLayer, VectorTarget } from 'lib/data-map/types';
 import { isReset } from 'lib/recoil/is-reset';
+import { ApiClient } from 'lib/api-client';
 
 type IT = InteractionLayer | InteractionLayer[];
 
@@ -65,10 +66,31 @@ const selectionChangeEffect =
     }
   };
 
+/**
+ * Selection state for interaction groups, including selected layer and feature for each group.
+ */
 export const selectionState = atomFamily<InteractionLayer, string>({
   key: 'selectionState',
   default: null,
   effects: (id) => [selectionChangeEffect(id)],
+});
+
+const apiClient = new ApiClient({
+  BASE: '/api',
+});
+
+/**
+ * Fetch the details of the currently selected asset feature from the API.
+ */
+export const selectedAssetDetails = selector({
+  key: 'selectedFeatureState',
+  get: async ({ get }) => {
+    const selectedAssets = get(selectionState('assets'));
+    const target = selectedAssets?.target as VectorTarget;
+    const featureId = target?.feature?.id;
+    const featureDetails = await apiClient.features.featuresReadFeature({ featureId });
+    return featureDetails;
+  },
 });
 
 type AllowedGroupLayers = Record<string, string[]>;

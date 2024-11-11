@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, Suspense } from 'react';
 import { Box, IconButton, Typography } from '@mui/material';
 
 import {
@@ -22,11 +22,12 @@ import {
 } from './detail-components';
 import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
 import { ColorBox } from 'app/map/tooltip/content/ColorBox';
-import { ApiClient } from 'lib/api-client';
 import { DamagesSection } from './damages/DamagesSection';
 import { AdaptationSection } from './adaptation/AdaptationSection';
 import { Download } from '@mui/icons-material';
 import { downloadFile } from 'lib/helpers';
+import { useRecoilValue } from 'recoil';
+import { selectedAssetDetails } from 'lib/state/interactions/interaction-state';
 
 const componentMapping: Record<keyof typeof NETWORKS_METADATA, DetailsComponent> = {
   airport_terminals: AirportDetails,
@@ -104,20 +105,12 @@ interface FeatureSidebarContentProps {
   showRiskSection?: boolean;
 }
 
-export const FeatureSidebarContent: FC<FeatureSidebarContentProps> = ({
-  feature,
-  assetType,
-  showRiskSection = true,
-}) => {
+const FeatureDetails = ({ assetType, feature, showRiskSection }) => {
   const DetailsComponent = componentMapping[assetType] ?? DefaultDetails;
-  const { color, label } = NETWORKS_METADATA[assetType];
-
+  const featureDetails = useRecoilValue(selectedAssetDetails);
   const f = feature.properties;
-
-  const [featureDetails] = useFeatureDetails(feature?.id);
-
   return (
-    <Box position="relative">
+    <>
       <pre style={{ display: 'none' }}>
         <code className="feature-debug">{JSON.stringify(f, null, 2)}</code>
         {featureDetails && (
@@ -126,38 +119,46 @@ export const FeatureSidebarContent: FC<FeatureSidebarContentProps> = ({
           </code>
         )}
       </pre>
+      <DetailsComponent f={featureDetails.properties} />
+      {showRiskSection && (
+        <>
+          <IconButton
+            sx={{
+              position: 'absolute',
+              top: 0,
+              right: 30, // hack: larger right margin to allow space for close button
+            }}
+            title="Download CSV with feature metadata"
+            onClick={() =>
+              downloadFile(makeDetailsCsv(featureDetails), 'text/csv', `feature_${feature.id}.csv`)
+            }
+          >
+            <Download />
+          </IconButton>
+          <DamagesSection fd={featureDetails} />
+          <AdaptationSection fd={featureDetails} />
+        </>
+      )}
+    </>
+  );
+};
+
+export const FeatureSidebarContent: FC<FeatureSidebarContentProps> = ({
+  feature,
+  assetType,
+  showRiskSection = true,
+}) => {
+  const { color, label } = NETWORKS_METADATA[assetType];
+
+  return (
+    <Box position="relative">
       <Typography variant="caption">
         <ColorBox color={color ?? '#333'} />
         {label}
       </Typography>
-      {featureDetails && (
-        <>
-          <DetailsComponent f={featureDetails.properties} />
-          {showRiskSection && (
-            <>
-              <IconButton
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 30, // hack: larger right margin to allow space for close button
-                }}
-                title="Download CSV with feature metadata"
-                onClick={() =>
-                  downloadFile(
-                    makeDetailsCsv(featureDetails),
-                    'text/csv',
-                    `feature_${feature.id}.csv`,
-                  )
-                }
-              >
-                <Download />
-              </IconButton>
-              <DamagesSection fd={featureDetails} />
-              <AdaptationSection fd={featureDetails} />
-            </>
-          )}
-        </>
-      )}
+      <Suspense fallback={null}>
+        <FeatureDetails assetType={assetType} feature={feature} showRiskSection={showRiskSection} />
+      </Suspense>
     </Box>
   );
 };
@@ -169,34 +170,4 @@ function makeDetailsCsv(fd) {
       .map(([k, v]) => `${k},${v}`)
       .join('\n')
   );
-}
-
-const apiClient = new ApiClient({
-  BASE: '/api',
-});
-
-function useFeatureDetails(featureId: number) {
-  const [featureDetails, setFeatureDetails] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setFeatureDetails(null);
-    setLoading(true);
-    setError(null);
-    if (featureId) {
-      apiClient.features
-        .featuresReadFeature({ featureId })
-        .then((featureDetails) => {
-          setFeatureDetails(featureDetails);
-          setLoading(false);
-        })
-        .catch((error) => {
-          setError(error);
-          setLoading(false);
-        });
-    }
-  }, [featureId]);
-
-  return [featureDetails, loading, error];
 }
