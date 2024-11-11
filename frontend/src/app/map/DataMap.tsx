@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { interactionGroupsState } from 'app/state/layers/interaction-groups';
@@ -19,9 +19,9 @@ export const DataMapContainer: FC = () => {
   const { firstLabelId } = useBasemapStyle(background, showLabels);
   const interactionGroups = useRecoilValue(interactionGroupsState);
 
-  if (viewLayersFlat.length === 0) {
+  useEffect(() => {
     setViewLayersFlat(flattenConfig(viewLayers));
-  }
+  }, [viewLayers, setViewLayersFlat]);
 
   return <DataMap firstLabelId={firstLabelId} interactionGroups={interactionGroups} />;
 };
