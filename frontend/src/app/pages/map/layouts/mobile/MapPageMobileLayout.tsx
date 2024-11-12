@@ -4,10 +4,11 @@ import React, { FC, Suspense, useRef, useState } from 'react';
 import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet';
 import { useRecoilValue } from 'recoil';
 
-import { MapView } from 'app/map/MapView';
-import { globalStyleVariables } from '../../../../theme';
+import { mobileTabHasContentState } from 'lib/map/layouts/tab-has-content';
 
-import { mobileTabHasContentState } from './tab-has-content';
+import { MapView } from 'app/map/MapView';
+import { globalStyleVariables } from 'app/theme';
+
 import { TabConfig, mobileTabsConfig } from './tabs-config';
 
 import './bottom-sheet.css';

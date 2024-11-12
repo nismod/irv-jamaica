@@ -4,7 +4,7 @@ import { ViewLayer } from 'lib/data-map/view-layers';
 import { useRecoilValue } from 'recoil';
 import { viewLayersFlatState } from 'lib/state/layers/view-layers';
 import { Stack, Box, Paper, Divider } from '@mui/material';
-import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
+import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 
 export const MapLegend: FC = () => {
   const viewLayers = useRecoilValue(viewLayersFlatState);

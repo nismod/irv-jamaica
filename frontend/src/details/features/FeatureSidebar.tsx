@@ -7,7 +7,7 @@ import { SidePanel } from 'details/SidePanel';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { Box } from '@mui/system';
 import { DeselectButton } from 'details/DeselectButton';
-import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
+import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 
 /**

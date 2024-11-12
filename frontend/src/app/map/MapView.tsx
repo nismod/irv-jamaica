@@ -1,8 +1,6 @@
 import { Suspense, useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
 
-import { BaseMapContainer } from './BaseMap';
-import { DataMapContainer } from './DataMap';
 import { DataMapTooltip } from 'lib/data-map/DataMapTooltip';
 import { MapBoundsFitter, mapFitBoundsState } from 'lib/map/MapBoundsFitter';
 import { MapHud } from 'lib/map/hud/MapHud';
@@ -16,13 +14,15 @@ import { MapSearch } from 'lib/map/place-search/MapSearch';
 import { PlaceSearchResult } from 'lib/map/place-search/use-place-search';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { withProps } from 'lib/react/with-props';
+import { MapLegend } from 'lib/map/legend/MapLegend';
 
-import { globalStyleVariables } from '../theme';
-import { useIsMobile } from '../use-is-mobile';
+import { globalStyleVariables } from 'app/theme';
+import { useIsMobile } from 'app/use-is-mobile';
 
 import { MapLayerSelection } from './layers/MapLayerSelection';
-import { MapLegend } from './legend/MapLegend';
 import { TooltipContent } from './tooltip/TooltipContent';
+import { BaseMapContainer } from './BaseMap';
+import { DataMapContainer } from './DataMap';
 
 const AppPlaceSearch = () => {
   const setFitBounds = useSetRecoilState(mapFitBoundsState);

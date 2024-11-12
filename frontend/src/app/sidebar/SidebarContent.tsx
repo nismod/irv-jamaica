@@ -13,7 +13,7 @@ import { RisksSection } from 'data-layers/risks/sidebar/RisksSection';
 import { MarineSection } from 'data-layers/marine/sidebar/MarineSection';
 import { TerrestrialSection } from 'data-layers/terrestrial/sidebar/TerrestrialSection';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
-import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
+import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 
 const viewLabels = {
   exposure: 'Exposure',
