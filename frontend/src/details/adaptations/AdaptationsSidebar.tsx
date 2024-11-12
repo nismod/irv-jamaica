@@ -4,7 +4,7 @@ import { SidePanel } from 'details/SidePanel';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { FC } from 'react';
 import { FeatureAdaptationsTable } from './FeatureAdaptationsTable';
-import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
+import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 
 /**
  * List adaptation options for a selected infrastructure network

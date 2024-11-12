@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { RasterLegend } from 'app/map/legend/RasterLegend';
+import { RasterLegend } from 'lib/map/legend/RasterLegend';
 import { ViewLayer } from 'lib/data-map/view-layers';
 
 import * as RISKS_COLOR_MAPS from './color-maps';

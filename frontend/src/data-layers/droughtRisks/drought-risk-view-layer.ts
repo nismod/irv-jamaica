@@ -7,7 +7,7 @@ import { VectorTarget } from 'lib/data-map/types';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { border, fillColor } from 'lib/deck/props/style';
 import { dataColorMap } from 'lib/deck/props/color-map';
-import { VectorLegend } from 'app/map/legend/VectorLegend';
+import { VectorLegend } from 'lib/map/legend/VectorLegend';
 
 import { getDroughtDataAccessor } from './data-access';
 import { getDroughtRiskDataFormats } from './data-formats';

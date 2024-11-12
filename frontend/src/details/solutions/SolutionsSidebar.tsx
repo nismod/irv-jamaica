@@ -6,7 +6,7 @@ import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { SolutionsSidebarContent } from './SolutionsSidebarContent';
-import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
+import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 
 /**

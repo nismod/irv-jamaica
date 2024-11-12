@@ -6,7 +6,7 @@ import { RegionDetailsContent } from './RegionDetailsContent';
 import { SidePanel } from 'details/SidePanel';
 import { DeselectButton } from 'details/DeselectButton';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
-import { MobileTabContentWatcher } from 'app/pages/map/layouts/mobile/tab-has-content';
+import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 
 /**
  * Display detailed information about a selected region (parish or enumeration district.)
