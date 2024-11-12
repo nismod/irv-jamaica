@@ -26,7 +26,6 @@ export const Default: Story = {
         http.get(API_SEARCH_PATH, ({ request }) => {
           const url = new URL(request.url);
           if (
-            url.searchParams.get('asset_type') === 'pole' &&
             url.searchParams.get('sector') === 'power' &&
             url.searchParams.get('field') === 'avoided_ead_mean' &&
             url.searchParams.get('dimensions') ===

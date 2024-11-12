@@ -1,8 +1,11 @@
-import { damageSourceState, damageTypeState } from './damage-map';
-import { dataParamsByGroupState } from 'app/state/data-params';
 import { selector } from 'recoil';
+
+import { dataParamsByGroupState } from 'lib/state/data-params';
 import { FieldSpec, StyleParams } from 'lib/data-map/view-layers';
+
 import { damages } from 'data-layers/networks/color-maps';
+
+import { damageSourceState, damageTypeState } from './damage-map';
 
 export const damagesFieldState = selector<FieldSpec>({
   key: 'eadAccessorState',

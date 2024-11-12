@@ -42,7 +42,7 @@ export const CustomNumberSlider: FC<CustomSliderProps<number>> = ({
     [marks, onChange],
   );
 
-  const valueLabelFunction = useCallback((value) => marks[value].toString(), [marks]);
+  const valueLabelFunction = useCallback((value) => marks[value]?.toString(), [marks]);
 
   return (
     <Slider

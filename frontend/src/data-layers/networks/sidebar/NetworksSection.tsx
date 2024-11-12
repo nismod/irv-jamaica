@@ -14,6 +14,7 @@ import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { DamageSourceControl } from './DamageSourceControl';
 import { AdaptationControl } from './AdaptationControl';
 import { NetworkControl } from './NetworkControl';
+import { useSyncConfigState } from 'app/state/data-params';
 
 /**
  * Sidebar controls for the `networks` layer.
@@ -25,6 +26,7 @@ import { NetworkControl } from './NetworkControl';
  */
 export const NetworksSection: FC = () => {
   const style = useRecoilValue(sectionStyleValueState('assets'));
+  useSyncConfigState();
   return (
     <SidebarPanel id="assets" title="Infrastructure">
       <ErrorBoundary message="There was a problem displaying this section.">

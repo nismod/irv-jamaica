@@ -1,6 +1,8 @@
-import { ViewLayer } from 'lib/data-map/view-layers';
 import { selector } from 'recoil';
-import { dataParamsByGroupState } from 'app/state/data-params';
+
+import { ViewLayer } from 'lib/data-map/view-layers';
+import { dataParamsByGroupState } from 'lib/state/data-params';
+
 import { sectionVisibilityState } from 'app/state/sections';
 import { sectionStyleValueState } from 'app/state/sections';
 
