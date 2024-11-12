@@ -1,5 +1,5 @@
 import forEach from 'lodash/forEach';
-import { atom, atomFamily, selector } from 'recoil';
+import { atom, atomFamily, selector, selectorFamily } from 'recoil';
 
 import { InteractionLayer, VectorTarget } from 'lib/data-map/types';
 import { isReset } from 'lib/recoil/is-reset';
@@ -80,17 +80,18 @@ const apiClient = new ApiClient({
 });
 
 /**
- * Fetch the details of the currently selected asset feature from the API.
+ * Fetch the details of a selected asset feature from the API.
  */
-export const selectedAssetDetails = selector({
+export const selectedAssetDetails = selectorFamily({
   key: 'selectedFeatureState',
-  get: async ({ get }) => {
-    const selectedAssets = get(selectionState('assets'));
-    const target = selectedAssets?.target as VectorTarget;
-    const featureId = target?.feature?.id;
-    const featureDetails = await apiClient.features.featuresReadFeature({ featureId });
-    return featureDetails;
-  },
+  get:
+    (featureId: number) =>
+    async ({ get }) => {
+      const selectedAssets = get(selectionState('assets'));
+      const target = selectedAssets?.target as VectorTarget;
+      const featureDetails = await apiClient.features.featuresReadFeature({ featureId });
+      return featureDetails;
+    },
 });
 
 type AllowedGroupLayers = Record<string, string[]>;

@@ -107,7 +107,7 @@ interface FeatureSidebarContentProps {
 
 const FeatureDetails = ({ assetType, feature, showRiskSection }) => {
   const DetailsComponent = componentMapping[assetType] ?? DefaultDetails;
-  const featureDetails = useRecoilValue(selectedAssetDetails);
+  const featureDetails = useRecoilValue(selectedAssetDetails(feature.id));
   const f = feature.properties;
   return (
     <>
