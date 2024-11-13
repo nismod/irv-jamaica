@@ -64,14 +64,18 @@ export const syncExternalConfigState = selector({
     const dataParamNamesByGroup = mapValues(newConfig, (groupConfig) =>
       keys(groupConfig.paramDefaults),
     );
+    const dataParamDefaultsByGroup = mapValues(newConfig, (groupConfig) =>
+      resolveParamDependencies(groupConfig.paramDefaults, groupConfig),
+    );
     Object.keys(newConfig).forEach((group) => {
       const groupConfig = newConfig[group];
       const paramNames = dataParamNamesByGroup[group];
+      const paramDefaults = dataParamDefaultsByGroup[group];
       set(dataParamNamesByGroupState(group), paramNames);
       const groupParams = toDictionary(
         paramNames,
         (param) => param,
-        (param) => paramNames[0][param],
+        (param) => paramDefaults[0][param],
       );
       const [resolvedParams, resolvedOptions] = resolveParamDependencies(groupParams, groupConfig);
 
