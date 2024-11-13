@@ -68,21 +68,12 @@ export const syncExternalConfigState = selector({
       resolveParamDependencies(groupConfig.paramDefaults, groupConfig),
     );
     Object.keys(newConfig).forEach((group) => {
-      const groupConfig = newConfig[group];
       const paramNames = dataParamNamesByGroup[group];
-      const paramDefaults = dataParamDefaultsByGroup[group];
+      const [defaultValues, options] = dataParamDefaultsByGroup[group];
       set(dataParamNamesByGroupState(group), paramNames);
-      const groupParams = toDictionary(
-        paramNames,
-        (param) => param,
-        (param) => paramDefaults[0][param],
-      );
-      const [resolvedParams, resolvedOptions] = resolveParamDependencies(groupParams, groupConfig);
-
-      forEach(resolvedParams, (resolvedParamValue, paramId) => {
-        const recoilParam = { group, param: paramId };
-        set(dataParamState(recoilParam), resolvedParamValue);
-        set(dataParamOptionsState(recoilParam), resolvedOptions[paramId]);
+      paramNames.forEach((param) => {
+        set(dataParamState({ group, param }), defaultValues[param]);
+        set(dataParamOptionsState({ group, param }), options[param]);
       });
     });
   },
