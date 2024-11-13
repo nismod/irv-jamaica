@@ -9,6 +9,7 @@
     "@emotion/styled": "^11.6.0",
     "@loaders.gl/core": "^4.2.2",
     "@loaders.gl/wkt": "^4.2.2",
+    "@million/lint": "^1.0.12",
     "@mui/icons-material": "^6.1.0",
     "@mui/lab": "^6.0.0-beta.9",
     "@mui/material": "^6.1.0",
