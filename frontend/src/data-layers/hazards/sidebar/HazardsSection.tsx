@@ -5,6 +5,7 @@ import { Box } from '@mui/system';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 
 import { HazardsControl } from './HazardsControl';
+import { useSyncConfigState } from 'app/state/data-params';
 
 /**
  * Sidebar controls for the `hazards` layer.
@@ -15,6 +16,7 @@ import { HazardsControl } from './HazardsControl';
  * - RCP (climate scenario.)
  */
 export const HazardsSection: FC = () => {
+  useSyncConfigState();
   return (
     <SidebarPanel id="hazards" title="Hazards">
       <Box p={2}>
