@@ -8,11 +8,12 @@ import { Box } from '@mui/system';
 import { CustomNumberSlider } from 'lib/controls/CustomSlider';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
+import { dataParamsByGroupState } from 'lib/state/data-params';
+
 import { InputRow } from 'app/sidebar/ui/InputRow';
 import { InputSection } from 'app/sidebar/ui/InputSection';
 import { LayerStylePanel } from 'app/sidebar/ui/LayerStylePanel';
 import { DataParam } from 'app/sidebar/ui/params/DataParam';
-import { dataParamsByGroupState } from 'app/state/data-params';
 
 import {
   adaptationCostBenefitRatioEaelDaysState,

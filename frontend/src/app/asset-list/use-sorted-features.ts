@@ -54,6 +54,11 @@ export const useSortedFeatures = (
 
     try {
       const { fieldGroup, fieldDimensions, field, fieldParams } = fieldSpec;
+      const dimensions = JSON.stringify(fieldDimensions);
+      const parameters = JSON.stringify(fieldParams);
+      if (dimensions === '{}') {
+        return;
+      }
       // if (fieldGroup !== 'damages') {
       //   throw new Error('Only damages field is supported');
       // }
@@ -61,8 +66,8 @@ export const useSortedFeatures = (
         ...layerSpec,
         fieldGroup,
         field,
-        dimensions: JSON.stringify(fieldDimensions),
-        parameters: JSON.stringify(fieldParams),
+        dimensions,
+        parameters,
         page,
         size: pageSize,
       });

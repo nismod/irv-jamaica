@@ -4,6 +4,8 @@ import { FC } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
+import { useUpdateDataParam } from 'lib/state/data-params';
+
 import { LayerLabel } from 'app/sidebar/ui/LayerLabel';
 
 import {
@@ -15,11 +17,12 @@ import { NETWORK_LAYERS_HIERARCHY } from './hierarchy';
 import { NETWORKS_METADATA } from '../metadata';
 import { showAdaptationsState } from '../state/layer';
 import adaptationSectorLayers from '../adaptation-sector-layers.json';
-import { useUpdateDataParam } from 'app/state/data-params';
+import { dataParamState } from 'lib/state/data-params';
 
 export const NetworkControl: FC = () => {
   const [checkboxState, setCheckboxState] = useRecoilState(networkTreeCheckboxState);
   const [expanded, setExpanded] = useRecoilState(networkTreeExpandedState);
+  const dataParams = useRecoilValue(dataParamState({ group: 'adaptation', param: 'sector' }));
   const updateSector = useUpdateDataParam('adaptation', 'sector');
   const updateSubsector = useUpdateDataParam('adaptation', 'subsector');
   const updateAssetType = useUpdateDataParam('adaptation', 'asset_type');
@@ -31,7 +34,7 @@ export const NetworkControl: FC = () => {
     (id) => checkboxState.checked[id] && !networkTreeConfig.nodes[id].children,
   );
   const adaptationLayer = adaptationSectorLayers.find((x) => selectedLayers.includes(x.layer_name));
-  if (adaptationLayer) {
+  if (dataParams && adaptationLayer) {
     const { sector, subsector, asset_type } = adaptationLayer;
     updateSector(sector);
     updateSubsector(subsector);

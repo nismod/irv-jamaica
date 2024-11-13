@@ -2,7 +2,7 @@ import { selector } from 'recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { truthyKeys } from 'lib/helpers';
-import { dataParamsByGroupState } from 'app/state/data-params';
+import { dataParamsByGroupState } from 'lib/state/data-params';
 import { sectionVisibilityState } from 'app/state/sections';
 
 import { hazardVisibilityState } from './hazard-visibility';
