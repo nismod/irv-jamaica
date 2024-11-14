@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil';
 
-import { sectionStyleValueState } from 'app/state/sections';
+import { sectionStyleValueState } from 'lib/state/sections';
 
 import { RegionLevel } from '../metadata';
 import { urlSyncEffect } from 'recoil-sync';

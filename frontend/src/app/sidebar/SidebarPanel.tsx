@@ -3,7 +3,9 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '
 import uniqueId from 'lodash/uniqueId';
 import { FC, ReactNode, useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { sidebarSectionExpandedState } from 'app/state/sections';
+
+import { sidebarSectionExpandedState } from 'lib/state/sections';
+
 import { VisibilityToggle } from './VisibilityToggle';
 
 export const SidebarPanel: FC<{

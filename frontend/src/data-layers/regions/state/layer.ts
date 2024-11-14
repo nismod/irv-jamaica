@@ -1,7 +1,7 @@
 import { selector } from 'recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
-import { sectionVisibilityState } from 'app/state/sections';
+import { sectionVisibilityState } from 'lib/state/sections';
 
 import { regionLevelState, showPopulationState } from './data-selection';
 import { populationViewLayer } from '../population-view-layer';
