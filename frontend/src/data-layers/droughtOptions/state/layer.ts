@@ -2,7 +2,7 @@ import { selector } from 'recoil';
 
 import { droughtRcpParamState } from 'data-layers/droughtRisks/state/data-selection';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
-import { sectionVisibilityState } from 'app/state/sections';
+import { sectionVisibilityState } from 'lib/state/sections';
 
 import * as droughtOptionsColorSpecLookup from '../color-maps';
 import { droughtOptionsViewLayer } from '../drought-options-view-layer';

@@ -1,8 +1,9 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
+import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
+
 import { InputSection } from 'app/sidebar/ui/InputSection';
-import { sectionStyleOptionsState, sectionStyleValueState } from 'app/state/sections';
 
 export const RisksControl = () => {
   const [value, setValue] = useRecoilState(sectionStyleValueState('risks'));

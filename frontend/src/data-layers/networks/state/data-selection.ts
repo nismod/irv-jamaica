@@ -1,14 +1,16 @@
-import { NETWORK_LAYERS_HIERARCHY } from '../sidebar/hierarchy';
+import mapValues from 'lodash/mapValues';
+import { atom, DefaultValue, selector } from 'recoil';
+import { urlSyncEffect } from 'recoil-sync';
+import { bool, dict, object } from '@recoiljs/refine';
+
 import {
   buildTreeConfig,
   recalculateCheckboxStates,
   CheckboxTreeState,
 } from 'lib/controls/checkbox-tree/CheckboxTree';
-import mapValues from 'lodash/mapValues';
-import { atom, DefaultValue, selector } from 'recoil';
-import { sectionStyleValueState } from 'app/state/sections';
-import { urlSyncEffect } from 'recoil-sync';
-import { bool, dict, object } from '@recoiljs/refine';
+import { sectionStyleValueState } from 'lib/state/sections';
+
+import { NETWORK_LAYERS_HIERARCHY } from '../sidebar/hierarchy';
 
 export const networkTreeExpandedState = atom<string[]>({
   key: 'networkTreeExpandedState',

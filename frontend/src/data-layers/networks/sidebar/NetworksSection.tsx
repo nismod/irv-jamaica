@@ -4,12 +4,13 @@ import { Collapse } from '@mui/material';
 import { TransitionGroup } from 'react-transition-group';
 
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
+import { sectionStyleValueState } from 'lib/state/sections';
 
 import { SidebarPanel } from 'app/sidebar/SidebarPanel';
 import { StyleSelection } from 'app/sidebar/StyleSelection';
 import { SidebarPanelSection } from 'app/sidebar/ui/SidebarPanelSection';
-import { networksStyleStateEffect, sectionStyleValueState } from 'app/state/sections';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
+import { networksStyleStateEffect } from 'app/state/sections';
 
 import { DamageSourceControl } from './DamageSourceControl';
 import { AdaptationControl } from './AdaptationControl';

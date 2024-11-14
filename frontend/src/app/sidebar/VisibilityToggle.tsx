@@ -1,7 +1,8 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useRecoilState } from 'recoil';
-import { sectionVisibilityState, sidebarSectionExpandedState } from 'app/state/sections';
+
+import { sectionVisibilityState, sidebarSectionExpandedState } from 'lib/state/sections';
 
 export const VisibilityToggle = ({ id }) => {
   const [visibility, setVisibility] = useRecoilState(sectionVisibilityState(id));

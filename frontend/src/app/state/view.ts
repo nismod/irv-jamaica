@@ -6,15 +6,15 @@ import { atom } from 'recoil';
 import { syncEffect } from 'recoil-sync';
 
 import { StateEffect } from 'lib/recoil/state-effects/types';
-
-import { SECTIONS_CONFIG } from 'app/config/sections';
-import { VIEW_SECTIONS } from 'app/config/views';
 import {
   sectionStyleOptionsState,
   sectionStyleValueState,
   sectionVisibilityState,
   sidebarSectionExpandedState,
-} from 'app/state/sections';
+} from 'lib/state/sections';
+
+import { SECTIONS_CONFIG } from 'app/config/sections';
+import { VIEW_SECTIONS } from 'app/config/views';
 
 export const viewState = atom({
   key: 'viewState',
