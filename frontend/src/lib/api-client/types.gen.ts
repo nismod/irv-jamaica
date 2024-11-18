@@ -174,10 +174,7 @@ export type FeaturesReadProtectedFeaturesData = {
     path: {
         protector_id: number;
     };
-    query: {
-        rcp: string;
-        protection_level: number;
-    };
+    query?: never;
     url: '/features/{protector_id}/protected-by';
 };
 
