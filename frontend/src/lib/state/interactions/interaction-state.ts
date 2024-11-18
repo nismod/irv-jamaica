@@ -2,8 +2,8 @@ import { createClient } from '@hey-api/client-fetch';
 import forEach from 'lodash/forEach';
 import { atom, atomFamily, selector, selectorFamily } from 'recoil';
 
-import { featuresReadFeature } from 'lib/api-client/sdk.gen';
-import { InteractionLayer } from 'lib/data-map/types';
+import { featuresReadFeature, featuresReadProtectedFeatures } from 'lib/api-client/sdk.gen';
+import { InteractionLayer, VectorTarget } from 'lib/data-map/types';
 import { isReset } from 'lib/recoil/is-reset';
 
 type IT = InteractionLayer | InteractionLayer[];
@@ -98,6 +98,62 @@ export const selectedAssetDetails = selectorFamily({
     });
     return data;
   },
+});
+
+/**
+ * Fetch a list of adaptation options, by feature ID and layer,
+ * for features protected by the current selected feature.
+ */
+export const protectedFeatureDetailsState = selector({
+  key: 'protectedFeatureDetails',
+  get: async ({ get }) => {
+    const selection = get(selectionState('assets'));
+    const target = selection?.target as VectorTarget;
+    if (!target?.feature?.id) {
+      return null;
+    }
+    const { data } = await featuresReadProtectedFeatures({
+      client: apiClient,
+      path: {
+        protector_id: +target.feature.id,
+      },
+    });
+    return data;
+  },
+});
+
+/**
+ * A set of unique RCP values for the protected feature list.
+ */
+export const protectedFeatureRCPState = selector({
+  key: 'protectedFeatureRCP',
+  get: ({ get }) => new Set(get(protectedFeatureDetailsState)?.map((feature) => feature.rcp)),
+});
+
+/**
+ * A set of unique protection levels for the protected feature list.
+ */
+export const protectedFeatureProtectionLevelState = selector({
+  key: 'protectedFeatureProtectionLevel',
+  get: ({ get }) =>
+    new Set(
+      get(protectedFeatureDetailsState)?.map((feature) => feature.adaptation_protection_level),
+    ),
+});
+
+type ProtectedFeatureDetailsQuery = { rcp: number; protectionLevel: number };
+/**
+ * A list of adaptation options, by feature ID and layer,
+ * for a specific RCP and protection level.
+ */
+export const protectedFeatureDetailsQuery = selectorFamily({
+  key: 'protectedFeatureDetailsQuery',
+  get:
+    ({ rcp = 2.6, protectionLevel = 1 }: ProtectedFeatureDetailsQuery) =>
+    ({ get }) =>
+      get(protectedFeatureDetailsState)?.filter(
+        (item) => item.rcp === rcp && item.adaptation_protection_level === protectionLevel,
+      ),
 });
 
 type AllowedGroupLayers = Record<string, string[]>;
