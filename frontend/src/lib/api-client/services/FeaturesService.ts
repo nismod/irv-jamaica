@@ -84,4 +84,26 @@ export class FeaturesService {
         });
     }
 
+    /**
+     * Read Protected Features
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public featuresReadProtectedFeatures({
+        protectorId,
+    }: {
+        protectorId: number,
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/features/{protector_id}/protected-by',
+            path: {
+                'protector_id': protectorId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
 }
