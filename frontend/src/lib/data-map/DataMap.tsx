@@ -3,6 +3,12 @@ import { useMap } from 'react-map-gl/maplibre';
 import { FC, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
+import {
+  protectedFeatureDetailsState,
+  protectedFeatureProtectionLevelState,
+  protectedFeatureRCPState,
+  protectedFeatureDetailsQuery,
+} from 'lib/state/interactions/interaction-state';
 import { useInteractions } from 'lib/state/interactions/use-interactions';
 import { useDataLoadTrigger } from 'lib/data-map/use-data-load-trigger';
 import { InteractionGroupConfig } from 'lib/data-map/types';
@@ -73,6 +79,19 @@ export const DataMap: FC<{
   const viewLayers = useRecoilValue(viewLayersFlatState);
   const viewLayersParams = useRecoilValue(viewLayersParamsState);
   const saveViewLayers = useSaveViewLayers();
+
+  const protectedFeatures = useRecoilValue(protectedFeatureDetailsState);
+  const protectedFeatureProtectionLevel = useRecoilValue(protectedFeatureProtectionLevelState);
+  const protectedFeatureRCP = useRecoilValue(protectedFeatureRCPState);
+  const protectedFeatureDetails = useRecoilValue(
+    protectedFeatureDetailsQuery({ rcp: 2.6, protectionLevel: 1 }),
+  );
+  console.log({
+    protectedFeatures,
+    protectedFeatureProtectionLevel,
+    protectedFeatureRCP,
+    protectedFeatureDetails,
+  });
 
   useTrigger(viewLayers);
 
