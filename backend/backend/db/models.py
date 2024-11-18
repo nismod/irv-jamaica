@@ -113,6 +113,11 @@ class AdaptationCostBenefit(Base):
         primary_key=True,
         index=True
     )
+    protector_feature_id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
 
     hazard = Column(String(8), nullable=False, primary_key=True)
     rcp = Column(String(8), nullable=False, primary_key=True)

@@ -78,3 +78,52 @@ def read_sorted_features(
     ).order_by(desc("value"))
 
     return paginate(session, q, page_params)
+
+
+@router.get(
+    "/{protector_id}/protected-by",
+    response_model=list[schemas.ProtectedFeatureListItem],
+)
+def read_protected_features(
+    protector_id: int,
+    session: SessionDep,
+):
+    """
+    Get all adaptation options, by feature ID and layer, for features
+    protected by a given protector feature.
+    """
+
+    adaptation_options = select(
+        models.Feature.id.label("id"),
+        models.Feature.string_id.label("string_id"),
+        models.Feature.layer.label("layer"),
+        models.AdaptationCostBenefit.adaptation_cost.label(
+            "adaptation_cost"
+        ),
+        models.AdaptationCostBenefit.adaptation_protection_level.label(
+            "adaptation_protection_level"
+        ),
+        models.AdaptationCostBenefit.adaptation_name.label(
+            "adaptation_name"
+        ),
+        models.AdaptationCostBenefit.avoided_ead_mean.label(
+            "avoided_ead_mean"
+        ),
+        models.AdaptationCostBenefit.avoided_eael_mean.label(
+            "avoided_eael_mean"
+        ),
+        models.AdaptationCostBenefit.rcp.label("rcp"),
+        models.AdaptationCostBenefit.hazard.label("hazard"),
+    ).select_from(
+        models.Feature
+    ).join(
+        models.FeatureLayer
+    ).join(
+        models.Feature.adaptation
+    ).filter(
+        models.AdaptationCostBenefit.adaptation_name ==
+        "Flood defence around asset"  # test query
+        # models.AdaptationCostBenefit.protector_feature_id == protector_id
+    )
+    print(adaptation_options)
+    return session.execute(adaptation_options)
