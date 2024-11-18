@@ -17,7 +17,6 @@ export const LayerLabel = ({
   minZoom?: number;
   visible: boolean;
 }) => {
-  console.log('LayerLabel', label, type, color, minZoom, visible);
   return (
     <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={1}>
       <Stack direction="row" alignItems="center">
@@ -32,7 +31,6 @@ export const LayerLabel = ({
 function ZoomVisibility({ minZoom }: { minZoom: number }) {
   const mapViewState = useRecoilValue(mapViewStateState);
   const currentZoom = mapViewState.zoom;
-  console.log('ZoomVisibility', minZoom, currentZoom);
 
   return (
     currentZoom < minZoom && (
