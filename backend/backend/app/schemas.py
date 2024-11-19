@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Generic, Optional, TypeVar
 from typing_extensions import Annotated
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class FeatureBase(BaseModel):
@@ -48,8 +48,7 @@ class ExpectedDamagesVariables(DataVariables):
 
 
 class ExpectedDamage(ExpectedDamagesDimensions, ExpectedDamagesVariables):
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Return Period Damages
@@ -71,8 +70,7 @@ class ReturnPeriodDamagesVariables(DataVariables):
 
 
 class ReturnPeriodDamage(ReturnPeriodDamagesDimensions, ReturnPeriodDamagesVariables):
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # NPV Damages
@@ -91,8 +89,7 @@ class NPVDamagesVariables(DataVariables):
 
 
 class NPVDamage(NPVDamagesDimensions, NPVDamagesVariables):
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Adaptation Options
@@ -132,14 +129,12 @@ class AdaptationCostBenefitRatioParameters(DataParameters):
 
 
 class Adaptation(AdaptationDimensions, AdaptationVariables):
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Features
 class FeatureOutBase(FeatureBase):
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class FeatureOut(FeatureOutBase):
@@ -169,8 +164,7 @@ class FeatureListItemOut(BaseModel, Generic[SortFieldT]):
     bbox_wkt: str
     value: SortFieldT
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Feature Attributes Lookups
