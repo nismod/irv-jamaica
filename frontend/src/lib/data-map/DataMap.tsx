@@ -81,11 +81,11 @@ export const DataMap: FC<{
 
   const layers = buildLayers(viewLayers, viewLayersParams, zoom, firstLabelId);
   const onClickFeature = (info: any) => {
-    onClick?.(info, deckRef.current);
+    deckRef.current && onClick?.(info, deckRef.current);
     saveViewLayers(viewLayers);
   };
   const onHoverFeature = (info: any) => {
-    onHover?.(info, deckRef.current);
+    deckRef.current && onHover?.(info, deckRef.current);
     saveViewLayers(viewLayers);
   };
 
