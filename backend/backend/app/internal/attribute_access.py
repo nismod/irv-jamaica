@@ -55,7 +55,7 @@ def add_adaptation_value_query(
         adaptation_protection_level=dimensions.adaptation_protection_level,
     )
 
-    value: Column | ColumnOperators = None
+    value: Column | ColumnOperators | None = None
 
     if field == "cost_benefit_ratio":
         cost_benefit_params: schemas.AdaptationCostBenefitRatioParameters = field_params
@@ -78,7 +78,7 @@ class DataGroupConfig:
     add_value_query: Callable[
         [Query, schemas.DataDimensions, str, schemas.DataParameters | None], Query
     ]
-    field_parameters_schemas: dict[str, schemas.DataParameters] = None
+    field_parameters_schemas: dict[str, schemas.DataParameters] | None = None
 
 
 DATA_GROUP_CONFIGS: dict[str, DataGroupConfig] = {
@@ -136,7 +136,7 @@ def add_value_query(
     field_group: str,
     field_dimensions: schemas.DataDimensions,
     field: str,
-    field_params: schemas.DataParameters = None,
+    field_params: schemas.DataParameters | None = None,
 ):
     data_group_config = DATA_GROUP_CONFIGS.get(field_group)
 

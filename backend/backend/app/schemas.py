@@ -1,14 +1,14 @@
 from enum import Enum
-from typing import Any, Generic, Literal, TypeVar
-from pydantic import BaseModel, conint, validator
-from pydantic.generics import GenericModel
+from typing import Generic, Optional, TypeVar
+from typing_extensions import Annotated
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class FeatureBase(BaseModel):
     id: int
     string_id: str
     layer: str
-    sublayer: str | None
+    sublayer: Optional[str] = None
     properties: dict
 
 
@@ -34,7 +34,7 @@ class DataParameters(BaseModel):
 class ExpectedDamagesDimensions(DataDimensions):
     hazard: str
     rcp: str
-    epoch: str
+    epoch: str | int
     protection_standard: int
 
 
@@ -48,15 +48,14 @@ class ExpectedDamagesVariables(DataVariables):
 
 
 class ExpectedDamage(ExpectedDamagesDimensions, ExpectedDamagesVariables):
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Return Period Damages
 class ReturnPeriodDamagesDimensions(DataDimensions):
     hazard: str
     rcp: str
-    epoch: str
+    epoch: str | int
     rp: int
 
 
@@ -71,8 +70,7 @@ class ReturnPeriodDamagesVariables(DataVariables):
 
 
 class ReturnPeriodDamage(ReturnPeriodDamagesDimensions, ReturnPeriodDamagesVariables):
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # NPV Damages
@@ -91,8 +89,7 @@ class NPVDamagesVariables(DataVariables):
 
 
 class NPVDamage(NPVDamagesDimensions, NPVDamagesVariables):
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Adaptation Options
@@ -117,10 +114,10 @@ class AdaptationVariables(DataVariables):
 
 
 class AdaptationCostBenefitRatioParameters(DataParameters):
-    eael_days: conint(ge=1, le=30)
+    eael_days: Annotated[int, Field(ge=1, le=30)]
 
-    @validator('eael_days')
-    def fix_eael_days(cls, eael_days) -> float:
+    @field_validator("eael_days")
+    def fix_eael_days(cls, eael_days: int) -> float:
         """
         The data for `AdaptationCostBenefit.avoided_eael_mean` is erroneous and
         should be modified in the meantime. This validator adds a fudge factor
@@ -132,14 +129,12 @@ class AdaptationCostBenefitRatioParameters(DataParameters):
 
 
 class Adaptation(AdaptationDimensions, AdaptationVariables):
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Features
 class FeatureOutBase(FeatureBase):
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class FeatureOut(FeatureOutBase):
@@ -162,15 +157,14 @@ class LayerSpec(BaseModel):
 SortFieldT = TypeVar("SortFieldT")
 
 
-class FeatureListItemOut(GenericModel, Generic[SortFieldT]):
+class FeatureListItemOut(BaseModel, Generic[SortFieldT]):
     id: int
     string_id: str
     layer: str
     bbox_wkt: str
     value: SortFieldT
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # Feature Attributes Lookups

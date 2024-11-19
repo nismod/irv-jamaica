@@ -4,20 +4,20 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fastapi = "*"
-geoalchemy2 = "*"
-uvicorn = "*"
-fastapi-pagination = "*"
+backend = { editable = true, path = "." }
+fastapi = "~=0.115"
+fastapi-pagination = "~=0.12"
+geoalchemy2 = "~=0.16"
 setuptools = "*"
-backend = {editable = true, path = "."}
-psycopg2-binary = "*"
+uvicorn = "~=0.32"
+psycopg2-binary = "~=2.9"
+pydantic = "~=2.9"
 
 [dev-packages]
 black = "*"
 geopandas = "*"
 pandas = "*"
 pyarrow = "*"
-pygeos = "*"
 shapely = "*"
 snakefmt = "*"
 snakemake = "*"
@@ -25,4 +25,4 @@ tqdm = "*"
 ujson = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.12"

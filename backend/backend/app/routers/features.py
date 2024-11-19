@@ -1,4 +1,7 @@
-from fastapi import APIRouter, Depends
+from typing import Optional
+
+import sqlalchemy.exc
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi_pagination import Page, Params
 from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy import desc
@@ -20,12 +23,18 @@ router = APIRouter(tags=["features"])
 
 @router.get("/{feature_id}", response_model=schemas.FeatureOut)
 def read_feature(feature_id: int, db: Session = Depends(get_db)):
-    feature = db.query(models.Feature).filter(models.Feature.id == feature_id).one()
+    try:
+        feature = db.query(models.Feature).filter(models.Feature.id == feature_id).one()
+    except sqlalchemy.exc.NoResultFound:
+        raise HTTPException(status_code=404, detail="Feature not found")
     return feature
 
 
 def get_layer_spec(
-    layer: str = None, sector: str = None, subsector: str = None, asset_type: str = None
+    layer: Optional[str] = None,
+    sector: Optional[str] = None,
+    subsector: Optional[str] = None,
+    asset_type: Optional[str] = None,
 ):
     return schemas.LayerSpec(
         layer_name=layer,
