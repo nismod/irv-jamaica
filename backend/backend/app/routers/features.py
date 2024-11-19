@@ -24,7 +24,9 @@ router = APIRouter(tags=["features"])
 @router.get("/{feature_id}", response_model=schemas.FeatureOut)
 def read_feature(feature_id: int, db: Session = Depends(get_db)):
     try:
-        feature = db.query(models.Feature).filter(models.Feature.id == feature_id).one()
+        feature = db.query(models.Feature).filter(
+            models.Feature.id == feature_id
+        ).one()
     except sqlalchemy.exc.NoResultFound:
         raise HTTPException(status_code=404, detail="Feature not found")
     return feature
@@ -45,7 +47,8 @@ def get_layer_spec(
 
 
 @router.get(
-    "/sorted-by/{field_group}", response_model=Page[schemas.FeatureListItemOut[float]]
+    "/sorted-by/{field_group}",
+    response_model=Page[schemas.FeatureListItemOut[float]]
 )
 def read_sorted_features(
     field_group: str,
@@ -56,13 +59,17 @@ def read_sorted_features(
     page_params: Params = Depends(),
     db: Session = Depends(get_db),
 ):
-    filled_layer_spec = {k: v for k, v in layer_spec.dict().items() if v is not None}
+    filled_layer_spec = {
+        k: v for k, v in layer_spec.dict().items() if v is not None
+    }
     base_query = (
         db.query(
             models.Feature.id.label("id"),
             models.Feature.string_id.label("string_id"),
             models.Feature.layer.label("layer"),
-            functions.ST_AsText(functions.Box2D(models.Feature.geom)).label("bbox_wkt"),
+            functions.ST_AsText(
+                functions.Box2D(models.Feature.geom)
+            ).label("bbox_wkt"),
         )
         .select_from(models.Feature)
         .join(models.FeatureLayer)

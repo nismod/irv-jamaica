@@ -34,7 +34,12 @@ class Feature(Base):
 class ReturnPeriodDamage(Base):
     __tablename__ = "damages_rp"
 
-    feature_id = Column(Integer, ForeignKey(Feature.id), primary_key=True, index=True)
+    feature_id = Column(
+        Integer,
+        ForeignKey(Feature.id),
+        primary_key=True,
+        index=True
+    )
 
     hazard = Column(String(8), nullable=False, primary_key=True)
     rcp = Column(String(8), nullable=False, primary_key=True)
@@ -55,7 +60,12 @@ class ReturnPeriodDamage(Base):
 class ExpectedDamage(Base):
     __tablename__ = "damages_expected"
 
-    feature_id = Column(Integer, ForeignKey(Feature.id), primary_key=True, index=True)
+    feature_id = Column(
+        Integer,
+        ForeignKey(Feature.id),
+        primary_key=True,
+        index=True
+    )
 
     hazard = Column(String(8), nullable=False, primary_key=True)
     rcp = Column(String(8), nullable=False, primary_key=True)
@@ -75,7 +85,12 @@ class ExpectedDamage(Base):
 class NPVDamage(Base):
     __tablename__ = "damages_npv"
 
-    feature_id = Column(Integer, ForeignKey(Feature.id), primary_key=True, index=True)
+    feature_id = Column(
+        Integer,
+        ForeignKey(Feature.id),
+        primary_key=True,
+        index=True
+    )
 
     hazard = Column(String(8), nullable=False, primary_key=True)
     rcp = Column(String(8), nullable=False, primary_key=True)
@@ -92,13 +107,22 @@ class NPVDamage(Base):
 class AdaptationCostBenefit(Base):
     __tablename__ = "adaptation_cost_benefit"
 
-    feature_id = Column(Integer, ForeignKey(Feature.id), primary_key=True, index=True)
+    feature_id = Column(
+        Integer,
+        ForeignKey(Feature.id),
+        primary_key=True,
+        index=True
+    )
 
     hazard = Column(String(8), nullable=False, primary_key=True)
     rcp = Column(String(8), nullable=False, primary_key=True)
 
     adaptation_name = Column(String, nullable=False, primary_key=True)
-    adaptation_protection_level = Column(Float, nullable=False, primary_key=True)
+    adaptation_protection_level = Column(
+        Float,
+        nullable=False,
+        primary_key=True
+    )
 
     adaptation_cost = Column(Float)
 

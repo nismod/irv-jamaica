@@ -34,10 +34,14 @@ def add_damages_expected_value_query(
     return q.add_column(value.label("value"))
 
 
-# def add_damages_rp_value_query(fq: Query, dimesions: schemas.ReturnPeriodDamagesDimensions, field: str):
+# def add_damages_rp_value_query(
+#     fq: Query, dimesions: schemas.ReturnPeriodDamagesDimensions, field: str
+# ):
 #     pass
 
-# def add_damages_npv_value_query(fq: Query, dimesions: schemas.NPVDamagesDimensions, field: str):
+# def add_damages_npv_value_query(
+#     fq: Query, dimesions: schemas.NPVDamagesDimensions, field: str
+# ):
 #     pass
 
 
@@ -58,7 +62,9 @@ def add_adaptation_value_query(
     value: Column | ColumnOperators | None = None
 
     if field == "cost_benefit_ratio":
-        cost_benefit_params: schemas.AdaptationCostBenefitRatioParameters = field_params
+        cost_benefit_params: schemas.AdaptationCostBenefitRatioParameters = (
+            field_params
+        )
         eael_days = cost_benefit_params.eael_days
 
         value = (
@@ -76,7 +82,8 @@ class DataGroupConfig:
     dimensions_schema: schemas.DataDimensions
     variables_schema: schemas.DataVariables
     add_value_query: Callable[
-        [Query, schemas.DataDimensions, str, schemas.DataParameters | None], Query
+        [Query, schemas.DataDimensions, str, schemas.DataParameters | None],
+        Query
     ]
     field_parameters_schemas: dict[str, schemas.DataParameters] | None = None
 
