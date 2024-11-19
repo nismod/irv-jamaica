@@ -1,5 +1,4 @@
 # Development environment - includes database, hard-coded env vars
-version: '3.9'
 volumes:
   postgis-data:
 
@@ -34,7 +33,7 @@ services:
       - "traefik.http.services.frontend.loadbalancer.server.port=80"
 
   backend:
-    image: ghcr.io/nismod/jsrat-backend:0.1
+    image: ghcr.io/nismod/jsrat-backend:0.2
     build: ./backend
     ports:
       - 8888:80
@@ -117,5 +116,5 @@ services:
         "ingest",
         "/data/{type}__rp_{rp}__rcp_{rcp}__epoch_{epoch}__conf_{confidence}.tif",
         "-o",
-        "/data/terracotta.sqlite"
+        "/data/terracotta.sqlite",
       ]

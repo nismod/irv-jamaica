@@ -207,18 +207,18 @@ Build and publish all images:
 
 ```bash
 # Build images locally
-docker compose -f docker-compose-prod.yaml build
+docker compose -f docker-compose.prod.yml build
 
 # Push to GitHub container registry
 docker push ghcr.io/nismod/jsrat-frontend:0.1
-docker push ghcr.io/nismod/jsrat-backend:0.1
+docker push ghcr.io/nismod/jsrat-backend:0.2
 docker push ghcr.io/nismod/jsrat-vector-tileserver:0.1
 docker push ghcr.io/nismod/jsrat-raster-tileserver:0.1
 ```
 
 ```bash
 docker push ghcr.io/nismod/jsrat-frontend:0.1
-docker push ghcr.io/nismod/jsrat-backend:0.1
+docker push ghcr.io/nismod/jsrat-backend:0.2
 docker push ghcr.io/nismod/jsrat-vector-tileserver:0.1
 docker push ghcr.io/nismod/jsrat-raster-tileserver:0.1
 ```
@@ -228,12 +228,12 @@ docker push ghcr.io/nismod/jsrat-raster-tileserver:0.1
 Update a specific image, then build and push:
 
 ```bash
-# Edit the image version in `docker-compose.prod.yaml`
+# Edit the image version in `docker-compose.prod.yml`
 # in this example it's on line 33:
 #     image: ghcr.io/nismod/jsrat-frontend:0.1
 
 # Build
-docker compose -f docker-compose.prod.yaml build frontend
+docker compose -f docker-compose.prod.yml build frontend
 
 # Push
 docker push ghcr.io/nismod/jsrat-frontend:0.1
