@@ -5,7 +5,7 @@ import { Adaptation } from 'lib/api-client';
 import { AdaptationTable } from './AdaptationTable';
 import { Download } from '@mui/icons-material';
 import { downloadFile, unique } from 'lib/helpers';
-import { useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 
 function makeAdaptationCsv(options: Adaptation[]) {
   const header =
@@ -102,7 +102,7 @@ export const AdaptationSection = ({ fd }) => {
             option_names.map((name) => {
               const filteredOptions = options.filter((o) => o.adaptation_name === name);
               return (
-                <>
+                <Fragment key={name}>
                   <Typography variant="subtitle2" component="h3" sx={{ mt: 2, mb: 1 }}>
                     {name}
                   </Typography>
@@ -112,7 +112,7 @@ export const AdaptationSection = ({ fd }) => {
                   </Typography>
 
                   <AdaptationTable options={filteredOptions} />
-                </>
+                </Fragment>
               );
             })
           ) : (
