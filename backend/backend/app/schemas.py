@@ -1,7 +1,7 @@
 from enum import Enum
-from typing import Any, Generic, Literal, TypeVar
-from pydantic import BaseModel, conint, validator
-from pydantic.generics import GenericModel
+from typing import Generic, Optional, TypeVar
+from typing_extensions import Annotated
+from pydantic import BaseModel, Field, field_validator
 
 
 class FeatureBase(BaseModel):
@@ -117,10 +117,10 @@ class AdaptationVariables(DataVariables):
 
 
 class AdaptationCostBenefitRatioParameters(DataParameters):
-    eael_days: conint(ge=1, le=30)
+    eael_days: Annotated[int, Field(ge=1, le=30)]
 
-    @validator('eael_days')
-    def fix_eael_days(cls, eael_days) -> float:
+    @field_validator("eael_days")
+    def fix_eael_days(cls, eael_days: int) -> float:
         """
         The data for `AdaptationCostBenefit.avoided_eael_mean` is erroneous and
         should be modified in the meantime. This validator adds a fudge factor
@@ -162,7 +162,7 @@ class LayerSpec(BaseModel):
 SortFieldT = TypeVar("SortFieldT")
 
 
-class FeatureListItemOut(GenericModel, Generic[SortFieldT]):
+class FeatureListItemOut(BaseModel, Generic[SortFieldT]):
     id: int
     string_id: str
     layer: str
