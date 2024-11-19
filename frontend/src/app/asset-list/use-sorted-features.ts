@@ -12,8 +12,8 @@ const apiClient = new ApiClient({
 });
 
 export interface PageInfo {
-  page: number;
-  size: number;
+  page?: number;
+  size?: number;
   total: number;
 }
 
