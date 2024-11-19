@@ -8,7 +8,7 @@ class FeatureBase(BaseModel):
     id: int
     string_id: str
     layer: str
-    sublayer: str | None
+    sublayer: Optional[str] = None
     properties: dict
 
 
@@ -34,7 +34,7 @@ class DataParameters(BaseModel):
 class ExpectedDamagesDimensions(DataDimensions):
     hazard: str
     rcp: str
-    epoch: str
+    epoch: str | int
     protection_standard: int
 
 
@@ -56,7 +56,7 @@ class ExpectedDamage(ExpectedDamagesDimensions, ExpectedDamagesVariables):
 class ReturnPeriodDamagesDimensions(DataDimensions):
     hazard: str
     rcp: str
-    epoch: str
+    epoch: str | int
     rp: int
 
 

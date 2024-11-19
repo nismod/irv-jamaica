@@ -25,7 +25,10 @@ def read_feature(feature_id: int, db: Session = Depends(get_db)):
 
 
 def get_layer_spec(
-    layer: str = None, sector: str = None, subsector: str = None, asset_type: str = None
+    layer: Optional[str] = None,
+    sector: Optional[str] = None,
+    subsector: Optional[str] = None,
+    asset_type: Optional[str] = None,
 ):
     return schemas.LayerSpec(
         layer_name=layer,
