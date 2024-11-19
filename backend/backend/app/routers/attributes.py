@@ -16,7 +16,10 @@ from .. import schemas
 router = APIRouter(tags=["attributes"])
 
 
-@router.post("/{field_group}", response_model=schemas.AttributeLookup[Any | None])
+@router.post(
+    "/{field_group}",
+    response_model=schemas.AttributeLookup[Any | None]
+)
 def read_attributes(
     layer: str,
     field_group: str,
