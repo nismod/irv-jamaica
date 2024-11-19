@@ -18,16 +18,16 @@ import { NETWORKS_METADATA } from '../metadata';
 import { showAdaptationsState } from '../state/layer';
 import adaptationSectorLayers from '../adaptation-sector-layers.json';
 
-export const NetworkControl: FC = () => {
-  const [checkboxState, setCheckboxState] = useRecoilState(networkTreeCheckboxState);
-  const [expanded, setExpanded] = useRecoilState(networkTreeExpandedState);
+/**
+ * Sync adaptation parameters to the infrastructure checkbox tree, so that
+ * selected adaptation sector etc. change when the selected infrastructure
+ * layers change.
+ * @param checkboxState infrastructure checkbox tree state.
+ */
+function useSyncAdaptationParameters(checkboxState) {
   const updateSector = useUpdateDataParam('adaptation', 'sector');
   const updateSubsector = useUpdateDataParam('adaptation', 'subsector');
   const updateAssetType = useUpdateDataParam('adaptation', 'asset_type');
-
-  const showAdaptations = useRecoilValue(showAdaptationsState);
-  const disableCheck = showAdaptations;
-
   const selectedLayers = Object.keys(checkboxState.checked).filter(
     (id) => checkboxState.checked[id] && !networkTreeConfig.nodes[id].children,
   );
@@ -38,6 +38,16 @@ export const NetworkControl: FC = () => {
     updateSubsector(subsector);
     updateAssetType(asset_type);
   }
+}
+
+export const NetworkControl: FC = () => {
+  const [checkboxState, setCheckboxState] = useRecoilState(networkTreeCheckboxState);
+  const [expanded, setExpanded] = useRecoilState(networkTreeExpandedState);
+
+  const showAdaptations = useRecoilValue(showAdaptationsState);
+  const disableCheck = showAdaptations;
+
+  useSyncAdaptationParameters(checkboxState);
 
   return (
     <>
