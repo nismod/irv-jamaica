@@ -40,6 +40,14 @@ function useSyncAdaptationParameters(checkboxState) {
   }
 }
 
+function getLabel(node, checked) {
+  return node.children ? (
+    node.label
+  ) : (
+    <LayerLabel {...NETWORKS_METADATA[node.id]} label={node.label} visible={checked} />
+  );
+}
+
 export const NetworkControl: FC = () => {
   const [checkboxState, setCheckboxState] = useRecoilState(networkTreeCheckboxState);
   const [expanded, setExpanded] = useRecoilState(networkTreeExpandedState);
@@ -61,13 +69,7 @@ export const NetworkControl: FC = () => {
       <CheckboxTree
         nodes={NETWORK_LAYERS_HIERARCHY}
         config={networkTreeConfig}
-        getLabel={(node, checked) =>
-          node.children ? (
-            node.label
-          ) : (
-            <LayerLabel {...NETWORKS_METADATA[node.id]} label={node.label} visible={checked} />
-          )
-        }
+        getLabel={getLabel}
         checkboxState={checkboxState}
         onCheckboxState={setCheckboxState}
         expanded={expanded}
