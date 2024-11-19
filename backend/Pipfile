@@ -9,7 +9,7 @@ geoalchemy2 = "*"
 uvicorn = "*"
 fastapi-pagination = "*"
 setuptools = "*"
-backend = {editable = true, path = "."}
+backend = { editable = true, path = "." }
 psycopg2-binary = "*"
 
 [dev-packages]
@@ -17,7 +17,6 @@ black = "*"
 geopandas = "*"
 pandas = "*"
 pyarrow = "*"
-pygeos = "*"
 shapely = "*"
 snakefmt = "*"
 snakemake = "*"
@@ -25,4 +24,4 @@ tqdm = "*"
 ujson = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.12"
