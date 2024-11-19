@@ -49,7 +49,7 @@ class ExpectedDamagesVariables(DataVariables):
 
 class ExpectedDamage(ExpectedDamagesDimensions, ExpectedDamagesVariables):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # Return Period Damages
@@ -72,7 +72,7 @@ class ReturnPeriodDamagesVariables(DataVariables):
 
 class ReturnPeriodDamage(ReturnPeriodDamagesDimensions, ReturnPeriodDamagesVariables):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # NPV Damages
@@ -92,7 +92,7 @@ class NPVDamagesVariables(DataVariables):
 
 class NPVDamage(NPVDamagesDimensions, NPVDamagesVariables):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # Adaptation Options
@@ -133,13 +133,13 @@ class AdaptationCostBenefitRatioParameters(DataParameters):
 
 class Adaptation(AdaptationDimensions, AdaptationVariables):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # Features
 class FeatureOutBase(FeatureBase):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class FeatureOut(FeatureOutBase):
@@ -170,7 +170,7 @@ class FeatureListItemOut(GenericModel, Generic[SortFieldT]):
     value: SortFieldT
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # Feature Attributes Lookups
