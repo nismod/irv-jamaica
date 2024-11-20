@@ -12,6 +12,6 @@ export type ReturnPeriodDamage = {
     loss_amax: number;
     hazard: string;
     rcp: string;
-    epoch: string;
+    epoch: (string | number);
     rp: number;
 };
