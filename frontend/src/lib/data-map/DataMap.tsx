@@ -53,11 +53,14 @@ function buildLayers(
  * @returns
  */
 function useTrigger(viewLayers: ViewLayer[]) {
+  const saveViewLayers = useSaveViewLayers();
   const dataLoaders = viewLayers
     .map((vl) => vl.dataAccessFn?.(vl.styleParams?.colorMap?.fieldSpec)?.dataLoader)
     .filter(Boolean);
 
   useDataLoadTrigger(dataLoaders);
+  // fix a small bug where view layers don't always sync to the URL.
+  saveViewLayers(viewLayers);
 }
 
 export const DataMap: FC<{
