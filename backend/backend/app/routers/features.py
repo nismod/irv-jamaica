@@ -14,14 +14,14 @@ from backend.app.internal.attribute_access import (
     parse_parameters,
 )
 from backend.db import models
-from backend.db.database import session
+from backend.db.database import SessionDep
 
 
 router = APIRouter(tags=["features"])
 
 
 @router.get("/{feature_id}", response_model=schemas.FeatureOut)
-def read_feature(feature_id: int):
+def read_feature(feature_id: int, session: SessionDep):
     try:
         feature = session.get(models.Feature, feature_id)
     except sqlalchemy.exc.NoResultFound:
@@ -50,6 +50,7 @@ def get_layer_spec(
 def read_sorted_features(
     field_group: str,
     field: str,
+    session: SessionDep,
     field_dimensions: schemas.DataDimensions = Depends(parse_dimensions),
     field_params: schemas.DataParameters = Depends(parse_parameters),
     layer_spec: schemas.LayerSpec = Depends(get_layer_spec),

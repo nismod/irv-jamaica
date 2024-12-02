@@ -9,7 +9,7 @@ from backend.app.internal.attribute_access import (
 )
 
 from backend.db import models
-from backend.db.database import session
+from backend.db.database import SessionDep
 
 from .. import schemas
 
@@ -24,6 +24,7 @@ def read_attributes(
     layer: str,
     field_group: str,
     field: str,
+    session: SessionDep,
     field_dimensions: schemas.DataDimensions = Depends(parse_dimensions),
     field_params: schemas.DataParameters = Depends(parse_parameters),
     ids: list[int] = Body(...),
