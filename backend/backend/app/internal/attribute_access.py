@@ -31,7 +31,7 @@ def add_damages_expected_value_query(
         q = q.group_by(models.Feature.id)
         value = functions.sum(value)
 
-    return q.add_column(value.label("value"))
+    return q.add_columns(value.label("value"))
 
 
 # def add_damages_rp_value_query(
@@ -74,7 +74,7 @@ def add_adaptation_value_query(
     else:
         value = getattr(models.AdaptationCostBenefit, field)
 
-    return q.add_column(value.label("value"))
+    return q.add_columns(value.label("value"))
 
 
 @dataclass
