@@ -10,8 +10,85 @@ import {
   Typography,
 } from '@mui/material';
 import { FieldSpec } from 'lib/data-map/view-layers';
-import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
+import { FC, ReactNode, Suspense, useCallback, useEffect, useState } from 'react';
 import { LayerSpec, ListFeature, useSortedFeatures } from './use-sorted-features';
+
+type AssetTableBodyProps = {
+  layerSpec: LayerSpec;
+  fieldSpec: FieldSpec;
+  page: number;
+  pageSize: number;
+  renderRow: (feature: ListFeature, localIndex: number, globalIndex: number) => ReactNode;
+};
+const AssetTableBody: FC<AssetTableBodyProps> = ({
+  layerSpec,
+  fieldSpec,
+  page,
+  pageSize,
+  renderRow,
+}) => {
+  const { features, error } = useSortedFeatures(layerSpec, fieldSpec, page, pageSize);
+  const currentPageFirstItemIndex = (page - 1) * pageSize;
+  return (
+    <TableBody>
+      {error && (
+        <TableRow>
+          <TableCell colSpan={10} align="center">
+            <Typography variant="body2">Error: {error.message}</Typography>
+          </TableCell>
+        </TableRow>
+      )}
+      {!error &&
+        features.map((feature, index) =>
+          renderRow(feature, index, currentPageFirstItemIndex + index),
+        )}
+    </TableBody>
+  );
+};
+
+type AssetTablePaginationProps = {
+  layerSpec: LayerSpec;
+  fieldSpec: FieldSpec;
+  page: number;
+  pageSize: number;
+  handleTablePaginationChange: (event: unknown, value: number) => void;
+};
+const AssetTablePagination: FC<AssetTablePaginationProps> = ({
+  layerSpec,
+  fieldSpec,
+  page,
+  pageSize,
+  handleTablePaginationChange,
+}) => {
+  const { pageInfo } = useSortedFeatures(layerSpec, fieldSpec, page, pageSize);
+  return (
+    <TablePagination
+      component={Box}
+      sx={{
+        overflow: 'hidden',
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+        height: '48px',
+      }}
+      count={pageInfo.total}
+      page={page - 1}
+      onPageChange={handleTablePaginationChange}
+      rowsPerPage={pageSize}
+      rowsPerPageOptions={[pageSize]}
+    />
+  );
+};
+
+const Loading = (
+  <TableBody>
+    <TableRow>
+      <TableCell colSpan={10} align="center">
+        <Typography variant="body2">Loading...</Typography>
+      </TableCell>
+    </TableRow>
+  </TableBody>
+);
 
 export const SortedAssetTable: FC<{
   layerSpec: LayerSpec;
@@ -26,16 +103,7 @@ export const SortedAssetTable: FC<{
     setPage(1);
   }, [layerSpec, fieldSpec]);
 
-  const { features, pageInfo, loading, error } = useSortedFeatures(
-    layerSpec,
-    fieldSpec,
-    page,
-    pageSize,
-  );
-
   const handleTablePaginationChange = useCallback((event, value) => setPage(value + 1), [setPage]);
-
-  const currentPageFirstItemIndex = (page - 1) * pageSize;
 
   return (
     <>
@@ -45,46 +113,26 @@ export const SortedAssetTable: FC<{
             <TableRow>{header}</TableRow>
           </TableHead>
 
-          <TableBody>
-            {loading && (
-              <TableRow>
-                <TableCell colSpan={10} align="center">
-                  <Typography variant="body2">Loading...</Typography>
-                </TableCell>
-              </TableRow>
-            )}
-            {error && (
-              <TableRow>
-                <TableCell colSpan={10} align="center">
-                  <Typography variant="body2">Error: {error.message}</Typography>
-                </TableCell>
-              </TableRow>
-            )}
-            {!loading &&
-              !error &&
-              features.map((feature, index) =>
-                renderRow(feature, index, currentPageFirstItemIndex + index),
-              )}
-          </TableBody>
+          <Suspense fallback={Loading}>
+            <AssetTableBody
+              layerSpec={layerSpec}
+              fieldSpec={fieldSpec}
+              page={page}
+              pageSize={pageSize}
+              renderRow={renderRow}
+            />
+          </Suspense>
         </Table>
       </TableContainer>
-      {pageInfo && (
-        <TablePagination
-          component={Box}
-          sx={{
-            overflow: 'hidden',
-            position: 'absolute',
-            bottom: 0,
-            width: '100%',
-            height: '48px',
-          }}
-          count={pageInfo.total}
-          page={page - 1}
-          onPageChange={handleTablePaginationChange}
-          rowsPerPage={pageSize}
-          rowsPerPageOptions={[pageSize]}
+      <Suspense fallback={null}>
+        <AssetTablePagination
+          layerSpec={layerSpec}
+          fieldSpec={fieldSpec}
+          page={page}
+          pageSize={pageSize}
+          handleTablePaginationChange={handleTablePaginationChange}
         />
-      )}
+      </Suspense>
     </>
   );
 };

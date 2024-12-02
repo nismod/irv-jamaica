@@ -1,11 +1,12 @@
 import { parseSync } from '@loaders.gl/core';
 import { WKTLoader } from '@loaders.gl/wkt';
 import bbox from '@turf/bbox';
+import pick from 'lodash/pick';
+import { selectorFamily, useRecoilValue } from 'recoil';
+
 import { ApiClient, FeatureListItemOut_float_ } from 'lib/api-client';
 import { BoundingBox } from 'lib/bounding-box';
 import { FieldSpec } from 'lib/data-map/view-layers';
-import pick from 'lodash/pick';
-import { useCallback, useEffect, useState } from 'react';
 
 const apiClient = new ApiClient({
   BASE: 'api',
@@ -16,6 +17,53 @@ export interface PageInfo {
   size?: number;
   total: number;
 }
+
+type SortedFeaturesQuery = {
+  fieldGroup: string;
+  field: string;
+  dimensions: string;
+  parameters: string;
+  page: number;
+  pageSize: number;
+};
+
+const sortedFeaturesState = selectorFamily({
+  key: 'sorted-features',
+  get:
+    ({
+      fieldGroup,
+      field,
+      dimensions,
+      parameters,
+      page,
+      pageSize,
+      ...layerSpec
+    }: SortedFeaturesQuery) =>
+    async () => {
+      try {
+        if (dimensions === '{}') {
+          return;
+        }
+        // if (fieldGroup !== 'damages') {
+        //   throw new Error('Only damages field is supported');
+        // }
+        const response = await apiClient.features.featuresReadSortedFeatures({
+          ...layerSpec,
+          fieldGroup,
+          field,
+          dimensions,
+          parameters,
+          page,
+          size: pageSize,
+        });
+        const features = (response.items as FeatureListItemOut_float_[]).map(processFeature);
+        const pageInfo = pick(response, ['page', 'size', 'total']);
+        return { features, pageInfo };
+      } catch (error) {
+        return { features: [], loading: false, error };
+      }
+    },
+});
 
 export interface LayerSpec {
   layer?: string;
@@ -43,53 +91,24 @@ export const useSortedFeatures = (
   page = 1,
   pageSize = 50,
 ) => {
-  const [features, setFeatures] = useState([]);
-  const [pageInfo, setPageInfo] = useState<PageInfo>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const fetchFeatures = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const { fieldGroup, fieldDimensions, field, fieldParams } = fieldSpec;
-      const dimensions = JSON.stringify(fieldDimensions);
-      const parameters = JSON.stringify(fieldParams);
-      if (dimensions === '{}') {
-        return;
-      }
-      // if (fieldGroup !== 'damages') {
-      //   throw new Error('Only damages field is supported');
-      // }
-      const response = await apiClient.features.featuresReadSortedFeatures({
-        ...layerSpec,
-        fieldGroup,
-        field,
-        dimensions,
-        parameters,
-        page,
-        size: pageSize,
-      });
-      const features = (response.items as FeatureListItemOut_float_[]).map(processFeature);
-      setFeatures(features);
-
-      setPageInfo(pick(response, ['page', 'size', 'total']));
-    } catch (error) {
-      setError(error);
-    }
-
-    setLoading(false);
-  }, [layerSpec, fieldSpec, page, pageSize]);
-
-  useEffect(() => {
-    fetchFeatures();
-  }, [fetchFeatures, fieldSpec, page, pageSize]);
+  const { fieldGroup, fieldDimensions, field, fieldParams } = fieldSpec;
+  const dimensions = JSON.stringify(fieldDimensions);
+  const parameters = JSON.stringify(fieldParams);
+  const { features, pageInfo, error } = useRecoilValue(
+    sortedFeaturesState({
+      fieldGroup,
+      field,
+      dimensions,
+      parameters,
+      page,
+      pageSize,
+      ...layerSpec,
+    }),
+  );
 
   return {
     features,
     pageInfo,
-    loading,
     error,
   };
 };
