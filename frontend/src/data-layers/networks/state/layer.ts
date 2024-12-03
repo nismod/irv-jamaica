@@ -9,7 +9,7 @@ import { StateEffect } from 'lib/recoil/state-effects/types';
 import { dataParamsByGroupState } from 'lib/state/data-params';
 import { sectionVisibilityState } from 'lib/state/sections';
 
-import { LayerSpec } from 'app/asset-list/use-sorted-features';
+import { LayerSpec } from 'lib/asset-list/use-sorted-features';
 import { damageMapStyleParamsState } from 'app/state/damage-mapping/damage-style-params';
 
 import adaptationSectorLayers from '../adaptation-sector-layers.json';
