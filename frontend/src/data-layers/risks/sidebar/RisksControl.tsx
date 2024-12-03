@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 
-import { InputSection } from 'app/sidebar/ui/InputSection';
+import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 export const RisksControl = () => {
   const [value, setValue] = useRecoilState(sectionStyleValueState('risks'));

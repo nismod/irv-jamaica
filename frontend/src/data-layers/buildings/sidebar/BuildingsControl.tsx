@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 
 import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
-import { LayerLabel } from 'app/sidebar/ui/LayerLabel';
+import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
 
 import { buildingSelectionState } from '../state/data-selection';
 
