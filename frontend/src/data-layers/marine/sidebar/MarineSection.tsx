@@ -1,6 +1,6 @@
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { FC } from 'react';
-import { SidebarPanel } from 'app/sidebar/SidebarPanel';
+import { SidebarPanel } from 'lib/sidebar/SidebarPanel';
 import { SidebarPanelSection } from 'lib/sidebar/ui/SidebarPanelSection';
 
 import { MarineControl } from './MarineControl';
