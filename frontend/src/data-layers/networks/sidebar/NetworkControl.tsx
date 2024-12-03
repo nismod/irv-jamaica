@@ -6,7 +6,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { useUpdateDataParam } from 'lib/state/data-params';
 
-import { LayerLabel } from 'app/sidebar/ui/LayerLabel';
+import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
 
 import {
   networkTreeCheckboxState,

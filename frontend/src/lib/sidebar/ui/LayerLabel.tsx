@@ -1,8 +1,12 @@
 import { VisibilityOff } from '@mui/icons-material';
 import { Box, Stack, Typography } from '@mui/material';
 import { ShapeLegend, LegendShapeType } from 'lib/map-shapes/ShapeLegend';
-import { useRecoilValue } from 'recoil';
-import { mapViewStateState } from 'app/state/map-view/map-view-state';
+import { atom, useRecoilValue } from 'recoil';
+
+export const labelZoomState = atom({
+  key: 'labelZoomState',
+  default: 0,
+});
 
 export const LayerLabel = ({
   label,
@@ -29,8 +33,7 @@ export const LayerLabel = ({
 };
 
 function ZoomVisibility({ minZoom }: { minZoom: number }) {
-  const mapViewState = useRecoilValue(mapViewStateState);
-  const currentZoom = mapViewState.zoom;
+  const currentZoom = useRecoilValue(labelZoomState);
 
   return (
     currentZoom < minZoom && (

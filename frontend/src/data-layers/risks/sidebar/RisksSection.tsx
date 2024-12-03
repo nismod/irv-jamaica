@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { SidebarPanel } from 'app/sidebar/SidebarPanel';
-import { SidebarPanelSection } from 'app/sidebar/ui/SidebarPanelSection';
+import { SidebarPanelSection } from 'lib/sidebar/ui/SidebarPanelSection';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 
 import { RisksControl } from './RisksControl';

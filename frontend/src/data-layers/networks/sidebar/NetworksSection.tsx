@@ -8,7 +8,7 @@ import { sectionStyleValueState } from 'lib/state/sections';
 
 import { SidebarPanel } from 'app/sidebar/SidebarPanel';
 import { StyleSelection } from 'app/sidebar/StyleSelection';
-import { SidebarPanelSection } from 'app/sidebar/ui/SidebarPanelSection';
+import { SidebarPanelSection } from 'lib/sidebar/ui/SidebarPanelSection';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { networksStyleStateEffect } from 'app/state/sections';
 
