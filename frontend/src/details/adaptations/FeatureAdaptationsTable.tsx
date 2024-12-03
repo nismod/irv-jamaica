@@ -1,9 +1,9 @@
 import { ZoomIn, ZoomOut } from '@mui/icons-material';
 import { IconButton, TableCell } from '@mui/material';
 import { Box } from '@mui/system';
-import { ExpandableRow } from 'app/asset-list/ExpandableRow';
-import { SortedAssetTable } from 'app/asset-list/SortedAssetTable';
-import { ListFeature } from 'app/asset-list/use-sorted-features';
+import { ExpandableRow } from 'lib/asset-list/ExpandableRow';
+import { SortedAssetTable } from 'lib/asset-list/SortedAssetTable';
+import { ListFeature } from 'lib/asset-list/use-sorted-features';
 import { getAssetDataFormats } from 'data-layers/assets/data-formats';
 import { FeatureSidebarContent } from 'details/features/FeatureSidebarContent';
 import { BoundingBox, extendBbox } from 'lib/bounding-box';
