@@ -2,6 +2,9 @@ import { MapViewState } from 'deck.gl/typed';
 import { StyleSpecification } from 'maplibre-gl';
 import { FC, ReactNode } from 'react';
 import { Map } from 'react-map-gl/maplibre';
+import { useRecoilState } from 'recoil';
+
+import { mapViewStateState, useSyncMapUrl } from 'lib/state/map-view/map-view-state';
 
 export interface BaseMapProps {
   children?: ReactNode;
@@ -10,11 +13,7 @@ export interface BaseMapProps {
   viewState: MapViewState;
 }
 
-/**
- * Displays a react-map-gl basemap component.
- * Accepts children such as a DeckGLOverlay, HUD controls etc
- */
-export const BaseMap: FC<BaseMapProps> = ({ children, mapStyle, onMove, viewState }) => {
+const MapGLMap: FC<BaseMapProps> = ({ children, mapStyle, onMove, viewState }) => {
   return (
     <Map
       reuseMaps={true}
@@ -31,5 +30,25 @@ export const BaseMap: FC<BaseMapProps> = ({ children, mapStyle, onMove, viewStat
     >
       {children}
     </Map>
+  );
+};
+
+/**
+ * Displays a react-map-gl basemap component.
+ * Accepts children such as a DeckGLOverlay, HUD controls etc
+ */
+export const BaseMap: FC<{ children?: ReactNode; mapStyle: StyleSpecification }> = ({
+  children,
+  mapStyle,
+}) => {
+  const [viewState, setViewState] = useRecoilState(mapViewStateState);
+  useSyncMapUrl();
+  function handleViewStateChange({ viewState }: { viewState: MapViewState }) {
+    setViewState(viewState);
+  }
+  return (
+    <MapGLMap viewState={viewState} onMove={handleViewStateChange} mapStyle={mapStyle}>
+      {children}
+    </MapGLMap>
   );
 };

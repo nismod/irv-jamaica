@@ -2,8 +2,6 @@ import { number } from '@recoiljs/refine';
 import { DefaultValue, atom } from 'recoil';
 import { WriteAtom, urlSyncEffect } from 'recoil-sync';
 
-import { mapViewConfig } from '../../config/map-view';
-
 /**
  * Makes a recoil-sync write function that saves a number with up to `maximumFractionDigits`
  */
@@ -28,7 +26,7 @@ function makeWriteNumber(itemKey: string, maximumFractionDigits: number) {
 
 export const mapZoomUrlState = atom({
   key: 'mapZoomUrl',
-  default: mapViewConfig.initialViewState.zoom,
+  default: -1,
   effects: [
     urlSyncEffect({
       storeKey: 'url-json',
@@ -42,7 +40,7 @@ export const mapZoomUrlState = atom({
 
 export const mapLonUrlState = atom({
   key: 'mapLonUrl',
-  default: mapViewConfig.initialViewState.longitude,
+  default: -1,
   effects: [
     urlSyncEffect({
       storeKey: 'url-json',
@@ -56,7 +54,7 @@ export const mapLonUrlState = atom({
 
 export const mapLatUrlState = atom({
   key: 'mapLatUrl',
-  default: mapViewConfig.initialViewState.latitude,
+  default: -1,
   effects: [
     urlSyncEffect({
       storeKey: 'url-json',

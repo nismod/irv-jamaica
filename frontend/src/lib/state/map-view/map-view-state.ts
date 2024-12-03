@@ -1,9 +1,6 @@
-import omit from 'lodash/omit';
 import { DefaultValue, atom, selector } from 'recoil';
 
 import { useSyncStateThrottled } from 'lib/recoil/sync-state-throttled';
-
-import { mapViewConfig } from 'app/config/map-view';
 
 import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from './map-url';
 
@@ -11,16 +8,9 @@ const mapLatState = atom({ key: 'mapLat', default: mapLatUrlState });
 const mapLonState = atom({ key: 'mapLon', default: mapLonUrlState });
 const mapZoomState = atom({ key: 'mapZoom', default: mapZoomUrlState });
 
-const INITIAL_VIEW_STATE = {
-  ...mapViewConfig.initialViewState,
-  ...mapViewConfig.viewLimits,
-};
-
-const INITIAL_NON_COORDS_STATE = omit(INITIAL_VIEW_STATE, ['latitude', 'longitude', 'zoom']);
-
 export const nonCoordsMapViewStateState = atom({
   key: 'nonCoordsMapViewState',
-  default: { ...INITIAL_NON_COORDS_STATE },
+  default: {},
 });
 
 export const mapViewStateState = selector({
