@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { SidebarPanel } from 'app/sidebar/SidebarPanel';
+import { SidebarPanel } from 'lib/sidebar/SidebarPanel';
 import { Box } from '@mui/system';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 
