@@ -69,7 +69,10 @@ class ReturnPeriodDamagesVariables(DataVariables):
     loss_amax: float
 
 
-class ReturnPeriodDamage(ReturnPeriodDamagesDimensions, ReturnPeriodDamagesVariables):
+class ReturnPeriodDamage(
+    ReturnPeriodDamagesDimensions,
+    ReturnPeriodDamagesVariables
+):
     model_config = ConfigDict(from_attributes=True)
 
 
