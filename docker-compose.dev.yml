@@ -87,6 +87,22 @@ services:
       - "traefik.http.middlewares.raster-tileserver-stripprefix.stripprefix.prefixes=/raster"
       - "traefik.http.services.raster-tileserver.loadbalancer.server.port=5000"
 
+  pixel-driller:
+    build: ./pixel_driller
+    volumes: ./tileserver/raster/data:/data
+    expose:
+      - "5080:80"
+    environment:
+      - DATA_SOURCE_DIR=/data
+      - ADMIN_CODE=my_secret_admin_code
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pixel-driller.rule=Host(`localhost`) && PathPrefix(`/pixel`)"
+      - "traefik.http.routers.pixel-driller.entrypoints=web"
+      - "traefik.http.routers.pixel-driller.middlewares=pixel-driller-stripprefix"
+      - "traefik.http.middlewares.pixel-driller-stripprefix.stripprefix.prefixes=/pixel"
+      - "traefik.http.services.pixel-driller.loadbalancer.server.port=5080"
+
   db:
     image: kartoza/postgis:14-3.1
     volumes:
