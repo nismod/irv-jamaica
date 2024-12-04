@@ -89,7 +89,8 @@ services:
 
   pixel-driller:
     build: ./pixel_driller
-    volumes: ./tileserver/raster/data:/data
+    volumes:
+      - ./tileserver/raster/data:/data
     expose:
       - "5080:80"
     environment:
