@@ -15,5 +15,5 @@ class QueryRasterTestCase(unittest.TestCase):
                     self.assertTrue(all(isinstance(v, float) for v in q.values()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

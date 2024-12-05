@@ -3,14 +3,13 @@ Conversion of rasters into database tables.
 
 Based on https://github.com/nismod/scale-nav/blob/main/src/scalenav/rast_converter.py
 """
+
 import os
 from re import search
 from glob import glob
-from numpy import meshgrid, arange, array, ones, float32
+from numpy import ones, float32
 
-from rasterio.transform import xy
 from rasterio import open
-import geopandas as gpd
 from rasterio.warp import reproject, Resampling
 from rasterio.plot import show
 from time import time
@@ -28,11 +27,14 @@ def check_path(in_path):
 
     """
 
-    if in_path[len(in_path) - 1] != '/':
-        in_path = in_path + '/'
+    if in_path[len(in_path) - 1] != "/":
+        in_path = in_path + "/"
 
-    in_paths = [str(x) for x in glob(in_path + "**", recursive=True) if
-                search(pattern=r"(.ti[f]{1,2}$)|(.nc$)", string=x)]
+    in_paths = [
+        str(x)
+        for x in glob(in_path + "**", recursive=True)
+        if search(pattern=r"(.ti[f]{1,2}$)|(.nc$)", string=x)
+    ]
 
     #  print("Reading in from",len(in_paths), "files.")
 
@@ -40,8 +42,7 @@ def check_path(in_path):
 
 
 def check_nodata(source):
-    """
-    """
+    """ """
     if len(source.nodatavals) > 1:
         print("Using first no data value")
         return source.nodatavals[0]
@@ -51,16 +52,15 @@ def check_nodata(source):
 
 
 def check_crs(source):
-    """
-    """
+    """ """
     return source.crs if source.crs is not None else "epsg:4326"
 
 
 def stack(
-        in_path="./dummy_data/",
-        out_path="./.output/stack.tif",
-        ref_raster_path="./dummy_data/coastal__rp_100__rcp_8x5__epoch_2100__conf_None.tif",
-        plots=False,
+    in_path="./dummy_data/",
+    out_path="./.output/stack.tif",
+    ref_raster_path="./dummy_data/coastal__rp_100__rcp_8x5__epoch_2100__conf_None.tif",
+    plots=False,
 ):
     start_time = time()
     file_times = []
@@ -86,16 +86,16 @@ def stack(
         ref_nodata = check_nodata(ref_raster)
 
     with open(
-            out_path,
-            "w",
-            driver="GTiff",
-            height=ref_height,
-            width=ref_width,
-            count=len(in_paths),
-            dtype="float32",
-            crs=ref_crs,
-            transform=ref_transform,
-            nodata=ref_nodata,
+        out_path,
+        "w",
+        driver="GTiff",
+        height=ref_height,
+        width=ref_width,
+        count=len(in_paths),
+        dtype="float32",
+        crs=ref_crs,
+        transform=ref_transform,
+        nodata=ref_nodata,
     ) as out:
         for i, p in enumerate(in_paths):
             with open(p) as src:
@@ -118,7 +118,7 @@ def stack(
                     dst_crs=ref_crs,
                     dst_width=ref_width,
                     dst_height=ref_height,
-                    resampling=Resampling.bilinear
+                    resampling=Resampling.bilinear,
                 )
                 if plots:
                     show(band, title=f"{p} after reprojecting")

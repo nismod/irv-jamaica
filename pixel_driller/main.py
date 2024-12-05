@@ -24,16 +24,22 @@ def query_raster_at_point(raster_path, x, y):
         # Dictionary to store the band 'source' tag and pixel value
         band_values = {}
 
-        for i in range(1, src.count + 1):  # Iterate through all bands (1-indexed in rasterio)
+        for i in range(
+            1, src.count + 1
+        ):  # Iterate through all bands (1-indexed in rasterio)
             # Get the tag metadata for this band
             band_tags = src.tags(i)
-            band_source = band_tags.get('source', f'band_{i}')  # Default to 'band_i' if no source tag
+            band_source = band_tags.get(
+                "source", f"band_{i}"
+            )  # Default to 'band_i' if no source tag
 
             # Read the exact pixel value using a windowed read
             data = src.read(i, window=window)
 
             # Store the pixel value in the dictionary
-            band_values[band_source] = float(data[0, 0])  # Extract the single value from the 1x1 array
+            band_values[band_source] = float(
+                data[0, 0]
+            )  # Extract the single value from the 1x1 array
 
     return band_values
 

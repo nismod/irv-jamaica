@@ -12,7 +12,9 @@ class IngestTestCase(unittest.TestCase):
         if os.path.exists(out_file):
             os.remove(out_file)
         self.assertEqual(os.path.exists(out_file), False)
-        stack("./fixtures/single_band", out_file, "./fixtures/single_band/raster_ref.tif")
+        stack(
+            "./fixtures/single_band", out_file, "./fixtures/single_band/raster_ref.tif"
+        )
         self.assertEqual(os.path.exists(out_file), True)
 
         # Check we can open the file and it has the expected number of bands (4)
@@ -21,5 +23,5 @@ class IngestTestCase(unittest.TestCase):
             self.assertIn("source", src.tags(1))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
