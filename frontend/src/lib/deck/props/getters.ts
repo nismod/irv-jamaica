@@ -20,8 +20,3 @@ export function withTriggers(fn: Accessor<any>, triggers: any[]) {
   fn.updateTriggers = triggers;
   return fn;
 }
-
-export function withLoaderTriggers(fn: Accessor<any>, dataLoader: DataLoader) {
-  fn.dataLoader = dataLoader;
-  return withTriggers(fn, [dataLoader.id, dataLoader.updateTrigger]);
-}
