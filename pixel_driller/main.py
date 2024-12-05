@@ -1,11 +1,6 @@
-import asyncio
-import os
-
 from fastapi import FastAPI
-from fastapi.exceptions import HTTPException
 from rasterio import open
 from rasterio.windows import Window
-from ingest import stack
 
 
 def query_raster_at_point(raster_path, x, y):
@@ -43,10 +38,6 @@ def query_raster_at_point(raster_path, x, y):
     return band_values
 
 
-async def async_stack(in_path):
-    stack(in_path=in_path)
-
-
 app = FastAPI()
 
 data_file = "./.output/stack.tif"
@@ -58,16 +49,3 @@ async def get_values_at_point(x: str, y: str):
     y = int(y)
     out = query_raster_at_point(data_file, x, y)
     return out
-
-
-@app.post("/reimport")
-async def reimport(args):
-    if "code" not in args:
-        raise HTTPException(status_code=403, detail="Missing 'code' in request body.")
-    if args["code"] != os.environ.get("ADMIN_CODE"):
-        raise HTTPException(status_code=403, detail="Invalid 'code' in request body.")
-    in_dir = os.environ.get("DATA_SOURCE_DIR")
-    if not os.path.isdir(in_dir):
-        raise HTTPException(status_code=500, detail="Data source directory not found.")
-    asyncio.run(async_stack(in_path=in_dir))
-    return {"message": "Data reimport job started."}
