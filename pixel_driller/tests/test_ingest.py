@@ -1,26 +1,33 @@
-import os.path
+import shutil
 import unittest
+from pathlib import Path
 
-import rasterio
+import pandas as pd
+import xarray as xr
 
 from ingest import stack
 
 
 class IngestTestCase(unittest.TestCase):
     def test_ingest(self):
-        out_file = "./fixtures/output/stack.tif"
-        if os.path.exists(out_file):
-            os.remove(out_file)
-        self.assertEqual(os.path.exists(out_file), False)
-        stack(
-            "./fixtures/single_band", out_file, "./fixtures/single_band/raster_ref.tif"
-        )
-        self.assertEqual(os.path.exists(out_file), True)
+        source_path = Path(__file__).parent / "fixtures" / "single_band"
+        target_path = Path(__file__).parent / "fixtures" / "output"
+        out_file = target_path / "test.zarr"
+        if out_file.exists():
+            shutil.rmtree(out_file)
 
-        # Check we can open the file and it has the expected number of bands (4)
-        with rasterio.open(out_file) as src:
-            self.assertEqual(src.count, 4)
-            self.assertIn("source", src.tags(1))
+        # layers created by make_fixtures
+        layers = pd.DataFrame(
+            {"path": ["a.tif", "b.tif", "c.tif", "d.tif"], "key": ["a", "b", "c", "d"]}
+        )
+        layers["grid_id"] = "test"
+        grids = pd.DataFrame({"grid_id": ["test"], "fname": ["test.zarr"]})
+        stack(source_path, target_path, layers, grids)
+
+        # Check we can open the file and it has the expected dimensions
+        ds = xr.open_zarr(out_file)
+        expected_dims = {"key": 4, "y": 10, "x": 10}
+        self.assertEqual(ds.dims, expected_dims)
 
 
 if __name__ == "__main__":

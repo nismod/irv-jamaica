@@ -90,12 +90,12 @@ services:
   pixel-driller:
     build: ./pixel_driller
     volumes:
-      - ./tileserver/raster/data:/data
-    expose:
-      - "80"
+      - ./tileserver/stacks:/data
+      - ./pixel_driller:/code
+    ports:
+      - 5080:80
     environment:
-      - DATA_SOURCE_DIR=/data
-      - ADMIN_CODE=my_secret_admin_code
+      - PIXEL_STACK_DATA_DIR=/data
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pixel-driller.rule=Host(`localhost`) && PathPrefix(`/pixel`)"

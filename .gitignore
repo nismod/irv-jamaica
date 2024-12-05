@@ -2,6 +2,7 @@
 node_modules/
 tileserver/raster/data
 tileserver/vector/data
+tileserver/stacks
 incoming_data/
 intermediate_data/
 *.zip
@@ -19,6 +20,8 @@ etl/config_local.yml
 public/*.csv
 public/**/*.csv
 .snakemake
+
+notebooks
 
 # local config
 envs
