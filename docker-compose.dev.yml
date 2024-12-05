@@ -92,7 +92,7 @@ services:
     volumes:
       - ./tileserver/raster/data:/data
     expose:
-      - "5080:80"
+      - "80"
     environment:
       - DATA_SOURCE_DIR=/data
       - ADMIN_CODE=my_secret_admin_code
@@ -102,7 +102,7 @@ services:
       - "traefik.http.routers.pixel-driller.entrypoints=web"
       - "traefik.http.routers.pixel-driller.middlewares=pixel-driller-stripprefix"
       - "traefik.http.middlewares.pixel-driller-stripprefix.stripprefix.prefixes=/pixel"
-      - "traefik.http.services.pixel-driller.loadbalancer.server.port=5080"
+      - "traefik.http.services.pixel-driller.loadbalancer.server.port=80"
 
   db:
     image: kartoza/postgis:14-3.1

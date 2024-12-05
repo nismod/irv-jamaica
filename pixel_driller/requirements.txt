@@ -1,1 +1,2 @@
 nismod-snail==0.5.3
+fastapi[standard]==0.115.6
