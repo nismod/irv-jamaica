@@ -7,26 +7,28 @@ function getLoaderKey(layer: string, fieldSpec: FieldSpec) {
 }
 
 export class DataLoaderManager {
-  private loaders: { [key: string]: DataLoader } = {};
+  private loaders: Map<string, DataLoader> = new Map();
   private nextLoaderId = 0;
 
   public getDataLoader(layer: string, fieldSpec: FieldSpec) {
     const loaderKey = getLoaderKey(layer, fieldSpec);
-    if (this.loaders[loaderKey] == null) {
+    let loader = this.loaders.get(loaderKey);
+    if (loader == null) {
       console.log(`Initialising data loader for ${layer} ${stringify(fieldSpec)}`);
-      const loader = new DataLoader(this.nextLoaderId.toString(), layer, fieldSpec);
+      loader = new DataLoader(this.nextLoaderId.toString(), layer, fieldSpec);
       this.nextLoaderId += 1;
-      this.loaders[loaderKey] = loader;
+      this.loaders.set(loaderKey, loader);
     }
-    return this.loaders[loaderKey];
+    return loader;
   }
 
   public clearDataLoader(layer: string, fieldSpec: FieldSpec) {
     const loaderKey = getLoaderKey(layer, fieldSpec);
+    const loader = this.loaders.get(loaderKey);
 
-    if (this.loaders[loaderKey] != null) {
-      this.loaders[loaderKey].destroy();
-      delete this.loaders[loaderKey];
+    if (loader != null) {
+      loader.destroy();
+      this.loaders.delete(loaderKey);
     }
   }
 }
