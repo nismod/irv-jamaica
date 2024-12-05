@@ -5,9 +5,46 @@ import { FieldSpec } from 'lib/data-map/view-layers';
 
 export type DataLoaderSubscriber = (loader: DataLoader) => void;
 
+export type DataFetcher = (
+  ids?: number[],
+  layer?: string,
+  fieldSpec?: FieldSpec,
+) => Promise<Record<string, any>>;
+
 const apiClient = createClient({
   baseUrl: '/api',
 });
+
+/**
+ * Fetch adaptation option values for a list of feature IDs in a given layer.
+ * @param ids A list of feature IDs.
+ * @param layer An asset layer ID.
+ * @param fieldSpec A field specification, containing the adaptation parameters for this query.
+ * @returns A list of feature IDs and values for a specific adaptation option and variable.
+ */
+const defaultDataFetcher: DataFetcher = async (
+  ids: number[],
+  layer: string,
+  fieldSpec: FieldSpec,
+) => {
+  if (ids.length === 0) return {};
+  const { fieldGroup, field, fieldDimensions, fieldParams } = fieldSpec;
+  const { data } = await attributesReadAttributes({
+    client: apiClient,
+    body: ids,
+    path: {
+      field_group: fieldGroup,
+    },
+    query: {
+      layer,
+      field,
+      dimensions: JSON.stringify(fieldDimensions),
+      parameters: JSON.stringify(fieldParams),
+    },
+  });
+  return data;
+};
+
 /**
  * Data loader that fetches data from the attributes API for a layer and field spec.
  * The data is stored in a map with feature IDs as keys.
@@ -38,6 +75,8 @@ export class DataLoader<T = any> {
 
   private subscribers: DataLoaderSubscriber[];
 
+  private dataFetcher: DataFetcher = defaultDataFetcher;
+
   getData(id: number) {
     const data = this.data.get(id);
 
@@ -50,6 +89,11 @@ export class DataLoader<T = any> {
 
   get hasData() {
     return this.data.size > 0;
+  }
+
+  async loadData(dataFetcher: DataFetcher, ids?: number[]) {
+    this.dataFetcher = dataFetcher || defaultDataFetcher;
+    this.loadDataForIds(ids);
   }
 
   subscribe(callback: DataLoaderSubscriber) {
@@ -84,34 +128,20 @@ export class DataLoader<T = any> {
     const tempMissingIds = ids.filter(
       (id) => this.data.get(id) === undefined && !this.loadingIds.has(id),
     );
-    if (tempMissingIds.length === 0) return;
 
     const loadedData = await this.requestMissingData(tempMissingIds);
     this.updateData(loadedData);
   }
 
+  private fetchData(ids: number[]) {
+    return this.dataFetcher(ids, this.layer, this.fieldSpec);
+  }
+
   private async requestMissingData(requestedIds: number[]): Promise<Record<string, T>> {
-    const { fieldGroup, field, fieldDimensions, fieldParams } = this.fieldSpec;
     const missingIds = requestedIds.filter((id) => !this.loadingIds.has(id));
-
-    if (missingIds.length === 0) return {};
-
     missingIds.forEach((id) => this.loadingIds.add(id));
 
-    const { data } = await attributesReadAttributes({
-      client: apiClient,
-      body: missingIds,
-      path: {
-        field_group: fieldGroup,
-      },
-      query: {
-        layer: this.layer,
-        field,
-        dimensions: JSON.stringify(fieldDimensions),
-        parameters: JSON.stringify(fieldParams),
-      },
-    });
-    return data as Record<string, T>;
+    return await this.fetchData(missingIds);
   }
 
   private updateData(loadedData: Record<string, T>) {
