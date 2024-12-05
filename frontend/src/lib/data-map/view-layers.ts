@@ -32,6 +32,7 @@ export interface ViewLayerFunctionOptions {
   zoom: number;
   styleParams?: StyleParams;
   selection?: InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
+  data?: Record<string, any>;
 }
 
 export interface DataManager {
