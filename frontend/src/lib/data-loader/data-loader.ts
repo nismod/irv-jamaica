@@ -46,6 +46,10 @@ export class DataLoader<T = any> {
     return data;
   }
 
+  get hasData() {
+    return this.data.size > 0;
+  }
+
   subscribe(callback: DataLoaderSubscriber) {
     this.subscribers ??= [];
     this.subscribers.push(callback);
