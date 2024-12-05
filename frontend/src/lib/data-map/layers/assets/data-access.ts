@@ -1,7 +1,8 @@
+import { DataLoader } from 'lib/data-loader/data-loader';
 import { dataLoaderManager } from 'lib/data-loader/data-loader-manager';
 import { FieldSpec } from 'lib/data-map/view-layers';
-import { extraProperty, featureProperty } from 'lib/deck/props/data-source';
-import { withTriggers } from 'lib/deck/props/getters';
+import { featureProperty } from 'lib/deck/props/data-source';
+import { Accessor, withTriggers } from 'lib/deck/props/getters';
 import { sumOrNone } from 'lib/helpers';
 
 function getExpectedDamageKey(direct: boolean, hazard: string, rcp: string, epoch: number) {
@@ -18,6 +19,24 @@ function totalExpectedDamagesProperty(direct: boolean, { rcp, epoch }) {
   return withTriggers((f) => sumOrNone(hazardProperties.map((p) => p(f))), [direct, rcp, epoch]);
 }
 
+/**
+ * Decorate a data access function with update triggers.
+ * @param fn data access function
+ * @param dataLoader data loader
+ * @returns fn with additional properties; fn.updateTriggers and fn.dataLoader.
+ */
+function withLoaderTriggers(fn: Accessor<any>, dataLoader: DataLoader) {
+  fn.dataLoader = dataLoader;
+  return withTriggers(fn, [dataLoader.id, dataLoader.updateTrigger]);
+}
+
+/**
+ * Generate a data accessor for a given asset layer and field spec.
+ * Defaults to feature.property[field].
+ * @param layer layer ID
+ * @param fieldSpec field specification
+ * @returns a data accessor for a given layer and field spec.
+ */
 export function getAssetDataAccessor(layer: string, fieldSpec: FieldSpec) {
   if (fieldSpec == null) return null;
 
@@ -34,15 +53,22 @@ export function getAssetDataAccessor(layer: string, fieldSpec: FieldSpec) {
     return featureProperty(getExpectedDamageKey(isDirect, hazard, rcp, epoch));
   } else if (fieldGroup === 'damages_return_period') {
     // return return period damages dynamically loaded from API
-    return extraProperty(dataLoaderManager.getDataLoader(layer, fieldSpec));
+    const dataLoader = dataLoaderManager.getDataLoader(layer, fieldSpec);
+    return withLoaderTriggers((f) => dataLoader.getData(f.id), dataLoader);
   } else if (fieldGroup === 'adaptation') {
-    return extraProperty(dataLoaderManager.getDataLoader(layer, fieldSpec));
+    const dataLoader = dataLoaderManager.getDataLoader(layer, fieldSpec);
+    return withLoaderTriggers((f) => dataLoader.getData(f.id), dataLoader);
   } else {
     // field other than damages - use field name as key
     return featureProperty(field);
   }
 }
 
+/**
+ * Generate a data accessor function for a given asset layer.
+ * @param layer the layer ID.
+ * @returns a function which takes a field spec and returns a data accessor.
+ */
 export function assetDataAccessFunction(layer: string) {
   return (fieldSpec: FieldSpec) => getAssetDataAccessor(layer, fieldSpec);
 }
