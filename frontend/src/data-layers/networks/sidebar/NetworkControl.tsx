@@ -1,9 +1,9 @@
 import { Box } from '@mui/system';
 import { Alert } from '@mui/material';
 import { FC } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
-import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
+import { CheckboxTree, recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { useUpdateDataParam } from 'lib/state/data-params';
 
 import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
@@ -17,6 +17,31 @@ import { NETWORK_LAYERS_HIERARCHY } from './hierarchy';
 import { NETWORKS_METADATA } from '../metadata';
 import { showAdaptationsState } from '../state/layer';
 import adaptationSectorLayers from '../adaptation-sector-layers.json';
+import { protectedFeatureLayersState } from 'lib/state/protected-features';
+
+/**
+ * Set the checkbox tree state to true for protected feature layers.
+ * @param checkBoxState network checkbox tree state.
+ */
+function useSyncProtectedFeatureLayers(checkboxState) {
+  const protectedFeatureLayers = useRecoilValue(protectedFeatureLayersState);
+  const setCheckboxState = useSetRecoilState(networkTreeCheckboxState);
+  protectedFeatureLayers.forEach((layer: string) => {
+    if (!checkboxState.checked[layer]) {
+      setCheckboxState((prev) => {
+        const newState = {
+          indeterminate: {},
+          checked: {
+            ...prev.checked,
+            [layer]: true,
+          },
+        };
+        const resolvedTreeState = recalculateCheckboxStates(newState, networkTreeConfig);
+        return resolvedTreeState;
+      });
+    }
+  });
+}
 
 /**
  * Sync adaptation parameters to the infrastructure checkbox tree, so that
@@ -56,6 +81,7 @@ export const NetworkControl: FC = () => {
   const disableCheck = showAdaptations;
 
   useSyncAdaptationParameters(checkboxState);
+  useSyncProtectedFeatureLayers(checkboxState);
 
   return (
     <>
