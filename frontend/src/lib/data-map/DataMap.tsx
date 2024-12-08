@@ -1,4 +1,5 @@
 import type { MapboxOverlay } from '@deck.gl/mapbox/typed';
+import { LayersList } from 'deck.gl/typed';
 import { useMap } from 'react-map-gl/maplibre';
 import { FC, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -10,7 +11,7 @@ import { useSaveViewLayers, viewLayersFlatState } from 'lib/state/layers/view-la
 import { viewLayersParamsState } from 'lib/state/layers/view-layers-params';
 import { DeckGLOverlay } from 'lib/map/DeckGLOverlay';
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
-import { LayersList } from 'deck.gl/typed';
+import { viewLayersDataState } from 'lib/state/protected-features';
 
 // set a convention where the view layer id is either the first part of the deck id before the @ sign, or it's the whole id
 function lookupViewForDeck(deckLayerId: string) {
@@ -30,9 +31,11 @@ function buildLayers(
   viewLayersParams: Map<string, ViewLayerParams>,
   zoom: number,
   beforeId: string | undefined,
+  viewLayersData?: Map<string, Record<string, any>>,
 ): LayersList {
   return viewLayers.map((viewLayer) => {
     const viewLayerParams = viewLayersParams.get(viewLayer.id);
+    const data = viewLayersData?.get(viewLayer.id);
     const deckProps = {
       id: viewLayer.id,
       pickable: !!viewLayer.interactionGroup,
@@ -42,6 +45,7 @@ function buildLayers(
       deckProps,
       zoom,
       ...viewLayerParams,
+      data,
     });
   });
 }
@@ -72,6 +76,8 @@ export const DataMap: FC<{
   const zoom = map.getMap().getZoom();
   const viewLayers = useRecoilValue(viewLayersFlatState);
   const viewLayersParams = useRecoilValue(viewLayersParamsState);
+  const viewLayersData = useRecoilValue(viewLayersDataState);
+  console.log({ viewLayers, viewLayersParams, viewLayersData });
   const saveViewLayers = useSaveViewLayers();
 
   useTrigger(viewLayers);
@@ -82,7 +88,7 @@ export const DataMap: FC<{
     interactionGroups,
   );
 
-  const layers = buildLayers(viewLayers, viewLayersParams, zoom, firstLabelId);
+  const layers = buildLayers(viewLayers, viewLayersParams, zoom, firstLabelId, viewLayersData);
   const onClickFeature = (info: any) => {
     deckRef.current && onClick?.(info, deckRef.current);
     saveViewLayers(viewLayers);

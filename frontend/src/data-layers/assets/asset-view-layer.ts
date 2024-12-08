@@ -37,10 +37,11 @@ export function assetViewLayer(
     params: {
       assetId,
     },
-    fn({ deckProps, zoom, selection }: ViewLayerFunctionOptions) {
+    fn({ deckProps, zoom, selection, data }: ViewLayerFunctionOptions) {
       const styleParams = this?.styleParams;
       const target = selection?.target as VectorTarget;
       const selectedFeatureIds = [target?.feature.id];
+      const dataLoader = customDataAccessFn?.(styleParams?.colorMap?.fieldSpec)?.dataLoader;
       return selectableMvtLayer(
         {
           selectionOptions: {
@@ -48,7 +49,8 @@ export function assetViewLayer(
             polygonOffset: selectionPolygonOffset,
           },
           dataLoaderOptions: {
-            dataLoader: customDataAccessFn?.(styleParams?.colorMap?.fieldSpec)?.dataLoader,
+            dataLoader,
+            data,
           },
         },
         deckProps,

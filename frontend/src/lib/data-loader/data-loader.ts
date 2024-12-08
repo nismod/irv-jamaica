@@ -50,6 +50,10 @@ export class DataLoader<T = any> {
     return this.data.size > 0;
   }
 
+  loadData(data: Record<string, T>) {
+    this.updateData(data);
+  }
+
   subscribe(callback: DataLoaderSubscriber) {
     this.subscribers ??= [];
     this.subscribers.push(callback);

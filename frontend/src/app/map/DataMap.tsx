@@ -10,6 +10,8 @@ import { viewLayersFlatState } from 'lib/state/layers/view-layers';
 import { backgroundState, showLabelsState } from './layers/layers-state';
 import { useBasemapStyle } from './use-basemap-style';
 import { flattenConfig } from 'lib/nested-config/flatten-config';
+import { protectedFeatureLayersState } from 'lib/state/protected-features';
+import { networkTreeCheckboxState } from 'data-layers/networks/state/data-selection';
 
 export const DataMapContainer: FC = () => {
   const background = useRecoilValue(backgroundState);
@@ -18,6 +20,18 @@ export const DataMapContainer: FC = () => {
   const [viewLayersFlat, setViewLayersFlat] = useRecoilState(viewLayersFlatState);
   const { firstLabelId } = useBasemapStyle(background, showLabels);
   const interactionGroups = useRecoilValue(interactionGroupsState);
+
+  /* This is a horrible hack which forces all layer IDs in protectedFeatureLayersState to be visible. */
+  const protectedFeatureLayers = useRecoilValue(protectedFeatureLayersState);
+  const [checkboxState, setCheckboxState] = useRecoilState(networkTreeCheckboxState);
+  console.log({ protectedFeatureLayers });
+  protectedFeatureLayers?.forEach((layer: string) => {
+    if (!checkboxState.checked[layer]) {
+      console.log(layer, checkboxState.checked[layer]);
+      setCheckboxState((prev) => ({ ...prev, checked: { ...prev.checked, [layer]: true } }));
+    }
+  });
+  console.log(checkboxState);
 
   useEffect(() => {
     setViewLayersFlat(flattenConfig(viewLayers));
