@@ -11,6 +11,7 @@ import {
 import { sectionStyleValueState } from 'lib/state/sections';
 
 import { NETWORK_LAYERS_HIERARCHY } from '../sidebar/hierarchy';
+import { protectedFeatureLayersState } from 'lib/state/protected-features';
 
 export const networkTreeExpandedState = atom<string[]>({
   key: 'networkTreeExpandedState',
@@ -103,4 +104,29 @@ export const networkSelectionState = selector<string[]>({
 export const networksStyleState = selector({
   key: 'networksStyleState',
   get: ({ get }) => get(sectionStyleValueState('assets')),
+});
+
+export const protectedFeatureLayerVisibilityState = selector({
+  key: 'networkLayerVisibilityState',
+  get: ({ get }) => {
+    const protectedFeatureLayers = get(protectedFeatureLayersState);
+    const checkboxState = get(networkTreeCheckboxState);
+    let visibility = false;
+    protectedFeatureLayers?.forEach((layer: string) => {
+      visibility &&= checkboxState.checked[layer];
+    });
+    return visibility;
+  },
+  set: ({ get, set }, newValue: boolean) => {
+    const protectedFeatureLayers = get(protectedFeatureLayersState);
+    const checkboxState = get(networkTreeCheckboxState);
+    protectedFeatureLayers?.forEach((layer: string) => {
+      if (!checkboxState.checked[layer]) {
+        set(networkTreeCheckboxState, (prev) => ({
+          ...prev,
+          checked: { ...prev.checked, [layer]: newValue },
+        }));
+      }
+    });
+  },
 });
