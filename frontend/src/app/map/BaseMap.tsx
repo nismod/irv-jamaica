@@ -1,6 +1,6 @@
 import omit from 'lodash/omit';
 import { FC, ReactNode } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { mapViewConfig } from 'app/config/map-view';
 import { mapViewStateState, nonCoordsMapViewStateState } from 'lib/state/map-view/map-view-state';
@@ -23,7 +23,7 @@ export const BaseMapContainer: FC<BaseMapProps> = ({ children }) => {
   const background = useRecoilValue(backgroundState);
   const showLabels = useRecoilValue(showLabelsState);
   const [viewState, setViewState] = useRecoilState(mapViewStateState);
-  const [nonCoordsViewState, setNonCoordsViewState] = useRecoilState(nonCoordsMapViewStateState);
+  const setNonCoordsViewState = useSetRecoilState(nonCoordsMapViewStateState);
   const { mapStyle } = useBasemapStyle(background, showLabels);
   if (viewState.zoom < 0) {
     setViewState(INITIAL_VIEW_STATE);
