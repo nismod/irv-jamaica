@@ -1,9 +1,9 @@
 import { Typography } from '@mui/material';
-import { DataItem } from 'details/features/detail-components';
+import { DataItem } from 'lib/map/tooltip/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import { FC, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
-import { DataDescription } from 'app/map/tooltip/DataDescription';
+import { DataDescription } from 'lib/map/tooltip/DataDescription';
 
 import { droughtRisksColorSpecState, droughtRisksFieldSpecState } from './state/layer';
 

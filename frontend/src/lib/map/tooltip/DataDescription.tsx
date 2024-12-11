@@ -1,4 +1,4 @@
-import { DataItem } from 'details/features/detail-components';
+import { DataItem } from './detail-components';
 import { colorMap } from 'lib/color-map';
 import { ColorMap, ViewLayer } from 'lib/data-map/view-layers';
 import { FC, useMemo } from 'react';
