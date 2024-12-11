@@ -9,7 +9,7 @@ import { FeatureSidebarContent } from 'details/features/FeatureSidebarContent';
 import { BoundingBox, extendBbox } from 'lib/bounding-box';
 import { colorMap } from 'lib/color-map';
 import { mapFitBoundsState } from 'lib/map/MapBoundsFitter';
-import { ColorBox } from 'app/map/tooltip/content/ColorBox';
+import { ColorBox } from 'lib/map/tooltip/content/ColorBox';
 import { useCallback, useMemo } from 'react';
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {

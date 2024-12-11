@@ -4,8 +4,7 @@ import { FC, useMemo } from 'react';
 import { useRasterColorMapValues } from 'lib/map/legend/use-color-map-values';
 import { numFormatMoney } from 'lib/helpers';
 
-import { DataItem } from 'details/features/detail-components';
-
+import { DataItem } from '../detail-components';
 import { ColorBox } from './ColorBox';
 
 function useRasterColorMapLookup(colorMapValues) {

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { VectorHoverDescription } from 'lib/data-map/types';
-import { DataItem } from 'details/features/detail-components';
+import { DataItem } from 'lib/map/tooltip/detail-components';
 
 import { REGIONS_METADATA } from './metadata';
 import { showPopulationState } from './state/data-selection';
