@@ -6,6 +6,7 @@ import { selectionState } from './interactions/interaction-state';
 import { VectorTarget } from 'lib/data-map/types';
 import { dataParamState } from './data-params';
 import { viewLayerState } from './layers/view-layers';
+import { sectionStyleValueState } from './sections';
 
 const apiClient = createClient({
   baseUrl: '/api',
@@ -63,6 +64,10 @@ export const protectedFeatureLayersQuery = selector({
 export const protectedFeatureLayersState = selector({
   key: 'protectedFeatureLayers',
   get: ({ get }) => {
+    const style = get(sectionStyleValueState('assets'));
+    if (!style || style !== 'protectedFeatures') {
+      return new Set();
+    }
     const loadable = get(noWait(protectedFeatureLayersQuery));
     return loadable.state === 'hasValue' ? loadable.contents : new Set();
   },
@@ -115,6 +120,10 @@ export const protectedFeatureLayerDataState = selector({
   key: 'protectedFeatureLayerData',
   get: ({ get }) => {
     const viewLayersData = new Map();
+    const style = get(sectionStyleValueState('assets'));
+    if (!style || style !== 'protectedFeatures') {
+      return viewLayersData;
+    }
     const protectedFeatureAdaptations = get(protectedFeatureAdaptationsState);
     const viewLayerIDs = get(protectedFeatureLayersState);
     viewLayerIDs.forEach((viewLayerID: string) => {
