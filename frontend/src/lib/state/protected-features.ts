@@ -1,6 +1,6 @@
 import { noWait, selector, selectorFamily } from 'recoil';
 
-import { ApiClient } from 'lib/api-client';
+import { ApiClient, ProtectedFeatureListItem } from 'lib/api-client';
 import { selectionState } from './interactions/interaction-state';
 import { VectorTarget } from 'lib/data-map/types';
 import { dataParamState } from './data-params';
@@ -49,7 +49,8 @@ const protectedFeatureAdaptationOptionsState = selectorFamily({
       const loadable = get(
         noWait(protectedFeatureAdaptationOptionsQuery({ rcp, protectionLevel })),
       );
-      const data = loadable.state === 'hasValue' ? loadable.contents : [];
+      const data: ProtectedFeatureListItem[] =
+        loadable.state === 'hasValue' ? loadable.contents : [];
       const error = loadable.state === 'hasError' ? loadable.contents : null;
       return { data, error };
     },
@@ -126,7 +127,7 @@ export const protectedFeatureLayerDataState = selector({
     const viewLayerIDs = get(protectedFeatureLayersState);
     viewLayerIDs.forEach((viewLayerID: string) => {
       const field = get(viewLayerAdaptationField(viewLayerID));
-      const viewLayerDataEntries = protectedFeatureAdaptations
+      const viewLayerDataEntries: [number, string | number][] = protectedFeatureAdaptations
         ?.filter((row) => row.layer === viewLayerID && !!row[field])
         .map((row) => [row.id, row[field]]);
       const data =
