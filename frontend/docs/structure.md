@@ -18,9 +18,7 @@ Date: 9 August 2024
         vector/raster backends.
       - `view-layers.ts` - a list of the view layer IDs used by the map.
       - `views.ts` - default sidebar state (visible/hidden, expanded/collapsed etc.) for the individual map views.
-    - `map/` - UI, layout and behaviour of the main map view of the app. Contains
-      also the code for displaying basemap selection, legend for current layers,
-      tooltip for current hover.
+    - `map/` - UI, layout and behaviour of the main map view of the app. Sets up the base map and passes app data layer state to the data map.
     - `pages/` - contents and layouts of the main pages of the app.
     - `sidebar/` - the main layer selection sidebar.
       - `SidebarContent.tsx` - defining the overall contents of the sidebar.
