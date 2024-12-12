@@ -86,6 +86,8 @@ def read_sorted_features(
 )
 def read_protected_features(
     protector_id: int,
+    rcp: str,
+    protection_level: float,
     session: SessionDep,
 ):
     """
@@ -120,7 +122,10 @@ def read_protected_features(
         models.FeatureLayer
     ).join(
         models.Feature.adaptation
-    ).filter(
+    ).filter_by(
+        rcp=rcp,
+        adaptation_protection_level=protection_level,
+    ).where(
         models.AdaptationCostBenefit.adaptation_name ==
         "Flood defence around asset"  # test query
         # models.AdaptationCostBenefit.protector_feature_id == protector_id
