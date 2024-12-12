@@ -5,11 +5,13 @@ import { FieldSpec } from 'lib/data-map/view-layers';
 
 export type DataLoaderSubscriber = (loader: DataLoader) => void;
 
+type LayerData = Record<string, number | string>;
+
 export type DataFetcher = (
   ids?: number[],
   layer?: string,
   fieldSpec?: FieldSpec,
-) => Promise<Record<string, any>>;
+) => Promise<LayerData>;
 
 const apiClient = createClient({
   baseUrl: '/api',
@@ -42,7 +44,7 @@ const defaultDataFetcher: DataFetcher = async (
       parameters: JSON.stringify(fieldParams),
     },
   });
-  return data;
+  return data as LayerData;
 };
 
 /**
@@ -52,7 +54,7 @@ const defaultDataFetcher: DataFetcher = async (
  * @param layer Layer ID.
  * @param fieldSpec Field specification.
  */
-export class DataLoader<T = any> {
+export class DataLoader {
   constructor(
     public readonly id: string,
     public readonly layer: string,
@@ -65,7 +67,7 @@ export class DataLoader<T = any> {
     return this._updateTrigger;
   }
 
-  private data: Map<number, T> = new Map();
+  private data: Map<number, number | string> = new Map();
 
   // feature IDs that have not been loaded yet
   private missingIds: Set<number> = new Set();
@@ -137,14 +139,14 @@ export class DataLoader<T = any> {
     return this.dataFetcher(ids, this.layer, this.fieldSpec);
   }
 
-  private async requestMissingData(requestedIds: number[]): Promise<Record<string, T>> {
+  private async requestMissingData(requestedIds: number[]): Promise<LayerData> {
     const missingIds = requestedIds.filter((id) => !this.loadingIds.has(id));
     missingIds.forEach((id) => this.loadingIds.add(id));
 
     return await this.fetchData(missingIds);
   }
 
-  private updateData(loadedData: Record<string, T>) {
+  private updateData(loadedData: LayerData) {
     let newData = false;
     for (const [key, value] of Object.entries(loadedData)) {
       const numKey = parseInt(key, 10);
