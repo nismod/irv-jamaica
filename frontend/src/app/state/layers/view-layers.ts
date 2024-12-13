@@ -1,4 +1,4 @@
-import { waitForAll, selector, selectorFamily } from 'recoil';
+import { waitForAll, selector, selectorFamily, noWait } from 'recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { ConfigTree } from 'lib/nested-config/config-tree';
@@ -20,13 +20,24 @@ const VIEW_LAYERS = [
   'droughtOptions',
 ] as string[];
 
-const viewLayerConfig = selectorFamily<ViewLayer, string>({
-  key: 'viewLayerConfig',
+const viewLayerConfigQuery = selectorFamily<ViewLayer, string>({
+  key: 'viewLayerConfigQuery',
   get:
     (type) =>
     async ({ get }) => {
       const layer = await importLayerState(type);
       return get(layer);
+    },
+});
+
+const viewLayerConfig = selectorFamily<ViewLayer, string>({
+  key: 'viewLayerConfig',
+  get:
+    (type) =>
+    ({ get }) => {
+      const loadable = get(noWait(viewLayerConfigQuery(type)));
+      const layer = loadable.state === 'hasValue' ? loadable.contents : null;
+      return layer;
     },
 });
 
