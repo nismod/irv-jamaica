@@ -18,7 +18,6 @@ export const DataMapContainer: FC = () => {
   const setViewLayersFlat = useSetRecoilState(viewLayersFlatState);
   const { firstLabelId } = useBasemapStyle(background, showLabels);
   const interactionGroups = useRecoilValue(interactionGroupsState);
-
   useEffect(() => {
     setViewLayersFlat(flattenConfig(viewLayers));
   }, [viewLayers, setViewLayersFlat]);
