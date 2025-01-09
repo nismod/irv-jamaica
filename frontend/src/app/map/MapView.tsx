@@ -96,16 +96,20 @@ const MapHudMobileLayout = () => {
   );
 };
 
+const DataMapTooltipContent = () => {
+  const layerStates = useRecoilValue(layerHoverStates);
+  return <TooltipContent layerStates={layerStates} />;
+};
+
 const MapViewContent = () => {
   const isMobile = useIsMobile();
-  const layerStates = useRecoilValue(layerHoverStates);
 
   return (
     <BaseMapContainer>
       <DataMapContainer />
       <MapBoundsFitter />
       <DataMapTooltip>
-        <TooltipContent layerStates={layerStates} />
+        <DataMapTooltipContent />
       </DataMapTooltip>
       {isMobile ? <MapHudMobileLayout /> : <MapHudDesktopLayout />}
     </BaseMapContainer>
