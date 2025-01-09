@@ -28,6 +28,10 @@ const protectedFeatureAdaptationOptionsQuery = selectorFamily({
       if (!target?.feature?.id) {
         return [];
       }
+      if (target.feature.id !== 200000002) {
+        // use Norman Manley airport for testing.
+        return [];
+      }
       return apiClient.features.featuresReadProtectedFeatures({
         protectorId: target.feature.id,
         rcp,
