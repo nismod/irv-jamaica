@@ -6,6 +6,13 @@ export const sectionVisibilityState = atomFamily<boolean, string>({
   key: 'sectionVisibilityState',
   default: false,
   effects: (id) => [
+    ({ onSet }) => {
+      onSet((newVisibility) => {
+        const url = new URL(window.location.href);
+        url.searchParams.set(id, newVisibility.toString());
+        window.history.replaceState({}, '', url.toString());
+      });
+    },
     urlSyncEffect({
       storeKey: 'url-json',
       itemKey: id,
