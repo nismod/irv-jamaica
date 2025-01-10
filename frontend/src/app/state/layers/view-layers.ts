@@ -1,4 +1,4 @@
-import { waitForAll, selector, selectorFamily, noWait, RecoilValueReadOnly } from 'recoil';
+import { waitForAll, selector, selectorFamily, RecoilValueReadOnly } from 'recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { ConfigTree } from 'lib/nested-config/config-tree';
