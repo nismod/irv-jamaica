@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import pandas as pd
+import fastapi
 from fastapi import FastAPI
 from pyproj import CRS
 
@@ -18,7 +19,9 @@ def read_metadata(target_path: Path) -> list[RasterStackMetadata]:
 
 DATA_PATH = os.getenv("PIXEL_STACK_DATA_DIR", "/data")
 DATASETS = read_metadata(Path(DATA_PATH))
-app = FastAPI()
+
+# ORJSON to permit NaN values in JSON response
+app = FastAPI(default_response_class=fastapi.responses.ORJSONResponse)
 
 
 @app.get("/{lon}/{lat}")

@@ -7,6 +7,9 @@ from pyproj import CRS
 from pyproj.transformer import Transformer
 
 
+METADATA: pd.DataFrame = pd.read_csv("/data/hazard_layers.csv")
+
+
 @dataclass
 class RasterStackMetadata:
     """Metadata about each stack of rasters"""
@@ -16,7 +19,7 @@ class RasterStackMetadata:
     crs: CRS
 
 
-def point_query(datasets: list[RasterStackMetadata], lon: float, lat: float):
+def point_query(datasets: list[RasterStackMetadata], lon: float, lat: float) -> dict[str, list]:
     """
     Query a raster file with multiple bands to extract the values at a specific (x, y) coordinate.
 
@@ -26,7 +29,8 @@ def point_query(datasets: list[RasterStackMetadata], lon: float, lat: float):
         y (float): latitude coordinate
 
     Returns:
-        dict: A dictionary where keys are band 'source' tags and values are the pixel values at (x, y).
+        dict: A dictionary of column names to lists of values. `band_data`
+            contains the raster values.
     """
     dfs = []
     for dataset in datasets:
@@ -41,5 +45,25 @@ def point_query(datasets: list[RasterStackMetadata], lon: float, lat: float):
             .reset_index()
         )
         dfs.append(df)
-    out = pd.concat(dfs)
-    return out.to_dict(orient="records")  # could go straight .to_json(orient="records")
+    data = pd.concat(dfs)
+
+    data = data.merge(METADATA, on="key").loc[
+        :,
+        [
+            "key",
+            "band_data",
+            "hazard",
+            "rp",
+            "rcp",
+            "epoch",
+            "confidence",
+            "variable",
+            "unit",
+        ],
+    ]
+
+    response: dict[str, list] = {}
+    for col in data.columns:
+        response[col] = data[col].tolist()
+
+    return response
