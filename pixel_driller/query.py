@@ -52,6 +52,12 @@ def point_query(datasets: list[RasterStackMetadata], lon: float, lat: float) -> 
         t = Transformer.from_crs("EPSG:4326", dataset.crs)
         tx, ty = t.transform(lon, lat)
         ds = xr.open_zarr(dataset.path)
+
+        if tx < ds.x.min() or tx > ds.x.max() or ty < ds.y.min() or ty > ds.y.max():
+            # out of bounds for this dataset
+            logging.debug(f"Point {lon=}, {lat=} outside bounds for {dataset.name=}")
+            continue
+
         dfs.append(
             ds
             .sel(x=tx, y=ty, method="nearest")

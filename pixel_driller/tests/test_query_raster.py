@@ -67,6 +67,16 @@ class QueryRasterTestCase(unittest.TestCase):
         }
         self.assertDictEqual(actual, expected)
 
+    def test_query_raster_out_of_bounds(self):
+        datasets = [
+            RasterStackMetadata(
+                "test", Path(__file__).parent / "fixtures" / "test.zarr", "EPSG:4326"
+            )
+        ]
+        actual = point_query(datasets, -1.0, 0.0)
+        expected = {}
+        self.assertDictEqual(actual, expected)
+
 
 if __name__ == "__main__":
     unittest.main()
