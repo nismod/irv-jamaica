@@ -45,9 +45,8 @@ def point_query(datasets: list[RasterStackMetadata], lon: float, lat: float) -> 
             .reset_index()
         )
         dfs.append(df)
-    data = pd.concat(dfs)
 
-    data = data.merge(METADATA, on="key").loc[
+    data = pd.concat(dfs).merge(METADATA, on="key").loc[
         :,
         [
             "key",
@@ -62,8 +61,4 @@ def point_query(datasets: list[RasterStackMetadata], lon: float, lat: float) -> 
         ],
     ]
 
-    response: dict[str, list] = {}
-    for col in data.columns:
-        response[col] = data[col].tolist()
-
-    return response
+    return data.to_dict(orient="list")
