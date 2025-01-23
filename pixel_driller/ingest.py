@@ -1,13 +1,15 @@
-"""Stack rasters into queryable format
+"""
+Stack rasters into queryable format
 """
 
-import sys
 from pathlib import Path
+import sys
+import logging
 
 import pandas as pd
 import snail.intersection
-import xarray as xr
 from tqdm.auto import tqdm
+import xarray as xr
 
 
 def read_grids(
@@ -56,7 +58,7 @@ def stack(
     for grid_id, grid_layers in layers.groupby("grid_id"):
         var = xr.Variable("key", grid_layers.key.tolist())
         layer_paths = grid_layers.path.tolist()
-        print("Processing", len(layer_paths), "layers for", grid_id)
+        logging.info(f"Processing {len(layer_paths)} layers for {grid_id}")
         ds = (
             xr.concat(
                 [
@@ -88,9 +90,11 @@ if __name__ == "__main__":
         print("Usage: python ingest.py <source_path> <target_path>")
         sys.exit()
 
+    logging.basicConfig(format="%(asctime)s %(filename)s %(message)s", level=logging.INFO)
+
     # CSV is structured like this:
-    #   hazard,path,rp,rcp,epoch,confidence,key
-    #   coastal,hazards/Coastal_flood_data/Flood_maps_future_climate/RCP26_2050/JamaicaJAM001RCP262050_epsg_32618_RP_1.tif,1,2.6,2050,,coastal__rp_1__rcp_2x6__epoch_2050__conf_None
+    #   hazard,path,rp,rcp,epoch,confidence,variable,unit,key
+    #   coastal,hazards/Coastal_flood_data/Flood_maps_future_climate/RCP26_2050/JamaicaJAM001RCP262050_epsg_32618_RP_1.tif,1,2.6,2050,,depth,m,coastal__rp_1__rcp_2x6__epoch_2050__conf_None
     # path is relative to "source_path"
     # key is a unique compound string key that encodes (hazard,rp,rcp,epoch,confidence)
     layers_without_grid_ids = pd.read_csv(

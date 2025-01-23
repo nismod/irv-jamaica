@@ -1,7 +1,6 @@
 import unittest
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 import query
@@ -9,19 +8,41 @@ from query import point_query, RasterStackMetadata
 
 
 class QueryRasterTestCase(unittest.TestCase):
+
+    def assertDictEqual(self, a: dict, b: dict) -> bool:
+        """
+        Compare two dictionaries for equality recursively. Overrides
+        unittest.TestCase.assertDictEqual.
+
+        N.B. Order of dictionary keys does not matter.
+        """
+        if a.keys() != b.keys():
+            return False
+        for k in a.keys():
+            if isinstance(a[k], dict):
+                if not self.assertDictEqual(a[k], b[k]):
+                    return False
+            else:
+                if a[k] != b[k]:
+                    return False
+        return True
+
+    def test_assertDictEqual(self):
+        self.assertTrue(self.assertDictEqual({}, {}))
+        self.assertTrue(self.assertDictEqual({"a": [1,2,3]}, {"a": [1,2,3]}))
+        self.assertTrue(self.assertDictEqual({"a": 1, "b": 2}, {"b": 2, "a": 1}))
+        self.assertFalse(self.assertDictEqual({"a": [1,2,3]}, {"a": [1,2,4]}))
+        self.assertTrue(self.assertDictEqual({"a": {"b": [1,2,3]}}, {"a": {"b": [1,2,3]}}))
+        self.assertFalse(self.assertDictEqual({"a": {"b": [1,2,3]}}, {"a": {"b": [1,2,4]}}))
+
     def test_query_raster(self):
 
-        # override METADATA for test
-        query.METADATA = pd.DataFrame(
+        # override metadata (for brevity) for test
+        query.RASTER_METADATA_SCHEMA = ["key", "hazard"]
+        query.RASTER_METADATA = pd.DataFrame(
             {
                 "key": ["a", "b", "c", "d"],
                 "hazard": ["coastal", "coastal", "fluvial", "cyclone"],
-                "rp": [1, 2, 5, 10],
-                "rcp": ["2.6", "4.5", "4.5", "2.6"],
-                "epoch": [2050, 2050, 2050, 2100],
-                "confidence": [95.0, None, None, None],
-                "variable": ["depth", "depth", "depth", "speed"],
-                "unit": ["m", "m", "m", "m s-1"],
             }
         )
         datasets = [
@@ -34,28 +55,17 @@ class QueryRasterTestCase(unittest.TestCase):
             "key": ["a", "b", "c", "d"],
             "band_data": [0, 1, 2, 3],
             "hazard": ["coastal", "coastal", "fluvial", "cyclone"],
-            "rp": [1, 2, 5, 10],
-            "rcp": ["2.6", "4.5", "4.5", "2.6"],
-            "epoch": [2050, 2050, 2050, 2100],
-            "confidence": [95.0, np.nan, np.nan, np.nan],
-            "variable": ["depth", "depth", "depth", "speed"],
-            "unit": ["m", "m", "m", "m s-1"],
         }
-        self.assertEqual(sorted(actual), sorted(expected))
+        self.assertDictEqual(actual, expected)
+        self.assertDictEqual({"hi": [1,2,3]}, {"hi": [1,2,3]})
 
         actual = point_query(datasets, 0.1, 0.1)
         expected = {
             "key": ["a", "b", "c", "d"],
             "band_data": [12, 13, 14, 15],
             "hazard": ["coastal", "coastal", "fluvial", "cyclone"],
-            "rp": [1, 2, 5, 10],
-            "rcp": ["2.6", "4.5", "4.5", "2.6"],
-            "epoch": [2050, 2050, 2050, 2100],
-            "confidence": [95.0, np.nan, np.nan, np.nan],
-            "variable": ["depth", "depth", "depth", "speed"],
-            "unit": ["m", "m", "m", "m s-1"],
         }
-        self.assertEqual(sorted(actual), sorted(expected))
+        self.assertDictEqual(actual, expected)
 
 
 if __name__ == "__main__":

@@ -97,6 +97,7 @@ services:
       - 5080:80
     environment:
       - PIXEL_STACK_DATA_DIR=/data
+      - RASTER_METADATA_PATH=/data/hazard_layers.csv
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pixel-driller.rule=Host(`localhost`) && PathPrefix(`/pixel`)"
