@@ -20,6 +20,7 @@ import {
   allowedGroupLayersState,
 } from './interaction-state';
 import { RecoilStateFamily } from 'lib/recoil/types';
+import { PickingInfo } from 'deck.gl/typed';
 
 function processRasterTarget(info: any): RasterTarget {
   const { bitmap, sourceLayer } = info;
@@ -156,7 +157,7 @@ export function useInteractions(
     setHoverXY([x, y]);
   };
 
-  const onClick = (info: any, deck: DeckGL) => {
+  const onClick = (info: PickingInfo, deck: DeckGL) => {
     const { x, y } = info;
     const viewLayerLookup = (id: string) => viewLayers.find((x) => x.id === id);
 
