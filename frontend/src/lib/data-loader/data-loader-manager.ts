@@ -7,26 +7,33 @@ function getLoaderKey(layer: string, fieldSpec: FieldSpec) {
 }
 
 export class DataLoaderManager {
-  private loaders: { [key: string]: DataLoader } = {};
+  private loaders: Map<string, DataLoader> = new Map();
   private nextLoaderId = 0;
 
   public getDataLoader(layer: string, fieldSpec: FieldSpec) {
     const loaderKey = getLoaderKey(layer, fieldSpec);
-    if (this.loaders[loaderKey] == null) {
+    if (!this.loaders.has(loaderKey)) {
       console.log(`Initialising data loader for ${layer} ${stringify(fieldSpec)}`);
-      const loader = new DataLoader(this.nextLoaderId.toString(), layer, fieldSpec);
-      this.nextLoaderId += 1;
-      this.loaders[loaderKey] = loader;
+      return this.registerDataLoader(layer, fieldSpec);
     }
-    return this.loaders[loaderKey];
+    return this.loaders.get(loaderKey);
+  }
+
+  public registerDataLoader(layer: string, fieldSpec: FieldSpec) {
+    const loader = new DataLoader(this.nextLoaderId.toString(), layer, fieldSpec);
+    this.nextLoaderId += 1;
+    const loaderKey = getLoaderKey(layer, fieldSpec);
+    this.loaders.set(loaderKey, loader);
+    return loader;
   }
 
   public clearDataLoader(layer: string, fieldSpec: FieldSpec) {
     const loaderKey = getLoaderKey(layer, fieldSpec);
+    const loader = this.loaders.get(loaderKey);
 
-    if (this.loaders[loaderKey] != null) {
-      this.loaders[loaderKey].destroy();
-      delete this.loaders[loaderKey];
+    if (loader != null) {
+      loader.destroy();
+      this.loaders.delete(loaderKey);
     }
   }
 }

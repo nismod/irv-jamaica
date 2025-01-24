@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 
-import { ASSETS_SOURCE } from 'data-layers/assets/source';
+import { ASSETS_SOURCE } from 'lib/data-map/layers/assets/source';
 import { colorMap } from 'lib/color-map';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { VectorTarget } from 'lib/data-map/types';

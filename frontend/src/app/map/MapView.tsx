@@ -1,5 +1,5 @@
 import { Suspense, useCallback } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { DataMapTooltip } from 'lib/data-map/DataMapTooltip';
 import { MapBoundsFitter, mapFitBoundsState } from 'lib/map/MapBoundsFitter';
@@ -15,12 +15,13 @@ import { PlaceSearchResult } from 'lib/map/place-search/use-place-search';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { withProps } from 'lib/react/with-props';
 import { MapLegend } from 'lib/map/legend/MapLegend';
+import { TooltipContent } from 'lib/map/tooltip/TooltipContent';
 
 import { globalStyleVariables } from 'app/theme';
 import { useIsMobile } from 'app/use-is-mobile';
+import { layerHoverStates } from 'app/state/interactions/interaction-state';
 
 import { MapLayerSelection } from './layers/MapLayerSelection';
-import { TooltipContent } from './tooltip/TooltipContent';
 import { BaseMapContainer } from './BaseMap';
 import { DataMapContainer } from './DataMap';
 
@@ -95,6 +96,11 @@ const MapHudMobileLayout = () => {
   );
 };
 
+const DataMapTooltipContent = () => {
+  const layerStates = useRecoilValue(layerHoverStates);
+  return <TooltipContent layerStates={layerStates} />;
+};
+
 const MapViewContent = () => {
   const isMobile = useIsMobile();
 
@@ -103,7 +109,7 @@ const MapViewContent = () => {
       <DataMapContainer />
       <MapBoundsFitter />
       <DataMapTooltip>
-        <TooltipContent />
+        <DataMapTooltipContent />
       </DataMapTooltip>
       {isMobile ? <MapHudMobileLayout /> : <MapHudDesktopLayout />}
     </BaseMapContainer>

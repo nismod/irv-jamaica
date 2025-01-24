@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { interactionGroupsState } from 'app/state/layers/interaction-groups';
 import { viewLayerConfigs } from 'app/state/layers/view-layers';
@@ -15,7 +15,7 @@ export const DataMapContainer: FC = () => {
   const background = useRecoilValue(backgroundState);
   const showLabels = useRecoilValue(showLabelsState);
   const viewLayers = useRecoilValue(viewLayerConfigs);
-  const [viewLayersFlat, setViewLayersFlat] = useRecoilState(viewLayersFlatState);
+  const setViewLayersFlat = useSetRecoilState(viewLayersFlatState);
   const { firstLabelId } = useBasemapStyle(background, showLabels);
   const interactionGroups = useRecoilValue(interactionGroupsState);
 

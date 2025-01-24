@@ -1,25 +1,31 @@
 import { Typography } from '@mui/material';
-import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
-import { DataItem } from 'details/features/detail-components';
-import { VectorTarget } from 'lib/data-map/types';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
-import { singleViewLayerParamsState } from 'lib/state/layers/view-layers';
+
+import { DataItem } from '../detail-components';
+import { VectorTarget } from 'lib/data-map/types';
 import { DataDescription } from '../DataDescription';
 import { ColorBox } from './ColorBox';
 import { ViewLayer } from 'lib/data-map/view-layers';
+import { singleViewLayerParamsState } from 'lib/state/layers/view-layers';
 
-export const VectorHoverDescription: FC<{
+type VectorHoverDescriptionProps = {
   viewLayer: ViewLayer;
   feature: VectorTarget['feature'];
-}> = ({ viewLayer, feature }) => {
+  title: string;
+  color: string;
+};
+export const VectorHoverDescription: FC<VectorHoverDescriptionProps> = ({
+  title,
+  color = '#ccc',
+  viewLayer,
+  feature,
+}) => {
   const layerParams = useRecoilValue(singleViewLayerParamsState(viewLayer.id));
   const { styleParams } = layerParams;
   const { colorMap } = styleParams ?? {};
 
   const isDataMapped = colorMap != null;
-
-  const { label: title, color = '#ccc' } = NETWORKS_METADATA[viewLayer.params.assetId];
 
   return (
     <>

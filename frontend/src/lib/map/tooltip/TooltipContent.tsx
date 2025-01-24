@@ -1,9 +1,8 @@
 import { Box, Paper } from '@mui/material';
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
 
-import { layerHoverStates } from 'app/state/interactions/interaction-state';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
+import { InteractionLayer } from 'lib/data-map/types';
 
 const TooltipSection = ({ children }) => (
   <Box p={1} borderBottom="1px solid #ccc">
@@ -11,8 +10,14 @@ const TooltipSection = ({ children }) => (
   </Box>
 );
 
-export const TooltipContent: FC = () => {
-  const layerStates = useRecoilValue(layerHoverStates);
+type LayerHoverState = {
+  isHovered: boolean;
+  hoverTarget: InteractionLayer | InteractionLayer[];
+};
+
+export const TooltipContent: FC<{ layerStates: Map<string, LayerHoverState> }> = ({
+  layerStates,
+}) => {
   const layerStateEntries = [...layerStates.entries()];
 
   const doShow = [...layerStates.values()].some((layerState) => layerState.isHovered);

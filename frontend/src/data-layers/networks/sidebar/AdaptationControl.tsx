@@ -10,10 +10,10 @@ import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
 import { dataParamsByGroupState } from 'lib/state/data-params';
 
-import { InputRow } from 'app/sidebar/ui/InputRow';
-import { InputSection } from 'app/sidebar/ui/InputSection';
-import { LayerStylePanel } from 'app/sidebar/ui/LayerStylePanel';
-import { DataParam } from 'app/sidebar/ui/params/DataParam';
+import { InputRow } from 'lib/sidebar/ui/InputRow';
+import { InputSection } from 'lib/sidebar/ui/InputSection';
+import { LayerStylePanel } from 'lib/sidebar/ui/LayerStylePanel';
+import { DataParam } from 'lib/sidebar/ui/params/DataParam';
 
 import {
   adaptationCostBenefitRatioEaelDaysState,

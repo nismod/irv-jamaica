@@ -1,8 +1,12 @@
 import { FC } from 'react';
 
 import { VectorHoverDescription } from 'lib/data-map/types';
-import { VectorHoverDescription as VectorTooltip } from 'app/map/tooltip/content/VectorHoverDescription';
+import { VectorHoverDescription as VectorTooltip } from 'lib/map/tooltip/content/VectorHoverDescription';
+import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
 
 export const AssetHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
-  return <VectorTooltip viewLayer={viewLayer} feature={target.feature} />;
+  const { label: title, color = '#ccc' } = NETWORKS_METADATA[viewLayer.params.assetId];
+  return (
+    <VectorTooltip viewLayer={viewLayer} feature={target.feature} title={title} color={color} />
+  );
 };

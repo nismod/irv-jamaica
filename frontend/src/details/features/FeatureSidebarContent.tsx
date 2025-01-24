@@ -19,9 +19,9 @@ import {
   WastewaterNodeDetails,
   WaterPipelineDetails,
   WaterSupplyNodeDetails,
-} from './detail-components';
+} from 'lib/map/tooltip/detail-components';
 import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
-import { ColorBox } from 'app/map/tooltip/content/ColorBox';
+import { ColorBox } from 'lib/map/tooltip/content/ColorBox';
 import { DamagesSection } from './damages/DamagesSection';
 import { AdaptationSection } from './adaptation/AdaptationSection';
 import { Download } from '@mui/icons-material';

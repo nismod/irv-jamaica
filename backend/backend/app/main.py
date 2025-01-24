@@ -1,11 +1,7 @@
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
 
-from backend.db import models
-from backend.db.database import engine
-
 from .routers import attributes, features
-
 
 
 def custom_generate_unique_id(route: APIRoute):

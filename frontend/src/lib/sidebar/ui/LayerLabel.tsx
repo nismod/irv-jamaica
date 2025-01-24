@@ -2,7 +2,8 @@ import { VisibilityOff } from '@mui/icons-material';
 import { Box, Stack, Typography } from '@mui/material';
 import { ShapeLegend, LegendShapeType } from 'lib/map-shapes/ShapeLegend';
 import { useRecoilValue } from 'recoil';
-import { mapViewStateState } from 'app/state/map-view/map-view-state';
+
+import { mapViewStateState } from 'lib/state/map-view/map-view-state';
 
 export const LayerLabel = ({
   label,

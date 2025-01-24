@@ -18,16 +18,10 @@ Date: 9 August 2024
         vector/raster backends.
       - `view-layers.ts` - a list of the view layer IDs used by the map.
       - `views.ts` - default sidebar state (visible/hidden, expanded/collapsed etc.) for the individual map views.
-    - `map/` - UI, layout and behaviour of the main map view of the app. Contains
-      also the code for displaying basemap selection, legend for current layers,
-      tooltip for current hover.
+    - `map/` - UI, layout and behaviour of the main map view of the app. Sets up the base map and passes app data layer state to the data map.
     - `pages/` - contents and layouts of the main pages of the app.
     - `sidebar/` - the main layer selection sidebar.
-      - `ui/` - components shared by the sidebar contents.
       - `SidebarContent.tsx` - defining the overall contents of the sidebar.
-      - `SidebarPanel.tsx` - each section in the sidebar should be composed from `SidebarPanel`.
-      - `url-state.tsx` - Recoil state synchronising the state of the sidebar
-        sections to the URL.
     - `state/` - Recoil state for the app.
       - `damage-mapping/` - damage mapping from hazards to network assets.
       - `layers/` - state which creates the view layer instances based on app
@@ -37,7 +31,6 @@ Date: 9 August 2024
         - `view-layers.ts` - state combining all active view layers.
         - `view-layer-params.ts` - state setting up the dynamic view layer
           parameters.
-      - `map-view/` - map view state and syncing it to the URL.
       - `data-params.ts` - view layer data parameters. Updated from the sidebar and used to construct map tile URLs.
       - `sections.ts` - section state for individual sidebar sections.
       - `view.ts` - view state for individual map views.
