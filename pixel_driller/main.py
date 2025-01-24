@@ -20,12 +20,17 @@ def read_grid_metadata(target_path: Path) -> list[RasterStackMetadata]:
 
 logging.basicConfig(format="%(asctime)s %(filename)s %(message)s", level=logging.INFO)
 
+# per grid metadata
 DATA_PATH = os.getenv("PIXEL_STACK_DATA_DIR", "/data")
-DATASETS = read_grid_metadata(Path(DATA_PATH))
+GRID_METADATA = read_grid_metadata(Path(DATA_PATH))
+
+# per layer metadata
+LAYER_METADATA_PATH: str = os.getenv("LAYER_METADATA_PATH")
+LAYER_METADATA: pd.DataFrame = pd.read_csv(LAYER_METADATA_PATH)
 
 # ORJSON to permit NaN values in JSON response
 app = FastAPI(default_response_class=fastapi.responses.ORJSONResponse)
 
 @app.get("/{lon}/{lat}")
 async def get_values_at_point(lon: float, lat: float):
-    return point_query(DATASETS, lon, lat)
+    return point_query(GRID_METADATA, LAYER_METADATA, lon, lat)

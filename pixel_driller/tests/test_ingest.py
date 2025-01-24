@@ -27,7 +27,7 @@ class IngestTestCase(unittest.TestCase):
         # Check we can open the file and it has the expected dimensions
         ds = xr.open_zarr(out_file)
         expected_dims = {"key": 4, "y": 10, "x": 10}
-        self.assertEqual(ds.dims, expected_dims)
+        self.assertEqual(ds.sizes, expected_dims)
 
 
 if __name__ == "__main__":

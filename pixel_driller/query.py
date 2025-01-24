@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 import logging
-import os
 from pathlib import Path
 
 import pandas as pd
@@ -9,8 +8,7 @@ from pyproj.transformer import Transformer
 import xarray as xr
 
 
-# per layer metadata
-RASTER_METADATA_SCHEMA = [
+LAYER_METADATA_SCHEMA = [
     "key",
     "hazard",
     "rp",
@@ -20,9 +18,6 @@ RASTER_METADATA_SCHEMA = [
     "variable",
     "unit",
 ]
-RASTER_METADATA_PATH: str = os.getenv("RASTER_METADATA_PATH")
-RASTER_METADATA: pd.DataFrame = pd.read_csv(RASTER_METADATA_PATH)
-assert set(RASTER_METADATA_SCHEMA).issubset(set(RASTER_METADATA.columns))
 
 
 @dataclass
@@ -34,14 +29,20 @@ class RasterStackMetadata:
     crs: CRS
 
 
-def point_query(datasets: list[RasterStackMetadata], lon: float, lat: float) -> dict[str, list]:
+def point_query(
+    datasets: list[RasterStackMetadata],
+    layer_metadata: pd.DataFrame,
+    lon: float,
+    lat: float,
+) -> dict[str, list]:
     """
     Query a raster file with multiple bands to extract the values at a specific (x, y) coordinate.
 
     Parameters:
-        datasets (pandas.DataFrame): Metadata about the raster files.
-        x (float): longitude coordinate
-        y (float): latitude coordinate
+        datasets: Metadata about the grids shared by raster layers
+        layer_metadata: Metadata about the individual raster layers
+        x: longitude coordinate
+        y: latitude coordinate
 
     Returns:
         dict: A dictionary of column names to lists of values. `band_data`
@@ -59,18 +60,18 @@ def point_query(datasets: list[RasterStackMetadata], lon: float, lat: float) -> 
             continue
 
         dfs.append(
-            ds
-            .sel(x=tx, y=ty, method="nearest")
+            ds.sel(x=tx, y=ty, method="nearest")
             .drop_vars(["x", "y"])
             .to_dataframe()
             .reset_index()
         )
 
     if dfs:
-        data = pd.concat(dfs).merge(RASTER_METADATA, on="key").loc[
-            :,
-            RASTER_METADATA_SCHEMA + ["band_data"]
-        ]
+        data = (
+            pd.concat(dfs)
+            .merge(layer_metadata, on="key")
+            .loc[:, LAYER_METADATA_SCHEMA + ["band_data"]]
+        )
         return data.to_dict(orient="list")
     else:
         return {}

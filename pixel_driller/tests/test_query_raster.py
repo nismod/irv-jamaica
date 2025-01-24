@@ -9,6 +9,17 @@ from query import point_query, RasterStackMetadata
 
 class QueryRasterTestCase(unittest.TestCase):
 
+    def setUp(self):
+        # override metadata (for brevity) for test
+        query.LAYER_METADATA_SCHEMA = ["key", "hazard"]
+
+        self.layer_metadata = pd.DataFrame(
+            {
+                "key": ["a", "b", "c", "d"],
+                "hazard": ["coastal", "coastal", "fluvial", "cyclone"],
+            }
+        )
+
     def assertDictEqual(self, a: dict, b: dict) -> bool:
         """
         Compare two dictionaries for equality recursively. Overrides
@@ -37,29 +48,21 @@ class QueryRasterTestCase(unittest.TestCase):
 
     def test_query_raster(self):
 
-        # override metadata (for brevity) for test
-        query.RASTER_METADATA_SCHEMA = ["key", "hazard"]
-        query.RASTER_METADATA = pd.DataFrame(
-            {
-                "key": ["a", "b", "c", "d"],
-                "hazard": ["coastal", "coastal", "fluvial", "cyclone"],
-            }
-        )
         datasets = [
             RasterStackMetadata(
                 "test", Path(__file__).parent / "fixtures" / "test.zarr", "EPSG:4326"
             )
         ]
-        actual = point_query(datasets, 0.0, 0.0)
+        actual = point_query(datasets, self.layer_metadata, 0.0, 0.0)
         expected = {
             "key": ["a", "b", "c", "d"],
             "band_data": [0, 1, 2, 3],
             "hazard": ["coastal", "coastal", "fluvial", "cyclone"],
         }
         self.assertDictEqual(actual, expected)
-        self.assertDictEqual({"hi": [1,2,3]}, {"hi": [1,2,3]})
+        self.assertDictEqual({"hi": [1, 2, 3]}, {"hi": [1, 2, 3]})
 
-        actual = point_query(datasets, 0.1, 0.1)
+        actual = point_query(datasets, self.layer_metadata, 0.1, 0.1)
         expected = {
             "key": ["a", "b", "c", "d"],
             "band_data": [12, 13, 14, 15],
@@ -73,7 +76,7 @@ class QueryRasterTestCase(unittest.TestCase):
                 "test", Path(__file__).parent / "fixtures" / "test.zarr", "EPSG:4326"
             )
         ]
-        actual = point_query(datasets, -1.0, 0.0)
+        actual = point_query(datasets, self.layer_metadata, -1.0, 0.0)
         expected = {}
         self.assertDictEqual(actual, expected)
 
