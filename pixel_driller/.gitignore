@@ -1,0 +1,5 @@
+.venv/*
+dummy_data/*
+tests/fixtures/output/*
+tests/fixtures/test.zarr
+.idea/*

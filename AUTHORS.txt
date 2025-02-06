@@ -2,5 +2,8 @@ Authors
 
 - Tom Russell
 - Maciej Ziarkowski
+- Jim O'Donnell
+- Fred Thomas
+- Matt Jaquiery
 - Roald Schoenmakers
 - Raghav Pant

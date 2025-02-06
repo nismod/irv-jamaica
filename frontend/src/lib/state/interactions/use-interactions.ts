@@ -21,6 +21,7 @@ import {
 } from './interaction-state';
 import { RecoilStateFamily } from 'lib/recoil/types';
 import { PickingInfo } from 'deck.gl/typed';
+import { pixelSelectionState } from '../pixel-driller';
 
 function processRasterTarget(info: any): RasterTarget {
   const { bitmap, sourceLayer } = info;
@@ -118,6 +119,7 @@ export function useInteractions(
 
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
   const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);
+  const setPixelSelection = useSetRecoilState(pixelSelectionState);
 
   const [primaryGroup] = [...interactionGroups.keys()];
   const primaryGroupPickingRadius = interactionGroups.get(primaryGroup).pickingRadius;
@@ -176,6 +178,8 @@ export function useInteractions(
         setInteractionGroupSelection(groupName, selectionTarget);
       }
     }
+    const [lon, lat] = info.coordinate;
+    setPixelSelection({ lon, lat });
   };
 
   /**

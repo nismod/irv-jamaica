@@ -19,5 +19,12 @@
     "pathRewrite": {
       "^/api": "/"
     }
+  },
+  "/pixel": {
+    "target": "http://localhost",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/pixel": "/pixel"
+    }
   }
 }
