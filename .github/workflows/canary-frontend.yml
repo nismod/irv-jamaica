@@ -23,7 +23,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build and push frontend Docker image
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:frontend"
@@ -33,5 +33,18 @@ jobs:
           tags: |
             ghcr.io/nismod/jsrat-frontend:${{ github.ref_name }}
             ghcr.io/nismod/jsrat-frontend:canary
+          secrets: |
+            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push pixel_driller Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: "{{defaultContext}}:pixel_driller"
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          tags: |
+            ghcr.io/nismod/jsrat-pixel_driller:${{ github.ref_name }}
+            ghcr.io/nismod/jsrat-pixel_driller:canary
           secrets: |
             GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
