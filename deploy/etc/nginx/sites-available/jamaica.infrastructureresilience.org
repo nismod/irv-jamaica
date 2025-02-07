@@ -25,6 +25,10 @@ upstream raster_tileserver {
         server 127.0.0.1:3003;
 }
 
+upstream pixel_driller {
+        server 127.0.0.1:3004
+}
+
 # Set up rate limit
 limit_req_zone $binary_remote_addr zone=slow:10m rate=50r/s;
 
@@ -140,6 +144,25 @@ server {
 		proxy_set_header X-Forwarded-Proto $scheme;
 		proxy_redirect off;
 		proxy_buffering off;
+
+		# allow CORS with auth
+		add_header Access-Control-Allow-Origin "$http_origin" always;
+		add_header 'Access-Control-Allow-Credentials' 'true' always;
+		add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+		add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+	}
+
+	location /pixel {
+		# basic authentication - use htpasswd to add users
+		auth_basic "Access restricted";
+		auth_basic_user_file /etc/nginx/.htpasswd;
+
+		proxy_pass http://pixel_driller;
+		rewrite ^/pixel/(.+) /$1 break;
+		proxy_set_header Host $host/pixel;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
 
 		# allow CORS with auth
 		add_header Access-Control-Allow-Origin "$http_origin" always;
