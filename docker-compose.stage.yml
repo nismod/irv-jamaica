@@ -52,11 +52,15 @@ services:
       - TC_RESAMPLING_METHOD=nearest
       - TC_REPROJECTION_METHOD=nearest
       - TC_PNG_COMPRESS_LEVEL=1
+
   pixel-driller:
-    image: ghcr.io/nismod/jsrat-pixel_driller:canary
+    image: ghcr.io/nismod/jsrat-pixel-driller:canary
     platform: linux/amd64
     build: ./pixel_driller
     ports:
       - "3004:80"
     volumes:
       - ./tileserver/stacks:/data
+    environment:
+      - PIXEL_STACK_DATA_DIR=/data
+      - LAYER_METADATA_PATH=/data/hazard_layers.csv
