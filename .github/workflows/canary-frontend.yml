@@ -36,7 +36,7 @@ jobs:
           secrets: |
             GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push pixel_driller Docker image
+      - name: Build and push pixel-driller Docker image
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:pixel_driller"
@@ -44,7 +44,7 @@ jobs:
           cache-to: type=gha,mode=max
           push: true
           tags: |
-            ghcr.io/nismod/jsrat-pixel_driller:${{ github.ref_name }}
-            ghcr.io/nismod/jsrat-pixel_driller:canary
+            ghcr.io/nismod/jsrat-pixel-driller:${{ github.ref_name }}
+            ghcr.io/nismod/jsrat-pixel-driller:canary
           secrets: |
             GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
