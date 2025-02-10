@@ -1,7 +1,7 @@
 # Staging environment - as production except for domain
 services:
   frontend:
-    image: ghcr.io/nismod/jsrat-frontend:0.4.21
+    image: ghcr.io/nismod/jsrat-frontend:canary
     platform: linux/amd64
     build: ./frontend
     ports:
@@ -52,3 +52,15 @@ services:
       - TC_RESAMPLING_METHOD=nearest
       - TC_REPROJECTION_METHOD=nearest
       - TC_PNG_COMPRESS_LEVEL=1
+
+  pixel-driller:
+    image: ghcr.io/nismod/jsrat-pixel-driller:canary
+    platform: linux/amd64
+    build: ./pixel_driller
+    ports:
+      - "3004:80"
+    volumes:
+      - ./tileserver/stacks:/data
+    environment:
+      - PIXEL_STACK_DATA_DIR=/data
+      - LAYER_METADATA_PATH=/data/hazard_layers.csv
