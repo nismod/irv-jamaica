@@ -3,6 +3,7 @@
 /* eslint-disable */
 import type { FeatureOut } from '../models/FeatureOut';
 import type { Page_FeatureListItemOut_float__ } from '../models/Page_FeatureListItemOut_float__';
+import type { ProtectedFeatureListItem } from '../models/ProtectedFeatureListItem';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -77,6 +78,38 @@ export class FeaturesService {
                 'asset_type': assetType,
                 'page': page,
                 'size': size,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Read Protected Features
+     * Get all adaptation options, by feature ID and layer, for features
+     * protected by a given protector feature.
+     * @returns ProtectedFeatureListItem Successful Response
+     * @throws ApiError
+     */
+    public featuresReadProtectedFeatures({
+        protectorId,
+        rcp,
+        protectionLevel,
+    }: {
+        protectorId: number,
+        rcp: string,
+        protectionLevel: number,
+    }): CancelablePromise<Array<ProtectedFeatureListItem>> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/features/{protector_id}/protected-by',
+            path: {
+                'protector_id': protectorId,
+            },
+            query: {
+                'rcp': rcp,
+                'protection_level': protectionLevel,
             },
             errors: {
                 422: `Validation Error`,
