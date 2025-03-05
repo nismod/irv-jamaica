@@ -13,6 +13,7 @@ configfile: "config.yml"
 
 # Read further configuration data from CSV
 hazard_layers = pandas.read_csv(config["hazard_layers"])
+hotspot_layers = pandas.read_csv(config["hotspot_layers"])
 network_layers = pandas.read_csv(config["network_layers"])
 storm_layers = pandas.read_csv(config["storm_layers"])
 network_tilelayers = pandas.read_csv(config["network_tilelayers"])
@@ -33,6 +34,7 @@ rule all:
         ),
         expand("../tileserver/raster/data/{layer}.tif", layer=hazard_layers.key),
         expand('../tileserver/raster/data/{layer}.tif', layer=storm_layers.key),
+        expand("../tileserver/raster/data/{layer}.tif", layer=hotspot_layers.key),
 
 
 # Prerequisite, not fully traced by file dependency
@@ -323,10 +325,13 @@ def get_hazard_layer(layer_name, hazard_layers):
     try:
         hazard_layer = hazard_layers[hazard_layers.key == layer_name]
         storm_layer = storm_layers[storm_layers.key == layer_name]
+        hotspot_layer = hotspot_layers[hotspot_layers.key == layer_name]
         if not hazard_layer.empty:
             return hazard_layer.iloc[0]
         elif not storm_layer.empty:
             return storm_layer.iloc[0]
+        elif not hotspot_layer.empty:
+            return hotspot_layer.iloc[0]
         else:
             raise IndexError
     except IndexError as e:
