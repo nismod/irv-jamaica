@@ -7,10 +7,39 @@ import { EpochControl } from 'lib/sidebar/ui/params/EpochControl';
 import { RCPControl } from 'lib/sidebar/ui/params/RCPControl';
 import { useRecoilValue } from 'recoil';
 import { showDamagesState } from 'app/state/damage-mapping/damage-map';
-import { Alert, Box } from '@mui/material';
+import { Alert, Box, FormControl, FormLabel } from '@mui/material';
 
 import { hazardSelectionState } from '../state/data-selection';
 import { HAZARDS_UI_ORDER, HAZARDS_METADATA } from '../metadata';
+import { CustomNumberSlider } from 'lib/controls/CustomSlider';
+import { DataParam } from 'lib/sidebar/ui/params/DataParam';
+
+/* Lower bound of NOAA storm categories, in m/s.
+  https://www.nhc.noaa.gov/aboutsshws.php
+*/
+const STORM_CATEGORIES = {
+  1: 33,
+  2: 43,
+  3: 50,
+  4: 58,
+  5: 70,
+};
+
+function SpeedSlider({ value, onChange, options }) {
+  const [category] = Object.entries(STORM_CATEGORIES).findLast(([, speed]) => value >= speed) || [];
+  const categoryLabel = category ? `Category ${category}` : '';
+  return (
+    <CustomNumberSlider
+      marks={options}
+      value={value}
+      onChange={onChange}
+      scale={(x) => options[x]}
+      showMarkLabelsFor={[20, 30, 40, 50, 60, 70]}
+      valueLabelDisplay="auto"
+      valueLabelFormat={(v) => `${v} ${categoryLabel}`}
+    />
+  );
+}
 
 function HazardToggleSection({ hazard, disabled }) {
   const otherProps =
@@ -23,12 +52,23 @@ function HazardToggleSection({ hazard, disabled }) {
   return (
     <ToggleSection id={hazard} label={HAZARDS_METADATA[hazard].label} disabled={disabled}>
       <InputSection>
-        <ReturnPeriodControl
-          group={hazard}
-          param="returnPeriod"
-          disabled={disabled}
-          {...otherProps}
-        />
+        {hazard === 'storm' ? (
+          <FormControl fullWidth>
+            <FormLabel id="storm-speed">Storm speed (m/s)</FormLabel>
+            <DataParam group={hazard} id="speed">
+              {({ value, onChange, options }) => (
+                <SpeedSlider value={value} onChange={onChange} options={options} />
+              )}
+            </DataParam>
+          </FormControl>
+        ) : (
+          <ReturnPeriodControl
+            group={hazard}
+            param="returnPeriod"
+            disabled={disabled}
+            {...otherProps}
+          />
+        )}
       </InputSection>
       <InputSection>
         <InputRow>
