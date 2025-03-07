@@ -1,4 +1,4 @@
-import type { MapboxOverlay } from '@deck.gl/mapbox/typed';
+import type { MapboxOverlay } from '@deck.gl/mapbox';
 import { useMap } from 'react-map-gl/maplibre';
 import { FC, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -10,7 +10,7 @@ import { useSaveViewLayers, viewLayersFlatState } from 'lib/state/layers/view-la
 import { viewLayersParamsState } from 'lib/state/layers/view-layers-params';
 import { DeckGLOverlay } from 'lib/map/DeckGLOverlay';
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
-import { LayersList } from 'deck.gl/typed';
+import { LayersList } from 'deck.gl';
 
 // set a convention where the view layer id is either the first part of the deck id before the @ sign, or it's the whole id
 function lookupViewForDeck(deckLayerId: string) {

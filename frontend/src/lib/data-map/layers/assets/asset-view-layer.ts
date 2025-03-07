@@ -9,6 +9,7 @@ import {
 import { VectorTarget } from 'lib/data-map/types';
 import { selectableMvtLayer } from 'lib/deck/layers/selectable-mvt-layer';
 import { VectorLegend } from 'lib/map/legend/VectorLegend';
+import { getFeatureId } from 'lib/deck/utils/get-feature-id';
 
 import { ASSETS_SOURCE } from './source';
 
@@ -38,7 +39,7 @@ export function assetViewLayer(
     fn({ deckProps, zoom, selection }: ViewLayerFunctionOptions) {
       const styleParams = this?.styleParams;
       const target = selection?.target as VectorTarget;
-      const selectedFeatureIds = [target?.feature.id];
+      const selectedFeatureIds = [getFeatureId(target?.feature)];
       return selectableMvtLayer(
         {
           selectionOptions: {

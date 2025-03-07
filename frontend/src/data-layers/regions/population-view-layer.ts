@@ -13,6 +13,7 @@ import { VectorLegend } from 'lib/map/legend/VectorLegend';
 import { RegionLevel } from './metadata';
 import { REGIONS_SOURCE } from './source';
 import { RegionHoverDescription } from './RegionHoverDescription';
+import { getFeatureId } from 'lib/deck/utils/get-feature-id';
 
 export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
   const source = REGIONS_SOURCE;
@@ -43,7 +44,7 @@ export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
     }),
     fn: ({ deckProps, zoom, selection }) => {
       const target = selection?.target as VectorTarget;
-      const selectedFeatureIds = [target?.feature.id];
+      const selectedFeatureIds = [getFeatureId(target?.feature)];
       return selectableMvtLayer(
         { selectionOptions: { selectedFeatureIds } },
         deckProps,

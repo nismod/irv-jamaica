@@ -1,6 +1,7 @@
 import { DataFilterExtension } from '@deck.gl/extensions';
 
 import { geoJsonLayer } from './base';
+import { getFeatureId } from '../utils/get-feature-id';
 
 export interface TileSelectionLayerOptions {
   selectedFeatureIds: number[] | null;
@@ -39,7 +40,7 @@ export function tileSelectionLayer(
     },
 
     // use on-GPU filter extension to only show the selected features
-    getFilterValue: (x) => (selectedFeatureIds?.includes(x.id) ? 1 : 0),
+    getFilterValue: (x) => (selectedFeatureIds?.includes(getFeatureId(x)) ? 1 : 0),
     filterRange: [1, 1],
     extensions: [new DataFilterExtension({ filterSize: 1 })],
   });

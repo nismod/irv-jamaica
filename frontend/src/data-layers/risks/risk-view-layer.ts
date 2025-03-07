@@ -1,5 +1,4 @@
 import { createElement } from 'react';
-import GL from '@luma.gl/constants';
 import { RiskParams } from './domains';
 
 import { rasterTileLayer } from 'lib/deck/layers/raster-tile-layer';
@@ -58,7 +57,7 @@ export function riskViewLayer(riskType: string, riskParams: RiskParams): ViewLay
       return rasterTileLayer(
         {
           textureParameters: {
-            [GL.TEXTURE_MAG_FILTER]: GL.LINEAR,
+            magFilter: 'linear',
           },
           opacity: riskType === 'cyclone' ? 0.6 : 1,
         },
