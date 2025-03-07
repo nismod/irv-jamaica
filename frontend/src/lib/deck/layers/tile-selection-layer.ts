@@ -39,7 +39,7 @@ export function tileSelectionLayer(
     },
 
     // use on-GPU filter extension to only show the selected features
-    getFilterValue: (x) => (selectedFeatureIds?.includes(x.id) ? 1 : 0),
+    getFilterValue: (x) => (selectedFeatureIds?.includes(x.properties.id) ? 1 : 0),
     filterRange: [1, 1],
     extensions: [new DataFilterExtension({ filterSize: 1 })],
   });

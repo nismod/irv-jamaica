@@ -54,10 +54,10 @@ export function getAssetDataAccessor(layer: string, fieldSpec: FieldSpec) {
   } else if (fieldGroup === 'damages_return_period') {
     // return return period damages dynamically loaded from API
     const dataLoader = dataLoaderManager.getDataLoader(layer, fieldSpec);
-    return withLoaderTriggers((f) => dataLoader.getData(f.id), dataLoader);
+    return withLoaderTriggers((f) => dataLoader.getData(f.properties.id), dataLoader);
   } else if (fieldGroup === 'adaptation') {
     const dataLoader = dataLoaderManager.getDataLoader(layer, fieldSpec);
-    return withLoaderTriggers((f) => dataLoader.getData(f.id), dataLoader);
+    return withLoaderTriggers((f) => dataLoader.getData(f.properties.id), dataLoader);
   } else {
     // field other than damages - use field name as key
     return featureProperty(field);

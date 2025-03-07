@@ -107,7 +107,8 @@ interface FeatureSidebarContentProps {
 
 const FeatureDetails = ({ assetType, feature, showRiskSection }) => {
   const DetailsComponent = componentMapping[assetType] ?? DefaultDetails;
-  const featureDetails = useRecoilValue(selectedAssetDetails(feature.id));
+  const featureId = feature.id || feature.properties.id;
+  const featureDetails = useRecoilValue(selectedAssetDetails(featureId));
   const f = feature.properties;
   return (
     <>
@@ -130,7 +131,11 @@ const FeatureDetails = ({ assetType, feature, showRiskSection }) => {
             }}
             title="Download CSV with feature metadata"
             onClick={() =>
-              downloadFile(makeDetailsCsv(featureDetails), 'text/csv', `feature_${feature.id}.csv`)
+              downloadFile(
+                makeDetailsCsv(featureDetails),
+                'text/csv',
+                `feature_${feature.properties.id}.csv`,
+              )
             }
           >
             <Download />

@@ -47,7 +47,11 @@ const selectionChangeEffect =
     onSet((newSelection) => {
       // regions and solutions aren't supported yet.
       if (id === 'assets') {
-        writeToUrl(param, newSelection?.target?.feature?.id, newSelection?.viewLayer?.id);
+        writeToUrl(
+          param,
+          newSelection?.target?.feature?.properties.id,
+          newSelection?.viewLayer?.id,
+        );
       }
     });
 
@@ -58,7 +62,13 @@ const selectionChangeEffect =
           interactionGroup: id,
           interactionStyle: 'vector', // raster selection is not supported at present.
           viewLayer: { id: viewLayerId },
-          target: { feature: { id: parseInt(featureId) } },
+          target: {
+            feature: {
+              properties: {
+                id: parseInt(featureId),
+              },
+            },
+          },
         });
       } else {
         setSelf(null);

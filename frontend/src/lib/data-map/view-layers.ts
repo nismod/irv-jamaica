@@ -2,7 +2,7 @@ import { ScaleSequential } from 'd3-scale';
 import { DataLoader } from 'lib/data-loader/data-loader';
 import { Accessor } from 'lib/deck/props/getters';
 import { InteractionTarget, VectorTarget, RasterTarget } from './types';
-import { Layer } from 'deck.gl/typed';
+import { Layer } from 'deck.gl';
 
 export interface FieldSpec {
   fieldGroup: string;

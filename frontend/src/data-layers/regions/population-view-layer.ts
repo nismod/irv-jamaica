@@ -43,7 +43,7 @@ export function populationViewLayer(regionLevel: RegionLevel): ViewLayer {
     }),
     fn: ({ deckProps, zoom, selection }) => {
       const target = selection?.target as VectorTarget;
-      const selectedFeatureIds = [target?.feature.id];
+      const selectedFeatureIds = [target?.feature.properties.id];
       return selectableMvtLayer(
         { selectionOptions: { selectedFeatureIds } },
         deckProps,

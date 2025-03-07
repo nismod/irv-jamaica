@@ -31,7 +31,7 @@ export function droughtRiskViewLayer({ fieldSpec, colorSpec }): ViewLayer {
 
     fn: ({ deckProps, selection }) => {
       const target = selection?.target as VectorTarget;
-      const selectedFeatureIds = [target?.feature.id];
+      const selectedFeatureIds = [target?.feature.properties.id];
       return selectableMvtLayer(
         {
           selectionOptions: {

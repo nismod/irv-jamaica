@@ -46,7 +46,6 @@ const AppNavigationControl = withProps(MapHudNavigationControl, {
 const AppScaleControl = withProps(MapHudScaleControl, {
   maxWidth: 100,
   unit: 'metric',
-  capturePointerMove: true,
 });
 
 const AppAttributionControl = withProps(MapHudAttributionControl, {

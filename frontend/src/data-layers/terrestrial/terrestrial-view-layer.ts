@@ -75,7 +75,7 @@ export function terrestrialViewLayer({
     fn: ({ deckProps, zoom, selection }) => {
       const switchoverZoom = 14.5;
       const target = selection?.target as VectorTarget;
-      const selectedFeatureIds = [target?.feature.id];
+      const selectedFeatureIds = [target?.feature.properties.id];
 
       return [
         selectableMvtLayer(

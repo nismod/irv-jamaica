@@ -1,4 +1,4 @@
-import { GeoJsonLayerProps } from 'deck.gl/typed';
+import { GeoJsonLayerProps } from 'deck.gl';
 
 import { Getter } from './getters';
 
