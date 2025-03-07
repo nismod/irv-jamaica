@@ -14,6 +14,7 @@ configfile: "config.yml"
 # Read further configuration data from CSV
 hazard_layers = pandas.read_csv(config["hazard_layers"])
 network_layers = pandas.read_csv(config["network_layers"])
+storm_layers = pandas.read_csv(config["storm_layers"])
 network_tilelayers = pandas.read_csv(config["network_tilelayers"])
 damage_rp_files = pandas.read_csv(config["damage_rp_files"])
 damage_exp_files = pandas.read_csv(config["damage_exp_files"])
@@ -31,6 +32,7 @@ rule all:
             "../tileserver/vector/data/{layer}.mbtiles", layer=network_tilelayers.layer
         ),
         expand("../tileserver/raster/data/{layer}.tif", layer=hazard_layers.key),
+        expand('../tileserver/raster/data/{layer}.tif', layer=storm_layers.key),
 
 
 # Prerequisite, not fully traced by file dependency
@@ -312,12 +314,21 @@ rule raster_temp_file:
         "raster/link/{layer}.tif",
     run:
         layer = get_hazard_layer(wildcards.layer, hazard_layers)
-        os.symlink(os.path.join(config["analysis_data_dir"], "processed_data", layer.path), str(output))
+        original = os.path.join(config["analysis_data_dir"], "processed_data", layer.path)
+        print (f"Creating symlink from {original} to {output}")
+        os.symlink(os.path.abspath(original), str(output))
 
 
 def get_hazard_layer(layer_name, hazard_layers):
     try:
-        return hazard_layers[hazard_layers.key == layer_name].iloc[0]
+        hazard_layer = hazard_layers[hazard_layers.key == layer_name]
+        storm_layer = storm_layers[storm_layers.key == layer_name]
+        if not hazard_layer.empty:
+            return hazard_layer.iloc[0]
+        elif not storm_layer.empty:
+            return storm_layer.iloc[0]
+        else:
+            raise IndexError
     except IndexError as e:
         print(f"Could not find {layer_name} in hazard layers.")
         raise e

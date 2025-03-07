@@ -17,3 +17,8 @@ export const cyclone = {
   scheme: 'reds',
   range: [0, 75],
 };
+
+export const storm = {
+  scheme: 'coolwarm',
+  range: [0, 250],
+};
