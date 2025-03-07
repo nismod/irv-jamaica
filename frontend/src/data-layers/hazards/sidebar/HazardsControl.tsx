@@ -7,11 +7,10 @@ import { EpochControl } from 'lib/sidebar/ui/params/EpochControl';
 import { RCPControl } from 'lib/sidebar/ui/params/RCPControl';
 import { useRecoilValue } from 'recoil';
 import { showDamagesState } from 'app/state/damage-mapping/damage-map';
-import { Alert, Box, FormControl, FormLabel } from '@mui/material';
+import { Alert, Box, FormControl, FormLabel, Slider } from '@mui/material';
 
 import { hazardSelectionState } from '../state/data-selection';
 import { HAZARDS_UI_ORDER, HAZARDS_METADATA } from '../metadata';
-import { CustomNumberSlider } from 'lib/controls/CustomSlider';
 import { DataParam } from 'lib/sidebar/ui/params/DataParam';
 
 /* Lower bound of NOAA storm categories, in m/s.
@@ -26,17 +25,38 @@ const STORM_CATEGORIES = {
 };
 
 function SpeedSlider({ value, onChange, options }) {
-  const [category] = Object.entries(STORM_CATEGORIES).findLast(([, speed]) => value >= speed) || [];
-  const categoryLabel = category ? `Category ${category}` : '';
+  const sliderValue = options.findIndex((speed) => speed === value);
+  const markCategories = options.map((option) => {
+    const [category] =
+      Object.entries(STORM_CATEGORIES).findLast(([, speed]) => option >= speed) || [];
+    return category;
+  });
+  const marks = options.map((speed, idx) => {
+    const category = markCategories[idx];
+    const label =
+      category === undefined
+        ? ''
+        : markCategories.findIndex((c) => c === category) === idx
+          ? category
+          : '';
+    return { value: idx, label };
+  });
+
+  function handleChange(e) {
+    onChange(options[e.target?.value]);
+  }
+
   return (
-    <CustomNumberSlider
-      marks={options}
-      value={value}
-      onChange={onChange}
+    <Slider
+      min={0}
+      max={options.length - 1}
+      step={1}
+      marks={marks}
+      value={sliderValue}
+      onChange={handleChange}
       scale={(x) => options[x]}
-      showMarkLabelsFor={[20, 30, 40, 50, 60, 70]}
       valueLabelDisplay="auto"
-      valueLabelFormat={(v) => `${v} ${categoryLabel}`}
+      valueLabelFormat={(v) => `${v} m/s`}
     />
   );
 }
