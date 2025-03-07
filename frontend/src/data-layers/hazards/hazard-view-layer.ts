@@ -1,5 +1,4 @@
 import { createElement } from 'react';
-import GL from '@luma.gl/constants';
 import { HazardParams } from './domains';
 
 import { rasterTileLayer } from 'lib/deck/layers/raster-tile-layer';
@@ -34,7 +33,7 @@ export function getHazardId<
 }
 
 export function hazardViewLayer(hazardType: string, hazardParams: HazardParams): ViewLayer {
-  const magFilter = hazardType === 'cyclone' ? GL.NEAREST : GL.LINEAR;
+  const magFilter = hazardType === 'cyclone' ? 'nearest' : 'linear';
 
   const { returnPeriod, rcp, epoch, confidence } = hazardParams;
 
@@ -52,8 +51,7 @@ export function hazardViewLayer(hazardType: string, hazardParams: HazardParams):
       return rasterTileLayer(
         {
           textureParameters: {
-            [GL.TEXTURE_MAG_FILTER]: magFilter,
-            // [GL.TEXTURE_MAG_FILTER]: zoom < 12 ? GL.NEAREST : GL.NEAREST_MIPMAP_LINEAR,
+            magFilter,
           },
           opacity: hazardType === 'cyclone' ? 0.6 : 1,
         },

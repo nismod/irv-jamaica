@@ -13,7 +13,9 @@ export function dataLoaderLayer(tileProps, { dataLoader }: DataLoaderOptions) {
     tile: { content },
   } = tileProps;
   if (content && dataLoader) {
-    const ids: number[] = !dataLoader.hasData ? content.map((f: MapGeoJSONFeature) => f.id) : [];
+    const ids: number[] = !dataLoader.hasData
+      ? content.map((f: MapGeoJSONFeature) => f.properties.id)
+      : [];
 
     dataLoader.loadDataForIds(ids);
   }

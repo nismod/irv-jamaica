@@ -8,7 +8,7 @@ import { selectionState } from 'lib/state/interactions/interaction-state';
 import mockFeature from 'mocks/details/features/mockFeature.json';
 import mockFeatureDetails from 'mocks/details/features/mockFeatureDetails.json';
 import { FeatureSidebar } from './FeatureSidebar';
-import { Layer } from 'deck.gl/typed';
+import { Layer } from 'deck.gl';
 
 function FixedWidthDecorator(Story) {
   return (
