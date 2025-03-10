@@ -1,3 +1,4 @@
+import { GeoJSONFeature } from 'maplibre-gl';
 import { ViewLayer } from './view-layers';
 
 export type InteractionStyle = 'vector' | 'raster';
@@ -29,7 +30,7 @@ export interface RasterTarget {
 }
 
 export interface VectorTarget {
-  feature: any;
+  feature: GeoJSONFeature;
 }
 
 export type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;

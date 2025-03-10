@@ -6,12 +6,13 @@ import {
   iconSize,
   lineStyle,
   pointRadius,
+  fillColor,
+  strokeColor,
 } from 'lib/deck/props/style';
 
 import { COLORS } from './colors';
 import { infrastructureViewLayer } from './infrastructure-view-layer';
 import { StyleParams, ViewLayer } from 'lib/data-map/view-layers';
-import { fillColor, strokeColor } from 'lib/deck/props/style';
 import { dataColorMap } from 'lib/deck/props/color-map';
 import { getAssetDataAccessor } from 'lib/data-map/layers/assets/data-access';
 import { colorMap } from 'lib/color-map';

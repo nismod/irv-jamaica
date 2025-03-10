@@ -14,14 +14,14 @@ import { damageMapStyleParamsState } from 'app/state/damage-mapping/damage-style
 
 import adaptationSectorLayers from '../adaptation-sector-layers.json';
 import * as networkColorMaps from '../color-maps';
-import { networksStyleState } from './data-selection';
-import { AdaptationOptionParams } from '../domains';
-import { networkViewLayer } from '../network-view-layer';
 import {
+  networksStyleState,
   networkSelectionState,
   networkTreeCheckboxState,
   networkTreeConfig,
 } from './data-selection';
+import { AdaptationOptionParams } from '../domains';
+import { networkViewLayer } from '../network-view-layer';
 
 export const networksLayerState = selector<ViewLayer[]>({
   key: 'networkLayersState',

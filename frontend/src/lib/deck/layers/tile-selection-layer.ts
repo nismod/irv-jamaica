@@ -4,7 +4,7 @@ import { geoJsonLayer } from './base';
 import { getFeatureId } from '../utils/get-feature-id';
 
 export interface TileSelectionLayerOptions {
-  selectedFeatureIds: number[] | null;
+  selectedFeatureIds: (string | number)[] | null;
   selectionFillColor?: [number, number, number, number];
   selectionLineColor?: [number, number, number, number];
   polygonOffset?: number;

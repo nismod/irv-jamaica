@@ -3,8 +3,7 @@ import { selector } from 'recoil';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { dataParamsByGroupState } from 'lib/state/data-params';
 
-import { sectionVisibilityState } from 'lib/state/sections';
-import { sectionStyleValueState } from 'lib/state/sections';
+import { sectionVisibilityState, sectionStyleValueState } from 'lib/state/sections';
 
 import { RiskParams } from '../domains';
 import { riskViewLayer } from '../risk-view-layer';

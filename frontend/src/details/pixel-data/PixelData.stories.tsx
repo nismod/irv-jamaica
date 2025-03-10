@@ -40,7 +40,7 @@ export const Default: Story = {
     expect(await canvas.findByText('Surface flooding: depth (m)')).toBeTruthy();
     const grids = await canvas.findAllByRole('grid');
     expect(grids).toHaveLength(6);
-    grids.forEach((grid, i) => {
+    grids.forEach((grid) => {
       const rowGroup = within(grid).getByRole('rowgroup');
       expect(rowGroup).toBeTruthy();
       const rows = within(rowGroup).getAllByRole('row');
