@@ -10,7 +10,7 @@ import { useSaveViewLayers, viewLayersFlatState } from 'lib/state/layers/view-la
 import { viewLayersParamsState } from 'lib/state/layers/view-layers-params';
 import { DeckGLOverlay } from 'lib/map/DeckGLOverlay';
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
-import { LayersList } from 'deck.gl';
+import { LayersList, PickingInfo } from 'deck.gl';
 
 // set a convention where the view layer id is either the first part of the deck id before the @ sign, or it's the whole id
 function lookupViewForDeck(deckLayerId: string) {
@@ -83,13 +83,17 @@ export const DataMap: FC<{
   );
 
   const layers = buildLayers(viewLayers, viewLayersParams, zoom, firstLabelId);
-  const onClickFeature = (info: any) => {
-    deckRef.current && onClick?.(info, deckRef.current);
-    saveViewLayers(viewLayers);
+  const onClickFeature = (info: PickingInfo) => {
+    if (deckRef.current) {
+      onClick?.(info, deckRef.current);
+      saveViewLayers(viewLayers);
+    }
   };
-  const onHoverFeature = (info: any) => {
-    deckRef.current && onHover?.(info, deckRef.current);
-    saveViewLayers(viewLayers);
+  const onHoverFeature = (info: PickingInfo) => {
+    if (deckRef.current) {
+      onHover?.(info, deckRef.current);
+      saveViewLayers(viewLayers);
+    }
   };
 
   return (

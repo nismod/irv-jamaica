@@ -12,15 +12,15 @@ export default [
   reactJSXRuntime,
   ...typescript.configs.recommended,
   prettier,
+  reactHooks.configs['recommended-latest'],
+  importPlugin.flatConfigs.recommended,
   {
-    plugins: {
-      // plugins that haven't upgraded to ESLint 9 can be loaded here.
-      'import': importPlugin,
-      'react-hooks': reactHooks,
+    linterOptions: {
+      reportUnusedDisableDirectives: 'off',
     },
     settings: {
       react: {
-        version: "detect"
+        version: 'detect',
       },
       'import/resolver': {
         typescript: {
@@ -55,6 +55,6 @@ export default [
           ],
         },
       ],
-    }
-  }
-]
+    },
+  },
+];

@@ -3,10 +3,11 @@ import { colorMap } from 'lib/color-map';
 import { ColorMap, ViewLayer } from 'lib/data-map/view-layers';
 import { FC, useMemo } from 'react';
 import { ColorBox } from './content/ColorBox';
+import { GeoJSONFeature } from 'maplibre-gl';
 
 export const DataDescription: FC<{
   viewLayer: ViewLayer;
-  feature: any;
+  feature: GeoJSONFeature;
   colorMap: ColorMap;
 }> = ({ viewLayer, feature, colorMap: { fieldSpec: colorField, colorSpec } }) => {
   const accessor = useMemo(() => viewLayer.dataAccessFn?.(colorField), [viewLayer, colorField]);

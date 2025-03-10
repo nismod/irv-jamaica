@@ -12,9 +12,7 @@ import { useIsMobile } from 'app/use-is-mobile';
 import { MapPageMobileLayout } from './layouts/mobile/MapPageMobileLayout';
 import { useParams } from 'react-router-dom';
 
-interface MapPageProps {}
-
-export const MapPage: FC<MapPageProps> = () => {
+export const MapPage: FC = () => {
   const { view } = useParams();
   useSyncRecoilState(viewState, view);
 

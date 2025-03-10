@@ -100,7 +100,7 @@ const componentMapping: Record<keyof typeof NETWORKS_METADATA, DetailsComponent>
 };
 
 interface FeatureSidebarContentProps {
-  feature: { id: number; properties?: Record<string, string> };
+  feature: { id: string | number; properties?: Record<string, string> };
   assetType: string;
   showRiskSection?: boolean;
 }

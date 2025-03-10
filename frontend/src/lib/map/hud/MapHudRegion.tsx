@@ -1,3 +1,4 @@
+/* eslint-disable-next-line -- TODO: figure out why ESLint complains about PropsOf here. */
 import { PropsOf } from '@emotion/react';
 import { Box, Stack } from '@mui/material';
 import React, { FC } from 'react';

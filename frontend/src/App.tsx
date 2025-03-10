@@ -67,6 +67,8 @@ const deserialise = (value) => {
   try {
     return JSON.parse(value);
   } catch (e) {
+    console.warn('Failed to parse URL parameter:', value);
+    console.error(e);
     return value;
   }
 };
