@@ -14,7 +14,6 @@ export function dataLoaderLayer(tileProps, { dataLoader }: DataLoaderOptions) {
   } = tileProps;
   if (content && dataLoader) {
     const ids: number[] = !dataLoader.hasData ? content.map((f) => getFeatureId(f, 'id')) : [];
-    console.log('dataLoaderLayer', ids);
 
     dataLoader.loadDataForIds(ids);
   }
