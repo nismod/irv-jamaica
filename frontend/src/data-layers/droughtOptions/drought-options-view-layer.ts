@@ -12,6 +12,7 @@ import { VectorLegend } from 'lib/map/legend/VectorLegend';
 import { getDroughtDataAccessor } from './data-access';
 import { getDroughtOptionsDataFormats } from './data-formats';
 import { DroughtOptionsHoverDescription } from './DroughtOptionsHoverDescription';
+import { getFeatureId } from 'lib/deck/utils/get-feature-id';
 
 export function droughtOptionsViewLayer({ fieldSpec, colorSpec }): ViewLayer {
   const dataFn = getDroughtDataAccessor(fieldSpec);
@@ -30,7 +31,7 @@ export function droughtOptionsViewLayer({ fieldSpec, colorSpec }): ViewLayer {
     },
     fn: ({ deckProps, selection, zoom }) => {
       const target = selection?.target as VectorTarget;
-      const selectedFeatureIds = [target?.feature.id];
+      const selectedFeatureIds = [getFeatureId(target?.feature)];
       return selectableMvtLayer(
         {
           selectionOptions: {

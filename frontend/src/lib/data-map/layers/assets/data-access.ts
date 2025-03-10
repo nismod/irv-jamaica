@@ -3,6 +3,7 @@ import { dataLoaderManager } from 'lib/data-loader/data-loader-manager';
 import { FieldSpec } from 'lib/data-map/view-layers';
 import { featureProperty } from 'lib/deck/props/data-source';
 import { Accessor, withTriggers } from 'lib/deck/props/getters';
+import { getFeatureId } from 'lib/deck/utils/get-feature-id';
 import { sumOrNone } from 'lib/helpers';
 
 function getExpectedDamageKey(direct: boolean, hazard: string, rcp: string, epoch: number) {
@@ -54,10 +55,10 @@ export function getAssetDataAccessor(layer: string, fieldSpec: FieldSpec) {
   } else if (fieldGroup === 'damages_return_period') {
     // return return period damages dynamically loaded from API
     const dataLoader = dataLoaderManager.getDataLoader(layer, fieldSpec);
-    return withLoaderTriggers((f) => dataLoader.getData(f.id), dataLoader);
+    return withLoaderTriggers((f) => dataLoader.getData(getFeatureId(f)), dataLoader);
   } else if (fieldGroup === 'adaptation') {
     const dataLoader = dataLoaderManager.getDataLoader(layer, fieldSpec);
-    return withLoaderTriggers((f) => dataLoader.getData(f.id), dataLoader);
+    return withLoaderTriggers((f) => dataLoader.getData(getFeatureId(f)), dataLoader);
   } else {
     // field other than damages - use field name as key
     return featureProperty(field);

@@ -58,7 +58,11 @@ const selectionChangeEffect =
           interactionGroup: id,
           interactionStyle: 'vector', // raster selection is not supported at present.
           viewLayer: { id: viewLayerId },
-          target: { feature: { id: parseInt(featureId) } },
+          target: {
+            feature: {
+              id: parseInt(featureId),
+            },
+          },
         });
       } else {
         setSelf(null);

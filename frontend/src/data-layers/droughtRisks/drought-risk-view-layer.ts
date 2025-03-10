@@ -12,6 +12,7 @@ import { VectorLegend } from 'lib/map/legend/VectorLegend';
 import { getDroughtDataAccessor } from './data-access';
 import { getDroughtRiskDataFormats } from './data-formats';
 import { DroughtRisksHoverDescription } from './DroughtRisksHoverDescription';
+import { getFeatureId } from 'lib/deck/utils/get-feature-id';
 
 export function droughtRiskViewLayer({ fieldSpec, colorSpec }): ViewLayer {
   const dataFn = getDroughtDataAccessor(fieldSpec);
@@ -31,7 +32,7 @@ export function droughtRiskViewLayer({ fieldSpec, colorSpec }): ViewLayer {
 
     fn: ({ deckProps, selection }) => {
       const target = selection?.target as VectorTarget;
-      const selectedFeatureIds = [target?.feature.id];
+      const selectedFeatureIds = [getFeatureId(target?.feature)];
       return selectableMvtLayer(
         {
           selectionOptions: {

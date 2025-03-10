@@ -9,6 +9,7 @@ import { fillColor } from 'lib/deck/props/style';
 import { VectorLegend } from 'lib/map/legend/VectorLegend';
 
 import { SolutionHoverDescription } from './MarineHoverDescription';
+import { getFeatureId } from 'lib/deck/utils/get-feature-id';
 
 function filterRange(value: boolean) {
   return value ? [1, 1] : [0, 1];
@@ -21,7 +22,7 @@ export function marineViewLayer({ dataFn, colorFn, filters }): ViewLayer {
     interactionGroup: 'solutions',
     fn: ({ deckProps, selection }) => {
       const target = selection?.target as VectorTarget;
-      const selectedFeatureIds = [target?.feature.id];
+      const selectedFeatureIds = [getFeatureId(target?.feature)];
       return selectableMvtLayer(
         {
           selectionOptions: {

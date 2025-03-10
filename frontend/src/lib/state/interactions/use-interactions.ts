@@ -1,5 +1,5 @@
-import DeckGL, { Deck, PickInfo } from 'deck.gl';
-import { readPixelsToArray } from '@luma.gl/core';
+import { Texture } from '@luma.gl/core';
+import { BitmapLayer, PickingInfo } from 'deck.gl';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import { useRecoilCallback, useSetRecoilState } from 'recoil';
@@ -20,44 +20,51 @@ import {
   allowedGroupLayersState,
 } from './interaction-state';
 import { RecoilStateFamily } from 'lib/recoil/types';
-import { PickingInfo } from 'deck.gl/typed';
 import { pixelSelectionState } from '../pixel-driller';
 
 function processRasterTarget(info: any): RasterTarget {
-  const { bitmap, sourceLayer } = info;
+  const { bitmap, sourceLayer, layer } = info;
   if (bitmap) {
-    const pixelColor = readPixelsToArray(sourceLayer.props.image, {
-      sourceX: bitmap.pixel[0],
-      sourceY: bitmap.pixel[1],
-      sourceWidth: 1,
-      sourceHeight: 1,
-      sourceType: undefined,
-    });
+    const { device } = layer.context;
+    // the current deck.gl docs suggest using the deprecated function - see https://github.com/visgl/deck.gl/issues/9493
+    const pixelColor = device.readPixelsToArrayWebGL(
+      (sourceLayer as BitmapLayer).props.image as Texture,
+      {
+        sourceX: bitmap.pixel[0],
+        sourceY: bitmap.pixel[1],
+        sourceWidth: 1,
+        sourceHeight: 1,
+      },
+    );
 
     return pixelColor[3]
       ? {
-          color: pixelColor,
+          color: Array.from(pixelColor) as [number, number, number, number],
         }
       : null;
   }
 }
 
-function processVectorTarget(info: PickInfo<any>): VectorTarget {
+function processVectorTarget(info: PickingInfo<any>): VectorTarget {
   const { object } = info;
+  const feature = {
+    id: object.id || object.properties?.id,
+    ...object,
+  };
 
   return object
     ? {
-        feature: object,
+        feature,
       }
     : null;
 }
 
-function processTargetByType(type: InteractionStyle, info: PickInfo<any>) {
+function processTargetByType(type: InteractionStyle, info: PickingInfo<any>) {
   return type === 'raster' ? processRasterTarget(info) : processVectorTarget(info);
 }
 
 function processPickedObject(
-  info: PickInfo<any>,
+  info: PickingInfo<any>,
   type: InteractionStyle,
   groupName: string,
   viewLayerLookup: (id: string) => ViewLayer,
@@ -127,7 +134,7 @@ export function useInteractions(
   const activeGroups = useActiveGroups(viewLayers);
   useSyncAllowedLayers(viewLayers);
 
-  const onHover = (info: any, deck: Deck) => {
+  const onHover = (info: any, deck) => {
     const { x, y } = info;
     const viewLayerLookup = (id: string) => viewLayers.find((x) => x.id === id);
 
@@ -139,7 +146,7 @@ export function useInteractions(
       const pickingParams = { x, y, layerIds, radius };
 
       if (pickMultiple) {
-        const pickedObjects: PickInfo<any>[] = deck.pickMultipleObjects(pickingParams);
+        const pickedObjects: PickingInfo<any>[] = deck.pickMultipleObjects(pickingParams);
         const interactionTargets: InteractionLayer[] = pickedObjects
           .map((info) =>
             processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck),
@@ -148,7 +155,7 @@ export function useInteractions(
 
         setInteractionGroupHover(groupName, interactionTargets);
       } else {
-        const info: PickInfo<any> = deck.pickObject(pickingParams);
+        const info: PickingInfo<any> = deck.pickObject(pickingParams);
         const interactionTarget: InteractionLayer =
           info && processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck);
 
@@ -159,7 +166,7 @@ export function useInteractions(
     setHoverXY([x, y]);
   };
 
-  const onClick = (info: PickingInfo, deck: DeckGL) => {
+  const onClick = (info: PickingInfo, deck) => {
     const { x, y } = info;
     const viewLayerLookup = (id: string) => viewLayers.find((x) => x.id === id);
 
