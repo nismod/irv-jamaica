@@ -1,6 +1,6 @@
 export const HAZARDS_METADATA = {
   cyclone: {
-    label: 'Cyclones',
+    label: 'Tropical cyclone wind speed',
     dataUnit: 'm/s',
   },
   fluvial: {
@@ -15,7 +15,11 @@ export const HAZARDS_METADATA = {
     label: 'Coastal Flooding',
     dataUnit: 'm',
   },
+  storm: {
+    label: 'Tropical cyclone return period',
+    dataUnit: 'yrs',
+  },
 };
 
-export const HAZARDS_MAP_ORDER = ['cyclone', 'fluvial', 'surface', 'coastal'];
-export const HAZARDS_UI_ORDER = ['fluvial', 'surface', 'coastal', 'cyclone'];
+export const HAZARDS_MAP_ORDER = ['storm', 'cyclone', 'fluvial', 'surface', 'coastal'];
+export const HAZARDS_UI_ORDER = ['fluvial', 'surface', 'coastal', 'cyclone', 'storm'];

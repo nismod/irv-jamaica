@@ -11,10 +11,7 @@ type CustomSliderProps<T> = {
   value: T;
   onChange: (newVal: T) => void;
   showMarkLabelsFor?: T[];
-} & Omit<
-  ComponentProps<typeof Slider>,
-  'marks' | 'value' | 'onChange' | 'min' | 'max' | 'step' | 'scale'
->;
+} & Omit<ComponentProps<typeof Slider>, 'marks' | 'value' | 'onChange' | 'min' | 'max' | 'step'>;
 
 export const CustomNumberSlider: FC<CustomSliderProps<number>> = ({
   marks,
@@ -42,7 +39,7 @@ export const CustomNumberSlider: FC<CustomSliderProps<number>> = ({
     [marks, onChange],
   );
 
-  const valueLabelFunction = useCallback((value) => marks[value]?.toString(), [marks]);
+  const valueLabelFunction = (value) => value?.toString() ?? '';
 
   return (
     <Slider
@@ -52,6 +49,7 @@ export const CustomNumberSlider: FC<CustomSliderProps<number>> = ({
       min={0}
       max={marks.length - 1}
       step={1}
+      scale={(x) => marks[x]}
       valueLabelFormat={valueLabelFunction}
       getAriaValueText={valueLabelFunction}
       {...otherProps}

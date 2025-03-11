@@ -33,11 +33,17 @@ export function getHazardId<
 }
 
 export function hazardViewLayer(hazardType: string, hazardParams: HazardParams): ViewLayer {
-  const magFilter = hazardType === 'cyclone' ? 'nearest' : 'linear';
+  const magFilter = ['cyclone', 'storm'].includes(hazardType) ? 'nearest' : 'linear';
 
-  const { returnPeriod, rcp, epoch, confidence } = hazardParams;
+  const { returnPeriod, rcp, epoch, confidence, speed } = hazardParams;
 
-  const deckId = getHazardId({ hazardType, returnPeriod, rcp, epoch, confidence });
+  const deckId = getHazardId({
+    hazardType: hazardType === 'storm' ? `storm${speed}` : hazardType,
+    returnPeriod,
+    rcp,
+    epoch,
+    confidence,
+  });
 
   return {
     id: hazardType,
@@ -53,7 +59,7 @@ export function hazardViewLayer(hazardType: string, hazardParams: HazardParams):
           textureParameters: {
             magFilter,
           },
-          opacity: hazardType === 'cyclone' ? 0.6 : 1,
+          opacity: ['storm', 'cyclone'].includes(hazardType) ? 0.6 : 1,
         },
         deckProps,
         {
