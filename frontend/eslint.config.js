@@ -5,6 +5,7 @@ import reactJSXRuntime from 'eslint-plugin-react/configs/jsx-runtime.js';
 import reactHooks from 'eslint-plugin-react-hooks';
 import importPlugin from 'eslint-plugin-import';
 import typescript from 'typescript-eslint';
+import storybook from 'eslint-plugin-storybook';
 
 export default [
   js.configs.recommended,
@@ -14,10 +15,12 @@ export default [
   prettier,
   reactHooks.configs['recommended-latest'],
   importPlugin.flatConfigs.recommended,
+  ...storybook.configs['flat/recommended'],
   {
     linterOptions: {
       reportUnusedDisableDirectives: 'off',
     },
+    ignores: ['!.storybook'],
     settings: {
       react: {
         version: 'detect',
