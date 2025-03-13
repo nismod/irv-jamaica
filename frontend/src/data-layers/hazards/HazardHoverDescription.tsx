@@ -16,6 +16,7 @@ export const HazardHoverDescription: FC<RasterHoverDescription> = ({ target, vie
       dataUnit={dataUnit}
       scheme={scheme}
       range={range}
+      type={viewLayer.id === 'storm' ? 'years' : undefined}
     />
   );
 };

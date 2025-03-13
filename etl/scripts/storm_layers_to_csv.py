@@ -35,8 +35,8 @@ with open('storm_layers.csv', 'w', newline='') as csvfile:
             'key': key
         })
         rp = 0
-        rcp = 2.6
-        rcp_str = '2x6'
+        rcp = 'baseline'
+        rcp_str = rcp
         epoch = 2010
         path = (
             'STORM_RP_rasters/'

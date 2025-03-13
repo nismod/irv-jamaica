@@ -29,6 +29,7 @@ const formatter = {
     value.toLocaleString(undefined, {
       maximumSignificantDigits: 3,
     }),
+  years: (value) => `${parseInt(value)} years`,
 };
 
 function formatValue(color, value, dataUnit, type) {

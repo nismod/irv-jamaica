@@ -19,6 +19,6 @@ export const cyclone = {
 };
 
 export const storm = {
-  scheme: 'coolwarm',
+  scheme: 'viridis',
   range: [0, 250],
 };
