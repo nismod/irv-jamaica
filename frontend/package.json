@@ -109,7 +109,15 @@
   ],
   "overrides": {
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react-dom": "^18.3.0",
+    "eslint-plugin-storybook": {
+      "typescript": "$typescript"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   },
   "msw": {
     "workerDirectory": [
