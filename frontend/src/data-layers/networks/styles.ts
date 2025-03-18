@@ -13,4 +13,8 @@ export const NETWORK_STYLES = makeConfig([
     id: 'adaptation',
     label: 'Adaptation Options',
   },
+  {
+    id: 'protectedFeatures',
+    label: 'Protected Features',
+  },
 ]);
