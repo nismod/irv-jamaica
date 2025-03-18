@@ -1,8 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/set';
 import { StyleSpecification } from 'maplibre-gl';
-import { useEffect, useMemo } from 'react';
-import { useFetch } from 'use-http';
+import { useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import {
   BACKGROUNDS,
@@ -15,6 +15,14 @@ import {
 
 function visible(isVisible: boolean): 'visible' | 'none' {
   return isVisible ? 'visible' : 'none';
+}
+
+async function fetchBasemapStyle() {
+  const response = await fetch(BASEMAP_STYLE_URL);
+
+  if (!response.ok) throw new Error('Failed to fetch basemap style');
+
+  return response.json();
 }
 
 function makeBasemapStyle(
@@ -43,17 +51,15 @@ export function useBasemapStyle(
 ): { mapStyle: StyleSpecification; firstLabelId: string | undefined } {
   const backgroundConfig = BACKGROUNDS[background];
   const {
-    get,
     data: baseStyle = {
       version: 8,
       sources: {},
       layers: [],
     },
-  } = useFetch(BASEMAP_STYLE_URL, { suspense: true });
-
-  useEffect(() => {
-    get();
-  }, [get]);
+  } = useQuery({
+    queryKey: ['basemapStyle'],
+    queryFn: fetchBasemapStyle,
+  });
 
   const mapStyle = useMemo(
     () => makeBasemapStyle(baseStyle, backgroundConfig, showLabels),

@@ -1,30 +1,41 @@
 import { useMemo } from 'react';
-import { useFetch } from 'use-http';
+import { useQuery } from '@tanstack/react-query';
+
+async function fetchColorMapValues(colorScheme: string) {
+  const response = await fetch(`/raster/colormap?colormap=${colorScheme}&stretch_range=[0,1]`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch color map values');
+  }
+  return response.json();
+}
 
 export function useRasterColorMapValues(colorScheme: string, stretchRange: [number, number]) {
   const [rangeMin, rangeMax] = stretchRange;
 
   const {
-    loading,
+    isLoading,
     error,
-    data: { colormap: colorMapValues = null } = {},
-  } = useFetch(`/raster/colormap?colormap=${colorScheme}&stretch_range=[0,1]`, { persist: false }, [
-    colorScheme,
-  ]);
+    data = {},
+  } = useQuery({
+    queryKey: ['colormaps', colorScheme],
+    queryFn: () => fetchColorMapValues(colorScheme),
+  });
+  const { colormap = [] } = data;
+  console.log(data);
 
   const rangeSize = rangeMax - rangeMin;
 
   const result = useMemo(
     () =>
-      colorMapValues?.map(({ value, rgba: [r, g, b] }) => ({
+      colormap?.map(({ value, rgba: [r, g, b] }) => ({
         value: rangeMin + value * rangeSize,
         color: `rgb(${r},${g},${b})`,
       })),
-    [colorMapValues, rangeMin, rangeSize],
+    [colormap, rangeMin, rangeSize],
   );
 
   return {
-    loading,
+    loading: isLoading,
     error,
     colorMapValues: result,
   };

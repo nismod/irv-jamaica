@@ -35,7 +35,7 @@ export const MapSearchField = ({ onSelectedResult }) => {
         Ignore the change if it's triggered by the user selecting an option
         This is so that the actual search query stays in the input field
         */
-        if (reason !== 'reset') {
+        if (reason !== 'selectOption' && reason !== 'reset') {
           setSearchValue(value);
         }
       }}
