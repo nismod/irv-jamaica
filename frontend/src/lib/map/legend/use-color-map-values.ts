@@ -21,7 +21,6 @@ export function useRasterColorMapValues(colorScheme: string, stretchRange: [numb
     queryFn: () => fetchColorMapValues(colorScheme),
   });
   const { colormap = [] } = data;
-  console.log(data);
 
   const rangeSize = rangeMax - rangeMin;
 
