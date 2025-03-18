@@ -12,10 +12,9 @@ async function fetchColorMapValues({ queryKey }) {
 }
 
 export function useRasterColorMapValues(colorScheme: string, stretchRange: [number, number]) {
-  const [rangeMin, rangeMax] = stretchRange;
   const query = {
     colormap: colorScheme,
-    stretch_range: '[0,1]',
+    stretch_range: `[${stretchRange}]`,
   }
 
   const {
@@ -25,18 +24,17 @@ export function useRasterColorMapValues(colorScheme: string, stretchRange: [numb
   } = useQuery({
     queryKey: ['/raster/colormap', query],
     queryFn: fetchColorMapValues,
+    staleTime: 1000 * 60 * 60, // 1 hour
   });
   const { colormap = [] } = data;
-
-  const rangeSize = rangeMax - rangeMin;
 
   const result = useMemo(
     () =>
       colormap?.map(({ value, rgba: [r, g, b] }) => ({
-        value: rangeMin + value * rangeSize,
+        value,
         color: `rgb(${r},${g},${b})`,
       })),
-    [colormap, rangeMin, rangeSize],
+    [colormap],
   );
 
   return {
