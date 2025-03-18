@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useFetch } from 'use-http';
-import { useDebounceCallback } from '@react-hook/debounce';
+import { useQuery } from '@tanstack/react-query';
+import { useDebounceValue } from 'usehooks-ts';
 import { BoundingBox, NominatimBoundingBox, nominatimToAppBoundingBox } from 'lib/bounding-box';
 
 export interface PlaceSearchResult {
@@ -26,35 +25,30 @@ function processNominatimData(data: NominatimSearchResult[]): PlaceSearchResult[
   }));
 }
 
-export function usePlaceSearch(searchValue: string) {
-  const { get, error } = useFetch(
+async function fetchPlaces(searchValue: string) {
+  const response = await fetch(
     `https://nominatim.openstreetmap.org/search.php?countrycodes=jm&format=jsonv2&q=${searchValue}`,
   );
+  if (!response.ok) {
+    throw new Error('Failed to fetch places');
+  }
+  return response.json();
+}
 
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+export function usePlaceSearch(searchValue: string) {
+  const [debouncedSearchValue] = useDebounceValue(searchValue.trim(), 1500);
 
-  const debouncedGet = useDebounceCallback(async () => {
-    try {
-      const data = await get();
-      setData(data);
-    } finally {
-      setLoading(false);
-    }
-  }, 1500);
-
-  useEffect(() => {
-    if (searchValue !== '') {
-      setLoading(true);
-      debouncedGet();
-    }
-  }, [searchValue, debouncedGet]);
-
-  const searchResults: any[] = processNominatimData(data) ?? [];
+  const { data, error, isFetching } = useQuery({
+    queryKey: ['places', debouncedSearchValue],
+    queryFn: () => fetchPlaces(debouncedSearchValue),
+    enabled: !!debouncedSearchValue,
+    select: processNominatimData, // Transform the response
+    staleTime: 1000 * 60 * 60, // 1 hour
+  });
 
   return {
-    loading,
+    loading: isFetching,
     error,
-    searchResults,
+    searchResults: data ?? [],
   };
 }

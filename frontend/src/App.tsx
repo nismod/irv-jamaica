@@ -3,6 +3,9 @@ import { RecoilURLSync } from 'recoil-sync';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
+import { QueryClientProvider } from '@tanstack/react-query';
+
+import { queryClient } from './query-client';
 
 import { IntroPage } from './app/pages/IntroPage';
 import { MapPage } from './app/pages/map/MapPage';
@@ -83,25 +86,27 @@ export const App = () => {
         >
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
-              <Router>
-                <CssBaseline />
-                <Nav height={globalStyleVariables.navbarHeight} navItems={navItems} />
-                <Notice />
-                <Box
-                  position="absolute"
-                  top={globalStyleVariables.navbarHeight}
-                  bottom={0}
-                  left={0}
-                  right={0}
-                >
-                  <Routes>
-                    <Route path="/" element={<IntroPage />} />
-                    <Route path="/:view" element={<MapPage />} />
-                    <Route path="/data" element={<DataPage />} />
-                    <Route path="/guide" element={<GuidePage />} />
-                  </Routes>
-                </Box>
-              </Router>
+              <QueryClientProvider client={queryClient}>
+                <Router>
+                  <CssBaseline />
+                  <Nav height={globalStyleVariables.navbarHeight} navItems={navItems} />
+                  <Notice />
+                  <Box
+                    position="absolute"
+                    top={globalStyleVariables.navbarHeight}
+                    bottom={0}
+                    left={0}
+                    right={0}
+                  >
+                    <Routes>
+                      <Route path="/" element={<IntroPage />} />
+                      <Route path="/:view" element={<MapPage />} />
+                      <Route path="/data" element={<DataPage />} />
+                      <Route path="/guide" element={<GuidePage />} />
+                    </Routes>
+                  </Box>
+                </Router>
+              </QueryClientProvider>
             </ThemeProvider>
           </StyledEngineProvider>
         </RecoilURLSync>
