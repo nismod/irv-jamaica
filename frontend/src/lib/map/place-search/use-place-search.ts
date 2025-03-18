@@ -25,9 +25,11 @@ function processNominatimData(data: NominatimSearchResult[]): PlaceSearchResult[
   }));
 }
 
-async function fetchPlaces(searchValue: string) {
+async function fetchPlaces({ queryKey }) {
+  const [origin, query] = queryKey;
+  const searchParams = new URLSearchParams(query);
   const response = await fetch(
-    `https://nominatim.openstreetmap.org/search.php?countrycodes=jm&format=jsonv2&q=${searchValue}`,
+    `${origin}?${searchParams}`,
   );
   if (!response.ok) {
     throw new Error('Failed to fetch places');
@@ -37,10 +39,15 @@ async function fetchPlaces(searchValue: string) {
 
 export function usePlaceSearch(searchValue: string) {
   const [debouncedSearchValue] = useDebounceValue(searchValue.trim(), 1500);
+  const query = {
+    countrycodes: 'jm',
+    format: 'jsonv2',
+    q: debouncedSearchValue,
+  }
 
   const { data, error, isFetching } = useQuery({
-    queryKey: ['places', debouncedSearchValue],
-    queryFn: () => fetchPlaces(debouncedSearchValue),
+    queryKey: ['https://nominatim.openstreetmap.org/search.php', query],
+    queryFn: fetchPlaces,
     enabled: !!debouncedSearchValue,
     select: processNominatimData, // Transform the response
     staleTime: 1000 * 60 * 60, // 1 hour
