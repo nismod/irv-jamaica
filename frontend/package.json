@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@deck.gl/core": "9.1.4",
     "@deck.gl/extensions": "9.1.4",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
