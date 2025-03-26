@@ -15,7 +15,7 @@ export function useRasterColorMapValues(colorScheme: string, stretchRange: [numb
   const query = {
     colormap: colorScheme,
     stretch_range: `[${stretchRange}]`,
-  }
+  };
 
   const {
     isLoading,

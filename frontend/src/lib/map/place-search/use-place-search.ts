@@ -28,9 +28,7 @@ function processNominatimData(data: NominatimSearchResult[]): PlaceSearchResult[
 async function fetchPlaces({ queryKey }) {
   const [origin, query] = queryKey;
   const searchParams = new URLSearchParams(query);
-  const response = await fetch(
-    `${origin}?${searchParams}`,
-  );
+  const response = await fetch(`${origin}?${searchParams}`);
   if (!response.ok) {
     throw new Error('Failed to fetch places');
   }
@@ -43,7 +41,7 @@ export function usePlaceSearch(searchValue: string) {
     countrycodes: 'jm',
     format: 'jsonv2',
     q: debouncedSearchValue,
-  }
+  };
 
   const { data, error, isFetching } = useQuery({
     queryKey: ['https://nominatim.openstreetmap.org/search.php', query],

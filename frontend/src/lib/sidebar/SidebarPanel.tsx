@@ -1,4 +1,4 @@
-import { ArrowRight } from '@mui/icons-material';
+import ArrowRight from '@mui/icons-material/ArrowRight';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
 import uniqueId from 'lodash/uniqueId';
 import { FC, ReactNode, useRef } from 'react';

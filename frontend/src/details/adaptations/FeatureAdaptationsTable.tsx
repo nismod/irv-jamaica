@@ -1,4 +1,5 @@
-import { ZoomIn, ZoomOut } from '@mui/icons-material';
+import ZoomIn from '@mui/icons-material/ZoomIn';
+import ZoomOut from '@mui/icons-material/ZoomOut';
 import { IconButton, TableCell } from '@mui/material';
 import { Box } from '@mui/system';
 import { ExpandableRow } from 'lib/asset-list/ExpandableRow';

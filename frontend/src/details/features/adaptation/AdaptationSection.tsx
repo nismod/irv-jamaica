@@ -3,7 +3,7 @@ import { IconButton, Typography } from '@mui/material';
 
 import { Adaptation } from 'lib/api-client';
 import { AdaptationTable } from './AdaptationTable';
-import { Download } from '@mui/icons-material';
+import Download from '@mui/icons-material/Download';
 import { downloadFile, unique } from 'lib/helpers';
 import { Fragment, useMemo } from 'react';
 

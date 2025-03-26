@@ -1,4 +1,4 @@
-import { ErrorOutline } from '@mui/icons-material';
+import ErrorOutline from '@mui/icons-material/ErrorOutline';
 import { Stack, StackProps, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { Component, ReactNode } from 'react';

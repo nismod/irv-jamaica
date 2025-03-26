@@ -1,4 +1,4 @@
-import { InfoOutlined } from '@mui/icons-material';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import { Box, Button, Container, DialogActions, Drawer, Stack, Typography } from '@mui/material';
 import { date, nullable } from '@recoiljs/refine';
 import { AppLink } from 'lib/nav';
