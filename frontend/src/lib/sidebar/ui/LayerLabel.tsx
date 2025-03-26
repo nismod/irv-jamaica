@@ -1,4 +1,4 @@
-import { VisibilityOff } from '@mui/icons-material';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Box, Stack, Typography } from '@mui/material';
 import { ShapeLegend, LegendShapeType } from 'lib/map-shapes/ShapeLegend';
 import { useRecoilValue } from 'recoil';

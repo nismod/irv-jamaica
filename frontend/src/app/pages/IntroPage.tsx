@@ -22,7 +22,12 @@ export const IntroPage = () => (
     <article>
       <ScrollToTop />
       <Grid container columnSpacing={8} rowSpacing={4}>
-        <Grid item md={6} sx={{ width: '100%' }}>
+        <Grid
+          sx={{ width: '100%' }}
+          size={{
+            md: 6,
+          }}
+        >
           <HeadingBox sx={{ mt: -2, pt: 8 }}>
             <Typography variant="h1">
               Climate-related risk analytics for transport, energy &amp; water infrastructure in
@@ -30,7 +35,11 @@ export const IntroPage = () => (
             </Typography>
           </HeadingBox>
         </Grid>
-        <Grid item md={6}>
+        <Grid
+          size={{
+            md: 6,
+          }}
+        >
           <TextBox sx={{ mt: -2, pt: 8 }}>
             <p>
               The Jamaica Systemic Risk Assessment Tool (J&#8209;SRAT) supports climate adaptation
@@ -45,7 +54,7 @@ export const IntroPage = () => (
             <p>Water supply, wastewater and irrigation.</p>
           </TextBox>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextBox sx={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}>
             <p>
               The research, analysis and development has been led by researchers in the&nbsp;

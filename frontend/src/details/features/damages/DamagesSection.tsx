@@ -1,4 +1,4 @@
-import { Download } from '@mui/icons-material';
+import Download from '@mui/icons-material/Download';
 import { FormControl, InputLabel, IconButton, MenuItem, Select, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { HAZARD_DOMAINS } from 'data-layers/hazards/domains';

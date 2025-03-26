@@ -10,7 +10,7 @@ import {
   pixelSelectionState,
 } from 'lib/state/pixel-driller';
 import { PixelDataGrid } from './PixelDataGrid';
-import { Close } from '@mui/icons-material';
+import Close from '@mui/icons-material/Close';
 
 /**
  * Display detailed information about a selected pixel (lat/lon point.)

@@ -1,5 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import uniqueId from 'lodash/uniqueId';
 import { createContext, FC, ReactNode, useContext, useRef } from 'react';
 import { useRecoilState } from 'recoil';
