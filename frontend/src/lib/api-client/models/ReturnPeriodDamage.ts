@@ -1,7 +1,7 @@
+/* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export type ReturnPeriodDamage = {
     exposure: number;
     damage_amin: number;
@@ -15,3 +15,4 @@ export type ReturnPeriodDamage = {
     epoch: (string | number);
     rp: number;
 };
+

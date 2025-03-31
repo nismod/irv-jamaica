@@ -1,7 +1,7 @@
+/* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export type FeatureListItemOut_float_ = {
     id: number;
     string_id: string;
@@ -9,3 +9,4 @@ export type FeatureListItemOut_float_ = {
     bbox_wkt: string;
     value: number;
 };
+

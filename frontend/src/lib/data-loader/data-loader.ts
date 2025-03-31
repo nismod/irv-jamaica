@@ -96,7 +96,7 @@ export class DataLoader<T = any> {
 
     missingIds.forEach((id) => this.loadingIds.add(id));
 
-    return await apiClient.attributes.attributesReadAttributes({
+    const response = await apiClient.attributes.attributesReadAttributes({
       layer: this.layer,
       fieldGroup,
       field,
@@ -104,6 +104,7 @@ export class DataLoader<T = any> {
       parameters: JSON.stringify(fieldParams),
       requestBody: missingIds,
     });
+    return response as Record<string, T>;
   }
 
   private updateData(loadedData: Record<string, T>) {

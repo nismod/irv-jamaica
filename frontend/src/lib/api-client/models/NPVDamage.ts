@@ -1,7 +1,7 @@
+/* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-
 export type NPVDamage = {
     ead_amin: number;
     ead_mean: number;
@@ -12,3 +12,4 @@ export type NPVDamage = {
     hazard: string;
     rcp: string;
 };
+

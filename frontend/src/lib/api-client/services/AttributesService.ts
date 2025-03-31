@@ -1,13 +1,11 @@
+/* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
-
 export class AttributesService {
-
     constructor(public readonly httpRequest: BaseHttpRequest) {}
-
     /**
      * Read Attributes
      * @returns any Successful Response
@@ -47,5 +45,4 @@ export class AttributesService {
             },
         });
     }
-
 }
