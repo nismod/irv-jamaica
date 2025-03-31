@@ -8,6 +8,9 @@ import typescript from 'typescript-eslint';
 import storybook from 'eslint-plugin-storybook';
 
 export default [
+  {
+    ignores: ['src/lib/api-client'],
+  },
   js.configs.recommended,
   reactRecommended,
   reactJSXRuntime,
