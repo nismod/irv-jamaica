@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
+    "@hey-api/openapi-ts": "^0.29.0",
     "@rollup/plugin-url": "^8.0.2",
     "@storybook/addon-a11y": "^8.2.8",
     "@storybook/addon-essentials": "^8.2.8",
@@ -81,7 +82,6 @@
     "http-server": "^14.1.1",
     "msw": "^2.3.5",
     "msw-storybook-addon": "^2.0.3",
-    "openapi-typescript-codegen": "^0.29.0",
     "prettier": "^3.2.5",
     "storybook": "^8.2.8",
     "typescript": "^5.8.2",
@@ -96,7 +96,7 @@
     "serve": "vite preview",
     "lint": "eslint src",
     "format": "prettier --write ./src",
-    "generate-client": "openapi --input http://localhost:8888/openapi.json --output ./src/lib/api-client --client fetch --name ApiClient --useOptions",
+    "generate-client": "openapi-ts --input http://localhost:8888/openapi.json --output ./src/lib/api-client --client fetch --name ApiClient --useOptions",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook --browsers firefox webkit chromium"
