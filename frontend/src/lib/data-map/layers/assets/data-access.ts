@@ -59,6 +59,9 @@ export function getAssetDataAccessor(layer: string, fieldSpec: FieldSpec) {
   } else if (fieldGroup === 'adaptation') {
     const dataLoader = dataLoaderManager.getDataLoader(layer, fieldSpec);
     return withLoaderTriggers((f) => dataLoader.getData(getFeatureId(f)), dataLoader);
+  } else if (fieldGroup === 'protected_features') {
+    const dataLoader = dataLoaderManager.getDataLoader(layer, fieldSpec);
+    return withLoaderTriggers((f) => dataLoader.getData(getFeatureId(f)), dataLoader);
   } else {
     // field other than damages - use field name as key
     return featureProperty(field);
