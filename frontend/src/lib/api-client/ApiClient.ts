@@ -1,9 +1,10 @@
 import type { BaseHttpRequest } from './core/BaseHttpRequest';
 import type { OpenAPIConfig } from './core/OpenAPI';
+import { Interceptors } from './core/OpenAPI';
 import { FetchHttpRequest } from './core/FetchHttpRequest';
 
-import { AttributesService } from './services/AttributesService';
-import { FeaturesService } from './services/FeaturesService';
+import { AttributesService } from './sdk.gen';
+import { FeaturesService } from './sdk.gen';
 
 type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
 
@@ -25,6 +26,10 @@ export class ApiClient {
 			PASSWORD: config?.PASSWORD,
 			HEADERS: config?.HEADERS,
 			ENCODE_PATH: config?.ENCODE_PATH,
+			interceptors: {
+				request: config?.interceptors?.request ?? new Interceptors(),
+				response: config?.interceptors?.response ?? new Interceptors(),
+      },
 		});
 
 		this.attributes = new AttributesService(this.request);
