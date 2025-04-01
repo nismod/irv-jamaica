@@ -92,7 +92,7 @@
     "wait-on": "^8.0.0"
   },
   "scripts": {
-    "start": "tsc && vite",
+    "start": "tsc && eslint src && vite",
     "build": "tsc && eslint src && vite build",
     "serve": "vite preview",
     "lint": "eslint src",
