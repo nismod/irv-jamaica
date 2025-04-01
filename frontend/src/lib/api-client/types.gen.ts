@@ -23,11 +23,11 @@ export type ExpectedDamage = {
     eael_amax: number;
     hazard: string;
     rcp: string;
-    epoch: (string | number);
+    epoch: string | number;
     protection_standard: number;
 };
 
-export type FeatureListItemOut_float_ = {
+export type FeatureListItemOutFloat = {
     id: number;
     string_id: string;
     layer: string;
@@ -39,21 +39,21 @@ export type FeatureOut = {
     id: number;
     string_id: string;
     layer: string;
-    sublayer?: (string | null);
+    sublayer?: string | null;
     properties: {
         [key: string]: unknown;
     };
     damages_expected?: Array<ExpectedDamage>;
     damages_return_period?: Array<ReturnPeriodDamage>;
-    damages_npv?: Array<NPVDamage>;
+    damages_npv?: Array<NpvDamage>;
     adaptation?: Array<Adaptation>;
 };
 
-export type HTTPValidationError = {
+export type HttpValidationError = {
     detail?: Array<ValidationError>;
 };
 
-export type NPVDamage = {
+export type NpvDamage = {
     ead_amin: number;
     ead_mean: number;
     ead_amax: number;
@@ -64,12 +64,12 @@ export type NPVDamage = {
     rcp: string;
 };
 
-export type Page_FeatureListItemOut_float__ = {
-    items: Array<FeatureListItemOut_float_>;
-    total: (number | null);
-    page: (number | null);
-    size: (number | null);
-    pages?: (number | null);
+export type PageFeatureListItemOutFloat = {
+    items: Array<FeatureListItemOutFloat>;
+    total: number | null;
+    page: number | null;
+    size: number | null;
+    pages?: number | null;
 };
 
 export type ProtectedFeatureListItem = {
@@ -95,54 +95,144 @@ export type ReturnPeriodDamage = {
     loss_amax: number;
     hazard: string;
     rcp: string;
-    epoch: (string | number);
+    epoch: string | number;
     rp: number;
 };
 
 export type ValidationError = {
-    loc: Array<(string | number)>;
+    loc: Array<string | number>;
     msg: string;
     type: string;
 };
 
-export type AttributesReadAttributesData = {
-    dimensions: string;
-    field: string;
-    fieldGroup: string;
-    layer: string;
-    parameters: string;
-    requestBody: Array<(number)>;
-};
-
-export type AttributesReadAttributesResponse = ({
-    [key: string]: (unknown | null);
-});
-
 export type FeaturesReadFeatureData = {
-    featureId: number;
+    body?: never;
+    path: {
+        feature_id: number;
+    };
+    query?: never;
+    url: '/features/{feature_id}';
 };
 
-export type FeaturesReadFeatureResponse = (FeatureOut);
+export type FeaturesReadFeatureErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type FeaturesReadFeatureError = FeaturesReadFeatureErrors[keyof FeaturesReadFeatureErrors];
+
+export type FeaturesReadFeatureResponses = {
+    /**
+     * Successful Response
+     */
+    200: FeatureOut;
+};
+
+export type FeaturesReadFeatureResponse = FeaturesReadFeatureResponses[keyof FeaturesReadFeatureResponses];
 
 export type FeaturesReadSortedFeaturesData = {
-    assetType?: (string | null);
-    dimensions: string;
-    field: string;
-    fieldGroup: string;
-    layer?: (string | null);
-    page?: number;
-    parameters: string;
-    sector?: (string | null);
-    size?: number;
-    subsector?: (string | null);
+    body?: never;
+    path: {
+        field_group: string;
+    };
+    query: {
+        field: string;
+        dimensions: string;
+        parameters: string;
+        layer?: string | null;
+        sector?: string | null;
+        subsector?: string | null;
+        asset_type?: string | null;
+        page?: number;
+        size?: number;
+    };
+    url: '/features/sorted-by/{field_group}';
 };
 
-export type FeaturesReadSortedFeaturesResponse = (Page_FeatureListItemOut_float__);
+export type FeaturesReadSortedFeaturesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type FeaturesReadSortedFeaturesError = FeaturesReadSortedFeaturesErrors[keyof FeaturesReadSortedFeaturesErrors];
+
+export type FeaturesReadSortedFeaturesResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageFeatureListItemOutFloat;
+};
+
+export type FeaturesReadSortedFeaturesResponse = FeaturesReadSortedFeaturesResponses[keyof FeaturesReadSortedFeaturesResponses];
 
 export type FeaturesReadProtectedFeaturesData = {
-    protectionLevel: number;
-    protectorId: number;
-    rcp: string;
+    body?: never;
+    path: {
+        protector_id: number;
+    };
+    query: {
+        rcp: string;
+        protection_level: number;
+    };
+    url: '/features/{protector_id}/protected-by';
 };
 
-export type FeaturesReadProtectedFeaturesResponse = (Array<ProtectedFeatureListItem>);
+export type FeaturesReadProtectedFeaturesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type FeaturesReadProtectedFeaturesError = FeaturesReadProtectedFeaturesErrors[keyof FeaturesReadProtectedFeaturesErrors];
+
+export type FeaturesReadProtectedFeaturesResponses = {
+    /**
+     * Successful Response
+     */
+    200: Array<ProtectedFeatureListItem>;
+};
+
+export type FeaturesReadProtectedFeaturesResponse = FeaturesReadProtectedFeaturesResponses[keyof FeaturesReadProtectedFeaturesResponses];
+
+export type AttributesReadAttributesData = {
+    body: Array<number>;
+    path: {
+        field_group: string;
+    };
+    query: {
+        layer: string;
+        field: string;
+        dimensions: string;
+        parameters: string;
+    };
+    url: '/attributes/{field_group}';
+};
+
+export type AttributesReadAttributesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AttributesReadAttributesError = AttributesReadAttributesErrors[keyof AttributesReadAttributesErrors];
+
+export type AttributesReadAttributesResponses = {
+    /**
+     * Successful Response
+     */
+    200: {
+        [key: string]: unknown | null;
+    };
+};
+
+export type AttributesReadAttributesResponse = AttributesReadAttributesResponses[keyof AttributesReadAttributesResponses];
+
+export type ClientOptions = {
+    baseUrl: 'http://localhost:8888' | (string & {});
+};

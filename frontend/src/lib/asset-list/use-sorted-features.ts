@@ -1,15 +1,17 @@
+import { createClient } from '@hey-api/client-fetch';
 import { parseSync } from '@loaders.gl/core';
 import { WKTLoader } from '@loaders.gl/wkt';
 import bbox from '@turf/bbox';
 import pick from 'lodash/pick';
 import { selectorFamily, useRecoilValue } from 'recoil';
 
-import { ApiClient, FeatureListItemOut_float_ } from 'lib/api-client';
+import { featuresReadSortedFeatures } from 'lib/api-client/sdk.gen';
+import { FeatureListItemOutFloat } from 'lib/api-client/types.gen';
 import { BoundingBox } from 'lib/bounding-box';
 import { FieldSpec } from 'lib/data-map/view-layers';
 
-const apiClient = new ApiClient({
-  BASE: 'api',
+const apiClient = createClient({
+  baseUrl: 'api',
 });
 
 export interface PageInfo {
@@ -47,17 +49,22 @@ const sortedFeaturesState = selectorFamily({
         // if (fieldGroup !== 'damages') {
         //   throw new Error('Only damages field is supported');
         // }
-        const response = await apiClient.features.featuresReadSortedFeatures({
-          ...layerSpec,
-          fieldGroup,
-          field,
-          dimensions,
-          parameters,
-          page,
-          size: pageSize,
+        const { data } = await featuresReadSortedFeatures({
+          client: apiClient,
+          path: {
+            field_group: fieldGroup,
+          },
+          query: {
+            field,
+            dimensions,
+            parameters,
+            ...layerSpec,
+            page,
+            size: pageSize,
+          },
         });
-        const features = (response.items as FeatureListItemOut_float_[]).map(processFeature);
-        const pageInfo = pick(response, ['page', 'size', 'total']);
+        const features = (data.items as FeatureListItemOutFloat[]).map(processFeature);
+        const pageInfo = pick(data, ['page', 'size', 'total']);
         return { features, pageInfo };
       } catch (error) {
         return { features: [], loading: false, error };
@@ -71,11 +78,11 @@ export interface LayerSpec {
   subsector?: string;
   assetType?: string;
 }
-export type ListFeature = Omit<FeatureListItemOut_float_, 'bbox_wkt'> & {
+export type ListFeature = Omit<FeatureListItemOutFloat, 'bbox_wkt'> & {
   bbox: BoundingBox;
 };
 
-function processFeature(f: FeatureListItemOut_float_): ListFeature {
+function processFeature(f: FeatureListItemOutFloat): ListFeature {
   const originalBboxGeom = parseSync(f.bbox_wkt, WKTLoader);
   const processedBbox: BoundingBox = bbox(originalBboxGeom) as BoundingBox;
 
