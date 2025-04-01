@@ -1,9 +1,10 @@
+import { createClient } from '@hey-api/client-fetch';
 import forEach from 'lodash/forEach';
 import { atom, atomFamily, selector, selectorFamily } from 'recoil';
 
+import { featuresReadFeature } from 'lib/api-client/sdk.gen';
 import { InteractionLayer } from 'lib/data-map/types';
 import { isReset } from 'lib/recoil/is-reset';
-import { ApiClient } from 'lib/api-client';
 
 type IT = InteractionLayer | InteractionLayer[];
 
@@ -79,8 +80,8 @@ export const selectionState = atomFamily<InteractionLayer, string>({
   effects: (id) => [selectionChangeEffect(id)],
 });
 
-const apiClient = new ApiClient({
-  BASE: '/api',
+const apiClient = createClient({
+  baseUrl: '/api',
 });
 
 /**
@@ -89,8 +90,13 @@ const apiClient = new ApiClient({
 export const selectedAssetDetails = selectorFamily({
   key: 'selectedFeatureState',
   get: (featureId: number) => async () => {
-    const featureDetails = await apiClient.features.featuresReadFeature({ featureId });
-    return featureDetails;
+    const { data } = await featuresReadFeature({
+      client: apiClient,
+      path: {
+        feature_id: featureId,
+      },
+    });
+    return data;
   },
 });
 

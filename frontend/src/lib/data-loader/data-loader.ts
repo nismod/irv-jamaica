@@ -1,10 +1,12 @@
-import { ApiClient } from 'lib/api-client';
+import { createClient } from '@hey-api/client-fetch';
+
+import { attributesReadAttributes } from 'lib/api-client/sdk.gen';
 import { FieldSpec } from 'lib/data-map/view-layers';
 
 export type DataLoaderSubscriber = (loader: DataLoader) => void;
 
-const apiClient = new ApiClient({
-  BASE: '/api',
+const apiClient = createClient({
+  baseUrl: '/api',
 });
 /**
  * Data loader that fetches data from the attributes API for a layer and field spec.
@@ -96,15 +98,20 @@ export class DataLoader<T = any> {
 
     missingIds.forEach((id) => this.loadingIds.add(id));
 
-    const response = await apiClient.attributes.attributesReadAttributes({
-      layer: this.layer,
-      fieldGroup,
-      field,
-      dimensions: JSON.stringify(fieldDimensions),
-      parameters: JSON.stringify(fieldParams),
-      requestBody: missingIds,
+    const { data } = await attributesReadAttributes({
+      client: apiClient,
+      body: missingIds,
+      path: {
+        field_group: fieldGroup,
+      },
+      query: {
+        layer: this.layer,
+        field,
+        dimensions: JSON.stringify(fieldDimensions),
+        parameters: JSON.stringify(fieldParams),
+      },
     });
-    return response as Record<string, T>;
+    return data as Record<string, T>;
   }
 
   private updateData(loadedData: Record<string, T>) {
