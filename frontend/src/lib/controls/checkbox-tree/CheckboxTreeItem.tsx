@@ -46,14 +46,16 @@ export function CheckboxTreeItem<T>({
       label={
         <Box display="flex" alignItems="center" width="100%">
           <Checkbox
-            inputProps={{
-              'aria-label': root.label,
-            }}
             checked={checked}
             indeterminate={indeterminate}
             onChange={handleCheckboxChange}
             onClick={handleClick}
             disabled={disableCheck}
+            slotProps={{
+              input: {
+                'aria-label': root.label,
+              },
+            }}
           />
           <Box flexGrow={1}>{getLabel(root, checked)}</Box>
         </Box>
