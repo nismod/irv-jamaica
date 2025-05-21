@@ -18,26 +18,26 @@ export function getRiskId<
   C extends number | string,
 >({
   riskType,
-  hazard,
+  sector,
   returnPeriod,
   rcp,
   epoch,
   confidence,
 }: {
   riskType: F;
-  hazard: string;
+  sector: string;
   returnPeriod: RP;
   rcp: RCP;
   epoch: E;
   confidence: C;
 }) {
-  return `${riskType}__${hazard}__rp_${returnPeriod}__rcp_${rcp}__epoch_${epoch}__conf_${confidence}` as const;
+  return `${riskType}__${sector}__rp_${returnPeriod}__rcp_${rcp}__epoch_${epoch}__conf_${confidence}` as const;
 }
 
 export function riskViewLayer(riskType: string, riskParams: RiskParams): ViewLayer {
-  const { hazard, returnPeriod, rcp, epoch, confidence } = riskParams;
+  const { sector, returnPeriod, rcp, epoch, confidence } = riskParams;
 
-  const deckId = getRiskId({ riskType, hazard, returnPeriod, rcp, epoch, confidence });
+  const deckId = getRiskId({ riskType, sector, returnPeriod, rcp, epoch, confidence });
 
   return {
     id: riskType,
@@ -50,6 +50,7 @@ export function riskViewLayer(riskType: string, riskParams: RiskParams): ViewLay
       const dataURL = RISK_SOURCE.getDataUrl(
         {
           riskType,
+          sector,
         },
         { scheme, range },
       );
