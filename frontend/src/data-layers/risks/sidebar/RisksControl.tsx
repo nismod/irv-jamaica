@@ -1,28 +1,77 @@
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+} from '@mui/material';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 
 import { InputSection } from 'lib/sidebar/ui/InputSection';
+import { DataParam } from 'lib/sidebar/ui/params/DataParam';
+
+import { sectorRiskTypes } from '../domains';
+import { dataParamState } from 'lib/state/data-params';
+
+function capitalise(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 export const RisksControl = () => {
-  const [value, setValue] = useRecoilState(sectionStyleValueState('risks'));
-  const options = useRecoilValue(sectionStyleOptionsState('risks'));
-  function onChange(event, value) {
-    setValue(value);
+  const [riskType, setRiskType] = useRecoilState(sectionStyleValueState('risks'));
+  const riskTypes = useRecoilValue(sectionStyleOptionsState('risks'));
+  const sector = useRecoilValue(dataParamState({ group: 'risks', param: 'sector' }));
+
+  // Reset risk type if the selected sector does not support the current risk type.
+  const allowedRiskTypes = sectorRiskTypes[sector] || [];
+  if (!allowedRiskTypes.includes(riskType)) {
+    setRiskType(allowedRiskTypes[0]);
+  }
+
+  function onSelectRiskType(event, value) {
+    setRiskType(value);
   }
 
   return (
     <>
       <InputSection>
+        <FormControl fullWidth sx={{ my: 2 }}>
+          <FormLabel id="risks-sector">Sector</FormLabel>
+          <DataParam group="risks" id="sector">
+            {({ value, onChange, options }) => (
+              <Select
+                labelId="risks-sector"
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+              >
+                {options.map((option) => (
+                  <MenuItem key={option} value={option}>
+                    {capitalise(option)}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          </DataParam>
+        </FormControl>
+      </InputSection>
+      <InputSection>
         <FormControl>
           <FormLabel>Risk</FormLabel>
-          <RadioGroup value={value} onChange={onChange}>
-            {options.map((option) => (
+          <RadioGroup value={riskType} onChange={onSelectRiskType}>
+            {riskTypes.map((option) => (
               <FormControlLabel
                 key={option.id}
                 label={option.label}
-                control={<Radio value={option.id} />}
+                control={
+                  <Radio
+                    value={option.id}
+                    disabled={!sectorRiskTypes[sector]?.includes(option.id)}
+                  />
+                }
               />
             ))}
           </RadioGroup>

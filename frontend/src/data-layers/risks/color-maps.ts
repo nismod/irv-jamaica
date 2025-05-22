@@ -3,7 +3,7 @@
  */
 export const exposureValue = {
   scheme: 'reds',
-  range: [0, 1e9],
+  range: [0, 1e10],
 };
 /**
  * Colour scheme and range for GDP values.

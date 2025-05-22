@@ -11,10 +11,10 @@ import { riskViewLayer } from '../risk-view-layer';
 export const risksLayerState = selector<ViewLayer[]>({
   key: 'risksLayerState',
   get: ({ get }) => {
-    const risksStyle = get(sectionStyleValueState('risks'));
+    const riskType = get(sectionStyleValueState('risks'));
     const dataParams = get(dataParamsByGroupState('risks'));
     return get(sectionVisibilityState('risks'))
-      ? [riskViewLayer(risksStyle, dataParams as RiskParams)]
+      ? [riskViewLayer(riskType, dataParams as RiskParams)]
       : [];
   },
 });
