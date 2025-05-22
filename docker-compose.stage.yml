@@ -53,6 +53,21 @@ services:
       - TC_REPROJECTION_METHOD=nearest
       - TC_PNG_COMPRESS_LEVEL=1
 
+  raster-tile-ingester:
+    image: ghcr.io/nismod/jsrat-raster-tileserver:0.1
+    build: ./tileserver/raster
+    volumes:
+      - ./tileserver/raster/data:/data
+      - ./tileserver/raster/config.toml:/config.toml
+    command:
+      [
+        "terracotta",
+        "ingest",
+        "/data/{type}__rp_{rp}__rcp_{rcp}__epoch_{epoch}__conf_{confidence}.tif",
+        "-o",
+        "/data/terracotta.sqlite",
+      ]
+
   pixel-driller:
     image: ghcr.io/nismod/jsrat-pixel-driller:canary
     platform: linux/amd64
