@@ -26,6 +26,6 @@ export const Default: Story = {
   },
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.queryByText('Aggregated Risk')).toBeTruthy();
+    expect(canvas.queryByText('Hotspots')).toBeTruthy();
   },
 };

@@ -6,4 +6,4 @@ hotspots,hotspots/power/population_affected.tiff,100,baseline,2010,None,populati
 hotspots,hotspots/exposure_value_JMD/energy.tiff,100,baseline,2010,None,exposure value,$,powerExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
 hotspots,hotspots/exposure_value_JMD/transport.tiff,100,baseline,2010,None,exposure value,$,transportExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
 hotspots,hotspots/exposure_value_JMD/water.tiff,100,baseline,2010,None,exposure value,$,waterExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
-hotspots,hotspots/exposure_value_JMD/all_sectors.tiff,100,baseline,2010,None,exposure value,,allExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
+hotspots,hotspots/exposure_value_JMD/all_sectors.tiff,100,baseline,2010,None,exposure value,$,allExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None

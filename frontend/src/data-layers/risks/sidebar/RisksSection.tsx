@@ -8,7 +8,7 @@ import { RisksControl } from './RisksControl';
 
 export const RisksSection: FC = () => {
   return (
-    <SidebarPanel id="risks" title="Aggregated Risk">
+    <SidebarPanel id="risks" title="Hotspots">
       <ErrorBoundary message="There was a problem displaying this section.">
         <SidebarPanelSection>
           <RisksControl />
