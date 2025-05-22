@@ -32,11 +32,13 @@ const formatter = {
   years: (value) => `${parseInt(value)} years`,
 };
 
-function formatValue(color, value, dataUnit, type) {
+function formatValue(color, value, dataUnit, type, maxValue) {
+  const formattedValue = value == null ? '' : formatter[type](value, dataUnit);
   return (
     <>
       <ColorBox color={color} />
-      {value == null ? '' : formatter[type](value, dataUnit)}
+      {value === maxValue ? '> ' : ''}
+      {formattedValue}
     </>
   );
 }
@@ -56,10 +58,11 @@ export const RasterHoverDescription: FC<{
 
   const colorString = `rgb(${color[0]},${color[1]},${color[2]})`;
   const value = rasterValueLookup?.[colorString];
+  const maxValue = range[1];
 
   return (
     <Box>
-      <DataItem label={title} value={formatValue(colorString, value, dataUnit, type)} />
+      <DataItem label={title} value={formatValue(colorString, value, dataUnit, type, maxValue)} />
     </Box>
   );
 };
