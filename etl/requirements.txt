@@ -35,5 +35,6 @@ sqlalchemy==2.0.36
 starlette==0.41.3
 tqdm~=4.66.5
 typing-extensions==4.12.2
+ujson~=5.10.0
 uvicorn==0.32.0
 xarray~=2024.9.0
