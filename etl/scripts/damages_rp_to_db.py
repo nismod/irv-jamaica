@@ -29,19 +29,36 @@ def yield_return_period_damages(exposure_fname, damage_fname, loss_fname):
             exp_df = parse_rp_damage_batch(next(exp_batches)).rename(
                 columns={"none": "exposure"}
             )
-            dmg_df = parse_rp_damage_batch(next(dmg_batches)).rename(
-                columns={
-                    "amin": "damage_amin",
-                    "mean": "damage_mean",
-                    "amax": "damage_amax",
-                }
+            dmg_df = (
+                parse_rp_damage_batch(next(dmg_batches)).rename(
+                    # we'll use min or amin, max or amax
+                    columns={
+                        "min": "amin",
+                        "max": "amax",
+                    }
+                )
+                .rename(
+                    columns={
+                        "amin": "damage_amin",
+                        "mean": "damage_mean",
+                        "amax": "damage_amax",
+                    }
+                )
             )
-            loss_df = parse_rp_damage_batch(next(loss_batches)).rename(
-                columns={
-                    "amin": "loss_amin",
-                    "mean": "loss_mean",
-                    "amax": "loss_amax",
-                }
+            loss_df = (
+                parse_rp_damage_batch(next(loss_batches)).rename(
+                    # we'll use min or amin, max or amax
+                    columns={
+                        "min": "amin",
+                        "max": "amax",
+                    }
+                ).rename(
+                    columns={
+                        "amin": "loss_amin",
+                        "mean": "loss_mean",
+                        "amax": "loss_amax",
+                    }
+                )
             )
             batch_df = exp_df.join(dmg_df).join(loss_df).fillna(0).reset_index()
 
