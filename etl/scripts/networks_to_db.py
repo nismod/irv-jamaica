@@ -8,7 +8,6 @@ from shapely.geometry import shape
 from shapely.ops import transform
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
-from tqdm import tqdm
 
 from backend.db.database import SessionLocal
 from backend.db.models import Feature
@@ -120,9 +119,10 @@ if __name__ == "__main__":
         db.execute(delete(Feature).where(Feature.layer.in_(tilelayers)))
         db.commit()
 
-        for i, feature in tqdm(enumerate(yield_features(layer, network_tilelayers, analysis_data_dir)), total=layer["count"]):
+        for i, feature in enumerate(yield_features(layer, network_tilelayers, analysis_data_dir)):
             db.add(feature)
             if i % 1000 == 0:
+                print(f"Processed {i} features", end="\r")
                 db.commit()
         db.commit()
 
