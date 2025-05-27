@@ -17,4 +17,12 @@ export const RISK_STYLES = makeConfig([
     id: 'lossGdp',
     label: 'Loss GDP',
   },
+  {
+    id: 'lossGdpIsolation',
+    label: 'Loss GDP (isolation)',
+  },
+  {
+    id: 'lossGdpRerouting',
+    label: 'Loss GDP (rerouting)',
+  },
 ]);

@@ -12,6 +12,11 @@ export const lossGdp = {
   scheme: 'blues',
   range: [0, 5e6],
 };
+export const lossGdpIsolation = lossGdp;
+export const lossGdpRerouting = {
+  scheme: 'blues',
+  range: [0, 2.5e5],
+};
 /**
  * Colour scheme and range for population values.
  */

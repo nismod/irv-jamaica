@@ -12,7 +12,7 @@ export const sectorRiskTypes = {
   all: ['exposureValue'],
   power: ['demandAffected', 'exposureValue', 'populationAffected', 'lossGdp'],
   water: ['exposureValue'],
-  transport: ['exposureValue'],
+  transport: ['exposureValue', 'lossGdpIsolation', 'lossGdpRerouting'],
 };
 
 /*
