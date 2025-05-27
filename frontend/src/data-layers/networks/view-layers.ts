@@ -31,35 +31,35 @@ enum RoadClass {
   class_a = 'class_a',
   class_b = 'class_b',
   class_c = 'class_c',
-  metro = 'metro',
-  other = 'other',
-  track = 'track',
+  motorway = 'motorway',
+  unclassified = 'unclassified',
+  residential = 'residential',
 }
 
 const roadClassLookup = {
   road_edges_class_a: RoadClass.class_a,
   road_edges_class_b: RoadClass.class_b,
   road_edges_class_c: RoadClass.class_c,
-  road_edges_metro: RoadClass.metro,
-  road_edges_track: RoadClass.track,
-  road_edges_other: RoadClass.other,
+  road_edges_motorway: RoadClass.motorway,
+  road_edges_residential: RoadClass.residential,
+  road_edges_unclassified: RoadClass.unclassified,
 };
 
 const roadColor = {
   [RoadClass.class_a]: COLORS.roads_class_a.deck,
   [RoadClass.class_b]: COLORS.roads_class_b.deck,
   [RoadClass.class_c]: COLORS.roads_class_c.deck,
-  [RoadClass.metro]: COLORS.roads_metro.deck,
-  [RoadClass.track]: COLORS.roads_unknown.deck,
-  [RoadClass.other]: COLORS.roads_unknown.deck,
+  [RoadClass.motorway]: COLORS.roads_motorway.deck,
+  [RoadClass.residential]: COLORS.roads_unknown.deck,
+  [RoadClass.unclassified]: COLORS.roads_unknown.deck,
 };
 const roadLineSize: Record<RoadClass, ScaleLevel> = {
   [RoadClass.class_a]: 0,
   [RoadClass.class_b]: 1,
   [RoadClass.class_c]: 2,
-  [RoadClass.metro]: 2,
-  [RoadClass.track]: 2,
-  [RoadClass.other]: 2,
+  [RoadClass.motorway]: 2,
+  [RoadClass.residential]: 2,
+  [RoadClass.unclassified]: 2,
 };
 function roadsViewLayer(asset_id) {
   const roadClass = roadClassLookup[asset_id];
@@ -159,9 +159,9 @@ export const INFRASTRUCTURE_VIEW_LAYERS = makeConfig<ViewLayer, string>([
   roadsViewLayer('road_edges_class_a'),
   roadsViewLayer('road_edges_class_b'),
   roadsViewLayer('road_edges_class_c'),
-  roadsViewLayer('road_edges_metro'),
-  roadsViewLayer('road_edges_track'),
-  roadsViewLayer('road_edges_other'),
+  roadsViewLayer('road_edges_motorway'),
+  roadsViewLayer('road_edges_residential'),
+  roadsViewLayer('road_edges_unclassified'),
 
   infrastructureViewLayer('road_bridges', ({ zoom, styleParams }) => [
     iconType('diamond'),
