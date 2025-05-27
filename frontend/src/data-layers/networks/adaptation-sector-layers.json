@@ -170,6 +170,12 @@
   {
     "sector": "transport",
     "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "layer_name": "road_edges_motorway"
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
     "asset_type": "CLASS A",
     "layer_name": "road_edges_class_a"
   },
@@ -188,20 +194,14 @@
   {
     "sector": "transport",
     "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "layer_name": "road_edges_motorway"
+    "asset_type": "RESIDENTIAL",
+    "layer_name": "road_edges_residential"
   },
   {
     "sector": "transport",
     "subsector": "road",
     "asset_type": "UNCLASSIFIED",
     "layer_name": "road_edges_unclassified"
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "RESIDENTIAL",
-    "layer_name": "road_edges_residential"
   },
   {
     "sector": "water",

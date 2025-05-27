@@ -1145,6 +1145,141 @@
   {
     "sector": "transport",
     "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
+    "adaptation_protection_level": 999
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
+    "adaptation_protection_level": 999
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "MOTORWAY",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
+    "adaptation_protection_level": 999
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
     "asset_type": "CLASS A",
     "hazard": "flooding",
     "rcp": "2.6",
@@ -1550,276 +1685,6 @@
   {
     "sector": "transport",
     "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
-    "adaptation_protection_level": 999
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
-    "adaptation_protection_level": 999
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "MOTORWAY",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
-    "adaptation_protection_level": 999
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "2.6",
-    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
-    "adaptation_protection_level": 999
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "4.5",
-    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
-    "adaptation_protection_level": 999
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 1.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Elevate the roads",
-    "adaptation_protection_level": 2.5
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
-    "asset_type": "UNCLASSIFIED",
-    "hazard": "flooding",
-    "rcp": "8.5",
-    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
-    "adaptation_protection_level": 999
-  },
-  {
-    "sector": "transport",
-    "subsector": "road",
     "asset_type": "RESIDENTIAL",
     "hazard": "flooding",
     "rcp": "2.6",
@@ -1947,6 +1812,141 @@
     "sector": "transport",
     "subsector": "road",
     "asset_type": "RESIDENTIAL",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
+    "adaptation_protection_level": 999
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "2.6",
+    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
+    "adaptation_protection_level": 999
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "4.5",
+    "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
+    "adaptation_protection_level": 999
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 1.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
+    "hazard": "flooding",
+    "rcp": "8.5",
+    "adaptation_name": "Elevate the roads",
+    "adaptation_protection_level": 2.5
+  },
+  {
+    "sector": "transport",
+    "subsector": "road",
+    "asset_type": "UNCLASSIFIED",
     "hazard": "flooding",
     "rcp": "8.5",
     "adaptation_name": "Upgrade concrete mix, upgrade mortar mix, upgrade rubble masonry wall, increase number of drainage structure",
@@ -1959,7 +1959,7 @@
     "hazard": "flooding",
     "rcp": "2.6",
     "adaptation_name": "Flood defence around asset",
-    "adaptation_protection_level": 1
+    "adaptation_protection_level": 1.5
   },
   {
     "sector": "water",
@@ -1968,7 +1968,7 @@
     "hazard": "flooding",
     "rcp": "2.6",
     "adaptation_name": "Flood defence around asset",
-    "adaptation_protection_level": 1.5
+    "adaptation_protection_level": 1
   },
   {
     "sector": "water",
