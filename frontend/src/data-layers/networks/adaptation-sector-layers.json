@@ -188,20 +188,20 @@
   {
     "sector": "transport",
     "subsector": "road",
-    "asset_type": "METRO",
-    "layer_name": "road_edges_metro"
+    "asset_type": "MOTORWAY",
+    "layer_name": "road_edges_motorway"
   },
   {
     "sector": "transport",
     "subsector": "road",
-    "asset_type": "OTHER",
-    "layer_name": "road_edges_other"
+    "asset_type": "UNCLASSIFIED",
+    "layer_name": "road_edges_unclassified"
   },
   {
     "sector": "transport",
     "subsector": "road",
-    "asset_type": "TRACK",
-    "layer_name": "road_edges_track"
+    "asset_type": "RESIDENTIAL",
+    "layer_name": "road_edges_residential"
   },
   {
     "sector": "water",
