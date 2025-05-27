@@ -150,7 +150,6 @@ export const NETWORKS_METADATA = makeConfig([
     type: 'line',
     label: 'Roads (Motorway)',
     color: COLORS.roads_motorway.css,
-    minZoom: 9,
   },
   {
     id: 'road_edges_residential',
