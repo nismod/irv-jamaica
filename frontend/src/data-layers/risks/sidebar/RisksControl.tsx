@@ -59,8 +59,8 @@ export const RisksControl = () => {
         </FormControl>
       </InputSection>
       <InputSection>
-        <FormControl>
-          <FormLabel>Variable</FormLabel>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Variable</FormLabel>
           <RadioGroup value={riskType} onChange={onSelectRiskType}>
             {riskTypes
               .filter((option) => sectorRiskTypes[sector]?.includes(option.id))
