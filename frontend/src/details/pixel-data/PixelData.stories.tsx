@@ -1,5 +1,5 @@
-import { StoryObj, Meta } from '@storybook/react';
-import { expect, within } from '@storybook/test';
+import { StoryObj, Meta } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 import { http, HttpResponse } from 'msw';
 
 import mockPixelData from 'mocks/details/pixel-data/mockPixelData.json';
