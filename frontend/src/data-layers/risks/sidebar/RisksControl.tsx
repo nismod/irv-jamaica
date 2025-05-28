@@ -60,20 +60,17 @@ export const RisksControl = () => {
       </InputSection>
       <InputSection>
         <FormControl>
-          <FormLabel>Risk</FormLabel>
+          <FormLabel>Variable</FormLabel>
           <RadioGroup value={riskType} onChange={onSelectRiskType}>
-            {riskTypes.map((option) => (
-              <FormControlLabel
-                key={option.id}
-                label={option.label}
-                control={
-                  <Radio
-                    value={option.id}
-                    disabled={!sectorRiskTypes[sector]?.includes(option.id)}
-                  />
-                }
-              />
-            ))}
+            {riskTypes
+              .filter((option) => sectorRiskTypes[sector]?.includes(option.id))
+              .map((option) => (
+                <FormControlLabel
+                  key={option.id}
+                  label={option.label}
+                  control={<Radio value={option.id} />}
+                />
+              ))}
           </RadioGroup>
         </FormControl>
       </InputSection>
