@@ -1,4 +1,4 @@
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 
 import { AdaptationsSidebar } from './AdaptationsSidebar';
 import { http, HttpResponse } from 'msw';
