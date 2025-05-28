@@ -29,9 +29,9 @@ export const ParamChecklist = <K extends string = string>({
 
   return (
     <FormGroup>
-      <Box component="fieldset">
+      <Box component="fieldset" sx={{ border: 'none' }}>
+        <FormLabel component="legend">{title}</FormLabel>
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <FormLabel component="legend">{title}</FormLabel>
           {showAllNone && (
             <Box>
               <Button disabled={isAll} onClick={() => onChecklistState(fromKeys(keys, true))}>
