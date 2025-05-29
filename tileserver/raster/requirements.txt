@@ -1,0 +1,4 @@
+cython~=3.0.12
+terracotta~=0.8
+gunicorn
+numpy>=1.15,!=1.17.0,<1.24
