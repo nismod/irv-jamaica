@@ -18,7 +18,13 @@ function useRasterColorMapLookup(colorMapValues) {
 
 const formatter = {
   hazard: (value, dataUnit) => value.toFixed(1) + dataUnit,
-  financial: numFormatMoney,
+  financial: (value, dataUnit) => {
+    const [currency, period] = dataUnit.split('/');
+    if (period) {
+      return `${numFormatMoney(value, currency)}/${period}`;
+    }
+    return numFormatMoney(value, dataUnit);
+  },
   integer: (value) =>
     value.toLocaleString(undefined, {
       maximumSignificantDigits: 3,
