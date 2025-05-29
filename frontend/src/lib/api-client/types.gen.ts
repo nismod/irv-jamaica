@@ -241,6 +241,52 @@ export type PageFeatureListItemOutFloat = {
 };
 
 /**
+ * ProtectedFeatureListItem
+ */
+export type ProtectedFeatureListItem = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * String Id
+     */
+    string_id: string;
+    /**
+     * Layer
+     */
+    layer: string;
+    /**
+     * Adaptation Name
+     */
+    adaptation_name: string;
+    /**
+     * Adaptation Protection Level
+     */
+    adaptation_protection_level: number;
+    /**
+     * Adaptation Cost
+     */
+    adaptation_cost: number;
+    /**
+     * Avoided Ead Mean
+     */
+    avoided_ead_mean: number;
+    /**
+     * Avoided Eael Mean
+     */
+    avoided_eael_mean: number;
+    /**
+     * Hazard
+     */
+    hazard: string;
+    /**
+     * Rcp
+     */
+    rcp: number;
+};
+
+/**
  * ReturnPeriodDamage
  */
 export type ReturnPeriodDamage = {
@@ -404,6 +450,40 @@ export type FeaturesReadSortedFeaturesResponses = {
 };
 
 export type FeaturesReadSortedFeaturesResponse = FeaturesReadSortedFeaturesResponses[keyof FeaturesReadSortedFeaturesResponses];
+
+export type FeaturesReadProtectedFeaturesData = {
+    body?: never;
+    path: {
+        /**
+         * Protector Id
+         */
+        protector_id: number;
+    };
+    query: {
+        rcp: string;
+        protection_level: number;
+    };
+    url: '/features/{protector_id}/protected-by';
+};
+
+export type FeaturesReadProtectedFeaturesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type FeaturesReadProtectedFeaturesError = FeaturesReadProtectedFeaturesErrors[keyof FeaturesReadProtectedFeaturesErrors];
+
+export type FeaturesReadProtectedFeaturesResponses = {
+    /**
+     * Response Features-Read Protected Features
+     * Successful Response
+     */
+    200: Array<ProtectedFeatureListItem>;
+};
+
+export type FeaturesReadProtectedFeaturesResponse = FeaturesReadProtectedFeaturesResponses[keyof FeaturesReadProtectedFeaturesResponses];
 
 export type AttributesReadAttributesData = {
     /**
