@@ -34,6 +34,14 @@ export function numFormatMoney(value: number, currency: string = 'JMD') {
   });
 }
 
+export function numFormatFinancial(value: number, dataUnit: string = 'JMD') {
+  const [currency, period] = dataUnit.split('/');
+  if (period) {
+    return `${numFormatMoney(value, currency)}/${period}`;
+  }
+  return numFormatMoney(value, currency);
+}
+
 export function numRangeFormat(n1: number, n2: number) {
   if (n1 == null || n2 == null) return null;
 
