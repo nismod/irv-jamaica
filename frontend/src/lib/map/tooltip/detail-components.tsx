@@ -255,13 +255,13 @@ export const RoadEdgeDetails: FC<DetailsComponentProps> = ({ f }) => (
     </Typography>
     <DetailSubheader id={f.asset_id} />
     <List>
+      <DataItem label="Code" value={f.tag_code} />
+      <DataItem label="Source ID" value={f.osm_way_id} />
+      <DataItem label="Name" value={f.tag_name} />
+      <DataItem label="Class" value={f.road_class} />
       <DataItem label="Connection" value={`${f.from_node}–${f.to_node}`} />
-      <DataItem label="Street type" value={`${f.street_type ? f.street_type : 'none'}`} />
-      <DataItem label="Construction" value={f.road_construction} />
+      <DataItem label="Construction" value={f.tag_surface} />
       <DataItem label="Length (m)" value={f.length_m} />
-      <DataItem label="Width (m)" value={f.road_width} />
-      <DataItem label="Vertical alignment" value={f.vertalignm} />
-      <DataItem label="Traffic (vehicles/day)" value={f.traffic_count} />
       <DataItem
         label={`Rehabilitation cost (${f.cost_unit})`}
         value={`${numFormat(f.cost_mean)} (${numFormat(f.cost_min)}–${numFormat(f.cost_max)})`}
