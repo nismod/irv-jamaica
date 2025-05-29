@@ -19,6 +19,16 @@ export const RISKS_METADATA = {
     dataUnit: '',
     format: 'financial',
   },
+  lossGdpIsolation: {
+    label: 'Loss GDP (isolation)',
+    dataUnit: '',
+    format: 'financial',
+  },
+  lossGdpRerouting: {
+    label: 'Loss GDP (rerouting)',
+    dataUnit: '',
+    format: 'financial',
+  },
 };
 
 export const RISKS = Object.keys(RISKS_METADATA);
