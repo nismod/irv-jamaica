@@ -24,12 +24,12 @@ export function numFormat(n: number, maximumSignificantDigits: number = 3) {
   return n == null ? `-` : n.toLocaleString(undefined, { maximumSignificantDigits });
 }
 
-export function numFormatMoney(value: number) {
+export function numFormatMoney(value: number, currency: string = 'JMD') {
   return value.toLocaleString(undefined, {
     maximumSignificantDigits: 3,
     maximumFractionDigits: 2,
     style: 'currency',
-    currency: 'JMD',
+    currency,
     currencyDisplay: 'narrowSymbol',
   });
 }
