@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { FC, useMemo } from 'react';
 
 import { useRasterColorMapValues } from 'lib/map/legend/use-color-map-values';
-import { numFormatMoney } from 'lib/helpers';
+import { numFormatFinancial } from 'lib/helpers';
 
 import { DataItem } from '../detail-components';
 import { ColorBox } from './ColorBox';
@@ -18,13 +18,7 @@ function useRasterColorMapLookup(colorMapValues) {
 
 const formatter = {
   hazard: (value, dataUnit) => value.toFixed(1) + dataUnit,
-  financial: (value, dataUnit) => {
-    const [currency, period] = dataUnit.split('/');
-    if (period) {
-      return `${numFormatMoney(value, currency)}/${period}`;
-    }
-    return numFormatMoney(value, dataUnit);
-  },
+  financial: numFormatFinancial,
   integer: (value) =>
     value.toLocaleString(undefined, {
       maximumSignificantDigits: 3,
