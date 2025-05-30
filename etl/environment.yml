@@ -1,0 +1,14 @@
+# to install this environment:
+# micromamba create -f environment.yml -y
+name: irv-jamaica-etl
+channels:
+  - conda-forge  # majority of dependencies
+  - bioconda  # snakemake
+  - nodefaults  # avoid anaconda license issues
+dependencies:
+  - python~=3.11
+  - pip:
+    - -e ../backend
+    - -r requirements.txt
+  - bioconda::snakemake~=8.30.0
+  - tippecanoe~=2.31.0
