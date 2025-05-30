@@ -261,10 +261,6 @@ export const RoadEdgeDetails: FC<DetailsComponentProps> = ({ f }) => (
         label={`Rehabilitation cost (${f.cost_unit})`}
         value={`${numFormat(f.cost_mean)} (${numFormat(f.cost_min)}–${numFormat(f.cost_max)})`}
       />
-      <DataItem
-        label={`Reopening cost (${f.cost_reopen_unit})`}
-        value={`${numFormat(f.cost_reopen)}`}
-      />
       <DataItem label="Connection" value={`${f.from_node}–${f.to_node}`} />
       <DataItem label="Source ID" value={f.osm_way_id.toString()} />
     </List>
@@ -296,7 +292,6 @@ export const BridgeDetails: FC<DetailsComponentProps> = ({ f }) => (
         label={`Rehabilitation cost (${f.cost_unit})`}
         value={`${numFormat(f.cost_mean)} ${paren(numRangeFormat(f.cost_min, f.cost_max))}`}
       />
-      <DataItem label={`Reopening cost (${f.cost_unit})`} value={`${numFormat(f.cost_reopen)}`} />
     </List>
   </>
 );
