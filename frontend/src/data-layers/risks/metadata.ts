@@ -6,7 +6,7 @@ export const RISKS_METADATA = {
   },
   exposureValue: {
     label: 'Exposure value',
-    dataUnit: '',
+    dataUnit: 'JMD',
     format: 'financial',
   },
   populationAffected: {
@@ -16,7 +16,17 @@ export const RISKS_METADATA = {
   },
   lossGdp: {
     label: 'Loss GDP',
-    dataUnit: '',
+    dataUnit: 'JMD/day',
+    format: 'financial',
+  },
+  lossGdpIsolation: {
+    label: 'Loss GDP (isolation)',
+    dataUnit: 'JMD/day',
+    format: 'financial',
+  },
+  lossGdpRerouting: {
+    label: 'Loss GDP (rerouting)',
+    dataUnit: 'JMD/day',
     format: 'financial',
   },
 };

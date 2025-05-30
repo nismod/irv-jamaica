@@ -9,10 +9,10 @@ export interface RiskParams {
 }
 
 export const sectorRiskTypes = {
+  all: ['exposureValue'],
   power: ['demandAffected', 'exposureValue', 'populationAffected', 'lossGdp'],
   water: ['exposureValue'],
-  transport: ['exposureValue'],
-  all: ['exposureValue'],
+  transport: ['exposureValue', 'lossGdpIsolation', 'lossGdpRerouting'],
 };
 
 /*
@@ -20,6 +20,12 @@ export const sectorRiskTypes = {
   These are used to define ranges for input controls in the sidebar.
 */
 const sectorParamDomains = {
+  all: {
+    returnPeriod: [0],
+    epoch: [2010],
+    rcp: ['baseline'],
+    confidence: ['None'],
+  },
   power: {
     returnPeriod: [0],
     epoch: [2010],
@@ -38,12 +44,6 @@ const sectorParamDomains = {
     rcp: ['baseline'],
     confidence: ['None'],
   },
-  all: {
-    returnPeriod: [0],
-    epoch: [2010],
-    rcp: ['baseline'],
-    confidence: ['None'],
-  },
 };
 
 export const RISK_DOMAINS: DataParamGroupConfig<RiskParams> = {
@@ -51,7 +51,7 @@ export const RISK_DOMAINS: DataParamGroupConfig<RiskParams> = {
     Default parameter ranges for each risk type.
   */
   paramDomains: {
-    sector: ['power', 'transport', 'water', 'all'],
+    sector: ['all', 'power', 'transport', 'water'],
     returnPeriod: [0],
     epoch: [2010],
     rcp: ['baseline'],
