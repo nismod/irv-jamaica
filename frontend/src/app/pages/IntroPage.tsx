@@ -74,15 +74,15 @@ export const IntroPage = () => (
                 spacing={2}
               >
                 <ExtLink href="https://www.gov.jm">
-                  <img height="150" src="/jamaica-coatofarms.png" alt="Government of Jamaica" />
+                  <img height="150" src="./jamaica-coatofarms.png" alt="Government of Jamaica" />
                 </ExtLink>
                 <ExtLink href="https://www.pioj.gov.jm/">
-                  <img height="150" src="/jamaica-pioj.png" alt="Planning Institute of Jamaica" />
+                  <img height="150" src="./jamaica-pioj.png" alt="Planning Institute of Jamaica" />
                 </ExtLink>
                 <ExtLink href="https://opsis.eci.ox.ac.uk">
                   <img
                     height="100"
-                    src="/logo-opsis.png"
+                    src="./logo-opsis.png"
                     alt="Oxford Programme for Sustainable Infrastructure Systems"
                   />
                 </ExtLink>
