@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { CssBaseline } from '@mui/material';
 import { StyledEngineProvider } from '@mui/styled-engine';
 import { ThemeProvider } from '@mui/material/styles';
@@ -19,7 +18,7 @@ import { useStateEffect } from '../src/lib/recoil/state-effects/use-state-effect
  */
 initialize({
   serviceWorker: {
-    url: './mockServiceWorker.js',
+    url: '/mockServiceWorker.js',
   },
 });
 
@@ -41,6 +40,13 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'todo',
     },
   },
   decorators: [

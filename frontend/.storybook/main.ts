@@ -8,6 +8,7 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-a11y',
     '@storybook/addon-docs',
+    '@storybook/addon-vitest'
   ],
 
   framework: {
