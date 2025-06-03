@@ -1,10 +1,15 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
-import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
+import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+
+const dirname =
+  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * To set up a development proxy, create and edit the file dev-proxy/proxy-table.json
@@ -26,12 +31,30 @@ try {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), viteTsconfigPaths(), url(), svgr()],
+  plugins: [
+    react(),
+    viteTsconfigPaths(),
+    url(),
+    svgr(),
+    // The plugin will run tests for the stories defined in your Storybook config
+    // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
+    storybookTest({ configDir: path.join(dirname, '.storybook') }),
+  ],
   build: {
     outDir: 'build',
   },
   server: {
     open: true,
     proxy: devProxy,
+  },
+  test: {
+    name: 'storybook',
+    browser: {
+      enabled: true,
+      headless: true,
+      provider: 'playwright',
+      instances: [{ browser: 'chromium' }],
+    },
+    setupFiles: ['.storybook/vitest.setup.ts'],
   },
 });
