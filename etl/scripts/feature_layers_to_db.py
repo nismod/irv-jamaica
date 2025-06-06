@@ -1,7 +1,6 @@
-"""Load feature layer definitions to database.
-"""
-import pandas
+"""Load feature layer definitions to database."""
 
+import pandas
 from sqlalchemy.orm import Session
 
 from backend.db.database import SessionLocal
@@ -19,14 +18,33 @@ if __name__ == "__main__":
     network_tilelayers = pandas.read_csv(network_tilelayers_fname)
     db: Session
     with SessionLocal() as db:
+
         for row in network_tilelayers.itertuples():
-            feature_layer = FeatureLayer(
-                layer_name=row.layer,
-                sector=row.sector,
-                subsector=row.subsector,
-                asset_type=row.asset_type,
+            query = (
+                db.query(FeatureLayer)
+                .filter(
+                    FeatureLayer.layer_name == row.layer,
+                    FeatureLayer.sector == row.sector,
+                    FeatureLayer.subsector == row.subsector,
+                    FeatureLayer.asset_type == row.asset_type,
+                )
+                .first()
             )
-            db.add(feature_layer)
+
+            if not query:
+                print("does not exist, creating", end=" ")
+                instance = FeatureLayer(
+                    layer_name=row.layer,
+                    sector=row.sector,
+                    subsector=row.subsector,
+                    asset_type=row.asset_type,
+                )
+                db.add(instance)
+            else:
+                print("exists, skipping", end=" ")
+
+            print(row.layer, row.sector, row.subsector, row.asset_type)
+
         db.commit()
 
     with open(str(output), "w") as fh:

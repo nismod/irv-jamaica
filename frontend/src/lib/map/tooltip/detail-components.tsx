@@ -249,27 +249,21 @@ export const RailNodeDetails: FC<DetailsComponentProps> = ({ f }) => (
 export const RoadEdgeDetails: FC<DetailsComponentProps> = ({ f }) => (
   <>
     <Typography variant="h6" component="h1">
-      {f.street_name}
-      {f.street_name ? ', ' : ''}
-      {f.section_name}
+      {f.tag_name}
+      {f.tag_code ? ', ' : ''}
+      {f.tag_code}
     </Typography>
     <DetailSubheader id={f.asset_id} />
     <List>
-      <DataItem label="Connection" value={`${f.from_node}–${f.to_node}`} />
-      <DataItem label="Street type" value={`${f.street_type ? f.street_type : 'none'}`} />
-      <DataItem label="Construction" value={f.road_construction} />
+      <DataItem label="Surface" value={f.tag_surface} />
+      <DataItem label="Lanes" value={f.lanes} />
       <DataItem label="Length (m)" value={f.length_m} />
-      <DataItem label="Width (m)" value={f.road_width} />
-      <DataItem label="Vertical alignment" value={f.vertalignm} />
-      <DataItem label="Traffic (vehicles/day)" value={f.traffic_count} />
       <DataItem
         label={`Rehabilitation cost (${f.cost_unit})`}
         value={`${numFormat(f.cost_mean)} (${numFormat(f.cost_min)}–${numFormat(f.cost_max)})`}
       />
-      <DataItem
-        label={`Reopening cost (${f.cost_reopen_unit})`}
-        value={`${numFormat(f.cost_reopen)}`}
-      />
+      <DataItem label="Connection" value={`${f.from_node}–${f.to_node}`} />
+      <DataItem label="Source ID" value={f.osm_way_id.toString()} />
     </List>
   </>
 );
@@ -292,14 +286,17 @@ export const RoadJunctionDetails: FC<DetailsComponentProps> = ({ f }) => (
 
 export const BridgeDetails: FC<DetailsComponentProps> = ({ f }) => (
   <>
+    <Typography variant="h6" component="h1">
+      {f.tag_name}
+    </Typography>
     <DetailSubheader id={f.asset_id} />
     <List>
-      <DataItem label="Source ID" value={f.BRIDGEID} />
+      <DataItem label="Source ID" value={f.osm_way_id?.toString()} />
+      <DataItem label="Length (m)" value={f.length_m} />
       <DataItem
         label={`Rehabilitation cost (${f.cost_unit})`}
         value={`${numFormat(f.cost_mean)} ${paren(numRangeFormat(f.cost_min, f.cost_max))}`}
       />
-      <DataItem label={`Reopening cost (${f.cost_unit})`} value={`${numFormat(f.cost_reopen)}`} />
     </List>
   </>
 );

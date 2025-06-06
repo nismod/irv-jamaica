@@ -1,5 +1,5 @@
-"""Load network features from a single source file-layer to database.
-"""
+"""Load network features from a single source file-layer to database."""
+
 import fiona
 import pandas
 
@@ -8,7 +8,6 @@ from shapely.geometry import shape
 from shapely.ops import transform
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
-from tqdm import tqdm
 
 from backend.db.database import SessionLocal
 from backend.db.models import Feature
@@ -16,7 +15,9 @@ from backend.db.models import Feature
 
 def yield_features(layer, network_tilelayer, analysis_data_dir):
     """Read from file layer to modelled Features"""
-    with fiona.open(get_network_layer_path(layer, analysis_data_dir), layer=layer.gpkg_layer) as src:
+    with fiona.open(
+        get_network_layer_path(layer, analysis_data_dir), layer=layer.gpkg_layer
+    ) as src:
         from_crs = src.crs
         to_crs = CRS.from_epsg(4326)
         t = Transformer.from_crs(from_crs, to_crs, always_xy=True).transform
@@ -43,7 +44,11 @@ def yield_features(layer, network_tilelayer, analysis_data_dir):
             # FIXME in the data
             if layer.ref == "transport_rail_edges":
                 props["asset_type"] = "track"
-            tilelayer_details = get_tilelayer_by_asset_type(layer.ref, props, network_tilelayers)
+            if layer.ref == "roads_nodes" and not props["asset_type"]:
+                props["asset_type"] = "junction"
+            tilelayer_details = get_tilelayer_by_asset_type(
+                layer.ref, props, network_tilelayers
+            )
             props["sector"] = tilelayer_details.sector
             props["subsector"] = tilelayer_details.subsector
 
@@ -120,9 +125,10 @@ if __name__ == "__main__":
         db.execute(delete(Feature).where(Feature.layer.in_(tilelayers)))
         db.commit()
 
-        for i, feature in tqdm(enumerate(yield_features(layer, network_tilelayers, analysis_data_dir)), total=layer["count"]):
+        for i, feature in enumerate(yield_features(layer, network_tilelayers, analysis_data_dir)):
             db.add(feature)
             if i % 1000 == 0:
+                print(f"Processed {i} features", end="\r")
                 db.commit()
         db.commit()
 

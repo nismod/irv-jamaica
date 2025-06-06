@@ -8,14 +8,14 @@ transport_port,transport,port,silo,polygon,port_areas_silo
 transport_rail_nodes,transport,rail,station,point,rail_stations
 transport_rail_nodes,transport,rail,junction,point,rail_junctions
 transport_rail_edges,transport,rail,track,line,rail_edges
-transport_roads_nodes,transport,road,bridge,point,road_bridges
-transport_roads_nodes,transport,road,junction,point,road_junctions
-transport_roads_edges,transport,road,CLASS A,line,road_edges_class_a
-transport_roads_edges,transport,road,CLASS B,line,road_edges_class_b
-transport_roads_edges,transport,road,CLASS C,line,road_edges_class_c
-transport_roads_edges,transport,road,METRO,line,road_edges_metro
-transport_roads_edges,transport,road,TRACK,line,road_edges_track
-transport_roads_edges,transport,road,OTHER,line,road_edges_other
+roads_nodes,transport,road,bridge,point,road_bridges
+roads_nodes,transport,road,junction,point,road_junctions
+roads_edges,transport,road,MOTORWAY,line,road_edges_motorway
+roads_edges,transport,road,CLASS A,line,road_edges_class_a
+roads_edges,transport,road,CLASS B,line,road_edges_class_b
+roads_edges,transport,road,CLASS C,line,road_edges_class_c
+roads_edges,transport,road,RESIDENTIAL,line,road_edges_residential
+roads_edges,transport,road,UNCLASSIFIED,line,road_edges_unclassified
 water_irrigation_nodes,water,irrigation,well,point,water_irrigation_nodes
 water_irrigation_edges,water,irrigation,canal,line,water_irrigation_edges
 water_potable_nodes,water,potable,Booster Station,point,water_potable_nodes_booster
