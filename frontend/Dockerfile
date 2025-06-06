@@ -12,6 +12,7 @@ RUN npm ci
 COPY public public
 COPY src src
 COPY tsconfig.json tsconfig.vite.json eslint.config.js vite.config.ts index.html ./
+COPY .storybook .storybook
 # build to static site
 RUN npm run build
 
