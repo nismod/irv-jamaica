@@ -91,7 +91,7 @@ export const adaptationLayerSpecState = selector<LayerSpec>({
     return {
       sector,
       subsector,
-      assetType: asset_type,
+      asset_type: asset_type,
     };
   },
 });

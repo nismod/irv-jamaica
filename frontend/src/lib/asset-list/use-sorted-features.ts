@@ -76,7 +76,7 @@ export interface LayerSpec {
   layer?: string;
   sector?: string;
   subsector?: string;
-  assetType?: string;
+  asset_type?: string;
 }
 export type ListFeature = Omit<FeatureListItemOutFloat, 'bbox_wkt'> & {
   bbox: BoundingBox;
