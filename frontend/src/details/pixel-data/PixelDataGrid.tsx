@@ -26,13 +26,13 @@ export const PixelDataGrid = ({ hazard }) => {
   const rows = useRecoilValue(pixelDrillerDataRows(hazard));
   const dataReturnPeriods = useRecoilValue(pixelDrillerDataRPs(hazard));
   const columns = [
-    { field: 'epoch', headerName: 'Epoch' },
-    { field: 'rcp', headerName: 'RCP' },
+    { field: 'epoch', headerName: 'Epoch', width: 55 },
+    { field: 'rcp', headerName: 'RCP', width: 55 },
   ];
   const returnPeriods = displayReturnPeriods.intersection(dataReturnPeriods);
 
   returnPeriods.forEach((rp) => {
-    columns.push({ field: `rp-${rp}`, headerName: `RP ${rp}` });
+    columns.push({ field: `rp-${rp}`, headerName: `RP ${rp}`, width: 60 });
   });
   if (!headers.length) {
     return null;
@@ -46,7 +46,7 @@ export const PixelDataGrid = ({ hazard }) => {
         {headings[hazard]}: {variable} ({unit})
       </Typography>
 
-      <DataGrid columns={columns} rows={rows} density="compact" />
+      <DataGrid columns={columns} rows={rows} rowHeight={30} density="compact" />
     </>
   );
 };
