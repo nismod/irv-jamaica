@@ -50,11 +50,23 @@ def point_query(
     """
     dfs = []
     for dataset in datasets:
-        t = Transformer.from_crs("EPSG:4326", dataset.crs)
+        # must be always_xy to handle lon, lat and tx, ty in correct order
+        t = Transformer.from_crs("EPSG:4326", dataset.crs, always_xy=True)
         tx, ty = t.transform(lon, lat)
         ds = xr.open_zarr(dataset.path)
 
-        if tx < ds.x.min() or tx > ds.x.max() or ty < ds.y.min() or ty > ds.y.max():
+        # extract bounds
+        xmin, xmax, ymin, ymax = (
+            float(ds.x.min()),
+            float(ds.x.max()),
+            float(ds.y.min()),
+            float(ds.y.max()),
+        )
+        logging.debug(
+            f"Query for {lon=}, {lat=} in {dataset.name=} {dataset.crs.to_string()} at {tx=}, {ty=} bounds {xmin=} {xmax=} {ymin=} {ymax=}"
+        )
+
+        if tx < xmin or tx > xmax or ty < ymin or ty > ymax:
             # out of bounds for this dataset
             logging.debug(f"Point {lon=}, {lat=} outside bounds for {dataset.name=}")
             continue
