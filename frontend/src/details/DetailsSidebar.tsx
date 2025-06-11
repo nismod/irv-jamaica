@@ -20,14 +20,14 @@ export const DetailsSidebar = () => {
   return (
     <>
       <Box mb={2}>
-        <PixelData />
-      </Box>
-      <Box mb={2}>
         <SolutionsSidebar />
       </Box>
       <Box mb={2}>{showAdaptationsTable ? <AdaptationsSidebar /> : <FeatureSidebar />}</Box>
       <Box mb={2}>
         <RegionDetails />
+      </Box>
+      <Box mb={2}>
+        <PixelData />
       </Box>
     </>
   );
