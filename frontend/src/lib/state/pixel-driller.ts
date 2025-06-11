@@ -1,18 +1,44 @@
 import { atom, noWait, RecoilState, RecoilValueReadOnly, selector, selectorFamily } from 'recoil';
 
-const epochs = [2010, 2050, 2070, 2080, 2100];
-const parameters = epochs.flatMap((epoch) =>
-  epoch === 2010
-    ? {
-        epoch,
-        rcp: 'baseline',
-      }
-    : [
-        { epoch, rcp: '2.6' },
-        { epoch, rcp: '4.5' },
-        { epoch, rcp: '8.5' },
-      ],
-);
+const FLOOD_PARAMETERS = [
+  { epoch: 2010, rcp: 'baseline' },
+  { epoch: 2050, rcp: '2.6' },
+  { epoch: 2050, rcp: '4.5' },
+  { epoch: 2050, rcp: '8.5' },
+  { epoch: 2080, rcp: '2.6' },
+  { epoch: 2080, rcp: '4.5' },
+  { epoch: 2080, rcp: '8.5' },
+];
+
+const COASTAL_FLOOD_PARAMETERS = [
+  { epoch: 2010, rcp: 'baseline' },
+  { epoch: 2030, rcp: '4.5' },
+  { epoch: 2030, rcp: '8.5' },
+  { epoch: 2050, rcp: '4.5' },
+  { epoch: 2050, rcp: '8.5' },
+  { epoch: 2070, rcp: '4.5' },
+  { epoch: 2070, rcp: '8.5' },
+  { epoch: 2100, rcp: '4.5' },
+  { epoch: 2100, rcp: '8.5' },
+];
+
+// confidence 5 and 50 also available in data
+const CYCLONE_PARAMETERS = [
+  { confidence: 95, epoch: 2010, rcp: 'baseline' },
+  { confidence: 95, epoch: 2050, rcp: '4.5' },
+  { confidence: 95, epoch: 2050, rcp: '8.5' },
+  { confidence: 95, epoch: 2100, rcp: '4.5' },
+  { confidence: 95, epoch: 2100, rcp: '8.5' },
+];
+
+const PIXEL_LAYER_PARAMETERS = {
+  cyclone: CYCLONE_PARAMETERS,
+  fluvial: FLOOD_PARAMETERS,
+  surface: FLOOD_PARAMETERS,
+  coastal: COASTAL_FLOOD_PARAMETERS,
+  elevation: [{ epoch: undefined, rcp: undefined }],
+  slope: [{ epoch: undefined, rcp: undefined }],
+};
 
 type PixelDrillerQueryParams = {
   lat: number;
@@ -172,20 +198,29 @@ function getFilteredPixelData(
  * @param hazard
  * @param epoch
  * @param rcp
+ * @param confidence
  * @returns
  */
-function reducePixelDataRow(data: Row[], hazard: string, epoch: number, rcp: string): Row {
+function reducePixelDataRow(
+  data: Row[],
+  hazard: string,
+  epoch: number,
+  rcp: string,
+  confidence?: number,
+): Row {
   if (!data.length) {
     return null;
   }
   const { variable, unit } = data[0];
+  rcp = rcp === 'baseline' ? '-' : rcp;
   const row = {
-    id: `${hazard}-${epoch}-${rcp}`,
+    id: `${hazard}-${epoch}-${rcp}-${confidence}`,
     variable,
     unit,
     hazard,
     epoch,
     rcp,
+    confidence,
   };
   data.forEach((d) => {
     row[`rp-${d.rp}`] = d.band_data?.toFixed(2);
@@ -194,20 +229,21 @@ function reducePixelDataRow(data: Row[], hazard: string, epoch: number, rcp: str
 }
 
 /**
- * Rows of pixel driller data for a specific hazard, epoch, RCP, and confidence level.
+ * Rows of pixel driller data for a specific pixel_layer, grouped by epoch, RCP, and confidence level.
  */
-export const pixelDrillerDataRows: (hazard: string) => RecoilValueReadOnly<Row[]> = selectorFamily({
-  key: 'pixelDrillerDataRows',
-  get:
-    (hazard: string) =>
-    ({ get }) => {
-      const pixelData = get(pixelDrillerDataState).data;
-      return parameters
-        .map(({ epoch, rcp }) => {
-          const confidence = hazard === 'cyclone' ? 95 : null;
-          const data = getFilteredPixelData(pixelData, hazard, epoch, rcp, confidence);
-          return reducePixelDataRow(data, hazard, epoch, rcp);
-        })
-        .filter(Boolean);
-    },
-});
+export const pixelDrillerDataRows: (pixel_layer: string) => RecoilValueReadOnly<Row[]> =
+  selectorFamily({
+    key: 'pixelDrillerDataRows',
+    get:
+      (pixel_layer: string) =>
+      ({ get }) => {
+        const pixelData = get(pixelDrillerDataState).data;
+        return PIXEL_LAYER_PARAMETERS[pixel_layer]
+          .map(({ epoch, rcp, confidence }) => {
+            const data = getFilteredPixelData(pixelData, pixel_layer, epoch, rcp, confidence);
+            const reduced = reducePixelDataRow(data, pixel_layer, epoch, rcp, confidence);
+            return reduced;
+          })
+          .filter(Boolean);
+      },
+  });

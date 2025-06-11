@@ -14,27 +14,32 @@ const headings = {
   cyclone: 'Cyclones',
   fluvial: 'River flooding',
   surface: 'Surface flooding',
-  coastal_mangrove: 'Coastal (mangrove)',
-  coastal_nomangrove: 'Coastal (no mangrove)',
-  coastal_nomangrove_minus_mangrove: 'Coastal (no mangrove - mangrove)',
+  coastal: 'Coastal flooding',
 };
 
-const displayReturnPeriods = new Set([10, 20, 50, 100, 200, 500]);
+const displayReturnPeriods = new Set([5, 10, 20, 50, 100, 200, 500]);
 
-export const PixelDataGrid = ({ hazard }) => {
+export const PixelDataGrid = ({ pixel_layer }) => {
   const headers = useRecoilValue(pixelDrillerDataHeaders);
-  const rows = useRecoilValue(pixelDrillerDataRows(hazard));
-  const dataReturnPeriods = useRecoilValue(pixelDrillerDataRPs(hazard));
+  const rows = useRecoilValue(pixelDrillerDataRows(pixel_layer));
+  const dataReturnPeriods = useRecoilValue(pixelDrillerDataRPs(pixel_layer));
   const columns = [
     { field: 'epoch', headerName: 'Epoch', width: 55 },
     { field: 'rcp', headerName: 'RCP', width: 55 },
   ];
+
+  // Include confidence column if there are multiple values
+  const confidences = new Set(rows.map((d) => d.confidence));
+  if (confidences.size > 1) {
+    columns.push({ field: 'confidence', headerName: 'Confidence', width: 60 });
+  }
+
   const returnPeriods = displayReturnPeriods.intersection(dataReturnPeriods);
 
   returnPeriods.forEach((rp) => {
     columns.push({ field: `rp-${rp}`, headerName: `RP ${rp}`, width: 60 });
   });
-  if (!headers.length) {
+  if (!headers.length || !rows.length) {
     return null;
   }
   const variable = rows[0].variable;
@@ -43,7 +48,7 @@ export const PixelDataGrid = ({ hazard }) => {
   return (
     <>
       <Typography variant="subtitle2" component="h3">
-        {headings[hazard]}: {variable} ({unit})
+        {headings[pixel_layer]}: {variable} ({unit})
       </Typography>
 
       <DataGrid columns={columns} rows={rows} rowHeight={30} density="compact" />
