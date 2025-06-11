@@ -1,6 +1,5 @@
 sector,path,rp,rcp,epoch,confidence,variable,unit,key
 power,hotspots/power/demand_affected.tiff,100,baseline,2010,None,demand affected,MWh,powerDemandAffected__rp_100__rcp_baseline__epoch_2010__conf_None
-power,hotspots/power/exposure_value.tiff,100,baseline,2010,None,exposure value,$,powerExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
 power,hotspots/power/loss_gdp.tiff,100,baseline,2010,None,loss GDP,$,powerLossGdp__rp_100__rcp_baseline__epoch_2010__conf_None
 power,hotspots/power/population_affected.tiff,100,baseline,2010,None,population affected,,powerPopulationAffected__rp_100__rcp_baseline__epoch_2010__conf_None
 power,hotspots/exposure_value_JMD/energy_smoothed.tiff,100,baseline,2010,None,exposure value,$,powerExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
