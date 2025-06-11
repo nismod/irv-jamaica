@@ -223,7 +223,8 @@ function reducePixelDataRow(
     confidence,
   };
   data.forEach((d) => {
-    row[`rp-${d.rp}`] = d.band_data?.toFixed(2);
+    const value = d.band_data || 0;
+    row[`rp-${d.rp}`] = value > 0.005 ? value.toFixed(2) : '-';
   });
   return row;
 }
