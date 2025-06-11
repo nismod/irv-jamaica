@@ -3,9 +3,9 @@ power,hotspots/power/demand_affected.tiff,100,baseline,2010,None,demand affected
 power,hotspots/power/exposure_value.tiff,100,baseline,2010,None,exposure value,$,powerExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
 power,hotspots/power/loss_gdp.tiff,100,baseline,2010,None,loss GDP,$,powerLossGdp__rp_100__rcp_baseline__epoch_2010__conf_None
 power,hotspots/power/population_affected.tiff,100,baseline,2010,None,population affected,,powerPopulationAffected__rp_100__rcp_baseline__epoch_2010__conf_None
-power,hotspots/exposure_value_JMD/energy.tiff,100,baseline,2010,None,exposure value,$,powerExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
-transport,hotspots/exposure_value_JMD/transport.tiff,100,baseline,2010,None,exposure value,$,transportExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
-water,hotspots/exposure_value_JMD/water.tiff,100,baseline,2010,None,exposure value,$,waterExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
-all,hotspots/exposure_value_JMD/all_sectors.tiff,100,baseline,2010,None,exposure value,$,allExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
+power,hotspots/exposure_value_JMD/energy_smoothed.tiff,100,baseline,2010,None,exposure value,$,powerExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
+transport,hotspots/exposure_value_JMD/transport_smoothed.tiff,100,baseline,2010,None,exposure value,$,transportExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
+water,hotspots/exposure_value_JMD/water_smoothed.tiff,100,baseline,2010,None,exposure value,$,waterExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
+all,hotspots/exposure_value_JMD/all_sectors_smoothed.tiff,100,baseline,2010,None,exposure value,$,allExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
 transport,hotspots/transport_economic_loss_JMD_per_day/isolation_loss_smoothed.tiff,100,baseline,2010,None,loss GDP (isolation),$/day,transportLossGdpIsolation__rp_100__rcp_baseline__epoch_2010__conf_None
 transport,hotspots/transport_economic_loss_JMD_per_day/rerouting_loss_smoothed.tiff,100,baseline,2010,None,loss GDP (rerouting),$/day,transportLossGdpRerouting__rp_100__rcp_baseline__epoch_2010__conf_None
