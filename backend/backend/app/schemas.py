@@ -175,3 +175,20 @@ class FeatureListItemOut(BaseModel, Generic[SortFieldT]):
 AttributeT = TypeVar("AttributeT")
 
 AttributeLookup = dict[int, AttributeT]
+
+# Protected Features
+
+
+class ProtectedFeatureListItem(BaseModel):
+    id: int
+    string_id: str
+    layer: str
+    adaptation_name: str
+    adaptation_protection_level: float
+    adaptation_cost: float
+    avoided_ead_mean: float
+    avoided_eael_mean: float
+    hazard: str
+    rcp: float
+
+    model_config = ConfigDict(from_attributes=True)
