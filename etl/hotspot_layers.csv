@@ -1,22 +1,22 @@
 sector,path,rp,rcp,epoch,confidence,variable,unit,key
-power,hotspots/power/demand_affected.tiff,100,baseline,2010,None,demand affected,MWh,powerDemandAffected__rp_100__rcp_baseline__epoch_2010__conf_None
-power,hotspots/power/loss_gdp.tiff,100,baseline,2010,None,loss GDP,$,powerLossGdp__rp_100__rcp_baseline__epoch_2010__conf_None
-power,hotspots/power/population_affected.tiff,100,baseline,2010,None,population affected,,powerPopulationAffected__rp_100__rcp_baseline__epoch_2010__conf_None
-power,hotspots/exposure_value_JMD/energy_smoothed.tiff,100,baseline,2010,None,exposure value,$,powerExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
-transport,hotspots/exposure_value_JMD/transport_smoothed.tiff,100,baseline,2010,None,exposure value,$,transportExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
-water,hotspots/exposure_value_JMD/water_smoothed.tiff,100,baseline,2010,None,exposure value,$,waterExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
-all,hotspots/exposure_value_JMD/all_sectors_smoothed.tiff,100,baseline,2010,None,exposure value,$,allExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
-transport,hotspots/transport_economic_loss_JMD_per_day/isolation_loss_smoothed.tiff,100,baseline,2010,None,loss GDP (isolation),$/day,transportLossGdpIsolation__rp_100__rcp_baseline__epoch_2010__conf_None
-transport,hotspots/transport_economic_loss_JMD_per_day/rerouting_loss_smoothed.tiff,100,baseline,2010,None,loss GDP (rerouting),$/day,transportLossGdpRerouting__rp_100__rcp_baseline__epoch_2010__conf_None
-power,hotspots/EAD/energy_smoothed.tiff,100,baseline,2010,None,EAD,$,powerEAD__rp_100__rcp_baseline__epoch_2010__conf_None
-power,hotspots/EAD/energy__all_flood_smoothed.tiff,100,baseline,2010,None,EAD,$,powerEADflood__rp_100__rcp_baseline__epoch_2010__conf_None
-power,hotspots/EAD/energy__cyclone_smoothed.tiff,100,baseline,2010,None,EAD,$,powerEADcyclone__rp_100__rcp_baseline__epoch_2010__conf_None
-transport,hotspots/EAD/transport_smoothed.tiff,100,baseline,2010,None,EAD,$,transportEAD__rp_100__rcp_baseline__epoch_2010__conf_None
-transport,hotspots/EAD/transport__all_flood_smoothed.tiff,100,baseline,2010,None,EAD,$,transportEADflood__rp_100__rcp_baseline__epoch_2010__conf_None
-transport,hotspots/EAD/transport__cyclone_smoothed.tiff,100,baseline,2010,None,EAD,$,transportEADcyclone__rp_100__rcp_baseline__epoch_2010__conf_None
-water,hotspots/EAD/water_smoothed.tiff,100,baseline,2010,None,EAD,$,waterEAD__rp_100__rcp_baseline__epoch_2010__conf_None
-water,hotspots/EAD/water__all_flood_smoothed.tiff,100,baseline,2010,None,EAD,$,waterEADflood__rp_100__rcp_baseline__epoch_2010__conf_None
-water,hotspots/EAD/water__cyclone_smoothed.tiff,100,baseline,2010,None,EAD,$,waterEADcyclone__rp_100__rcp_baseline__epoch_2010__conf_None
-all,hotspots/EAD/all_sectors_smoothed.tiff,100,baseline,2010,None,EAD,$,allEAD__rp_100__rcp_baseline__epoch_2010__conf_None
-all,hotspots/EAD/all_sectors__all_flood_smoothed.tiff,100,baseline,2010,None,EAD,$,allEADflood__rp_100__rcp_baseline__epoch_2010__conf_None
-all,hotspots/EAD/all_sectors__cyclone_smoothed.tiff,100,baseline,2010,None,EAD,$,allEADcyclone__rp_100__rcp_baseline__epoch_2010__conf_None
+power,../results/hotspots/power/demand_affected.tiff,100,baseline,2010,None,demand affected,MWh,powerDemandAffected__rp_100__rcp_baseline__epoch_2010__conf_None
+power,../results/hotspots/power/loss_gdp.tiff,100,baseline,2010,None,loss GDP,$,powerLossGdp__rp_100__rcp_baseline__epoch_2010__conf_None
+power,../results/hotspots/power/population_affected.tiff,100,baseline,2010,None,population affected,,powerPopulationAffected__rp_100__rcp_baseline__epoch_2010__conf_None
+power,../results/hotspots/exposure/energy_smoothed.tiff,100,baseline,2010,None,exposure value,$,powerExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
+transport,../results/hotspots/exposure/transport_smoothed.tiff,100,baseline,2010,None,exposure value,$,transportExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
+water,../results/hotspots/exposure/water_smoothed.tiff,100,baseline,2010,None,exposure value,$,waterExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
+all,../results/hotspots/exposure/all_sectors_smoothed.tiff,100,baseline,2010,None,exposure value,$,allExposureValue__rp_100__rcp_baseline__epoch_2010__conf_None
+transport,../results/hotspots/transport/isolation_loss_smoothed.tiff,100,baseline,2010,None,loss GDP (isolation),$/day,transportLossGdpIsolation__rp_100__rcp_baseline__epoch_2010__conf_None
+transport,../results/hotspots/transport/rerouting_loss_smoothed.tiff,100,baseline,2010,None,loss GDP (rerouting),$/day,transportLossGdpRerouting__rp_100__rcp_baseline__epoch_2010__conf_None
+power,../results/hotspots/EAD/energy_smoothed.tiff,100,baseline,2010,None,EAD,$,powerEAD__rp_100__rcp_baseline__epoch_2010__conf_None
+power,../results/hotspots/EAD/energy__all_flood_smoothed.tiff,100,baseline,2010,None,EAD,$,powerEADflood__rp_100__rcp_baseline__epoch_2010__conf_None
+power,../results/hotspots/EAD/energy__cyclone_smoothed.tiff,100,baseline,2010,None,EAD,$,powerEADcyclone__rp_100__rcp_baseline__epoch_2010__conf_None
+transport,../results/hotspots/EAD/transport_smoothed.tiff,100,baseline,2010,None,EAD,$,transportEAD__rp_100__rcp_baseline__epoch_2010__conf_None
+transport,../results/hotspots/EAD/transport__all_flood_smoothed.tiff,100,baseline,2010,None,EAD,$,transportEADflood__rp_100__rcp_baseline__epoch_2010__conf_None
+transport,../results/hotspots/EAD/transport__cyclone_smoothed.tiff,100,baseline,2010,None,EAD,$,transportEADcyclone__rp_100__rcp_baseline__epoch_2010__conf_None
+water,../results/hotspots/EAD/water_smoothed.tiff,100,baseline,2010,None,EAD,$,waterEAD__rp_100__rcp_baseline__epoch_2010__conf_None
+water,../results/hotspots/EAD/water__all_flood_smoothed.tiff,100,baseline,2010,None,EAD,$,waterEADflood__rp_100__rcp_baseline__epoch_2010__conf_None
+water,../results/hotspots/EAD/water__cyclone_smoothed.tiff,100,baseline,2010,None,EAD,$,waterEADcyclone__rp_100__rcp_baseline__epoch_2010__conf_None
+all,../results/hotspots/EAD/all_sectors_smoothed.tiff,100,baseline,2010,None,EAD,$,allEAD__rp_100__rcp_baseline__epoch_2010__conf_None
+all,../results/hotspots/EAD/all_sectors__all_flood_smoothed.tiff,100,baseline,2010,None,EAD,$,allEADflood__rp_100__rcp_baseline__epoch_2010__conf_None
+all,../results/hotspots/EAD/all_sectors__cyclone_smoothed.tiff,100,baseline,2010,None,EAD,$,allEADcyclone__rp_100__rcp_baseline__epoch_2010__conf_None
