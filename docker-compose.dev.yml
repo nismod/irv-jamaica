@@ -67,7 +67,7 @@ services:
       - "traefik.http.services.vector-tileserver.loadbalancer.server.port=8080"
 
   raster-tileserver:
-    image: ghcr.io/nismod/jsrat-raster-tileserver:0.1
+    image: ghcr.io/nismod/jsrat-raster-tileserver:0.2
     build: ./tileserver/raster
     volumes:
       - ./tileserver/raster/data:/data

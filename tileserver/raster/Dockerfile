@@ -1,6 +1,6 @@
-FROM python:3.10
+FROM python:3.12
 
-RUN apt-get update && apt-get install -y libgdal-dev
+RUN apt-get update && apt-get upgrade -y && apt-get install -y libgdal-dev
 WORKDIR /code
 COPY requirements.txt requirements.txt
 RUN python -m pip install --upgrade pip setuptools wheel
