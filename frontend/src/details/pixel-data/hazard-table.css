@@ -1,3 +1,9 @@
 .MuiDataGrid-footerContainer {
   display: none;
 }
+.MuiDataGrid-main .MuiDataGrid-cell {
+  padding: 0 5px;
+}
+.MuiDataGrid-main .MuiDataGrid-columnHeader {
+  padding: 0 5px;
+}

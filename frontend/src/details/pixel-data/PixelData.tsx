@@ -30,7 +30,8 @@ export const PixelData = () => {
   if (!headers.length) {
     return null;
   }
-  const hazards = [...new Set(selectedData.hazard)];
+  // Define which pixel layers to include, in display order
+  const pixel_layers = ['fluvial', 'surface', 'coastal', 'cyclone'];
 
   return (
     <SidePanel position="relative">
@@ -41,9 +42,9 @@ export const PixelData = () => {
             <Close />
           </IconButton>
         </Box>
-        {hazards.map((hazard) => (
-          <Box key={hazard} mt={2}>
-            <PixelDataGrid hazard={hazard} />
+        {pixel_layers.map((pixel_layer) => (
+          <Box key={pixel_layer} mt={2}>
+            <PixelDataGrid pixel_layer={pixel_layer} />
           </Box>
         ))}
       </ErrorBoundary>

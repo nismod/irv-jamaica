@@ -9,6 +9,11 @@ export const RISKS_METADATA = {
     dataUnit: 'JMD',
     format: 'financial',
   },
+  EAD: {
+    label: 'Expected Annual Damages',
+    dataUnit: 'JMD/year',
+    format: 'financial',
+  },
   populationAffected: {
     label: 'Population affected',
     dataUnit: '',

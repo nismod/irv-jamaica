@@ -33,6 +33,7 @@ sniffio==1.3.1
 snkit~=1.9.0
 sqlalchemy==2.0.36
 starlette==0.41.3
+terracotta==0.9.1
 tqdm~=4.66.5
 typing-extensions==4.12.2
 ujson~=5.10.0
