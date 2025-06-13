@@ -10,6 +10,10 @@ export const RISK_STYLES = makeConfig([
     label: 'Exposure Value',
   },
   {
+    id: 'EAD',
+    label: 'Expected Annual Damages',
+  },
+  {
     id: 'populationAffected',
     label: 'Population Affected',
   },

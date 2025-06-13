@@ -6,6 +6,13 @@ export const exposureValue = {
   range: [0, 1e10],
 };
 /**
+ * Colour scheme and range for Expected Annual Damage values.
+ */
+export const EAD = {
+  scheme: 'purd',
+  range: [0, 1e7],
+};
+/**
  * Colour scheme and range for GDP values.
  */
 export const lossGdp = {
