@@ -57,15 +57,15 @@ export function riskViewLayer(riskType: string, riskParams: RiskParams): ViewLay
       );
 
       // Set layer opacity
-      if (RISKS_METADATA.hasOwnProperty(riskType)) {
+      let opacity: number;
+      if (riskType in RISKS_METADATA) {
         // Reduced opacity for hotspot raster layers
-        var opacity = 0.4;
-      } else if (riskType == 'cyclone') {
-        var opacity = 0.6;
+        opacity = 0.4;
+      } else if (riskType === 'cyclone') {
+        opacity = 0.6;
       } else {
-        var opacity = 1;
+        opacity = 1;
       }
-
 
       return rasterTileLayer(
         {
