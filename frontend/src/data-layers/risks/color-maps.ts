@@ -12,6 +12,14 @@ export const EAD = {
   scheme: 'purd',
   range: [0, 1e7],
 };
+export const EADflood = {
+  scheme: 'purd',
+  range: [0, 1e7],
+};
+export const EADcyclone = {
+  scheme: 'purd',
+  range: [0, 1e7],
+};
 /**
  * Colour scheme and range for GDP values.
  */

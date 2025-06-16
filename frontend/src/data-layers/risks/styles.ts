@@ -14,6 +14,14 @@ export const RISK_STYLES = makeConfig([
     label: 'Expected Annual Damages',
   },
   {
+    id: 'EADflood',
+    label: 'Expected Annual Damages (flooding)',
+  },
+  {
+    id: 'EADcyclone',
+    label: 'Expected Annual Damages (cyclone)',
+  },
+  {
     id: 'populationAffected',
     label: 'Population Affected',
   },

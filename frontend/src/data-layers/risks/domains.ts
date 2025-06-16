@@ -9,7 +9,7 @@ export interface RiskParams {
 }
 
 export const sectorRiskTypes = {
-  all: ['exposureValue', 'EAD'],
+  all: ['exposureValue', 'EAD', 'EADflood', 'EADcyclone'],
   power: ['exposureValue', 'EAD', 'demandAffected', 'populationAffected', 'lossGdp'],
   water: ['exposureValue', 'EAD'],
   transport: ['exposureValue', 'EAD', 'lossGdpIsolation', 'lossGdpRerouting'],
