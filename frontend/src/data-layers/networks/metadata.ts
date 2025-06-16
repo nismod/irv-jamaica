@@ -148,7 +148,7 @@ export const NETWORKS_METADATA = makeConfig([
   {
     id: 'road_edges_motorway',
     type: 'line',
-    label: 'Roads (Motorway)',
+    label: 'Roads (Toll)',
     color: COLORS.roads_motorway.css,
   },
   {
