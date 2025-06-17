@@ -109,7 +109,7 @@ export const NETWORK_LAYERS_HIERARCHY: TreeNode<NetworkLayerData>[] = [
             children: [
               {
                 id: 'road_edges_motorway',
-                label: 'Motorway',
+                label: 'Toll',
                 url: '11',
               },
               {

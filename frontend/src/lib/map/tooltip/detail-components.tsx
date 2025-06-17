@@ -263,7 +263,7 @@ export const RoadEdgeDetails: FC<DetailsComponentProps> = ({ f }) => (
         value={`${numFormat(f.cost_mean)} (${numFormat(f.cost_min)}–${numFormat(f.cost_max)})`}
       />
       <DataItem label="Connection" value={`${f.from_node}–${f.to_node}`} />
-      <DataItem label="Source ID" value={f.osm_way_id.toString()} />
+      <DataItem label="Source ID" value={f.osm_way_id?.toString()} />
     </List>
   </>
 );

@@ -311,13 +311,14 @@ rule tileserver_vector_config:
 
             json.dump(tileserver_vector_config, fh, indent=2)
 
+
 rule raster_temp_file:
     output:
         "raster/link/{layer}.tif",
     run:
         layer = get_hazard_layer(wildcards.layer, hazard_layers)
         original = os.path.join(config["analysis_data_dir"], "processed_data", layer.path)
-        print (f"Creating symlink from {original} to {output}")
+        print(f"Creating symlink from {original} to {output}")
         os.symlink(os.path.abspath(original), str(output))
 
 
@@ -339,14 +340,24 @@ def get_hazard_layer(layer_name, hazard_layers):
         raise e
 
 
-rule raster_zero_nodata:
+rule raster_set_nodata:
+    """
+    Set non-positive values to nodata (rendered transparent in viewer).
+
+    Treat hotspot layers differently, just copy input to output.
+
+    Test with:
+    snakemake -c1 raster/nodata/storm50__rp_0__rcp_8x5__epoch_2050__conf_None.tif
+    snakemake -c1 raster/nodata/allEADcyclone__rp_100__rcp_baseline__epoch_2010__conf_None.tif
+    """
     input:
-        rules.raster_temp_file.output,
+        hotspot_layers="hotspot_layers.csv",
+        temp_file=rules.raster_temp_file.output,
     output:
         "raster/nodata/{layer}.tif",
     shell:
         """
-        NODATA=$(gdalinfo "{input}" -json | jq .bands[0].noDataValue)
+        NODATA=$(gdalinfo "{input.temp_file}" -json | jq .bands[0].noDataValue)
 
         # handle case of NODATA == nan - the JSON output of gdalinfo will change
         # nan to "NaN" so we need to reverse that for gdal_calc.py
@@ -360,21 +371,32 @@ rule raster_zero_nodata:
           NODATA=nan
         fi
 
-        # replace zeros with NoData value
-        gdal_calc.py \
-          --quiet \
-          -A "{input}" \
-          --outfile="{output}" \
-          --overwrite \
-          --calc="numpy.where(A<=0,$NODATA,A)" \
-          --NoDataValue=$NODATA \
-          --hideNoData
+        # Leave hotspots layers unmodified, with their 0 values intact
+        KEY_COL_NUMBER=$(awk -v RS=',' '/key/{{print NR; exit}}' {input.hotspot_layers})
+        MATCHING_ROW=$(awk -F, -v val='{wildcards.layer}' -v col="${{KEY_COL_NUMBER}}" '$col == val' {input.hotspot_layers})
+        # Check if layer wildcard is in the key column of hotspot_layers.csv
+        if [ ! -z "${{MATCHING_ROW}}" ]
+        then
+            echo "Hotspot layer, copying without modification"
+            cp {input.temp_file} {output}
+        else
+            echo "Non hotspot layer, setting non-positive values to nodata (NaN)"
+            # replace zeros with NoData value
+            gdal_calc.py \
+            --quiet \
+            -A "{input.temp_file}" \
+            --outfile="{output}" \
+            --overwrite \
+            --calc="numpy.where(A<=0,$NODATA,A)" \
+            --NoDataValue=$NODATA \
+            --hideNoData
+        fi
         """
 
 
 rule raster_to_cog:
     input:
-        rules.raster_zero_nodata.output,
+        rules.raster_set_nodata.output,
     output:
         "../tileserver/raster/data/{layer}.tif",
     shell:
