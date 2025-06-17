@@ -3,7 +3,7 @@
  */
 export const exposureValue = {
   scheme: 'reds',
-  range: [0, 1e10],
+  range: [0, 2e9],
 };
 /**
  * Colour scheme and range for Expected Annual Damage values.
