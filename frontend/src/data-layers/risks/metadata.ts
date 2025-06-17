@@ -1,9 +1,4 @@
 export const RISKS_METADATA = {
-  demandAffected: {
-    label: 'Demand affected',
-    dataUnit: '',
-    format: 'integer',
-  },
   exposureValue: {
     label: 'Exposure value',
     dataUnit: 'JMD',
@@ -28,6 +23,11 @@ export const RISKS_METADATA = {
     label: 'Population affected',
     dataUnit: '',
     format: 'population',
+  },
+  demandAffected: {
+    label: 'Demand affected',
+    dataUnit: '',
+    format: 'integer',
   },
   lossGdp: {
     label: 'Loss GDP',
