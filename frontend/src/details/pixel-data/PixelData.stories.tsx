@@ -35,11 +35,12 @@ export const Default: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(await canvas.findByText('Cyclones: speed (m s-1)')).toBeTruthy();
     expect(await canvas.findByText('River flooding: depth (m)')).toBeTruthy();
     expect(await canvas.findByText('Surface flooding: depth (m)')).toBeTruthy();
+    expect(await canvas.findByText('Coastal flooding: depth (m)')).toBeTruthy();
+    expect(await canvas.findByText('Cyclones: speed (m s-1)')).toBeTruthy();
     const grids = await canvas.findAllByRole('grid');
-    expect(grids).toHaveLength(6);
+    expect(grids).toHaveLength(4);
     grids.forEach((grid) => {
       const rowGroup = within(grid).getByRole('rowgroup');
       expect(rowGroup).toBeTruthy();

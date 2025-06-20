@@ -1,12 +1,22 @@
 export const RISKS_METADATA = {
-  demandAffected: {
-    label: 'Demand affected',
-    dataUnit: '',
-    format: 'integer',
-  },
   exposureValue: {
     label: 'Exposure value',
-    dataUnit: '',
+    dataUnit: 'JMD',
+    format: 'financial',
+  },
+  EAD: {
+    label: 'Expected Annual Damages',
+    dataUnit: 'JMD/year',
+    format: 'financial',
+  },
+  EADflood: {
+    label: 'Expected Annual Damages (flooding)',
+    dataUnit: 'JMD/year',
+    format: 'financial',
+  },
+  EADcyclone: {
+    label: 'Expected Annual Damages (cyclone)',
+    dataUnit: 'JMD/year',
     format: 'financial',
   },
   populationAffected: {
@@ -14,9 +24,24 @@ export const RISKS_METADATA = {
     dataUnit: '',
     format: 'population',
   },
+  demandAffected: {
+    label: 'Demand affected',
+    dataUnit: '',
+    format: 'integer',
+  },
   lossGdp: {
     label: 'Loss GDP',
-    dataUnit: '',
+    dataUnit: 'JMD/day',
+    format: 'financial',
+  },
+  lossGdpIsolation: {
+    label: 'Loss GDP (isolation)',
+    dataUnit: 'JMD/day',
+    format: 'financial',
+  },
+  lossGdpRerouting: {
+    label: 'Loss GDP (rerouting)',
+    dataUnit: 'JMD/day',
     format: 'financial',
   },
 };

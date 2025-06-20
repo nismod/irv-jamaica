@@ -49,8 +49,8 @@ export const DamageSourceControl = () => {
           </FormControl>
         </InputSection>
         <InputSection>
-          <FormControl>
-            <FormLabel>Hazard</FormLabel>
+          <FormControl component="fieldset" fullWidth>
+            <FormLabel component="legend">Hazard</FormLabel>
             <RadioGroup value={damageSource} onChange={(e, value) => setDamageSource(value)}>
               <FormControlLabel label="All Hazards" control={<Radio value="all" />} />
               {HAZARDS_UI_ORDER.filter((h) => h !== 'storm').map((hazard) => (

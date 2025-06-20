@@ -24,14 +24,22 @@ export function numFormat(n: number, maximumSignificantDigits: number = 3) {
   return n == null ? `-` : n.toLocaleString(undefined, { maximumSignificantDigits });
 }
 
-export function numFormatMoney(value: number) {
+export function numFormatMoney(value: number, currency: string = 'JMD') {
   return value.toLocaleString(undefined, {
     maximumSignificantDigits: 3,
     maximumFractionDigits: 2,
     style: 'currency',
-    currency: 'JMD',
+    currency,
     currencyDisplay: 'narrowSymbol',
   });
+}
+
+export function numFormatFinancial(value: number, dataUnit: string = 'JMD') {
+  const [currency, period] = dataUnit.split('/');
+  if (period) {
+    return `${numFormatMoney(value, currency)}/${period}`;
+  }
+  return numFormatMoney(value, currency);
 }
 
 export function numRangeFormat(n1: number, n2: number) {

@@ -39,7 +39,7 @@ services:
       - ./tileserver/vector/config.json:/config.json
 
   raster-tileserver:
-    image: ghcr.io/nismod/jsrat-raster-tileserver:0.1
+    image: ghcr.io/nismod/jsrat-raster-tileserver:0.2
     platform: linux/amd64
     build: ./tileserver/raster
     ports:
@@ -52,6 +52,22 @@ services:
       - TC_RESAMPLING_METHOD=nearest
       - TC_REPROJECTION_METHOD=nearest
       - TC_PNG_COMPRESS_LEVEL=1
+
+  raster-tile-ingester:
+    image: ghcr.io/nismod/jsrat-raster-tileserver:0.2
+    build: ./tileserver/raster
+    profiles: ["raster-tile-ingester"]
+    volumes:
+      - ./tileserver/raster/data:/data
+      - ./tileserver/raster/config.toml:/config.toml
+    command:
+      [
+        "terracotta",
+        "ingest",
+        "/data/{type}__rp_{rp}__rcp_{rcp}__epoch_{epoch}__conf_{confidence}.tif",
+        "-o",
+        "/data/terracotta.sqlite",
+      ]
 
   pixel-driller:
     image: ghcr.io/nismod/jsrat-pixel-driller:canary

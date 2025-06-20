@@ -3,7 +3,22 @@
  */
 export const exposureValue = {
   scheme: 'reds',
-  range: [0, 1e10],
+  range: [0, 2e9],
+};
+/**
+ * Colour scheme and range for Expected Annual Damage values.
+ */
+export const EAD = {
+  scheme: 'purd',
+  range: [0, 1e7],
+};
+export const EADflood = {
+  scheme: 'purd',
+  range: [0, 1e7],
+};
+export const EADcyclone = {
+  scheme: 'purd',
+  range: [0, 1e7],
 };
 /**
  * Colour scheme and range for GDP values.
@@ -11,6 +26,11 @@ export const exposureValue = {
 export const lossGdp = {
   scheme: 'blues',
   range: [0, 5e6],
+};
+export const lossGdpIsolation = lossGdp;
+export const lossGdpRerouting = {
+  scheme: 'blues',
+  range: [0, 2.5e5],
 };
 /**
  * Colour scheme and range for population values.

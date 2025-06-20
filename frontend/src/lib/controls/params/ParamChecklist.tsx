@@ -29,31 +29,33 @@ export const ParamChecklist = <K extends string = string>({
 
   return (
     <FormGroup>
-      <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <FormLabel>{title}</FormLabel>
-        {showAllNone && (
-          <Box>
-            <Button disabled={isAll} onClick={() => onChecklistState(fromKeys(keys, true))}>
-              All
-            </Button>
-            <Button disabled={isNone} onClick={() => onChecklistState(fromKeys(keys, false))}>
-              None
-            </Button>
-          </Box>
-        )}
-      </Stack>
-      {valueLabels.map(({ value: key, label }) => (
-        <FormControlLabel
-          key={key}
-          control={
-            <Checkbox
-              checked={checklistState[key]}
-              onChange={(e, checked) => onChecklistState({ ...checklistState, [key]: checked })}
-            />
-          }
-          label={renderLabel(key, label)}
-        />
-      ))}
+      <Box component="fieldset" sx={{ border: 'none' }}>
+        <FormLabel component="legend">{title}</FormLabel>
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+          {showAllNone && (
+            <Box>
+              <Button disabled={isAll} onClick={() => onChecklistState(fromKeys(keys, true))}>
+                All
+              </Button>
+              <Button disabled={isNone} onClick={() => onChecklistState(fromKeys(keys, false))}>
+                None
+              </Button>
+            </Box>
+          )}
+        </Stack>
+        {valueLabels.map(({ value: key, label }) => (
+          <FormControlLabel
+            key={key}
+            control={
+              <Checkbox
+                checked={checklistState[key]}
+                onChange={(e, checked) => onChecklistState({ ...checklistState, [key]: checked })}
+              />
+            }
+            label={renderLabel(key, label)}
+          />
+        ))}
+      </Box>
     </FormGroup>
   );
 };

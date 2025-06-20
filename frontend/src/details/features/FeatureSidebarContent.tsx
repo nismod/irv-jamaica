@@ -46,9 +46,9 @@ const componentMapping: Record<keyof typeof NETWORKS_METADATA, DetailsComponent>
   road_edges_class_a: RoadEdgeDetails,
   road_edges_class_b: RoadEdgeDetails,
   road_edges_class_c: RoadEdgeDetails,
-  road_edges_metro: RoadEdgeDetails,
-  road_edges_track: RoadEdgeDetails,
-  road_edges_other: RoadEdgeDetails,
+  road_edges_motorway: RoadEdgeDetails,
+  road_edges_residential: RoadEdgeDetails,
+  road_edges_unclassified: RoadEdgeDetails,
 
   water_irrigation_edges: IrrigationDetails,
   water_irrigation_nodes: IrrigationDetails,

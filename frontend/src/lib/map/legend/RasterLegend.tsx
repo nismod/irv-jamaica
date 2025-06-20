@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { numFormatMoney } from 'lib/helpers';
+import { numFormatFinancial } from 'lib/helpers';
 import { GradientLegend } from './GradientLegend';
 import { useRasterColorMapValues } from './use-color-map-values';
 export interface ColorValue {
@@ -14,7 +14,7 @@ export interface RasterColorMapValues {
 
 const formatter = {
   hazard: (value, dataUnit) => `${value.toLocaleString()} ${dataUnit}`,
-  financial: numFormatMoney,
+  financial: numFormatFinancial,
   integer: (value) =>
     value.toLocaleString(undefined, {
       maximumSignificantDigits: 3,

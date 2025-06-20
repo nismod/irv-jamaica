@@ -8,6 +8,7 @@ import { RasterTarget } from 'lib/data-map/types';
 import { RiskLegend } from './RiskLegend';
 import { RiskHoverDescription } from './RiskHoverDescription';
 import * as RISKS_COLOR_MAPS from './color-maps';
+import { RISKS_METADATA } from './metadata';
 import { RISK_SOURCE } from './source';
 
 export function getRiskId<
@@ -55,12 +56,21 @@ export function riskViewLayer(riskType: string, riskParams: RiskParams): ViewLay
         { scheme, range },
       );
 
+      // Set layer opacity
+      let opacity: number;
+      if (riskType in RISKS_METADATA) {
+        // Reduced opacity for hotspot raster layers
+        opacity = 0.4;
+      } else if (riskType === 'cyclone') {
+        opacity = 0.6;
+      } else {
+        opacity = 1;
+      }
+
       return rasterTileLayer(
         {
-          textureParameters: {
-            magFilter: 'linear',
-          },
-          opacity: riskType === 'cyclone' ? 0.6 : 1,
+          textureParameters: { magFilter: 'linear', },
+          opacity: opacity,
         },
         deckProps,
         {

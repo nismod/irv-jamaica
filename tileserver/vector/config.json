@@ -128,14 +128,14 @@
     "road_edges_class_c": {
       "mbtiles": "road_edges_class_c.mbtiles"
     },
-    "road_edges_metro": {
-      "mbtiles": "road_edges_metro.mbtiles"
+    "road_edges_motorway": {
+      "mbtiles": "road_edges_motorway.mbtiles"
     },
-    "road_edges_other": {
-      "mbtiles": "road_edges_other.mbtiles"
+    "road_edges_unclassified": {
+      "mbtiles": "road_edges_unclassified.mbtiles"
     },
-    "road_edges_track": {
-      "mbtiles": "road_edges_track.mbtiles"
+    "road_edges_residential": {
+      "mbtiles": "road_edges_residential.mbtiles"
     },
     "road_junctions": {
       "mbtiles": "road_junctions.mbtiles"
