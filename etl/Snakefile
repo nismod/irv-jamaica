@@ -112,6 +112,16 @@ rule adaptation_to_db:
     script:
         "./scripts/adaptation_to_db.py"
 
+rule coastal_adaptation_to_db:
+    input:
+        avoided_risk=f"{config['analysis_data_dir']}/results/adaptation_benefits_costs_bcr/coastal_{{layer}}_adaptation_costs_avoided_EAD_EAEL.csv",
+        protector_dict = f"{config['analysis_data_dir']}/results/coastal_protection_assets/network_protection_mappings/{{layer}}_coastal_filtered.parquet",
+        uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/{{layer}}_ids.parquet",
+        p_uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/coastal_protection_feature_edges_ids.parquet",
+    output:
+        "logs/adaptation_coastal/{layer}.txt",
+    script:
+        "./scripts/coastal_adaptation_to_db.py"
 
 rule db_to_geojsonseq:
     """Load from database to GeoJSONSeq
