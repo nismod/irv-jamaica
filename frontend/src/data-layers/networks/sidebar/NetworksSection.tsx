@@ -16,6 +16,7 @@ import { DamageSourceControl } from './DamageSourceControl';
 import { AdaptationControl } from './AdaptationControl';
 import { NetworkControl } from './NetworkControl';
 import { useSyncConfigState } from 'app/state/data-params';
+import { ProtectedFeaturesControl } from './ProtectedFeaturesControl';
 
 /**
  * Sidebar controls for the `networks` layer.
@@ -49,6 +50,11 @@ export const NetworksSection: FC = () => {
             {style === 'adaptation' ? (
               <Collapse>
                 <AdaptationControl />
+              </Collapse>
+            ) : null}
+            {style === 'protectedFeatures' ? (
+              <Collapse>
+                <ProtectedFeaturesControl />
               </Collapse>
             ) : null}
           </TransitionGroup>
