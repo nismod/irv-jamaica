@@ -156,7 +156,6 @@ if __name__ == "__main__":
     adaptation['protector_feature_id'] = protector_ids
 
     adaptation_df = parse_adaptation(adaptation)
-    breakpoint()
     adaptation = yield_adaptation(adaptation_df)
 
     db: Session
