@@ -123,6 +123,21 @@ rule coastal_adaptation_to_db:
     script:
         "./scripts/coastal_adaptation_to_db.py"
 
+
+def all_coastal_adaptation_to_db_log_paths(wildcards):
+    return expand("logs/adaptation_coastal/{layer}.txt", layer=network_layers.damage_ref)
+
+rule all_coastal_adaptation_to_db:
+    input:
+        all_coastal_adaptation_to_db_log_paths
+    output:
+        "logs/adaptation_coastal/all.flag",
+    shell:
+        """
+        touch {output}
+        """
+
+
 rule db_to_geojsonseq:
     """Load from database to GeoJSONSeq
     """
