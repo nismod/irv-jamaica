@@ -6,6 +6,9 @@ export const GuidePage = () => (
     <p>
       <ExtLink href="/guide_media/J-SRAT User Guide_2022-05.pdf">Download PDF</ExtLink>
     </p>
+    <p>
+      <ExtLink href="https://www.youtube.com/playlist?list=PL_Yf06STgGGtRfbvT1HRZk34Ay8n9oUV2">View video playlist introducing the J-SRAT [YouTube]</ExtLink>
+    </p>
     <h2 id="table-of-contents">Table of Contents</h2>
     <p>
       <a href="#how-to-use-this-guide">How to use this guide</a>
