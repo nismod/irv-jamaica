@@ -1,4 +1,4 @@
-name: Create and publish Docker image to GHCR
+name: Create and publish Docker images to GHCR
 
 on:
   release:
@@ -21,7 +21,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build and push frontend Docker image
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:frontend"
@@ -29,5 +29,27 @@ jobs:
           cache-to: type=gha,mode=max
           push: true
           tags: ghcr.io/nismod/jsrat-frontend:${{ github.ref_name }}
+          secrets: |
+            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push backend Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: "{{defaultContext}}:backend"
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          tags: ghcr.io/nismod/jsrat-backend:${{ github.ref_name }}
+          secrets: |
+            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push pixel-driller Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: "{{defaultContext}}:pixel_driller"
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          tags: ghcr.io/nismod/jsrat-pixel-driller:${{ github.ref_name }}
           secrets: |
             GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
