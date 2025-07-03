@@ -338,3 +338,14 @@ export const BuildingDetails: FC<DetailsComponentProps> = ({ f }) => (
     </List>
   </>
 );
+
+export const CoastalDefenceDetails: FC<DetailsComponentProps> = ({ f }) => (
+  <>
+    <List>
+      <DataItem label="ID" value={f.asset_id} />
+      <DataItem label="Length (m)" value={`${numFormat(f.length)}`} />
+      <DataItem label="Max modelled flood height (m)" value={`${numFormat(f.max_flood_height)}`} />
+      <DataItem label="Asset type" value={f.asset_type} />
+    </List>
+  </>
+);
