@@ -234,4 +234,8 @@ export const INFRASTRUCTURE_VIEW_LAYERS = makeConfig<ViewLayer, string>([
   wastewaterNodesViewLayer('water_waste_nodes_pump'),
   wastewaterNodesViewLayer('water_waste_nodes_relift'),
   wastewaterNodesViewLayer('water_waste_nodes_wwtp'),
+  infrastructureViewLayer('coast_nodes_cpf', ({ zoom, styleParams }) => [
+    strokeColor(infraStyle('coast_nodes_cpf', COLORS.coast_nodes_cpf.deck, styleParams)),
+    lineStyle(zoom, 1),
+  ]),
 ]);
