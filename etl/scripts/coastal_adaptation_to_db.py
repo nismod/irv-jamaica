@@ -9,6 +9,7 @@ from tqdm import tqdm
 
 from backend.db.database import SessionLocal
 from backend.db.models import AdaptationCostBenefit
+from backend.db.operations import upsert
 
 
 def yield_adaptation(data):
@@ -146,7 +147,6 @@ if __name__ == "__main__":
     )
     adaptation_with_ids = adaptation.copy()
 
-
     ids = pandas.read_parquet(uid_fname).set_index(network_layer.asset_id_column)
     adaptation = adaptation.join(ids).reset_index(drop=True)
 
@@ -163,7 +163,7 @@ if __name__ == "__main__":
         for i, damage_npv in enumerate(
             tqdm(adaptation, desc=f"{layer_name}_adaptation", total=len(adaptation_df))
         ):
-            db.add(damage_npv)
+            upsert(db, damage_npv)
             if i % 1000 == 0:
                 db.commit()
         db.commit()
