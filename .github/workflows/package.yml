@@ -1,10 +1,8 @@
-name: Create and publish canary Docker image to GHCR
+name: Create and publish Docker images to GHCR
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  release:
+    types: [published]
 
 jobs:
   build-and-push-image:
@@ -30,9 +28,18 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           push: true
-          tags: |
-            ghcr.io/nismod/jsrat-frontend:${{ github.ref_name }}
-            ghcr.io/nismod/jsrat-frontend:canary
+          tags: ghcr.io/nismod/jsrat-frontend:${{ github.ref_name }}
+          secrets: |
+            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push backend Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: "{{defaultContext}}:backend"
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          tags: ghcr.io/nismod/jsrat-backend:${{ github.ref_name }}
           secrets: |
             GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
@@ -43,8 +50,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           push: true
-          tags: |
-            ghcr.io/nismod/jsrat-pixel-driller:${{ github.ref_name }}
-            ghcr.io/nismod/jsrat-pixel-driller:canary
+          tags: ghcr.io/nismod/jsrat-pixel-driller:${{ github.ref_name }}
           secrets: |
             GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
