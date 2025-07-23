@@ -1,5 +1,6 @@
-analysis_data_dir: ./raw_data/
+analysis_data_dir: /mnt/cluster/mistral/jamaica-phase-3
 network_layers: "network_layers.csv"
+network_layers_areal_protection: "network_layers_areal_protection.csv"
 network_tilelayers: "network_tilelayers.csv"
 hazard_layers: "hazard_layers.csv"
 storm_layers: "storm_layers.csv"
