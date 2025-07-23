@@ -33,3 +33,5 @@ Environment variables:
   automatically
 - use [`PG*`](https://www.postgresql.org/docs/current/libpq-envars.html) to
   define database connection details. See `.env.example` for an example
+
+For testing, run `pytest`.

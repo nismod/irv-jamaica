@@ -15,6 +15,7 @@ configfile: "config.yml"
 hazard_layers = pandas.read_csv(config["hazard_layers"])
 hotspot_layers = pandas.read_csv(config["hotspot_layers"])
 network_layers = pandas.read_csv(config["network_layers"])
+network_layers_areal_protection = pandas.read_csv(config["network_layers_areal_protection"])
 storm_layers = pandas.read_csv(config["storm_layers"])
 network_tilelayers = pandas.read_csv(config["network_tilelayers"])
 damage_rp_files = pandas.read_csv(config["damage_rp_files"])
@@ -42,6 +43,7 @@ rule all:
 rule load_to_database:
     input:
         expand("logs/network/{layer}.txt", layer=network_layers.ref),
+        expand("logs/network/{layer}.txt", layer=network_layers_areal_protection.ref),
         expand("logs/damages_rp/{layer}.txt", layer=damage_rp_files.ref),
         expand("logs/damages_exp/{layer}.txt", layer=damage_exp_files.ref),
         expand("logs/damages_npv/{layer}.txt", layer=network_layers.damage_ref),
@@ -113,9 +115,38 @@ rule adaptation_to_db:
         "./scripts/adaptation_to_db.py"
 
 
+rule coastal_adaptation_to_db:
+    input:
+        avoided_risk=f"{config['analysis_data_dir']}/results/adaptation_benefits_costs_bcr/coastal_{{layer}}_adaptation_costs_avoided_EAD_EAEL.csv",
+        protector_dict = f"{config['analysis_data_dir']}/results/coastal_protection_assets/network_protection_mappings/{{layer}}_coastal_filtered.parquet",
+        uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/{{layer}}_ids.parquet",
+        p_uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/coastal_protection_feature_edges_ids.parquet",
+    output:
+        "logs/adaptation_coastal/{layer}.txt",
+    script:
+        "./scripts/coastal_adaptation_to_db.py"
+
+
+def all_coastal_adaptation_to_db_log_paths(wildcards):
+    return expand("logs/adaptation_coastal/{layer}.txt", layer=network_layers.damage_ref)
+
+rule all_coastal_adaptation_to_db:
+    input:
+        all_coastal_adaptation_to_db_log_paths
+    output:
+        "logs/adaptation_coastal/all.flag",
+    shell:
+        """
+        touch {output}
+        """
+
+
 rule db_to_geojsonseq:
     """Load from database to GeoJSONSeq
     """
+    input:
+        "logs/network/{layer}.txt",
+        "logs/damages_exp/{layer}.txt",
     output:
         "vector/{layer}.geojsonl",
     script:

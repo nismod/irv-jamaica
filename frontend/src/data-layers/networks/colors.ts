@@ -44,4 +44,6 @@ export const COLORS = makeColorConfig({
   buildings_residential: '#f2e680',
   buildings_resort: '#f9b2ea',
   buildings_unknown: '#dfe4de',
+
+  coast_nodes_cpf: '#6e6e6e'
 });

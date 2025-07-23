@@ -208,6 +208,9 @@
     },
     "water_waste_sewer_pressure": {
       "mbtiles": "water_waste_sewer_pressure.mbtiles"
+    },
+    "coast_nodes_cpf": {
+      "mbtiles": "coast_nodes_cpf.mbtiles"
     }
   }
 }

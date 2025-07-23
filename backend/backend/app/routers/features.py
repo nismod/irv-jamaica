@@ -126,9 +126,7 @@ def read_protected_features(
         rcp=rcp,
         adaptation_protection_level=protection_level,
     ).where(
-        models.AdaptationCostBenefit.adaptation_name ==
-        "Flood defence around asset"  # test query
-        # models.AdaptationCostBenefit.protector_feature_id == protector_id
+        models.AdaptationCostBenefit.protector_feature_id == protector_id
     )
     print(adaptation_options)
     return session.execute(adaptation_options)

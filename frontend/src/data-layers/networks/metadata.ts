@@ -401,4 +401,10 @@ export const NETWORKS_METADATA = makeConfig([
     color: COLORS.buildings_resort.css,
     minZoom: 12,
   },
+  {
+    id: 'coast_nodes_cpf',
+    type: 'line',
+    label: 'Coastal defence',
+    color: COLORS.coast_nodes_cpf.css,
+  },
 ]);
