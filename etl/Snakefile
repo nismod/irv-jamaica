@@ -141,6 +141,9 @@ rule all_coastal_adaptation_to_db:
 rule db_to_geojsonseq:
     """Load from database to GeoJSONSeq
     """
+    input:
+        "logs/network/{layer}.txt",
+        "logs/damages_exp/{layer}.txt",
     output:
         "vector/{layer}.geojsonl",
     script:
