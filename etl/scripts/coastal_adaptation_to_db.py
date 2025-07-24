@@ -17,7 +17,7 @@ def yield_adaptation(data):
     for row in data.itertuples():
         yield AdaptationCostBenefit(
             feature_id=row.uid,
-            hazard=row.hazard,
+            hazard="flooding",
             rcp=row.rcp,
             adaptation_name=row.adaptation_option,
             adaptation_protection_level=row.protection_level,
