@@ -3355,5 +3355,7295 @@
     "rcp": "8.5",
     "adaptation_name": "Flood defence around asset",
     "adaptation_protection_level": 2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"diesel",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"power",
+    "subsector":"generation",
+    "asset_type":"gas",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"power",
+    "subsector":"transmission",
+    "asset_type":"substation",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"runway",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"air",
+    "asset_type":"terminal",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"break",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"container",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"industry",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"port",
+    "asset_type":"silo",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"rail",
+    "asset_type":"track",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"bridge",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"MOTORWAY",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS A",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS B",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"CLASS C",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"RESIDENTIAL",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"transport",
+    "subsector":"road",
+    "asset_type":"UNCLASSIFIED",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"irrigation",
+    "asset_type":"well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Booster Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Filter Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Production Well",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"River Source",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Spring",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"potable",
+    "asset_type":"Treatment Plant",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Pump Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Relift Station",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":0.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":1.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":2.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":3.5
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.0
+  },
+  {
+    "sector":"water",
+    "subsector":"wastewater",
+    "asset_type":"WW Sump",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":4.5
   }
 ]
