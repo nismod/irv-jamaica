@@ -158,6 +158,8 @@ export const networkStyleParamsState = selector<StyleParams>({
         return get(damageMapStyleParamsState);
       case 'adaptation':
         return get(adaptationStyleParamsState);
+      case 'protectedFeatures':
+        return get(adaptationStyleParamsState);
       default:
         return {};
     }

@@ -3,7 +3,7 @@ import { atom, atomFamily, selectorFamily, useRecoilTransaction_UNSTABLE } from 
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
 import { selectionState } from 'lib/state/interactions/interaction-state';
 
-const viewLayerState = atomFamily<ViewLayer, string>({
+export const viewLayerState = atomFamily<ViewLayer, string>({
   key: 'viewLayerState',
   default: null,
 });
