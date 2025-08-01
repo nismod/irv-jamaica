@@ -461,7 +461,6 @@ export type FeaturesReadProtectedFeaturesData = {
     };
     query: {
         rcp: string;
-        protection_level: number;
     };
     url: '/features/{protector_id}/protected-by';
 };

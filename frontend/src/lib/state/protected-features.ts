@@ -13,17 +13,17 @@ const apiClient = createClient({
   baseUrl: '/api',
 });
 
-type ProtectedFeatureDetailsQuery = { rcp: string; protectionLevel: number };
+type ProtectedFeatureDetailsQuery = { rcp: string };
 
 /**
  * Fetch a list of all adaptation options, by feature ID and layer,
  * for features protected by the current selected feature,
- * filtered by RCP and protection level.
+ * filtered by RCP.
  */
 const protectedFeatureAdaptationOptionsQuery = selectorFamily({
   key: 'protectedFeatureDetails',
   get:
-    ({ rcp = '2.6', protectionLevel = 1 }: ProtectedFeatureDetailsQuery) =>
+    ({ rcp = '2.6' }: ProtectedFeatureDetailsQuery) =>
     async ({ get }) => {
       const selection = get(selectionState('assets'));
       const target = selection?.target as VectorTarget;
@@ -36,8 +36,7 @@ const protectedFeatureAdaptationOptionsQuery = selectorFamily({
           protector_id: +target.feature.id,
         },
         query: {
-          rcp,
-          protection_level: protectionLevel,
+          rcp
         },
       });
       return data;
@@ -52,10 +51,10 @@ const protectedFeatureAdaptationOptionsQuery = selectorFamily({
 const protectedFeatureAdaptationOptionsState = selectorFamily({
   key: 'protectedFeatureDetailsState',
   get:
-    ({ rcp = '2.6', protectionLevel = 1 }: ProtectedFeatureDetailsQuery) =>
+    ({ rcp = '2.6' }: ProtectedFeatureDetailsQuery) =>
     ({ get }) => {
       const loadable = get(
-        noWait(protectedFeatureAdaptationOptionsQuery({ rcp, protectionLevel })),
+        noWait(protectedFeatureAdaptationOptionsQuery({ rcp })),
       );
       const data: ProtectedFeatureListItem[] =
         loadable.state === 'hasValue' ? loadable.contents : [];
@@ -71,11 +70,8 @@ export const protectedFeatureLayersQuery = selector({
   key: 'protectedFeatureLayersQuery',
   get: ({ get }) => {
     const rcp = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
-    const protectionLevel = get(
-      dataParamState({ group: 'adaptation', param: 'adaptation_protection_level' }),
-    );
     return new Set(
-      get(protectedFeatureAdaptationOptionsQuery({ rcp, protectionLevel }))?.map(
+      get(protectedFeatureAdaptationOptionsQuery({ rcp }))?.map(
         (feature) => feature.layer,
       ),
     );
@@ -98,17 +94,14 @@ export const protectedFeatureLayersState = selector({
 });
 
 /**
- * A list of adaptation options, by feature ID and layer, for the RCP and protection level
+ * A list of adaptation options, by feature ID and layer, for the RCP
  * set by the adaptations sidebar control state.
  */
 export const protectedFeatureAdaptationsState = selector({
   key: 'protectedFeatureAdaptations',
   get: ({ get }) => {
     const rcp = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
-    const protectionLevel = get(
-      dataParamState({ group: 'adaptation', param: 'adaptation_protection_level' }),
-    );
-    const { data } = get(protectedFeatureAdaptationOptionsState({ rcp, protectionLevel }));
+    const { data } = get(protectedFeatureAdaptationOptionsState({ rcp }));
     return data;
   },
 });

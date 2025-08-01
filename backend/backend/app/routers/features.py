@@ -87,7 +87,6 @@ def read_sorted_features(
 def read_protected_features(
     protector_id: int,
     rcp: str,
-    protection_level: float,
     session: SessionDep,
 ):
     """
@@ -124,7 +123,6 @@ def read_protected_features(
         models.Feature.adaptation
     ).filter_by(
         rcp=rcp,
-        adaptation_protection_level=protection_level,
     ).where(
         models.AdaptationCostBenefit.protector_feature_id == protector_id
     )
