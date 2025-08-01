@@ -54,7 +54,7 @@ function useSyncAdaptationParameters(checkboxState) {
   const updateSubsector = useUpdateDataParam('adaptation', 'subsector');
   const updateAssetType = useUpdateDataParam('adaptation', 'asset_type');
   const selectedLayers = Object.keys(checkboxState.checked).filter(
-    (id) => checkboxState.checked[id] && !networkTreeConfig.nodes[id].children,
+    (id) => checkboxState.checked[id] && networkTreeConfig.nodes[id] && !networkTreeConfig.nodes[id].children,
   );
   const adaptationLayer = adaptationSectorLayers.find((x) => selectedLayers.includes(x.layer_name));
   if (adaptationLayer) {
