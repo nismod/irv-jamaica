@@ -48,7 +48,7 @@ const protectedFeatureAdaptationOptionsQuery = selectorFamily({
  * for features protected by the current selected feature.
  * Components using this selector will not suspend while waiting for the API.
  */
-const protectedFeatureAdaptationOptionsState = selectorFamily({
+export const protectedFeatureAdaptationOptionsState = selectorFamily({
   key: 'protectedFeatureDetailsState',
   get:
     ({ rcp = '2.6' }: ProtectedFeatureDetailsQuery) =>
