@@ -44,6 +44,12 @@ def parse_adaptation(data):
             "cyclone_damage_curve_reduction": "protection_level",
         }
     )
+
+    # Set protection level to 100, as in 1 in 100 year return period
+    # This is the flood map used to size the coastal defence features
+    # TODO: Set this in jamaica-infrastructure within benefit_cost_ratio rule
+    data["protection_level"] = 100
+
     # corner case for handling protection against "all" floods - set depth to 999
     if "flood_protection_level" in data.columns:
         data.loc[
@@ -83,7 +89,6 @@ def parse_adaptation(data):
                 "protection_level",
                 "protector_feature_id",
                 "adapt_cost_npv",
-                
             ],
             columns=["var"],
             values="value",
