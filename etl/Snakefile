@@ -198,6 +198,7 @@ rule geojsonseq_to_vector_tiles:
             # create points as centroids
             input_basename = os.path.basename(str(input))
             input_layer = input_basename.replace(".geojsonl", "")
+            os.makedirs("vector/points", exist_ok=True)
             tmp_output = f"vector/points/{input_basename}"
             subprocess.run(
                 [
