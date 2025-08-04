@@ -49,4 +49,4 @@ energy_nodes,power,generation,gas,point,elec_nodes_gas
 energy_nodes,power,generation,hydro,point,elec_nodes_hydro
 energy_nodes,power,generation,solar,point,elec_nodes_solar
 energy_nodes,power,generation,wind,point,elec_nodes_wind
-coastal_protection_edges,coastal_infrastructure,protection,revetment,line,coast_nodes_cpf
+coastal_protection_areas,coastal_infrastructure,protection,revetment_protection_zone,polygon,coast_nodes_cpf
