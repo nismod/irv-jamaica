@@ -357,10 +357,6 @@ export const CoastalDefenceDetails: FC<DetailsComponentProps> = ({ f }) => {
   const { data } = useRecoilValue(protectedFeatureAdaptationOptionsState({ rcp: '8.5' }));
 
   const sortedProtectedFeatures = [...data].sort((a, b) => {
-    const layerComparison = a.layer.localeCompare(b.layer);
-    if (layerComparison !== 0) {
-      return layerComparison;
-    }
     return (b.avoided_ead_mean || 0) - (a.avoided_ead_mean || 0);
   });
 
