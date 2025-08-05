@@ -47,3 +47,10 @@ export const damages: ColorSpec = {
   range: [0, 1e6],
   empty: '#ccc',
 };
+
+export const damagesCoastalDefence: ColorSpec = {
+  scale: d3Scale.scaleSequential,
+  scheme: d3ScaleChromatic.interpolateBuPu,
+  range: [0, 1e8],
+  empty: '#ccc',
+};

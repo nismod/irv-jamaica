@@ -1,13 +1,15 @@
 import { FC } from 'react';
-
-import { ViewLayer } from 'lib/data-map/view-layers';
 import { useRecoilValue } from 'recoil';
-import { viewLayersFlatState } from 'lib/state/layers/view-layers';
 import { Stack, Box, Paper, Divider } from '@mui/material';
+
+import { damageSourceState } from 'app/state/damage-mapping/damage-map';
+import { ViewLayer } from 'lib/data-map/view-layers';
+import { viewLayersFlatState } from 'lib/state/layers/view-layers';
 import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 
 export const MapLegend: FC = () => {
   const viewLayers = useRecoilValue(viewLayersFlatState);
+  const currentHazard = useRecoilValue(damageSourceState);
 
   const rasterViewLayers = [];
 
@@ -24,13 +26,28 @@ export const MapLegend: FC = () => {
       const { colorMap } = viewLayer.styleParams ?? {};
 
       if (colorMap) {
+        // Skip damage legends that don't match the current hazard selection
+        if (colorMap.fieldSpec.fieldGroup === 'damages_expected') {
+          const layerHazard = colorMap.fieldSpec.fieldDimensions?.hazard;
+          if (layerHazard && layerHazard !== currentHazard) {
+            return;
+          }
+        }
+
+        let colorMapKey = `${colorMap.fieldSpec.fieldGroup}-${colorMap.fieldSpec.field}`;
         /**
          * Construct a key for grouping legends of the same type,
          * to avoid displaying the same legend many times for multiple layers.
-         * Currently this is based on fieldGroup-field pair,
-         * but this could need reworking for future cases.
          */
-        const colorMapKey = `${colorMap.fieldSpec.fieldGroup}-${colorMap.fieldSpec.field}`;
+
+        // Include hazard type in the key to distinguish between different hazards
+        if (colorMap.fieldSpec.fieldDimensions?.hazard) {
+          colorMapKey = `${colorMapKey}-${colorMap.fieldSpec.fieldDimensions.hazard}`;
+        }
+
+        // Include range to distinguish between different damage scales (coastal vs regular)
+        const rangeKey = `${colorMap.colorSpec.range[0]}-${colorMap.colorSpec.range[1]}`;
+        colorMapKey = `${colorMapKey}-${rangeKey}`;
 
         // save the colorMap and formatConfig for first layer of each group
         if (dataColorMaps[colorMapKey] == null) {
