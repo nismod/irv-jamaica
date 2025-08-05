@@ -19,6 +19,10 @@ import { colorMap } from 'lib/color-map';
 import { NETWORKS_METADATA } from './metadata';
 import { iconType } from 'lib/map-shapes/deck-icon';
 
+function withOpacity(color: number[], opacity: number) {
+  return [...color.slice(0, 3), Math.round(opacity * 255)];
+}
+
 function infraStyle(layer: string, defaultStyle, styleParams: StyleParams) {
   if (styleParams?.colorMap) {
     const { fieldSpec, colorSpec } = styleParams.colorMap;
@@ -28,36 +32,36 @@ function infraStyle(layer: string, defaultStyle, styleParams: StyleParams) {
 }
 
 enum RoadClass {
+  motorway = 'motorway',
   class_a = 'class_a',
   class_b = 'class_b',
   class_c = 'class_c',
-  motorway = 'motorway',
   unclassified = 'unclassified',
   residential = 'residential',
 }
 
 const roadClassLookup = {
+  road_edges_motorway: RoadClass.motorway,
   road_edges_class_a: RoadClass.class_a,
   road_edges_class_b: RoadClass.class_b,
   road_edges_class_c: RoadClass.class_c,
-  road_edges_motorway: RoadClass.motorway,
   road_edges_residential: RoadClass.residential,
   road_edges_unclassified: RoadClass.unclassified,
 };
 
 const roadColor = {
+  [RoadClass.motorway]: COLORS.roads_motorway.deck,
   [RoadClass.class_a]: COLORS.roads_class_a.deck,
   [RoadClass.class_b]: COLORS.roads_class_b.deck,
   [RoadClass.class_c]: COLORS.roads_class_c.deck,
-  [RoadClass.motorway]: COLORS.roads_motorway.deck,
   [RoadClass.residential]: COLORS.roads_unknown.deck,
   [RoadClass.unclassified]: COLORS.roads_unknown.deck,
 };
 const roadLineSize: Record<RoadClass, ScaleLevel> = {
+  [RoadClass.motorway]: 0,
   [RoadClass.class_a]: 0,
   [RoadClass.class_b]: 1,
   [RoadClass.class_c]: 2,
-  [RoadClass.motorway]: 2,
   [RoadClass.residential]: 2,
   [RoadClass.unclassified]: 2,
 };
@@ -235,6 +239,9 @@ export const INFRASTRUCTURE_VIEW_LAYERS = makeConfig<ViewLayer, string>([
   wastewaterNodesViewLayer('water_waste_nodes_relift'),
   wastewaterNodesViewLayer('water_waste_nodes_wwtp'),
   infrastructureViewLayer('coast_nodes_cpf', ({ zoom, styleParams }) => [
+    fillColor(
+      infraStyle('coast_nodes_cpf', withOpacity(COLORS.coast_nodes_cpf.deck, 0.2), styleParams),
+    ),
     strokeColor(infraStyle('coast_nodes_cpf', COLORS.coast_nodes_cpf.deck, styleParams)),
     lineStyle(zoom, 1),
   ]),

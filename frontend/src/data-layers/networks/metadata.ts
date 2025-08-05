@@ -403,7 +403,7 @@ export const NETWORKS_METADATA = makeConfig([
   },
   {
     id: 'coast_nodes_cpf',
-    type: 'line',
+    type: 'polygon',
     label: 'Coastal defence',
     color: COLORS.coast_nodes_cpf.css,
   },
