@@ -150,6 +150,23 @@ rule db_to_geojsonseq:
         "scripts/db_to_geojsonseq.py"
 
 
+rule geojsonseq_to_vector_tiles_coastal_protection:
+    input:
+        "vector/coast_nodes_cpf.geojsonl",
+    output:
+        "../tileserver/vector/data/coast_nodes_cpf.mbtiles",
+    shell:
+        """
+        tippecanoe \\
+            --use-attribute-for-id=id \\
+            --read-parallel \\
+            --output={output} \\
+            --layer=coast_nodes_cpf \\
+            --force \\
+            {input}
+        """
+
+
 rule geojsonseq_to_vector_tiles:
     input:
         "vector/{layer}.geojsonl",
