@@ -150,7 +150,7 @@ export const adaptationStyleParamsState = selector<StyleParams>({
   },
 });
 
-export const networkStyleParamsState = selectorFamily<StyleParams>({
+export const networkStyleParamsState = selectorFamily<StyleParams, string>({
   key: 'networkStyleParamsState',
   get: (layerId: string) => ({ get }) => {
     switch (get(networksStyleState)) {
