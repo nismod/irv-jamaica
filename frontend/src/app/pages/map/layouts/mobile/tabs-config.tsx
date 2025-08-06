@@ -3,11 +3,19 @@ import Palette from '@mui/icons-material/Palette';
 import TableRows from '@mui/icons-material/TableRows';
 import { SvgIconProps } from '@mui/material';
 import { ComponentType } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import { MapLegend } from 'lib/map/legend/MapLegend';
 
+import { damageSourceState } from 'app/state/damage-mapping/damage-map';
 import { LayersSidebar } from 'app/sidebar/SidebarContent';
 import { DetailsSidebar } from 'details/DetailsSidebar';
+
+// Wrapper component for mobile MapLegend that provides the currentHazard prop
+const MapLegendWithHazard = () => {
+  const currentHazard = useRecoilValue(damageSourceState);
+  return <MapLegend currentHazard={currentHazard} />;
+};
 
 export interface TabConfig {
   id: string;
@@ -30,7 +38,7 @@ export const mobileTabsConfig: TabConfig[] = [
     id: 'legend',
     label: 'Legend',
     IconComponent: Palette,
-    ContentComponent: MapLegend,
+    ContentComponent: MapLegendWithHazard,
   },
   {
     id: 'details',

@@ -2,14 +2,16 @@ import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Stack, Box, Paper, Divider } from '@mui/material';
 
-import { damageSourceState } from 'app/state/damage-mapping/damage-map';
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { viewLayersFlatState } from 'lib/state/layers/view-layers';
 import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 
-export const MapLegend: FC = () => {
+interface MapLegendProps {
+  currentHazard?: string;
+}
+
+export const MapLegend: FC<MapLegendProps> = ({ currentHazard }) => {
   const viewLayers = useRecoilValue(viewLayersFlatState);
-  const currentHazard = useRecoilValue(damageSourceState);
 
   const rasterViewLayers = [];
 
