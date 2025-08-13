@@ -3,24 +3,18 @@ import { useRecoilState } from 'recoil';
 import { FormLabel } from '@mui/material';
 
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
-import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
-import { dataParamsByGroupState } from 'lib/state/data-params';
 
 import { InputRow } from 'lib/sidebar/ui/InputRow';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 import { LayerStylePanel } from 'lib/sidebar/ui/LayerStylePanel';
 import { DataParam } from 'lib/sidebar/ui/params/DataParam';
 
-import { adaptationDataParamsStateEffect, adaptationFieldState } from '../state/layer';
+import { adaptationFieldState } from '../state/layer';
 
 export const ProtectedFeaturesControl: FC = () => {
   const [adaptationField, setAdaptationField] = useRecoilState(adaptationFieldState);
   return (
     <LayerStylePanel>
-      <StateEffectRoot
-        state={dataParamsByGroupState('adaptation')}
-        effect={adaptationDataParamsStateEffect}
-      />
       <InputSection>
         <FormLabel>Adaptation for</FormLabel>
         <InputRow>
