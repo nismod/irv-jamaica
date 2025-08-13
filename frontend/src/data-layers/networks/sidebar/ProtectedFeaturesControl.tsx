@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useRecoilState } from 'recoil';
 import { FormLabel } from '@mui/material';
 
-import { CustomNumberSlider } from 'lib/controls/CustomSlider';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
 import { dataParamsByGroupState } from 'lib/state/data-params';
@@ -32,31 +31,6 @@ export const ProtectedFeaturesControl: FC = () => {
           </DataParam>
         </InputRow>
       </InputSection>
-      <InputSection>
-        <DataParam group="adaptation" id="adaptation_protection_level">
-          {({ value, onChange, options }) =>
-            options.length > 2 ? (
-              <>
-                <FormLabel>Protection level</FormLabel>
-                <CustomNumberSlider
-                  title="Protection level"
-                  value={value}
-                  onChange={onChange}
-                  marks={options}
-                />
-              </>
-            ) : (
-              <ParamDropdown
-                title="Protection level"
-                value={value}
-                onChange={onChange}
-                options={options}
-              />
-            )
-          }
-        </DataParam>
-      </InputSection>
-
       <InputSection>
         <ParamDropdown<typeof adaptationField>
           title="Displayed variable"
