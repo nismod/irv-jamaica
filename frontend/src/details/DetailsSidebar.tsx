@@ -22,7 +22,10 @@ export const DetailsSidebar = () => {
       <Box mb={2}>
         <SolutionsSidebar />
       </Box>
-      <Box mb={2}>{showAdaptationsTable ? <AdaptationsSidebar /> : <FeatureSidebar />}</Box>
+      <Box mb={2}>{showAdaptationsTable ? <AdaptationsSidebar /> : null}</Box>
+      <Box mb={2}>
+        <FeatureSidebar />
+      </Box>
       <Box mb={2}>
         <RegionDetails />
       </Box>
