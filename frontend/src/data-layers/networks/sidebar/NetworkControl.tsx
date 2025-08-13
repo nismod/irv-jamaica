@@ -15,7 +15,7 @@ import {
 } from '../state/data-selection';
 import { NETWORK_LAYERS_HIERARCHY } from './hierarchy';
 import { NETWORKS_METADATA } from '../metadata';
-import { showAdaptationsState } from '../state/layer';
+import { showAdaptationsState, showProtectorFeaturesState } from '../state/layer';
 import adaptationSectorLayers from '../adaptation-sector-layers.json';
 import { protectedFeatureLayersState } from 'lib/state/protected-features';
 
@@ -78,17 +78,18 @@ export const NetworkControl: FC = () => {
   const [expanded, setExpanded] = useRecoilState(networkTreeExpandedState);
 
   const showAdaptations = useRecoilValue(showAdaptationsState);
-  const disableCheck = showAdaptations;
+  const showProtectorFeatureLayers = useRecoilValue(showProtectorFeaturesState);
+  const disableCheck = showAdaptations || showProtectorFeatureLayers;
 
   useSyncAdaptationParameters(checkboxState);
-  useSyncProtectedFeatureLayers(checkboxState);
+  useSyncProtectedFeatureLayers();
 
   return (
     <>
-      {showAdaptations ? (
+      {disableCheck ? (
         <Box my={1}>
           <Alert severity="info">
-            Infrastructure layers are currently following the Adaptation Options selection
+            Infrastructure layers are currently following the {showAdaptations? 'Adaptation Options': 'Protected Features'} selection
           </Alert>
         </Box>
       ) : null}
