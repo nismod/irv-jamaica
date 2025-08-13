@@ -41,6 +41,11 @@ export const showAdaptationsState = selector<boolean>({
   get: ({ get }) => get(networksStyleState) === 'adaptation',
 });
 
+export const showProtectorFeaturesState = selector<boolean>({
+  key: 'showProtectorFeaturesState',
+  get: ({ get }) => get(networksStyleState) === 'protectedFeatures',
+});
+
 export const adaptationFieldState = atom<
   'avoided_ead_mean' | 'avoided_eael_mean' | 'adaptation_cost' | 'cost_benefit_ratio'
 >({
