@@ -109,6 +109,7 @@ rule adaptation_to_db:
     input:
         avoided_risk=f"{config['analysis_data_dir']}/results/adaptation_benefits_costs_bcr/{{hazard}}_{{layer}}_adaptation_costs_avoided_EAD_EAEL.csv",
         uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/{{layer}}_ids.parquet",
+        network_layers=config["network_layers"]
     output:
         "logs/adaptation/{hazard}/{layer}.txt",
     script:
@@ -118,9 +119,24 @@ rule adaptation_to_db:
 rule coastal_adaptation_to_db:
     input:
         avoided_risk=f"{config['analysis_data_dir']}/results/adaptation_benefits_costs_bcr/coastal_{{layer}}_adaptation_costs_avoided_EAD_EAEL.csv",
+        uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/{{layer}}_ids.parquet",
+        network_layers=config["network_layers_areal_protection"],
+    wildcard_constraints:
+        layer=r"(coastal_protection_feature_areas)"
+    output:
+        "logs/adaptation_coastal/{layer}.txt",
+    script:
+        "./scripts/adaptation_to_db.py"
+
+
+rule coastal_adaptation_protected_assets_to_db:
+    input:
+        avoided_risk=f"{config['analysis_data_dir']}/results/adaptation_benefits_costs_bcr/coastal_{{layer}}_adaptation_costs_avoided_EAD_EAEL.csv",
         protector_dict = f"{config['analysis_data_dir']}/results/coastal_protection_assets/network_protection_mappings/{{layer}}_coastal_filtered.parquet",
         uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/{{layer}}_ids.parquet",
         p_uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/coastal_protection_feature_areas_ids.parquet",
+    wildcard_constraints:
+        layer=r"^((?!coastal_protection_feature).)$",  # Everything except the defence features themselves
     output:
         "logs/adaptation_coastal/{layer}.txt",
     script:
@@ -128,7 +144,9 @@ rule coastal_adaptation_to_db:
 
 
 def all_coastal_adaptation_to_db_log_paths(wildcards):
-    return expand("logs/adaptation_coastal/{layer}.txt", layer=network_layers.damage_ref)
+    return \
+        expand("logs/adaptation_coastal/{layer}.txt", layer=network_layers.damage_ref) \
+        + expand("logs/adaptation_coastal/{layer}.txt", layer=network_layers_areal_protection.damage_ref)
 
 rule all_coastal_adaptation_to_db:
     input:

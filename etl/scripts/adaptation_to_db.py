@@ -21,6 +21,7 @@ def yield_adaptation(data):
             adaptation_name=row.adaptation_option,
             adaptation_protection_level=row.protection_level,
             adaptation_cost=row.adapt_cost_npv,
+            protector_feature_id=row.uid,
             avoided_ead_amin=row.avoided_ead_amin,
             avoided_ead_mean=row.avoided_ead_mean,
             avoided_ead_amax=row.avoided_ead_amax,
@@ -119,7 +120,7 @@ if __name__ == "__main__":
         uid_fname = snakemake.input.uid
         layer_name = snakemake.wildcards.layer
         output = snakemake.output
-        network_layers_fname = snakemake.config["network_layers"]
+        network_layers_fname = snakemake.input.network_layers
     except NameError:
         print("Expected to run from snakemake")
         exit()

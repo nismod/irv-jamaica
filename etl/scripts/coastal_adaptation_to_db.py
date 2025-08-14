@@ -120,11 +120,13 @@ def ensure_columns(data, expected_columns):
             data[col] = 0
     return data
 
+
 def match_asset_to_protector(asset_ids, p_ids, protector_dict):
     flood_id_col = [col for col in protector_dict.columns if col.startswith('flood_id')][0]
     flood_ids = protector_dict.loc[asset_ids, flood_id_col]
     protector_uids = p_ids.loc[flood_ids, 'uid']
     return protector_uids.values
+
 
 if __name__ == "__main__":
     try:

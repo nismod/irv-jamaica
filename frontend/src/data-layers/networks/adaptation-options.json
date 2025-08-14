@@ -4165,5 +4165,32 @@
     "rcp":"8.5",
     "adaptation_name":"Building revetment along coastline",
     "adaptation_protection_level":100
+  },
+  {
+    "sector":"coastal_infrastructure",
+    "subsector":"protection",
+    "asset_type":"revetment_protection_zone",
+    "hazard":"flooding",
+    "rcp":"2.6",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":100
+  },
+  {
+    "sector":"coastal_infrastructure",
+    "subsector":"protection",
+    "asset_type":"revetment_protection_zone",
+    "hazard":"flooding",
+    "rcp":"4.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":100
+  },
+  {
+    "sector":"coastal_infrastructure",
+    "subsector":"protection",
+    "asset_type":"revetment_protection_zone",
+    "hazard":"flooding",
+    "rcp":"8.5",
+    "adaptation_name":"Building revetment along coastline",
+    "adaptation_protection_level":100
   }
 ]
