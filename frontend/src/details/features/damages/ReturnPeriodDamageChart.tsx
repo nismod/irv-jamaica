@@ -4,7 +4,7 @@ import { PlainObject, VegaLite } from 'react-vega';
 import { unique } from 'lib/helpers';
 
 const makeSpec = (rpValues: number[], field_key: string, field_title: string) => ({
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  $schema: 'https://vega.github.io/schema/vega-lite/v6.json',
   data: {
     name: 'table',
   },
