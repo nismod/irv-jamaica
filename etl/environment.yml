@@ -11,4 +11,4 @@ dependencies:
     - -e ../backend
     - -r requirements.txt
   - bioconda::snakemake~=8.30.0
-  - tippecanoe~=2.31.0
+  - tippecanoe~=2.78.0
