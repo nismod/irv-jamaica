@@ -43,43 +43,56 @@ See `./etl` directory for details.
 
 ## Build and run
 
-Running the application requires several (local) server processes: the
-vector and raster tileservers, the app backend, and the app frontend.
+Running the application requires several server processes: the vector and raster
+tileservers, the app backend, and the app frontend.
+
+To run all of these through docker compose on a local machine, run:
+
+```bash
+docker compose -f docker-compose.dev.yml up
+```
+
+The following sections describe the dependencies and dev setup for each service.
+
 
 ### Node and npm
 
 The build and run steps use [node.js](https://nodejs.org/) - this provides the
 `npm` command.
 
-Install required packages. Run from the project root:
+Install required packages. Run from the `frontend` directory:
 
-    npm install
-
-### Terracotta
-
-Install the raster tileserver - Terracotta
-
-For example, installing using conda:
-
-    conda create --name infrariskvis python=3.8 numpy rasterio shapely crick
-    conda activate infrariskvis
-    pip install terracotta[recommended]
+```bash
+npm install
+```
 
 ### Run the vector tileserver
 
-Run the tileserver directly (from the root of the project):
+Run the tileserver directly (from the root of the project) using docker:
 
-    npm run vector
+```bash
+docker compose -f docker-compose.dev.yml up vector-tileserver -d
+```
 
 ### Run the raster tileserver
 
+Install the raster tileserver either in a local environment, or as a docker container.
+
+For example, installing using conda:
+
+```bash
+conda create --name infrariskvis python=3.8 numpy rasterio shapely crick
+conda activate infrariskvis
+pip install terracotta[recommended]
+```
+
+Or build using docker:
+
+```bash
+docker compose -f docker-compose.dev.yml build raster-tileserver
+```
+
 Prepare the raster tileserver database:
-
-    npm run raster-init
-
-Run the raster tileserver:
-
-    npm run raster
 
 ```bash
 docker run \
@@ -91,6 +104,12 @@ docker run \
   terracotta ingest "/data/{type}__rp_{rp}__rcp_{rcp}__epoch_{epoch}__conf_{confidence}.tif" -o /data/terracotta.sqlite
 ```
 
+Run the raster tileserver:
+
+```bash
+docker compose -f docker-compose.dev.yml up raster-tileserver -d
+```
+
 ### Run the backend API server and database
 
 Two options here.
@@ -100,10 +119,11 @@ environment for python.
 
 Set up a postgres database and add connection details in `./backend/.env`.
 
-Run the api server:
+Run the api server (from the `backend` directory):
 
-    cd ./backend
-    pipenv run uvicorn backend.app.main:app --host localhost --port 8888
+```bash
+python -m uvicorn backend.app.main:app --host localhost --port 8888
+```
 
 Alternatively, run `docker-compose` to run the API server in one container and
 postgres in another.
@@ -121,15 +141,18 @@ pg_restore -cC -j 8 -d jamaica ./archive/jamaicadev_2023-05-16.dump
 
 ### Run the frontend app in development mode
 
-Start the app server:
+Start the app server (from the `frontend`  directory):
 
-    npm start
+```bash
+npm start
+```
 
 This should automatically open a browser tab. If not, open:
 
-    firefox http://localhost:3000/
+    firefox http://localhost:5173/
 
 See `./deploy` directory for details.
+
 
 ## Acknowledgements
 
