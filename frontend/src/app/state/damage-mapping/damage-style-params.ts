@@ -4,7 +4,6 @@ import { dataParamsByGroupState } from 'lib/state/data-params';
 import { FieldSpec, StyleParams } from 'lib/data-map/view-layers';
 
 import { damages, damagesCoastalDefence } from 'data-layers/networks/color-maps';
-import { networkSelectionState } from 'data-layers/networks/state/data-selection';
 
 import { damageSourceState, damageTypeState } from './damage-map';
 
