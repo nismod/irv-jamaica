@@ -3,15 +3,15 @@
 # micromamba create -f environment.yml -y
 name: irv-jamaica-etl
 channels:
-  - conda-forge  # majority of dependencies
-  - nodefaults  # avoid anaconda license issues
+  - conda-forge # majority of dependencies
+  - nodefaults # avoid anaconda license issues
 dependencies:
   - python~=3.12
   - pip:
-    - -e ../backend
-    - nismod-snail==0.5.3
-    - snkit~=1.9.0
-    - terracotta==0.9.1  # required for ETL
+      - -e ../backend
+      - nismod-snail==0.5.3
+      - snkit~=1.9.0
+      - terracotta==0.9.1 # required for ETL
   - bioconda::snakemake~=8.30.0
   - black
   - fiona~=1.10.0
@@ -36,7 +36,7 @@ dependencies:
   # irv-jamaica/backend
   - fastapi-pagination~=0.13
   - fastapi~=0.116
-  - geoalchemy2~=0.18  # also used in ETL
+  - geoalchemy2~=0.18 # also used in ETL
   - psycopg2-binary==2.9.10
   - pydantic~=2.11
   - uvicorn~=0.33
