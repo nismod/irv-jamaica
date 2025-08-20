@@ -356,7 +356,15 @@ export const BuildingDetails: FC<DetailsComponentProps> = ({ f }) => (
 export const CoastalDefenceDetails: FC<DetailsComponentProps> = ({ f }) => {
   const { data } = useRecoilValue(protectedFeatureAdaptationOptionsState({ rcp: '8.5' }));
 
-  const sortedProtectedFeatures = [...data].sort((a, b) => {
+  // There may be adaptation results calculated for the coastal protection
+  // region as a whole. They have a protected_feature_id == feature_id, so
+  // appear in `data`, but showing them would be a kind of double counting.
+  // We exclude them here.
+  const filteredProtectedFeatures = data.filter(
+    feature => feature.id !== f.uid
+  );
+
+  const sortedProtectedFeatures = [...filteredProtectedFeatures].sort((a, b) => {
     return (b.avoided_ead_mean || 0) - (a.avoided_ead_mean || 0);
   });
 
