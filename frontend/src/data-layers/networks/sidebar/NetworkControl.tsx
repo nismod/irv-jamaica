@@ -9,13 +9,14 @@ import { useUpdateDataParam } from 'lib/state/data-params';
 import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
 
 import {
+  networkSelectionState,
   networkTreeCheckboxState,
   networkTreeConfig,
   networkTreeExpandedState,
 } from '../state/data-selection';
 import { NETWORK_LAYERS_HIERARCHY } from './hierarchy';
 import { NETWORKS_METADATA } from '../metadata';
-import { showAdaptationsState } from '../state/layer';
+import { showAdaptationsState, showProtectorFeaturesState } from '../state/layer';
 import adaptationSectorLayers from '../adaptation-sector-layers.json';
 import { protectedFeatureLayersState } from 'lib/state/protected-features';
 
@@ -23,24 +24,37 @@ import { protectedFeatureLayersState } from 'lib/state/protected-features';
  * Set the checkbox tree state to true for protected feature layers.
  * @param checkBoxState network checkbox tree state.
  */
-function useSyncProtectedFeatureLayers(checkboxState) {
+function useSyncProtectedFeatureLayers() {
+  const prevLayers = new Set(useRecoilValue(networkSelectionState));
+  const allLayers = new Set(Object.values(networkTreeConfig.nodes).filter((n) => !!n.url).map((n)=> n.id));
+
+  const showProtectorFeatureLayers = useRecoilValue(showProtectorFeaturesState);
+  const protectorFeatureLayers = showProtectorFeatureLayers
+    ? new Set(["coast_nodes_cpf"])
+    : new Set();
+
   const protectedFeatureLayers = useRecoilValue(protectedFeatureLayersState);
+
   const setCheckboxState = useSetRecoilState(networkTreeCheckboxState);
-  protectedFeatureLayers.forEach((layer: string) => {
-    if (!checkboxState.checked[layer]) {
-      setCheckboxState((prev) => {
-        const newState = {
-          indeterminate: {},
-          checked: {
-            ...prev.checked,
-            [layer]: true,
-          },
-        };
-        const resolvedTreeState = recalculateCheckboxStates(newState, networkTreeConfig);
-        return resolvedTreeState;
-      });
-    }
-  });
+
+  const showLayers = protectedFeatureLayers.union(protectorFeatureLayers).intersection(allLayers);
+
+  const doUpdate = showProtectorFeatureLayers && showLayers.symmetricDifference(prevLayers).size !== 0;
+
+  if (doUpdate) {
+    const newState = {
+      indeterminate: {},
+      checked: {},
+    };
+    prevLayers.forEach((layer: string) => {
+      newState.checked[layer] = false;
+    });
+    showLayers.forEach((layer: string) => {
+      newState.checked[layer] = true;
+    });
+    const resolvedTreeState = recalculateCheckboxStates(newState, networkTreeConfig);
+    setCheckboxState(resolvedTreeState);
+  }
 }
 
 /**
@@ -78,17 +92,18 @@ export const NetworkControl: FC = () => {
   const [expanded, setExpanded] = useRecoilState(networkTreeExpandedState);
 
   const showAdaptations = useRecoilValue(showAdaptationsState);
-  const disableCheck = showAdaptations;
+  const showProtectorFeatureLayers = useRecoilValue(showProtectorFeaturesState);
+  const disableCheck = showAdaptations || showProtectorFeatureLayers;
 
   useSyncAdaptationParameters(checkboxState);
-  useSyncProtectedFeatureLayers(checkboxState);
+  useSyncProtectedFeatureLayers();
 
   return (
     <>
-      {showAdaptations ? (
+      {disableCheck ? (
         <Box my={1}>
           <Alert severity="info">
-            Infrastructure layers are currently following the Adaptation Options selection
+            Infrastructure layers are currently following the {showAdaptations? 'Adaptation Options': 'Protected Features'} selection
           </Alert>
         </Box>
       ) : null}

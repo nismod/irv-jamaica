@@ -378,7 +378,7 @@ export const CoastalDefenceDetails: FC<DetailsComponentProps> = ({ f }) => {
         <ListItem disableGutters disablePadding>
           <ListItemText
             primary="Protectee assets"
-            primaryTypographyProps={{ variant: 'caption' }}
+            slotProps={{ primary: {variant: 'caption'}, secondary:{ component: 'div'} }}
             secondary={
               sortedProtectedFeatures.length > 0 ? (
                 <TableContainer component={Paper} sx={{ mt: 1, maxHeight: 300 }}>

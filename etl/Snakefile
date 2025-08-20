@@ -177,9 +177,16 @@ rule geojsonseq_to_vector_tiles_coastal_protection:
         """
         tippecanoe \\
             --use-attribute-for-id=id \\
-            --read-parallel \\
-            --output={output} \\
             --layer=coast_nodes_cpf \\
+            --output={output} \\
+            --maximum-zoom=g \\
+            --read-parallel \\
+            --no-clipping \\
+            --buffer=0 \\
+            --drop-densest-as-needed \\
+            --extend-zooms-if-still-dropping \\
+            --simplification=10 \\
+            --simplify-only-low-zooms \\
             --force \\
             {input}
         """
