@@ -43,7 +43,7 @@ def yield_return_period_damages(exposure_fname, damage_fname, loss_fname):
                     "amax": "loss_amax",
                 }
             )
-            batch_df = exp_df.join(dmg_df).join(loss_df).fillna(0).reset_index()
+            batch_df = dmg_df.join(loss_df).join(exp_df).fillna(0).reset_index()
 
             # in case of data not having non-zero values in this batch
             expected_columns = [
