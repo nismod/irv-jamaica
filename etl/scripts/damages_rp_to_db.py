@@ -91,7 +91,7 @@ def parse_rp_damage_batch(batch):
         r"^(\w+)__rp_(\d+)__rcp_([\w\d.]+)__epoch_(\d+)__?conf_([^_]+)_?(\w+)?"
     )
     meta.columns = ["hazard", "rp", "rcp", "epoch", "conf", "var"]
-    meta["var"].fillna("none", inplace=True)
+    meta["var"] = meta["var"].fillna("none")
 
     return (
         melted.join(meta)
