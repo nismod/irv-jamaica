@@ -1,8 +1,22 @@
 import { ComponentType, FC } from 'react';
 
-import { List, ListItem, ListItemText, Typography } from '@mui/material';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from '@mui/material';
 
 import { titleCase, isNumeric, numFormat, paren, numRangeFormat } from 'lib/helpers';
+import { useRecoilValue } from 'recoil';
+import { protectedFeatureAdaptationOptionsState } from 'lib/state/protected-features';
 
 interface DataItemProps {
   label: string;
@@ -338,3 +352,64 @@ export const BuildingDetails: FC<DetailsComponentProps> = ({ f }) => (
     </List>
   </>
 );
+
+export const CoastalDefenceDetails: FC<DetailsComponentProps> = ({ f }) => {
+  const { data } = useRecoilValue(protectedFeatureAdaptationOptionsState({ rcp: '8.5' }));
+
+  // There may be adaptation results calculated for the coastal protection
+  // region as a whole. They have a protected_feature_id == feature_id, so
+  // appear in `data`, but showing them would be a kind of double counting.
+  // We exclude them here.
+  const filteredProtectedFeatures = data.filter(
+    feature => feature.id !== f.uid
+  );
+
+  const sortedProtectedFeatures = [...filteredProtectedFeatures].sort((a, b) => {
+    return (b.avoided_ead_mean || 0) - (a.avoided_ead_mean || 0);
+  });
+
+  return (
+    <>
+      <List>
+        <DataItem label="ID" value={f.asset_id} />
+        <DataItem label="Length (m)" value={`${numFormat(f.length)}`} />
+        <DataItem label="Max modelled flood height (m)" value={`${numFormat(f.max_flood_height)}`} />
+        <DataItem label="Asset type" value={f.asset_type} />
+        <ListItem disableGutters disablePadding>
+          <ListItemText
+            primary="Protectee assets"
+            slotProps={{ primary: {variant: 'caption'}, secondary:{ component: 'div'} }}
+            secondary={
+              sortedProtectedFeatures.length > 0 ? (
+                <TableContainer component={Paper} sx={{ mt: 1, maxHeight: 300 }}>
+                  <Table size="small" stickyHeader sx={{ '& .MuiTableCell-root': { padding: '4px 8px', fontSize: '0.75rem' } }}>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell sx={{ fontSize: '0.7rem' }}>Asset ID</TableCell>
+                        <TableCell sx={{ fontSize: '0.7rem' }}>Layer</TableCell>
+                        <TableCell sx={{ fontSize: '0.7rem' }} align="right">Avoided EAD ($)</TableCell>
+                        <TableCell sx={{ fontSize: '0.7rem' }} align="right">Avoided EAEL ($)</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {sortedProtectedFeatures.map((feature, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{feature.string_id}</TableCell>
+                          <TableCell>{feature.layer}</TableCell>
+                          <TableCell align="right">{numFormat(feature.avoided_ead_mean)}</TableCell>
+                          <TableCell align="right">{numFormat(feature.avoided_eael_mean)}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              ) : (
+                '-'
+              )
+            }
+          />
+        </ListItem>
+      </List>
+    </>
+  );
+};

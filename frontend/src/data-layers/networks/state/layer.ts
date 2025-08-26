@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
 import uniq from 'lodash/uniq';
 import fromPairs from 'lodash/fromPairs';
 import mapValues from 'lodash/mapValues';
@@ -30,7 +30,7 @@ export const networksLayerState = selector<ViewLayer[]>({
       ? get(networkSelectionState).map((network) => {
           return networkViewLayer({
             network,
-            styleParams: get(networkStyleParamsState),
+            styleParams: get(networkStyleParamsState(network)),
           });
         })
       : [],
@@ -39,6 +39,11 @@ export const networksLayerState = selector<ViewLayer[]>({
 export const showAdaptationsState = selector<boolean>({
   key: 'showAdaptationsState',
   get: ({ get }) => get(networksStyleState) === 'adaptation',
+});
+
+export const showProtectorFeaturesState = selector<boolean>({
+  key: 'showProtectorFeaturesState',
+  get: ({ get }) => get(networksStyleState) === 'protectedFeatures',
 });
 
 export const adaptationFieldState = atom<
@@ -150,13 +155,15 @@ export const adaptationStyleParamsState = selector<StyleParams>({
   },
 });
 
-export const networkStyleParamsState = selector<StyleParams>({
+export const networkStyleParamsState = selectorFamily<StyleParams, string>({
   key: 'networkStyleParamsState',
-  get: ({ get }) => {
+  get: (layerId: string) => ({ get }) => {
     switch (get(networksStyleState)) {
       case 'damages':
-        return get(damageMapStyleParamsState);
+        return get(damageMapStyleParamsState(layerId));
       case 'adaptation':
+        return get(adaptationStyleParamsState);
+      case 'protectedFeatures':
         return get(adaptationStyleParamsState);
       default:
         return {};

@@ -347,4 +347,15 @@ export const NETWORK_LAYERS_HIERARCHY: TreeNode<NetworkLayerData>[] = [
       },
     ],
   },
+  {
+    id: 'coastal_defence',
+    label: 'Coastal defence',
+    children: [
+      {
+        id: 'coast_nodes_cpf',
+        label: 'Protected zones: revetment',
+        url: '32',
+      },
+    ]
+  }
 ];

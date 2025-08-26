@@ -5,6 +5,7 @@ import {
   AirportDetails,
   BridgeDetails,
   BuildingDetails,
+  CoastalDefenceDetails,
   DefaultDetails,
   DetailsComponent,
   IrrigationDetails,
@@ -97,6 +98,8 @@ const componentMapping: Record<keyof typeof NETWORKS_METADATA, DetailsComponent>
   buildings_mixed: BuildingDetails,
   buildings_recreation: BuildingDetails,
   buildings_resort: BuildingDetails,
+
+  coast_nodes_cpf: CoastalDefenceDetails,
 };
 
 interface FeatureSidebarContentProps {

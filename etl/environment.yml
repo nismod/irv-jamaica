@@ -1,14 +1,42 @@
+# union of jamaica-infrastructure and irv-jamaica backend and ETL requirements as of 2025-08-15
 # to install this environment:
 # micromamba create -f environment.yml -y
 name: irv-jamaica-etl
 channels:
-  - conda-forge  # majority of dependencies
-  - bioconda  # snakemake
-  - nodefaults  # avoid anaconda license issues
+  - conda-forge # majority of dependencies
+  - nodefaults # avoid anaconda license issues
 dependencies:
-  - python~=3.11
+  - python~=3.12
   - pip:
-    - -e ../backend
-    - -r requirements.txt
-  - bioconda::snakemake~=8.30.0
-  - tippecanoe~=2.31.0
+      - -e ../backend
+      - nismod-snail==0.5.3
+      - snkit~=1.9.0
+      - terracotta==0.9.1 # required for ETL
+  - bioconda::snakemake~=8.30
+  - black
+  - fiona~=1.10
+  - geopandas~=1.0
+  - python-igraph~=0.11.6
+  - matplotlib~=3.9
+  - networkx~=3.3
+  - numpy~=2.1
+  - openpyxl~=3.1
+  - pandas~=2.2
+  - pathos~=0.3.2
+  - pyarrow~=21.0
+  - rasterio~=1.4
+  - rioxarray~=0.17.0
+  - SALib~=1.5
+  - scipy~=1.14
+  - shapely~=2.0
+  - tippecanoe~=2.78
+  - tqdm
+  - ujson~=5.10
+  - xarray~=2024.9
+  # irv-jamaica/backend
+  - fastapi-pagination~=0.13.1
+  - fastapi~=0.116.1
+  - geoalchemy2~=0.18.0 # also used in ETL
+  - psycopg2-binary==2.9.10
+  - pydantic~=2.11
+  - uvicorn~=0.35.0

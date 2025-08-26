@@ -71,8 +71,8 @@ services:
     volumes:
       - ./tileserver/raster/data:/data
       - ./tileserver/raster/config.toml:/config.toml
-    expose:
-      - "5000"
+    ports:
+      - 5000:5000
     environment:
       - TC_DRIVER_PATH=/data/terracotta.sqlite
       - TC_RESAMPLING_METHOD=nearest

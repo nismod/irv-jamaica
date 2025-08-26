@@ -9,6 +9,7 @@ from tqdm import tqdm
 
 from backend.db.database import SessionLocal
 from backend.db.models import AdaptationCostBenefit
+from backend.db.operations import upsert
 
 
 def yield_adaptation(data):
@@ -16,12 +17,12 @@ def yield_adaptation(data):
     for row in data.itertuples():
         yield AdaptationCostBenefit(
             feature_id=row.uid,
-            hazard=row.hazard,
+            hazard="flooding",
             rcp=row.rcp,
             adaptation_name=row.adaptation_option,
             adaptation_protection_level=row.protection_level,
+            protector_feature_id=row.protector_feature_id,
             adaptation_cost=row.adapt_cost_npv,
-            protector_feature_id=row.uid,
             avoided_ead_amin=row.avoided_ead_amin,
             avoided_ead_mean=row.avoided_ead_mean,
             avoided_ead_amax=row.avoided_ead_amax,
@@ -43,13 +44,19 @@ def parse_adaptation(data):
             "cyclone_damage_curve_reduction": "protection_level",
         }
     )
+
+    # Set protection level to 100, as in 1 in 100 year return period
+    # This is the flood map used to size the coastal defence features
+    # TODO: Set this in jamaica-infrastructure within benefit_cost_ratio rule
+    data["protection_level"] = 100
+
     # corner case for handling protection against "all" floods - set depth to 999
     if "flood_protection_level" in data.columns:
         data.loc[
             data.flood_protection_level == "All", "protection_level"
         ] = 999
 
-    id_vars = ["uid", "adaptation_option", "protection_level", "adapt_cost_npv"]
+    id_vars = ["uid", "adaptation_option", "protection_level", "adapt_cost_npv", "protector_feature_id"]
 
     if data.duplicated(subset=id_vars).sum() > 0:
         logging.warning("Dropping duplicated adaptation options")
@@ -80,6 +87,7 @@ def parse_adaptation(data):
                 "rcp",
                 "adaptation_option",
                 "protection_level",
+                "protector_feature_id",
                 "adapt_cost_npv",
             ],
             columns=["var"],
@@ -113,14 +121,23 @@ def ensure_columns(data, expected_columns):
     return data
 
 
+def match_asset_to_protector(asset_ids, p_ids, protector_dict):
+    flood_id_col = [col for col in protector_dict.columns if col.startswith('flood_id')][0]
+    flood_ids = protector_dict.loc[asset_ids, flood_id_col]
+    protector_uids = p_ids.loc[flood_ids, 'uid']
+    return protector_uids.values
+
+
 if __name__ == "__main__":
     try:
         input = snakemake.input
         avoided_risk_fname = snakemake.input.avoided_risk
+        protector_dict_fname = snakemake.input.protector_dict
+        p_uid_fname = snakemake.input.p_uid
         uid_fname = snakemake.input.uid
         layer_name = snakemake.wildcards.layer
         output = snakemake.output
-        network_layers_fname = snakemake.input.network_layers
+        network_layers_fname = snakemake.config["network_layers"]
     except NameError:
         print("Expected to run from snakemake")
         exit()
@@ -135,8 +152,15 @@ if __name__ == "__main__":
     adaptation = pandas.read_csv(avoided_risk_fname).set_index(
         network_layer.asset_id_column
     )
+    adaptation_with_ids = adaptation.copy()
+
     ids = pandas.read_parquet(uid_fname).set_index(network_layer.asset_id_column)
     adaptation = adaptation.join(ids).reset_index(drop=True)
+
+    p_ids = pandas.read_parquet(p_uid_fname).set_index("id")
+    protector_dict = pandas.read_parquet(protector_dict_fname).set_index(network_layer.asset_id_column)
+    protector_ids = match_asset_to_protector(adaptation_with_ids.index, p_ids, protector_dict)
+    adaptation['protector_feature_id'] = protector_ids
 
     adaptation_df = parse_adaptation(adaptation)
     adaptation = yield_adaptation(adaptation_df)
@@ -146,7 +170,7 @@ if __name__ == "__main__":
         for i, damage_npv in enumerate(
             tqdm(adaptation, desc=f"{layer_name}_adaptation", total=len(adaptation_df))
         ):
-            db.add(damage_npv)
+            upsert(db, damage_npv)
             if i % 1000 == 0:
                 db.commit()
         db.commit()

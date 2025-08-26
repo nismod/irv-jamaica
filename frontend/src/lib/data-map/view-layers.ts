@@ -1,5 +1,5 @@
 import { ScaleSequential } from 'd3-scale';
-import { DataLoader } from 'lib/data-loader/data-loader';
+import { DataFetcher, DataLoader } from 'lib/data-loader/data-loader';
 import { Accessor } from 'lib/deck/props/getters';
 import { InteractionTarget, VectorTarget, RasterTarget } from './types';
 import { Layer } from 'deck.gl';
@@ -32,6 +32,7 @@ export interface ViewLayerFunctionOptions {
   zoom: number;
   styleParams?: StyleParams;
   selection?: InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
+  dataFetcher?: DataFetcher;
 }
 
 export interface DataManager {

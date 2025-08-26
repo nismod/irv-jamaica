@@ -36,7 +36,7 @@ function parseTreeFromString(value: string) {
 
 function stringifyTree(tree: CheckboxTreeState) {
   const checkedLayers = Object.keys(tree.checked).filter(
-    (id) => tree.checked[id] && !networkTreeConfig.nodes[id].children,
+    (id) => tree.checked[id] && networkTreeConfig.nodes[id] && !networkTreeConfig.nodes[id].children,
   );
   const checked = checkedLayers.map((id) => networkTreeURLs[id]);
   return checked.join('.');
@@ -95,7 +95,7 @@ export const networkSelectionState = selector<string[]>({
     const checkboxState = get(networkTreeCheckboxState);
 
     return Object.keys(checkboxState.checked).filter(
-      (id) => checkboxState.checked[id] && !networkTreeConfig.nodes[id].children,
+      (id) => checkboxState.checked[id] && networkTreeConfig.nodes[id] && !networkTreeConfig.nodes[id].children,
     );
   },
 });

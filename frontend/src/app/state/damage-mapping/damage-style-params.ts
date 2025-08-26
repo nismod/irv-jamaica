@@ -1,9 +1,9 @@
-import { selector } from 'recoil';
+import { selector, selectorFamily } from 'recoil';
 
 import { dataParamsByGroupState } from 'lib/state/data-params';
 import { FieldSpec, StyleParams } from 'lib/data-map/view-layers';
 
-import { damages } from 'data-layers/networks/color-maps';
+import { damages, damagesCoastalDefence } from 'data-layers/networks/color-maps';
 
 import { damageSourceState, damageTypeState } from './damage-map';
 
@@ -28,15 +28,17 @@ export const damagesFieldState = selector<FieldSpec>({
   },
 });
 
-export const damageMapStyleParamsState = selector<StyleParams>({
+export const damageMapStyleParamsState = selectorFamily<StyleParams, string>({
   key: 'damageMapStyleParamsState',
-  get: ({ get }) => {
+  get: (layerId: string) => ({ get }) => {
     const eadFieldSpec = get(damagesFieldState);
     if (eadFieldSpec == null) return {};
 
+    const colorSpec = layerId === 'coast_nodes_cpf' ? damagesCoastalDefence : damages
+
     return {
       colorMap: {
-        colorSpec: damages,
+        colorSpec: colorSpec,
         fieldSpec: eadFieldSpec,
       },
     };
