@@ -132,11 +132,11 @@ rule coastal_adaptation_to_db:
 rule coastal_adaptation_protected_assets_to_db:
     input:
         avoided_risk=f"{config['analysis_data_dir']}/results/adaptation_benefits_costs_bcr/coastal_{{layer}}_adaptation_costs_avoided_EAD_EAEL.csv",
-        protector_dict = f"{config['analysis_data_dir']}/results/coastal_protection_assets/network_protection_mappings/{{layer}}_coastal_filtered.parquet",
+        protector_dict=f"{config['analysis_data_dir']}/results/coastal_protection_assets/network_protection_mappings/{{layer}}_coastal_filtered.parquet",
         uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/{{layer}}_ids.parquet",
         p_uid=f"{config['analysis_data_dir']}/processed_data/networks_uids/id_lookups/coastal_protection_feature_areas_ids.parquet",
     wildcard_constraints:
-        layer=r"^((?!coastal_protection_feature).)$",  # Everything except the defence features themselves
+        layer="(?!coastal_protection_feature_areas$).*"
     output:
         "logs/adaptation_coastal/{layer}.txt",
     script:
