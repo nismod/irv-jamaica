@@ -79,7 +79,6 @@ def get_network_layer(layer_name, network_layers, network_layers_areal_protectio
             network_layers = pandas.concat([network_layers, network_layers_areal_protection], ignore_index=True)
         else:
             raise ValueError("network_layers_areal_protection could not be appended to network_layers. DataFrames have different fields")
-    breakpoint()
     try:
         return network_layers[network_layers.ref == layer_name].iloc[0]
     except IndexError as e:
