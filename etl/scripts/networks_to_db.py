@@ -73,7 +73,12 @@ def clean_props(props, rename):
     return clean
 
 
-def get_network_layer(layer_name, network_layers):
+def get_network_layer(layer_name, network_layers, network_layers_areal_protection):
+    if not network_layers_areal_protection.empty:
+        if set(network_layers.columns) == set(network_layers_areal_protection.columns):
+            network_layers = pandas.concat([network_layers, network_layers_areal_protection], ignore_index=True)
+        else:
+            raise ValueError("network_layers_areal_protection could not be appended to network_layers. DataFrames have different fields")
     try:
         return network_layers[network_layers.ref == layer_name].iloc[0]
     except IndexError as e:
@@ -111,13 +116,14 @@ if __name__ == "__main__":
         analysis_data_dir = snakemake.config["analysis_data_dir"]
 
         network_layers = pandas.read_csv(snakemake.config["network_layers"])
+        network_layers_areal_protection = pandas.read_csv(snakemake.config["network_layers_areal_protection"])
         network_tilelayers = pandas.read_csv(snakemake.config["network_tilelayers"])
 
     except NameError:
         print("Expected to run from snakemake")
         exit()
 
-    layer = get_network_layer(layer, network_layers)
+    layer = get_network_layer(layer, network_layers,network_layers_areal_protection)
     tilelayers = list(get_tilelayers_by_network_source(layer, network_tilelayers))
 
     db: Session
