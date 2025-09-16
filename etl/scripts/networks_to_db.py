@@ -75,7 +75,7 @@ def clean_props(props, rename):
 
 def get_network_layer(layer_name, network_layers, network_layers_areal_protection):
     if not network_layers_areal_protection.empty:
-        if set(network_layers.columns) == set(network_layers_areal_protection):
+        if set(network_layers.columns) == set(network_layers_areal_protection.columns):
             network_layers = pandas.concat([network_layers, network_layers_areal_protection], ignore_index=True)
         else:
             raise ValueError("network_layers_areal_protection could not be appended to network_layers. DataFrames have different fields")
