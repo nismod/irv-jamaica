@@ -130,7 +130,15 @@ postgres in another.
 
 ```bash
 docker compose -f docker-compose.dev.yml up db -d
+```
 
+The next step runs `pg_restore` to load data to the database from a backup.
+This runs `pg_restore` on the host against the database running in
+docker, which is available through `postgresql-client` packages
+([various routes to download](https://www.postgresql.org/download/)) or through
+[conda-forge](https://anaconda.org/channels/conda-forge/packages/postgresql/overview).
+
+```
 PGPORT=25432 \
 PGHOST=localhost \
 PGUSER=docker \
