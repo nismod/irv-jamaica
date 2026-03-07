@@ -1,0 +1,14 @@
+export const devProxy = {
+  '/raster': {
+    target: 'https://jamaica.infrastructureresilience.org',
+    changeOrigin: true,
+  },
+  '/vector': {
+    target: 'https://jamaica.infrastructureresilience.org',
+    changeOrigin: true,
+  },
+  '/api': {
+    target: 'https://jamaica.infrastructureresilience.org',
+    changeOrigin: true,
+  },
+};

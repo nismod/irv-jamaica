@@ -4,7 +4,7 @@ volumes:
 
 services:
   traefik:
-    image: "traefik:v3.4"
+    image: "traefik:v3.6"
     command:
       - "--log.level=DEBUG"
       - "--providers.docker.exposedbydefault=false"
@@ -72,7 +72,7 @@ services:
       - ./tileserver/raster/data:/data
       - ./tileserver/raster/config.toml:/config.toml
     ports:
-      - 5000:5000
+      - 5001:5000
     environment:
       - TC_DRIVER_PATH=/data/terracotta.sqlite
       - TC_RESAMPLING_METHOD=nearest
