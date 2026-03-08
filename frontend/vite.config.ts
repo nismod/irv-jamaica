@@ -11,11 +11,17 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
  * You can copy and rename one of the included examples.
  * See https://vitejs.dev/config/server-options.html#server-proxy for syntax
  */
-import { devProxy } from './dev-proxy/proxy-table.js';
+let devProxy;
+try {
+  devProxy = await import('./dev-proxy/proxy-table.js').then((module) => module.devProxy);
+} catch (e) {
+  console.warn('No dev proxy config found, skipping proxy setup');
+  console.warn(e);
+  devProxy = undefined;
+}
 
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
-
 
 // https://vitejs.dev/config/
 export default defineConfig({
