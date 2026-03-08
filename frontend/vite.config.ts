@@ -13,7 +13,8 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
  */
 let devProxy;
 try {
-  devProxy = await import('./dev-proxy/proxy-table.js').then((module) => module.devProxy);
+  const proxyModule = await import('./dev-proxy/proxy-table.js');
+  devProxy = proxyModule.devProxy;
 } catch (e) {
   console.warn('No dev proxy config found, skipping proxy setup');
   console.warn(e);
