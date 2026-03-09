@@ -6,6 +6,8 @@ import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import { playwright } from '@vitest/browser-playwright';
+
 /**
  * To set up a development proxy, create and edit the file dev-proxy/proxy-table.js
  * You can copy and rename one of the included examples.
@@ -48,7 +50,7 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: 'playwright',
+            provider: playwright(),
             instances: [{ browser: 'chromium' }],
           },
           setupFiles: ['.storybook/vitest.setup.ts'],
