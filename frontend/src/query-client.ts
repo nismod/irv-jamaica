@@ -5,7 +5,6 @@ import {
   useQuery,
   UseQueryOptions,
 } from '@tanstack/react-query';
-import { Simplify } from 'type-fest';
 
 export const queryClient = new QueryClient();
 
@@ -17,8 +16,9 @@ export function makeQueryAndPrefetch<
   return [
     (
       args: TArgs,
-      reactQueryOptions?: Simplify<
-        Omit<UseQueryOptions<TResult, unknown, TResult, QueryKey>, 'queryKey' | 'queryFn'>
+      reactQueryOptions?: Omit<
+        UseQueryOptions<TResult, unknown, TResult, QueryKey>,
+        'queryKey' | 'queryFn'
       >,
     ) => {
       return useQuery({
