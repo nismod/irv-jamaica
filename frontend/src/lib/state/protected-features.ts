@@ -1,6 +1,6 @@
-import { createClient } from '@hey-api/client-fetch';
 import { noWait, selector, selectorFamily } from 'recoil';
 
+import { createClient } from 'lib/api-client/client';
 import { featuresReadProtectedFeatures } from 'lib/api-client/sdk.gen';
 import { ProtectedFeatureListItem } from 'lib/api-client/types.gen';
 import { selectionState } from './interactions/interaction-state';

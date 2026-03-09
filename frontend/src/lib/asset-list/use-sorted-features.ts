@@ -1,10 +1,10 @@
-import { createClient } from '@hey-api/client-fetch';
 import { parseSync } from '@loaders.gl/core';
 import { WKTLoader } from '@loaders.gl/wkt';
 import bbox from '@turf/bbox';
 import pick from 'lodash/pick';
 import { selectorFamily, useRecoilValue } from 'recoil';
 
+import { createClient } from 'lib/api-client/client';
 import { featuresReadSortedFeatures } from 'lib/api-client/sdk.gen';
 import { FeatureListItemOutFloat } from 'lib/api-client/types.gen';
 import { BoundingBox } from 'lib/bounding-box';

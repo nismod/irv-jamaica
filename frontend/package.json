@@ -7,7 +7,6 @@
     "@deck.gl/extensions": "^9.1.4",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@hey-api/client-fetch": "^0.10.0",
     "@loaders.gl/core": "^4.3.3",
     "@loaders.gl/images": "4.3.3",
     "@loaders.gl/wkt": "^4.3.3",
@@ -44,7 +43,7 @@
     "vega-lite": "^6.1.0"
   },
   "devDependencies": {
-    "@hey-api/openapi-ts": "^0.68.0",
+    "@hey-api/openapi-ts": "^0.94.0",
     "@rollup/plugin-url": "^8.0.2",
     "@storybook/addon-a11y": "^10.2.16",
     "@storybook/addon-docs": "^10.2.16",

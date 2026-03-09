@@ -1,5 +1,4 @@
-import { createClient } from '@hey-api/client-fetch';
-
+import { createClient } from 'lib/api-client/client';
 import { attributesReadAttributes } from 'lib/api-client/sdk.gen';
 import { FieldSpec } from 'lib/data-map/view-layers';
 
