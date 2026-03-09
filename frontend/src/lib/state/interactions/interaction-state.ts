@@ -1,7 +1,7 @@
-import { createClient } from '@hey-api/client-fetch';
 import forEach from 'lodash/forEach';
 import { atom, atomFamily, selector, selectorFamily } from 'recoil';
 
+import { createClient } from 'lib/api-client/client';
 import { featuresReadFeature } from 'lib/api-client/sdk.gen';
 import { InteractionLayer } from 'lib/data-map/types';
 import { isReset } from 'lib/recoil/is-reset';
