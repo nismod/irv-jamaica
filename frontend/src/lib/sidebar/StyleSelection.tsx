@@ -1,6 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import uniqueId from 'lodash/uniqueId';
-import { FC, useRef } from 'react';
+import { FC, useId } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
@@ -9,8 +8,8 @@ export const StyleSelection: FC<{ id: string }> = ({ id }) => {
   const [value, setValue] = useRecoilState(sectionStyleValueState(id));
   const options = useRecoilValue(sectionStyleOptionsState(id));
 
-  const htmlId = useRef(uniqueId('style-selection-'));
-  const labelId = `${htmlId.current}-input-label`;
+  const htmlId = useId();
+  const labelId = `${htmlId}-input-label`;
 
   return (
     <FormControl fullWidth>

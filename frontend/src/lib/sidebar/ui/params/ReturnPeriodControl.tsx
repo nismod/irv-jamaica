@@ -1,12 +1,15 @@
 import { FormControl, FormLabel } from '@mui/material';
-import uniqueId from 'lodash/uniqueId';
-import { useRef } from 'react';
+import { useId } from 'react';
 import { CustomNumberSlider } from 'lib/controls/CustomSlider';
 import { DataParam } from './DataParam';
 
+function useLabelId() {
+  const id = useId();
+  return `${id}-label`;
+}
+
 export const ReturnPeriodControl = ({ group, ...otherProps }) => {
-  const htmlId = useRef(uniqueId('return-period-'));
-  const labelId = `${htmlId.current}-label`;
+  const labelId = useLabelId();
   return (
     <FormControl fullWidth>
       <FormLabel id={labelId}>Return Period</FormLabel>

@@ -1,8 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import uniqueId from 'lodash/uniqueId';
-import { createContext, FC, ReactNode, useContext, useRef } from 'react';
+import { createContext, FC, ReactNode, useContext, useId } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { RecoilStateFamily } from 'lib/recoil/types';
@@ -32,13 +31,13 @@ export const ToggleSection: FC<ToggleSectionProps> = ({
   const toggleState = useContext(ToggleStateContext);
   const [show, setShow] = useRecoilState(toggleState(id));
   const handleShow = (e, checked: boolean) => setShow(checked);
-  const htmlId = useRef(uniqueId('toggle-section-'));
+  const htmlId = useId();
 
   return (
     <Accordion disabled={disabled} expanded={show} onChange={handleShow}>
       <AccordionSummary
-        id={`${htmlId.current}-header`}
-        aria-controls={`${htmlId.current}-details`}
+        id={`${htmlId}-header`}
+        aria-controls={`${htmlId}-details`}
         expandIcon={show ? <Visibility /> : <VisibilityOff />}
       >
         {label}
