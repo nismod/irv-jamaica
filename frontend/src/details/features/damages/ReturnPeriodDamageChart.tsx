@@ -1,10 +1,20 @@
-import { useMemo } from 'react';
-import { PlainObject, VegaLite } from 'react-vega';
+import { useMemo, useRef, useEffect } from 'react';
+import { useVegaEmbed } from 'react-vega';
+import { VisualizationSpec } from 'vega-embed';
+import { Box } from '@mui/material';
 
 import { unique } from 'lib/helpers';
 
-const makeSpec = (rpValues: number[], field_key: string, field_title: string) => ({
+const makeSpec = (
+  rpValues: number[],
+  field_key: string,
+  field_title: string,
+  width: number,
+  height: number,
+) => ({
   $schema: 'https://vega.github.io/schema/vega-lite/v6.json',
+  width,
+  height,
   data: {
     name: 'table',
   },
@@ -60,7 +70,15 @@ const makeSpec = (rpValues: number[], field_key: string, field_title: string) =>
   },
 });
 
-export const ReturnPeriodDamageChart = ({ data, field_key, field_title, ...props }) => {
+export const ReturnPeriodDamageChart = ({
+  data,
+  field_key,
+  field_title,
+  width,
+  height,
+  ...props
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
   const spec = useMemo(
     () =>
       makeSpec(
@@ -69,9 +87,29 @@ export const ReturnPeriodDamageChart = ({ data, field_key, field_title, ...props
           .reverse(),
         field_key,
         field_title,
+        width,
+        height,
       ),
-    [data, field_key, field_title],
-  );
+    [data, field_key, field_title, width, height],
+  ) as VisualizationSpec;
+  const embed = useVegaEmbed({
+    ref,
+    spec,
+    options: {
+      mode: 'vega-lite',
+      padding: {
+        left: 30,
+        right: 10,
+        top: 10,
+        bottom: 50,
+      },
+      ...props,
+    },
+  });
 
-  return <VegaLite data={data} spec={spec as PlainObject} {...props} />;
+  useEffect(() => {
+    embed?.view.data('table', data.table).runAsync();
+  }, [embed, data]);
+
+  return <Box ref={ref} />;
 };
