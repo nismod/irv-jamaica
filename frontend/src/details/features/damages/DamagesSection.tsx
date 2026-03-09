@@ -241,9 +241,8 @@ export const DamagesSection = ({ fd }) => {
                 field_max="ead_amax"
                 field_title="EAD (J$)"
                 actions={false}
-                padding={0}
-                width={260} // this is currently picked to fit the chart to the sidebar width
-                height={150}
+                width={280} // this is currently picked to fit the chart to the sidebar width
+                height={170}
                 renderer="svg"
               />
             </Box>
@@ -261,9 +260,8 @@ export const DamagesSection = ({ fd }) => {
                   field_max="eael_amax"
                   field_title="EAEL (J$/day)"
                   actions={false}
-                  padding={0}
-                  width={260} // this is currently picked to fit the chart to the sidebar width
-                  height={150}
+                  width={280} // this is currently picked to fit the chart to the sidebar width
+                  height={170}
                   renderer="svg"
                 />
               </Box>
@@ -327,9 +325,8 @@ export const DamagesSection = ({ fd }) => {
                 field_key="damage_mean"
                 field_title="Damage (J$)"
                 actions={false}
-                padding={0}
-                width={260} // this is currently picked to fit the chart to the sidebar width
-                height={150}
+                width={280} // this is currently picked to fit the chart to the sidebar width
+                height={130}
                 renderer="svg"
               />
             </Box>
