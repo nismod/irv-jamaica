@@ -16,7 +16,7 @@ export default [
   reactJSXRuntime,
   ...typescript.configs.recommended,
   prettier,
-  reactHooks.configs['recommended-latest'],
+  reactHooks.configs.flat.recommended,
   importPlugin.flatConfigs.recommended,
   ...storybook.configs['flat/recommended'],
   {

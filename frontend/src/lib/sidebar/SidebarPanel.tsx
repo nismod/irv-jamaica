@@ -1,7 +1,6 @@
 import ArrowRight from '@mui/icons-material/ArrowRight';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
-import uniqueId from 'lodash/uniqueId';
-import { FC, ReactNode, useRef } from 'react';
+import { FC, ReactNode, useId } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { sidebarSectionExpandedState } from 'lib/state/sections';
@@ -14,7 +13,7 @@ export const SidebarPanel: FC<{
   children: ReactNode;
 }> = ({ id, title, children }) => {
   const [expanded, setExpanded] = useRecoilState(sidebarSectionExpandedState(id));
-  const htmlId = useRef(uniqueId('sidebar-panel-'));
+  const htmlId = useId();
 
   return (
     <Accordion
@@ -38,8 +37,8 @@ export const SidebarPanel: FC<{
               flexDirection: 'row-reverse', // this puts the expand icon to the left of the summary bar
             }}
             expandIcon={<ArrowRight />}
-            id={`${htmlId.current}-header`}
-            aria-controls={`${htmlId.current}-details`}
+            id={`${htmlId}-header`}
+            aria-controls={`${htmlId}-details`}
           >
             <Typography>{title}</Typography>
           </AccordionSummary>
@@ -49,9 +48,9 @@ export const SidebarPanel: FC<{
         </Box>
       </Box>
       <AccordionDetails
-        id={`${htmlId.current}-details`}
+        id={`${htmlId}-details`}
         role="region"
-        aria-labelledby={`${htmlId.current}-header`}
+        aria-labelledby={`${htmlId}-header`}
         sx={{ padding: 0 }}
       >
         {children}

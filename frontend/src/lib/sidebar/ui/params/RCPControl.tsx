@@ -1,6 +1,5 @@
 import { FormControl, FormLabel, MenuItem, Select } from '@mui/material';
-import uniqueId from 'lodash/uniqueId';
-import { useRef } from 'react';
+import { useId } from 'react';
 
 import { DataParam } from './DataParam';
 
@@ -9,16 +8,16 @@ function rcpLabel(value) {
 }
 
 export const RCPControl = ({ group, disabled = false }) => {
-  const labelId = useRef(uniqueId('rcp-'));
+  const labelId = useId();
   return (
     <FormControl fullWidth disabled={disabled}>
-      <FormLabel id={labelId.current}>
+      <FormLabel id={labelId}>
         <abbr title="Representative Concentration Pathway (Climate Scenario)">RCP</abbr>
       </FormLabel>
       <DataParam group={group} id="rcp">
         {({ value, onChange, options }) => (
           <Select
-            labelId={labelId.current}
+            labelId={labelId}
             variant="standard"
             value={value}
             onChange={(e) => onChange(e.target.value)}

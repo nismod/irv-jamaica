@@ -7,8 +7,7 @@ import {
   RadioGroup,
   Select,
 } from '@mui/material';
-import uniqueId from 'lodash/uniqueId';
-import { useRef } from 'react';
+import { useId } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
@@ -28,7 +27,7 @@ import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'data-layers/hazards/metadata
 export const DamageSourceControl = () => {
   const [damageSource, setDamageSource] = useRecoilState(damageSourceState);
   const [damageType, setDamageType] = useRecoilState(damageTypeState);
-  const htmlId = useRef(uniqueId('damage-source-'));
+  const id = useId();
 
   return (
     <>
@@ -36,9 +35,9 @@ export const DamageSourceControl = () => {
       <LayerStylePanel>
         <InputSection>
           <FormControl fullWidth>
-            <FormLabel id={`${htmlId.current}-damage-type`}>Damage type</FormLabel>
+            <FormLabel id={`${id}-damage-type`}>Damage type</FormLabel>
             <Select<string>
-              labelId={`${htmlId.current}-damage-type`}
+              labelId={`${id}-damage-type`}
               variant="standard"
               value={damageType}
               onChange={(e) => setDamageType(e.target.value)}
