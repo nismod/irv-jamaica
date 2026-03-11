@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push frontend Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: "{{defaultContext}}:frontend"
           cache-from: type=gha
@@ -37,7 +37,7 @@ jobs:
             GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push backend Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: "{{defaultContext}}:backend"
           cache-from: type=gha
@@ -50,7 +50,7 @@ jobs:
             GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push pixel-driller Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: "{{defaultContext}}:pixel_driller"
           cache-from: type=gha
