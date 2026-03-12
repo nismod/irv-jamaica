@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { RecoilState, RecoilValueReadOnly, useRecoilValue, useSetRecoilState } from 'recoil';
+import { RecoilState, RecoilValueReadOnly, useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
 
 import { useThrottledCallback } from '../hooks/use-throttled-callback';
 

@@ -1,5 +1,5 @@
 import forEach from 'lodash/forEach';
-import { atom, selector } from 'recoil';
+import { atom, selector } from 'lib/jotai-compat/recoil';
 
 import { dataParamOptionsState, dataParamState } from 'lib/state/data-params';
 

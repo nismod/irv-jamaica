@@ -3,7 +3,7 @@ import { BitmapLayer, PickingInfo } from 'deck.gl';
 import { useSetAtom } from 'jotai';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
-import { useRecoilCallback, useSetRecoilState } from 'recoil';
+import { useRecoilCallback, useSetRecoilState } from 'lib/jotai-compat/recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import {

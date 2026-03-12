@@ -1,4 +1,4 @@
-import { noWait, selector, selectorFamily } from 'recoil';
+import { noWait, selector, selectorFamily } from 'lib/jotai-compat/recoil';
 
 import { createClient } from 'lib/api-client/client';
 import { featuresReadProtectedFeatures } from 'lib/api-client/sdk.gen';

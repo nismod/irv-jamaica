@@ -1,4 +1,4 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { HAZARD_DOMAINS } from 'data-layers/hazards/domains';
 import { NETWORK_DOMAINS } from 'data-layers/networks/domains';

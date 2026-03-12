@@ -1,4 +1,4 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';

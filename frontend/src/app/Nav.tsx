@@ -21,7 +21,7 @@ import { useIsMobile } from './use-is-mobile';
 import { withProps } from 'lib/react/with-props';
 import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from 'lib/state/map-view/map-url';
 import { globalStyleVariables } from 'app/theme';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 
 const Link = styled(MuiLink)({
   color: 'inherit',

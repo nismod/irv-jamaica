@@ -1,7 +1,7 @@
 import { Checkbox, Divider, FormControlLabel } from '@mui/material';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { FC } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 import {

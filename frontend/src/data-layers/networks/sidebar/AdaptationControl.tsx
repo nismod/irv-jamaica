@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 import startCase from 'lodash/startCase';
 import lowerCase from 'lodash/lowerCase';
 import { FormLabel, Slider, Typography } from '@mui/material';

@@ -1,4 +1,4 @@
-import { DefaultValue, atom, selector } from 'recoil';
+import { DefaultValue, atom, selector } from 'lib/jotai-compat/recoil';
 
 import { useSyncStateThrottled } from 'lib/recoil/sync-state-throttled';
 

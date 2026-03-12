@@ -1,5 +1,5 @@
 import { INTERACTION_GROUPS } from 'app/config/interaction-groups';
-import { selector } from 'recoil';
+import { selector } from 'lib/jotai-compat/recoil';
 import { showPopulationState } from 'data-layers/regions/state/data-selection';
 
 export const interactionGroupsState = selector({

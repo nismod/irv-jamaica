@@ -1,4 +1,4 @@
-import { atom, selector, selectorFamily } from 'recoil';
+import { atom, selector, selectorFamily } from 'lib/jotai-compat/recoil';
 import uniq from 'lodash/uniq';
 import fromPairs from 'lodash/fromPairs';
 import mapValues from 'lodash/mapValues';

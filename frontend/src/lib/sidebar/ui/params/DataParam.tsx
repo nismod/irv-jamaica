@@ -1,4 +1,4 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 import { dataParamOptionsState, dataParamState, useUpdateDataParam } from 'lib/state/data-params';
 
 export const DataParam = ({ group, id, children }) => {

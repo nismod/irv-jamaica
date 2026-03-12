@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { selector, useRecoilValue } from 'recoil';
+import { selector, useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { sectionStyleValueState, sectionVisibilityState } from 'lib/state/sections';
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { hoverPositionState } from 'lib/state/interactions/interaction-state';
 

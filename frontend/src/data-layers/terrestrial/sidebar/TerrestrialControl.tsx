@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, Slider } from '@mui/material';
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 import { TerrestrialLocationFilterType, TERRESTRIAL_LOCATION_FILTERS } from '../domains';
@@ -27,7 +27,7 @@ export const TerrestrialControl = () => {
             onChange={(event, value) =>
               setTerrestrialFilters({
                 ...terrestrialFilters,
-                slope_degrees: value as [number, number],
+                slope_degrees: value as unknown as [number, number],
               })
             }
             min={0}
@@ -47,7 +47,7 @@ export const TerrestrialControl = () => {
             onChange={(event, value) =>
               setTerrestrialFilters({
                 ...terrestrialFilters,
-                elevation_m: value as [number, number],
+                elevation_m: value as unknown as [number, number],
               })
             }
             min={0}

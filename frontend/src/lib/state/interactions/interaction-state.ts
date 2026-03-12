@@ -1,5 +1,5 @@
 import forEach from 'lodash/forEach';
-import { atom, atomFamily, selector, selectorFamily } from 'recoil';
+import { atom, atomFamily, selector, selectorFamily } from 'lib/jotai-compat/recoil';
 
 import { createClient } from 'lib/api-client/client';
 import { featuresReadFeature } from 'lib/api-client/sdk.gen';
@@ -131,8 +131,9 @@ export const allowedGroupLayersState = selector<AllowedGroupLayers>({
         reset(selectionState(group));
       });
     } else {
+      const nextAllowedGroups = newAllowedGroups as AllowedGroupLayers;
       for (const group of Object.keys(oldAllowedGroupLayers)) {
-        const newAllowedLayers = newAllowedGroups[group];
+        const newAllowedLayers = nextAllowedGroups[group];
 
         if (newAllowedLayers == null || newAllowedLayers.length === 0) {
           reset(hoverState(group));

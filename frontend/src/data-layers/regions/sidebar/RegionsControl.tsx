@@ -1,5 +1,5 @@
 import { ToggleButtonGroup, ToggleButton } from '@mui/material';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 import { useCallback } from 'react';
 
 import { RegionLevel } from '../metadata';

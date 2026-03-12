@@ -2,7 +2,7 @@ import { TabContext, useTabContext } from '@mui/lab';
 import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
 import React, { FC, Suspense, useRef, useState } from 'react';
 import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { mobileTabHasContentState } from 'lib/map/layouts/tab-has-content';
 

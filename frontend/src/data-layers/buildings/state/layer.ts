@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { selector } from 'lib/jotai-compat/recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { truthyKeys } from 'lib/helpers';

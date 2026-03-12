@@ -1,4 +1,4 @@
-import { selector, selectorFamily } from 'recoil';
+import { selector, selectorFamily } from 'lib/jotai-compat/recoil';
 
 import { dataParamsByGroupState } from 'lib/state/data-params';
 import { FieldSpec, StyleParams } from 'lib/data-map/view-layers';

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { FeatureSidebarContent } from './FeatureSidebarContent';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import { SidePanel } from 'details/SidePanel';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';

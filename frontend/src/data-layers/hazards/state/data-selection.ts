@@ -1,7 +1,7 @@
-import { bool } from '@recoiljs/refine';
+import { bool } from 'lib/jotai-compat/recoil-refine';
 import fromPairs from 'lodash/fromPairs';
-import { atomFamily, RecoilValue } from 'recoil';
-import { urlSyncEffect } from 'recoil-sync';
+import { atomFamily, RecoilValue } from 'lib/jotai-compat/recoil';
+import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 
 export const hazardSelectionState = atomFamily<boolean, string>({
   key: 'hazardSelectionState',

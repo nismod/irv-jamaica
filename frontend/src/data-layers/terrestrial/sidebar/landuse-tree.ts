@@ -7,9 +7,9 @@ import {
 } from 'lib/controls/checkbox-tree/CheckboxTree';
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
-import { atom, DefaultValue, selector } from 'recoil';
-import { object, bool, dict } from '@recoiljs/refine';
-import { urlSyncEffect } from 'recoil-sync';
+import { atom, DefaultValue, selector } from 'lib/jotai-compat/recoil';
+import { object, bool, dict } from 'lib/jotai-compat/recoil-refine';
+import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 
 export const landuseTreeExpandedState = atom<string[]>({
   key: 'landuseTreeExpandedState',
@@ -82,7 +82,7 @@ export const landuseTreeCheckboxState = atom<CheckboxTreeState>({
           reset('landTree');
           return;
         }
-        write('landTree', stringifyTree(value));
+        write('landTree', stringifyTree(value as CheckboxTreeState));
       },
     }),
   ],

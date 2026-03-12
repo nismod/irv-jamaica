@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 import { Stack, Box, Paper, Divider } from '@mui/material';
 
 import { ViewLayer } from 'lib/data-map/view-layers';

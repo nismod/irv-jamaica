@@ -3,9 +3,9 @@ import { StyledEngineProvider } from '@mui/styled-engine';
 import { ThemeProvider } from '@mui/material/styles';
 import type { Preview } from '@storybook/react-vite';
 import { initialize, mswLoader } from 'msw-storybook-addon';
-import { atom, RecoilRoot } from 'recoil';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import { atom, RecoilRoot } from '../src/lib/jotai-compat/recoil';
 import { theme } from '../src/app/theme';
 import { useSyncRecoilState } from '../src/lib/recoil/sync-state';
 import { viewStateEffect } from '../src/app/state/view';

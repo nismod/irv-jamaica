@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { createContext, FC, ReactNode, useContext, useId } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { RecoilStateFamily } from 'lib/recoil/types';
 

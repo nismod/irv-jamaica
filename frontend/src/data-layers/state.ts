@@ -1,4 +1,4 @@
-import { RecoilValueReadOnly } from 'recoil';
+import { RecoilValueReadOnly } from 'lib/jotai-compat/recoil';
 import { ViewLayer } from 'lib/data-map/view-layers';
 
 export async function importLayerState(type: string): Promise<RecoilValueReadOnly<ViewLayer>> {

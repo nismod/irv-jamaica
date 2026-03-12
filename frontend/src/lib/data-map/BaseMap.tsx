@@ -2,7 +2,7 @@ import { MapViewState } from 'deck.gl';
 import { StyleSpecification } from 'maplibre-gl';
 import { FC, ReactNode } from 'react';
 import { Map } from 'react-map-gl/maplibre';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { mapViewStateState, useSyncMapUrl } from 'lib/state/map-view/map-view-state';
 

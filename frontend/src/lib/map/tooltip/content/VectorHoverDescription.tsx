@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { DataItem } from '../detail-components';
 import { VectorTarget } from 'lib/data-map/types';

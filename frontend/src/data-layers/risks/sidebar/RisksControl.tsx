@@ -7,7 +7,7 @@ import {
   RadioGroup,
   Select,
 } from '@mui/material';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 

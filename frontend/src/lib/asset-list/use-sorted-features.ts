@@ -2,7 +2,7 @@ import { parseSync } from '@loaders.gl/core';
 import { WKTLoader } from '@loaders.gl/wkt';
 import bbox from '@turf/bbox';
 import pick from 'lodash/pick';
-import { selectorFamily, useRecoilValue } from 'recoil';
+import { selectorFamily, useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { createClient } from 'lib/api-client/client';
 import { featuresReadSortedFeatures } from 'lib/api-client/sdk.gen';
@@ -44,7 +44,15 @@ const sortedFeaturesState = selectorFamily({
     async () => {
       try {
         if (dimensions === '{}') {
-          return;
+          return {
+            features: [],
+            pageInfo: {
+              page,
+              size: pageSize,
+              total: 0,
+            },
+            error: null,
+          };
         }
         // if (fieldGroup !== 'damages') {
         //   throw new Error('Only damages field is supported');
@@ -65,9 +73,17 @@ const sortedFeaturesState = selectorFamily({
         });
         const features = (data.items as FeatureListItemOutFloat[]).map(processFeature);
         const pageInfo = pick(data, ['page', 'size', 'total']);
-        return { features, pageInfo };
+        return { features, pageInfo, error: null };
       } catch (error) {
-        return { features: [], loading: false, error };
+        return {
+          features: [],
+          pageInfo: {
+            page,
+            size: pageSize,
+            total: 0,
+          },
+          error,
+        };
       }
     },
 });
@@ -101,7 +117,7 @@ export const useSortedFeatures = (
   const { fieldGroup, fieldDimensions, field, fieldParams } = fieldSpec;
   const dimensions = JSON.stringify(fieldDimensions);
   const parameters = JSON.stringify(fieldParams);
-  const { features, pageInfo, error } = useRecoilValue(
+  const result = useRecoilValue(
     sortedFeaturesState({
       fieldGroup,
       field,
@@ -112,6 +128,9 @@ export const useSortedFeatures = (
       ...layerSpec,
     }),
   );
+
+  const { features = [], pageInfo = { page, size: pageSize, total: 0 }, error = null } =
+    result ?? {};
 
   return {
     features,

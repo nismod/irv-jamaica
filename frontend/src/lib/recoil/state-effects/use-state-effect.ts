@@ -1,6 +1,6 @@
 import { usePrevious } from 'lib/hooks/use-previous';
 import { useEffect } from 'react';
-import { RecoilState, useRecoilCallback, useRecoilValue } from 'recoil';
+import { RecoilState, useRecoilCallback, useRecoilValue } from 'lib/jotai-compat/recoil';
 import { StateEffect } from './types';
 
 /**

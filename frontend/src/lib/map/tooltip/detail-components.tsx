@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 
 import { titleCase, isNumeric, numFormat, paren, numRangeFormat } from 'lib/helpers';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 import { protectedFeatureAdaptationOptionsState } from 'lib/state/protected-features';
 
 interface DataItemProps {

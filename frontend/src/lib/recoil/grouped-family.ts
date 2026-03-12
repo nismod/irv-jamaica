@@ -1,5 +1,5 @@
 import fromPairs from 'lodash/fromPairs';
-import { selectorFamily, waitForAll } from 'recoil';
+import { selectorFamily, waitForAll } from 'lib/jotai-compat/recoil';
 import { RecoilReadableStateFamily } from './types';
 
 export function groupedFamily<FVT, FPT>(

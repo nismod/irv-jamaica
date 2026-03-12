@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 import { FormLabel } from '@mui/material';
 
 import { ParamDropdown } from 'lib/controls/ParamDropdown';

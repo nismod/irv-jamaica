@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { selector } from 'lib/jotai-compat/recoil';
 
 import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';
 import { sectionVisibilityState } from 'lib/state/sections';

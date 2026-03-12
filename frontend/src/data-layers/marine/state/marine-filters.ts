@@ -1,7 +1,7 @@
-import { bool, dict, object } from '@recoiljs/refine';
+import { bool, dict, object } from 'lib/jotai-compat/recoil-refine';
 import { MarineLocationFilterType } from 'data-layers/marine/domains';
-import { atom } from 'recoil';
-import { urlSyncEffect } from 'recoil-sync';
+import { atom } from 'lib/jotai-compat/recoil';
+import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 
 export type MarineLocationFilters = Record<MarineLocationFilterType, boolean>;
 

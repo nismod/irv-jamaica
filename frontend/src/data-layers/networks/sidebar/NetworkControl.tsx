@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import { Alert } from '@mui/material';
 import { FC } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
 
 import { CheckboxTree, recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { useUpdateDataParam } from 'lib/state/data-params';

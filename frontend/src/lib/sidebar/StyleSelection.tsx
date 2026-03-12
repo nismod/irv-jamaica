@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { FC, useId } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 

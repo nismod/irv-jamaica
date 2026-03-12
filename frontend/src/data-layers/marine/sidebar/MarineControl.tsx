@@ -1,5 +1,5 @@
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 import { MarineLocationFilterType, MARINE_LOCATION_FILTERS } from '../domains';

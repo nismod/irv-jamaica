@@ -27,7 +27,7 @@ import { DamagesSection } from './damages/DamagesSection';
 import { AdaptationSection } from './adaptation/AdaptationSection';
 import Download from '@mui/icons-material/Download';
 import { downloadFile } from 'lib/helpers';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 import { selectedAssetDetails } from 'lib/state/interactions/interaction-state';
 
 const componentMapping: Record<keyof typeof NETWORKS_METADATA, DetailsComponent> = {

@@ -1,6 +1,6 @@
 import { Box, ClickAwayListener, IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { MapSearchField } from './MapSearchField';
 import { placeSearchActiveState } from './search-state';

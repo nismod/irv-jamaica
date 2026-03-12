@@ -1,7 +1,7 @@
 import forEach from 'lodash/forEach';
 import keys from 'lodash/keys';
 import mapValues from 'lodash/mapValues';
-import { atom, atomFamily, selector, useRecoilTransaction_UNSTABLE } from 'recoil';
+import { atom, atomFamily, selector, useRecoilTransaction_UNSTABLE } from 'lib/jotai-compat/recoil';
 
 import {
   DataParamGroupConfig,
@@ -89,11 +89,11 @@ export function useUpdateDataParam(group: string, paramId: string) {
           return;
         }
         const groupConfig = dataParamConfig[group];
-        const paramNames = get(dataParamNamesByGroupState(group));
+        const paramNames = get(dataParamNamesByGroupState(group)) as string[];
         const groupParams = toDictionary(
           paramNames,
-          (param) => param,
-          (param) => get(dataParamState({ group, param })),
+          (param: string) => param,
+          (param: string) => get(dataParamState({ group, param })),
         );
 
         const [resolvedParams, resolvedOptions] = resolveParamDependencies(

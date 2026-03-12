@@ -1,9 +1,9 @@
 import difference from 'lodash/difference';
 import forEach from 'lodash/forEach';
 import keys from 'lodash/keys';
-import { string } from '@recoiljs/refine';
-import { atom } from 'recoil';
-import { syncEffect } from 'recoil-sync';
+import { string } from 'lib/jotai-compat/recoil-refine';
+import { atom } from 'lib/jotai-compat/recoil';
+import { syncEffect } from 'lib/jotai-compat/recoil-sync';
 
 import { StateEffect } from 'lib/recoil/state-effects/types';
 import {

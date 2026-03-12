@@ -12,7 +12,7 @@ import { colorMap } from 'lib/color-map';
 import { mapFitBoundsState } from 'lib/map/MapBoundsFitter';
 import { ColorBox } from 'lib/map/tooltip/content/ColorBox';
 import { useCallback, useMemo } from 'react';
-import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
 import {
   adaptationColorSpecState,
   adaptationFieldSpecState,

@@ -9,7 +9,7 @@ import storybook from 'eslint-plugin-storybook';
 
 export default [
   {
-    ignores: ['src/lib/api-client'],
+    ignores: ['src/lib/api-client', 'src/lib/jotai-compat'],
   },
   js.configs.recommended,
   reactRecommended,

@@ -1,7 +1,7 @@
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Box, Stack, Typography } from '@mui/material';
 import { ShapeLegend, LegendShapeType } from 'lib/map-shapes/ShapeLegend';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { mapViewStateState } from 'lib/state/map-view/map-view-state';
 

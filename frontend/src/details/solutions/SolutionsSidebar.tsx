@@ -4,7 +4,7 @@ import { SidePanel } from 'details/SidePanel';
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 import { SolutionsSidebarContent } from './SolutionsSidebarContent';
 import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 import { InteractionTarget, VectorTarget } from 'lib/data-map/types';

@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
-import { urlSyncEffect } from 'recoil-sync';
-import { bool, string } from '@recoiljs/refine';
+import { atom } from 'lib/jotai-compat/recoil';
+import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
+import { bool, string } from 'lib/jotai-compat/recoil-refine';
 
 import { DroughtOptionsVariableType } from '../metadata';
 

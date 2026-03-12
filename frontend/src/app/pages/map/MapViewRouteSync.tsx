@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { DefaultValue } from 'recoil';
-import { RecoilSync } from 'recoil-sync';
+import { DefaultValue } from 'lib/jotai-compat/recoil';
+import { RecoilSync } from 'lib/jotai-compat/recoil-sync';
 
 export function MapViewRouteSync({ children }) {
   const { view } = useParams();

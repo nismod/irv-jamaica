@@ -1,4 +1,4 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import { Box } from '@mui/material';

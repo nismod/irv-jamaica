@@ -1,6 +1,6 @@
-import { number } from '@recoiljs/refine';
-import { DefaultValue, atom } from 'recoil';
-import { WriteAtom, urlSyncEffect } from 'recoil-sync';
+import { number } from 'lib/jotai-compat/recoil-refine';
+import { DefaultValue, atom } from 'lib/jotai-compat/recoil';
+import { WriteAtom, urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 
 /**
  * Makes a recoil-sync write function that saves a number with up to `maximumFractionDigits`

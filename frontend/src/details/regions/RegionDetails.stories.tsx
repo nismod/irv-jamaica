@@ -1,7 +1,7 @@
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import mockRegion from 'mocks/details/regions/mockRegion.json';

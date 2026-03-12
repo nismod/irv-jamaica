@@ -1,5 +1,5 @@
 import { Suspense, useCallback } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
 
 import { DataMapTooltip } from 'lib/data-map/DataMapTooltip';
 import { MapBoundsFitter, mapFitBoundsState } from 'lib/map/MapBoundsFitter';

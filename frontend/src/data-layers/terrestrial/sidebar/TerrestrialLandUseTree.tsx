@@ -1,5 +1,5 @@
 import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
 
 import { TERRESTRIAL_LANDUSE_COLORS } from '../colors';

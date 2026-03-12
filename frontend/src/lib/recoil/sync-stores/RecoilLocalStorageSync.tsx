@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { DefaultValue } from 'recoil';
-import { RecoilSync, RecoilSyncOptions } from 'recoil-sync';
+import { DefaultValue } from 'lib/jotai-compat/recoil';
+import { RecoilSync, RecoilSyncOptions } from 'lib/jotai-compat/recoil-sync';
 import { SetOptional } from 'type-fest';
 
 const DEFAULT_VALUE = new DefaultValue();

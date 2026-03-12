@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from 'lib/jotai-compat/recoil';
 
 export const placeSearchActiveState = atom<boolean>({
   key: 'placeSearchActive',

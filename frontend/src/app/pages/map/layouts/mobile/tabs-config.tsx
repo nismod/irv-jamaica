@@ -3,7 +3,7 @@ import Palette from '@mui/icons-material/Palette';
 import TableRows from '@mui/icons-material/TableRows';
 import { SvgIconProps } from '@mui/material';
 import { ComponentType } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { MapLegend } from 'lib/map/legend/MapLegend';
 

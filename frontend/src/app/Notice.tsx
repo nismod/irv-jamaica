@@ -1,10 +1,10 @@
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import { Box, Button, Container, DialogActions, Drawer, Stack, Typography } from '@mui/material';
-import { date, nullable } from '@recoiljs/refine';
+import { date, nullable } from 'lib/jotai-compat/recoil-refine';
 import { AppLink } from 'lib/nav';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
-import { syncEffect } from 'recoil-sync';
+import { atom, useRecoilState } from 'lib/jotai-compat/recoil';
+import { syncEffect } from 'lib/jotai-compat/recoil-sync';
 
 const noticeAcceptedDateState = atom<Date | null>({
   key: 'noticeAcceptedDate',

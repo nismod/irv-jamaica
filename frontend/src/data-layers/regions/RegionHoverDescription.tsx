@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { VectorHoverDescription } from 'lib/data-map/types';
 import { DataItem } from 'lib/map/tooltip/detail-components';

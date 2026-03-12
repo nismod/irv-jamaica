@@ -1,4 +1,4 @@
-import { RecoilState, RecoilValueReadOnly } from 'recoil';
+import { RecoilState, RecoilValueReadOnly } from 'lib/jotai-compat/recoil';
 
 /**
  * A readable and writable recoil state family

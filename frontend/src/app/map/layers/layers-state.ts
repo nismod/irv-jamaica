@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from 'lib/jotai-compat/recoil';
 
 import { BackgroundName } from 'app/config/basemaps';
 

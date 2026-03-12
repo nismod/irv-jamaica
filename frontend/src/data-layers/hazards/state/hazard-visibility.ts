@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { selector } from 'lib/jotai-compat/recoil';
 
 import { damageSourceState, showDamagesState } from 'app/state/damage-mapping/damage-map';
 

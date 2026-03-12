@@ -1,6 +1,6 @@
-import { bool, string } from '@recoiljs/refine';
-import { atomFamily } from 'recoil';
-import { urlSyncEffect } from 'recoil-sync';
+import { bool, string } from 'lib/jotai-compat/recoil-refine';
+import { atomFamily } from 'lib/jotai-compat/recoil';
+import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 
 export const sectionVisibilityState = atomFamily<boolean, string>({
   key: 'sectionVisibilityState',

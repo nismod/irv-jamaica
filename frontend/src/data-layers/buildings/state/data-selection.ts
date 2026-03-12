@@ -1,6 +1,6 @@
-import { bool, dict } from '@recoiljs/refine';
-import { atom } from 'recoil';
-import { urlSyncEffect } from 'recoil-sync';
+import { bool, dict } from 'lib/jotai-compat/recoil-refine';
+import { atom } from 'lib/jotai-compat/recoil';
+import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 
 export const buildingsStyleState = atom({
   key: 'buildingsStyleState',

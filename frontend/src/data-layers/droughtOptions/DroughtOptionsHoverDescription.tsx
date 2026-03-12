@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { DataItem } from 'lib/map/tooltip/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import { FC, useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 import {
   droughtOptionsColorSpecState,
   droughtOptionsFieldSpecState,

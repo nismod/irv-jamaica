@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { selector } from 'lib/jotai-compat/recoil';
 
 import { droughtRcpParamState } from 'data-layers/droughtRisks/state/data-selection';
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';

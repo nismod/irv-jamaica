@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { selector } from 'lib/jotai-compat/recoil';
 import bboxPolygon from '@turf/bbox-polygon';
 
 import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';

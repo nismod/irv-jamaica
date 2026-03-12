@@ -1,10 +1,10 @@
-import { atom, selector } from 'recoil';
+import { atom, selector } from 'lib/jotai-compat/recoil';
 
 import { sectionStyleValueState } from 'lib/state/sections';
 
 import { RegionLevel } from '../metadata';
-import { urlSyncEffect } from 'recoil-sync';
-import { string } from '@recoiljs/refine';
+import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
+import { string } from 'lib/jotai-compat/recoil-refine';
 
 export const regionLevelState = atom<RegionLevel>({
   key: 'regionLevelState',

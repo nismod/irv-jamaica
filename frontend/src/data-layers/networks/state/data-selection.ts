@@ -1,7 +1,7 @@
 import mapValues from 'lodash/mapValues';
-import { atom, DefaultValue, selector } from 'recoil';
-import { urlSyncEffect } from 'recoil-sync';
-import { bool, dict, object } from '@recoiljs/refine';
+import { atom, DefaultValue, selector } from 'lib/jotai-compat/recoil';
+import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
+import { bool, dict, object } from 'lib/jotai-compat/recoil-refine';
 
 import {
   buildTreeConfig,
@@ -84,7 +84,7 @@ export const networkTreeCheckboxState = atom<CheckboxTreeState>({
           reset('netTree');
           return;
         }
-        write('netTree', stringifyTree(value));
+        write('netTree', stringifyTree(value as CheckboxTreeState));
       },
     }),
   ],

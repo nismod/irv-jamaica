@@ -1,8 +1,8 @@
 import { LandUseOption, TerrestrialLocationFilterType } from 'data-layers/terrestrial/domains';
-import { atom, selector } from 'recoil';
-import { urlSyncEffect } from 'recoil-sync';
+import { atom, selector } from 'lib/jotai-compat/recoil';
+import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 import { landuseFilterState } from '../sidebar/landuse-tree';
-import { array, bool, dict, number, object } from '@recoiljs/refine';
+import { array, bool, dict, number, object } from 'lib/jotai-compat/recoil-refine';
 
 export type TerrestrialLocationFilters = Record<TerrestrialLocationFilterType, boolean>;
 

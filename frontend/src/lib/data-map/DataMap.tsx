@@ -1,8 +1,8 @@
 import type { MapboxOverlay } from '@deck.gl/mapbox';
-import { LayersList, PickingInfo } from 'deck.gl';
+import { Layer, LayersList, PickingInfo } from 'deck.gl';
 import { useMap } from 'react-map-gl/maplibre';
 import { FC, useRef } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 
 import { useInteractions } from 'lib/state/interactions/use-interactions';
 import { useDataLoadTrigger } from 'lib/data-map/use-data-load-trigger';
@@ -32,9 +32,33 @@ function buildLayers(
   viewLayersParams: Map<string, ViewLayerParams>,
   zoom: number,
   beforeId: string | undefined,
-  viewLayersData?: Map<string, Record<string, any>>,
+  viewLayersData?: Map<string, Record<string, string | number>>,
 ): LayersList {
-  return viewLayers.map((viewLayer) => {
+  const layers: LayersList = [];
+
+  const isDeckLayer = (layerResult: unknown): layerResult is Layer => {
+    if (!layerResult || typeof layerResult !== 'object') {
+      return false;
+    }
+
+    return 'id' in layerResult && Boolean((layerResult as { id?: unknown }).id);
+  };
+
+  const appendLayer = (layerResult: unknown) => {
+    if (Array.isArray(layerResult)) {
+      layerResult.forEach(appendLayer);
+      return;
+    }
+
+    if (isDeckLayer(layerResult)) {
+      layers.push(layerResult);
+    }
+  };
+
+  viewLayers.forEach((viewLayer) => {
+    if (!viewLayer) {
+      return;
+    }
     const viewLayerParams = viewLayersParams.get(viewLayer.id);
     const data = viewLayersData?.get(viewLayer.id);
     const dataFetcher = data ? async () => data : undefined;
@@ -43,13 +67,16 @@ function buildLayers(
       pickable: !!viewLayer.interactionGroup,
       beforeId,
     };
-    return viewLayer.fn({
+    const layerResult = viewLayer.fn({
       deckProps,
       zoom,
       ...viewLayerParams,
       dataFetcher,
     });
+    appendLayer(layerResult);
   });
+
+  return layers;
 }
 
 /**

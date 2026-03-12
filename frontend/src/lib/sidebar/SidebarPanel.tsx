@@ -1,7 +1,7 @@
 import ArrowRight from '@mui/icons-material/ArrowRight';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
 import { FC, ReactNode, useId } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { sidebarSectionExpandedState } from 'lib/state/sections';
 

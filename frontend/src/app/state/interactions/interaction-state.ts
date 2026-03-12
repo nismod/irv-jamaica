@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { selector } from 'lib/jotai-compat/recoil';
 
 import { INTERACTION_GROUPS } from 'app/config/interaction-groups';
 import { InteractionTarget, RasterTarget, VectorTarget } from 'lib/data-map/types';

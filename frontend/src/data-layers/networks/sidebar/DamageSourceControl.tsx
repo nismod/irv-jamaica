@@ -8,7 +8,7 @@ import {
   Select,
 } from '@mui/material';
 import { useId } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
 import { InputSection } from 'lib/sidebar/ui/InputSection';

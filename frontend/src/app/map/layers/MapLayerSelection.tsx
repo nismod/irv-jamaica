@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import LayersIcon from '@mui/icons-material/Layers';
 import { useCallback, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { backgroundState, showLabelsState } from './layers-state';
 

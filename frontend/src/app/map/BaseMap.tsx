@@ -1,6 +1,6 @@
 import omit from 'lodash/omit';
 import { FC, ReactNode } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
 
 import { mapViewConfig } from 'app/config/map-view';
 import { mapViewStateState, nonCoordsMapViewStateState } from 'lib/state/map-view/map-view-state';
@@ -19,14 +19,39 @@ const INITIAL_VIEW_STATE = {
 };
 const INITIAL_NON_COORDS_STATE = omit(INITIAL_VIEW_STATE, ['latitude', 'longitude', 'zoom']);
 
+function getQueryViewState() {
+  const query = new URLSearchParams(window.location.search);
+  const lat = Number(query.get('lat'));
+  const lon = Number(query.get('lon'));
+  const zoom = Number(query.get('zoom'));
+
+  if (!Number.isFinite(lat) || !Number.isFinite(lon) || !Number.isFinite(zoom)) {
+    return null;
+  }
+
+  return {
+    ...INITIAL_VIEW_STATE,
+    latitude: lat,
+    longitude: lon,
+    zoom,
+  };
+}
+
 export const BaseMapContainer: FC<BaseMapProps> = ({ children }) => {
   const background = useRecoilValue(backgroundState);
   const showLabels = useRecoilValue(showLabelsState);
   const [viewState, setViewState] = useRecoilState(mapViewStateState);
   const setNonCoordsViewState = useSetRecoilState(nonCoordsMapViewStateState);
   const { mapStyle } = useBasemapStyle(background, showLabels);
-  if (viewState.zoom < 0) {
-    setViewState(INITIAL_VIEW_STATE);
+
+  const hasInvalidViewState =
+    !Number.isFinite(viewState.zoom) ||
+    !Number.isFinite(viewState.latitude) ||
+    !Number.isFinite(viewState.longitude) ||
+    viewState.zoom < 0;
+
+  if (hasInvalidViewState) {
+    setViewState(getQueryViewState() ?? INITIAL_VIEW_STATE);
     setNonCoordsViewState(INITIAL_NON_COORDS_STATE);
     // wait for initial state to be set before showing a map.
     return null;

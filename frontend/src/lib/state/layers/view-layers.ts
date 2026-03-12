@@ -1,4 +1,4 @@
-import { atom, atomFamily, selectorFamily, useRecoilTransaction_UNSTABLE } from 'recoil';
+import { atom, atomFamily, selectorFamily, useRecoilTransaction_UNSTABLE } from 'lib/jotai-compat/recoil';
 
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
 import { selectionState } from 'lib/state/interactions/interaction-state';
@@ -17,7 +17,12 @@ export const useSaveViewLayers = () => {
   return useRecoilTransaction_UNSTABLE(
     ({ set }) =>
       (viewLayers: ViewLayer[]) =>
-        viewLayers.forEach((viewLayer) => set(viewLayerState(viewLayer.id), viewLayer)),
+        viewLayers.forEach((viewLayer) => {
+          if (!viewLayer?.id) {
+            return;
+          }
+          set(viewLayerState(viewLayer.id), viewLayer);
+        }),
   );
 };
 

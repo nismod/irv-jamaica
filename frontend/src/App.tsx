@@ -1,5 +1,5 @@
-import { RecoilRoot } from 'recoil';
-import { RecoilURLSync } from 'recoil-sync';
+import { RecoilRoot } from 'lib/jotai-compat/recoil';
+import { RecoilURLSync } from 'lib/jotai-compat/recoil-sync';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { atomFamily, useSetRecoilState } from 'recoil';
+import { atomFamily, useSetRecoilState } from 'lib/jotai-compat/recoil';
 
 export const mobileTabHasContentState = atomFamily({
   key: 'mobileTabHasContentState',

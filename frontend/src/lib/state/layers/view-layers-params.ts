@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { selector } from 'lib/jotai-compat/recoil';
 
 import { ViewLayerParams } from 'lib/data-map/view-layers';
 import { singleViewLayerParamsState, viewLayersFlatState } from 'lib/state/layers/view-layers';

@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from '@mui/material';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'lib/jotai-compat/recoil';
 
 import { usePlaceSearch } from './use-place-search';
 import { placeSearchQueryState } from './search-state';

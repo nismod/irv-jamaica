@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
 
 import { interactionGroupsState } from 'app/state/layers/interaction-groups';
 import { viewLayerConfigs } from 'app/state/layers/view-layers';

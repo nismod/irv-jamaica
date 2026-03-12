@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
 import { Collapse } from '@mui/material';
 import { TransitionGroup } from 'react-transition-group';
 
