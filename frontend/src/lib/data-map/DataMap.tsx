@@ -7,7 +7,7 @@ import { useRecoilValue } from 'lib/jotai-compat/recoil';
 import { useInteractions } from 'lib/state/interactions/use-interactions';
 import { useDataLoadTrigger } from 'lib/data-map/use-data-load-trigger';
 import { InteractionGroupConfig } from 'lib/data-map/types';
-import { useSaveViewLayers, viewLayersFlatState } from 'lib/state/layers/view-layers';
+import { useSaveViewLayers } from 'lib/state/layers/view-layers';
 import { viewLayersParamsState } from 'lib/state/layers/view-layers-params';
 import { DeckGLOverlay } from 'lib/map/DeckGLOverlay';
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
@@ -99,11 +99,11 @@ function useTrigger(viewLayers: ViewLayer[]) {
 export const DataMap: FC<{
   firstLabelId: string;
   interactionGroups: Map<string, InteractionGroupConfig>;
-}> = ({ firstLabelId, interactionGroups }) => {
+  viewLayers: ViewLayer[];
+}> = ({ firstLabelId, interactionGroups, viewLayers }) => {
   const deckRef = useRef<MapboxOverlay>();
   const { current: map } = useMap();
   const zoom = map.getMap().getZoom();
-  const viewLayers = useRecoilValue(viewLayersFlatState);
   const viewLayersParams = useRecoilValue(viewLayersParamsState);
   const viewLayersData = useRecoilValue(protectedFeatureLayerDataState);
   const saveViewLayers = useSaveViewLayers();

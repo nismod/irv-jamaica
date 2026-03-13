@@ -1,10 +1,11 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
 
 import { interactionGroupsState } from 'app/state/layers/interaction-groups';
 import { viewLayerConfigs } from 'app/state/layers/view-layers';
 
 import { DataMap } from 'lib/data-map/DataMap';
+import { ViewLayer } from 'lib/data-map/view-layers';
 import { viewLayersFlatState } from 'lib/state/layers/view-layers';
 
 import { backgroundState, showLabelsState } from './layers/layers-state';
@@ -18,10 +19,17 @@ export const DataMapContainer: FC = () => {
   const setViewLayersFlat = useSetRecoilState(viewLayersFlatState);
   const { firstLabelId } = useBasemapStyle(background, showLabels);
   const interactionGroups = useRecoilValue(interactionGroupsState);
+  const flattenedViewLayers = useMemo(() => flattenConfig(viewLayers), [viewLayers]) as ViewLayer[];
 
   useEffect(() => {
-    setViewLayersFlat(flattenConfig(viewLayers));
-  }, [viewLayers, setViewLayersFlat]);
+    setViewLayersFlat(flattenedViewLayers);
+  }, [flattenedViewLayers, setViewLayersFlat]);
 
-  return <DataMap firstLabelId={firstLabelId} interactionGroups={interactionGroups} />;
+  return (
+    <DataMap
+      firstLabelId={firstLabelId}
+      interactionGroups={interactionGroups}
+      viewLayers={flattenedViewLayers}
+    />
+  );
 };
