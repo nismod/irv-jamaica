@@ -230,10 +230,6 @@ export function noWait(state: any): any {
   return jotaiAtom((get) => fromJotaiLoadable(get(loadableAtom)));
 }
 
-export function useResetRecoilState(state: any) {
-  return useResetAtom(state as never);
-}
-
 export function useRecoilValueLoadable(state: any) {
   return useAtomValue(noWait(state));
 }

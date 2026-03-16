@@ -1,8 +1,9 @@
 import { WebMercatorViewport } from 'deck.gl';
 import { FC, useEffect } from 'react';
 import { useMap } from 'react-map-gl/maplibre';
-import { atom, useResetRecoilState } from 'lib/jotai-compat/recoil';
+import { atom } from 'lib/jotai-compat/recoil';
 import { useAtomValue } from 'jotai';
+import { useResetAtom } from 'jotai/utils';
 
 import { BoundingBox, appToDeckBoundingBox } from '../bounding-box';
 
@@ -28,7 +29,7 @@ export const MapBoundsFitter: FC = () => {
   const { current: map } = useMap();
   const boundingBox = useAtomValue(mapFitBoundsState);
 
-  const resetFitBounds = useResetRecoilState(mapFitBoundsState);
+  const resetFitBounds = useResetAtom(mapFitBoundsState);
   useEffect(() => {
     // reset map fit bounds whenever map is mounted
     resetFitBounds();
