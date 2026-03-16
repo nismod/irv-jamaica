@@ -1,4 +1,5 @@
-import { waitForAll, selector, selectorFamily, RecoilValueReadOnly } from 'lib/jotai-compat/recoil';
+import { Atom } from 'jotai';
+import { waitForAll, selector, selectorFamily } from 'lib/jotai-compat/recoil';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { ConfigTree } from 'lib/nested-config/config-tree';
@@ -20,7 +21,7 @@ const VIEW_LAYERS = [
   'droughtOptions',
 ] as string[];
 
-const layerCache = new Map<string, RecoilValueReadOnly<ViewLayer>>();
+const layerCache = new Map<string, Atom<ViewLayer>>();
 
 const viewLayerConfig = selectorFamily<ViewLayer, string>({
   key: 'viewLayerConfig',

@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
-import { RecoilState, RecoilValueReadOnly } from 'lib/jotai-compat/recoil';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { Atom, useAtomValue, useSetAtom, WritableAtom } from 'jotai';
 
 import { useThrottledCallback } from '../hooks/use-throttled-callback';
 
 export function useSyncStateThrottled<T>(
-  state: RecoilValueReadOnly<T>,
-  replicaState: RecoilState<T>,
+  state: Atom<T>,
+  replicaState: WritableAtom<T, unknown[], void>,
   ms: number,
 ) {
   const value = useAtomValue(state);

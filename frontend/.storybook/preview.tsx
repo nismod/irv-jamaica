@@ -4,8 +4,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import type { Preview } from '@storybook/react-vite';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'jotai';
 
-import { atom, RecoilRoot } from '../src/lib/jotai-compat/recoil';
+import { atom } from '../src/lib/jotai-compat/recoil';
 import { theme } from '../src/app/theme';
 import { useSyncRecoilState } from '../src/lib/recoil/sync-state';
 import { viewStateEffect } from '../src/app/state/view';
@@ -51,7 +52,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story, { args }) => (
-      <RecoilRoot>
+      <Provider>
         <StyledEngineProvider injectFirst>
           <ThemeProvider theme={theme}>
             <Router>
@@ -62,7 +63,7 @@ const preview: Preview = {
             </Router>
           </ThemeProvider>
         </StyledEngineProvider>
-      </RecoilRoot>
+      </Provider>
     ),
   ],
   loaders: [mswLoader],

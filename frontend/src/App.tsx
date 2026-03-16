@@ -1,4 +1,4 @@
-import { RecoilRoot } from 'lib/jotai-compat/recoil';
+import { Provider } from 'jotai';
 import { RecoilURLSync } from 'lib/jotai-compat/recoil-sync';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';
@@ -76,7 +76,7 @@ const deserialise = (value) => {
 
 export const App = () => {
   return (
-    <RecoilRoot>
+    <Provider>
       <RecoilLocalStorageSync storeKey="local-storage">
         <RecoilURLSync
           storeKey="url-json"
@@ -111,6 +111,6 @@ export const App = () => {
           </StyledEngineProvider>
         </RecoilURLSync>
       </RecoilLocalStorageSync>
-    </RecoilRoot>
+    </Provider>
   );
 };

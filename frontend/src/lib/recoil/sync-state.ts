@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-import { RecoilState } from 'lib/jotai-compat/recoil';
-import { useSetAtom } from 'jotai';
+import { useSetAtom, WritableAtom } from 'jotai';
 
-export function useSyncRecoilState<T>(state: RecoilState<T>, value: T) {
+export function useSyncRecoilState<T>(state: WritableAtom<T, unknown[], void>, value: T) {
   const setState = useSetAtom(state);
 
   useEffect(() => setState(value), [setState, value]);

@@ -1,6 +1,7 @@
+import { Atom } from 'jotai';
 import { bool } from 'lib/jotai-compat/recoil-refine';
 import fromPairs from 'lodash/fromPairs';
-import { atomFamily, RecoilValue } from 'lib/jotai-compat/recoil';
+import { atomFamily } from 'lib/jotai-compat/recoil';
 import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 
 export const hazardSelectionState = atomFamily<boolean, string>({
@@ -23,7 +24,7 @@ export const hazardSelectionState = atomFamily<boolean, string>({
 });
 
 interface TransactionGetterInterface {
-  get<T>(a: RecoilValue<T>): T;
+  get<T>(a: Atom<T>): T;
 }
 
 export function getHazardSelectionAggregate(

@@ -1,16 +1,10 @@
-import { Provider, atom as jotaiAtom, useAtomValue, useSetAtom, useStore } from 'jotai';
+import { atom as jotaiAtom, useAtomValue, useSetAtom, useStore } from 'jotai';
 import type { Atom, WritableAtom } from 'jotai';
 import { atomFamily as jotaiAtomFamily, loadable as jotaiLoadable, useResetAtom } from 'jotai/utils';
 import stableStringify from 'json-stable-stringify';
 import { useMemo } from 'react';
 
-export const RecoilRoot = Provider;
-
 export class DefaultValue {}
-
-export type RecoilValue<T = unknown> = Atom<T>;
-export type RecoilValueReadOnly<T = unknown> = Atom<T>;
-export type RecoilState<T = unknown> = WritableAtom<T, any[], any>;
 
 export type TransactionInterface_UNSTABLE = {
   get: (state: any) => any;
