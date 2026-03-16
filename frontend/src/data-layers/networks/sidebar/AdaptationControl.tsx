@@ -8,7 +8,6 @@ import { Box } from '@mui/system';
 import { CustomNumberSlider } from 'lib/controls/CustomSlider';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
-import { dataParamsByGroupState } from 'lib/state/data-params';
 
 import { InputRow } from 'lib/sidebar/ui/InputRow';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
@@ -19,6 +18,7 @@ import {
   adaptationCostBenefitRatioEaelDaysState,
   adaptationDataParamsStateEffect,
   adaptationFieldState,
+  adaptationLayerSpecState,
 } from '../state/layer';
 
 function hazardLabel(val) {
@@ -72,7 +72,7 @@ export const AdaptationControl: FC = () => {
   return (
     <LayerStylePanel>
       <StateEffectRoot
-        state={dataParamsByGroupState('adaptation')}
+        state={adaptationLayerSpecState}
         effect={adaptationDataParamsStateEffect}
       />
       <InputSection>

@@ -1,6 +1,6 @@
 import { selector, selectorFamily } from 'lib/jotai-compat/recoil';
 
-import { dataParamsByGroupState } from 'lib/state/data-params';
+import { dataParamState } from 'lib/state/data-params';
 import { FieldSpec, StyleParams } from 'lib/data-map/view-layers';
 
 import { damages, damagesCoastalDefence } from 'data-layers/networks/color-maps';
@@ -13,14 +13,13 @@ export const damagesFieldState = selector<FieldSpec>({
     const damageSource = get(damageSourceState);
     if (damageSource == null) return null;
     const damageType = get(damageTypeState);
-    const damageParams = get(dataParamsByGroupState(damageSource));
 
     return {
       fieldGroup: 'damages_expected',
       fieldDimensions: {
         hazard: damageSource,
-        rcp: damageParams.rcp,
-        epoch: damageParams.epoch,
+        rcp: get(dataParamState({ group: damageSource, param: 'rcp' })),
+        epoch: get(dataParamState({ group: damageSource, param: 'epoch' })),
         protection_standard: 0,
       },
       field: damageType === 'direct' ? 'ead_mean' : 'eael_mean',

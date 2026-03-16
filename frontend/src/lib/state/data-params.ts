@@ -1,7 +1,5 @@
 import forEach from 'lodash/forEach';
-import keys from 'lodash/keys';
-import mapValues from 'lodash/mapValues';
-import { atom, atomFamily, selector, useRecoilTransaction_UNSTABLE } from 'lib/jotai-compat/recoil';
+import { atom, atomFamily, selector, selectorFamily, useRecoilTransaction_UNSTABLE, waitForAll } from 'lib/jotai-compat/recoil';
 
 import {
   DataParamGroupConfig,
@@ -10,7 +8,6 @@ import {
   resolveParamDependencies,
 } from 'lib/controls/data-params';
 import { toDictionary } from 'lib/helpers';
-import { groupedFamily } from 'lib/recoil/grouped-family';
 
 export type DataParamParam = Readonly<{
   group: string;
@@ -32,25 +29,6 @@ export const dataParamOptionsState = atomFamily<ParamDomain, DataParamParam>({
   default: [],
 });
 
-export const dataParamNamesByGroupState = atomFamily<string[], string>({
-  key: 'dataParamNamesByGroupState',
-  default: [],
-});
-
-export const dataParamsByGroupState = groupedFamily<Param, DataParamParam>(
-  'dataParamsByGroupState',
-  dataParamState,
-  dataParamNamesByGroupState,
-  (group, param) => ({ group, param }),
-);
-
-export const dataParamOptionsByGroupState = groupedFamily<ParamDomain, DataParamParam>(
-  'dataParamOptionsByGroupState',
-  dataParamOptionsState,
-  dataParamNamesByGroupState,
-  (group, param) => ({ group, param }),
-);
-
 /**
  * A writeable selector that takes a config object, from an external source,
  * and creates new data params states for the sidebar controls.
@@ -61,16 +39,15 @@ export const syncExternalConfigState = selector({
   get: ({ get }) => get(dataParamConfigState),
   set: ({ set }, newConfig: Record<string, DataParamGroupConfig>) => {
     set(dataParamConfigState, newConfig);
-    const dataParamNamesByGroup = mapValues(newConfig, (groupConfig) =>
-      keys(groupConfig.paramDefaults),
-    );
-    const dataParamDefaultsByGroup = mapValues(newConfig, (groupConfig) =>
-      resolveParamDependencies(groupConfig.paramDefaults, groupConfig),
-    );
+
     Object.keys(newConfig).forEach((group) => {
-      const paramNames = dataParamNamesByGroup[group];
-      const [defaultValues, options] = dataParamDefaultsByGroup[group];
-      set(dataParamNamesByGroupState(group), paramNames);
+      const groupConfig = newConfig[group];
+      const paramNames = Object.keys(groupConfig.paramDefaults);
+      const [defaultValues, options] = resolveParamDependencies(
+        groupConfig.paramDefaults,
+        groupConfig,
+      );
+
       paramNames.forEach((param) => {
         set(dataParamState({ group, param }), defaultValues[param]);
         set(dataParamOptionsState({ group, param }), options[param]);
@@ -89,7 +66,7 @@ export function useUpdateDataParam(group: string, paramId: string) {
           return;
         }
         const groupConfig = dataParamConfig[group];
-        const paramNames = get(dataParamNamesByGroupState(group)) as string[];
+        const paramNames = Object.keys(groupConfig.paramDefaults);
         const groupParams = toDictionary(
           paramNames,
           (param: string) => param,

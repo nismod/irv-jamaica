@@ -6,7 +6,7 @@ import mapValues from 'lodash/mapValues';
 import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
-import { dataParamsByGroupState } from 'lib/state/data-params';
+import { dataParamState } from 'lib/state/data-params';
 import { sectionVisibilityState } from 'lib/state/sections';
 
 import { LayerSpec } from 'lib/asset-list/use-sorted-features';
@@ -91,12 +91,14 @@ export const adaptationDataParamsStateEffect: StateEffect<AdaptationOptionParams
 export const adaptationLayerSpecState = selector<LayerSpec>({
   key: 'adaptationLayerSpecState',
   get: ({ get }) => {
-    const { sector, subsector, asset_type } = get(dataParamsByGroupState('adaptation'));
+    const sector = get(dataParamState({ group: 'adaptation', param: 'sector' }));
+    const subsector = get(dataParamState({ group: 'adaptation', param: 'subsector' }));
+    const asset_type = get(dataParamState({ group: 'adaptation', param: 'asset_type' }));
 
     return {
       sector,
       subsector,
-      asset_type: asset_type,
+      asset_type,
     };
   },
 });
@@ -105,9 +107,10 @@ export const adaptationFieldSpecState = selector<FieldSpec>({
   key: 'adaptationFieldSpecState',
   get: ({ get }) => {
     const field = get(adaptationFieldState);
-    const { hazard, rcp, adaptation_name, adaptation_protection_level } = get(
-      dataParamsByGroupState('adaptation'),
-    );
+    const hazard = get(dataParamState({ group: 'adaptation', param: 'hazard' }));
+    const rcp = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
+    const adaptation_name = get(dataParamState({ group: 'adaptation', param: 'adaptation_name' }));
+    const adaptation_protection_level = get(dataParamState({ group: 'adaptation', param: 'adaptation_protection_level' }));
 
     let fieldParams: {
       eael_days?: number;
