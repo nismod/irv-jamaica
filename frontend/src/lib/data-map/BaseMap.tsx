@@ -2,9 +2,11 @@ import { MapViewState } from 'deck.gl';
 import { StyleSpecification } from 'maplibre-gl';
 import { FC, ReactNode } from 'react';
 import { Map } from 'react-map-gl/maplibre';
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { mapViewStateState, useSyncMapUrl } from 'lib/state/map-view/map-view-state';
+
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 
 export interface BaseMapProps {
   children?: ReactNode;
@@ -43,7 +45,10 @@ export const BaseMap: FC<{ children?: ReactNode; mapStyle: StyleSpecification }>
   children,
   mapStyle,
 }) => {
-  const [viewState, setViewState] = useRecoilState(mapViewStateState);
+  const [viewState, setViewState] = useAtom(mapViewStateState as never) as [
+    MapViewState,
+    AtomSetter<MapViewState>,
+  ];
   useSyncMapUrl();
   function handleViewStateChange({ viewState }: { viewState: MapViewState }) {
     setViewState(viewState);

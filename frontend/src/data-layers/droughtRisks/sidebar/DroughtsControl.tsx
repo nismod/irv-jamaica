@@ -1,7 +1,7 @@
 import { Checkbox, Divider, FormControlLabel } from '@mui/material';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { FC } from 'react';
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 import {
@@ -20,13 +20,15 @@ import {
   droughtShowRiskState,
 } from '../state/data-selection';
 
-export const DroughtsControl: FC = () => {
-  const [rcp, setRcp] = useRecoilState(droughtRcpParamState);
-  const [showRisk, setShowRisk] = useRecoilState(droughtShowRiskState);
-  const [showOptions, setShowOptions] = useRecoilState(droughtShowOptionsState);
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 
-  const [riskVariable, setRiskVariable] = useRecoilState(droughtRiskVariableState);
-  const [optionsVariable, setOptionsVariable] = useRecoilState(droughtOptionsVariableState);
+export const DroughtsControl: FC = () => {
+  const [rcp, setRcp] = useAtom(droughtRcpParamState as never) as [string, AtomSetter<string>];
+  const [showRisk, setShowRisk] = useAtom(droughtShowRiskState as never) as [boolean, AtomSetter<boolean>];
+  const [showOptions, setShowOptions] = useAtom(droughtShowOptionsState as never) as [boolean, AtomSetter<boolean>];
+
+  const [riskVariable, setRiskVariable] = useAtom(droughtRiskVariableState as never) as [DroughtRiskVariableType, AtomSetter<DroughtRiskVariableType>];
+  const [optionsVariable, setOptionsVariable] = useAtom(droughtOptionsVariableState as never) as [DroughtOptionsVariableType, AtomSetter<DroughtOptionsVariableType>];
 
   return (
     <>

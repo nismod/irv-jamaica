@@ -2,9 +2,11 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { createContext, FC, ReactNode, useContext, useId } from 'react';
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { RecoilStateFamily } from 'lib/recoil/types';
+
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 
 export const ToggleStateContext = createContext<RecoilStateFamily<boolean, string>>(null);
 
@@ -29,7 +31,7 @@ export const ToggleSection: FC<ToggleSectionProps> = ({
   children,
 }) => {
   const toggleState = useContext(ToggleStateContext);
-  const [show, setShow] = useRecoilState(toggleState(id));
+  const [show, setShow] = useAtom(toggleState(id) as never) as [boolean, AtomSetter<boolean>];
   const handleShow = (e, checked: boolean) => setShow(checked);
   const htmlId = useId();
 

@@ -1,11 +1,17 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { FC, useId } from 'react';
-import { useRecoilState, useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
+
 export const StyleSelection: FC<{ id: string }> = ({ id }) => {
-  const [value, setValue] = useRecoilState(sectionStyleValueState(id));
+  const [value, setValue] = useAtom(sectionStyleValueState(id) as never) as [
+    string,
+    AtomSetter<string>,
+  ];
   const options = useRecoilValue(sectionStyleOptionsState(id));
 
   const htmlId = useId();

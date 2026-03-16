@@ -7,7 +7,8 @@ import {
   RadioGroup,
   Select,
 } from '@mui/material';
-import { useRecoilState, useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 
@@ -21,8 +22,10 @@ function capitalise(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
+
 export const RisksControl = () => {
-  const [riskType, setRiskType] = useRecoilState(sectionStyleValueState('risks'));
+  const [riskType, setRiskType] = useAtom(sectionStyleValueState('risks') as never) as [string, AtomSetter<string>];
   const riskTypes = useRecoilValue(sectionStyleOptionsState('risks'));
   const sector = useRecoilValue(dataParamState({ group: 'risks', param: 'sector' }));
 

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 import { FormLabel } from '@mui/material';
 
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
@@ -11,8 +11,10 @@ import { DataParam } from 'lib/sidebar/ui/params/DataParam';
 
 import { adaptationFieldState } from '../state/layer';
 
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
+
 export const ProtectedFeaturesControl: FC = () => {
-  const [adaptationField, setAdaptationField] = useRecoilState(adaptationFieldState);
+  const [adaptationField, setAdaptationField] = useAtom(adaptationFieldState as never) as ['avoided_ead_mean' | 'avoided_eael_mean' | 'adaptation_cost' | 'cost_benefit_ratio', AtomSetter<'avoided_ead_mean' | 'avoided_eael_mean' | 'adaptation_cost' | 'cost_benefit_ratio'>];
   return (
     <LayerStylePanel>
       <InputSection>

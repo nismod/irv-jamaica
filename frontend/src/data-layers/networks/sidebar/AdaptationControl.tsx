@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 import startCase from 'lodash/startCase';
 import lowerCase from 'lodash/lowerCase';
 import { FormLabel, Slider, Typography } from '@mui/material';
@@ -20,6 +20,13 @@ import {
   adaptationFieldState,
   adaptationLayerSpecState,
 } from '../state/layer';
+
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
+type AdaptationField =
+  | 'avoided_ead_mean'
+  | 'avoided_eael_mean'
+  | 'adaptation_cost'
+  | 'cost_benefit_ratio';
 
 function hazardLabel(val) {
   switch (val) {
@@ -44,7 +51,10 @@ function makeOptions(values, labelFn = (x) => x) {
 }
 const EAEL_DAYS_MARKS = [1, 5, 10, 15, 20, 25, 30].map((x) => ({ value: x, label: x }));
 const CostBenefitRatioInputs: FC = () => {
-  const [eaelDays, setEaelDays] = useRecoilState(adaptationCostBenefitRatioEaelDaysState);
+  const [eaelDays, setEaelDays] = useAtom(adaptationCostBenefitRatioEaelDaysState as never) as [
+    number,
+    AtomSetter<number>,
+  ];
 
   return (
     <Box mt={1}>
@@ -68,7 +78,10 @@ const CostBenefitRatioInputs: FC = () => {
 };
 
 export const AdaptationControl: FC = () => {
-  const [adaptationField, setAdaptationField] = useRecoilState(adaptationFieldState);
+  const [adaptationField, setAdaptationField] = useAtom(adaptationFieldState as never) as [
+    AdaptationField,
+    AtomSetter<AdaptationField>,
+  ];
   return (
     <LayerStylePanel>
       <StateEffectRoot

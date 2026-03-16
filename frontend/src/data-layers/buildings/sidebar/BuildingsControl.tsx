@@ -1,13 +1,15 @@
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { NETWORKS_METADATA } from 'data-layers/networks/metadata';
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
 import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
 
-import { buildingSelectionState } from '../state/data-selection';
+import { buildingSelectionState, BuildingSelection } from '../state/data-selection';
+
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 
 export const BuildingsControl = () => {
-  const [checkboxState, setCheckboxState] = useRecoilState(buildingSelectionState);
+  const [checkboxState, setCheckboxState] = useAtom(buildingSelectionState as never) as [BuildingSelection, AtomSetter<BuildingSelection>];
 
   return (
     <ParamChecklist

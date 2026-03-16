@@ -9,15 +9,24 @@ import {
 } from '@mui/material';
 import LayersIcon from '@mui/icons-material/Layers';
 import { useCallback, useState } from 'react';
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { backgroundState, showLabelsState } from './layers-state';
+import { BackgroundName } from 'app/config/basemaps';
+
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 
 export const MapLayerSelection = () => {
   const [showPopover, setShowPopover] = useState(false);
 
-  const [background, setBackground] = useRecoilState(backgroundState);
-  const [showLabels, setShowLabels] = useRecoilState(showLabelsState);
+  const [background, setBackground] = useAtom(backgroundState as never) as [
+    BackgroundName,
+    AtomSetter<BackgroundName>,
+  ];
+  const [showLabels, setShowLabels] = useAtom(showLabelsState as never) as [
+    boolean,
+    AtomSetter<boolean>,
+  ];
 
   const other = background === 'satellite' ? 'light' : 'satellite';
 

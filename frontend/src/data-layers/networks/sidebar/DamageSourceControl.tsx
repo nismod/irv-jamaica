@@ -8,7 +8,7 @@ import {
   Select,
 } from '@mui/material';
 import { useId } from 'react';
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
@@ -24,9 +24,11 @@ import { LayerStylePanel } from 'lib/sidebar/ui/LayerStylePanel';
 
 import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'data-layers/hazards/metadata';
 
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
+
 export const DamageSourceControl = () => {
-  const [damageSource, setDamageSource] = useRecoilState(damageSourceState);
-  const [damageType, setDamageType] = useRecoilState(damageTypeState);
+  const [damageSource, setDamageSource] = useAtom(damageSourceState as never) as [string, AtomSetter<string>];
+  const [damageType, setDamageType] = useAtom(damageTypeState as never) as [string, AtomSetter<string>];
   const id = useId();
 
   return (

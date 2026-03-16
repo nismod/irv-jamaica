@@ -3,8 +3,11 @@ import { Box, Button, Container, DialogActions, Drawer, Stack, Typography } from
 import { date, nullable } from 'lib/jotai-compat/recoil-refine';
 import { AppLink } from 'lib/nav';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'lib/jotai-compat/recoil';
+import { atom } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 import { syncEffect } from 'lib/jotai-compat/recoil-sync';
+
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 
 const noticeAcceptedDateState = atom<Date | null>({
   key: 'noticeAcceptedDate',
@@ -19,7 +22,10 @@ const noticeAcceptedDateState = atom<Date | null>({
 });
 
 export const Notice = () => {
-  const [acceptedDate, setAcceptedDate] = useRecoilState(noticeAcceptedDateState);
+  const [acceptedDate, setAcceptedDate] = useAtom(noticeAcceptedDateState as never) as [
+    Date | null,
+    AtomSetter<Date | null>,
+  ];
 
   const handleAccept = useCallback(() => {
     setAcceptedDate(new Date());

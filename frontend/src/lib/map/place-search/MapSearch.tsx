@@ -1,14 +1,19 @@
 import { Box, ClickAwayListener, IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { MapSearchField } from './MapSearchField';
 import { placeSearchActiveState } from './search-state';
 
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
+
 const blankSpaceWidth = 8;
 
 export const MapSearch = ({ onSelectedResult }) => {
-  const [expanded, setExpanded] = useRecoilState(placeSearchActiveState);
+  const [expanded, setExpanded] = useAtom(placeSearchActiveState as never) as [
+    boolean,
+    AtomSetter<boolean>,
+  ];
 
   return (
     <ClickAwayListener onClickAway={() => setExpanded(false)}>

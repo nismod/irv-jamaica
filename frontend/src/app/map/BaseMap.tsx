@@ -1,6 +1,7 @@
 import omit from 'lodash/omit';
 import { FC, ReactNode } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { mapViewConfig } from 'app/config/map-view';
 import { mapViewStateState, nonCoordsMapViewStateState } from 'lib/state/map-view/map-view-state';
@@ -12,6 +13,13 @@ import { useBasemapStyle } from './use-basemap-style';
 export interface BaseMapProps {
   children?: ReactNode;
 }
+
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
+type MapViewStateLike = {
+  zoom: number;
+  latitude: number;
+  longitude: number;
+} & Record<string, unknown>;
 
 const INITIAL_VIEW_STATE = {
   ...mapViewConfig.initialViewState,
@@ -40,7 +48,10 @@ function getQueryViewState() {
 export const BaseMapContainer: FC<BaseMapProps> = ({ children }) => {
   const background = useRecoilValue(backgroundState);
   const showLabels = useRecoilValue(showLabelsState);
-  const [viewState, setViewState] = useRecoilState(mapViewStateState);
+  const [viewState, setViewState] = useAtom(mapViewStateState as never) as [
+    MapViewStateLike,
+    AtomSetter<MapViewStateLike>,
+  ];
   const setNonCoordsViewState = useSetRecoilState(nonCoordsMapViewStateState);
   const { mapStyle } = useBasemapStyle(background, showLabels);
 

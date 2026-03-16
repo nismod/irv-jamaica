@@ -2,7 +2,7 @@ import { StoryObj, Meta } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 import { http, HttpResponse } from 'msw';
 import { useEffect } from 'react';
-import { useRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom } from 'jotai';
 
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import mockFeature from 'mocks/details/features/mockFeature.json';
@@ -18,8 +18,10 @@ function FixedWidthDecorator(Story) {
   );
 }
 
+type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
+
 function DataLoaderDecorator(Story, { args }) {
-  const [, setFeatureSelection] = useRecoilState(selectionState('assets'));
+  const [, setFeatureSelection] = useAtom(selectionState('assets') as never) as [any, AtomSetter<any>];
 
   useEffect(() => {
     const mockSelection = {

@@ -1,4 +1,4 @@
-import { Provider, atom as jotaiAtom, useAtom, useAtomValue, useSetAtom, useStore } from 'jotai';
+import { Provider, atom as jotaiAtom, useAtomValue, useSetAtom, useStore } from 'jotai';
 import { atomFamily as jotaiAtomFamily, loadable as jotaiLoadable, useResetAtom } from 'jotai/utils';
 import stableStringify from 'json-stable-stringify';
 import { useMemo } from 'react';
@@ -47,7 +47,7 @@ export function atom<T = unknown>(options: {
     getLoadable: (state: any) => { state: 'loading' | 'hasValue' | 'hasError'; contents: unknown };
     trigger: 'get' | 'set';
   }) => void | (() => void)>;
-}) {
+}): any {
   const initialValue = options.default as T;
   const UNSET = Symbol(`${options.key}__unset`);
   const defaultRecoilValue =
@@ -140,7 +140,7 @@ export function selector<T = unknown>(config: {
     newValue: T | DefaultValue,
   ) => void;
   dangerouslyAllowMutability?: boolean;
-}) {
+}): any {
   if (!config.set) {
     return jotaiAtom((get) => config.get({ get }));
   }
@@ -170,7 +170,7 @@ export function atomFamily<T = unknown, P = unknown>(config: {
     getLoadable: (state: any) => { state: 'loading' | 'hasValue' | 'hasError'; contents: unknown };
     trigger: 'get' | 'set';
   }) => void | (() => void)>;
-}) {
+}): any {
   const defaultFactory =
     typeof config.default === 'function'
       ? (config.default as (param: P) => T)
@@ -198,7 +198,7 @@ export function selectorFamily<T = unknown, P = unknown>(config: {
     },
     newValue: T | DefaultValue,
   ) => void;
-}) {
+}): any {
   return jotaiAtomFamily(
     (param: P) =>
       selector({
@@ -210,7 +210,7 @@ export function selectorFamily<T = unknown, P = unknown>(config: {
   );
 }
 
-export function waitForAll(states: any) {
+export function waitForAll(states: any): any {
   if (Array.isArray(states)) {
     return jotaiAtom(async (get) => Promise.all(states.map((state) => get(state))));
   }
@@ -224,13 +224,9 @@ export function waitForAll(states: any) {
   });
 }
 
-export function noWait(state: any) {
+export function noWait(state: any): any {
   const loadableAtom = jotaiLoadable(state);
   return jotaiAtom((get) => fromJotaiLoadable(get(loadableAtom)));
-}
-
-export function useRecoilState(state: any) {
-  return useAtom(state as never) as [any, (value: any) => void];
 }
 
 export function useRecoilValue(state: any) {
