@@ -230,10 +230,6 @@ export function noWait(state: any): any {
   return jotaiAtom((get) => fromJotaiLoadable(get(loadableAtom)));
 }
 
-export function useRecoilValueLoadable(state: any) {
-  return useAtomValue(noWait(state));
-}
-
 export function useRecoilCallback<TArgs extends unknown[], TResult>(
   callbackFactory: (ops: {
     set: TransactionInterface_UNSTABLE['set'];
