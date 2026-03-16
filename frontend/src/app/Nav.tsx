@@ -21,7 +21,7 @@ import { useIsMobile } from './use-is-mobile';
 import { withProps } from 'lib/react/with-props';
 import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from 'lib/state/map-view/map-url';
 import { globalStyleVariables } from 'app/theme';
-import { useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 
 const Link = styled(MuiLink)({
   color: 'inherit',
@@ -50,9 +50,9 @@ const ToolbarLink = styled(Link)({
 });
 
 function useMapQueryParams() {
-  const lat = useRecoilValue(mapLatUrlState).toFixed(5);
-  const lon = useRecoilValue(mapLonUrlState).toFixed(5);
-  const zoom = useRecoilValue(mapZoomUrlState).toFixed(2);
+  const lat = useAtomValue(mapLatUrlState).toFixed(5);
+  const lon = useAtomValue(mapLonUrlState).toFixed(5);
+  const zoom = useAtomValue(mapZoomUrlState).toFixed(2);
   const url = new URL(window.location.href);
   url.searchParams.set('lat', lat);
   url.searchParams.set('lon', lon);

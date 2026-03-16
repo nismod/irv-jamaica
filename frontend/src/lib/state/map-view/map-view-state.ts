@@ -4,9 +4,9 @@ import { useSyncStateThrottled } from 'lib/recoil/sync-state-throttled';
 
 import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from './map-url';
 
-const mapLatState = atom({ key: 'mapLat', default: mapLatUrlState });
-const mapLonState = atom({ key: 'mapLon', default: mapLonUrlState });
-const mapZoomState = atom({ key: 'mapZoom', default: mapZoomUrlState });
+const mapLatState = atom<number>({ key: 'mapLat', default: mapLatUrlState });
+const mapLonState = atom<number>({ key: 'mapLon', default: mapLonUrlState });
+const mapZoomState = atom<number>({ key: 'mapZoom', default: mapZoomUrlState });
 
 export const nonCoordsMapViewStateState = atom({
   key: 'nonCoordsMapViewState',

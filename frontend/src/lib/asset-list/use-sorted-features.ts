@@ -2,7 +2,8 @@ import { parseSync } from '@loaders.gl/core';
 import { WKTLoader } from '@loaders.gl/wkt';
 import bbox from '@turf/bbox';
 import pick from 'lodash/pick';
-import { selectorFamily, useRecoilValue } from 'lib/jotai-compat/recoil';
+import { selectorFamily } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 
 import { createClient } from 'lib/api-client/client';
 import { featuresReadSortedFeatures } from 'lib/api-client/sdk.gen';
@@ -117,7 +118,7 @@ export const useSortedFeatures = (
   const { fieldGroup, fieldDimensions, field, fieldParams } = fieldSpec;
   const dimensions = JSON.stringify(fieldDimensions);
   const parameters = JSON.stringify(fieldParams);
-  const result = useRecoilValue(
+  const result = useAtomValue(
     sortedFeaturesState({
       fieldGroup,
       field,

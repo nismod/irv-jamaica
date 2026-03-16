@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
-import { selector, useRecoilValue } from 'lib/jotai-compat/recoil';
+import { selector } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 
 import { sectionStyleValueState, sectionVisibilityState } from 'lib/state/sections';
 
@@ -16,7 +17,7 @@ export const showAdaptationsTableState = selector<boolean>({
 });
 
 export const DetailsSidebar = () => {
-  const showAdaptationsTable = useRecoilValue(showAdaptationsTableState);
+  const showAdaptationsTable = useAtomValue(showAdaptationsTableState);
   return (
     <>
       <Box mb={2}>

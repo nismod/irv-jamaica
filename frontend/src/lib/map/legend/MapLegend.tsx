@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 import { Stack, Box, Paper, Divider } from '@mui/material';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
@@ -11,7 +11,7 @@ interface MapLegendProps {
 }
 
 export const MapLegend: FC<MapLegendProps> = ({ currentHazard }) => {
-  const viewLayers = useRecoilValue(viewLayersFlatState);
+  const viewLayers = useAtomValue(viewLayersFlatState);
 
   const rasterViewLayers = [];
 

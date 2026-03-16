@@ -2,7 +2,7 @@ import type { MapboxOverlay } from '@deck.gl/mapbox';
 import { Layer, LayersList, PickingInfo } from 'deck.gl';
 import { useMap } from 'react-map-gl/maplibre';
 import { FC, useRef } from 'react';
-import { useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 
 import { useInteractions } from 'lib/state/interactions/use-interactions';
 import { useDataLoadTrigger } from 'lib/data-map/use-data-load-trigger';
@@ -104,8 +104,8 @@ export const DataMap: FC<{
   const deckRef = useRef<MapboxOverlay>();
   const { current: map } = useMap();
   const zoom = map.getMap().getZoom();
-  const viewLayersParams = useRecoilValue(viewLayersParamsState);
-  const viewLayersData = useRecoilValue(protectedFeatureLayerDataState);
+  const viewLayersParams = useAtomValue(viewLayersParamsState);
+  const viewLayersData = useAtomValue(protectedFeatureLayerDataState);
   const saveViewLayers = useSaveViewLayers();
 
   useTrigger(viewLayers);

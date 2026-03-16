@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { RecoilState, RecoilValueReadOnly, useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { RecoilState, RecoilValueReadOnly, useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 
 import { useThrottledCallback } from '../hooks/use-throttled-callback';
 
@@ -8,7 +9,7 @@ export function useSyncStateThrottled<T>(
   replicaState: RecoilState<T>,
   ms: number,
 ) {
-  const value = useRecoilValue(state);
+  const value = useAtomValue(state);
   const syncValue = useSetRecoilState(replicaState);
 
   const syncValueThrottled = useThrottledCallback(syncValue, ms);

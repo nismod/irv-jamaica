@@ -1,10 +1,14 @@
 import { Box } from '@mui/system';
 import { Alert } from '@mui/material';
 import { FC } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
-import { useAtom } from 'jotai';
+import { useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom, useAtomValue } from 'jotai';
 
-import { CheckboxTree, recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
+import {
+  CheckboxTree,
+  CheckboxTreeState,
+  recalculateCheckboxStates,
+} from 'lib/controls/checkbox-tree/CheckboxTree';
 import { useUpdateDataParam } from 'lib/state/data-params';
 
 import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
@@ -26,19 +30,19 @@ import { protectedFeatureLayersState } from 'lib/state/protected-features';
  * @param checkBoxState network checkbox tree state.
  */
 function useSyncProtectedFeatureLayers() {
-  const prevLayers = new Set(useRecoilValue(networkSelectionState));
+  const prevLayers = new Set(useAtomValue(networkSelectionState));
   const allLayers = new Set(
     Object.values(networkTreeConfig.nodes)
       .filter((n) => !!n.url)
       .map((n) => n.id),
   );
 
-  const showProtectorFeatureLayers = useRecoilValue(showProtectorFeaturesState);
+  const showProtectorFeatureLayers = useAtomValue(showProtectorFeaturesState);
   const protectorFeatureLayers = showProtectorFeatureLayers
     ? new Set(['coast_nodes_cpf'])
     : new Set();
 
-  const protectedFeatureLayers = useRecoilValue(protectedFeatureLayersState);
+  const protectedFeatureLayers = useAtomValue(protectedFeatureLayersState);
 
   const setCheckboxState = useSetRecoilState(networkTreeCheckboxState);
 
@@ -99,11 +103,17 @@ function getLabel(node, checked) {
 type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 
 export const NetworkControl: FC = () => {
-  const [checkboxState, setCheckboxState] = useAtom(networkTreeCheckboxState as never) as [typeof networkTreeCheckboxState, AtomSetter<typeof networkTreeCheckboxState>];
-  const [expanded, setExpanded] = useAtom(networkTreeExpandedState as never) as [string[], AtomSetter<string[]>];
+  const [checkboxState, setCheckboxState] = useAtom(networkTreeCheckboxState as never) as [
+    CheckboxTreeState,
+    AtomSetter<CheckboxTreeState>,
+  ];
+  const [expanded, setExpanded] = useAtom(networkTreeExpandedState as never) as [
+    string[],
+    AtomSetter<string[]>,
+  ];
 
-  const showAdaptations = useRecoilValue(showAdaptationsState);
-  const showProtectorFeatureLayers = useRecoilValue(showProtectorFeaturesState);
+  const showAdaptations = useAtomValue(showAdaptationsState);
+  const showProtectorFeatureLayers = useAtomValue(showProtectorFeaturesState);
   const disableCheck = showAdaptations || showProtectorFeatureLayers;
 
   useSyncAdaptationParameters(checkboxState);

@@ -4,13 +4,13 @@ import { useAtom } from 'jotai';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 import { TerrestrialLocationFilterType, TERRESTRIAL_LOCATION_FILTERS } from '../domains';
-import { terrestrialNonLandUseFiltersState } from '../state/terrestrial-filters';
+import { TerrestrialNonLandUseFilters, terrestrialNonLandUseFiltersState } from '../state/terrestrial-filters';
 import { TerrestrialLandUseTree } from './TerrestrialLandUseTree';
 
 type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 
 export const TerrestrialControl = () => {
-  const [terrestrialFilters, setTerrestrialFilters] = useAtom(terrestrialNonLandUseFiltersState as never) as [typeof terrestrialNonLandUseFiltersState, AtomSetter<typeof terrestrialNonLandUseFiltersState>];
+  const [terrestrialFilters, setTerrestrialFilters] = useAtom(terrestrialNonLandUseFiltersState as never) as [TerrestrialNonLandUseFilters, AtomSetter<TerrestrialNonLandUseFilters>];
 
   return (
     <>

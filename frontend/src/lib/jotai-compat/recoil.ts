@@ -1,4 +1,5 @@
 import { Provider, atom as jotaiAtom, useAtomValue, useSetAtom, useStore } from 'jotai';
+import type { Atom } from 'jotai';
 import { atomFamily as jotaiAtomFamily, loadable as jotaiLoadable, useResetAtom } from 'jotai/utils';
 import stableStringify from 'json-stable-stringify';
 import { useMemo } from 'react';
@@ -7,9 +8,9 @@ export const RecoilRoot = Provider;
 
 export class DefaultValue {}
 
-export type RecoilValue<T = unknown> = any;
-export type RecoilValueReadOnly<T = unknown> = any;
-export type RecoilState<T = unknown> = any;
+export type RecoilValue<T = unknown> = Atom<T>;
+export type RecoilValueReadOnly<T = unknown> = Atom<T>;
+export type RecoilState<T = unknown> = Atom<T>;
 
 export type TransactionInterface_UNSTABLE = {
   get: (state: any) => any;
@@ -39,7 +40,7 @@ function resolveParamKey(param: unknown) {
 
 export function atom<T = unknown>(options: {
   key: string;
-  default?: T;
+  default?: T | Atom<T>;
   effects?: Array<(ops: {
     setSelf: (value: T | DefaultValue | ((prev: T) => T | DefaultValue)) => void;
     onSet: (fn: (newValue: T | DefaultValue, oldValue: T, isReset: boolean) => void) => void;
@@ -47,7 +48,7 @@ export function atom<T = unknown>(options: {
     getLoadable: (state: any) => { state: 'loading' | 'hasValue' | 'hasError'; contents: unknown };
     trigger: 'get' | 'set';
   }) => void | (() => void)>;
-}): any {
+}): Atom<T> {
   const initialValue = options.default as T;
   const UNSET = Symbol(`${options.key}__unset`);
   const defaultRecoilValue =
@@ -125,7 +126,7 @@ export function atom<T = unknown>(options: {
     };
   }
 
-  return recoilAtom;
+  return recoilAtom as unknown as Atom<T>;
 }
 
 export function selector<T = unknown>(config: {
@@ -140,9 +141,9 @@ export function selector<T = unknown>(config: {
     newValue: T | DefaultValue,
   ) => void;
   dangerouslyAllowMutability?: boolean;
-}): any {
+}): Atom<T> {
   if (!config.set) {
-    return jotaiAtom((get) => config.get({ get }));
+    return jotaiAtom((get) => config.get({ get })) as unknown as Atom<T>;
   }
 
   return jotaiAtom(
@@ -157,7 +158,7 @@ export function selector<T = unknown>(config: {
         value,
       );
     },
-  );
+  ) as unknown as Atom<T>;
 }
 
 export function atomFamily<T = unknown, P = unknown>(config: {
@@ -170,7 +171,7 @@ export function atomFamily<T = unknown, P = unknown>(config: {
     getLoadable: (state: any) => { state: 'loading' | 'hasValue' | 'hasError'; contents: unknown };
     trigger: 'get' | 'set';
   }) => void | (() => void)>;
-}): any {
+}): (param: P) => Atom<T> {
   const defaultFactory =
     typeof config.default === 'function'
       ? (config.default as (param: P) => T)
@@ -184,7 +185,7 @@ export function atomFamily<T = unknown, P = unknown>(config: {
         effects: config.effects?.(param),
       }),
     (a, b) => resolveParamKey(a) === resolveParamKey(b),
-  );
+  ) as unknown as (param: P) => Atom<T>;
 }
 
 export function selectorFamily<T = unknown, P = unknown>(config: {
@@ -198,7 +199,7 @@ export function selectorFamily<T = unknown, P = unknown>(config: {
     },
     newValue: T | DefaultValue,
   ) => void;
-}): any {
+}): (param: P) => Atom<T> {
   return jotaiAtomFamily(
     (param: P) =>
       selector({
@@ -207,7 +208,7 @@ export function selectorFamily<T = unknown, P = unknown>(config: {
         set: config.set?.(param),
       }),
     (a, b) => resolveParamKey(a) === resolveParamKey(b),
-  );
+  ) as unknown as (param: P) => Atom<T>;
 }
 
 export function waitForAll(states: any): any {
@@ -229,10 +230,6 @@ export function noWait(state: any): any {
   return jotaiAtom((get) => fromJotaiLoadable(get(loadableAtom)));
 }
 
-export function useRecoilValue(state: any) {
-  return useAtomValue(state) as any;
-}
-
 export function useSetRecoilState(state: any) {
   return useSetAtom(state as never) as (value: any) => void;
 }
@@ -242,7 +239,7 @@ export function useResetRecoilState(state: any) {
 }
 
 export function useRecoilValueLoadable(state: any) {
-  return useRecoilValue(noWait(state));
+  return useAtomValue(noWait(state));
 }
 
 export function useRecoilCallback<TArgs extends unknown[], TResult>(

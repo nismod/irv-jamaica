@@ -16,7 +16,7 @@ import {
 import { SECTIONS_CONFIG } from 'app/config/sections';
 import { VIEW_SECTIONS } from 'app/config/views';
 
-export const viewState = atom({
+export const viewState = atom<string>({
   key: 'viewState',
   effects: [
     syncEffect({

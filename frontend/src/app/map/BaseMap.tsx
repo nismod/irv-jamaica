@@ -1,7 +1,7 @@
 import omit from 'lodash/omit';
 import { FC, ReactNode } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
-import { useAtom } from 'jotai';
+import { useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom, useAtomValue } from 'jotai';
 
 import { mapViewConfig } from 'app/config/map-view';
 import { mapViewStateState, nonCoordsMapViewStateState } from 'lib/state/map-view/map-view-state';
@@ -46,8 +46,8 @@ function getQueryViewState() {
 }
 
 export const BaseMapContainer: FC<BaseMapProps> = ({ children }) => {
-  const background = useRecoilValue(backgroundState);
-  const showLabels = useRecoilValue(showLabelsState);
+  const background = useAtomValue(backgroundState);
+  const showLabels = useAtomValue(showLabelsState);
   const [viewState, setViewState] = useAtom(mapViewStateState as never) as [
     MapViewStateLike,
     AtomSetter<MapViewStateLike>,

@@ -6,7 +6,7 @@ import { array, bool, dict, number, object } from 'lib/jotai-compat/recoil-refin
 
 export type TerrestrialLocationFilters = Record<TerrestrialLocationFilterType, boolean>;
 
-interface TerrestrialNonLandUseFilters {
+export interface TerrestrialNonLandUseFilters {
   slope_degrees: [number, number];
   elevation_m: [number, number];
   location_filters: TerrestrialLocationFilters;

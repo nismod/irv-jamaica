@@ -1,7 +1,8 @@
 import { WebMercatorViewport } from 'deck.gl';
 import { FC, useEffect } from 'react';
 import { useMap } from 'react-map-gl/maplibre';
-import { atom, useRecoilValue, useResetRecoilState } from 'lib/jotai-compat/recoil';
+import { atom, useResetRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 
 import { BoundingBox, appToDeckBoundingBox } from '../bounding-box';
 
@@ -25,7 +26,7 @@ function isValidBoundingBox(value: BoundingBox | null | undefined): value is Bou
 
 export const MapBoundsFitter: FC = () => {
   const { current: map } = useMap();
-  const boundingBox = useRecoilValue(mapFitBoundsState);
+  const boundingBox = useAtomValue(mapFitBoundsState);
 
   const resetFitBounds = useResetRecoilState(mapFitBoundsState);
   useEffect(() => {

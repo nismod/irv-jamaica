@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import { useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 
 import { hoverPositionState } from 'lib/state/interactions/interaction-state';
 
 export const DataMapTooltip: FC<{ children: React.ReactNode }> = ({ children }) => {
-  const tooltipXY = useRecoilValue(hoverPositionState);
+  const tooltipXY = useAtomValue(hoverPositionState);
 
   return tooltipXY && React.Children.count(children) ? (
     <div

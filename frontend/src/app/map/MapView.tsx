@@ -1,5 +1,6 @@
 import { Suspense, useCallback } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 
 import { DataMapTooltip } from 'lib/data-map/DataMapTooltip';
 import { MapBoundsFitter, mapFitBoundsState } from 'lib/map/MapBoundsFitter';
@@ -57,8 +58,8 @@ const AppAttributionControl = withProps(MapHudAttributionControl, {
 });
 
 const MapHudDesktopLayout = () => {
-  const currentHazard = useRecoilValue(damageSourceState);
-
+  const currentHazard = useAtomValue(damageSourceState);
+  
   return (
     <MapHud left={globalStyleVariables.controlSidebarWidth}>
       <MapHudRegion position="top-left" StackProps={{ spacing: 1 }}>
@@ -99,7 +100,7 @@ const MapHudMobileLayout = () => {
 };
 
 const DataMapTooltipContent = () => {
-  const layerStates = useRecoilValue(layerHoverStates);
+  const layerStates = useAtomValue(layerHoverStates);
   return <TooltipContent layerStates={layerStates} />;
 };
 

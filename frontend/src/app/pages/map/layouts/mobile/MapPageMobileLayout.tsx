@@ -2,7 +2,7 @@ import { TabContext, useTabContext } from '@mui/lab';
 import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
 import React, { FC, Suspense, useRef, useState } from 'react';
 import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet';
-import { useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 
 import { mobileTabHasContentState } from 'lib/map/layouts/tab-has-content';
 
@@ -27,7 +27,7 @@ const TabNavigationAction: FC<{
   showLabel?: boolean;
   onChange?: any;
 }> = ({ value, label, IconComponent, selected, showLabel, onChange }) => {
-  const hasContent = useRecoilValue(mobileTabHasContentState(value));
+  const hasContent = useAtomValue(mobileTabHasContentState(value));
   const disabled = !hasContent;
 
   // cloneElement is needed here because MUI BottomNavigation uses Children.map and cloneElement

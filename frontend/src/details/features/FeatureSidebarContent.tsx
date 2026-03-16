@@ -27,7 +27,7 @@ import { DamagesSection } from './damages/DamagesSection';
 import { AdaptationSection } from './adaptation/AdaptationSection';
 import Download from '@mui/icons-material/Download';
 import { downloadFile } from 'lib/helpers';
-import { useRecoilValue } from 'lib/jotai-compat/recoil';
+import { useAtomValue } from 'jotai';
 import { selectedAssetDetails } from 'lib/state/interactions/interaction-state';
 
 const componentMapping: Record<keyof typeof NETWORKS_METADATA, DetailsComponent> = {
@@ -110,7 +110,7 @@ interface FeatureSidebarContentProps {
 
 const FeatureDetails = ({ assetType, feature, showRiskSection }) => {
   const DetailsComponent = componentMapping[assetType] ?? DefaultDetails;
-  const featureDetails = useRecoilValue(selectedAssetDetails(feature.id));
+  const featureDetails = useAtomValue(selectedAssetDetails(feature.id));
   const f = feature.properties;
   return (
     <>

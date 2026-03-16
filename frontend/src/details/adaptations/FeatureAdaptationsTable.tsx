@@ -12,8 +12,8 @@ import { colorMap } from 'lib/color-map';
 import { mapFitBoundsState } from 'lib/map/MapBoundsFitter';
 import { ColorBox } from 'lib/map/tooltip/content/ColorBox';
 import { useCallback, useMemo } from 'react';
-import { atom, useRecoilValue, useSetRecoilState } from 'lib/jotai-compat/recoil';
-import { useAtom } from 'jotai';
+import { atom, useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { useAtom, useAtomValue } from 'jotai';
 import {
   adaptationColorSpecState,
   adaptationFieldSpecState,
@@ -37,9 +37,9 @@ export const selectedAdaptationFeatureState = atom<ListFeature>({
 const JAMAICA_BBOX: BoundingBox = [-79.61792, 16.788765, -74.575195, 19.487308];
 
 export const FeatureAdaptationsTable = () => {
-  const layerSpec = useRecoilValue(adaptationLayerSpecState);
-  const fieldSpec = useRecoilValue(adaptationFieldSpecState);
-  const colorSpec = useRecoilValue(adaptationColorSpecState);
+  const layerSpec = useAtomValue(adaptationLayerSpecState);
+  const fieldSpec = useAtomValue(adaptationFieldSpecState);
+  const colorSpec = useAtomValue(adaptationColorSpecState);
 
   const setHoveredFeature = useSetRecoilState(hoveredAdaptationFeatureState);
   const [selectedFeature, setSelectedFeature] = useAtom(selectedAdaptationFeatureState as never) as [ListFeature | null, AtomSetter<ListFeature | null>];
