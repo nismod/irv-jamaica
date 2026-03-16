@@ -12,8 +12,8 @@ import { colorMap } from 'lib/color-map';
 import { mapFitBoundsState } from 'lib/map/MapBoundsFitter';
 import { ColorBox } from 'lib/map/tooltip/content/ColorBox';
 import { useCallback, useMemo } from 'react';
-import { atom, useSetRecoilState } from 'lib/jotai-compat/recoil';
-import { useAtom, useAtomValue } from 'jotai';
+import { atom } from 'lib/jotai-compat/recoil';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import {
   adaptationColorSpecState,
   adaptationFieldSpecState,
@@ -41,9 +41,9 @@ export const FeatureAdaptationsTable = () => {
   const fieldSpec = useAtomValue(adaptationFieldSpecState);
   const colorSpec = useAtomValue(adaptationColorSpecState);
 
-  const setHoveredFeature = useSetRecoilState(hoveredAdaptationFeatureState);
+  const setHoveredFeature = useSetAtom(hoveredAdaptationFeatureState);
   const [selectedFeature, setSelectedFeature] = useAtom(selectedAdaptationFeatureState as never) as [ListFeature | null, AtomSetter<ListFeature | null>];
-  const setMapFitBounds = useSetRecoilState(mapFitBoundsState);
+  const setMapFitBounds = useSetAtom(mapFitBoundsState);
 
   const handleZoomInFeature = useCallback(
     (feature: ListFeature) => feature && setMapFitBounds(extendBbox(feature.bbox, 1)),

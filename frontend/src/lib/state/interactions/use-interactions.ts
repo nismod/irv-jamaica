@@ -3,7 +3,8 @@ import { BitmapLayer, PickingInfo } from 'deck.gl';
 import { useSetAtom } from 'jotai';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
-import { useRecoilCallback, useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { useRecoilCallback } from 'lib/jotai-compat/recoil';
+import { useSetAtom } from 'jotai';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import {
@@ -114,7 +115,7 @@ function useSyncAllowedLayers(viewLayers: ViewLayer[]) {
   const allowedGroupLayers = mapValues(activeGroups, (viewLayers) =>
     viewLayers.map((viewLayer) => viewLayer.id),
   );
-  const setAllowedGroupLayers = useSetRecoilState(allowedGroupLayersState);
+  const setAllowedGroupLayers = useSetAtom(allowedGroupLayersState);
   setAllowedGroupLayers(allowedGroupLayers);
 }
 
@@ -123,7 +124,7 @@ export function useInteractions(
   lookupViewForDeck: (deckLayerId: string) => string,
   interactionGroups: Map<string, InteractionGroupConfig>,
 ) {
-  const setHoverXY = useSetRecoilState(hoverPositionState);
+  const setHoverXY = useSetAtom(hoverPositionState);
 
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
   const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);

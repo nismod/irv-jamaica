@@ -1,8 +1,7 @@
 import { Box } from '@mui/system';
 import { Alert } from '@mui/material';
 import { FC } from 'react';
-import { useSetRecoilState } from 'lib/jotai-compat/recoil';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
 import {
   CheckboxTree,
@@ -44,7 +43,7 @@ function useSyncProtectedFeatureLayers() {
 
   const protectedFeatureLayers = useAtomValue(protectedFeatureLayersState);
 
-  const setCheckboxState = useSetRecoilState(networkTreeCheckboxState);
+  const setCheckboxState = useSetAtom(networkTreeCheckboxState);
 
   const showLayers = protectedFeatureLayers.union(protectorFeatureLayers).intersection(allLayers);
 

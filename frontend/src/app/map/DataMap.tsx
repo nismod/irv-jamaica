@@ -1,6 +1,5 @@
 import { FC, useEffect, useMemo } from 'react';
-import { useSetRecoilState } from 'lib/jotai-compat/recoil';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 
 import { interactionGroupsState } from 'app/state/layers/interaction-groups';
 import { viewLayerConfigs } from 'app/state/layers/view-layers';
@@ -17,7 +16,7 @@ export const DataMapContainer: FC = () => {
   const background = useAtomValue(backgroundState);
   const showLabels = useAtomValue(showLabelsState);
   const viewLayers = useAtomValue(viewLayerConfigs);
-  const setViewLayersFlat = useSetRecoilState(viewLayersFlatState);
+  const setViewLayersFlat = useSetAtom(viewLayersFlatState);
   const { firstLabelId } = useBasemapStyle(background, showLabels);
   const interactionGroups = useAtomValue(interactionGroupsState);
   const flattenedViewLayers = useMemo(() => flattenConfig(viewLayers), [viewLayers]) as ViewLayer[];

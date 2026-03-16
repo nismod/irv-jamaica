@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { atomFamily, useSetRecoilState } from 'lib/jotai-compat/recoil';
+import { atomFamily } from 'lib/jotai-compat/recoil';
+import { useSetAtom } from 'jotai';
 
 export const mobileTabHasContentState = atomFamily({
   key: 'mobileTabHasContentState',
@@ -11,7 +12,7 @@ export const mobileTabHasContentState = atomFamily({
  * The `tabId` should match one of the `id` fields in `mobileTabsConfig` in this file.
  */
 export const MobileTabContentWatcher = ({ tabId }) => {
-  const setTabHasContent = useSetRecoilState(mobileTabHasContentState(tabId));
+  const setTabHasContent = useSetAtom(mobileTabHasContentState(tabId));
 
   useEffect(() => {
     setTabHasContent(true);

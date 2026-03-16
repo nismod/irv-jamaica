@@ -1,5 +1,5 @@
 import { Provider, atom as jotaiAtom, useAtomValue, useSetAtom, useStore } from 'jotai';
-import type { Atom } from 'jotai';
+import type { Atom, WritableAtom } from 'jotai';
 import { atomFamily as jotaiAtomFamily, loadable as jotaiLoadable, useResetAtom } from 'jotai/utils';
 import stableStringify from 'json-stable-stringify';
 import { useMemo } from 'react';
@@ -10,7 +10,7 @@ export class DefaultValue {}
 
 export type RecoilValue<T = unknown> = Atom<T>;
 export type RecoilValueReadOnly<T = unknown> = Atom<T>;
-export type RecoilState<T = unknown> = Atom<T>;
+export type RecoilState<T = unknown> = WritableAtom<T, any[], any>;
 
 export type TransactionInterface_UNSTABLE = {
   get: (state: any) => any;
@@ -48,7 +48,7 @@ export function atom<T = unknown>(options: {
     getLoadable: (state: any) => { state: 'loading' | 'hasValue' | 'hasError'; contents: unknown };
     trigger: 'get' | 'set';
   }) => void | (() => void)>;
-}): Atom<T> {
+}): WritableAtom<T, [T | DefaultValue | ((prev: T) => T | DefaultValue)], void> {
   const initialValue = options.default as T;
   const UNSET = Symbol(`${options.key}__unset`);
   const defaultRecoilValue =
@@ -126,7 +126,7 @@ export function atom<T = unknown>(options: {
     };
   }
 
-  return recoilAtom as unknown as Atom<T>;
+  return recoilAtom as unknown as WritableAtom<T, [T | DefaultValue | ((prev: T) => T | DefaultValue)], void>;
 }
 
 export function selector<T = unknown>(config: {
@@ -141,9 +141,9 @@ export function selector<T = unknown>(config: {
     newValue: T | DefaultValue,
   ) => void;
   dangerouslyAllowMutability?: boolean;
-}): Atom<T> {
+}): WritableAtom<T, any[], any> {
   if (!config.set) {
-    return jotaiAtom((get) => config.get({ get })) as unknown as Atom<T>;
+    return jotaiAtom((get) => config.get({ get })) as unknown as WritableAtom<T, any[], any>;
   }
 
   return jotaiAtom(
@@ -158,7 +158,7 @@ export function selector<T = unknown>(config: {
         value,
       );
     },
-  ) as unknown as Atom<T>;
+  ) as unknown as WritableAtom<T, any[], any>;
 }
 
 export function atomFamily<T = unknown, P = unknown>(config: {
@@ -171,7 +171,7 @@ export function atomFamily<T = unknown, P = unknown>(config: {
     getLoadable: (state: any) => { state: 'loading' | 'hasValue' | 'hasError'; contents: unknown };
     trigger: 'get' | 'set';
   }) => void | (() => void)>;
-}): (param: P) => Atom<T> {
+}): (param: P) => WritableAtom<T, [T | DefaultValue | ((prev: T) => T | DefaultValue)], void> {
   const defaultFactory =
     typeof config.default === 'function'
       ? (config.default as (param: P) => T)
@@ -185,7 +185,7 @@ export function atomFamily<T = unknown, P = unknown>(config: {
         effects: config.effects?.(param),
       }),
     (a, b) => resolveParamKey(a) === resolveParamKey(b),
-  ) as unknown as (param: P) => Atom<T>;
+  ) as unknown as (param: P) => WritableAtom<T, [T | DefaultValue | ((prev: T) => T | DefaultValue)], void>;
 }
 
 export function selectorFamily<T = unknown, P = unknown>(config: {
@@ -199,7 +199,7 @@ export function selectorFamily<T = unknown, P = unknown>(config: {
     },
     newValue: T | DefaultValue,
   ) => void;
-}): (param: P) => Atom<T> {
+}): (param: P) => WritableAtom<T, any[], any> {
   return jotaiAtomFamily(
     (param: P) =>
       selector({
@@ -208,7 +208,7 @@ export function selectorFamily<T = unknown, P = unknown>(config: {
         set: config.set?.(param),
       }),
     (a, b) => resolveParamKey(a) === resolveParamKey(b),
-  ) as unknown as (param: P) => Atom<T>;
+  ) as unknown as (param: P) => WritableAtom<T, any[], any>;
 }
 
 export function waitForAll(states: any): any {
@@ -228,10 +228,6 @@ export function waitForAll(states: any): any {
 export function noWait(state: any): any {
   const loadableAtom = jotaiLoadable(state);
   return jotaiAtom((get) => fromJotaiLoadable(get(loadableAtom)));
-}
-
-export function useSetRecoilState(state: any) {
-  return useSetAtom(state as never) as (value: any) => void;
 }
 
 export function useResetRecoilState(state: any) {
