@@ -1,4 +1,4 @@
-import { atom } from 'lib/jotai-compat/recoil';
+import { atom } from 'jotai';
 
 interface WindowWithDevicePixelRatio extends Window {
   devicePixelRatio: number;
@@ -19,7 +19,4 @@ function checkIsRetina() {
   );
 }
 
-export const isRetinaState = atom({
-  key: 'isRetinaState',
-  default: checkIsRetina(),
-});
+export const isRetinaState = atom(checkIsRetina());

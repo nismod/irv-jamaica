@@ -1,13 +1,9 @@
-import { atom } from 'lib/jotai-compat/recoil';
+import { atom } from 'jotai';
 
 import { BackgroundName } from 'app/config/basemaps';
 
-export const backgroundState = atom<BackgroundName>({
-  key: 'background',
-  default: 'light',
-});
+export const backgroundState = atom<BackgroundName>('light');
+backgroundState.debugLabel = 'background';
 
-export const showLabelsState = atom<boolean>({
-  key: 'showLabels',
-  default: true,
-});
+export const showLabelsState = atom<boolean>(true);
+showLabelsState.debugLabel = 'showLabels';

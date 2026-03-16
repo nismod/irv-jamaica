@@ -1,5 +1,6 @@
 import forEach from 'lodash/forEach';
-import { atom, atomFamily, selector, selectorFamily, useRecoilTransaction_UNSTABLE, waitForAll } from 'lib/jotai-compat/recoil';
+import { atom } from 'jotai';
+import { atomFamily, selector, useRecoilTransaction_UNSTABLE } from 'lib/jotai-compat/recoil';
 
 import {
   DataParamGroupConfig,
@@ -14,10 +15,7 @@ export type DataParamParam = Readonly<{
   param: string;
 }>;
 
-export const dataParamConfigState = atom({
-  key: 'dataParamConfigState',
-  default: {},
-});
+export const dataParamConfigState = atom({});
 
 export const dataParamState = atomFamily<Param, DataParamParam>({
   key: 'dataParamState',

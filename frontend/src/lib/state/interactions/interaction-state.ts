@@ -1,5 +1,6 @@
 import forEach from 'lodash/forEach';
-import { atom, atomFamily, selector, selectorFamily } from 'lib/jotai-compat/recoil';
+import { WritableAtom, atom } from 'jotai';
+import { atomFamily, selector, selectorFamily } from 'lib/jotai-compat/recoil';
 
 import { createClient } from 'lib/api-client/client';
 import { featuresReadFeature } from 'lib/api-client/sdk.gen';
@@ -20,10 +21,11 @@ export const hoverState = atomFamily<IT, string>({
   default: null,
 });
 
-export const hoverPositionState = atom({
-  key: 'hoverPosition',
-  default: null,
-});
+export const hoverPositionState = atom(null) as WritableAtom<
+  { x: number; y: number } | null,
+  unknown[],
+  void
+>;
 
 function readFromUrl(param: string) {
   const url = new URL(window.location.href);
@@ -102,10 +104,7 @@ export const selectedAssetDetails = selectorFamily({
 
 type AllowedGroupLayers = Record<string, string[]>;
 
-const allowedGroupLayersImpl = atom<AllowedGroupLayers>({
-  key: 'allowedGroupLayersImpl',
-  default: {},
-});
+const allowedGroupLayersImpl = atom<AllowedGroupLayers>({});
 
 function filterOneOrArray<T>(items: T | T[], filter: (item: T) => boolean) {
   if (Array.isArray(items)) {

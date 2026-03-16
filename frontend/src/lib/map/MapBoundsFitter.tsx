@@ -1,16 +1,16 @@
 import { WebMercatorViewport } from 'deck.gl';
 import { FC, useEffect } from 'react';
 import { useMap } from 'react-map-gl/maplibre';
-import { atom } from 'lib/jotai-compat/recoil';
-import { useAtomValue } from 'jotai';
+import { atom, useAtomValue, WritableAtom } from 'jotai';
 import { useResetAtom } from 'jotai/utils';
 
 import { BoundingBox, appToDeckBoundingBox } from '../bounding-box';
 
-export const mapFitBoundsState = atom<BoundingBox>({
-  key: 'mapFitBoundsState',
-  default: null,
-});
+export const mapFitBoundsState = atom<BoundingBox | null>(null) as WritableAtom<
+  BoundingBox | null,
+  unknown[],
+  void
+>;
 
 function isValidBoundingBox(value: BoundingBox | null | undefined): value is BoundingBox {
   if (!Array.isArray(value) || value.length !== 4) {

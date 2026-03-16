@@ -4,9 +4,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import type { Preview } from '@storybook/react-vite';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'jotai';
+import { Provider, atom } from 'jotai';
 
-import { atom } from '../src/lib/jotai-compat/recoil';
 import { theme } from '../src/app/theme';
 import { useSyncRecoilState } from '../src/lib/recoil/sync-state';
 import { viewStateEffect } from '../src/app/state/view';
@@ -23,10 +22,7 @@ initialize({
   },
 });
 
-const mockViewState = atom({
-  key: 'mockViewState',
-  default: 'exposure',
-});
+const mockViewState = atom('exposure');
 
 function SectionStyle({ children, view }) {
   useSyncRecoilState(mockViewState, view);
