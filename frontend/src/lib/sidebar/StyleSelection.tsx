@@ -5,13 +5,8 @@ import { useAtom } from 'jotai';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const StyleSelection: FC<{ id: string }> = ({ id }) => {
-  const [value, setValue] = useAtom(sectionStyleValueState(id) as never) as [
-    string,
-    AtomSetter<string>,
-  ];
+  const [value, setValue] = useAtom(sectionStyleValueState(id));
   const options = useAtomValue(sectionStyleOptionsState(id));
 
   const htmlId = useId();

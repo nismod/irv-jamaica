@@ -15,10 +15,8 @@ function FixedWidthDecorator(Story) {
   );
 }
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 function DataLoaderDecorator(Story, { args }) {
-  const [, setRegionSelection] = useAtom(selectionState('regions') as never) as [any, AtomSetter<any>];
+  const [, setRegionSelection] = useAtom(selectionState('regions'));
   useEffect(() => {
     setRegionSelection(args.region);
   }, [args.region, setRegionSelection]);

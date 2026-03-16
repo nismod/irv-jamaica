@@ -3,12 +3,10 @@ import { useAtom } from 'jotai';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 import { MarineLocationFilterType, MARINE_LOCATION_FILTERS } from '../domains';
-import { MarineFilters, marineFiltersState } from '../state/marine-filters';
-
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
+import { marineFiltersState } from '../state/marine-filters';
 
 export const MarineControl = () => {
-  const [marineFilters, setMarineFilters] = useAtom(marineFiltersState as never) as [MarineFilters, AtomSetter<MarineFilters>];
+  const [marineFilters, setMarineFilters] = useAtom(marineFiltersState);
 
   return (
     <>

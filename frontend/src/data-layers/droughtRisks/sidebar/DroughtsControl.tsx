@@ -20,15 +20,13 @@ import {
   droughtShowRiskState,
 } from '../state/data-selection';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const DroughtsControl: FC = () => {
-  const [rcp, setRcp] = useAtom(droughtRcpParamState as never) as [string, AtomSetter<string>];
-  const [showRisk, setShowRisk] = useAtom(droughtShowRiskState as never) as [boolean, AtomSetter<boolean>];
-  const [showOptions, setShowOptions] = useAtom(droughtShowOptionsState as never) as [boolean, AtomSetter<boolean>];
+  const [rcp, setRcp] = useAtom(droughtRcpParamState);
+  const [showRisk, setShowRisk] = useAtom(droughtShowRiskState);
+  const [showOptions, setShowOptions] = useAtom(droughtShowOptionsState);
 
-  const [riskVariable, setRiskVariable] = useAtom(droughtRiskVariableState as never) as [DroughtRiskVariableType, AtomSetter<DroughtRiskVariableType>];
-  const [optionsVariable, setOptionsVariable] = useAtom(droughtOptionsVariableState as never) as [DroughtOptionsVariableType, AtomSetter<DroughtOptionsVariableType>];
+  const [riskVariable, setRiskVariable] = useAtom(droughtRiskVariableState);
+  const [optionsVariable, setOptionsVariable] = useAtom(droughtOptionsVariableState);
 
   return (
     <>

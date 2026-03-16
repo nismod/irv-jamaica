@@ -7,10 +7,8 @@ import { TerrestrialLocationFilterType, TERRESTRIAL_LOCATION_FILTERS } from '../
 import { TerrestrialNonLandUseFilters, terrestrialNonLandUseFiltersState } from '../state/terrestrial-filters';
 import { TerrestrialLandUseTree } from './TerrestrialLandUseTree';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const TerrestrialControl = () => {
-  const [terrestrialFilters, setTerrestrialFilters] = useAtom(terrestrialNonLandUseFiltersState as never) as [TerrestrialNonLandUseFilters, AtomSetter<TerrestrialNonLandUseFilters>];
+  const [terrestrialFilters, setTerrestrialFilters] = useAtom(terrestrialNonLandUseFiltersState);
 
   return (
     <>

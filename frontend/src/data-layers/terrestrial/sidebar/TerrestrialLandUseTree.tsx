@@ -23,11 +23,9 @@ function getLabel(node, checked) {
   );
 }
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const TerrestrialLandUseTree = () => {
-  const [checkboxState, setCheckboxState] = useAtom(landuseTreeCheckboxState as never) as [CheckboxTreeState, AtomSetter<CheckboxTreeState>];
-  const [expanded, setExpanded] = useAtom(landuseTreeExpandedState as never) as [string[], AtomSetter<string[]>];
+  const [checkboxState, setCheckboxState] = useAtom(landuseTreeCheckboxState);
+  const [expanded, setExpanded] = useAtom(landuseTreeExpandedState);
 
   return (
     <CheckboxTree

@@ -3,11 +3,7 @@ import { Alert } from '@mui/material';
 import { FC } from 'react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
-import {
-  CheckboxTree,
-  CheckboxTreeState,
-  recalculateCheckboxStates,
-} from 'lib/controls/checkbox-tree/CheckboxTree';
+import { CheckboxTree, recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { useUpdateDataParam } from 'lib/state/data-params';
 
 import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
@@ -99,17 +95,9 @@ function getLabel(node, checked) {
   );
 }
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const NetworkControl: FC = () => {
-  const [checkboxState, setCheckboxState] = useAtom(networkTreeCheckboxState as never) as [
-    CheckboxTreeState,
-    AtomSetter<CheckboxTreeState>,
-  ];
-  const [expanded, setExpanded] = useAtom(networkTreeExpandedState as never) as [
-    string[],
-    AtomSetter<string[]>,
-  ];
+  const [checkboxState, setCheckboxState] = useAtom(networkTreeCheckboxState);
+  const [expanded, setExpanded] = useAtom(networkTreeExpandedState);
 
   const showAdaptations = useAtomValue(showAdaptationsState);
   const showProtectorFeatureLayers = useAtomValue(showProtectorFeaturesState);

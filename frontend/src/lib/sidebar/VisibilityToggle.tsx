@@ -5,17 +5,9 @@ import { useAtom } from 'jotai';
 
 import { sectionVisibilityState, sidebarSectionExpandedState } from 'lib/state/sections';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const VisibilityToggle = ({ id }) => {
-  const [visibility, setVisibility] = useAtom(sectionVisibilityState(id) as never) as [
-    boolean,
-    AtomSetter<boolean>,
-  ];
-  const [, setExpanded] = useAtom(sidebarSectionExpandedState(id) as never) as [
-    boolean,
-    AtomSetter<boolean>,
-  ];
+  const [visibility, setVisibility] = useAtom(sectionVisibilityState(id));
+  const [, setExpanded] = useAtom(sidebarSectionExpandedState(id));
 
   function handleClick(e) {
     setVisibility(!visibility);

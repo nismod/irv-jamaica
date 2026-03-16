@@ -24,11 +24,9 @@ import { LayerStylePanel } from 'lib/sidebar/ui/LayerStylePanel';
 
 import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'data-layers/hazards/metadata';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const DamageSourceControl = () => {
-  const [damageSource, setDamageSource] = useAtom(damageSourceState as never) as [string, AtomSetter<string>];
-  const [damageType, setDamageType] = useAtom(damageTypeState as never) as [string, AtomSetter<string>];
+  const [damageSource, setDamageSource] = useAtom(damageSourceState);
+  const [damageType, setDamageType] = useAtom(damageTypeState);
   const id = useId();
 
   return (

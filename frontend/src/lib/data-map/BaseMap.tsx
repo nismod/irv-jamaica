@@ -6,8 +6,6 @@ import { useAtom } from 'jotai';
 
 import { mapViewStateState, useSyncMapUrl } from 'lib/state/map-view/map-view-state';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export interface BaseMapProps {
   children?: ReactNode;
   mapStyle: StyleSpecification;
@@ -45,10 +43,7 @@ export const BaseMap: FC<{ children?: ReactNode; mapStyle: StyleSpecification }>
   children,
   mapStyle,
 }) => {
-  const [viewState, setViewState] = useAtom(mapViewStateState as never) as [
-    MapViewState,
-    AtomSetter<MapViewState>,
-  ];
+  const [viewState, setViewState] = useAtom(mapViewStateState);
   useSyncMapUrl();
   function handleViewStateChange({ viewState }: { viewState: MapViewState }) {
     setViewState(viewState);

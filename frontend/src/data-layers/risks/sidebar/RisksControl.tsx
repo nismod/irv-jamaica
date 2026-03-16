@@ -21,10 +21,8 @@ function capitalise(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const RisksControl = () => {
-  const [riskType, setRiskType] = useAtom(sectionStyleValueState('risks') as never) as [string, AtomSetter<string>];
+  const [riskType, setRiskType] = useAtom(sectionStyleValueState('risks'));
   const riskTypes = useAtomValue(sectionStyleOptionsState('risks'));
   const sector = useAtomValue(dataParamState({ group: 'risks', param: 'sector' }));
 

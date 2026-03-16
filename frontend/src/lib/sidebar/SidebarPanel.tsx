@@ -7,17 +7,12 @@ import { sidebarSectionExpandedState } from 'lib/state/sections';
 
 import { VisibilityToggle } from './VisibilityToggle';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const SidebarPanel: FC<{
   id: string;
   title: string;
   children: ReactNode;
 }> = ({ id, title, children }) => {
-  const [expanded, setExpanded] = useAtom(sidebarSectionExpandedState(id) as never) as [
-    boolean,
-    AtomSetter<boolean>,
-  ];
+  const [expanded, setExpanded] = useAtom(sidebarSectionExpandedState(id));
   const htmlId = useId();
 
   return (

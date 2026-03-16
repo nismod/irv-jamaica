@@ -11,10 +11,8 @@ import { DataParam } from 'lib/sidebar/ui/params/DataParam';
 
 import { adaptationFieldState } from '../state/layer';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const ProtectedFeaturesControl: FC = () => {
-  const [adaptationField, setAdaptationField] = useAtom(adaptationFieldState as never) as ['avoided_ead_mean' | 'avoided_eael_mean' | 'adaptation_cost' | 'cost_benefit_ratio', AtomSetter<'avoided_ead_mean' | 'avoided_eael_mean' | 'adaptation_cost' | 'cost_benefit_ratio'>];
+  const [adaptationField, setAdaptationField] = useAtom(adaptationFieldState);
   return (
     <LayerStylePanel>
       <InputSection>

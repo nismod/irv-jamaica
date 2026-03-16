@@ -12,21 +12,12 @@ import { useCallback, useState } from 'react';
 import { useAtom } from 'jotai';
 
 import { backgroundState, showLabelsState } from './layers-state';
-import { BackgroundName } from 'app/config/basemaps';
-
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 
 export const MapLayerSelection = () => {
   const [showPopover, setShowPopover] = useState(false);
 
-  const [background, setBackground] = useAtom(backgroundState as never) as [
-    BackgroundName,
-    AtomSetter<BackgroundName>,
-  ];
-  const [showLabels, setShowLabels] = useAtom(showLabelsState as never) as [
-    boolean,
-    AtomSetter<boolean>,
-  ];
+  const [background, setBackground] = useAtom(backgroundState);
+  const [showLabels, setShowLabels] = useAtom(showLabelsState);
 
   const other = background === 'satellite' ? 'light' : 'satellite';
 

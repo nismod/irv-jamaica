@@ -17,11 +17,9 @@ function FixedWidthDecorator(Story) {
   );
 }
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 function DataLoaderDecorator(Story, { args }) {
   const { feature, id } = args;
-  const [, setFeatureSelection] = useAtom(selectionState('solutions') as never) as [any, AtomSetter<any>];
+  const [, setFeatureSelection] = useAtom(selectionState('solutions'));
 
   useEffect(() => {
     const mockSelection = {

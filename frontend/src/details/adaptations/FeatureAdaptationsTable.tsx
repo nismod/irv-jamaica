@@ -22,8 +22,6 @@ import {
 
 import './asset-table.css';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const hoveredAdaptationFeatureState = atom<ListFeature>({
   key: 'hoveredAdaptationFeatureState',
   default: null,
@@ -42,7 +40,7 @@ export const FeatureAdaptationsTable = () => {
   const colorSpec = useAtomValue(adaptationColorSpecState);
 
   const setHoveredFeature = useSetAtom(hoveredAdaptationFeatureState);
-  const [selectedFeature, setSelectedFeature] = useAtom(selectedAdaptationFeatureState as never) as [ListFeature | null, AtomSetter<ListFeature | null>];
+  const [selectedFeature, setSelectedFeature] = useAtom(selectedAdaptationFeatureState);
   const setMapFitBounds = useSetAtom(mapFitBoundsState);
 
   const handleZoomInFeature = useCallback(

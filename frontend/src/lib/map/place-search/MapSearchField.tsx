@@ -5,13 +5,8 @@ import { useAtom } from 'jotai';
 import { usePlaceSearch } from './use-place-search';
 import { placeSearchQueryState } from './search-state';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const MapSearchField = ({ onSelectedResult }) => {
-  const [searchValue, setSearchValue] = useAtom(placeSearchQueryState as never) as [
-    string,
-    AtomSetter<string>,
-  ];
+  const [searchValue, setSearchValue] = useAtom(placeSearchQueryState);
   const [searchResultsOpen, setSearchResultsOpen] = useState(true);
 
   const { loading, searchResults } = usePlaceSearch(searchValue);

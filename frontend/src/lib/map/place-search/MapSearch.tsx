@@ -5,15 +5,10 @@ import { useAtom } from 'jotai';
 import { MapSearchField } from './MapSearchField';
 import { placeSearchActiveState } from './search-state';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 const blankSpaceWidth = 8;
 
 export const MapSearch = ({ onSelectedResult }) => {
-  const [expanded, setExpanded] = useAtom(placeSearchActiveState as never) as [
-    boolean,
-    AtomSetter<boolean>,
-  ];
+  const [expanded, setExpanded] = useAtom(placeSearchActiveState);
 
   return (
     <ClickAwayListener onClickAway={() => setExpanded(false)}>

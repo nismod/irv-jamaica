@@ -7,8 +7,6 @@ import { atom } from 'lib/jotai-compat/recoil';
 import { useAtom } from 'jotai';
 import { syncEffect } from 'lib/jotai-compat/recoil-sync';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 const noticeAcceptedDateState = atom<Date | null>({
   key: 'noticeAcceptedDate',
   default: null,
@@ -22,10 +20,7 @@ const noticeAcceptedDateState = atom<Date | null>({
 });
 
 export const Notice = () => {
-  const [acceptedDate, setAcceptedDate] = useAtom(noticeAcceptedDateState as never) as [
-    Date | null,
-    AtomSetter<Date | null>,
-  ];
+  const [acceptedDate, setAcceptedDate] = useAtom(noticeAcceptedDateState);
 
   const handleAccept = useCallback(() => {
     setAcceptedDate(new Date());

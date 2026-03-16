@@ -5,10 +5,8 @@ import { useCallback } from 'react';
 import { RegionLevel } from '../metadata';
 import { regionLevelState } from '../state/data-selection';
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
-
 export const RegionLevelSelection = () => {
-  const [regionLevel, setRegionLevel] = useAtom(regionLevelState as never) as [RegionLevel, AtomSetter<RegionLevel>];
+  const [regionLevel, setRegionLevel] = useAtom(regionLevelState);
 
   const handleChange = useCallback(
     (e, value: string) => {

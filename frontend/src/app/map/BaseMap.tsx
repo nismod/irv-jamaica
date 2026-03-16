@@ -13,7 +13,6 @@ export interface BaseMapProps {
   children?: ReactNode;
 }
 
-type AtomSetter<T> = (value: T | ((prev: T) => T)) => void;
 type MapViewStateLike = {
   zoom: number;
   latitude: number;
@@ -47,10 +46,7 @@ function getQueryViewState() {
 export const BaseMapContainer: FC<BaseMapProps> = ({ children }) => {
   const background = useAtomValue(backgroundState);
   const showLabels = useAtomValue(showLabelsState);
-  const [viewState, setViewState] = useAtom(mapViewStateState as never) as [
-    MapViewStateLike,
-    AtomSetter<MapViewStateLike>,
-  ];
+  const [viewState, setViewState] = useAtom(mapViewStateState);
   const setNonCoordsViewState = useSetAtom(nonCoordsMapViewStateState);
   const { mapStyle } = useBasemapStyle(background, showLabels);
 
