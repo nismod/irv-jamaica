@@ -21,9 +21,9 @@ export const locationAtom = atomWithLocation({
 
 function readParam(searchParams: URLSearchParams | undefined, key: string): number {
   const raw = searchParams?.get(key);
-  if (raw == null) return -1;
+  if (raw == null) return NaN;
   const parsed = Number(raw);
-  return isNaN(parsed) ? -1 : parsed;
+  return isNaN(parsed) ? NaN : parsed;
 }
 
 function makeUrlNumberAtom(itemKey: string, maximumFractionDigits: number) {

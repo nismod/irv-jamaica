@@ -19,30 +19,13 @@ const INITIAL_VIEW_STATE = {
 };
 const INITIAL_NON_COORDS_STATE = omit(INITIAL_VIEW_STATE, ['latitude', 'longitude', 'zoom']);
 
-function getQueryViewState() {
-  const query = new URLSearchParams(window.location.search);
-  const lat = Number(query.get('lat'));
-  const lon = Number(query.get('lon'));
-  const zoom = Number(query.get('zoom'));
-
-  if (!Number.isFinite(lat) || !Number.isFinite(lon) || !Number.isFinite(zoom)) {
-    return null;
-  }
-
-  return {
-    ...INITIAL_VIEW_STATE,
-    latitude: lat,
-    longitude: lon,
-    zoom,
-  };
-}
-
 export const BaseMapContainer: FC<BaseMapProps> = ({ children }) => {
   const background = useAtomValue(backgroundState);
   const showLabels = useAtomValue(showLabelsState);
   const [viewState, setViewState] = useAtom(mapViewStateState);
   const setNonCoordsViewState = useSetAtom(nonCoordsMapViewStateState);
   const { mapStyle } = useBasemapStyle(background, showLabels);
+  console.log('BaseMapContainer render', { viewState });
 
   const hasInvalidViewState =
     !Number.isFinite(viewState.zoom) ||
@@ -51,7 +34,7 @@ export const BaseMapContainer: FC<BaseMapProps> = ({ children }) => {
     viewState.zoom < 0;
 
   if (hasInvalidViewState) {
-    setViewState(getQueryViewState() ?? INITIAL_VIEW_STATE);
+    setViewState(INITIAL_VIEW_STATE);
     setNonCoordsViewState(INITIAL_NON_COORDS_STATE);
     // wait for initial state to be set before showing a map.
     return null;
