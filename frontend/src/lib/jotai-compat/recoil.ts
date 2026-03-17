@@ -1,9 +1,7 @@
 import { atom as jotaiAtom, useStore } from 'jotai';
-import { loadable as jotaiLoadable } from 'jotai/utils';
+import { loadable as jotaiLoadable, RESET } from 'jotai/utils';
 import stableStringify from 'json-stable-stringify';
 import { useMemo } from 'react';
-
-export class DefaultValue {}
 
 export type TransactionInterface_UNSTABLE = {
   get: (state: any) => any;
@@ -57,7 +55,7 @@ export function useRecoilCallback<TArgs extends unknown[], TResult>(
     };
 
     const reset: TransactionInterface_UNSTABLE['reset'] = (state) => {
-      store.set(state as never, new DefaultValue() as never);
+      store.set(state as never, RESET as never);
     };
 
     const txOps: TransactionInterface_UNSTABLE = {

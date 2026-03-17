@@ -1,6 +1,5 @@
 import { atom } from 'jotai';
 import { atomWithDefault, RESET } from 'jotai/utils';
-import { DefaultValue } from 'lib/jotai-compat/recoil';
 
 import { useSyncStateThrottled } from 'lib/recoil/sync-state-throttled';
 
@@ -20,7 +19,7 @@ export const mapViewStateState = atom(
     zoom: get(mapZoomState),
   }),
   (_get, set, newValue) => {
-    if (newValue instanceof DefaultValue) {
+    if (newValue === RESET) {
       set(mapZoomState, RESET);
       set(mapLatState, RESET);
       set(mapLonState, RESET);

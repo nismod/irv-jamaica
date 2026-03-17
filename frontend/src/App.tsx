@@ -1,5 +1,4 @@
 import { Provider } from 'jotai';
-import { RecoilURLSync } from 'lib/jotai-compat/recoil-sync';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -18,7 +17,6 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Notice } from 'app/Notice';
-import { RecoilLocalStorageSync } from 'lib/recoil/sync-stores/RecoilLocalStorageSync';
 
 export const navItems: NavItemConfig[] = [
   {
@@ -77,14 +75,7 @@ const deserialise = (value) => {
 export const App = () => {
   return (
     <Provider>
-      <RecoilLocalStorageSync storeKey="local-storage">
-        <RecoilURLSync
-          storeKey="url-json"
-          location={{ part: 'queryParams' }}
-          serialize={serialise}
-          deserialize={deserialise}
-        >
-          <StyledEngineProvider injectFirst>
+      <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
               <QueryClientProvider client={queryClient}>
                 <Router>
@@ -109,8 +100,6 @@ export const App = () => {
               </QueryClientProvider>
             </ThemeProvider>
           </StyledEngineProvider>
-        </RecoilURLSync>
-      </RecoilLocalStorageSync>
     </Provider>
   );
 };
