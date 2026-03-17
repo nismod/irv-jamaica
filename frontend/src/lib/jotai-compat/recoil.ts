@@ -88,20 +88,6 @@ export function selectorFamily<T = unknown, P = unknown>(config: {
   ) as unknown as (param: P) => WritableAtom<T, any[], any>;
 }
 
-export function waitForAll(states: any): any {
-  if (Array.isArray(states)) {
-    return jotaiAtom(async (get) => Promise.all(states.map((state) => get(state))));
-  }
-
-  return jotaiAtom(async (get) => {
-    const entries = Object.entries(states);
-    const resolved = await Promise.all(
-      entries.map(async ([key, state]) => [key, await get(state as never)]),
-    );
-    return Object.fromEntries(resolved);
-  });
-}
-
 export function noWait(state: any): any {
   const loadableAtom = jotaiLoadable(state);
   return jotaiAtom((get) => fromJotaiLoadable(get(loadableAtom)));
