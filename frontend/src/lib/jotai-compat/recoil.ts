@@ -265,27 +265,3 @@ export function useRecoilCallback<TArgs extends unknown[], TResult>(
     });
   }, [store, callbackFactory, depsKey]);
 }
-
-export function useRecoilTransaction_UNSTABLE<TArgs extends unknown[], TResult>(
-  transactionFactory: (ops: TransactionInterface_UNSTABLE) => (...args: TArgs) => TResult,
-  deps: unknown[] = [],
-) {
-  const store = useStore();
-  const depsKey = resolveParamKey(deps);
-
-  return useMemo(() => {
-    const set: TransactionInterface_UNSTABLE['set'] = (state, value) => {
-      store.set(state as never, value as never);
-    };
-
-    const reset: TransactionInterface_UNSTABLE['reset'] = (state) => {
-      store.set(state as never, new DefaultValue() as never);
-    };
-
-    return transactionFactory({
-      get: (state) => store.get(state),
-      set,
-      reset,
-    });
-  }, [store, transactionFactory, depsKey]);
-}
