@@ -1,5 +1,5 @@
-import { Atom } from 'jotai';
-import { waitForAll, selector, selectorFamily } from 'lib/jotai-compat/recoil';
+import { Atom, atom } from 'jotai';
+import { atomFamily } from 'jotai-family';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import { ConfigTree } from 'lib/nested-config/config-tree';
@@ -23,30 +23,27 @@ const VIEW_LAYERS = [
 
 const layerCache = new Map<string, Atom<ViewLayer>>();
 
-const viewLayerConfig = selectorFamily<ViewLayer, string>({
-  key: 'viewLayerConfig',
-  get:
-    (type) =>
-    async ({ get }) => {
-      if (layerCache.has(type)) {
-        const layer = layerCache.get(type);
-        return get(layer);
-      }
-      const layer = await importLayerState(type);
+const viewLayerConfig = atomFamily((type: string) =>
+  atom<ViewLayer | Promise<ViewLayer>>((get) => {
+    if (layerCache.has(type)) {
+      // Synchronous path: dynamic import already resolved, no suspend on re-evaluation
+      return get(layerCache.get(type));
+    }
+    // Async path: only taken once per layer type on first load
+    return importLayerState(type).then((layer) => {
       layerCache.set(type, layer);
       return get(layer);
-    },
-});
+    });
+  }),
+);
 
-export const viewLayerConfigs = selector<ConfigTree<ViewLayer>>({
-  key: 'viewLayerConfigs',
-  get: ({ get }) => {
-    return get(
-      waitForAll([
-        ...VIEW_LAYERS.map(viewLayerConfig),
-        featureBoundingBoxLayerState,
-        labelsLayerState,
-      ]),
-    );
-  },
+export const viewLayerConfigs = atom<ConfigTree<ViewLayer> | Promise<ConfigTree<ViewLayer>>>((get) => {
+  const extraLayers = [get(featureBoundingBoxLayerState), get(labelsLayerState)];
+  const layerResults = VIEW_LAYERS.map((type) => get(viewLayerConfig(type)));
+
+  if (layerResults.some((r) => r instanceof Promise)) {
+    return Promise.all(layerResults).then((resolved) => [...resolved, ...extraLayers]);
+  }
+
+  return [...(layerResults as ViewLayer[]), ...extraLayers];
 });
