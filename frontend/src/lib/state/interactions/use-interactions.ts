@@ -1,10 +1,10 @@
 import { Texture } from '@luma.gl/core';
 import { BitmapLayer, PickingInfo } from 'deck.gl';
-import { useSetAtom } from 'jotai';
+import { WritableAtom, useSetAtom } from 'jotai';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
-import { useRecoilCallback } from 'lib/jotai-compat/recoil';
-import { useSetAtom } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import {
@@ -21,7 +21,6 @@ import {
   selectionState,
   allowedGroupLayersState,
 } from './interaction-state';
-import { RecoilStateFamily } from 'lib/recoil/types';
 import { pixelSelectionState } from '../pixel-driller';
 
 function processRasterTarget(info: any): RasterTarget {
@@ -86,14 +85,19 @@ function processPickedObject(
 
 type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
 
-function useSetInteractionGroupState(
-  stateFamily: RecoilStateFamily<InteractionLayer | InteractionLayer[], string>,
+type AtomFamily<T> = (groupName: string) => WritableAtom<T, unknown[], void>;
+
+function useSetInteractionGroupState<T>(
+  stateFamily: AtomFamily<T>,
 ) {
-  return useRecoilCallback(({ set }) => {
-    return (groupName: string, value: InteractionLayer | InteractionLayer[]) => {
-      set(stateFamily(groupName), value);
-    };
-  });
+  return useAtomCallback(
+    useCallback(
+      (_get, set, groupName: string, value: T) => {
+        set(stateFamily(groupName), value as never);
+      },
+      [stateFamily],
+    ),
+  );
 }
 
 /**
@@ -128,7 +132,7 @@ export function useInteractions(
 
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
   const setInteractionGroupSelection = useSetInteractionGroupState(
-    selectionState as unknown as RecoilStateFamily<InteractionLayer | InteractionLayer[], string>,
+    selectionState as unknown as AtomFamily<InteractionLayer | InteractionLayer[]>,
   );
   const setPixelSelection = useSetAtom(pixelSelectionState);
 

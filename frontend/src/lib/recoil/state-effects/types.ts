@@ -1,7 +1,11 @@
-import { TransactionInterface_UNSTABLE } from 'lib/jotai-compat/recoil';
+type Ops = {
+  get: (state: any) => any;
+  set: (state: any, value: any) => void;
+  reset: (state: any) => void;
+};
 
 export type StateEffect<T> = (
-  ops: TransactionInterface_UNSTABLE,
+  ops: Ops,
   value: T,
   previousValue: T,
 ) => void;
