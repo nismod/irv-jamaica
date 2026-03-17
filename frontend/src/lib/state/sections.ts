@@ -1,54 +1,28 @@
-import { bool, string } from 'lib/jotai-compat/recoil-refine';
-import { atomFamily } from 'lib/jotai-compat/recoil';
-import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
+import { atom } from 'jotai';
+import { atomFamily } from 'jotai-family';
+import { locationAtom, readUrlBool, readUrlString, setUrlParam } from 'lib/state/map-view/map-url';
 
-export const sectionVisibilityState = atomFamily<boolean, string>({
-  key: 'sectionVisibilityState',
-  default: false,
-  effects: (id) => [
-    ({ onSet }) => {
-      onSet((newVisibility) => {
-        const url = new URL(window.location.href);
-        url.searchParams.set(id, newVisibility.toString());
-        window.history.replaceState({}, '', url.toString());
-      });
-    },
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: id,
-      refine: bool(),
-    }),
-  ],
-});
+export const sectionVisibilityState = atomFamily((id: string) =>
+  atom(
+    (get) => readUrlBool(get(locationAtom).searchParams, id, false),
+    (_get, set, value: boolean) => set(locationAtom, setUrlParam(id, value)),
+  ),
+);
 
-export const sidebarSectionExpandedState = atomFamily({
-  key: 'sidebarSectionExpandedState',
-  default: false,
-});
+export const sidebarSectionExpandedState = atomFamily((_id: string) => atom(false));
 
-export const sectionStyleValueState = atomFamily<string, string>({
-  key: 'sectionStyleValueState',
-  default: '',
-  effects: (id) => [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: `${id}Style`,
-      refine: string(),
-    }),
-  ],
-});
+export const sectionStyleValueState = atomFamily((id: string) =>
+  atom(
+    (get) => readUrlString(get(locationAtom).searchParams, `${id}Style`, ''),
+    (_get, set, value: string) => set(locationAtom, setUrlParam(`${id}Style`, value)),
+  ),
+);
 
 export interface StyleSelectionOption {
   id: string;
   label: string;
 }
 
-export const sectionStyleOptionsState = atomFamily<StyleSelectionOption[], string>({
-  key: 'sectionStyleOptionsState',
-  default: [],
-});
+export const sectionStyleOptionsState = atomFamily((_id: string) => atom<StyleSelectionOption[]>([]));
 
-export const sectionStyleDefaultValueState = atomFamily<string, string>({
-  key: 'sectionStyleDefaultValueState',
-  default: null,
-});
+export const sectionStyleDefaultValueState = atomFamily((_id: string) => atom<string | null>(null));

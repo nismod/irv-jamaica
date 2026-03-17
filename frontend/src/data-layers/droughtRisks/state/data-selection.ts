@@ -1,41 +1,20 @@
-import { atom } from 'lib/jotai-compat/recoil';
-import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
-import { bool, string } from 'lib/jotai-compat/recoil-refine';
+import { atom } from 'jotai';
+
+import { locationAtom, readUrlBool, readUrlString, setUrlParam } from 'lib/state/map-view/map-url';
 
 import { DroughtRiskVariableType } from '../metadata';
 
-export const droughtRcpParamState = atom<string>({
-  key: 'droughtRcpParamState',
-  default: '2.6',
-  effects: [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: 'drRcp',
-      refine: string(),
-    }),
-  ],
-});
+export const droughtRcpParamState = atom(
+  (get) => readUrlString(get(locationAtom).searchParams, 'drRcp', '2.6'),
+  (_get, set, value: string) => set(locationAtom, setUrlParam('drRcp', value)),
+);
 
-export const droughtShowRiskState = atom<boolean>({
-  key: 'droughtShowRiskState',
-  default: true,
-  effects: [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: 'drShowRi',
-      refine: bool(),
-    }),
-  ],
-});
+export const droughtShowRiskState = atom(
+  (get) => readUrlBool(get(locationAtom).searchParams, 'drShowRi', true),
+  (_get, set, value: boolean) => set(locationAtom, setUrlParam('drShowRi', value)),
+);
 
-export const droughtRiskVariableState = atom<DroughtRiskVariableType>({
-  key: 'droughtRiskVariableState',
-  default: 'mean_monthly_water_stress_',
-  effects: [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: 'drRiVar',
-      refine: string(),
-    }),
-  ],
-});
+export const droughtRiskVariableState = atom(
+  (get) => readUrlString(get(locationAtom).searchParams, 'drRiVar', 'mean_monthly_water_stress_') as DroughtRiskVariableType,
+  (_get, set, value: DroughtRiskVariableType) => set(locationAtom, setUrlParam('drRiVar', value)),
+);

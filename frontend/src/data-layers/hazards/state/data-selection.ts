@@ -1,27 +1,15 @@
-import { Atom } from 'jotai';
-import { bool } from 'lib/jotai-compat/recoil-refine';
+import { Atom, atom } from 'jotai';
+import { atomFamily } from 'jotai-family';
 import fromPairs from 'lodash/fromPairs';
-import { atomFamily } from 'lib/jotai-compat/recoil';
-import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 
-export const hazardSelectionState = atomFamily<boolean, string>({
-  key: 'hazardSelectionState',
-  default: false,
-  effects: (id) => [
-    ({ onSet }) => {
-      onSet((newVisibility) => {
-        const url = new URL(window.location.href);
-        url.searchParams.set(id, newVisibility.toString());
-        window.history.replaceState({}, '', url.toString());
-      });
-    },
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: id,
-      refine: bool(),
-    }),
-  ],
-});
+import { locationAtom, readUrlBool, setUrlParam } from 'lib/state/map-view/map-url';
+
+export const hazardSelectionState = atomFamily((id: string) =>
+  atom(
+    (get) => readUrlBool(get(locationAtom).searchParams, id, false),
+    (_get, set, value: boolean) => set(locationAtom, setUrlParam(id, value)),
+  ),
+);
 
 interface TransactionGetterInterface {
   get<T>(a: Atom<T>): T;

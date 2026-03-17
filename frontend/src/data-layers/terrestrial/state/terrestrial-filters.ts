@@ -1,9 +1,8 @@
 import { LandUseOption, TerrestrialLocationFilterType } from 'data-layers/terrestrial/domains';
-import { atom } from 'lib/jotai-compat/recoil';
-import { atom as jotaiAtom } from 'jotai';
-import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
+import { atom } from 'jotai';
+
+import { locationAtom, readUrlJson, setUrlParam } from 'lib/state/map-view/map-url';
 import { landuseFilterState } from '../sidebar/landuse-tree';
-import { array, bool, dict, number, object } from 'lib/jotai-compat/recoil-refine';
 
 export type TerrestrialLocationFilters = Record<TerrestrialLocationFilterType, boolean>;
 
@@ -17,34 +16,27 @@ export type TerrestrialFilters = TerrestrialNonLandUseFilters & {
   landuse_desc: Record<LandUseOption, boolean>;
 };
 
-export const terrestrialNonLandUseFiltersState = atom<TerrestrialNonLandUseFilters>({
-  key: 'terrestrialNonLandUseFiltersState',
-  default: {
-    slope_degrees: [0, 90],
-    elevation_m: [0, 2250],
-    location_filters: {
-      within_forest_100m: false,
-      is_protected: false,
-      is_proposed_protected: false,
-      within_major_river_50m: false,
-      within_large_stream_50m: false,
-      within_headwater_stream_50m: false,
-    },
+const defaultTerrestrialNonLandUseFilters: TerrestrialNonLandUseFilters = {
+  slope_degrees: [0, 90],
+  elevation_m: [0, 2250],
+  location_filters: {
+    within_forest_100m: false,
+    is_protected: false,
+    is_proposed_protected: false,
+    within_major_river_50m: false,
+    within_large_stream_50m: false,
+    within_headwater_stream_50m: false,
   },
-  effects: [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: 'terrFilt',
-      refine: object({
-        slope_degrees: array(number()),
-        elevation_m: array(number()),
-        location_filters: dict(bool()),
-      }),
-    }),
-  ],
-});
+};
 
-export const terrestrialFiltersState = jotaiAtom<TerrestrialFilters>((get) => ({
+export const terrestrialNonLandUseFiltersState = atom(
+  (get) => readUrlJson<TerrestrialNonLandUseFilters>(
+    get(locationAtom).searchParams, 'terrFilt', defaultTerrestrialNonLandUseFilters,
+  ),
+  (_get, set, value: TerrestrialNonLandUseFilters) => set(locationAtom, setUrlParam('terrFilt', value)),
+);
+
+export const terrestrialFiltersState = atom<TerrestrialFilters>((get) => ({
   landuse_desc: get(landuseFilterState),
   ...get(terrestrialNonLandUseFiltersState),
 }));

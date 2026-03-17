@@ -1,29 +1,15 @@
-import { atom } from 'lib/jotai-compat/recoil';
-import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
-import { bool, string } from 'lib/jotai-compat/recoil-refine';
+import { atom } from 'jotai';
+
+import { locationAtom, readUrlBool, readUrlString, setUrlParam } from 'lib/state/map-view/map-url';
 
 import { DroughtOptionsVariableType } from '../metadata';
 
-export const droughtShowOptionsState = atom<boolean>({
-  key: 'droughtShowOptionsState',
-  default: true,
-  effects: [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: 'drShowOp',
-      refine: bool(),
-    }),
-  ],
-});
+export const droughtShowOptionsState = atom(
+  (get) => readUrlBool(get(locationAtom).searchParams, 'drShowOp', true),
+  (_get, set, value: boolean) => set(locationAtom, setUrlParam('drShowOp', value)),
+);
 
-export const droughtOptionsVariableState = atom<DroughtOptionsVariableType>({
-  key: 'droughtOptionsVariableState',
-  default: 'cost_jmd',
-  effects: [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: 'drOpVar',
-      refine: string(),
-    }),
-  ],
-});
+export const droughtOptionsVariableState = atom(
+  (get) => readUrlString(get(locationAtom).searchParams, 'drOpVar', 'cost_jmd') as DroughtOptionsVariableType,
+  (_get, set, value: DroughtOptionsVariableType) => set(locationAtom, setUrlParam('drOpVar', value)),
+);

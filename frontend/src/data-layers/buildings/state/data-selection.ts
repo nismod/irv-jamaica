@@ -1,11 +1,8 @@
-import { bool, dict } from 'lib/jotai-compat/recoil-refine';
-import { atom } from 'lib/jotai-compat/recoil';
-import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
+import { atom } from 'jotai';
 
-export const buildingsStyleState = atom({
-  key: 'buildingsStyleState',
-  default: 'type',
-});
+import { locationAtom, readUrlJson, setUrlParam } from 'lib/state/map-view/map-url';
+
+export const buildingsStyleState = atom('type');
 
 export const BUILDING_TYPES = [
   'buildings_commercial',
@@ -22,23 +19,18 @@ export type BuildingType = (typeof BUILDING_TYPES)[number];
 
 export type BuildingSelection = Record<BuildingType, boolean>;
 
-export const buildingSelectionState = atom<BuildingSelection>({
-  key: 'buildingSelectionState',
-  default: {
-    buildings_commercial: true,
-    buildings_residential: true,
-    buildings_institutional: true,
-    buildings_mixed: true,
-    buildings_industrial: true,
-    buildings_recreation: true,
-    buildings_other: true,
-    buildings_resort: true,
-  },
-  effects: [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: 'buiSel',
-      refine: dict(bool()),
-    }),
-  ],
-});
+const defaultBuildingSelection: BuildingSelection = {
+  buildings_commercial: true,
+  buildings_residential: true,
+  buildings_institutional: true,
+  buildings_mixed: true,
+  buildings_industrial: true,
+  buildings_recreation: true,
+  buildings_other: true,
+  buildings_resort: true,
+};
+
+export const buildingSelectionState = atom(
+  (get) => readUrlJson<BuildingSelection>(get(locationAtom).searchParams, 'buiSel', defaultBuildingSelection),
+  (_get, set, value: BuildingSelection) => set(locationAtom, setUrlParam('buiSel', value)),
+);

@@ -1,8 +1,5 @@
 import mapValues from 'lodash/mapValues';
-import { atom, DefaultValue } from 'lib/jotai-compat/recoil';
-import { atom as jotaiAtom } from 'jotai';
-import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
-import { bool, dict, object } from 'lib/jotai-compat/recoil-refine';
+import { atom } from 'jotai';
 
 import {
   buildTreeConfig,
@@ -10,13 +7,11 @@ import {
   CheckboxTreeState,
 } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { sectionStyleValueState } from 'lib/state/sections';
+import { locationAtom, setUrlParam } from 'lib/state/map-view/map-url';
 
 import { NETWORK_LAYERS_HIERARCHY } from '../sidebar/hierarchy';
 
-export const networkTreeExpandedState = atom<string[]>({
-  key: 'networkTreeExpandedState',
-  default: [],
-});
+export const networkTreeExpandedState = atom<string[]>([]);
 
 export const networkTreeConfig = buildTreeConfig(NETWORK_LAYERS_HIERARCHY);
 const networkTreeURLs = mapValues(networkTreeConfig.nodes, (node) => node.url);
@@ -51,47 +46,22 @@ function writeTreeToUrl(tree: CheckboxTreeState, param: string) {
   window.history.replaceState({}, '', url.toString());
 }
 
-export const networkTreeCheckboxState = atom<CheckboxTreeState>({
-  key: 'networkTreeSelectionState',
-  default: {
-    checked: mapValues(networkTreeConfig.nodes, () => false),
-    indeterminate: mapValues(networkTreeConfig.nodes, () => false),
-  },
-  effects: [
-    ({ onSet }) => {
-      onSet((newTree) => {
-        if (newTree instanceof DefaultValue) {
-          return;
-        }
-        writeTreeToUrl(newTree, 'netTree');
-      });
-    },
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: 'netTree',
-      refine: object({
-        checked: dict(bool()),
-        indeterminate: dict(bool()),
-      }),
-      read: ({ read }) => {
-        const value = read('netTree');
-        if (value instanceof DefaultValue) {
-          return value;
-        }
-        return parseTreeFromString(`${value}`);
-      },
-      write: ({ write, reset }, value) => {
-        if (value instanceof DefaultValue) {
-          reset('netTree');
-          return;
-        }
-        write('netTree', stringifyTree(value as CheckboxTreeState));
-      },
-    }),
-  ],
-});
+const defaultNetworkTreeState: CheckboxTreeState = {
+  checked: mapValues(networkTreeConfig.nodes, () => false),
+  indeterminate: mapValues(networkTreeConfig.nodes, () => false),
+};
 
-export const networkSelectionState = jotaiAtom<string[]>((get) => {
+export const networkTreeCheckboxState = atom(
+  (get) => {
+    const raw = get(locationAtom).searchParams?.get('netTree');
+    if (!raw) return defaultNetworkTreeState;
+    return parseTreeFromString(raw);
+  },
+  (_get, set, newTree: CheckboxTreeState) =>
+    set(locationAtom, setUrlParam('netTree', stringifyTree(newTree))),
+);
+
+export const networkSelectionState = atom<string[]>((get) => {
   const checkboxState = get(networkTreeCheckboxState);
 
   return Object.keys(checkboxState.checked).filter(
@@ -102,4 +72,4 @@ export const networkSelectionState = jotaiAtom<string[]>((get) => {
   );
 });
 
-export const networksStyleState = jotaiAtom((get) => get(sectionStyleValueState('assets')));
+export const networksStyleState = atom((get) => get(sectionStyleValueState('assets')));
