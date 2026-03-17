@@ -2,8 +2,8 @@ import { parseSync } from '@loaders.gl/core';
 import { WKTLoader } from '@loaders.gl/wkt';
 import bbox from '@turf/bbox';
 import pick from 'lodash/pick';
-import { selectorFamily } from 'lib/jotai-compat/recoil';
-import { useAtomValue } from 'jotai';
+import { atom, useAtomValue } from 'jotai';
+import { atomFamily } from 'jotai-family';
 
 import { createClient } from 'lib/api-client/client';
 import { featuresReadSortedFeatures } from 'lib/api-client/sdk.gen';
@@ -30,19 +30,10 @@ type SortedFeaturesQuery = {
   pageSize: number;
 };
 
-const sortedFeaturesState = selectorFamily({
-  key: 'sorted-features',
-  get:
-    ({
-      fieldGroup,
-      field,
-      dimensions,
-      parameters,
-      page,
-      pageSize,
-      ...layerSpec
-    }: SortedFeaturesQuery) =>
-    async () => {
+const sortedFeaturesState = atomFamily((queryKey: string) => {
+  const { fieldGroup, field, dimensions, parameters, page, pageSize, ...layerSpec } =
+    JSON.parse(queryKey) as SortedFeaturesQuery;
+  return atom(async () => {
       try {
         if (dimensions === '{}') {
           return {
@@ -55,9 +46,6 @@ const sortedFeaturesState = selectorFamily({
             error: null,
           };
         }
-        // if (fieldGroup !== 'damages') {
-        //   throw new Error('Only damages field is supported');
-        // }
         const { data } = await featuresReadSortedFeatures({
           client: apiClient,
           path: {
@@ -86,7 +74,7 @@ const sortedFeaturesState = selectorFamily({
           error,
         };
       }
-    },
+    });
 });
 
 export interface LayerSpec {
@@ -118,17 +106,8 @@ export const useSortedFeatures = (
   const { fieldGroup, fieldDimensions, field, fieldParams } = fieldSpec;
   const dimensions = JSON.stringify(fieldDimensions);
   const parameters = JSON.stringify(fieldParams);
-  const result = useAtomValue(
-    sortedFeaturesState({
-      fieldGroup,
-      field,
-      dimensions,
-      parameters,
-      page,
-      pageSize,
-      ...layerSpec,
-    }),
-  );
+  const queryKey = JSON.stringify({ fieldGroup, field, dimensions, parameters, page, pageSize, ...layerSpec });
+  const result = useAtomValue(sortedFeaturesState(queryKey));
 
   const { features = [], pageInfo = { page, size: pageSize, total: 0 }, error = null } =
     result ?? {};

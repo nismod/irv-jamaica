@@ -1,7 +1,5 @@
 import { atom as jotaiAtom, useStore } from 'jotai';
-import type { WritableAtom } from 'jotai';
 import { loadable as jotaiLoadable } from 'jotai/utils';
-import { atomFamily as jotaiAtomFamily } from 'jotai-family';
 import stableStringify from 'json-stable-stringify';
 import { useMemo } from 'react';
 
@@ -31,61 +29,6 @@ function resolveParamKey(param: unknown) {
   } catch {
     return String(param);
   }
-}
-
-export function selector<T = unknown>(config: {
-  key: string;
-  get: ({ get }: { get: (state: any) => any }) => T | Promise<T>;
-  set?: (
-    ops: {
-      get: (state: any) => any;
-      set: (state: any, value: any) => void;
-      reset: (state: any) => void;
-    },
-    newValue: T | DefaultValue,
-  ) => void;
-  dangerouslyAllowMutability?: boolean;
-}): WritableAtom<T, any[], any> {
-  if (!config.set) {
-    return jotaiAtom((get) => config.get({ get })) as unknown as WritableAtom<T, any[], any>;
-  }
-
-  return jotaiAtom(
-    (get) => config.get({ get }),
-    (get, set, value: T | DefaultValue) => {
-      config.set?.(
-        {
-          get,
-          set: (state, newValue) => set(state as never, newValue as never),
-          reset: (state) => set(state as never, new DefaultValue() as never),
-        },
-        value,
-      );
-    },
-  ) as unknown as WritableAtom<T, any[], any>;
-}
-
-export function selectorFamily<T = unknown, P = unknown>(config: {
-  key: string;
-  get: (param: P) => ({ get }: { get: (state: any) => any }) => T | Promise<T>;
-  set?: (param: P) => (
-    ops: {
-      get: (state: any) => any;
-      set: (state: any, value: any) => void;
-      reset: (state: any) => void;
-    },
-    newValue: T | DefaultValue,
-  ) => void;
-}): (param: P) => WritableAtom<T, any[], any> {
-  return jotaiAtomFamily(
-    (param: P) =>
-      selector({
-        key: `${config.key}-${resolveParamKey(param)}`,
-        get: config.get(param),
-        set: config.set?.(param),
-      }),
-    (a, b) => resolveParamKey(a) === resolveParamKey(b),
-  ) as unknown as (param: P) => WritableAtom<T, any[], any>;
 }
 
 export function noWait(state: any): any {
