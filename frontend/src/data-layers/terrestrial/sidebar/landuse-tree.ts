@@ -37,13 +37,6 @@ function stringifyTree(tree: CheckboxTreeState) {
   return checked.join('.');
 }
 
-function writeTreeToUrl(tree: CheckboxTreeState, param: string) {
-  const urlTree = stringifyTree(tree);
-  const url = new URL(window.location.href);
-  url.searchParams.set(param, urlTree);
-  window.history.replaceState({}, '', url.toString());
-}
-
 const defaultLanduseTreeState: CheckboxTreeState = {
   checked: mapValues(landuseTreeConfig.nodes, () => true),
   indeterminate: mapValues(landuseTreeConfig.nodes, () => false),

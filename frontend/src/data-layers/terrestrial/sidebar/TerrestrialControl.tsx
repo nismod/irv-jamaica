@@ -4,7 +4,7 @@ import { useAtom } from 'jotai';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 import { TerrestrialLocationFilterType, TERRESTRIAL_LOCATION_FILTERS } from '../domains';
-import { TerrestrialNonLandUseFilters, terrestrialNonLandUseFiltersState } from '../state/terrestrial-filters';
+import { terrestrialNonLandUseFiltersState } from '../state/terrestrial-filters';
 import { TerrestrialLandUseTree } from './TerrestrialLandUseTree';
 
 export const TerrestrialControl = () => {

@@ -1,4 +1,4 @@
-import { CheckboxTree, CheckboxTreeState } from 'lib/controls/checkbox-tree/CheckboxTree';
+import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { useAtom } from 'jotai';
 import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
 

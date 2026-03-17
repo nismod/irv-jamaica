@@ -1,7 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { FC, useId } from 'react';
-import { useAtomValue } from 'jotai';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 

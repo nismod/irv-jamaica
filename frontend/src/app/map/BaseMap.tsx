@@ -13,12 +13,6 @@ export interface BaseMapProps {
   children?: ReactNode;
 }
 
-type MapViewStateLike = {
-  zoom: number;
-  latitude: number;
-  longitude: number;
-} & Record<string, unknown>;
-
 const INITIAL_VIEW_STATE = {
   ...mapViewConfig.initialViewState,
   ...mapViewConfig.viewLimits,
