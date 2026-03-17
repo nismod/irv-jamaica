@@ -7,7 +7,8 @@ import {
 } from 'lib/controls/checkbox-tree/CheckboxTree';
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
-import { atom, DefaultValue, selector } from 'lib/jotai-compat/recoil';
+import { atom, DefaultValue } from 'lib/jotai-compat/recoil';
+import { atom as jotaiAtom } from 'jotai';
 import { object, bool, dict } from 'lib/jotai-compat/recoil-refine';
 import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 
@@ -88,14 +89,11 @@ export const landuseTreeCheckboxState = atom<CheckboxTreeState>({
   ],
 });
 
-export const landuseFilterState = selector<Record<LandUseOption, boolean>>({
-  key: 'landuseFilterState',
-  get: ({ get }) => {
-    const checkboxState = get(landuseTreeCheckboxState).checked;
+export const landuseFilterState = jotaiAtom<Record<LandUseOption, boolean>>((get) => {
+  const checkboxState = get(landuseTreeCheckboxState).checked;
 
-    return pickBy(checkboxState, (value, id) => !landuseTreeConfig.nodes[id].children) as Record<
-      LandUseOption,
-      boolean
-    >;
-  },
+  return pickBy(checkboxState, (value, id) => !landuseTreeConfig.nodes[id].children) as Record<
+    LandUseOption,
+    boolean
+  >;
 });

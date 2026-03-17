@@ -1,4 +1,5 @@
-import { atom, selector } from 'lib/jotai-compat/recoil';
+import { atom } from 'lib/jotai-compat/recoil';
+import { atom as jotaiAtom } from 'jotai';
 
 import { sectionStyleValueState } from 'lib/state/sections';
 
@@ -18,12 +19,6 @@ export const regionLevelState = atom<RegionLevel>({
   ],
 });
 
-export const regionsStyleState = selector({
-  key: 'regionsStyleState',
-  get: ({ get }) => get(sectionStyleValueState('regions')),
-});
+export const regionsStyleState = jotaiAtom((get) => get(sectionStyleValueState('regions')));
 
-export const showPopulationState = selector({
-  key: 'showPopulationState',
-  get: ({ get }) => get(regionsStyleState) === 'population',
-});
+export const showPopulationState = jotaiAtom((get) => get(regionsStyleState) === 'population');

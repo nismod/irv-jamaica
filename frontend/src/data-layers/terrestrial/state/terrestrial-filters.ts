@@ -1,5 +1,6 @@
 import { LandUseOption, TerrestrialLocationFilterType } from 'data-layers/terrestrial/domains';
-import { atom, selector } from 'lib/jotai-compat/recoil';
+import { atom } from 'lib/jotai-compat/recoil';
+import { atom as jotaiAtom } from 'jotai';
 import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 import { landuseFilterState } from '../sidebar/landuse-tree';
 import { array, bool, dict, number, object } from 'lib/jotai-compat/recoil-refine';
@@ -43,12 +44,7 @@ export const terrestrialNonLandUseFiltersState = atom<TerrestrialNonLandUseFilte
   ],
 });
 
-export const terrestrialFiltersState = selector<TerrestrialFilters>({
-  key: 'terrestrialFiltersState',
-  get: ({ get }) => {
-    return {
-      landuse_desc: get(landuseFilterState),
-      ...get(terrestrialNonLandUseFiltersState),
-    };
-  },
-});
+export const terrestrialFiltersState = jotaiAtom<TerrestrialFilters>((get) => ({
+  landuse_desc: get(landuseFilterState),
+  ...get(terrestrialNonLandUseFiltersState),
+}));

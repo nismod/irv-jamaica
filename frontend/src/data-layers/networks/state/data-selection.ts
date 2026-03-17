@@ -1,5 +1,6 @@
 import mapValues from 'lodash/mapValues';
-import { atom, DefaultValue, selector } from 'lib/jotai-compat/recoil';
+import { atom, DefaultValue } from 'lib/jotai-compat/recoil';
+import { atom as jotaiAtom } from 'jotai';
 import { urlSyncEffect } from 'lib/jotai-compat/recoil-sync';
 import { bool, dict, object } from 'lib/jotai-compat/recoil-refine';
 
@@ -90,21 +91,15 @@ export const networkTreeCheckboxState = atom<CheckboxTreeState>({
   ],
 });
 
-export const networkSelectionState = selector<string[]>({
-  key: 'networkSelectionState',
-  get: ({ get }) => {
-    const checkboxState = get(networkTreeCheckboxState);
+export const networkSelectionState = jotaiAtom<string[]>((get) => {
+  const checkboxState = get(networkTreeCheckboxState);
 
-    return Object.keys(checkboxState.checked).filter(
-      (id) =>
-        checkboxState.checked[id] &&
-        networkTreeConfig.nodes[id] &&
-        !networkTreeConfig.nodes[id].children,
-    );
-  },
+  return Object.keys(checkboxState.checked).filter(
+    (id) =>
+      checkboxState.checked[id] &&
+      networkTreeConfig.nodes[id] &&
+      !networkTreeConfig.nodes[id].children,
+  );
 });
 
-export const networksStyleState = selector({
-  key: 'networksStyleState',
-  get: ({ get }) => get(sectionStyleValueState('assets')),
-});
+export const networksStyleState = jotaiAtom((get) => get(sectionStyleValueState('assets')));
