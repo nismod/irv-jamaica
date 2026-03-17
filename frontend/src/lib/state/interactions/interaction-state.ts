@@ -1,13 +1,12 @@
 import forEach from 'lodash/forEach';
 import { WritableAtom, PrimitiveAtom, atom } from 'jotai';
-import { DefaultValue } from 'lib/jotai-compat/recoil';
+import { RESET } from 'jotai/utils';
 import { atomFamily } from 'jotai-family';
 
 import { createClient } from 'lib/api-client/client';
 import { featuresReadFeature } from 'lib/api-client/sdk.gen';
 import { InteractionLayer, VectorTarget } from 'lib/data-map/types';
 import { ViewLayer } from 'lib/data-map/view-layers';
-import { isReset } from 'lib/recoil/is-reset';
 
 type IT = InteractionLayer | InteractionLayer[];
 
@@ -66,8 +65,8 @@ const selectionBaseState = atomFamily((id: string): PrimitiveAtom<InteractionLay
 export const selectionState = atomFamily((id: string) =>
   atom(
     (get) => get(selectionBaseState(id)),
-    (_get, set, newSelection: InteractionLayer | DefaultValue) => {
-      if (newSelection instanceof DefaultValue) {
+    (_get, set, newSelection: InteractionLayer | typeof RESET) => {
+      if (newSelection === RESET) {
         set(selectionBaseState(id), null);
         return;
       }
@@ -123,12 +122,12 @@ function filterTargets(oldHoverTargets: IT, allowedLayers: string[]): IT {
 
 export const allowedGroupLayersState = atom(
   (get) => get(allowedGroupLayersImpl),
-  (get, set, newAllowedGroups: AllowedGroupLayers | DefaultValue) => {
+  (get, set, newAllowedGroups: AllowedGroupLayers | typeof RESET) => {
     const oldAllowedGroupLayers = get(allowedGroupLayersImpl);
-    if (isReset(newAllowedGroups)) {
+    if (newAllowedGroups === RESET) {
       forEach(oldAllowedGroupLayers, (_layers, group) => {
         set(hoverState(group), null);
-        set(selectionState(group), new DefaultValue());
+        set(selectionState(group), RESET);
       });
       set(allowedGroupLayersImpl, {});
       return;
@@ -140,7 +139,7 @@ export const allowedGroupLayersState = atom(
 
       if (newAllowedLayers == null || newAllowedLayers.length === 0) {
         set(hoverState(group), null);
-        set(selectionState(group), new DefaultValue());
+        set(selectionState(group), RESET);
       } else {
         const oldHoverTargets = get(hoverState(group));
         const newHoverTargets = filterTargets(oldHoverTargets, newAllowedLayers);
@@ -148,7 +147,7 @@ export const allowedGroupLayersState = atom(
 
         const oldSelectionTargets = get(selectionState(group));
         const newSelectionTargets = filterTargets(oldSelectionTargets, newAllowedLayers);
-        set(selectionState(group), newSelectionTargets);
+        set(selectionState(group), (newSelectionTargets as InteractionLayer) ?? RESET);
       }
     }
 
