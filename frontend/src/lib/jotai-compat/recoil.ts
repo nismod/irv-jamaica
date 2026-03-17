@@ -1,6 +1,7 @@
-import { atom as jotaiAtom, useAtomValue, useSetAtom, useStore } from 'jotai';
-import type { Atom, WritableAtom } from 'jotai';
-import { atomFamily as jotaiAtomFamily, loadable as jotaiLoadable, useResetAtom } from 'jotai/utils';
+import { atom as jotaiAtom, useStore } from 'jotai';
+import type { WritableAtom } from 'jotai';
+import { loadable as jotaiLoadable } from 'jotai/utils';
+import { atomFamily as jotaiAtomFamily } from 'jotai-family';
 import stableStringify from 'json-stable-stringify';
 import { useMemo } from 'react';
 

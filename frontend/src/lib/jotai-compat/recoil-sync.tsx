@@ -44,40 +44,6 @@ function notifyStore(storeKey: string, itemKey: string, value: unknown) {
   Promise.resolve().then(run);
 }
 
-function writeItem(storeKey: string, itemKey: string, value: unknown) {
-  const store = getStore(storeKey);
-  if (store.write) {
-    store.write({ diff: new Map([[itemKey, value]]) });
-  }
-  notifyStore(storeKey, itemKey, value);
-}
-
-function readItem(storeKey: string, itemKey: string) {
-  const store = getStore(storeKey);
-  if (!store.read) {
-    return new DefaultValue();
-  }
-  const value = store.read(itemKey);
-  return typeof value === 'undefined' ? new DefaultValue() : value;
-}
-
-function subscribeItem(storeKey: string, itemKey: string, cb: (value: unknown) => void) {
-  const store = getStore(storeKey);
-  store.knownItems.add(itemKey);
-  if (!store.subscribers.has(itemKey)) {
-    store.subscribers.set(itemKey, new Set());
-  }
-  const set = store.subscribers.get(itemKey)!;
-  set.add(cb);
-
-  return () => {
-    set.delete(cb);
-    if (set.size === 0) {
-      store.subscribers.delete(itemKey);
-    }
-  };
-}
-
 export type ReadAtom = ({ read }: { read: (itemKey: string) => unknown }) => unknown;
 export type WriteAtom<T = any> = (
   api: { write: (itemKey: string, value: unknown) => void; reset: (itemKey: string) => void },
@@ -92,64 +58,6 @@ export type SyncEffectOptions<T = any> = {
   read?: ReadAtom;
   write?: WriteAtom<T>;
 };
-
-export function syncEffect<T = any>(options: SyncEffectOptions<T>) {
-  return ({ setSelf, onSet }) => {
-    const { storeKey, itemKey } = options;
-    let applyingExternalUpdate = false;
-
-    const fromStore = options.read
-      ? options.read({ read: (key) => readItem(storeKey, key) })
-      : readItem(storeKey, itemKey);
-
-    if (!(fromStore instanceof DefaultValue)) {
-      setSelf(fromStore as T);
-    }
-
-    const unsubscribe = subscribeItem(storeKey, itemKey, (value) => {
-      applyingExternalUpdate = true;
-      const mappedValue = options.read
-        ? options.read({
-            read: (key) => (key === itemKey ? value : readItem(storeKey, key)),
-          })
-        : value;
-
-      if (mappedValue instanceof DefaultValue) {
-        setSelf(mappedValue);
-        applyingExternalUpdate = false;
-        return;
-      }
-
-      setSelf(mappedValue as T);
-      applyingExternalUpdate = false;
-    });
-
-    onSet((newValue) => {
-      if (applyingExternalUpdate) {
-        return;
-      }
-      if (options.write) {
-        options.write(
-          {
-            write: (key, value) => writeItem(storeKey, key, value),
-            reset: (key) => writeItem(storeKey, key, new DefaultValue()),
-          },
-          newValue as T | DefaultValue,
-        );
-      } else {
-        writeItem(storeKey, itemKey, newValue);
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  };
-}
-
-export function urlSyncEffect<T>(options: SyncEffectOptions<T>) {
-  return syncEffect(options);
-}
 
 export type RecoilSyncOptions = {
   storeKey: string;
