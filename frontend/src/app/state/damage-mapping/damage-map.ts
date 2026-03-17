@@ -1,5 +1,5 @@
 import forEach from 'lodash/forEach';
-import { atom, selector } from 'lib/jotai-compat/recoil';
+import { atom } from 'jotai';
 
 import { dataParamOptionsState, dataParamState } from 'lib/state/data-params';
 
@@ -7,20 +7,11 @@ import { HAZARD_DOMAINS } from 'data-layers/hazards/domains';
 import { hazardSelectionState } from 'data-layers/hazards/state/data-selection';
 import { networksStyleState } from 'data-layers/networks/state/data-selection';
 
-export const showDamagesState = selector({
-  key: 'showDamagesState',
-  get: ({ get }) => get(networksStyleState) === 'damages',
-});
+export const showDamagesState = atom((get) => get(networksStyleState) === 'damages');
 
-export const damageSourceState = atom({
-  key: 'damageSourceState',
-  default: 'all',
-});
+export const damageSourceState = atom('all');
 
-export const damageTypeState = atom({
-  key: 'damageTypeState',
-  default: 'direct',
-});
+export const damageTypeState = atom('direct');
 
 export const damageSourceStateEffect = ({ get, set }, damageSource) => {
   syncHazardsWithDamageSourceStateEffect({ set }, damageSource);

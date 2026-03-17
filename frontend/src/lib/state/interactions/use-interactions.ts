@@ -127,7 +127,9 @@ export function useInteractions(
   const setHoverXY = useSetAtom(hoverPositionState);
 
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
-  const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);
+  const setInteractionGroupSelection = useSetInteractionGroupState(
+    selectionState as unknown as RecoilStateFamily<InteractionLayer | InteractionLayer[], string>,
+  );
   const setPixelSelection = useSetAtom(pixelSelectionState);
 
   const [primaryGroup] = [...interactionGroups.keys()];
