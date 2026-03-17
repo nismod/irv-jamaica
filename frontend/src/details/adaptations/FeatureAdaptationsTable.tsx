@@ -12,8 +12,7 @@ import { colorMap } from 'lib/color-map';
 import { mapFitBoundsState } from 'lib/map/MapBoundsFitter';
 import { ColorBox } from 'lib/map/tooltip/content/ColorBox';
 import { useCallback, useMemo } from 'react';
-import { atom } from 'lib/jotai-compat/recoil';
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import {
   adaptationColorSpecState,
   adaptationFieldSpecState,
@@ -22,15 +21,9 @@ import {
 
 import './asset-table.css';
 
-export const hoveredAdaptationFeatureState = atom<ListFeature>({
-  key: 'hoveredAdaptationFeatureState',
-  default: null,
-});
+export const hoveredAdaptationFeatureState = atom(null as ListFeature);
 
-export const selectedAdaptationFeatureState = atom<ListFeature>({
-  key: 'selectedAdaptationFeatureState',
-  default: null,
-});
+export const selectedAdaptationFeatureState = atom(null as ListFeature);
 
 const JAMAICA_BBOX: BoundingBox = [-79.61792, 16.788765, -74.575195, 19.487308];
 

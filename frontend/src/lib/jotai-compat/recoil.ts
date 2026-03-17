@@ -32,97 +32,6 @@ function resolveParamKey(param: unknown) {
   }
 }
 
-export function atom<T = unknown>(options: {
-  key: string;
-  default?: T | Atom<T>;
-  effects?: Array<(ops: {
-    setSelf: (value: T | DefaultValue | ((prev: T) => T | DefaultValue)) => void;
-    onSet: (fn: (newValue: T | DefaultValue, oldValue: T, isReset: boolean) => void) => void;
-    getPromise: (state: any) => Promise<any>;
-    getLoadable: (state: any) => { state: 'loading' | 'hasValue' | 'hasError'; contents: unknown };
-    trigger: 'get' | 'set';
-  }) => void | (() => void)>;
-}): WritableAtom<T, [T | DefaultValue | ((prev: T) => T | DefaultValue)], void> {
-  const initialValue = options.default as T;
-  const UNSET = Symbol(`${options.key}__unset`);
-  const defaultRecoilValue =
-    options.default && typeof options.default === 'object' && 'read' in (options.default as object)
-      ? (options.default as any)
-      : null;
-
-  const resolveCurrent = (get: (state: any) => any): T => {
-    const current = get(base);
-    if (current !== UNSET) {
-      return current as T;
-    }
-    if (defaultRecoilValue) {
-      return get(defaultRecoilValue as never) as T;
-    }
-    return initialValue;
-  };
-
-  const onSetHandlers: Array<(newValue: T | DefaultValue, oldValue: T, isReset: boolean) => void> = [];
-  let suppressOnSetHandlers = false;
-
-  const base = jotaiAtom<T | symbol>(UNSET);
-  const recoilAtom = jotaiAtom(
-    (get) => resolveCurrent(get),
-    (get, set, update: T | DefaultValue | ((prev: T) => T | DefaultValue)) => {
-      const prev = resolveCurrent(get);
-      const candidate = typeof update === 'function' ? (update as (prev: T) => T | DefaultValue)(prev) : update;
-      const isReset = candidate instanceof DefaultValue;
-      const next = isReset ? UNSET : (candidate as T);
-      set(base, next);
-      if (suppressOnSetHandlers) {
-        suppressOnSetHandlers = false;
-        return;
-      }
-      onSetHandlers.forEach((handler) =>
-        handler(isReset ? new DefaultValue() : (candidate as T), prev, isReset),
-      );
-    },
-  );
-
-  if (options.effects?.length) {
-    recoilAtom.onMount = (setAtom) => {
-      const cleanups: Array<() => void> = [];
-
-      const setSelf = (value: T | DefaultValue | ((prev: T) => T | DefaultValue)) => {
-        suppressOnSetHandlers = true;
-        if (value instanceof DefaultValue) {
-          setAtom(UNSET as T);
-          return;
-        }
-        if (typeof value === 'function') {
-          suppressOnSetHandlers = false;
-          return;
-        }
-        setAtom(value as T);
-      };
-
-      const onSet = (fn: (newValue: T | DefaultValue, oldValue: T, isReset: boolean) => void) => {
-        onSetHandlers.push(fn);
-      };
-
-      const getPromise = async (_state: any) => undefined;
-      const getLoadable = (_state: any) => ({ state: 'loading' as const, contents: NEVER_PROMISE });
-
-      options.effects?.forEach((effect) => {
-        const cleanup = effect({ setSelf, onSet, getPromise, getLoadable, trigger: 'get' });
-        if (typeof cleanup === 'function') {
-          cleanups.push(cleanup);
-        }
-      });
-
-      return () => {
-        cleanups.forEach((cleanup) => cleanup());
-      };
-    };
-  }
-
-  return recoilAtom as unknown as WritableAtom<T, [T | DefaultValue | ((prev: T) => T | DefaultValue)], void>;
-}
-
 export function selector<T = unknown>(config: {
   key: string;
   get: ({ get }: { get: (state: any) => any }) => T | Promise<T>;
@@ -153,33 +62,6 @@ export function selector<T = unknown>(config: {
       );
     },
   ) as unknown as WritableAtom<T, any[], any>;
-}
-
-export function atomFamily<T = unknown, P = unknown>(config: {
-  key: string;
-  default?: T | ((param: P) => T);
-  effects?: (param: P) => Array<(ops: {
-    setSelf: (value: T | DefaultValue | ((prev: T) => T | DefaultValue)) => void;
-    onSet: (fn: (newValue: T | DefaultValue, oldValue: T, isReset: boolean) => void) => void;
-    getPromise: (state: any) => Promise<any>;
-    getLoadable: (state: any) => { state: 'loading' | 'hasValue' | 'hasError'; contents: unknown };
-    trigger: 'get' | 'set';
-  }) => void | (() => void)>;
-}): (param: P) => WritableAtom<T, [T | DefaultValue | ((prev: T) => T | DefaultValue)], void> {
-  const defaultFactory =
-    typeof config.default === 'function'
-      ? (config.default as (param: P) => T)
-      : () => config.default as T;
-
-  return jotaiAtomFamily(
-    (param: P) =>
-      atom({
-        key: `${config.key}-${resolveParamKey(param)}`,
-        default: defaultFactory(param),
-        effects: config.effects?.(param),
-      }),
-    (a, b) => resolveParamKey(a) === resolveParamKey(b),
-  ) as unknown as (param: P) => WritableAtom<T, [T | DefaultValue | ((prev: T) => T | DefaultValue)], void>;
 }
 
 export function selectorFamily<T = unknown, P = unknown>(config: {
