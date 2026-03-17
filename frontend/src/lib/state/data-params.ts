@@ -1,6 +1,8 @@
 import forEach from 'lodash/forEach';
+import { useCallback } from 'react';
 import { atom } from 'jotai';
-import { atomFamily, selector, useRecoilTransaction_UNSTABLE } from 'lib/jotai-compat/recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { atomFamily } from 'jotai-family';
 
 import {
   DataParamGroupConfig,
@@ -15,27 +17,28 @@ export type DataParamParam = Readonly<{
   param: string;
 }>;
 
-export const dataParamConfigState = atom({});
+export const dataParamConfigState = atom<Record<string, DataParamGroupConfig>>({});
 
-export const dataParamState = atomFamily<Param, DataParamParam>({
-  key: 'dataParamState',
-  default: null,
-});
+const paramEqual = (a: DataParamParam, b: DataParamParam) => a.group === b.group && a.param === b.param;
 
-export const dataParamOptionsState = atomFamily<ParamDomain, DataParamParam>({
-  key: 'dataParamOptionsState',
-  default: [],
-});
+export const dataParamState = atomFamily(
+  (_param: DataParamParam) => atom(null as Param | null),
+  paramEqual,
+);
+
+export const dataParamOptionsState = atomFamily(
+  (_param: DataParamParam) => atom([] as ParamDomain),
+  paramEqual,
+);
 
 /**
  * A writeable selector that takes a config object, from an external source,
  * and creates new data params states for the sidebar controls.
  * Use this to initialise the sidebar from app config.
  */
-export const syncExternalConfigState = selector({
-  key: 'syncedConfigState',
-  get: ({ get }) => get(dataParamConfigState),
-  set: ({ set }, newConfig: Record<string, DataParamGroupConfig>) => {
+export const syncExternalConfigState = atom(
+  (get) => get(dataParamConfigState),
+  (_get, set, newConfig: Record<string, DataParamGroupConfig>) => {
     set(dataParamConfigState, newConfig);
 
     Object.keys(newConfig).forEach((group) => {
@@ -52,12 +55,12 @@ export const syncExternalConfigState = selector({
       });
     });
   },
-});
+);
 
 export function useUpdateDataParam(group: string, paramId: string) {
-  return useRecoilTransaction_UNSTABLE(
-    ({ get, set }) =>
-      (newValue) => {
+  return useAtomCallback(
+    useCallback(
+      (get, set, newValue: Param) => {
         const dataParamConfig = get(dataParamConfigState);
         const dataParamSize = Object.entries(dataParamConfig).length;
         if (dataParamSize === 0) {
@@ -77,11 +80,12 @@ export function useUpdateDataParam(group: string, paramId: string) {
         );
 
         forEach(resolvedParams, (resolvedParamValue, paramId) => {
-          const recoilParam = { group, param: paramId };
-          set(dataParamState(recoilParam), resolvedParamValue);
-          set(dataParamOptionsState(recoilParam), resolvedOptions[paramId]);
+          const atomParam = { group, param: paramId };
+          set(dataParamState(atomParam), resolvedParamValue);
+          set(dataParamOptionsState(atomParam), resolvedOptions[paramId]);
         });
       },
-    [group, paramId],
+      [group, paramId],
+    ),
   );
 }

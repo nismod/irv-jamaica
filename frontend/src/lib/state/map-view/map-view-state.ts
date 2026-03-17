@@ -1,45 +1,44 @@
-import { DefaultValue, atom, selector } from 'lib/jotai-compat/recoil';
+import { atom } from 'jotai';
+import { atomWithDefault, RESET } from 'jotai/utils';
+import { DefaultValue } from 'lib/jotai-compat/recoil';
 
 import { useSyncStateThrottled } from 'lib/recoil/sync-state-throttled';
 
 import { mapLatUrlState, mapLonUrlState, mapZoomUrlState } from './map-url';
 
-const mapLatState = atom<number>({ key: 'mapLat', default: mapLatUrlState });
-const mapLonState = atom<number>({ key: 'mapLon', default: mapLonUrlState });
-const mapZoomState = atom<number>({ key: 'mapZoom', default: mapZoomUrlState });
+const mapLatState = atomWithDefault<number>((get) => get(mapLatUrlState));
+const mapLonState = atomWithDefault<number>((get) => get(mapLonUrlState));
+const mapZoomState = atomWithDefault<number>((get) => get(mapZoomUrlState));
 
-export const nonCoordsMapViewStateState = atom({
-  key: 'nonCoordsMapViewState',
-  default: {},
-});
+export const nonCoordsMapViewStateState = atom<Record<string, unknown>>({});
 
-export const mapViewStateState = selector({
-  key: 'mapViewState',
-  dangerouslyAllowMutability: true,
-  get: ({ get }) => {
-    const viewState = {
-      ...get(nonCoordsMapViewStateState),
-      latitude: get(mapLatState),
-      longitude: get(mapLonState),
-      zoom: get(mapZoomState),
-    };
-    return viewState;
-  },
-  set: ({ set, reset }, newValue) => {
+export const mapViewStateState = atom(
+  (get) => ({
+    ...get(nonCoordsMapViewStateState),
+    latitude: get(mapLatState),
+    longitude: get(mapLonState),
+    zoom: get(mapZoomState),
+  }),
+  (_get, set, newValue) => {
     if (newValue instanceof DefaultValue) {
-      reset(mapZoomState);
-      reset(mapLatState);
-      reset(mapLonState);
-      reset(nonCoordsMapViewStateState);
+      set(mapZoomState, RESET);
+      set(mapLatState, RESET);
+      set(mapLonState, RESET);
+      set(nonCoordsMapViewStateState, {});
     } else {
-      const { latitude, longitude, zoom, ...nonCoords } = newValue;
+      const { latitude, longitude, zoom, ...nonCoords } = newValue as {
+        latitude: number;
+        longitude: number;
+        zoom: number;
+        [key: string]: unknown;
+      };
       set(mapZoomState, zoom);
       set(mapLonState, longitude);
       set(mapLatState, latitude);
       set(nonCoordsMapViewStateState, nonCoords);
     }
   },
-});
+);
 
 export function useSyncMapUrl() {
   useSyncStateThrottled(mapLatState, mapLatUrlState, 2000);
