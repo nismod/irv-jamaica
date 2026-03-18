@@ -30,17 +30,19 @@ export const damagesFieldState = selector<FieldSpec>({
 
 export const damageMapStyleParamsState = selectorFamily<StyleParams, string>({
   key: 'damageMapStyleParamsState',
-  get: (layerId: string) => ({ get }) => {
-    const eadFieldSpec = get(damagesFieldState);
-    if (eadFieldSpec == null) return {};
+  get:
+    (layerId: string) =>
+    ({ get }) => {
+      const eadFieldSpec = get(damagesFieldState);
+      if (eadFieldSpec == null) return {};
 
-    const colorSpec = layerId === 'coast_nodes_cpf' ? damagesCoastalDefence : damages
+      const colorSpec = layerId === 'coast_nodes_cpf' ? damagesCoastalDefence : damages;
 
-    return {
-      colorMap: {
-        colorSpec: colorSpec,
-        fieldSpec: eadFieldSpec,
-      },
-    };
-  },
+      return {
+        colorMap: {
+          colorSpec: colorSpec,
+          fieldSpec: eadFieldSpec,
+        },
+      };
+    },
 });

@@ -22,7 +22,6 @@ export interface TileSelectionLayerOptions {
 function featureFilter(
   selectedFeatureIds: (string | number)[],
 ): DataFilterExtensionProps & Pick<LayerProps, 'updateTriggers' | 'extensions'> {
-
   return {
     updateTriggers: {
       getFilterValue: [selectedFeatureIds],

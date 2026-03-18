@@ -157,16 +157,18 @@ export const adaptationStyleParamsState = selector<StyleParams>({
 
 export const networkStyleParamsState = selectorFamily<StyleParams, string>({
   key: 'networkStyleParamsState',
-  get: (layerId: string) => ({ get }) => {
-    switch (get(networksStyleState)) {
-      case 'damages':
-        return get(damageMapStyleParamsState(layerId));
-      case 'adaptation':
-        return get(adaptationStyleParamsState);
-      case 'protectedFeatures':
-        return get(adaptationStyleParamsState);
-      default:
-        return {};
-    }
-  },
+  get:
+    (layerId: string) =>
+    ({ get }) => {
+      switch (get(networksStyleState)) {
+        case 'damages':
+          return get(damageMapStyleParamsState(layerId));
+        case 'adaptation':
+          return get(adaptationStyleParamsState);
+        case 'protectedFeatures':
+          return get(adaptationStyleParamsState);
+        default:
+          return {};
+      }
+    },
 });

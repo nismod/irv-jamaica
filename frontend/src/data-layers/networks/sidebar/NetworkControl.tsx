@@ -26,11 +26,15 @@ import { protectedFeatureLayersState } from 'lib/state/protected-features';
  */
 function useSyncProtectedFeatureLayers() {
   const prevLayers = new Set(useRecoilValue(networkSelectionState));
-  const allLayers = new Set(Object.values(networkTreeConfig.nodes).filter((n) => !!n.url).map((n)=> n.id));
+  const allLayers = new Set(
+    Object.values(networkTreeConfig.nodes)
+      .filter((n) => !!n.url)
+      .map((n) => n.id),
+  );
 
   const showProtectorFeatureLayers = useRecoilValue(showProtectorFeaturesState);
   const protectorFeatureLayers = showProtectorFeatureLayers
-    ? new Set(["coast_nodes_cpf"])
+    ? new Set(['coast_nodes_cpf'])
     : new Set();
 
   const protectedFeatureLayers = useRecoilValue(protectedFeatureLayersState);
@@ -39,7 +43,8 @@ function useSyncProtectedFeatureLayers() {
 
   const showLayers = protectedFeatureLayers.union(protectorFeatureLayers).intersection(allLayers);
 
-  const doUpdate = showProtectorFeatureLayers && showLayers.symmetricDifference(prevLayers).size !== 0;
+  const doUpdate =
+    showProtectorFeatureLayers && showLayers.symmetricDifference(prevLayers).size !== 0;
 
   if (doUpdate) {
     const newState = {
@@ -68,7 +73,10 @@ function useSyncAdaptationParameters(checkboxState) {
   const updateSubsector = useUpdateDataParam('adaptation', 'subsector');
   const updateAssetType = useUpdateDataParam('adaptation', 'asset_type');
   const selectedLayers = Object.keys(checkboxState.checked).filter(
-    (id) => checkboxState.checked[id] && networkTreeConfig.nodes[id] && !networkTreeConfig.nodes[id].children,
+    (id) =>
+      checkboxState.checked[id] &&
+      networkTreeConfig.nodes[id] &&
+      !networkTreeConfig.nodes[id].children,
   );
   const adaptationLayer = adaptationSectorLayers.find((x) => selectedLayers.includes(x.layer_name));
   if (adaptationLayer) {
@@ -103,7 +111,8 @@ export const NetworkControl: FC = () => {
       {disableCheck ? (
         <Box my={1}>
           <Alert severity="info">
-            Infrastructure layers are currently following the {showAdaptations? 'Adaptation Options': 'Protected Features'} selection
+            Infrastructure layers are currently following the{' '}
+            {showAdaptations ? 'Adaptation Options' : 'Protected Features'} selection
           </Alert>
         </Box>
       ) : null}
