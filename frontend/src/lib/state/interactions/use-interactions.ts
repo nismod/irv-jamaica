@@ -4,7 +4,7 @@ import { WritableAtom, useSetAtom } from 'jotai';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import {
@@ -87,9 +87,7 @@ type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<Rast
 
 type AtomFamily<T> = (groupName: string) => WritableAtom<T, unknown[], void>;
 
-function useSetInteractionGroupState<T>(
-  stateFamily: AtomFamily<T>,
-) {
+function useSetInteractionGroupState<T>(stateFamily: AtomFamily<T>) {
   return useAtomCallback(
     useCallback(
       (_get, set, groupName: string, value: T) => {
@@ -106,8 +104,10 @@ function useSetInteractionGroupState<T>(
  * @returns A dictionary of arrays of view layers, grouped by interaction group.
  */
 function useActiveGroups(viewLayers) {
-  const interactiveLayers = viewLayers.filter((x) => x.interactionGroup);
-  return groupBy(interactiveLayers, (viewLayer) => viewLayer.interactionGroup);
+  return useMemo(() => {
+    const interactiveLayers = viewLayers.filter((x) => x.interactionGroup);
+    return groupBy(interactiveLayers, (viewLayer) => viewLayer.interactionGroup);
+  }, [viewLayers]);
 }
 
 /**
@@ -116,8 +116,9 @@ function useActiveGroups(viewLayers) {
  */
 function useSyncAllowedLayers(viewLayers: ViewLayer[]) {
   const activeGroups = useActiveGroups(viewLayers);
-  const allowedGroupLayers = mapValues(activeGroups, (viewLayers) =>
-    viewLayers.map((viewLayer) => viewLayer.id),
+  const allowedGroupLayers = useMemo(
+    () => mapValues(activeGroups, (viewLayers) => viewLayers.map((viewLayer) => viewLayer.id)),
+    [activeGroups],
   );
   const setAllowedGroupLayers = useSetAtom(allowedGroupLayersState);
   setAllowedGroupLayers(allowedGroupLayers);

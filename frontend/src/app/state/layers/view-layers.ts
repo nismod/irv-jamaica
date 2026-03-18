@@ -1,8 +1,7 @@
 import { Atom, atom } from 'jotai';
 import { atomFamily } from 'jotai-family';
 
-import { ViewLayer } from 'lib/data-map/view-layers';
-import { ConfigTree } from 'lib/nested-config/config-tree';
+import { ConfigViewLayer } from 'lib/data-map/view-layers';
 
 import { importLayerState } from 'data-layers/state';
 
@@ -21,10 +20,10 @@ const VIEW_LAYERS = [
   'droughtOptions',
 ] as string[];
 
-const layerCache = new Map<string, Atom<ViewLayer>>();
+const layerCache = new Map<string, Atom<ConfigViewLayer>>();
 
 const viewLayerConfig = atomFamily((type: string) =>
-  atom<ViewLayer | Promise<ViewLayer>>((get) => {
+  atom<ConfigViewLayer | Promise<ConfigViewLayer>>((get) => {
     if (layerCache.has(type)) {
       // Synchronous path: dynamic import already resolved, no suspend on re-evaluation
       return get(layerCache.get(type));
@@ -37,7 +36,7 @@ const viewLayerConfig = atomFamily((type: string) =>
   }),
 );
 
-export const viewLayerConfigs = atom<ConfigTree<ViewLayer> | Promise<ConfigTree<ViewLayer>>>((get) => {
+export const viewLayerConfigs = atom<ConfigViewLayer | Promise<ConfigViewLayer>>((get) => {
   const extraLayers = [get(featureBoundingBoxLayerState), get(labelsLayerState)];
   const layerResults = VIEW_LAYERS.map((type) => get(viewLayerConfig(type)));
 
@@ -45,5 +44,5 @@ export const viewLayerConfigs = atom<ConfigTree<ViewLayer> | Promise<ConfigTree<
     return Promise.all(layerResults).then((resolved) => [...resolved, ...extraLayers]);
   }
 
-  return [...(layerResults as ViewLayer[]), ...extraLayers];
+  return [...(layerResults as ConfigViewLayer[]), ...extraLayers];
 });

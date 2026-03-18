@@ -20,7 +20,7 @@ export function hasHover(target: IT) {
 export const hoverState = atomFamily((_id: string) => atom(null as IT | null));
 
 export const hoverPositionState = atom(null) as WritableAtom<
-  { x: number; y: number } | null,
+  [number, number] | null,
   unknown[],
   void
 >;
