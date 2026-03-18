@@ -4,7 +4,7 @@ import { WritableAtom, useSetAtom } from 'jotai';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import {
@@ -121,7 +121,9 @@ function useSyncAllowedLayers(viewLayers: ViewLayer[]) {
     [activeGroups],
   );
   const setAllowedGroupLayers = useSetAtom(allowedGroupLayersState);
-  setAllowedGroupLayers(allowedGroupLayers);
+  useEffect(() => {
+    setAllowedGroupLayers(allowedGroupLayers);
+  }, [allowedGroupLayers, setAllowedGroupLayers]);
 }
 
 export function useInteractions(
@@ -133,7 +135,7 @@ export function useInteractions(
 
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
   const setInteractionGroupSelection = useSetInteractionGroupState(
-    selectionState as unknown as AtomFamily<InteractionLayer | InteractionLayer[]>,
+    selectionState,
   );
   const setPixelSelection = useSetAtom(pixelSelectionState);
 

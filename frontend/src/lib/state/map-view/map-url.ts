@@ -121,8 +121,13 @@ export function urlMemoBool(key: string, defaultVal: boolean) {
   if (params.has(key)) {
     initial = readUrlBool(params, key, defaultVal);
   } else {
-    const stored = sessionStorage.getItem(STORAGE_PREFIX + key);
-    initial = stored != null ? (JSON.parse(stored) as boolean) : defaultVal;
+    try {
+      const stored = sessionStorage.getItem(STORAGE_PREFIX + key);
+      initial = stored != null ? (JSON.parse(stored) as boolean) : defaultVal;
+    } catch {
+      initial = defaultVal;
+      sessionStorage.removeItem(STORAGE_PREFIX + key);
+    }
   }
   const base = atom(initial);
   return atom(
@@ -160,8 +165,13 @@ export function urlMemoJson<T>(key: string, defaultVal: T) {
   if (params.has(key)) {
     initial = readUrlJson<T>(params, key, defaultVal);
   } else {
-    const stored = sessionStorage.getItem(STORAGE_PREFIX + key);
-    initial = stored != null ? (JSON.parse(stored) as T) : defaultVal;
+    try {
+      const stored = sessionStorage.getItem(STORAGE_PREFIX + key);
+      initial = stored != null ? (JSON.parse(stored) as T) : defaultVal;
+    } catch {
+      initial = defaultVal;
+      sessionStorage.removeItem(STORAGE_PREFIX + key);
+    }
   }
   const base = atom<T>(initial);
   return atom(
