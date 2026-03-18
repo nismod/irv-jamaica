@@ -356,6 +356,6 @@ export const NETWORK_LAYERS_HIERARCHY: TreeNode<NetworkLayerData>[] = [
         label: 'Protected zones: revetment',
         url: '32',
       },
-    ]
-  }
+    ],
+  },
 ];

@@ -69,7 +69,7 @@ export function riskViewLayer(riskType: string, riskParams: RiskParams): ViewLay
 
       return rasterTileLayer(
         {
-          textureParameters: { magFilter: 'linear', },
+          textureParameters: { magFilter: 'linear' },
           opacity: opacity,
         },
         deckProps,

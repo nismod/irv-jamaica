@@ -36,7 +36,7 @@ const protectedFeatureAdaptationOptionsQuery = selectorFamily({
           protector_id: +target.feature.id,
         },
         query: {
-          rcp
+          rcp,
         },
       });
       return data;
@@ -53,9 +53,7 @@ export const protectedFeatureAdaptationOptionsState = selectorFamily({
   get:
     ({ rcp = '2.6' }: ProtectedFeatureDetailsQuery) =>
     ({ get }) => {
-      const loadable = get(
-        noWait(protectedFeatureAdaptationOptionsQuery({ rcp })),
-      );
+      const loadable = get(noWait(protectedFeatureAdaptationOptionsQuery({ rcp })));
       const data: ProtectedFeatureListItem[] =
         loadable.state === 'hasValue' ? loadable.contents : [];
       const error = loadable.state === 'hasError' ? loadable.contents : null;
@@ -71,9 +69,7 @@ export const protectedFeatureLayersQuery = selector({
   get: ({ get }) => {
     const rcp = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
     return new Set(
-      get(protectedFeatureAdaptationOptionsQuery({ rcp }))?.map(
-        (feature) => feature.layer,
-      ),
+      get(protectedFeatureAdaptationOptionsQuery({ rcp }))?.map((feature) => feature.layer),
     );
   },
 });
