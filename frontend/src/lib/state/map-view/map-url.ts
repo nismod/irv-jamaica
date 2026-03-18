@@ -102,3 +102,74 @@ export function setUrlParam(key: string, value: unknown): (prev: Location) => Lo
     };
   };
 }
+
+// ── Memory-backed URL atoms ──────────────────────────────────────────────────
+//
+// These helpers create atoms that are initialised from the URL once (at module
+// load time), then stored in Jotai's in-memory store for the lifetime of the
+// session.  Writes are mirrored back to the URL AND to sessionStorage so that
+// the values survive both React Router navigation away from the map page and
+// a full page refresh on a non-map page (e.g. /about).
+//
+// Priority order on init: URL param → sessionStorage → supplied default
+
+export const STORAGE_PREFIX = 'jsrat:';
+
+export function urlMemoBool(key: string, defaultVal: boolean) {
+  const params = new URLSearchParams(window.location.search);
+  let initial: boolean;
+  if (params.has(key)) {
+    initial = readUrlBool(params, key, defaultVal);
+  } else {
+    const stored = sessionStorage.getItem(STORAGE_PREFIX + key);
+    initial = stored != null ? (JSON.parse(stored) as boolean) : defaultVal;
+  }
+  const base = atom(initial);
+  return atom(
+    (get) => get(base),
+    (_get, set, value: boolean) => {
+      set(base, value);
+      sessionStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
+      set(locationAtom, setUrlParam(key, value));
+    },
+  );
+}
+
+export function urlMemoStr<T extends string = string>(key: string, defaultVal: string) {
+  const params = new URLSearchParams(window.location.search);
+  let initial: T;
+  if (params.has(key)) {
+    initial = readUrlString(params, key, defaultVal) as T;
+  } else {
+    initial = (sessionStorage.getItem(STORAGE_PREFIX + key) ?? defaultVal) as T;
+  }
+  const base = atom<T>(initial);
+  return atom(
+    (get) => get(base),
+    (_get, set, value: T) => {
+      set(base, value);
+      sessionStorage.setItem(STORAGE_PREFIX + key, value);
+      set(locationAtom, setUrlParam(key, value));
+    },
+  );
+}
+
+export function urlMemoJson<T>(key: string, defaultVal: T) {
+  const params = new URLSearchParams(window.location.search);
+  let initial: T;
+  if (params.has(key)) {
+    initial = readUrlJson<T>(params, key, defaultVal);
+  } else {
+    const stored = sessionStorage.getItem(STORAGE_PREFIX + key);
+    initial = stored != null ? (JSON.parse(stored) as T) : defaultVal;
+  }
+  const base = atom<T>(initial);
+  return atom(
+    (get) => get(base),
+    (_get, set, value: T) => {
+      set(base, value);
+      sessionStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
+      set(locationAtom, setUrlParam(key, value));
+    },
+  );
+}

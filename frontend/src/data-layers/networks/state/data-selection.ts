@@ -7,7 +7,7 @@ import {
   CheckboxTreeState,
 } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { sectionStyleValueState } from 'lib/state/sections';
-import { locationAtom, setUrlParam } from 'lib/state/map-view/map-url';
+import { STORAGE_PREFIX, locationAtom, setUrlParam } from 'lib/state/map-view/map-url';
 
 import { NETWORK_LAYERS_HIERARCHY } from '../sidebar/hierarchy';
 
@@ -44,14 +44,23 @@ const defaultNetworkTreeState: CheckboxTreeState = {
   indeterminate: mapValues(networkTreeConfig.nodes, () => false),
 };
 
-export const networkTreeCheckboxState = atom(
-  (get) => {
-    const raw = get(locationAtom).searchParams?.get('netTree');
+const _networkTreeBase = atom<CheckboxTreeState>(
+  (() => {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('netTree') ?? sessionStorage.getItem(STORAGE_PREFIX + 'netTree');
     if (!raw) return defaultNetworkTreeState;
     return parseTreeFromString(raw);
+  })(),
+);
+
+export const networkTreeCheckboxState = atom(
+  (get) => get(_networkTreeBase),
+  (_get, set, newTree: CheckboxTreeState) => {
+    set(_networkTreeBase, newTree);
+    const str = stringifyTree(newTree);
+    sessionStorage.setItem(STORAGE_PREFIX + 'netTree', str);
+    set(locationAtom, setUrlParam('netTree', str));
   },
-  (_get, set, newTree: CheckboxTreeState) =>
-    set(locationAtom, setUrlParam('netTree', stringifyTree(newTree))),
 );
 
 export const networkSelectionState = atom<string[]>((get) => {

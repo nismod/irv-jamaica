@@ -8,7 +8,7 @@ import {
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
 import { atom } from 'jotai';
-import { locationAtom, setUrlParam } from 'lib/state/map-view/map-url';
+import { STORAGE_PREFIX, locationAtom, setUrlParam } from 'lib/state/map-view/map-url';
 
 export const landuseTreeExpandedState = atom<string[]>([]);
 
@@ -42,14 +42,23 @@ const defaultLanduseTreeState: CheckboxTreeState = {
   indeterminate: mapValues(landuseTreeConfig.nodes, () => false),
 };
 
-export const landuseTreeCheckboxState = atom(
-  (get) => {
-    const raw = get(locationAtom).searchParams?.get('landTree');
+const _landuseTreeBase = atom<CheckboxTreeState>(
+  (() => {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('landTree') ?? sessionStorage.getItem(STORAGE_PREFIX + 'landTree');
     if (!raw) return defaultLanduseTreeState;
     return parseTreeFromString(raw);
+  })(),
+);
+
+export const landuseTreeCheckboxState = atom(
+  (get) => get(_landuseTreeBase),
+  (_get, set, newTree: CheckboxTreeState) => {
+    set(_landuseTreeBase, newTree);
+    const str = stringifyTree(newTree);
+    sessionStorage.setItem(STORAGE_PREFIX + 'landTree', str);
+    set(locationAtom, setUrlParam('landTree', str));
   },
-  (_get, set, newTree: CheckboxTreeState) =>
-    set(locationAtom, setUrlParam('landTree', stringifyTree(newTree))),
 );
 
 export const landuseFilterState = atom<Record<LandUseOption, boolean>>((get) => {

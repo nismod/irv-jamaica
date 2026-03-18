@@ -1,7 +1,5 @@
-import { atom } from 'jotai';
-
 import { MarineLocationFilterType } from 'data-layers/marine/domains';
-import { locationAtom, readUrlJson, setUrlParam } from 'lib/state/map-view/map-url';
+import { urlMemoJson } from 'lib/state/map-view/map-url';
 
 export type MarineLocationFilters = Record<MarineLocationFilterType, boolean>;
 
@@ -17,8 +15,4 @@ const defaultMarineFilters: MarineFilters = {
   },
 };
 
-export const marineFiltersState = atom(
-  (get) =>
-    readUrlJson<MarineFilters>(get(locationAtom).searchParams, 'marFilt', defaultMarineFilters),
-  (_get, set, value: MarineFilters) => set(locationAtom, setUrlParam('marFilt', value)),
-);
+export const marineFiltersState = urlMemoJson<MarineFilters>('marFilt', defaultMarineFilters);
