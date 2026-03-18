@@ -1,4 +1,6 @@
-import { atom, noWait, RecoilState, RecoilValueReadOnly, selector, selectorFamily } from 'recoil';
+import { Atom, WritableAtom, atom } from 'jotai';
+import { atomFamily } from 'jotai-family';
+import { loadable } from 'jotai/utils';
 
 const FLOOD_PARAMETERS = [
   { epoch: 2010, rcp: 'baseline' },
@@ -75,75 +77,69 @@ const dataCache = new Map<string, PixelData>();
 /**
  * Latitude and longitude of the selected map pixel.
  */
-export const pixelSelectionState: RecoilState<PixelDrillerQueryParams> = atom({
-  key: 'pixelSelection',
-  default: { lat: 0, lon: 0 },
-});
+export const pixelSelectionState: WritableAtom<PixelDrillerQueryParams | null, unknown[], void> =
+  atom({
+    lat: 0,
+    lon: 0,
+  });
 
 /**
  * Query to fetch hazard data for the selected map pixel.
  */
-const pixelDrillerQuery: RecoilValueReadOnly<PixelData> = selector({
-  key: 'pixelDrillerQuery',
-  get: async ({ get }) => {
-    const { lat, lon } = get(pixelSelectionState);
-    const key = `${lat.toFixed(3)}-${lon.toFixed(3)}`;
-    if (dataCache.has(key)) {
-      return dataCache.get(key);
-    }
-    const response = await fetch(`/pixel/${lon.toFixed(3)}/${lat.toFixed(3)}`);
-    const data: PixelData = await response.json();
-    dataCache.set(key, data);
-    return data;
-  },
+const pixelDrillerQuery: Atom<Promise<PixelData | null>> = atom(async (get) => {
+  const pixelSelection = get(pixelSelectionState);
+  if (!pixelSelection) {
+    return Promise.resolve(null);
+  }
+  const { lat, lon } = pixelSelection;
+  const key = `${lat.toFixed(3)}-${lon.toFixed(3)}`;
+  if (dataCache.has(key)) {
+    return dataCache.get(key);
+  }
+  const response = await fetch(`/pixel/${lon.toFixed(3)}/${lat.toFixed(3)}`);
+  const data: PixelData = await response.json();
+  dataCache.set(key, data);
+  return data;
 });
 
 /**
  * Loadable state for the current pixel driller data.
  */
-export const pixelDrillerDataState: RecoilValueReadOnly<{ data: PixelData; error: Error }> =
-  selector({
-    key: 'pixelDrillerDataState',
-    get: ({ get }) => {
-      const loadable = get(noWait(pixelDrillerQuery));
-      const data = loadable.state === 'hasValue' ? loadable.contents : null;
-      const error = loadable.state === 'hasError' ? loadable.contents : null;
-      return { data, error };
-    },
-  });
+export const pixelDrillerDataState: Atom<{ data: PixelData | null; error: Error | null }> = atom(
+  (get) => {
+    const l = get(loadable(pixelDrillerQuery));
+    const data = l?.state === 'hasData' ? l.data : null;
+    const error = l?.state === 'hasError' ? (l.error as Error) : null;
+    return { data, error };
+  },
+);
 
 /**
  * Column headers for the pixel driller data tables.
  */
-export const pixelDrillerDataHeaders: RecoilValueReadOnly<string[]> = selector({
-  key: 'pixelDrillerDataHeaders',
-  get: ({ get }) => {
-    const pixelData = get(pixelDrillerDataState).data;
-    if (!pixelData) {
-      return [];
-    }
-    const headers = Object.keys(pixelData);
-    return headers;
-  },
+export const pixelDrillerDataHeaders: Atom<string[]> = atom((get) => {
+  const pixelData = get(pixelDrillerDataState).data;
+  if (!pixelData) {
+    return [];
+  }
+  const headers = Object.keys(pixelData);
+  return headers;
 });
 
 /**
  * Set of return periods for a given hazard.
  */
-export const pixelDrillerDataRPs: (hazard: string) => RecoilValueReadOnly<Set<number>> =
-  selectorFamily({
-    key: 'pixelDrillerDataRPs',
-    get:
-      (hazard: string) =>
-      ({ get }) => {
-        const pixelData = get(pixelDrillerDataState).data;
-        if (!pixelData) {
-          return new Set();
-        }
-        const data = getFilteredPixelData(pixelData, hazard);
-        return new Set(data.map((d) => d.rp));
-      },
-  });
+export const pixelDrillerDataRPs: (hazard: string) => Atom<Set<number>> = atomFamily(
+  (hazard: string) =>
+    atom((get) => {
+      const pixelData = get(pixelDrillerDataState).data;
+      if (!pixelData) {
+        return new Set<number>();
+      }
+      const data = getFilteredPixelData(pixelData, hazard);
+      return new Set(data.map((d) => d.rp));
+    }),
+);
 
 /**
  * Map a collection of data arrays to a single array of row objects.
@@ -232,19 +228,19 @@ function reducePixelDataRow(
 /**
  * Rows of pixel driller data for a specific pixel_layer, grouped by epoch, RCP, and confidence level.
  */
-export const pixelDrillerDataRows: (pixel_layer: string) => RecoilValueReadOnly<Row[]> =
-  selectorFamily({
-    key: 'pixelDrillerDataRows',
-    get:
-      (pixel_layer: string) =>
-      ({ get }) => {
-        const pixelData = get(pixelDrillerDataState).data;
-        return PIXEL_LAYER_PARAMETERS[pixel_layer]
-          .map(({ epoch, rcp, confidence }) => {
-            const data = getFilteredPixelData(pixelData, pixel_layer, epoch, rcp, confidence);
-            const reduced = reducePixelDataRow(data, pixel_layer, epoch, rcp, confidence);
-            return reduced;
-          })
-          .filter(Boolean);
-      },
-  });
+export const pixelDrillerDataRows: (pixel_layer: string) => Atom<Row[]> = atomFamily(
+  (pixel_layer: string) =>
+    atom((get) => {
+      const pixelData = get(pixelDrillerDataState).data;
+      if (!pixelData) {
+        return [];
+      }
+      return PIXEL_LAYER_PARAMETERS[pixel_layer]
+        .map(({ epoch, rcp, confidence }) => {
+          const data = getFilteredPixelData(pixelData, pixel_layer, epoch, rcp, confidence);
+          const reduced = reducePixelDataRow(data, pixel_layer, epoch, rcp, confidence);
+          return reduced;
+        })
+        .filter(Boolean);
+    }),
+);

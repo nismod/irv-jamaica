@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useAtomValue, useSetAtom } from 'jotai';
 
 import { Box, IconButton } from '@mui/material';
 import { SidePanel } from 'details/SidePanel';
@@ -16,9 +16,9 @@ import Close from '@mui/icons-material/Close';
  * Display detailed information about a selected pixel (lat/lon point.)
  */
 export const PixelData = () => {
-  const { data: selectedData } = useRecoilValue(pixelDrillerDataState);
-  const headers = useRecoilValue(pixelDrillerDataHeaders);
-  const setPixelSelection = useSetRecoilState(pixelSelectionState);
+  const { data: selectedData } = useAtomValue(pixelDrillerDataState);
+  const headers = useAtomValue(pixelDrillerDataHeaders);
+  const setPixelSelection = useSetAtom(pixelSelectionState);
 
   function clearSelectedLocation() {
     setPixelSelection(null);

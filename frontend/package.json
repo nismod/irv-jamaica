@@ -27,6 +27,8 @@
     "d3-scale-chromatic": "^3.0.0",
     "deck.gl": "^9.1.4",
     "immer": "^11.1.4",
+    "jotai": "^2.18.1",
+    "jotai-family": "^1.0.1",
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.21",
     "maplibre-gl": "^5.2.0",
