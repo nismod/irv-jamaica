@@ -2,9 +2,6 @@ name: Build pixel-driller API
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
     paths:
       - 'pixel_driller/**'
       - '.github/workflows/build-pixel-driller.yml'
