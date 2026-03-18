@@ -18,6 +18,7 @@ const defaultMarineFilters: MarineFilters = {
 };
 
 export const marineFiltersState = atom(
-  (get) => readUrlJson<MarineFilters>(get(locationAtom).searchParams, 'marFilt', defaultMarineFilters),
+  (get) =>
+    readUrlJson<MarineFilters>(get(locationAtom).searchParams, 'marFilt', defaultMarineFilters),
   (_get, set, value: MarineFilters) => set(locationAtom, setUrlParam('marFilt', value)),
 );

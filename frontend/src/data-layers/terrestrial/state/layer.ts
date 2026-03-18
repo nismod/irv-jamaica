@@ -64,11 +64,17 @@ export const terrestrialFieldSpecState = atom<FieldSpec>((get) => {
   };
 });
 
-const landuseFilterSetState = atom<Set<LandUseOption>>((get) => new Set(truthyKeys(get(landuseFilterState))));
+const landuseFilterSetState = atom<Set<LandUseOption>>(
+  (get) => new Set(truthyKeys(get(landuseFilterState))),
+);
 
-const locationFilterState = atom<TerrestrialLocationFilters>((get) => get(terrestrialFiltersState).location_filters);
+const locationFilterState = atom<TerrestrialLocationFilters>(
+  (get) => get(terrestrialFiltersState).location_filters,
+);
 
-const locationFilterKeysState = atom<TerrestrialLocationFilterType[]>((get) => truthyKeys(get(locationFilterState)));
+const locationFilterKeysState = atom<TerrestrialLocationFilterType[]>((get) =>
+  truthyKeys(get(locationFilterState)),
+);
 
 export const terrestrialLayerState = atom<ViewLayer>((get) => {
   const showTerrestrial = get(sectionVisibilityState('terrestrial'));

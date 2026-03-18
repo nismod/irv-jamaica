@@ -58,7 +58,7 @@ const AppAttributionControl = withProps(MapHudAttributionControl, {
 
 const MapHudDesktopLayout = () => {
   const currentHazard = useAtomValue(damageSourceState);
-  
+
   return (
     <MapHud left={globalStyleVariables.controlSidebarWidth}>
       <MapHudRegion position="top-left" StackProps={{ spacing: 1 }}>

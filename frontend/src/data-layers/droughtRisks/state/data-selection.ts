@@ -15,6 +15,11 @@ export const droughtShowRiskState = atom(
 );
 
 export const droughtRiskVariableState = atom(
-  (get) => readUrlString(get(locationAtom).searchParams, 'drRiVar', 'mean_monthly_water_stress_') as DroughtRiskVariableType,
+  (get) =>
+    readUrlString(
+      get(locationAtom).searchParams,
+      'drRiVar',
+      'mean_monthly_water_stress_',
+    ) as DroughtRiskVariableType,
   (_get, set, value: DroughtRiskVariableType) => set(locationAtom, setUrlParam('drRiVar', value)),
 );

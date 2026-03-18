@@ -5,28 +5,24 @@ import { useCallback } from 'react';
 import { useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 
-const noticeAcceptedDateState = atomWithStorage<Date | null>(
-  'notice-accepted',
-  null,
-  {
-    getItem: (key, initialValue) => {
-      const raw = localStorage.getItem(key);
-      if (raw == null) return initialValue;
-      try {
-        const parsed = JSON.parse(raw) as string | null;
-        return parsed != null ? new Date(parsed) : null;
-      } catch {
-        return initialValue;
-      }
-    },
-    setItem: (key, value) => {
-      localStorage.setItem(key, JSON.stringify(value));
-    },
-    removeItem: (key) => {
-      localStorage.removeItem(key);
-    },
+const noticeAcceptedDateState = atomWithStorage<Date | null>('notice-accepted', null, {
+  getItem: (key, initialValue) => {
+    const raw = localStorage.getItem(key);
+    if (raw == null) return initialValue;
+    try {
+      const parsed = JSON.parse(raw) as string | null;
+      return parsed != null ? new Date(parsed) : null;
+    } catch {
+      return initialValue;
+    }
   },
-);
+  setItem: (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  },
+  removeItem: (key) => {
+    localStorage.removeItem(key);
+  },
+});
 
 export const Notice = () => {
   const [acceptedDate, setAcceptedDate] = useAtom(noticeAcceptedDateState);

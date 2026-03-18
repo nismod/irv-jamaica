@@ -17,7 +17,5 @@ export const risksLayerState = atom<ViewLayer[]>((get) => {
     rcp: get(dataParamState({ group: 'risks', param: 'rcp' })),
     confidence: get(dataParamState({ group: 'risks', param: 'confidence' })),
   };
-  return get(sectionVisibilityState('risks'))
-    ? [riskViewLayer(riskType, dataParams)]
-    : [];
+  return get(sectionVisibilityState('risks')) ? [riskViewLayer(riskType, dataParams)] : [];
 });

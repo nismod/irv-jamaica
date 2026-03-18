@@ -30,10 +30,14 @@ const defaultTerrestrialNonLandUseFilters: TerrestrialNonLandUseFilters = {
 };
 
 export const terrestrialNonLandUseFiltersState = atom(
-  (get) => readUrlJson<TerrestrialNonLandUseFilters>(
-    get(locationAtom).searchParams, 'terrFilt', defaultTerrestrialNonLandUseFilters,
-  ),
-  (_get, set, value: TerrestrialNonLandUseFilters) => set(locationAtom, setUrlParam('terrFilt', value)),
+  (get) =>
+    readUrlJson<TerrestrialNonLandUseFilters>(
+      get(locationAtom).searchParams,
+      'terrFilt',
+      defaultTerrestrialNonLandUseFilters,
+    ),
+  (_get, set, value: TerrestrialNonLandUseFilters) =>
+    set(locationAtom, setUrlParam('terrFilt', value)),
 );
 
 export const terrestrialFiltersState = atom<TerrestrialFilters>((get) => ({

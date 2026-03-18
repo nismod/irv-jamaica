@@ -10,6 +10,12 @@ export const droughtShowOptionsState = atom(
 );
 
 export const droughtOptionsVariableState = atom(
-  (get) => readUrlString(get(locationAtom).searchParams, 'drOpVar', 'cost_jmd') as DroughtOptionsVariableType,
-  (_get, set, value: DroughtOptionsVariableType) => set(locationAtom, setUrlParam('drOpVar', value)),
+  (get) =>
+    readUrlString(
+      get(locationAtom).searchParams,
+      'drOpVar',
+      'cost_jmd',
+    ) as DroughtOptionsVariableType,
+  (_get, set, value: DroughtOptionsVariableType) =>
+    set(locationAtom, setUrlParam('drOpVar', value)),
 );

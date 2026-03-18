@@ -9,7 +9,7 @@ export const sectionVisibilityState = atomFamily((id: string) =>
   ),
 );
 
-export const sidebarSectionExpandedState = atomFamily((_id: string) => atom(false));
+export const sidebarSectionExpandedState = atomFamily(() => atom(false));
 
 export const sectionStyleValueState = atomFamily((id: string) =>
   atom(
@@ -23,6 +23,6 @@ export interface StyleSelectionOption {
   label: string;
 }
 
-export const sectionStyleOptionsState = atomFamily((_id: string) => atom<StyleSelectionOption[]>([]));
+export const sectionStyleOptionsState = atomFamily(() => atom<StyleSelectionOption[]>([]));
 
-export const sectionStyleDefaultValueState = atomFamily((_id: string) => atom<string | null>(null));
+export const sectionStyleDefaultValueState = atomFamily(() => atom<string | null>(null));

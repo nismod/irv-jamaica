@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { atom, useSetAtom } from 'jotai';
 import { atomFamily } from 'jotai-family';
 
-export const mobileTabHasContentState = atomFamily((_tabId: string) => atom(false));
+export const mobileTabHasContentState = atomFamily(() => atom(false));
 
 /**
  * Use this component to indicate that a tab in the mobile UI version has content.

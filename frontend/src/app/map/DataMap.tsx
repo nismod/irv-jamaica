@@ -5,7 +5,6 @@ import { interactionGroupsState } from 'app/state/layers/interaction-groups';
 import { viewLayerConfigs } from 'app/state/layers/view-layers';
 
 import { DataMap } from 'lib/data-map/DataMap';
-import { ViewLayer } from 'lib/data-map/view-layers';
 import { viewLayersFlatState } from 'lib/state/layers/view-layers';
 
 import { backgroundState, showLabelsState } from './layers/layers-state';
@@ -19,7 +18,7 @@ export const DataMapContainer: FC = () => {
   const setViewLayersFlat = useSetAtom(viewLayersFlatState);
   const { firstLabelId } = useBasemapStyle(background, showLabels);
   const interactionGroups = useAtomValue(interactionGroupsState);
-  const flattenedViewLayers = useMemo(() => flattenConfig(viewLayers), [viewLayers]) as ViewLayer[];
+  const flattenedViewLayers = useMemo(() => flattenConfig(viewLayers), [viewLayers]);
 
   useEffect(() => {
     setViewLayersFlat(flattenedViewLayers);

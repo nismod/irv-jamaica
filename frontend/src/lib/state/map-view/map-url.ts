@@ -35,7 +35,7 @@ function makeUrlNumberAtom(itemKey: string, maximumFractionDigits: number) {
         maximumFractionDigits,
         useGrouping: false,
       });
-      set(locationAtom, (_prev) => {
+      set(locationAtom, () => {
         const params = new URLSearchParams(window.location.search);
         params.set(itemKey, String(formatted));
         return { searchParams: params };
@@ -92,7 +92,7 @@ export function readUrlJson<T>(params: URLSearchParams | undefined, key: string,
  * current route is never overwritten by a stale snapshot.
  */
 export function setUrlParam(key: string, value: unknown): (prev: Location) => Location {
-  return (_prev) => {
+  return () => {
     const params = new URLSearchParams(window.location.search);
     params.set(key, typeof value === 'string' ? value : JSON.stringify(value));
     return {

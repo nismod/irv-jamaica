@@ -31,39 +31,12 @@ type SortedFeaturesQuery = {
 };
 
 const sortedFeaturesState = atomFamily((queryKey: string) => {
-  const { fieldGroup, field, dimensions, parameters, page, pageSize, ...layerSpec } =
-    JSON.parse(queryKey) as SortedFeaturesQuery;
+  const { fieldGroup, field, dimensions, parameters, page, pageSize, ...layerSpec } = JSON.parse(
+    queryKey,
+  ) as SortedFeaturesQuery;
   return atom(async () => {
-      try {
-        if (dimensions === '{}') {
-          return {
-            features: [],
-            pageInfo: {
-              page,
-              size: pageSize,
-              total: 0,
-            },
-            error: null,
-          };
-        }
-        const { data } = await featuresReadSortedFeatures({
-          client: apiClient,
-          path: {
-            field_group: fieldGroup,
-          },
-          query: {
-            field,
-            dimensions,
-            parameters,
-            ...layerSpec,
-            page,
-            size: pageSize,
-          },
-        });
-        const features = (data.items as FeatureListItemOutFloat[]).map(processFeature);
-        const pageInfo = pick(data, ['page', 'size', 'total']);
-        return { features, pageInfo, error: null };
-      } catch (error) {
+    try {
+      if (dimensions === '{}') {
         return {
           features: [],
           pageInfo: {
@@ -71,10 +44,38 @@ const sortedFeaturesState = atomFamily((queryKey: string) => {
             size: pageSize,
             total: 0,
           },
-          error,
+          error: null,
         };
       }
-    });
+      const { data } = await featuresReadSortedFeatures({
+        client: apiClient,
+        path: {
+          field_group: fieldGroup,
+        },
+        query: {
+          field,
+          dimensions,
+          parameters,
+          ...layerSpec,
+          page,
+          size: pageSize,
+        },
+      });
+      const features = (data.items as FeatureListItemOutFloat[]).map(processFeature);
+      const pageInfo = pick(data, ['page', 'size', 'total']);
+      return { features, pageInfo, error: null };
+    } catch (error) {
+      return {
+        features: [],
+        pageInfo: {
+          page,
+          size: pageSize,
+          total: 0,
+        },
+        error,
+      };
+    }
+  });
 });
 
 export interface LayerSpec {
@@ -106,11 +107,22 @@ export const useSortedFeatures = (
   const { fieldGroup, fieldDimensions, field, fieldParams } = fieldSpec;
   const dimensions = JSON.stringify(fieldDimensions);
   const parameters = JSON.stringify(fieldParams);
-  const queryKey = JSON.stringify({ fieldGroup, field, dimensions, parameters, page, pageSize, ...layerSpec });
+  const queryKey = JSON.stringify({
+    fieldGroup,
+    field,
+    dimensions,
+    parameters,
+    page,
+    pageSize,
+    ...layerSpec,
+  });
   const result = useAtomValue(sortedFeaturesState(queryKey));
 
-  const { features = [], pageInfo = { page, size: pageSize, total: 0 }, error = null } =
-    result ?? {};
+  const {
+    features = [],
+    pageInfo = { page, size: pageSize, total: 0 },
+    error = null,
+  } = result ?? {};
 
   return {
     features,

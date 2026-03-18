@@ -31,6 +31,11 @@ const defaultBuildingSelection: BuildingSelection = {
 };
 
 export const buildingSelectionState = atom(
-  (get) => readUrlJson<BuildingSelection>(get(locationAtom).searchParams, 'buiSel', defaultBuildingSelection),
+  (get) =>
+    readUrlJson<BuildingSelection>(
+      get(locationAtom).searchParams,
+      'buiSel',
+      defaultBuildingSelection,
+    ),
   (_get, set, value: BuildingSelection) => set(locationAtom, setUrlParam('buiSel', value)),
 );

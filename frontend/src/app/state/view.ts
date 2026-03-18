@@ -16,9 +16,7 @@ import { VIEW_SECTIONS } from 'app/config/views';
 
 // Initialised from the current pathname so the first render has the correct
 // value synchronously.  MapPage keeps it in sync via useSyncRecoilState.
-export const viewState = atom<string>(
-  window.location.pathname.split('/').find(Boolean) ?? '',
-);
+export const viewState = atom<string>(window.location.pathname.split('/').find(Boolean) ?? '');
 
 function sectionVisibility(section, sectionConfig) {
   const searchParams = new URLSearchParams(window.location.search);

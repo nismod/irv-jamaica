@@ -1,8 +1,7 @@
 import { usePrevious } from 'lib/hooks/use-previous';
 import { useCallback, useEffect } from 'react';
 import { WritableAtom, useAtomValue } from 'jotai';
-import { useAtomCallback } from 'jotai/utils';
-import { RESET } from 'jotai/utils';
+import { useAtomCallback, RESET } from 'jotai/utils';
 import { StateEffect } from './types';
 
 /**

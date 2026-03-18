@@ -17,7 +17,7 @@ export function hasHover(target: IT) {
   return !!target;
 }
 
-export const hoverState = atomFamily((_id: string) => atom(null as IT | null));
+export const hoverState = atomFamily(() => atom(null as IT | null));
 
 export const hoverPositionState = atom(null) as WritableAtom<
   [number, number] | null,
@@ -51,7 +51,7 @@ const selectionBaseState = atomFamily((id: string): PrimitiveAtom<InteractionLay
       set({
         interactionGroup: id,
         interactionStyle: 'vector', // raster selection is not supported at present.
-        viewLayer: { id: viewLayerId } as unknown as ViewLayer,
+        viewLayer: { id: viewLayerId } as ViewLayer,
         target: { feature: { id: parseInt(featureId) } } as unknown as VectorTarget,
       });
     }

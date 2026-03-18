@@ -19,17 +19,12 @@ export type DataParamParam = Readonly<{
 
 export const dataParamConfigState = atom<Record<string, DataParamGroupConfig>>({});
 
-const paramEqual = (a: DataParamParam, b: DataParamParam) => a.group === b.group && a.param === b.param;
+const paramEqual = (a: DataParamParam, b: DataParamParam) =>
+  a.group === b.group && a.param === b.param;
 
-export const dataParamState = atomFamily(
-  (_param: DataParamParam) => atom(null as Param | null),
-  paramEqual,
-);
+export const dataParamState = atomFamily(() => atom(null as Param | null), paramEqual);
 
-export const dataParamOptionsState = atomFamily(
-  (_param: DataParamParam) => atom([] as ParamDomain),
-  paramEqual,
-);
+export const dataParamOptionsState = atomFamily(() => atom([] as ParamDomain), paramEqual);
 
 /**
  * A writeable selector that takes a config object, from an external source,

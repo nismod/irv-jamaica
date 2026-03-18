@@ -71,10 +71,7 @@ export const AdaptationControl: FC = () => {
   const [adaptationField, setAdaptationField] = useAtom(adaptationFieldState);
   return (
     <LayerStylePanel>
-      <StateEffectRoot
-        state={adaptationLayerSpecState}
-        effect={adaptationDataParamsStateEffect}
-      />
+      <StateEffectRoot state={adaptationLayerSpecState} effect={adaptationDataParamsStateEffect} />
       <InputSection>
         <InputRow>
           <DataParam group="adaptation" id="sector">

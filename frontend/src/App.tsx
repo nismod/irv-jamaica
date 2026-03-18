@@ -51,55 +51,34 @@ export const navItems: NavItemConfig[] = [
   },
 ];
 
-const serialise = (value) => {
-  if (typeof value === 'undefined') {
-    return '';
-  }
-  if (typeof value === 'string') {
-    return value;
-  }
-  if (typeof value === 'number') {
-    return value.toString();
-  }
-  return JSON.stringify(value);
-};
-
-const deserialise = (value) => {
-  try {
-    return JSON.parse(value);
-  } catch {
-    return value;
-  }
-};
-
 export const App = () => {
   return (
     <Provider>
       <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
-              <QueryClientProvider client={queryClient}>
-                <Router>
-                  <CssBaseline />
-                  <Nav height={globalStyleVariables.navbarHeight} navItems={navItems} />
-                  <Notice />
-                  <Box
-                    position="absolute"
-                    top={globalStyleVariables.navbarHeight}
-                    bottom={0}
-                    left={0}
-                    right={0}
-                  >
-                    <Routes>
-                      <Route path="/" element={<IntroPage />} />
-                      <Route path="/:view" element={<MapPage />} />
-                      <Route path="/data" element={<DataPage />} />
-                      <Route path="/guide" element={<GuidePage />} />
-                    </Routes>
-                  </Box>
-                </Router>
-              </QueryClientProvider>
-            </ThemeProvider>
-          </StyledEngineProvider>
+        <ThemeProvider theme={theme}>
+          <QueryClientProvider client={queryClient}>
+            <Router>
+              <CssBaseline />
+              <Nav height={globalStyleVariables.navbarHeight} navItems={navItems} />
+              <Notice />
+              <Box
+                position="absolute"
+                top={globalStyleVariables.navbarHeight}
+                bottom={0}
+                left={0}
+                right={0}
+              >
+                <Routes>
+                  <Route path="/" element={<IntroPage />} />
+                  <Route path="/:view" element={<MapPage />} />
+                  <Route path="/data" element={<DataPage />} />
+                  <Route path="/guide" element={<GuidePage />} />
+                </Routes>
+              </Box>
+            </Router>
+          </QueryClientProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </Provider>
   );
 };
