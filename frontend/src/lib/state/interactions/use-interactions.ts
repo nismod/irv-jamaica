@@ -1,5 +1,6 @@
 import { Texture } from '@luma.gl/core';
 import { BitmapLayer, PickingInfo } from 'deck.gl';
+import { useSetAtom } from 'jotai';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import { useRecoilCallback, useSetRecoilState } from 'recoil';
@@ -126,7 +127,7 @@ export function useInteractions(
 
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
   const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);
-  const setPixelSelection = useSetRecoilState(pixelSelectionState);
+  const setPixelSelection = useSetAtom(pixelSelectionState);
 
   const [primaryGroup] = [...interactionGroups.keys()];
   const primaryGroupPickingRadius = interactionGroups.get(primaryGroup).pickingRadius;
