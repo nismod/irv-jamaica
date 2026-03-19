@@ -85,9 +85,9 @@ export const adaptationLayerSpecState = atom<LayerSpec>((get) => {
   const asset_type = get(dataParamState({ group: 'adaptation', param: 'asset_type' }));
 
   return {
-    sector: String(sector),
-    subsector: String(subsector),
-    asset_type: String(asset_type),
+    sector: sector !== null ? String(sector) : undefined,
+    subsector: subsector !== null ? String(subsector) : undefined,
+    asset_type: asset_type ? String(asset_type) : undefined,
   };
 });
 

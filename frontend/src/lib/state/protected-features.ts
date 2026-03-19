@@ -15,7 +15,7 @@ const apiClient = createClient({
   baseUrl: '/api',
 });
 
-type ProtectedFeatureDetailsQuery = { rcp: string };
+type ProtectedFeatureDetailsQuery = { rcp?: string };
 
 /**
  * Fetch a list of all adaptation options, by feature ID and layer,
@@ -62,7 +62,8 @@ export const protectedFeatureAdaptationOptionsState = atomFamily(
  * Fetch a list of layer IDs for the current protected feature query set.
  */
 export const protectedFeatureLayersQuery = atom(async (get) => {
-  const rcp = String(get(dataParamState({ group: 'adaptation', param: 'rcp' }))); 
+  const rcpParam = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
+  const rcp = rcpParam !== null ? String(rcpParam) : undefined;
   const features = await get(protectedFeatureAdaptationOptionsQuery({ rcp }));
   return new Set(features?.map((feature) => feature.layer));
 });
@@ -84,7 +85,8 @@ export const protectedFeatureLayersState = atom((get) => {
  * set by the adaptations sidebar control state.
  */
 export const protectedFeatureAdaptationsState = atom((get) => {
-  const rcp = String(get(dataParamState({ group: 'adaptation', param: 'rcp' }))); 
+  const rcpParam = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
+  const rcp = rcpParam !== null ? String(rcpParam) : undefined;
   const { data } = get(protectedFeatureAdaptationOptionsState({ rcp }));
   return data;
 });

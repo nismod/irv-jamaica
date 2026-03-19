@@ -100,6 +100,7 @@ function processPickedObject(
   viewLayerLookup: (id: string) => ViewLayer,
   lookupViewForDeck: (deckLayerId: string) => string,
 ) {
+  if (!info?.layer) return null;
   const deckLayerId = info.layer.id;
   const viewLayerId = lookupViewForDeck(deckLayerId);
   const target = processTargetByType(type, info);
