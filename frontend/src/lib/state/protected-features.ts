@@ -62,7 +62,7 @@ export const protectedFeatureAdaptationOptionsState = atomFamily(
  * Fetch a list of layer IDs for the current protected feature query set.
  */
 export const protectedFeatureLayersQuery = atom(async (get) => {
-  const rcp = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
+  const rcp = String(get(dataParamState({ group: 'adaptation', param: 'rcp' }))); 
   const features = await get(protectedFeatureAdaptationOptionsQuery({ rcp }));
   return new Set(features?.map((feature) => feature.layer));
 });
@@ -84,7 +84,7 @@ export const protectedFeatureLayersState = atom((get) => {
  * set by the adaptations sidebar control state.
  */
 export const protectedFeatureAdaptationsState = atom((get) => {
-  const rcp = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
+  const rcp = String(get(dataParamState({ group: 'adaptation', param: 'rcp' }))); 
   const { data } = get(protectedFeatureAdaptationOptionsState({ rcp }));
   return data;
 });

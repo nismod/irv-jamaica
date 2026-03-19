@@ -13,6 +13,7 @@ import { LandUseOption, TerrestrialLocationFilterType } from './domains';
 import { TerrestrialFilters } from './state/terrestrial-filters';
 import { TerrestrialHoverDescription } from './TerrestrialHoverDescription';
 import { VectorLegend } from 'lib/map/legend/VectorLegend';
+import { getFeatureId } from 'lib/deck/utils/get-feature-id';
 
 function landuseFilterValue(p, landuseFilters: Set<LandUseOption>) {
   return landuseFilters.has(p.landuse_desc) ? 1 : 0;
@@ -75,7 +76,7 @@ export function terrestrialViewLayer({
     fn: ({ deckProps, zoom, selection }) => {
       const switchoverZoom = 14.5;
       const target = selection?.target as VectorTarget;
-      const selectedFeatureIds = [target?.feature.id];
+      const selectedFeatureIds = [getFeatureId(target?.feature)];
 
       return [
         selectableMvtLayer(

@@ -3,7 +3,7 @@ import { PathStyleExtension } from '@deck.gl/extensions';
 import { geoJsonLayer } from './base';
 
 export interface BoundingBoxLayerOptions {
-  bboxGeom: any;
+  bboxGeom: unknown;
 }
 
 export function boundingBoxLayer({ bboxGeom }: BoundingBoxLayerOptions, ...props) {

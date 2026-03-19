@@ -20,7 +20,10 @@ export function titleCase(str: string) {
   return splitStr.join(' ');
 }
 
-export function numFormat(n: number, maximumSignificantDigits: number = 3) {
+export function numFormat(
+  n: number | string | boolean | null | undefined,
+  maximumSignificantDigits: number = 3,
+) {
   return n == null ? `-` : n.toLocaleString(undefined, { maximumSignificantDigits });
 }
 
@@ -42,7 +45,10 @@ export function numFormatFinancial(value: number, dataUnit: string = 'JMD') {
   return numFormatMoney(value, currency);
 }
 
-export function numRangeFormat(n1: number, n2: number) {
+export function numRangeFormat(
+  n1: number | string | boolean | null | undefined,
+  n2: number | string | boolean | null | undefined,
+) {
   if (n1 == null || n2 == null) return null;
 
   return `${numFormat(n1)}–${numFormat(n2)}`;
@@ -53,7 +59,7 @@ export function numRangeFormat(n1: number, n2: number) {
  * @param x value to wrap
  * @returns string with parentheses or empty string
  */
-export function paren(x: any) {
+export function paren(x: unknown) {
   return x == null ? '' : `(${x})`;
 }
 
@@ -89,11 +95,13 @@ export function makeColorConfig<K extends string>(cfg: Record<K, string>) {
 }
 
 // see discussion at https://stackoverflow.com/questions/23437476/in-typescript-how-to-check-if-a-string-is-numeric
-export function isNumeric(val: any): boolean {
-  return !(val instanceof Array) && val - parseFloat(val) + 1 >= 0;
+export function isNumeric(val: unknown): val is number | string {
+  if (val instanceof Array || val == null) return false;
+  const n = Number(val);
+  return Number.isFinite(n);
 }
 
-export function truthyKeys<K extends string = string>(obj: Record<K, any>) {
+export function truthyKeys<K extends string = string>(obj: Record<K, unknown>) {
   return Object.keys(obj).filter((k) => obj[k]) as K[];
 }
 
@@ -152,6 +160,6 @@ export function valueType<C>(): ValueTypeCheck<C> {
  * @param v value to check
  * @returns is the value null or undefined
  */
-export function isNullish(v: any): v is null | undefined {
+export function isNullish(v: unknown): v is null | undefined {
   return v == null;
 }

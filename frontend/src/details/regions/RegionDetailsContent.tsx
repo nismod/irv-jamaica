@@ -1,16 +1,17 @@
 import { List, Typography } from '@mui/material';
 import { REGIONS_METADATA } from 'data-layers/regions/metadata';
 import { DataItem } from 'lib/map/tooltip/detail-components';
-import { InteractionTarget } from 'lib/data-map/types';
+import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 import { numFormat } from 'lib/helpers';
 import { FC } from 'react';
 
-export const RegionDetailsContent: FC<{ selectedRegion: InteractionTarget<any> }> = ({
+export const RegionDetailsContent: FC<{ selectedRegion: InteractionTarget<VectorTarget> }> = ({
   selectedRegion,
 }) => {
-  const metadata = REGIONS_METADATA[selectedRegion.viewLayer.params.regionLevel];
-  const f = selectedRegion.target.feature.properties;
-  const area = f['AREA'] ? f['AREA'] * 1e-6 : f['Shape_Area'] * 1e-6;
+  const params = selectedRegion.viewLayer.params as { regionLevel: string };
+  const metadata = REGIONS_METADATA[params.regionLevel];
+  const f = selectedRegion.target.feature.properties as Record<string, number | string | undefined>;
+  const area = Number(f['AREA'] ?? f['Shape_Area'] ?? 0) * 1e-6;
 
   return (
     <>

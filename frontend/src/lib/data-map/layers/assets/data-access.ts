@@ -5,6 +5,7 @@ import { featureProperty } from 'lib/deck/props/data-source';
 import { Accessor, withTriggers } from 'lib/deck/props/getters';
 import { getFeatureId } from 'lib/deck/utils/get-feature-id';
 import { sumOrNone } from 'lib/helpers';
+import { MapGeoJSONFeature } from 'maplibre-gl';
 
 function getExpectedDamageKey(direct: boolean, hazard: string, rcp: string, epoch: number) {
   return `${direct ? 'ead' : 'eael'}__${hazard}__rcp_${rcp}__epoch_${epoch}__conf_None`;
@@ -12,12 +13,18 @@ function getExpectedDamageKey(direct: boolean, hazard: string, rcp: string, epoc
 
 const hazardTypes = ['fluvial', 'surface', 'coastal', 'cyclone'];
 
-function totalExpectedDamagesProperty(direct: boolean, { rcp, epoch }) {
+function totalExpectedDamagesProperty(
+  direct: boolean,
+  { rcp, epoch }: { rcp: string; epoch: number },
+) {
   const hazardProperties = hazardTypes.map((ht) =>
-    featureProperty(getExpectedDamageKey(direct, ht, rcp, epoch)),
+    featureProperty<number>(getExpectedDamageKey(direct, ht, rcp, epoch)),
   );
 
-  return withTriggers((f) => sumOrNone(hazardProperties.map((p) => p(f))), [direct, rcp, epoch]);
+  return withTriggers(
+    (f: MapGeoJSONFeature) => sumOrNone(hazardProperties.map((p) => p(f))),
+    [direct, rcp, epoch],
+  );
 }
 
 /**
@@ -26,7 +33,7 @@ function totalExpectedDamagesProperty(direct: boolean, { rcp, epoch }) {
  * @param dataLoader data loader
  * @returns fn with additional properties; fn.updateTriggers and fn.dataLoader.
  */
-function withLoaderTriggers(fn: Accessor<any>, dataLoader: DataLoader) {
+function withLoaderTriggers(fn: Accessor<unknown>, dataLoader: DataLoader) {
   fn.dataLoader = dataLoader;
   return withTriggers(fn, [dataLoader.id, dataLoader.updateTrigger]);
 }
@@ -44,12 +51,16 @@ export function getAssetDataAccessor(layer: string, fieldSpec: FieldSpec) {
   const { fieldGroup, fieldDimensions, field } = fieldSpec;
 
   if (fieldGroup === 'damages_expected') {
-    const { hazard, rcp, epoch } = fieldDimensions;
+    const { hazard, rcp, epoch } = fieldDimensions as {
+      hazard: string;
+      rcp: string;
+      epoch: number;
+    };
 
     const isDirect = field.startsWith('ead_');
 
     if (hazard === 'all') {
-      return totalExpectedDamagesProperty(isDirect, fieldDimensions);
+      return totalExpectedDamagesProperty(isDirect, { rcp, epoch });
     }
     return featureProperty(getExpectedDamageKey(isDirect, hazard, rcp, epoch));
   } else if (fieldGroup === 'damages_return_period') {

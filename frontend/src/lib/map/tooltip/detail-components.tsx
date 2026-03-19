@@ -1,4 +1,4 @@
-import { ComponentType, FC } from 'react';
+import { ComponentType, FC, ReactNode } from 'react';
 
 import {
   List,
@@ -20,12 +20,12 @@ import { protectedFeatureAdaptationOptionsState } from 'lib/state/protected-feat
 
 interface DataItemProps {
   label: string;
-  value: any;
+  value: ReactNode;
   maximumSignificantDigits?: number;
 }
 
 export const DataItem: FC<DataItemProps> = ({ label, value, maximumSignificantDigits }) => {
-  if (isNumeric(value)) {
+  if (typeof value === 'number' || (typeof value === 'string' && isNumeric(value))) {
     value = numFormat(value, maximumSignificantDigits);
   }
   return (
@@ -40,7 +40,7 @@ export const DataItem: FC<DataItemProps> = ({ label, value, maximumSignificantDi
 };
 
 interface DetailSubheaderProps {
-  id: string;
+  id: ReactNode;
 }
 
 const DetailSubheader: FC<DetailSubheaderProps> = ({ id }) => (
@@ -50,7 +50,7 @@ const DetailSubheader: FC<DetailSubheaderProps> = ({ id }) => (
 );
 
 interface DetailsComponentProps {
-  f: any;
+  f: Record<string, string | number | boolean | null | undefined>;
 }
 
 export type DetailsComponent = ComponentType<DetailsComponentProps>;
