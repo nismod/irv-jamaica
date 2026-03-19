@@ -33,18 +33,6 @@ export const VIEW_SECTIONS: Record<string, Record<string, ViewSectionConfig>> = 
       styles: ['boundaries', 'population'],
       defaultStyle: 'boundaries',
     },
-    terrestrial: {
-      expanded: false,
-      visible: false,
-      styles: ['landuse', 'slope', 'elevation'],
-      defaultStyle: 'landuse',
-    },
-    marine: {
-      expanded: false,
-      visible: false,
-      styles: ['habitat'],
-      defaultStyle: 'habitat',
-    },
   },
   risk: {
     assets: {
@@ -79,18 +67,6 @@ export const VIEW_SECTIONS: Record<string, Record<string, ViewSectionConfig>> = 
       styles: ['boundaries', 'population'],
       defaultStyle: 'boundaries',
     },
-    terrestrial: {
-      expanded: false,
-      visible: false,
-      styles: ['landuse', 'slope', 'elevation'],
-      defaultStyle: 'landuse',
-    },
-    marine: {
-      expanded: false,
-      visible: false,
-      styles: ['habitat'],
-      defaultStyle: 'habitat',
-    },
   },
   adaptation: {
     assets: {
@@ -124,18 +100,6 @@ export const VIEW_SECTIONS: Record<string, Record<string, ViewSectionConfig>> = 
       styles: ['boundaries', 'population'],
       defaultStyle: 'boundaries',
     },
-    terrestrial: {
-      expanded: false,
-      visible: false,
-      styles: ['landuse', 'slope', 'elevation'],
-      defaultStyle: 'landuse',
-    },
-    marine: {
-      expanded: false,
-      visible: false,
-      styles: ['habitat'],
-      defaultStyle: 'habitat',
-    },
   },
   'nature-based-solutions': {
     terrestrial: {
@@ -149,30 +113,6 @@ export const VIEW_SECTIONS: Record<string, Record<string, ViewSectionConfig>> = 
       visible: false,
       styles: ['habitat'],
       defaultStyle: 'habitat',
-    },
-    assets: {
-      expanded: false,
-      visible: false,
-      styles: ['type', 'damages'],
-      defaultStyle: 'type',
-    },
-    hazards: {
-      expanded: false,
-      visible: false,
-    },
-    buildings: {
-      expanded: false,
-      visible: false,
-
-      styles: ['type'],
-      defaultStyle: 'type',
-    },
-    regions: {
-      expanded: false,
-      visible: false,
-
-      styles: ['boundaries', 'population'],
-      defaultStyle: 'boundaries',
     },
   },
 };
