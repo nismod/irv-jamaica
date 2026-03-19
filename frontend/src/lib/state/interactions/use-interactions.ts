@@ -23,8 +23,33 @@ import {
 } from './interaction-state';
 import { pixelSelectionState } from '../pixel-driller';
 
-function processRasterTarget(info: any): RasterTarget {
-  const { bitmap, sourceLayer, layer } = info;
+type DeckPicker = {
+  pickMultipleObjects: (params: unknown) => PickingInfo<unknown>[];
+  pickObject: (params: unknown) => PickingInfo<unknown>;
+};
+
+function processRasterTarget(info: PickingInfo<unknown>): RasterTarget | null {
+  const rasterInfo = info as PickingInfo<unknown> & {
+    bitmap?: { pixel: [number, number] };
+    sourceLayer?: BitmapLayer;
+    layer: {
+      context: {
+        device: {
+          readPixelsToArrayWebGL: (
+            image: Texture,
+            options: {
+              sourceX: number;
+              sourceY: number;
+              sourceWidth: number;
+              sourceHeight: number;
+            },
+          ) => Uint8Array;
+        };
+      };
+    };
+  };
+
+  const { bitmap, sourceLayer, layer } = rasterInfo;
   if (bitmap) {
     const { device } = layer.context;
     // the current deck.gl docs suggest using the deprecated function - see https://github.com/visgl/deck.gl/issues/9493
@@ -44,28 +69,32 @@ function processRasterTarget(info: any): RasterTarget {
         }
       : null;
   }
+
+  return null;
 }
 
-function processVectorTarget(info: PickingInfo<any>): VectorTarget {
-  const { object } = info;
+function processVectorTarget(info: PickingInfo<unknown>): VectorTarget | null {
+  const object = info.object as
+    | ({ id?: unknown; properties?: { id?: unknown } } & Record<string, unknown>)
+    | null;
+  if (!object) return null;
+
   const feature = {
     id: object.id || object.properties?.id,
     ...object,
-  };
+  } as VectorTarget['feature'];
 
-  return object
-    ? {
-        feature,
-      }
-    : null;
+  return {
+    feature,
+  };
 }
 
-function processTargetByType(type: InteractionStyle, info: PickingInfo<any>) {
+function processTargetByType(type: InteractionStyle, info: PickingInfo<unknown>) {
   return type === 'raster' ? processRasterTarget(info) : processVectorTarget(info);
 }
 
 function processPickedObject(
-  info: PickingInfo<any>,
+  info: PickingInfo<unknown>,
   type: InteractionStyle,
   groupName: string,
   viewLayerLookup: (id: string) => ViewLayer,
@@ -145,7 +174,7 @@ export function useInteractions(
   const activeGroups = useActiveGroups(viewLayers);
   useSyncAllowedLayers(viewLayers);
 
-  const onHover = (info: any, deck) => {
+  const onHover = (info: PickingInfo<unknown>, deck: DeckPicker) => {
     const { x, y } = info;
     const viewLayerLookup = (id: string) => viewLayers.find((x) => x.id === id);
 
@@ -157,7 +186,7 @@ export function useInteractions(
       const pickingParams = { x, y, layerIds, radius };
 
       if (pickMultiple) {
-        const pickedObjects: PickingInfo<any>[] = deck.pickMultipleObjects(pickingParams);
+        const pickedObjects: PickingInfo<unknown>[] = deck.pickMultipleObjects(pickingParams);
         const interactionTargets: InteractionLayer[] = pickedObjects
           .map((info) =>
             processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck),
@@ -166,7 +195,7 @@ export function useInteractions(
 
         setInteractionGroupHover(groupName, interactionTargets);
       } else {
-        const info: PickingInfo<any> = deck.pickObject(pickingParams);
+        const info: PickingInfo<unknown> = deck.pickObject(pickingParams);
         const interactionTarget: InteractionLayer =
           info && processPickedObject(info, type, groupName, viewLayerLookup, lookupViewForDeck);
 
@@ -177,7 +206,7 @@ export function useInteractions(
     setHoverXY([x, y]);
   };
 
-  const onClick = (info: PickingInfo, deck) => {
+  const onClick = (info: PickingInfo, deck: DeckPicker) => {
     const { x, y } = info;
     const viewLayerLookup = (id: string) => viewLayers.find((x) => x.id === id);
 

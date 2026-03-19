@@ -7,9 +7,9 @@ import { ConfigTree } from 'lib/nested-config/config-tree';
 
 export interface FieldSpec {
   fieldGroup: string;
-  fieldDimensions?: any;
+  fieldDimensions?: Record<string, string | number>;
   field: string;
-  fieldParams?: any;
+  fieldParams?: Record<string, string | number>;
 }
 
 export interface ColorSpec {
@@ -17,7 +17,7 @@ export interface ColorSpec {
   scale: (
     domain: [number, number],
     interpolator: (t: number, n: number) => string,
-  ) => ScaleSequential<any, any>;
+  ) => ScaleSequential<string, string>;
   range: [number, number];
   empty: string;
 }
@@ -29,7 +29,7 @@ export interface StyleParams {
   colorMap?: ColorMap;
 }
 export interface ViewLayerFunctionOptions {
-  deckProps: any;
+  deckProps: { id: string } & Record<string, unknown>;
   zoom: number;
   styleParams?: StyleParams;
   selection?: InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
@@ -37,7 +37,7 @@ export interface ViewLayerFunctionOptions {
 }
 
 export interface DataManager {
-  getDataAccessor: (layer: string, fieldSpec: FieldSpec) => Accessor<string>;
+  getDataAccessor: (layer: string, fieldSpec: FieldSpec) => Accessor<unknown>;
   getDataLoader: (layer: string, fieldSpec: FieldSpec) => DataLoader;
 }
 
@@ -46,12 +46,12 @@ export interface FormatConfig<D = unknown> {
   getValueFormatted: (value: D, fieldSpec: FieldSpec) => string;
 }
 
-export type ViewLayerDataAccessFunction = (fieldSpec: FieldSpec) => Accessor<string>;
+export type ViewLayerDataAccessFunction = (fieldSpec: FieldSpec) => Accessor<unknown>;
 export type ViewLayerDataFormatFunction = (fieldSpec: FieldSpec) => FormatConfig;
 
 export interface ViewLayer {
   id: string;
-  params?: any;
+  params?: unknown;
   styleParams?: StyleParams;
   group: string;
   fn: (options: ViewLayerFunctionOptions) => Layer | Layer[];
@@ -76,6 +76,6 @@ export function viewOnlyLayer(id, fn): ViewLayer {
 }
 
 export interface ViewLayerParams {
-  selection?: any;
+  selection?: InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
   styleParams?: StyleParams;
 }

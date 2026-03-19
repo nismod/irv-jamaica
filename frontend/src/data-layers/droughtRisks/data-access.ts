@@ -10,5 +10,5 @@ export function getDroughtDataAccessor(fieldSpec: FieldSpec) {
 
   const { field, fieldDimensions } = fieldSpec;
 
-  return featureProperty(getDroughtPropertyKey(field, fieldDimensions.rcp));
+  return featureProperty(getDroughtPropertyKey(field, String(fieldDimensions?.rcp ?? '')));
 }

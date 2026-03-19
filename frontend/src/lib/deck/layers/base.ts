@@ -14,7 +14,7 @@ const deckPropsMergeStrategies = {
  * - nested arrays are flattened
  * - compound props (currently only `updateTriggers`) are merged instead of overwritten
  */
-function mergeDeckProps(...props: ConfigTree<object>): any {
+function mergeDeckProps(...props: ConfigTree<object>): object {
   const flattenedProps = flattenConfig(props);
 
   return mergeObjects(flattenedProps, deckPropsMergeStrategies);

@@ -84,12 +84,13 @@ export function vectorColor(type: 'fill' | 'stroke' | 'icon', getColor: GetColor
   if (type === 'fill') propName = 'getFillColor';
   else if (type === 'stroke') propName = 'getLineColor';
   else if (type === 'icon') propName = 'getIconColor'; // this will only work for GeoJsonLayer
+  const triggeredColor = getColor as Partial<{ updateTriggers: unknown[] }>;
 
   return {
     [propName]: getColor,
     updateTriggers: {
       [propName]:
-        (getColor as any)?.updateTriggers ?? (typeof getColor === 'function' ? [] : undefined),
+        triggeredColor.updateTriggers ?? (typeof getColor === 'function' ? [] : undefined),
     },
   };
 }

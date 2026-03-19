@@ -22,7 +22,7 @@ function formatDamageValue(value: number) {
 const DAMAGES_EXPECTED_DEFAULT_FORMAT: FormatConfig = {
   getDataLabel: (colorField) => {
     const variableLabel = getDamageTypeLabel(colorField.field);
-    const sourceLabel = getSourceLabel(colorField.fieldDimensions.hazard);
+    const sourceLabel = getSourceLabel(String(colorField.fieldDimensions.hazard));
     return `${variableLabel} (${sourceLabel})`;
   },
   getValueFormatted: formatDamageValue,
@@ -59,7 +59,7 @@ function formatAdaptationValue(value: number, { field }: FieldSpec) {
 const ADAPTATION_DEFAULT_FORMAT: FormatConfig<number> = {
   getDataLabel: (colorField) => {
     return `${getAdaptationFieldLabel(colorField.field)} ${paren(
-      colorField.fieldDimensions.adaptation_name,
+      String(colorField.fieldDimensions.adaptation_name),
     )}`;
   },
   getValueFormatted: formatAdaptationValue,

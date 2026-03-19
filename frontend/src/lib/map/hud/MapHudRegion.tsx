@@ -3,7 +3,7 @@ import { PropsOf } from '@emotion/react';
 import { Box, Stack } from '@mui/material';
 import React, { FC } from 'react';
 
-function eventPreventDefault(e: any) {
+function eventPreventDefault(e: React.SyntheticEvent) {
   e.preventDefault();
 }
 

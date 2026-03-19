@@ -1,6 +1,6 @@
 import { usePrevious } from 'lib/hooks/use-previous';
 import { useCallback, useEffect } from 'react';
-import { WritableAtom, useAtomValue } from 'jotai';
+import { Atom, WritableAtom, useAtomValue } from 'jotai';
 import { useAtomCallback, RESET } from 'jotai/utils';
 import { StateEffect } from './types';
 
@@ -19,9 +19,9 @@ export function useStateEffect<T>(state: WritableAtom<T, unknown[], void>, effec
     useCallback(
       (get, set, newValue: T, previousValue: T) => {
         const ops = {
-          get: (s: any) => get(s),
-          set: (s: any, v: any) => set(s, v),
-          reset: (s: any) => set(s, RESET as never),
+          get: <R>(s: Atom<R>) => get(s),
+          set: <R>(s: WritableAtom<R, [R], void>, v: R) => set(s, v),
+          reset: <R>(s: WritableAtom<R, [R], void>) => set(s, RESET as R),
         };
         effect(ops, newValue, previousValue);
       },

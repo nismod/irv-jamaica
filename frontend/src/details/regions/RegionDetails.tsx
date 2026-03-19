@@ -7,6 +7,7 @@ import { SidePanel } from 'details/SidePanel';
 import { DeselectButton } from 'details/DeselectButton';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
+import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
 
 /**
  * Display detailed information about a selected region (parish or enumeration district.)
@@ -14,7 +15,9 @@ import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 export const RegionDetails = () => {
   const selectedRegion = useAtomValue(selectionState('regions'));
 
-  if (!selectedRegion) return null;
+  if (!selectedRegion || selectedRegion.interactionStyle !== 'vector') return null;
+
+  const vectorRegion = selectedRegion as InteractionTarget<VectorTarget>;
 
   return (
     <SidePanel position="relative">
@@ -23,7 +26,7 @@ export const RegionDetails = () => {
         <Box position="absolute" top={0} right={0} p={2}>
           <DeselectButton interactionGroup="regions" title="Deselect region" />
         </Box>
-        <RegionDetailsContent selectedRegion={selectedRegion} />
+        <RegionDetailsContent selectedRegion={vectorRegion} />
       </ErrorBoundary>
     </SidePanel>
   );

@@ -2,12 +2,12 @@ import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import uniq from 'lodash/uniq';
 
-export type Param = any;
-export type ParamDomain<PT extends Param = Param> = PT[];
+export type Param = string | number;
+export type ParamDomain<PT = Param> = PT[];
 
-export type ParamGroup = Record<string, Param>;
+export type ParamGroup = object;
 
-export type ParamDependency<PT extends Param, PGT extends ParamGroup> = (
+export type ParamDependency<PT, PGT extends ParamGroup> = (
   params: PGT,
 ) => ParamDomain<PT>;
 
@@ -37,7 +37,7 @@ export function resolveParamDependencies<PGT extends ParamGroup = ParamGroup>(
   const { paramDomains, paramDependencies = {} } = config;
 
   const resolvedParams = { ...updatedParams };
-  const newOptions: ParamGroupDomains<PGT> = {} as any;
+  const newOptions = {} as ParamGroupDomains<PGT>;
 
   for (const [param, paramValue] of Object.entries(updatedParams)) {
     const newParamOptions = getNewParamOptions(
@@ -91,11 +91,12 @@ export function inferDependenciesFromData<T extends object>(
 }
 
 export function inferDomainsFromData<T extends object>(data: T[]): ParamGroupDomains<T> {
-  const domains: any = {};
+  const domains = {} as ParamGroupDomains<T>;
   const keys = Object.keys(data[0]);
   for (const key of keys) {
-    const values = data.map((d) => d[key]);
-    domains[key] = uniq(values);
+    const typedKey = key as keyof T;
+    const values = data.map((d) => d[typedKey]);
+    domains[typedKey] = uniq(values) as ParamDomain<T[typeof typedKey]>;
   }
   return domains;
 }

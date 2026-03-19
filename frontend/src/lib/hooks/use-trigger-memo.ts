@@ -10,7 +10,11 @@ import { DependencyList, useMemo } from 'react';
  * @param trigger trigger which will cause recalculation. It shouldn't be a dependency of the callback
  * @returns memoed result of the callback
  */
-export function useTriggerMemo<T>(callback: () => T, dependencies: DependencyList, trigger: any) {
+export function useTriggerMemo<T>(
+  callback: () => T,
+  dependencies: DependencyList,
+  trigger: unknown,
+) {
   return useMemo(
     callback,
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -8,7 +8,8 @@ import { REGIONS_METADATA } from './metadata';
 import { showPopulationState } from './state/data-selection';
 
 export const RegionHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
-  const metadata = REGIONS_METADATA[viewLayer.params.regionLevel];
+  const { regionLevel } = (viewLayer.params ?? {}) as { regionLevel: string };
+  const metadata = REGIONS_METADATA[regionLevel];
 
   const showPopulation = useAtomValue(showPopulationState);
 

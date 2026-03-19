@@ -9,7 +9,7 @@ import {
 export const queryClient = new QueryClient();
 
 export function makeQueryAndPrefetch<
-  TArgs extends Record<string, any>,
+  TArgs extends Record<string, unknown>,
   TQueryKey extends QueryKey,
   TResult,
 >(keyFn: (args: TArgs) => TQueryKey, makeFetcher: (args: TArgs) => QueryFunction<TResult>) {

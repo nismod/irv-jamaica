@@ -25,7 +25,7 @@ const TabNavigationAction: FC<{
 
   selected?: boolean;
   showLabel?: boolean;
-  onChange?: any;
+  onChange?: React.ComponentProps<typeof BottomNavigationAction>['onChange'];
 }> = ({ value, label, IconComponent, selected, showLabel, onChange }) => {
   const hasContent = useAtomValue(mobileTabHasContentState(value));
   const disabled = !hasContent;

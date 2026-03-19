@@ -18,7 +18,7 @@ export function withProps<P, AppliedT extends Partial<P>>(
   const WithProps: FC<Omit<P, keyof AppliedT> & Partial<AppliedT>> = memo((props) => {
     const mergedProps = merge({}, applyProps, props);
 
-    return <ComponentClass {...(mergedProps as any)} />;
+    return <ComponentClass {...(mergedProps as P)} />;
   });
   WithProps.displayName = displayName;
 

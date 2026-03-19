@@ -13,15 +13,32 @@ const slopeColorFunction = colorMap(terrestrialSlope);
 const elevationColorFunction = colorMap(terrestrialElevation);
 
 interface SolutionsSidebarContentProps {
-  feature: any;
+  feature: { properties: Record<string, unknown> };
   solutionType: string; // 'terrestrial' | 'marine'
   showRiskSection?: boolean;
+}
+
+interface SolutionProperties {
+  cell_index?: string | number;
+  landuse_desc?: string;
+  slope_degrees?: number;
+  elevation_m?: number;
+  habitat?: string;
+  is_coral?: boolean;
+  coral_type?: string;
+  is_mangrove?: boolean;
+  mangrove_type?: string;
+  within_coral_500m?: boolean;
+  within_mangrove_500m?: boolean;
+  within_seagrass_500m?: boolean;
 }
 
 export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
   feature,
   solutionType,
 }) => {
+  const p = feature.properties as SolutionProperties;
+
   return (
     <>
       <Typography variant="body2">{startCase(solutionType)}</Typography>
@@ -30,15 +47,15 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
         <List>
           <DataItem
             label="Cell ID"
-            value={feature.properties.cell_index}
+            value={p.cell_index}
             maximumSignificantDigits={21}
           />
           <DataItem
             label="Land Use"
             value={
               <>
-                <ColorBox color={landuseColorMap(feature.properties.landuse_desc)} />
-                {feature.properties.landuse_desc}
+                <ColorBox color={landuseColorMap(p.landuse_desc ?? '')} />
+                {p.landuse_desc}
               </>
             }
           />
@@ -46,8 +63,8 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
             label="Slope (deg)"
             value={
               <>
-                <ColorBox color={slopeColorFunction(feature.properties.slope_degrees)} />
-                {feature.properties.slope_degrees.toLocaleString(undefined, {
+                <ColorBox color={slopeColorFunction(p.slope_degrees ?? 0)} />
+                {p.slope_degrees?.toLocaleString(undefined, {
                   maximumFractionDigits: 0,
                 })}
               </>
@@ -57,8 +74,8 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
             label="Elevation (m)"
             value={
               <>
-                <ColorBox color={elevationColorFunction(feature.properties.elevation_m)} />
-                {feature.properties.elevation_m}
+                <ColorBox color={elevationColorFunction(p.elevation_m ?? 0)} />
+                {p.elevation_m}
               </>
             }
           />
@@ -70,31 +87,31 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
             label="Habitat"
             value={
               <>
-                <ColorBox color={habitatColorMap(feature.properties.habitat)} />
-                {feature.properties.habitat
-                  ? MARINE_HABITATS_LOOKUP[feature.properties.habitat]
+                <ColorBox color={habitatColorMap(p.habitat ?? '')} />
+                {p.habitat
+                  ? MARINE_HABITATS_LOOKUP[p.habitat]
                   : 'Buffer Zone'}
               </>
             }
           />
-          {feature.properties.is_coral ? (
-            <DataItem label="Coral Type" value={feature.properties.coral_type} />
+          {p.is_coral ? (
+            <DataItem label="Coral Type" value={p.coral_type} />
           ) : null}
-          {feature.properties.is_mangrove ? (
-            <DataItem label="Mangrove Type" value={feature.properties.mangrove_type} />
+          {p.is_mangrove ? (
+            <DataItem label="Mangrove Type" value={p.mangrove_type} />
           ) : null}
           <DataItem
             label="Proximity"
             value={
               <List disablePadding dense>
                 {[
-                  feature.properties.within_coral_500m ? (
+                  p.within_coral_500m ? (
                     <ListItem disablePadding>within 500m of coral</ListItem>
                   ) : null,
-                  feature.properties.within_mangrove_500m ? (
+                  p.within_mangrove_500m ? (
                     <ListItem disablePadding>within 500m of mangrove</ListItem>
                   ) : null,
-                  feature.properties.within_seagrass_500m ? (
+                  p.within_seagrass_500m ? (
                     <ListItem disablePadding>within 500m of seagrass</ListItem>
                   ) : null,
                 ]}
