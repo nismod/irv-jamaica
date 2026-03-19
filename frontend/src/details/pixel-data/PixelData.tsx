@@ -16,7 +16,7 @@ import Close from '@mui/icons-material/Close';
  * Display detailed information about a selected pixel (lat/lon point.)
  */
 export const PixelData = () => {
-  const { data: selectedData } = useAtomValue(pixelDrillerDataState);
+  const selectedData = useAtomValue(pixelDrillerDataState);
   const headers = useAtomValue(pixelDrillerDataHeaders);
   const setPixelSelection = useSetAtom(pixelSelectionState);
 
