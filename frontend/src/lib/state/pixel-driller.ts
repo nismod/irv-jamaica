@@ -1,6 +1,6 @@
-import { Atom, WritableAtom, atom } from 'jotai';
+import { Atom, atom } from 'jotai';
 import { atomFamily } from 'jotai-family';
-import { loadable } from 'jotai/utils';
+import { unwrap } from 'jotai/utils';
 
 const FLOOD_PARAMETERS = [
   { epoch: 2010, rcp: 'baseline' },
@@ -42,11 +42,6 @@ const PIXEL_LAYER_PARAMETERS = {
   slope: [{ epoch: undefined, rcp: undefined }],
 };
 
-type PixelDrillerQueryParams = {
-  lat: number;
-  lon: number;
-};
-
 type PixelData = {
   band_data: number[];
   confidence: number[];
@@ -77,7 +72,7 @@ const dataCache = new Map<string, PixelData>();
 /**
  * Latitude and longitude of the selected map pixel.
  */
-export const pixelSelectionState: WritableAtom<PixelDrillerQueryParams | null, unknown[], void> =
+export const pixelSelectionState =
   atom({
     lat: 0,
     lon: 0,
@@ -94,7 +89,7 @@ const pixelDrillerQuery: Atom<Promise<PixelData | null>> = atom(async (get) => {
   const { lat, lon } = pixelSelection;
   const key = `${lat.toFixed(3)}-${lon.toFixed(3)}`;
   if (dataCache.has(key)) {
-    return dataCache.get(key);
+    return dataCache.get(key) ?? null;
   }
   const response = await fetch(`/pixel/${lon.toFixed(3)}/${lat.toFixed(3)}`);
   const data: PixelData = await response.json();
@@ -105,20 +100,16 @@ const pixelDrillerQuery: Atom<Promise<PixelData | null>> = atom(async (get) => {
 /**
  * Loadable state for the current pixel driller data.
  */
-export const pixelDrillerDataState: Atom<{ data: PixelData | null; error: Error | null }> = atom(
-  (get) => {
-    const l = get(loadable(pixelDrillerQuery));
-    const data = l?.state === 'hasData' ? l.data : null;
-    const error = l?.state === 'hasError' ? (l.error as Error) : null;
-    return { data, error };
-  },
+export const pixelDrillerDataState: Atom<PixelData | null> = unwrap(
+  pixelDrillerQuery,
+  (prev) => prev ?? null,
 );
 
 /**
  * Column headers for the pixel driller data tables.
  */
 export const pixelDrillerDataHeaders: Atom<string[]> = atom((get) => {
-  const pixelData = get(pixelDrillerDataState).data;
+  const pixelData = get(pixelDrillerDataState);
   if (!pixelData) {
     return [];
   }
@@ -132,7 +123,7 @@ export const pixelDrillerDataHeaders: Atom<string[]> = atom((get) => {
 export const pixelDrillerDataRPs: (hazard: string) => Atom<Set<number>> = atomFamily(
   (hazard: string) =>
     atom((get) => {
-      const pixelData = get(pixelDrillerDataState).data;
+      const pixelData = get(pixelDrillerDataState);
       if (!pixelData) {
         return new Set<number>();
       }
@@ -203,7 +194,7 @@ function reducePixelDataRow(
   epoch: number,
   rcp: string,
   confidence?: number,
-): Row {
+): Row | null {
   if (!data.length) {
     return null;
   }
@@ -231,7 +222,7 @@ function reducePixelDataRow(
 export const pixelDrillerDataRows: (pixel_layer: string) => Atom<Row[]> = atomFamily(
   (pixel_layer: string) =>
     atom((get) => {
-      const pixelData = get(pixelDrillerDataState).data;
+      const pixelData = get(pixelDrillerDataState);
       if (!pixelData) {
         return [];
       }
@@ -241,6 +232,6 @@ export const pixelDrillerDataRows: (pixel_layer: string) => Atom<Row[]> = atomFa
           const reduced = reducePixelDataRow(data, pixel_layer, epoch, rcp, confidence);
           return reduced;
         })
-        .filter(Boolean);
+        .filter((row): row is Row => row !== null);
     }),
 );
