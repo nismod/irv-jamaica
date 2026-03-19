@@ -1,11 +1,5 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-export const placeSearchActiveState = atom<boolean>({
-  key: 'placeSearchActive',
-  default: false,
-});
+export const placeSearchActiveState = atom<boolean>(false);
 
-export const placeSearchQueryState = atom<string>({
-  key: 'placeSearchQuery',
-  default: '',
-});
+export const placeSearchQueryState = atom<string>('');

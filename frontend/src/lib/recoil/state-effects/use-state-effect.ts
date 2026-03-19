@@ -1,6 +1,7 @@
 import { usePrevious } from 'lib/hooks/use-previous';
-import { useEffect } from 'react';
-import { RecoilState, useRecoilCallback, useRecoilValue } from 'recoil';
+import { useCallback, useEffect } from 'react';
+import { WritableAtom, useAtomValue } from 'jotai';
+import { useAtomCallback, RESET } from 'jotai/utils';
 import { StateEffect } from './types';
 
 /**
@@ -9,17 +10,23 @@ import { StateEffect } from './types';
  * @param state the recoil state to watch
  * @param effect the state effect to run when the state changes
  */
-export function useStateEffect<T>(state: RecoilState<T>, effect: StateEffect<T>) {
-  const stateValue = useRecoilValue(state);
+export function useStateEffect<T>(state: WritableAtom<T, unknown[], void>, effect: StateEffect<T>) {
+  const stateValue = useAtomValue(state);
 
   const previousStateValue = usePrevious(stateValue);
 
-  const cb = useRecoilCallback(
-    ({ transact_UNSTABLE }) =>
-      (newValue: T, previousValue: T) => {
-        transact_UNSTABLE((ops) => effect(ops, newValue, previousValue));
+  const cb = useAtomCallback(
+    useCallback(
+      (get, set, newValue: T, previousValue: T) => {
+        const ops = {
+          get: (s: any) => get(s),
+          set: (s: any, v: any) => set(s, v),
+          reset: (s: any) => set(s, RESET as never),
+        };
+        effect(ops, newValue, previousValue);
       },
-    [effect],
+      [effect],
+    ),
   );
 
   useEffect(() => cb(stateValue, previousStateValue), [cb, stateValue, previousStateValue]);

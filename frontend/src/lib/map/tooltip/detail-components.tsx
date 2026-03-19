@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 
 import { titleCase, isNumeric, numFormat, paren, numRangeFormat } from 'lib/helpers';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { protectedFeatureAdaptationOptionsState } from 'lib/state/protected-features';
 
 interface DataItemProps {
@@ -354,7 +354,7 @@ export const BuildingDetails: FC<DetailsComponentProps> = ({ f }) => (
 );
 
 export const CoastalDefenceDetails: FC<DetailsComponentProps> = ({ f }) => {
-  const { data } = useRecoilValue(protectedFeatureAdaptationOptionsState({ rcp: '8.5' }));
+  const { data } = useAtomValue(protectedFeatureAdaptationOptionsState({ rcp: '8.5' }));
 
   // There may be adaptation results calculated for the coastal protection
   // region as a whole. They have a protected_feature_id == feature_id, so

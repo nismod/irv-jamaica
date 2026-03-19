@@ -1,54 +1,20 @@
-import { bool, string } from '@recoiljs/refine';
-import { atomFamily } from 'recoil';
-import { urlSyncEffect } from 'recoil-sync';
+import { atom } from 'jotai';
+import { atomFamily } from 'jotai-family';
+import { atomWithStoredBool, atomWithStoredStr } from 'lib/state/map-view/map-url';
 
-export const sectionVisibilityState = atomFamily<boolean, string>({
-  key: 'sectionVisibilityState',
-  default: false,
-  effects: (id) => [
-    ({ onSet }) => {
-      onSet((newVisibility) => {
-        const url = new URL(window.location.href);
-        url.searchParams.set(id, newVisibility.toString());
-        window.history.replaceState({}, '', url.toString());
-      });
-    },
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: id,
-      refine: bool(),
-    }),
-  ],
-});
+export const sectionVisibilityState = atomFamily((id: string) => atomWithStoredBool(id, false));
 
-export const sidebarSectionExpandedState = atomFamily({
-  key: 'sidebarSectionExpandedState',
-  default: false,
-});
+export const sidebarSectionExpandedState = atomFamily(() => atom(false));
 
-export const sectionStyleValueState = atomFamily<string, string>({
-  key: 'sectionStyleValueState',
-  default: '',
-  effects: (id) => [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: `${id}Style`,
-      refine: string(),
-    }),
-  ],
-});
+export const sectionStyleValueState = atomFamily((id: string) =>
+  atomWithStoredStr(`${id}Style`, ''),
+);
 
 export interface StyleSelectionOption {
   id: string;
   label: string;
 }
 
-export const sectionStyleOptionsState = atomFamily<StyleSelectionOption[], string>({
-  key: 'sectionStyleOptionsState',
-  default: [],
-});
+export const sectionStyleOptionsState = atomFamily(() => atom<StyleSelectionOption[]>([]));
 
-export const sectionStyleDefaultValueState = atomFamily<string, string>({
-  key: 'sectionStyleDefaultValueState',
-  default: null,
-});
+export const sectionStyleDefaultValueState = atomFamily(() => atom<string | null>(null));

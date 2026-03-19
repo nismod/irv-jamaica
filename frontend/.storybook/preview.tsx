@@ -3,8 +3,8 @@ import { StyledEngineProvider } from '@mui/styled-engine';
 import { ThemeProvider } from '@mui/material/styles';
 import type { Preview } from '@storybook/react-vite';
 import { initialize, mswLoader } from 'msw-storybook-addon';
-import { atom, RecoilRoot } from 'recoil';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider, atom } from 'jotai';
 
 import { theme } from '../src/app/theme';
 import { useSyncRecoilState } from '../src/lib/recoil/sync-state';
@@ -22,10 +22,7 @@ initialize({
   },
 });
 
-const mockViewState = atom({
-  key: 'mockViewState',
-  default: 'exposure',
-});
+const mockViewState = atom('exposure');
 
 function SectionStyle({ children, view }) {
   useSyncRecoilState(mockViewState, view);
@@ -51,7 +48,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story, { args }) => (
-      <RecoilRoot>
+      <Provider>
         <StyledEngineProvider injectFirst>
           <ThemeProvider theme={theme}>
             <Router>
@@ -62,7 +59,7 @@ const preview: Preview = {
             </Router>
           </ThemeProvider>
         </StyledEngineProvider>
-      </RecoilRoot>
+      </Provider>
     ),
   ],
   loaders: [mswLoader],

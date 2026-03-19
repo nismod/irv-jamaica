@@ -1,12 +1,12 @@
 import { Autocomplete, TextField } from '@mui/material';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 import { usePlaceSearch } from './use-place-search';
 import { placeSearchQueryState } from './search-state';
 
 export const MapSearchField = ({ onSelectedResult }) => {
-  const [searchValue, setSearchValue] = useRecoilState(placeSearchQueryState);
+  const [searchValue, setSearchValue] = useAtom(placeSearchQueryState);
   const [searchResultsOpen, setSearchResultsOpen] = useState(true);
 
   const { loading, searchResults } = usePlaceSearch(searchValue);

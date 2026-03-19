@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 import startCase from 'lodash/startCase';
 import lowerCase from 'lodash/lowerCase';
 import { FormLabel, Slider, Typography } from '@mui/material';
@@ -8,7 +8,6 @@ import { Box } from '@mui/system';
 import { CustomNumberSlider } from 'lib/controls/CustomSlider';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
-import { dataParamsByGroupState } from 'lib/state/data-params';
 
 import { InputRow } from 'lib/sidebar/ui/InputRow';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
@@ -19,6 +18,7 @@ import {
   adaptationCostBenefitRatioEaelDaysState,
   adaptationDataParamsStateEffect,
   adaptationFieldState,
+  adaptationLayerSpecState,
 } from '../state/layer';
 
 function hazardLabel(val) {
@@ -44,7 +44,7 @@ function makeOptions(values, labelFn = (x) => x) {
 }
 const EAEL_DAYS_MARKS = [1, 5, 10, 15, 20, 25, 30].map((x) => ({ value: x, label: x }));
 const CostBenefitRatioInputs: FC = () => {
-  const [eaelDays, setEaelDays] = useRecoilState(adaptationCostBenefitRatioEaelDaysState);
+  const [eaelDays, setEaelDays] = useAtom(adaptationCostBenefitRatioEaelDaysState);
 
   return (
     <Box mt={1}>
@@ -68,13 +68,10 @@ const CostBenefitRatioInputs: FC = () => {
 };
 
 export const AdaptationControl: FC = () => {
-  const [adaptationField, setAdaptationField] = useRecoilState(adaptationFieldState);
+  const [adaptationField, setAdaptationField] = useAtom(adaptationFieldState);
   return (
     <LayerStylePanel>
-      <StateEffectRoot
-        state={dataParamsByGroupState('adaptation')}
-        effect={adaptationDataParamsStateEffect}
-      />
+      <StateEffectRoot state={adaptationLayerSpecState} effect={adaptationDataParamsStateEffect} />
       <InputSection>
         <InputRow>
           <DataParam group="adaptation" id="sector">

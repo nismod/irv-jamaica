@@ -1,12 +1,12 @@
 import { ToggleButtonGroup, ToggleButton } from '@mui/material';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 import { useCallback } from 'react';
 
 import { RegionLevel } from '../metadata';
 import { regionLevelState } from '../state/data-selection';
 
 export const RegionLevelSelection = () => {
-  const [regionLevel, setRegionLevel] = useRecoilState(regionLevelState);
+  const [regionLevel, setRegionLevel] = useAtom(regionLevelState);
 
   const handleChange = useCallback(
     (e, value: string) => {

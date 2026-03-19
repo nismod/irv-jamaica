@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { selector, useRecoilValue } from 'recoil';
+import { atom, useAtomValue } from 'jotai';
 
 import { sectionStyleValueState, sectionVisibilityState } from 'lib/state/sections';
 
@@ -9,14 +9,13 @@ import { RegionDetails } from './regions/RegionDetails';
 import { SolutionsSidebar } from './solutions/SolutionsSidebar';
 import { PixelData } from './pixel-data/PixelData';
 
-export const showAdaptationsTableState = selector<boolean>({
-  key: 'showAdaptationsTable',
-  get: ({ get }) =>
+export const showAdaptationsTableState = atom(
+  (get) =>
     get(sectionVisibilityState('assets')) && get(sectionStyleValueState('assets')) === 'adaptation',
-});
+);
 
 export const DetailsSidebar = () => {
-  const showAdaptationsTable = useRecoilValue(showAdaptationsTableState);
+  const showAdaptationsTable = useAtomValue(showAdaptationsTableState);
   return (
     <>
       <Box mb={2}>

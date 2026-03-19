@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { atom } from 'jotai';
 import bboxPolygon from '@turf/bbox-polygon';
 
 import { ViewLayer, viewOnlyLayer } from 'lib/data-map/view-layers';
@@ -6,17 +6,14 @@ import { hoveredAdaptationFeatureState } from 'details/adaptations/FeatureAdapta
 import { extendBbox } from 'lib/bounding-box';
 import { boundingBoxLayer } from 'lib/deck/layers/bounding-box-layer';
 
-export const featureBoundingBoxLayerState = selector<ViewLayer>({
-  key: 'featureBoundingBoxLayerState',
-  get: ({ get }) => {
-    const hoveredAdaptationFeature = get(hoveredAdaptationFeatureState);
+export const featureBoundingBoxLayerState = atom<ViewLayer>((get) => {
+  const hoveredAdaptationFeature = get(hoveredAdaptationFeatureState);
 
-    if (!hoveredAdaptationFeature) return null;
+  if (!hoveredAdaptationFeature) return null;
 
-    const geom = bboxPolygon(extendBbox(hoveredAdaptationFeature.bbox, 5));
+  const geom = bboxPolygon(extendBbox(hoveredAdaptationFeature.bbox, 5));
 
-    return viewOnlyLayer(`feature-bounding-box-${hoveredAdaptationFeature.id}`, ({ deckProps }) =>
-      boundingBoxLayer({ bboxGeom: geom }, deckProps),
-    );
-  },
+  return viewOnlyLayer(`feature-bounding-box-${hoveredAdaptationFeature.id}`, ({ deckProps }) =>
+    boundingBoxLayer({ bboxGeom: geom }, deckProps),
+  );
 });

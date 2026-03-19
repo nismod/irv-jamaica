@@ -5,7 +5,7 @@ import { InputSection } from 'lib/sidebar/ui/InputSection';
 import { ReturnPeriodControl } from 'lib/sidebar/ui/params/ReturnPeriodControl';
 import { EpochControl } from 'lib/sidebar/ui/params/EpochControl';
 import { RCPControl } from 'lib/sidebar/ui/params/RCPControl';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { showDamagesState } from 'app/state/damage-mapping/damage-map';
 import { Alert, Box, FormControl, FormLabel } from '@mui/material';
 
@@ -81,7 +81,7 @@ function HazardToggleSection({ hazard, disabled }) {
 }
 
 export const HazardsControl = () => {
-  const showDirectDamages = useRecoilValue(showDamagesState);
+  const showDirectDamages = useAtomValue(showDamagesState);
   const disabled = showDirectDamages;
 
   return (

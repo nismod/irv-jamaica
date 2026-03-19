@@ -3,7 +3,7 @@ import Palette from '@mui/icons-material/Palette';
 import TableRows from '@mui/icons-material/TableRows';
 import { SvgIconProps } from '@mui/material';
 import { ComponentType } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 import { MapLegend } from 'lib/map/legend/MapLegend';
 
@@ -13,7 +13,7 @@ import { DetailsSidebar } from 'details/DetailsSidebar';
 
 // Wrapper component for mobile MapLegend that provides the currentHazard prop
 const MapLegendWithHazard = () => {
-  const currentHazard = useRecoilValue(damageSourceState);
+  const currentHazard = useAtomValue(damageSourceState);
   return <MapLegend currentHazard={currentHazard} />;
 };
 

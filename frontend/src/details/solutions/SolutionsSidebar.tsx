@@ -4,7 +4,7 @@ import { SidePanel } from 'details/SidePanel';
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { SolutionsSidebarContent } from './SolutionsSidebarContent';
 import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
@@ -14,7 +14,7 @@ import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
  * from either the `marine` or `terrestrial` data layers.
  */
 export const SolutionsSidebar: FC = () => {
-  const featureSelection = useRecoilValue(selectionState('solutions'));
+  const featureSelection = useAtomValue(selectionState('solutions'));
 
   if (!featureSelection) return null;
 

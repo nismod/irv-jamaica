@@ -2,7 +2,7 @@ import { MapViewState } from 'deck.gl';
 import { StyleSpecification } from 'maplibre-gl';
 import { FC, ReactNode } from 'react';
 import { Map } from 'react-map-gl/maplibre';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 import { mapViewStateState, useSyncMapUrl } from 'lib/state/map-view/map-view-state';
 
@@ -43,7 +43,7 @@ export const BaseMap: FC<{ children?: ReactNode; mapStyle: StyleSpecification }>
   children,
   mapStyle,
 }) => {
-  const [viewState, setViewState] = useRecoilState(mapViewStateState);
+  const [viewState, setViewState] = useAtom(mapViewStateState);
   useSyncMapUrl();
   function handleViewStateChange({ viewState }: { viewState: MapViewState }) {
     setViewState(viewState);

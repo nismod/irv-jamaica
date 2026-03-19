@@ -7,7 +7,7 @@ import {
   RadioGroup,
   Select,
 } from '@mui/material';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useAtom, useAtomValue } from 'jotai';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 
@@ -22,9 +22,9 @@ function capitalise(string) {
 }
 
 export const RisksControl = () => {
-  const [riskType, setRiskType] = useRecoilState(sectionStyleValueState('risks'));
-  const riskTypes = useRecoilValue(sectionStyleOptionsState('risks'));
-  const sector = useRecoilValue(dataParamState({ group: 'risks', param: 'sector' }));
+  const [riskType, setRiskType] = useAtom(sectionStyleValueState('risks'));
+  const riskTypes = useAtomValue(sectionStyleOptionsState('risks'));
+  const sector = useAtomValue(dataParamState({ group: 'risks', param: 'sector' }));
 
   // Reset risk type if the selected sector does not support the current risk type.
   const allowedRiskTypes = sectorRiskTypes[sector] || [];

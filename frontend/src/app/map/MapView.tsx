@@ -1,5 +1,5 @@
 import { Suspense, useCallback } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useAtomValue, useSetAtom } from 'jotai';
 
 import { DataMapTooltip } from 'lib/data-map/DataMapTooltip';
 import { MapBoundsFitter, mapFitBoundsState } from 'lib/map/MapBoundsFitter';
@@ -27,7 +27,7 @@ import { BaseMapContainer } from './BaseMap';
 import { DataMapContainer } from './DataMap';
 
 const AppPlaceSearch = () => {
-  const setFitBounds = useSetRecoilState(mapFitBoundsState);
+  const setFitBounds = useSetAtom(mapFitBoundsState);
 
   const handleSelectedSearchResult = useCallback(
     (result: PlaceSearchResult) => {
@@ -57,7 +57,7 @@ const AppAttributionControl = withProps(MapHudAttributionControl, {
 });
 
 const MapHudDesktopLayout = () => {
-  const currentHazard = useRecoilValue(damageSourceState);
+  const currentHazard = useAtomValue(damageSourceState);
 
   return (
     <MapHud left={globalStyleVariables.controlSidebarWidth}>
@@ -99,7 +99,7 @@ const MapHudMobileLayout = () => {
 };
 
 const DataMapTooltipContent = () => {
-  const layerStates = useRecoilValue(layerHoverStates);
+  const layerStates = useAtomValue(layerHoverStates);
   return <TooltipContent layerStates={layerStates} />;
 };
 

@@ -1,12 +1,12 @@
 import { ParamChecklist } from 'lib/controls/params/ParamChecklist';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 import { MarineLocationFilterType, MARINE_LOCATION_FILTERS } from '../domains';
 import { marineFiltersState } from '../state/marine-filters';
 
 export const MarineControl = () => {
-  const [marineFilters, setMarineFilters] = useRecoilState(marineFiltersState);
+  const [marineFilters, setMarineFilters] = useAtom(marineFiltersState);
 
   return (
     <>

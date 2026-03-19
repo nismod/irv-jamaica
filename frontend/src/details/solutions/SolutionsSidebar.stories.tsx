@@ -1,7 +1,7 @@
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import mockTerrestrialFeature from 'mocks/details/solutions/mockTerrestrialFeature.json';
@@ -19,7 +19,7 @@ function FixedWidthDecorator(Story) {
 
 function DataLoaderDecorator(Story, { args }) {
   const { feature, id } = args;
-  const [, setFeatureSelection] = useRecoilState(selectionState('solutions'));
+  const [, setFeatureSelection] = useAtom(selectionState('solutions'));
 
   useEffect(() => {
     const mockSelection = {

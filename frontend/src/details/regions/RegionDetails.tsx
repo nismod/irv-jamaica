@@ -1,4 +1,4 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import { Box } from '@mui/material';
@@ -12,7 +12,7 @@ import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
  * Display detailed information about a selected region (parish or enumeration district.)
  */
 export const RegionDetails = () => {
-  const selectedRegion = useRecoilValue(selectionState('regions'));
+  const selectedRegion = useAtomValue(selectionState('regions'));
 
   if (!selectedRegion) return null;
 

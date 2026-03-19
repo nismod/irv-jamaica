@@ -1,7 +1,7 @@
 import { Checkbox, Divider, FormControlLabel } from '@mui/material';
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
 import { FC } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
 
 import {
@@ -21,12 +21,12 @@ import {
 } from '../state/data-selection';
 
 export const DroughtsControl: FC = () => {
-  const [rcp, setRcp] = useRecoilState(droughtRcpParamState);
-  const [showRisk, setShowRisk] = useRecoilState(droughtShowRiskState);
-  const [showOptions, setShowOptions] = useRecoilState(droughtShowOptionsState);
+  const [rcp, setRcp] = useAtom(droughtRcpParamState);
+  const [showRisk, setShowRisk] = useAtom(droughtShowRiskState);
+  const [showOptions, setShowOptions] = useAtom(droughtShowOptionsState);
 
-  const [riskVariable, setRiskVariable] = useRecoilState(droughtRiskVariableState);
-  const [optionsVariable, setOptionsVariable] = useRecoilState(droughtOptionsVariableState);
+  const [riskVariable, setRiskVariable] = useAtom(droughtRiskVariableState);
+  const [optionsVariable, setOptionsVariable] = useAtom(droughtOptionsVariableState);
 
   return (
     <>

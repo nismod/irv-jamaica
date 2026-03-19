@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 import { VectorHoverDescription } from 'lib/data-map/types';
 import { DataItem } from 'lib/map/tooltip/detail-components';
@@ -10,7 +10,7 @@ import { showPopulationState } from './state/data-selection';
 export const RegionHoverDescription: FC<VectorHoverDescription> = ({ target, viewLayer }) => {
   const metadata = REGIONS_METADATA[viewLayer.params.regionLevel];
 
-  const showPopulation = useRecoilValue(showPopulationState);
+  const showPopulation = useAtomValue(showPopulationState);
 
   return (
     <>

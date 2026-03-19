@@ -1,7 +1,7 @@
-import { TransactionInterface_UNSTABLE } from 'recoil';
+type Ops = {
+  get: (state: any) => any;
+  set: (state: any, value: any) => void;
+  reset: (state: any) => void;
+};
 
-export type StateEffect<T> = (
-  ops: TransactionInterface_UNSTABLE,
-  value: T,
-  previousValue: T,
-) => void;
+export type StateEffect<T> = (ops: Ops, value: T, previousValue: T) => void;

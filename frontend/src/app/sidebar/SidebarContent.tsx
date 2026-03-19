@@ -1,6 +1,6 @@
 import { Alert } from '@mui/material';
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 import { viewState } from 'app/state/view';
 
@@ -23,7 +23,7 @@ const viewLabels = {
 };
 
 const SidebarContent: FC = () => {
-  const view = useRecoilValue(viewState);
+  const view = useAtomValue(viewState);
   switch (view) {
     case 'exposure':
       return (

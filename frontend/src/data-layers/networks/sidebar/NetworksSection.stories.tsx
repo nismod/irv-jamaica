@@ -1,5 +1,5 @@
 import { StoryObj, Meta } from '@storybook/react-vite';
-import { expect, within } from 'storybook/test';
+import { expect, waitFor, within } from 'storybook/test';
 
 import { NetworksSection } from './NetworksSection';
 
@@ -62,13 +62,15 @@ export const Adaptation: Story = {
   args: {
     view: 'adaptation',
   },
-  play: ({ canvasElement }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.queryByText('Infrastructure')).toBeTruthy();
-    expect(
-      canvas.queryByText(
-        'Infrastructure layers are currently following the Adaptation Options selection',
-      ),
-    ).toBeTruthy();
+    await waitFor(() => {
+      expect(
+        canvas.queryByText(
+          'Infrastructure layers are currently following the Adaptation Options selection',
+        ),
+      ).toBeTruthy();
+    });
   },
 };

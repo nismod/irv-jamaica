@@ -1,7 +1,8 @@
-import { waitForAll, selector, selectorFamily, RecoilValueReadOnly } from 'recoil';
+import { atom } from 'jotai';
+import { atomFamily } from 'jotai-family';
+import { unwrap } from 'jotai/utils';
 
-import { ViewLayer } from 'lib/data-map/view-layers';
-import { ConfigTree } from 'lib/nested-config/config-tree';
+import { ViewLayerConfigs } from 'lib/data-map/view-layers';
 
 import { importLayerState } from 'data-layers/state';
 
@@ -20,32 +21,19 @@ const VIEW_LAYERS = [
   'droughtOptions',
 ] as string[];
 
-const layerCache = new Map<string, RecoilValueReadOnly<ViewLayer>>();
+const viewLayerConfigAsync = atomFamily((type: string) =>
+  atom(async (get): Promise<ViewLayerConfigs> => {
+    const layer = await importLayerState(type);
+    return get(layer);
+  }),
+);
 
-const viewLayerConfig = selectorFamily<ViewLayer, string>({
-  key: 'viewLayerConfig',
-  get:
-    (type) =>
-    async ({ get }) => {
-      if (layerCache.has(type)) {
-        const layer = layerCache.get(type);
-        return get(layer);
-      }
-      const layer = await importLayerState(type);
-      layerCache.set(type, layer);
-      return get(layer);
-    },
-});
+const viewLayerConfigCached = atomFamily((type: string) =>
+  unwrap(viewLayerConfigAsync(type), (prev) => prev ?? undefined),
+);
 
-export const viewLayerConfigs = selector<ConfigTree<ViewLayer>>({
-  key: 'viewLayerConfigs',
-  get: ({ get }) => {
-    return get(
-      waitForAll([
-        ...VIEW_LAYERS.map(viewLayerConfig),
-        featureBoundingBoxLayerState,
-        labelsLayerState,
-      ]),
-    );
-  },
+export const viewLayerConfigs = atom<ViewLayerConfigs>((get) => {
+  const extraLayers = [get(featureBoundingBoxLayerState), get(labelsLayerState)];
+  const layerResults = VIEW_LAYERS.map((type) => get(viewLayerConfigCached(type)));
+  return [...layerResults.filter((r): r is ViewLayerConfigs => r !== undefined), ...extraLayers];
 });

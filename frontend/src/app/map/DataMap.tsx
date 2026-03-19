@@ -1,5 +1,5 @@
-import { FC, useEffect } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { FC, useEffect, useMemo } from 'react';
+import { useAtomValue, useSetAtom } from 'jotai';
 
 import { interactionGroupsState } from 'app/state/layers/interaction-groups';
 import { viewLayerConfigs } from 'app/state/layers/view-layers';
@@ -12,16 +12,23 @@ import { useBasemapStyle } from './use-basemap-style';
 import { flattenConfig } from 'lib/nested-config/flatten-config';
 
 export const DataMapContainer: FC = () => {
-  const background = useRecoilValue(backgroundState);
-  const showLabels = useRecoilValue(showLabelsState);
-  const viewLayers = useRecoilValue(viewLayerConfigs);
-  const setViewLayersFlat = useSetRecoilState(viewLayersFlatState);
+  const background = useAtomValue(backgroundState);
+  const showLabels = useAtomValue(showLabelsState);
+  const viewLayers = useAtomValue(viewLayerConfigs);
+  const setViewLayersFlat = useSetAtom(viewLayersFlatState);
   const { firstLabelId } = useBasemapStyle(background, showLabels);
-  const interactionGroups = useRecoilValue(interactionGroupsState);
+  const interactionGroups = useAtomValue(interactionGroupsState);
+  const flattenedViewLayers = useMemo(() => flattenConfig(viewLayers), [viewLayers]);
 
   useEffect(() => {
-    setViewLayersFlat(flattenConfig(viewLayers));
-  }, [viewLayers, setViewLayersFlat]);
+    setViewLayersFlat(flattenedViewLayers);
+  }, [flattenedViewLayers, setViewLayersFlat]);
 
-  return <DataMap firstLabelId={firstLabelId} interactionGroups={interactionGroups} />;
+  return (
+    <DataMap
+      firstLabelId={firstLabelId}
+      interactionGroups={interactionGroups}
+      viewLayers={flattenedViewLayers}
+    />
+  );
 };

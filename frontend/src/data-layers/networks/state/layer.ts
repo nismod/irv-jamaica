@@ -1,4 +1,5 @@
-import { atom, selector, selectorFamily } from 'recoil';
+import { atom } from 'jotai';
+import { atomFamily } from 'jotai-family';
 import uniq from 'lodash/uniq';
 import fromPairs from 'lodash/fromPairs';
 import mapValues from 'lodash/mapValues';
@@ -6,7 +7,7 @@ import mapValues from 'lodash/mapValues';
 import { recalculateCheckboxStates } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { ViewLayer, StyleParams, ColorSpec, FieldSpec } from 'lib/data-map/view-layers';
 import { StateEffect } from 'lib/recoil/state-effects/types';
-import { dataParamsByGroupState } from 'lib/state/data-params';
+import { dataParamState } from 'lib/state/data-params';
 import { sectionVisibilityState } from 'lib/state/sections';
 
 import { LayerSpec } from 'lib/asset-list/use-sorted-features';
@@ -23,40 +24,30 @@ import {
 import { AdaptationOptionParams } from '../domains';
 import { networkViewLayer } from '../network-view-layer';
 
-export const networksLayerState = selector<ViewLayer[]>({
-  key: 'networkLayersState',
-  get: ({ get }) =>
-    get(sectionVisibilityState('assets'))
-      ? get(networkSelectionState).map((network) => {
-          return networkViewLayer({
-            network,
-            styleParams: get(networkStyleParamsState(network)),
-          });
-        })
-      : [],
-});
+export const networksLayerState = atom<ViewLayer[]>((get) =>
+  get(sectionVisibilityState('assets'))
+    ? get(networkSelectionState).map((network) => {
+        return networkViewLayer({
+          network,
+          styleParams: get(networkStyleParamsState(network)),
+        });
+      })
+    : [],
+);
 
-export const showAdaptationsState = selector<boolean>({
-  key: 'showAdaptationsState',
-  get: ({ get }) => get(networksStyleState) === 'adaptation',
-});
+export const showAdaptationsState = atom<boolean>(
+  (get) => get(networksStyleState) === 'adaptation',
+);
 
-export const showProtectorFeaturesState = selector<boolean>({
-  key: 'showProtectorFeaturesState',
-  get: ({ get }) => get(networksStyleState) === 'protectedFeatures',
-});
+export const showProtectorFeaturesState = atom<boolean>(
+  (get) => get(networksStyleState) === 'protectedFeatures',
+);
 
 export const adaptationFieldState = atom<
   'avoided_ead_mean' | 'avoided_eael_mean' | 'adaptation_cost' | 'cost_benefit_ratio'
->({
-  key: 'adaptationFieldState',
-  default: 'avoided_ead_mean',
-});
+>('avoided_ead_mean');
 
-export const adaptationCostBenefitRatioEaelDaysState = atom<number>({
-  key: 'adaptationCostBenefitRatioEaelDaysState',
-  default: 15,
-});
+export const adaptationCostBenefitRatioEaelDaysState = atom<number>(15);
 
 export const adaptationDataParamsStateEffect: StateEffect<AdaptationOptionParams> = (
   { get, set },
@@ -88,87 +79,77 @@ export const adaptationDataParamsStateEffect: StateEffect<AdaptationOptionParams
   // set(networkTreeExpandedState, truthyKeys(resolvedTreeState.indeterminate));
 };
 
-export const adaptationLayerSpecState = selector<LayerSpec>({
-  key: 'adaptationLayerSpecState',
-  get: ({ get }) => {
-    const { sector, subsector, asset_type } = get(dataParamsByGroupState('adaptation'));
+export const adaptationLayerSpecState = atom<LayerSpec>((get) => {
+  const sector = get(dataParamState({ group: 'adaptation', param: 'sector' }));
+  const subsector = get(dataParamState({ group: 'adaptation', param: 'subsector' }));
+  const asset_type = get(dataParamState({ group: 'adaptation', param: 'asset_type' }));
 
-    return {
-      sector,
-      subsector,
-      asset_type: asset_type,
+  return {
+    sector,
+    subsector,
+    asset_type,
+  };
+});
+
+export const adaptationFieldSpecState = atom<FieldSpec>((get) => {
+  const field = get(adaptationFieldState);
+  const hazard = get(dataParamState({ group: 'adaptation', param: 'hazard' }));
+  const rcp = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
+  const adaptation_name = get(dataParamState({ group: 'adaptation', param: 'adaptation_name' }));
+  const adaptation_protection_level = get(
+    dataParamState({ group: 'adaptation', param: 'adaptation_protection_level' }),
+  );
+
+  let fieldParams: {
+    eael_days?: number;
+  } = {};
+  if (field === 'cost_benefit_ratio') {
+    fieldParams = {
+      eael_days: get(adaptationCostBenefitRatioEaelDaysState),
     };
-  },
-});
+  }
 
-export const adaptationFieldSpecState = selector<FieldSpec>({
-  key: 'adaptationFieldSpecState',
-  get: ({ get }) => {
-    const field = get(adaptationFieldState);
-    const { hazard, rcp, adaptation_name, adaptation_protection_level } = get(
-      dataParamsByGroupState('adaptation'),
-    );
-
-    let fieldParams: {
-      eael_days?: number;
-    } = {};
-    if (field === 'cost_benefit_ratio') {
-      fieldParams = {
-        eael_days: get(adaptationCostBenefitRatioEaelDaysState),
-      };
-    }
-
-    return {
-      fieldGroup: 'adaptation',
-      fieldDimensions: {
-        hazard,
-        rcp,
-        adaptation_name,
-        adaptation_protection_level,
-      },
-      field,
-      fieldParams,
-    };
-  },
-});
-
-export const adaptationColorSpecState = selector<ColorSpec>({
-  key: 'adaptationColorSpecState',
-  get: ({ get }) => {
-    const field = get(adaptationFieldState);
-    return networkColorMaps[field];
-  },
-});
-
-export const adaptationStyleParamsState = selector<StyleParams>({
-  key: 'adaptationStyleParamsState',
-  get: ({ get }) => {
-    const fieldSpec = get(adaptationFieldSpecState);
-    const colorSpec = get(adaptationColorSpecState);
-
-    return {
-      colorMap: {
-        fieldSpec,
-        colorSpec,
-      },
-    };
-  },
-});
-
-export const networkStyleParamsState = selectorFamily<StyleParams, string>({
-  key: 'networkStyleParamsState',
-  get:
-    (layerId: string) =>
-    ({ get }) => {
-      switch (get(networksStyleState)) {
-        case 'damages':
-          return get(damageMapStyleParamsState(layerId));
-        case 'adaptation':
-          return get(adaptationStyleParamsState);
-        case 'protectedFeatures':
-          return get(adaptationStyleParamsState);
-        default:
-          return {};
-      }
+  return {
+    fieldGroup: 'adaptation',
+    fieldDimensions: {
+      hazard,
+      rcp,
+      adaptation_name,
+      adaptation_protection_level,
     },
+    field,
+    fieldParams,
+  };
 });
+
+export const adaptationColorSpecState = atom<ColorSpec>((get) => {
+  const field = get(adaptationFieldState);
+  return networkColorMaps[field];
+});
+
+export const adaptationStyleParamsState = atom<StyleParams>((get) => {
+  const fieldSpec = get(adaptationFieldSpecState);
+  const colorSpec = get(adaptationColorSpecState);
+
+  return {
+    colorMap: {
+      fieldSpec,
+      colorSpec,
+    },
+  };
+});
+
+export const networkStyleParamsState = atomFamily((layerId: string) =>
+  atom<StyleParams>((get) => {
+    switch (get(networksStyleState)) {
+      case 'damages':
+        return get(damageMapStyleParamsState(layerId));
+      case 'adaptation':
+        return get(adaptationStyleParamsState);
+      case 'protectedFeatures':
+        return get(adaptationStyleParamsState);
+      default:
+        return {};
+    }
+  }),
+);

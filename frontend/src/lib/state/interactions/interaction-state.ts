@@ -1,10 +1,12 @@
 import forEach from 'lodash/forEach';
-import { atom, atomFamily, selector, selectorFamily } from 'recoil';
+import { WritableAtom, PrimitiveAtom, atom } from 'jotai';
+import { RESET } from 'jotai/utils';
+import { atomFamily } from 'jotai-family';
 
 import { createClient } from 'lib/api-client/client';
 import { featuresReadFeature } from 'lib/api-client/sdk.gen';
-import { InteractionLayer } from 'lib/data-map/types';
-import { isReset } from 'lib/recoil/is-reset';
+import { InteractionLayer, VectorTarget } from 'lib/data-map/types';
+import { ViewLayer } from 'lib/data-map/view-layers';
 
 type IT = InteractionLayer | InteractionLayer[];
 
@@ -15,15 +17,13 @@ export function hasHover(target: IT) {
   return !!target;
 }
 
-export const hoverState = atomFamily<IT, string>({
-  key: 'hoverState',
-  default: null,
-});
+export const hoverState = atomFamily(() => atom(null as IT | null));
 
-export const hoverPositionState = atom({
-  key: 'hoverPosition',
-  default: null,
-});
+export const hoverPositionState = atom(null) as WritableAtom<
+  [number, number] | null,
+  unknown[],
+  void
+>;
 
 function readFromUrl(param: string) {
   const url = new URL(window.location.href);
@@ -41,44 +41,48 @@ function writeToUrl(param: string, featureId: number, viewLayerId: string) {
   window.history.replaceState({}, '', url.toString());
 }
 
-const selectionChangeEffect =
-  (id: string) =>
-  ({ onSet, setSelf, trigger }) => {
+const selectionBaseState = atomFamily((id: string): PrimitiveAtom<InteractionLayer | null> => {
+  const baseAtom = atom(null as InteractionLayer | null);
+  baseAtom.onMount = (set) => {
+    // Initialise from URL on first subscription (equivalent to effect trigger === 'get').
     const param = `selected${id}`;
-    onSet((newSelection) => {
-      // regions and solutions aren't supported yet.
-      if (id === 'assets') {
-        writeToUrl(param, newSelection?.target?.feature?.id, newSelection?.viewLayer?.id);
-      }
-    });
-
-    if (trigger === 'get') {
-      const [viewLayerId, featureId] = readFromUrl(param);
-      if (viewLayerId && featureId) {
-        setSelf({
-          interactionGroup: id,
-          interactionStyle: 'vector', // raster selection is not supported at present.
-          viewLayer: { id: viewLayerId },
-          target: {
-            feature: {
-              id: parseInt(featureId),
-            },
-          },
-        });
-      } else {
-        setSelf(null);
-      }
+    const [viewLayerId, featureId] = readFromUrl(param);
+    if (viewLayerId && featureId) {
+      set({
+        interactionGroup: id,
+        interactionStyle: 'vector', // raster selection is not supported at present.
+        viewLayer: { id: viewLayerId } as ViewLayer,
+        target: { feature: { id: parseInt(featureId) } } as unknown as VectorTarget,
+      });
     }
   };
+  return baseAtom;
+});
 
 /**
  * Selection state for interaction groups, including selected layer and feature for each group.
  */
-export const selectionState = atomFamily<InteractionLayer, string>({
-  key: 'selectionState',
-  default: null,
-  effects: (id) => [selectionChangeEffect(id)],
-});
+export const selectionState = atomFamily((id: string) =>
+  atom(
+    (get) => get(selectionBaseState(id)),
+    (_get, set, newSelection: InteractionLayer | typeof RESET) => {
+      if (newSelection === RESET) {
+        set(selectionBaseState(id), null);
+        return;
+      }
+      // regions and solutions aren't supported yet.
+      if (id === 'assets') {
+        const vectorTarget = newSelection?.target as VectorTarget;
+        writeToUrl(
+          `selected${id}`,
+          vectorTarget?.feature?.id as number,
+          newSelection?.viewLayer?.id,
+        );
+      }
+      set(selectionBaseState(id), newSelection);
+    },
+  ),
+);
 
 const apiClient = createClient({
   baseUrl: '/api',
@@ -87,9 +91,8 @@ const apiClient = createClient({
 /**
  * Fetch the details of a selected asset feature from the API.
  */
-export const selectedAssetDetails = selectorFamily({
-  key: 'selectedFeatureState',
-  get: (featureId: number) => async () => {
+export const selectedAssetDetails = atomFamily((featureId: number) =>
+  atom(async () => {
     const { data } = await featuresReadFeature({
       client: apiClient,
       path: {
@@ -97,15 +100,12 @@ export const selectedAssetDetails = selectorFamily({
       },
     });
     return data;
-  },
-});
+  }),
+);
 
 type AllowedGroupLayers = Record<string, string[]>;
 
-const allowedGroupLayersImpl = atom<AllowedGroupLayers>({
-  key: 'allowedGroupLayersImpl',
-  default: {},
-});
+const allowedGroupLayersImpl = atom<AllowedGroupLayers>({});
 
 function filterOneOrArray<T>(items: T | T[], filter: (item: T) => boolean) {
   if (Array.isArray(items)) {
@@ -120,35 +120,37 @@ function filterTargets(oldHoverTargets: IT, allowedLayers: string[]): IT {
   return filterOneOrArray(oldHoverTargets, (target) => newLayerFilter.has(target.viewLayer.id));
 }
 
-export const allowedGroupLayersState = selector<AllowedGroupLayers>({
-  key: 'allowedGroupLayersState',
-  get: ({ get }) => get(allowedGroupLayersImpl),
-  set: ({ get, set, reset }, newAllowedGroups) => {
+export const allowedGroupLayersState = atom(
+  (get) => get(allowedGroupLayersImpl),
+  (get, set, newAllowedGroups: AllowedGroupLayers | typeof RESET) => {
     const oldAllowedGroupLayers = get(allowedGroupLayersImpl);
-    if (isReset(newAllowedGroups)) {
-      forEach(oldAllowedGroupLayers, (layers, group) => {
-        reset(hoverState(group));
-        reset(selectionState(group));
+    if (newAllowedGroups === RESET) {
+      forEach(oldAllowedGroupLayers, (_layers, group) => {
+        set(hoverState(group), null);
+        set(selectionState(group), RESET);
       });
-    } else {
-      for (const group of Object.keys(oldAllowedGroupLayers)) {
-        const newAllowedLayers = newAllowedGroups[group];
+      set(allowedGroupLayersImpl, {});
+      return;
+    }
 
-        if (newAllowedLayers == null || newAllowedLayers.length === 0) {
-          reset(hoverState(group));
-          reset(selectionState(group));
-        } else {
-          const oldHoverTargets = get(hoverState(group));
-          const newHoverTargets = filterTargets(oldHoverTargets, newAllowedLayers);
-          set(hoverState(group), newHoverTargets);
+    const nextAllowedGroups = newAllowedGroups as AllowedGroupLayers;
+    for (const group of Object.keys(oldAllowedGroupLayers)) {
+      const newAllowedLayers = nextAllowedGroups[group];
 
-          const oldSelectionTargets = get(selectionState(group));
-          const newSelectionTargets = filterTargets(oldSelectionTargets, newAllowedLayers);
-          set(selectionState(group), newSelectionTargets);
-        }
+      if (newAllowedLayers == null || newAllowedLayers.length === 0) {
+        set(hoverState(group), null);
+        set(selectionState(group), RESET);
+      } else {
+        const oldHoverTargets = get(hoverState(group));
+        const newHoverTargets = filterTargets(oldHoverTargets, newAllowedLayers);
+        set(hoverState(group), newHoverTargets);
+
+        const oldSelectionTargets = get(selectionState(group));
+        const newSelectionTargets = filterTargets(oldSelectionTargets, newAllowedLayers);
+        set(selectionState(group), (newSelectionTargets as InteractionLayer) ?? RESET);
       }
     }
 
     set(allowedGroupLayersImpl, newAllowedGroups);
   },
-});
+);

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { Collapse } from '@mui/material';
 import { TransitionGroup } from 'react-transition-group';
 
@@ -27,7 +27,7 @@ import { ProtectedFeaturesControl } from './ProtectedFeaturesControl';
  * - Adaptation: displays adaptation options for the selected infrastructure networks.
  */
 export const NetworksSection: FC = () => {
-  const style = useRecoilValue(sectionStyleValueState('assets'));
+  const style = useAtomValue(sectionStyleValueState('assets'));
   useSyncConfigState();
   return (
     <SidebarPanel id="assets" title="Infrastructure">

@@ -1,5 +1,5 @@
 import { CheckboxTree } from 'lib/controls/checkbox-tree/CheckboxTree';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 import { LayerLabel } from 'lib/sidebar/ui/LayerLabel';
 
 import { TERRESTRIAL_LANDUSE_COLORS } from '../colors';
@@ -24,8 +24,8 @@ function getLabel(node, checked) {
 }
 
 export const TerrestrialLandUseTree = () => {
-  const [checkboxState, setCheckboxState] = useRecoilState(landuseTreeCheckboxState);
-  const [expanded, setExpanded] = useRecoilState(landuseTreeExpandedState);
+  const [checkboxState, setCheckboxState] = useAtom(landuseTreeCheckboxState);
+  const [expanded, setExpanded] = useAtom(landuseTreeExpandedState);
 
   return (
     <CheckboxTree

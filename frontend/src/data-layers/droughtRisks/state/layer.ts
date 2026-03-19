@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { atom } from 'jotai';
 
 import { ColorSpec, FieldSpec, ViewLayer } from 'lib/data-map/view-layers';
 import { sectionVisibilityState } from 'lib/state/sections';
@@ -12,45 +12,36 @@ import {
   droughtShowRiskState,
 } from './data-selection';
 
-export const droughtRisksFieldSpecState = selector<FieldSpec>({
-  key: 'droughtRisksFieldSpecState',
-  get: ({ get }) => {
-    const field = get(droughtRiskVariableState);
+export const droughtRisksFieldSpecState = atom<FieldSpec>((get) => {
+  const field = get(droughtRiskVariableState);
 
-    const rcp = get(droughtRcpParamState);
+  const rcp = get(droughtRcpParamState);
 
-    return {
-      fieldGroup: 'properties',
-      field,
-      fieldDimensions: DROUGHT_RISK_VARIABLES_WITH_RCP.includes(field)
-        ? {
-            rcp,
-          }
-        : {},
-    };
-  },
+  return {
+    fieldGroup: 'properties',
+    field,
+    fieldDimensions: DROUGHT_RISK_VARIABLES_WITH_RCP.includes(field)
+      ? {
+          rcp,
+        }
+      : {},
+  };
 });
 
-export const droughtRisksColorSpecState = selector<ColorSpec>({
-  key: 'droughtRisksColorSpecState',
-  get: ({ get }) => {
-    const field = get(droughtRiskVariableState);
-    return droughtRiskColorSpecLookup[field];
-  },
+export const droughtRisksColorSpecState = atom<ColorSpec>((get) => {
+  const field = get(droughtRiskVariableState);
+  return droughtRiskColorSpecLookup[field];
 });
 
-export const droughtRisksLayerState = selector<ViewLayer>({
-  key: 'droughtRegionsLayerState',
-  get: ({ get }) => {
-    const showDroughts = get(sectionVisibilityState('drought')) && get(droughtShowRiskState);
+export const droughtRisksLayerState = atom<ViewLayer>((get) => {
+  const showDroughts = get(sectionVisibilityState('drought')) && get(droughtShowRiskState);
 
-    if (!showDroughts) {
-      return null;
-    }
+  if (!showDroughts) {
+    return null;
+  }
 
-    const fieldSpec = get(droughtRisksFieldSpecState);
-    const colorSpec = get(droughtRisksColorSpecState);
+  const fieldSpec = get(droughtRisksFieldSpecState);
+  const colorSpec = get(droughtRisksColorSpecState);
 
-    return droughtRiskViewLayer({ fieldSpec, colorSpec });
-  },
+  return droughtRiskViewLayer({ fieldSpec, colorSpec });
 });

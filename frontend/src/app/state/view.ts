@@ -1,9 +1,7 @@
 import difference from 'lodash/difference';
 import forEach from 'lodash/forEach';
 import keys from 'lodash/keys';
-import { string } from '@recoiljs/refine';
-import { atom } from 'recoil';
-import { syncEffect } from 'recoil-sync';
+import { atom } from 'jotai';
 
 import { StateEffect } from 'lib/recoil/state-effects/types';
 import {
@@ -16,16 +14,9 @@ import {
 import { SECTIONS_CONFIG } from 'app/config/sections';
 import { VIEW_SECTIONS } from 'app/config/views';
 
-export const viewState = atom({
-  key: 'viewState',
-  effects: [
-    syncEffect({
-      storeKey: 'map-view-route',
-      itemKey: 'view',
-      refine: string(),
-    }),
-  ],
-});
+// Initialised from the current pathname so the first render has the correct
+// value synchronously.  MapPage keeps it in sync via useSyncRecoilState.
+export const viewState = atom<string>(window.location.pathname.split('/').find(Boolean) ?? '');
 
 function sectionVisibility(section, sectionConfig) {
   const searchParams = new URLSearchParams(window.location.search);

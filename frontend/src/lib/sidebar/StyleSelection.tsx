@@ -1,12 +1,12 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { FC, useId } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useAtom, useAtomValue } from 'jotai';
 
 import { sectionStyleOptionsState, sectionStyleValueState } from 'lib/state/sections';
 
 export const StyleSelection: FC<{ id: string }> = ({ id }) => {
-  const [value, setValue] = useRecoilState(sectionStyleValueState(id));
-  const options = useRecoilValue(sectionStyleOptionsState(id));
+  const [value, setValue] = useAtom(sectionStyleValueState(id));
+  const options = useAtomValue(sectionStyleOptionsState(id));
 
   const htmlId = useId();
   const labelId = `${htmlId}-input-label`;

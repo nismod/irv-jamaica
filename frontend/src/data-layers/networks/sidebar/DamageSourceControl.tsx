@@ -8,7 +8,7 @@ import {
   Select,
 } from '@mui/material';
 import { useId } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 import { StateEffectRoot } from 'lib/recoil/state-effects/StateEffectRoot';
 import { InputSection } from 'lib/sidebar/ui/InputSection';
@@ -25,8 +25,8 @@ import { LayerStylePanel } from 'lib/sidebar/ui/LayerStylePanel';
 import { HAZARDS_METADATA, HAZARDS_UI_ORDER } from 'data-layers/hazards/metadata';
 
 export const DamageSourceControl = () => {
-  const [damageSource, setDamageSource] = useRecoilState(damageSourceState);
-  const [damageType, setDamageType] = useRecoilState(damageTypeState);
+  const [damageSource, setDamageSource] = useAtom(damageSourceState);
+  const [damageType, setDamageType] = useAtom(damageTypeState);
   const id = useId();
 
   return (

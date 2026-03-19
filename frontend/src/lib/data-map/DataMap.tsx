@@ -1,13 +1,13 @@
 import type { MapboxOverlay } from '@deck.gl/mapbox';
-import { LayersList, PickingInfo } from 'deck.gl';
+import { Layer, LayersList, PickingInfo } from 'deck.gl';
 import { useMap } from 'react-map-gl/maplibre';
 import { FC, useRef } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 import { useInteractions } from 'lib/state/interactions/use-interactions';
 import { useDataLoadTrigger } from 'lib/data-map/use-data-load-trigger';
 import { InteractionGroupConfig } from 'lib/data-map/types';
-import { useSaveViewLayers, viewLayersFlatState } from 'lib/state/layers/view-layers';
+import { useSaveViewLayers } from 'lib/state/layers/view-layers';
 import { viewLayersParamsState } from 'lib/state/layers/view-layers-params';
 import { DeckGLOverlay } from 'lib/map/DeckGLOverlay';
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
@@ -32,9 +32,33 @@ function buildLayers(
   viewLayersParams: Map<string, ViewLayerParams>,
   zoom: number,
   beforeId: string | undefined,
-  viewLayersData?: Map<string, Record<string, any>>,
+  viewLayersData?: Map<string, Record<string, string | number>>,
 ): LayersList {
-  return viewLayers.map((viewLayer) => {
+  const layers: LayersList = [];
+
+  const isDeckLayer = (layerResult: unknown): layerResult is Layer => {
+    if (!layerResult || typeof layerResult !== 'object') {
+      return false;
+    }
+
+    return 'id' in layerResult && Boolean((layerResult as { id?: unknown }).id);
+  };
+
+  const appendLayer = (layerResult: unknown) => {
+    if (Array.isArray(layerResult)) {
+      layerResult.forEach(appendLayer);
+      return;
+    }
+
+    if (isDeckLayer(layerResult)) {
+      layers.push(layerResult);
+    }
+  };
+
+  viewLayers.forEach((viewLayer) => {
+    if (!viewLayer) {
+      return;
+    }
     const viewLayerParams = viewLayersParams.get(viewLayer.id);
     const data = viewLayersData?.get(viewLayer.id);
     const dataFetcher = data ? async () => data : undefined;
@@ -43,13 +67,16 @@ function buildLayers(
       pickable: !!viewLayer.interactionGroup,
       beforeId,
     };
-    return viewLayer.fn({
+    const layerResult = viewLayer.fn({
       deckProps,
       zoom,
       ...viewLayerParams,
       dataFetcher,
     });
+    appendLayer(layerResult);
   });
+
+  return layers;
 }
 
 /**
@@ -72,13 +99,13 @@ function useTrigger(viewLayers: ViewLayer[]) {
 export const DataMap: FC<{
   firstLabelId: string;
   interactionGroups: Map<string, InteractionGroupConfig>;
-}> = ({ firstLabelId, interactionGroups }) => {
+  viewLayers: ViewLayer[];
+}> = ({ firstLabelId, interactionGroups, viewLayers }) => {
   const deckRef = useRef<MapboxOverlay>();
   const { current: map } = useMap();
   const zoom = map.getMap().getZoom();
-  const viewLayers = useRecoilValue(viewLayersFlatState);
-  const viewLayersParams = useRecoilValue(viewLayersParamsState);
-  const viewLayersData = useRecoilValue(protectedFeatureLayerDataState);
+  const viewLayersParams = useAtomValue(viewLayersParamsState);
+  const viewLayersData = useAtomValue(protectedFeatureLayerDataState);
   const saveViewLayers = useSaveViewLayers();
 
   useTrigger(viewLayers);

@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { DataItem } from 'lib/map/tooltip/detail-components';
 import { VectorHoverDescription } from 'lib/data-map/types';
 import { FC, useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import {
   droughtOptionsColorSpecState,
   droughtOptionsFieldSpecState,
@@ -13,8 +13,8 @@ export const DroughtOptionsHoverDescription: FC<VectorHoverDescription> = ({
   target,
   viewLayer,
 }) => {
-  const fieldSpec = useRecoilValue(droughtOptionsFieldSpecState);
-  const colorSpec = useRecoilValue(droughtOptionsColorSpecState);
+  const fieldSpec = useAtomValue(droughtOptionsFieldSpecState);
+  const colorSpec = useAtomValue(droughtOptionsColorSpecState);
 
   const colorMap = useMemo(
     () => ({

@@ -1,9 +1,10 @@
 import { Texture } from '@luma.gl/core';
 import { BitmapLayer, PickingInfo } from 'deck.gl';
-import { useSetAtom } from 'jotai';
+import { WritableAtom, useSetAtom } from 'jotai';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
-import { useRecoilCallback, useSetRecoilState } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { ViewLayer } from 'lib/data-map/view-layers';
 import {
@@ -20,7 +21,6 @@ import {
   selectionState,
   allowedGroupLayersState,
 } from './interaction-state';
-import { RecoilStateFamily } from 'lib/recoil/types';
 import { pixelSelectionState } from '../pixel-driller';
 
 function processRasterTarget(info: any): RasterTarget {
@@ -85,14 +85,17 @@ function processPickedObject(
 
 type InteractionLayer = InteractionTarget<VectorTarget> | InteractionTarget<RasterTarget>;
 
-function useSetInteractionGroupState(
-  stateFamily: RecoilStateFamily<InteractionLayer | InteractionLayer[], string>,
-) {
-  return useRecoilCallback(({ set }) => {
-    return (groupName: string, value: InteractionLayer | InteractionLayer[]) => {
-      set(stateFamily(groupName), value);
-    };
-  });
+type AtomFamily<T> = (groupName: string) => WritableAtom<T, unknown[], void>;
+
+function useSetInteractionGroupState<T>(stateFamily: AtomFamily<T>) {
+  return useAtomCallback(
+    useCallback(
+      (_get, set, groupName: string, value: T) => {
+        set(stateFamily(groupName), value as never);
+      },
+      [stateFamily],
+    ),
+  );
 }
 
 /**
@@ -101,8 +104,10 @@ function useSetInteractionGroupState(
  * @returns A dictionary of arrays of view layers, grouped by interaction group.
  */
 function useActiveGroups(viewLayers) {
-  const interactiveLayers = viewLayers.filter((x) => x.interactionGroup);
-  return groupBy(interactiveLayers, (viewLayer) => viewLayer.interactionGroup);
+  return useMemo(() => {
+    const interactiveLayers = viewLayers.filter((x) => x.interactionGroup);
+    return groupBy(interactiveLayers, (viewLayer) => viewLayer.interactionGroup);
+  }, [viewLayers]);
 }
 
 /**
@@ -111,11 +116,14 @@ function useActiveGroups(viewLayers) {
  */
 function useSyncAllowedLayers(viewLayers: ViewLayer[]) {
   const activeGroups = useActiveGroups(viewLayers);
-  const allowedGroupLayers = mapValues(activeGroups, (viewLayers) =>
-    viewLayers.map((viewLayer) => viewLayer.id),
+  const allowedGroupLayers = useMemo(
+    () => mapValues(activeGroups, (viewLayers) => viewLayers.map((viewLayer) => viewLayer.id)),
+    [activeGroups],
   );
-  const setAllowedGroupLayers = useSetRecoilState(allowedGroupLayersState);
-  setAllowedGroupLayers(allowedGroupLayers);
+  const setAllowedGroupLayers = useSetAtom(allowedGroupLayersState);
+  useEffect(() => {
+    setAllowedGroupLayers(allowedGroupLayers);
+  }, [allowedGroupLayers, setAllowedGroupLayers]);
 }
 
 export function useInteractions(
@@ -123,10 +131,12 @@ export function useInteractions(
   lookupViewForDeck: (deckLayerId: string) => string,
   interactionGroups: Map<string, InteractionGroupConfig>,
 ) {
-  const setHoverXY = useSetRecoilState(hoverPositionState);
+  const setHoverXY = useSetAtom(hoverPositionState);
 
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
-  const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);
+  const setInteractionGroupSelection = useSetInteractionGroupState(
+    selectionState,
+  );
   const setPixelSelection = useSetAtom(pixelSelectionState);
 
   const [primaryGroup] = [...interactionGroups.keys()];

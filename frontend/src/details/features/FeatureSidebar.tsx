@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { FeatureSidebarContent } from './FeatureSidebarContent';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import { SidePanel } from 'details/SidePanel';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
@@ -15,7 +15,7 @@ import { InteractionTarget, VectorTarget } from 'lib/data-map/types';
  * Includes a description of the asset, a risk assessment, and a list of adaptation options.
  */
 export const FeatureSidebar: FC = () => {
-  const featureSelection = useRecoilValue(selectionState('assets'));
+  const featureSelection = useAtomValue(selectionState('assets'));
 
   if (!featureSelection) return null;
 

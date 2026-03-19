@@ -1,29 +1,12 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'jotai';
 
+import { atomWithStoredStr } from 'lib/state/map-view/map-url';
 import { sectionStyleValueState } from 'lib/state/sections';
 
 import { RegionLevel } from '../metadata';
-import { urlSyncEffect } from 'recoil-sync';
-import { string } from '@recoiljs/refine';
 
-export const regionLevelState = atom<RegionLevel>({
-  key: 'regionLevelState',
-  default: 'parish',
-  effects: [
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: 'regLevel',
-      refine: string(),
-    }),
-  ],
-});
+export const regionLevelState = atomWithStoredStr<RegionLevel>('regLevel', 'parish');
 
-export const regionsStyleState = selector({
-  key: 'regionsStyleState',
-  get: ({ get }) => get(sectionStyleValueState('regions')),
-});
+export const regionsStyleState = atom((get) => get(sectionStyleValueState('regions')));
 
-export const showPopulationState = selector({
-  key: 'showPopulationState',
-  get: ({ get }) => get(regionsStyleState) === 'population',
-});
+export const showPopulationState = atom((get) => get(regionsStyleState) === 'population');

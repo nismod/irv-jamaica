@@ -1,29 +1,13 @@
-import { bool } from '@recoiljs/refine';
+import { Atom } from 'jotai';
+import { atomFamily } from 'jotai-family';
 import fromPairs from 'lodash/fromPairs';
-import { atomFamily, RecoilValue } from 'recoil';
-import { urlSyncEffect } from 'recoil-sync';
 
-export const hazardSelectionState = atomFamily<boolean, string>({
-  key: 'hazardSelectionState',
-  default: false,
-  effects: (id) => [
-    ({ onSet }) => {
-      onSet((newVisibility) => {
-        const url = new URL(window.location.href);
-        url.searchParams.set(id, newVisibility.toString());
-        window.history.replaceState({}, '', url.toString());
-      });
-    },
-    urlSyncEffect({
-      storeKey: 'url-json',
-      itemKey: id,
-      refine: bool(),
-    }),
-  ],
-});
+import { atomWithStoredBool } from 'lib/state/map-view/map-url';
+
+export const hazardSelectionState = atomFamily((id: string) => atomWithStoredBool(id, false));
 
 interface TransactionGetterInterface {
-  get<T>(a: RecoilValue<T>): T;
+  get<T>(a: Atom<T>): T;
 }
 
 export function getHazardSelectionAggregate(

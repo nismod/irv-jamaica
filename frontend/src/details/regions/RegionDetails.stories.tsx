@@ -1,7 +1,7 @@
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 import { selectionState } from 'lib/state/interactions/interaction-state';
 import mockRegion from 'mocks/details/regions/mockRegion.json';
@@ -16,7 +16,7 @@ function FixedWidthDecorator(Story) {
 }
 
 function DataLoaderDecorator(Story, { args }) {
-  const [, setRegionSelection] = useRecoilState(selectionState('regions'));
+  const [, setRegionSelection] = useAtom(selectionState('regions'));
   useEffect(() => {
     setRegionSelection(args.region);
   }, [args.region, setRegionSelection]);

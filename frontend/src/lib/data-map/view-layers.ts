@@ -3,6 +3,7 @@ import { DataFetcher, DataLoader } from 'lib/data-loader/data-loader';
 import { Accessor } from 'lib/deck/props/getters';
 import { InteractionTarget, VectorTarget, RasterTarget } from './types';
 import { Layer } from 'deck.gl';
+import { ConfigTree } from 'lib/nested-config/config-tree';
 
 export interface FieldSpec {
   fieldGroup: string;
@@ -62,6 +63,8 @@ export interface ViewLayer {
   renderLegend?: () => JSX.Element;
   renderTooltip?: ({ target }: { target: RasterTarget | VectorTarget }) => JSX.Element;
 }
+
+export type ViewLayerConfigs = ConfigTree<ViewLayer>;
 
 export function viewOnlyLayer(id, fn): ViewLayer {
   return {

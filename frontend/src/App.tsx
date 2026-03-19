@@ -1,5 +1,4 @@
-import { RecoilRoot } from 'recoil';
-import { RecoilURLSync } from 'recoil-sync';
+import { Provider } from 'jotai';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Box, CssBaseline, StyledEngineProvider } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -18,7 +17,6 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Notice } from 'app/Notice';
-import { RecoilLocalStorageSync } from 'lib/recoil/sync-stores/RecoilLocalStorageSync';
 
 export const navItems: NavItemConfig[] = [
   {
@@ -53,64 +51,34 @@ export const navItems: NavItemConfig[] = [
   },
 ];
 
-const serialise = (value) => {
-  if (typeof value === 'undefined') {
-    return '';
-  }
-  if (typeof value === 'string') {
-    return value;
-  }
-  if (typeof value === 'number') {
-    return value.toString();
-  }
-  return JSON.stringify(value);
-};
-
-const deserialise = (value) => {
-  try {
-    return JSON.parse(value);
-  } catch {
-    return value;
-  }
-};
-
 export const App = () => {
   return (
-    <RecoilRoot>
-      <RecoilLocalStorageSync storeKey="local-storage">
-        <RecoilURLSync
-          storeKey="url-json"
-          location={{ part: 'queryParams' }}
-          serialize={serialise}
-          deserialize={deserialise}
-        >
-          <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
-              <QueryClientProvider client={queryClient}>
-                <Router>
-                  <CssBaseline />
-                  <Nav height={globalStyleVariables.navbarHeight} navItems={navItems} />
-                  <Notice />
-                  <Box
-                    position="absolute"
-                    top={globalStyleVariables.navbarHeight}
-                    bottom={0}
-                    left={0}
-                    right={0}
-                  >
-                    <Routes>
-                      <Route path="/" element={<IntroPage />} />
-                      <Route path="/:view" element={<MapPage />} />
-                      <Route path="/data" element={<DataPage />} />
-                      <Route path="/guide" element={<GuidePage />} />
-                    </Routes>
-                  </Box>
-                </Router>
-              </QueryClientProvider>
-            </ThemeProvider>
-          </StyledEngineProvider>
-        </RecoilURLSync>
-      </RecoilLocalStorageSync>
-    </RecoilRoot>
+    <Provider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <QueryClientProvider client={queryClient}>
+            <Router>
+              <CssBaseline />
+              <Nav height={globalStyleVariables.navbarHeight} navItems={navItems} />
+              <Notice />
+              <Box
+                position="absolute"
+                top={globalStyleVariables.navbarHeight}
+                bottom={0}
+                left={0}
+                right={0}
+              >
+                <Routes>
+                  <Route path="/" element={<IntroPage />} />
+                  <Route path="/:view" element={<MapPage />} />
+                  <Route path="/data" element={<DataPage />} />
+                  <Route path="/guide" element={<GuidePage />} />
+                </Routes>
+              </Box>
+            </Router>
+          </QueryClientProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </Provider>
   );
 };

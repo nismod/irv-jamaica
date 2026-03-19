@@ -1,4 +1,4 @@
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 import { HAZARD_DOMAINS } from 'data-layers/hazards/domains';
 import { NETWORK_DOMAINS } from 'data-layers/networks/domains';
@@ -14,7 +14,7 @@ export const dataParamConfig: Record<string, DataParamGroupConfig> = {
 };
 
 export function useSyncConfigState() {
-  const [config, setConfig] = useRecoilState(syncExternalConfigState);
+  const [config, setConfig] = useAtom(syncExternalConfigState);
   if (config !== dataParamConfig) {
     setConfig(dataParamConfig);
   }

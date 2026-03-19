@@ -1,7 +1,7 @@
 import ArrowRight from '@mui/icons-material/ArrowRight';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
 import { FC, ReactNode, useId } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 import { sidebarSectionExpandedState } from 'lib/state/sections';
 
@@ -12,7 +12,7 @@ export const SidebarPanel: FC<{
   title: string;
   children: ReactNode;
 }> = ({ id, title, children }) => {
-  const [expanded, setExpanded] = useRecoilState(sidebarSectionExpandedState(id));
+  const [expanded, setExpanded] = useAtom(sidebarSectionExpandedState(id));
   const htmlId = useId();
 
   return (

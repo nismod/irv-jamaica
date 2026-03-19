@@ -1,4 +1,4 @@
-import { selector } from 'recoil';
+import { atom } from 'jotai';
 
 import { ViewLayer, FieldSpec, ColorSpec } from 'lib/data-map/view-layers';
 import { sectionStyleValueState, sectionVisibilityState } from 'lib/state/sections';
@@ -18,108 +18,93 @@ export function landuseColorMap(x: string) {
   return TERRESTRIAL_LANDUSE_COLORS[x].css;
 }
 
-export const terrestrialColorSpecState = selector<ColorSpec>({
-  key: 'terrestrialColorSpecState',
-  get: ({ get }) => {
-    const style = get(sectionStyleValueState('terrestrial'));
+export const terrestrialColorSpecState = atom<ColorSpec>((get) => {
+  const style = get(sectionStyleValueState('terrestrial'));
 
-    if (style === 'elevation') {
-      return terrestrialElevation;
-    } else if (style === 'slope') {
-      return terrestrialSlope;
-    } else {
-      // land use will not have a colorSpec, because it's categorical
-      return null;
-    }
-  },
+  if (style === 'elevation') {
+    return terrestrialElevation;
+  } else if (style === 'slope') {
+    return terrestrialSlope;
+  } else {
+    // land use will not have a colorSpec, because it's categorical
+    return null;
+  }
 });
 
-export const terrestrialColorFnState = selector<Accessor<string>>({
-  key: 'terrestrialColorFnState',
-  get: ({ get }) => {
-    const style = get(sectionStyleValueState('terrestrial'));
+export const terrestrialColorFnState = atom<Accessor<string>>((get) => {
+  const style = get(sectionStyleValueState('terrestrial'));
 
-    if (style === 'landuse') {
-      return landuseColorMap;
-    } else {
-      const colorSpec = get(terrestrialColorSpecState);
-
-      if (colorSpec) {
-        return colorMap(colorSpec);
-      }
-    }
-  },
-});
-
-export const terrestrialFieldSpecState = selector<FieldSpec>({
-  key: 'terrestrialFieldSpecState',
-  get: ({ get }) => {
-    const style = get(sectionStyleValueState('terrestrial'));
-
-    let field: string;
-
-    if (style === 'landuse') {
-      field = 'landuse_desc';
-    } else if (style === 'elevation') {
-      field = 'elevation_m';
-    } else if (style === 'slope') {
-      field = 'slope_degrees';
-    }
-
-    return {
-      fieldGroup: 'properties',
-      field,
-    };
-  },
-});
-
-const landuseFilterSetState = selector<Set<LandUseOption>>({
-  key: 'landuseFilterSetState',
-  get: ({ get }) => new Set(truthyKeys(get(landuseFilterState))),
-});
-
-const locationFilterState = selector<TerrestrialLocationFilters>({
-  key: 'locationFilterState',
-  get: ({ get }) => get(terrestrialFiltersState).location_filters,
-});
-
-const locationFilterKeysState = selector<TerrestrialLocationFilterType[]>({
-  key: 'locationFilterKeysState',
-  get: ({ get }) => truthyKeys(get(locationFilterState)),
-});
-
-export const terrestrialLayerState = selector<ViewLayer>({
-  key: 'terrestrialLayerState',
-  get: ({ get }) => {
-    const showTerrestrial = get(sectionVisibilityState('terrestrial'));
-
-    if (!showTerrestrial) {
-      return null;
-    }
-
-    const filters = get(terrestrialFiltersState);
-    const fieldSpec = get(terrestrialFieldSpecState);
-
-    const dataFn = featureProperty(fieldSpec.field);
-    const colorFn = get(terrestrialColorFnState);
-
-    if (!colorFn || !dataFn) {
-      return null;
-    }
-
+  if (style === 'landuse') {
+    return landuseColorMap;
+  } else {
     const colorSpec = get(terrestrialColorSpecState);
 
-    const landuseFilterSet = get(landuseFilterSetState);
-    const locationFilterKeys = get(locationFilterKeysState);
+    if (colorSpec) {
+      return colorMap(colorSpec);
+    }
+  }
+});
 
-    return terrestrialViewLayer({
-      fieldSpec,
-      colorSpec,
-      dataFn,
-      colorFn,
-      filters,
-      landuseFilterSet,
-      locationFilterKeys,
-    });
-  },
+export const terrestrialFieldSpecState = atom<FieldSpec>((get) => {
+  const style = get(sectionStyleValueState('terrestrial'));
+
+  let field: string;
+
+  if (style === 'landuse') {
+    field = 'landuse_desc';
+  } else if (style === 'elevation') {
+    field = 'elevation_m';
+  } else if (style === 'slope') {
+    field = 'slope_degrees';
+  }
+
+  return {
+    fieldGroup: 'properties',
+    field,
+  };
+});
+
+const landuseFilterSetState = atom<Set<LandUseOption>>(
+  (get) => new Set(truthyKeys(get(landuseFilterState))),
+);
+
+const locationFilterState = atom<TerrestrialLocationFilters>(
+  (get) => get(terrestrialFiltersState).location_filters,
+);
+
+const locationFilterKeysState = atom<TerrestrialLocationFilterType[]>((get) =>
+  truthyKeys(get(locationFilterState)),
+);
+
+export const terrestrialLayerState = atom<ViewLayer>((get) => {
+  const showTerrestrial = get(sectionVisibilityState('terrestrial'));
+
+  if (!showTerrestrial) {
+    return null;
+  }
+
+  const filters = get(terrestrialFiltersState);
+  const fieldSpec = get(terrestrialFieldSpecState);
+
+  const dataFn = featureProperty(fieldSpec.field);
+  const colorFn = get(terrestrialColorFnState);
+
+  if (!colorFn || !dataFn) {
+    return null;
+  }
+
+  const colorSpec = get(terrestrialColorSpecState);
+
+  const landuseFilterSet = get(landuseFilterSetState);
+  const locationFilterKeys = get(locationFilterKeysState);
+
+  return terrestrialViewLayer({
+    fieldSpec,
+    colorSpec,
+    dataFn,
+    colorFn,
+    filters,
+    landuseFilterSet,
+    locationFilterKeys,
+  });
 });

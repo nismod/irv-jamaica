@@ -1,6 +1,6 @@
 import { Box, ClickAwayListener, IconButton, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 
 import { MapSearchField } from './MapSearchField';
 import { placeSearchActiveState } from './search-state';
@@ -8,7 +8,7 @@ import { placeSearchActiveState } from './search-state';
 const blankSpaceWidth = 8;
 
 export const MapSearch = ({ onSelectedResult }) => {
-  const [expanded, setExpanded] = useRecoilState(placeSearchActiveState);
+  const [expanded, setExpanded] = useAtom(placeSearchActiveState);
 
   return (
     <ClickAwayListener onClickAway={() => setExpanded(false)}>

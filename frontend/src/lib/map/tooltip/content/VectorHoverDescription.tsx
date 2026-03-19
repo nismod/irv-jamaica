@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 
 import { DataItem } from '../detail-components';
 import { VectorTarget } from 'lib/data-map/types';
@@ -21,7 +21,7 @@ export const VectorHoverDescription: FC<VectorHoverDescriptionProps> = ({
   viewLayer,
   feature,
 }) => {
-  const layerParams = useRecoilValue(singleViewLayerParamsState(viewLayer.id));
+  const layerParams = useAtomValue(singleViewLayerParamsState(viewLayer.id));
   const { styleParams } = layerParams;
   const { colorMap } = styleParams ?? {};
 

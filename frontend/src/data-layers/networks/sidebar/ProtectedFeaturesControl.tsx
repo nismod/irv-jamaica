@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 import { FormLabel } from '@mui/material';
 
 import { ParamDropdown } from 'lib/controls/ParamDropdown';
@@ -12,7 +12,7 @@ import { DataParam } from 'lib/sidebar/ui/params/DataParam';
 import { adaptationFieldState } from '../state/layer';
 
 export const ProtectedFeaturesControl: FC = () => {
-  const [adaptationField, setAdaptationField] = useRecoilState(adaptationFieldState);
+  const [adaptationField, setAdaptationField] = useAtom(adaptationFieldState);
   return (
     <LayerStylePanel>
       <InputSection>
