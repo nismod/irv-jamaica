@@ -9,13 +9,33 @@ import { RiskParams } from '../domains';
 import { riskViewLayer } from '../risk-view-layer';
 
 export const risksLayerState = atom<ViewLayer[]>((get) => {
+  const riskVisibility = get(sectionVisibilityState('risks'));
+  if (!riskVisibility) {
+    return [];
+  }
+
   const riskType = get(sectionStyleValueState('risks'));
+
+  const sectorParam = get(dataParamState({ group: 'risks', param: 'sector' }));
+  const returnPeriodParam = get(dataParamState({ group: 'risks', param: 'returnPeriod' }));
+  const epochParam = get(dataParamState({ group: 'risks', param: 'epoch' }));
+  const rcpParam = get(dataParamState({ group: 'risks', param: 'rcp' }));
+  const confidenceParam = get(dataParamState({ group: 'risks', param: 'confidence' }));
+
+  if (
+    [sectorParam, returnPeriodParam, epochParam, rcpParam, confidenceParam].some(
+      (param) => param === null,
+    )
+  ) {
+    return [];
+  }
+
   const dataParams: RiskParams = {
-    sector: String(get(dataParamState({ group: 'risks', param: 'sector' }))),
-    returnPeriod: Number(get(dataParamState({ group: 'risks', param: 'returnPeriod' }))),
-    epoch: Number(get(dataParamState({ group: 'risks', param: 'epoch' }))),
-    rcp: String(get(dataParamState({ group: 'risks', param: 'rcp' }))),
-    confidence: get(dataParamState({ group: 'risks', param: 'confidence' })),
+    sector: String(sectorParam),
+    returnPeriod: Number(returnPeriodParam),
+    epoch: Number(epochParam),
+    rcp: String(rcpParam),
+    confidence: confidenceParam,
   };
-  return get(sectionVisibilityState('risks')) ? [riskViewLayer(riskType, dataParams)] : [];
+  return [riskViewLayer(riskType, dataParams)];
 });

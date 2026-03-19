@@ -24,7 +24,16 @@ export function numFormat(
   n: number | string | boolean | null | undefined,
   maximumSignificantDigits: number = 3,
 ) {
-  return n == null ? `-` : n.toLocaleString(undefined, { maximumSignificantDigits });
+  if (n == null) {
+    return `-`;
+  }
+  if (typeof n === 'string') {
+    const parsed = Number(n);
+    if (!Number.isNaN(parsed)) {
+      return parsed.toLocaleString(undefined, { maximumSignificantDigits });
+    }
+  }
+  return n.toLocaleString(undefined, { maximumSignificantDigits });
 }
 
 export function numFormatMoney(value: number, currency: string = 'JMD') {
@@ -97,8 +106,14 @@ export function makeColorConfig<K extends string>(cfg: Record<K, string>) {
 // see discussion at https://stackoverflow.com/questions/23437476/in-typescript-how-to-check-if-a-string-is-numeric
 export function isNumeric(val: unknown): val is number | string {
   if (val instanceof Array || val == null) return false;
-  const n = Number(val);
-  return Number.isFinite(n);
+
+  if (typeof val === 'number') {
+    return Number.isFinite(val);
+  }
+  if (typeof val === 'string' && val.trim() !== '') {
+    return Number.isFinite(Number(val));
+  }
+  return false;
 }
 
 export function truthyKeys<K extends string = string>(obj: Record<K, unknown>) {

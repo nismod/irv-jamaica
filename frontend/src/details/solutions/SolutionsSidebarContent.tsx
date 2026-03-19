@@ -38,6 +38,16 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
   solutionType,
 }) => {
   const p = feature.properties as SolutionProperties;
+  const landuseColor =
+    p.landuse_desc != null && p.landuse_desc !== ''
+      ? (() => {
+          try {
+            return landuseColorMap(p.landuse_desc as string);
+          } catch {
+            return undefined;
+          }
+        })()
+      : undefined;
 
   return (
     <>
@@ -45,16 +55,12 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
 
       {solutionType === 'terrestrial' && (
         <List>
-          <DataItem
-            label="Cell ID"
-            value={p.cell_index}
-            maximumSignificantDigits={21}
-          />
+          <DataItem label="Cell ID" value={p.cell_index} maximumSignificantDigits={21} />
           <DataItem
             label="Land Use"
             value={
               <>
-                <ColorBox color={landuseColorMap(p.landuse_desc ?? '')} />
+                {landuseColor && <ColorBox color={landuseColor} />}
                 {p.landuse_desc}
               </>
             }
@@ -88,18 +94,12 @@ export const SolutionsSidebarContent: FC<SolutionsSidebarContentProps> = ({
             value={
               <>
                 <ColorBox color={habitatColorMap(p.habitat ?? '')} />
-                {p.habitat
-                  ? MARINE_HABITATS_LOOKUP[p.habitat]
-                  : 'Buffer Zone'}
+                {p.habitat ? MARINE_HABITATS_LOOKUP[p.habitat] : 'Buffer Zone'}
               </>
             }
           />
-          {p.is_coral ? (
-            <DataItem label="Coral Type" value={p.coral_type} />
-          ) : null}
-          {p.is_mangrove ? (
-            <DataItem label="Mangrove Type" value={p.mangrove_type} />
-          ) : null}
+          {p.is_coral ? <DataItem label="Coral Type" value={p.coral_type} /> : null}
+          {p.is_mangrove ? <DataItem label="Mangrove Type" value={p.mangrove_type} /> : null}
           <DataItem
             label="Proximity"
             value={
