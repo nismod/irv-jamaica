@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, ReactElement } from 'react';
 import { SimpleTreeView } from '@mui/x-tree-view';
 import { produce } from 'immer';
 
@@ -75,7 +75,7 @@ export function CheckboxTree<T>({
 }: {
   config: CheckboxTreeConfig<T>;
   nodes: TreeNode<T>[];
-  getLabel: (node: TreeNode<T>, checked: boolean) => string | JSX.Element;
+  getLabel: (node: TreeNode<T>, checked: boolean) => string | ReactElement;
   checkboxState: CheckboxTreeState;
   onCheckboxState: (state: CheckboxTreeState) => void;
   expanded: string[];

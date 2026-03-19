@@ -101,7 +101,7 @@ export const DataMap: FC<{
   interactionGroups: Map<string, InteractionGroupConfig>;
   viewLayers: ViewLayer[];
 }> = ({ firstLabelId, interactionGroups, viewLayers }) => {
-  const deckRef = useRef<MapboxOverlay>();
+  const deckRef = useRef<MapboxOverlay>(null);
   const { current: map } = useMap();
   const zoom = map.getMap().getZoom();
   const viewLayersParams = useAtomValue(viewLayersParamsState);

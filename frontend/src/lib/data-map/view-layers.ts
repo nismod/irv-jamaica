@@ -4,6 +4,7 @@ import { Accessor } from 'lib/deck/props/getters';
 import { InteractionTarget, VectorTarget, RasterTarget } from './types';
 import { Layer } from 'deck.gl';
 import { ConfigTree } from 'lib/nested-config/config-tree';
+import { ReactElement } from 'react';
 
 export interface FieldSpec {
   fieldGroup: string;
@@ -60,8 +61,8 @@ export interface ViewLayer {
   legendDataFormatsFn?: ViewLayerDataFormatFunction;
   spatialType?: string;
   interactionGroup?: string;
-  renderLegend?: () => JSX.Element;
-  renderTooltip?: ({ target }: { target: RasterTarget | VectorTarget }) => JSX.Element;
+  renderLegend?: () => ReactElement;
+  renderTooltip?: ({ target }: { target: RasterTarget | VectorTarget }) => ReactElement;
 }
 
 export type ViewLayerConfigs = ConfigTree<ViewLayer>;
