@@ -25,7 +25,9 @@ function parseTreeFromString(value: string) {
     const id = networkTreeIDs.includes(url)
       ? url // url is a layer ID.
       : networkTreeIDs.find((id) => networkTreeURLs[id] === url); // url is the hex code for a layer.
-    checked[id] = true;
+    if (id !== undefined) {
+      checked[id] = true;
+    }
   });
   return recalculateCheckboxStates({ checked, indeterminate: {} }, networkTreeConfig);
 }

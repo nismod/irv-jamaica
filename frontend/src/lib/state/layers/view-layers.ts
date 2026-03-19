@@ -6,7 +6,8 @@ import { atomFamily } from 'jotai-family';
 import { ViewLayer, ViewLayerParams } from 'lib/data-map/view-layers';
 import { selectionState } from 'lib/state/interactions/interaction-state';
 
-export const viewLayerState = atomFamily(() => atom(null as ViewLayer));
+type ViewLayerState = ViewLayer | null;
+export const viewLayerState = atomFamily(() => atom(null as ViewLayerState));
 
 export const viewLayersFlatState = atom<ViewLayer[]>([]);
 

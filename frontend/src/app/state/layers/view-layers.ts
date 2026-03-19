@@ -29,7 +29,7 @@ const viewLayerConfigAsync = atomFamily((type: string) =>
 );
 
 const viewLayerConfigCached = atomFamily((type: string) =>
-  unwrap(viewLayerConfigAsync(type), (prev) => prev ?? null),
+  unwrap(viewLayerConfigAsync(type), (prev) => prev ?? undefined),
 );
 
 export const viewLayerConfigs = atom<ViewLayerConfigs>((get) => {
