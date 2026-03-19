@@ -64,7 +64,7 @@ export interface ViewLayer {
   renderTooltip?: ({ target }: { target: RasterTarget | VectorTarget }) => JSX.Element;
 }
 
-export type ConfigViewLayer = ConfigTree<ViewLayer>;
+export type ViewLayerConfigs = ConfigTree<ViewLayer>;
 
 export function viewOnlyLayer(id, fn): ViewLayer {
   return {

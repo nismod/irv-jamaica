@@ -1,7 +1,8 @@
-import { Atom, atom } from 'jotai';
+import { atom } from 'jotai';
 import { atomFamily } from 'jotai-family';
+import { unwrap } from 'jotai/utils';
 
-import { ConfigViewLayer } from 'lib/data-map/view-layers';
+import { ViewLayerConfigs } from 'lib/data-map/view-layers';
 
 import { importLayerState } from 'data-layers/state';
 
@@ -20,29 +21,19 @@ const VIEW_LAYERS = [
   'droughtOptions',
 ] as string[];
 
-const layerCache = new Map<string, Atom<ConfigViewLayer>>();
-
-const viewLayerConfig = atomFamily((type: string) =>
-  atom<ConfigViewLayer | Promise<ConfigViewLayer>>((get) => {
-    if (layerCache.has(type)) {
-      // Synchronous path: dynamic import already resolved, no suspend on re-evaluation
-      return get(layerCache.get(type));
-    }
-    // Async path: only taken once per layer type on first load
-    return importLayerState(type).then((layer) => {
-      layerCache.set(type, layer);
-      return get(layer);
-    });
+const viewLayerConfigAsync = atomFamily((type: string) =>
+  atom(async (get): Promise<ViewLayerConfigs> => {
+    const layer = await importLayerState(type);
+    return get(layer);
   }),
 );
 
-export const viewLayerConfigs = atom<ConfigViewLayer | Promise<ConfigViewLayer>>((get) => {
+const viewLayerConfigCached = atomFamily((type: string) =>
+  unwrap(viewLayerConfigAsync(type), (prev) => prev ?? null),
+);
+
+export const viewLayerConfigs = atom<ViewLayerConfigs>((get) => {
   const extraLayers = [get(featureBoundingBoxLayerState), get(labelsLayerState)];
-  const layerResults = VIEW_LAYERS.map((type) => get(viewLayerConfig(type)));
-
-  if (layerResults.some((r) => r instanceof Promise)) {
-    return Promise.all(layerResults).then((resolved) => [...resolved, ...extraLayers]);
-  }
-
-  return [...(layerResults as ConfigViewLayer[]), ...extraLayers];
+  const layerResults = VIEW_LAYERS.map((type) => get(viewLayerConfigCached(type)));
+  return [...layerResults.filter((r): r is ViewLayerConfigs => r !== undefined), ...extraLayers];
 });
