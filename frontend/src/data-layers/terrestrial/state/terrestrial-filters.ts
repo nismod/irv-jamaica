@@ -1,7 +1,7 @@
 import { LandUseOption, TerrestrialLocationFilterType } from 'data-layers/terrestrial/domains';
 import { atom } from 'jotai';
 
-import { urlMemoJson } from 'lib/state/map-view/map-url';
+import { atomWithStoredJson } from 'lib/state/map-view/map-url';
 import { landuseFilterState } from '../sidebar/landuse-tree';
 
 export type TerrestrialLocationFilters = Record<TerrestrialLocationFilterType, boolean>;
@@ -29,7 +29,7 @@ const defaultTerrestrialNonLandUseFilters: TerrestrialNonLandUseFilters = {
   },
 };
 
-export const terrestrialNonLandUseFiltersState = urlMemoJson<TerrestrialNonLandUseFilters>(
+export const terrestrialNonLandUseFiltersState = atomWithStoredJson<TerrestrialNonLandUseFilters>(
   'terrFilt',
   defaultTerrestrialNonLandUseFilters,
 );

@@ -8,7 +8,7 @@ type Location = { pathname?: string; searchParams?: URLSearchParams; hash?: stri
  * touching pathname or hash.  React Router owns those and any replaceState
  * call that includes a stale pathname will revert the route.
  */
-export const locationAtom = atomWithLocation({
+export const atomWithQueryParams = atomWithLocation({
   getLocation: () => ({
     searchParams: new URLSearchParams(window.location.search),
   }),
@@ -28,14 +28,14 @@ function readParam(searchParams: URLSearchParams | undefined, key: string): numb
 
 function makeUrlNumberAtom(itemKey: string, maximumFractionDigits: number) {
   return atom(
-    (get) => readParam(get(locationAtom).searchParams, itemKey),
+    (get) => readParam(get(atomWithQueryParams).searchParams, itemKey),
     (get, set, value: number) => {
       const formatted = +value.toLocaleString(undefined, {
         minimumFractionDigits: 1,
         maximumFractionDigits,
         useGrouping: false,
       });
-      set(locationAtom, () => {
+      set(atomWithQueryParams, () => {
         const params = new URLSearchParams(window.location.search);
         params.set(itemKey, String(formatted));
         return { searchParams: params };
@@ -115,7 +115,7 @@ export function setUrlParam(key: string, value: unknown): (prev: Location) => Lo
 
 export const STORAGE_PREFIX = 'jsrat:';
 
-export function urlMemoBool(key: string, defaultVal: boolean) {
+export function atomWithStoredBool(key: string, defaultVal: boolean) {
   const params = new URLSearchParams(window.location.search);
   let initial: boolean;
   if (params.has(key)) {
@@ -135,12 +135,12 @@ export function urlMemoBool(key: string, defaultVal: boolean) {
     (_get, set, value: boolean) => {
       set(base, value);
       sessionStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
-      set(locationAtom, setUrlParam(key, value));
+      set(atomWithQueryParams, setUrlParam(key, value));
     },
   );
 }
 
-export function urlMemoStr<T extends string = string>(key: string, defaultVal: string) {
+export function atomWithStoredStr<T extends string = string>(key: string, defaultVal: string) {
   const params = new URLSearchParams(window.location.search);
   let initial: T;
   if (params.has(key)) {
@@ -154,12 +154,12 @@ export function urlMemoStr<T extends string = string>(key: string, defaultVal: s
     (_get, set, value: T) => {
       set(base, value);
       sessionStorage.setItem(STORAGE_PREFIX + key, value);
-      set(locationAtom, setUrlParam(key, value));
+      set(atomWithQueryParams, setUrlParam(key, value));
     },
   );
 }
 
-export function urlMemoJson<T>(key: string, defaultVal: T) {
+export function atomWithStoredJson<T>(key: string, defaultVal: T) {
   const params = new URLSearchParams(window.location.search);
   let initial: T;
   if (params.has(key)) {
@@ -179,7 +179,7 @@ export function urlMemoJson<T>(key: string, defaultVal: T) {
     (_get, set, value: T) => {
       set(base, value);
       sessionStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
-      set(locationAtom, setUrlParam(key, value));
+      set(atomWithQueryParams, setUrlParam(key, value));
     },
   );
 }

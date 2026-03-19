@@ -8,7 +8,7 @@ import {
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
 import { atom } from 'jotai';
-import { STORAGE_PREFIX, locationAtom, setUrlParam } from 'lib/state/map-view/map-url';
+import { STORAGE_PREFIX, atomWithQueryParams, setUrlParam } from 'lib/state/map-view/map-url';
 
 export const landuseTreeExpandedState = atom<string[]>([]);
 
@@ -57,7 +57,7 @@ export const landuseTreeCheckboxState = atom(
     set(_landuseTreeBase, newTree);
     const str = stringifyTree(newTree);
     sessionStorage.setItem(STORAGE_PREFIX + 'landTree', str);
-    set(locationAtom, setUrlParam('landTree', str));
+    set(atomWithQueryParams, setUrlParam('landTree', str));
   },
 );
 

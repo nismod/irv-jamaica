@@ -1,5 +1,5 @@
 import { MarineLocationFilterType } from 'data-layers/marine/domains';
-import { urlMemoJson } from 'lib/state/map-view/map-url';
+import { atomWithStoredJson } from 'lib/state/map-view/map-url';
 
 export type MarineLocationFilters = Record<MarineLocationFilterType, boolean>;
 
@@ -15,4 +15,4 @@ const defaultMarineFilters: MarineFilters = {
   },
 };
 
-export const marineFiltersState = urlMemoJson<MarineFilters>('marFilt', defaultMarineFilters);
+export const marineFiltersState = atomWithStoredJson<MarineFilters>('marFilt', defaultMarineFilters);

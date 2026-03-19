@@ -7,7 +7,7 @@ import {
   CheckboxTreeState,
 } from 'lib/controls/checkbox-tree/CheckboxTree';
 import { sectionStyleValueState } from 'lib/state/sections';
-import { STORAGE_PREFIX, locationAtom, setUrlParam } from 'lib/state/map-view/map-url';
+import { STORAGE_PREFIX, atomWithQueryParams, setUrlParam } from 'lib/state/map-view/map-url';
 
 import { NETWORK_LAYERS_HIERARCHY } from '../sidebar/hierarchy';
 
@@ -59,7 +59,7 @@ export const networkTreeCheckboxState = atom(
     set(_networkTreeBase, newTree);
     const str = stringifyTree(newTree);
     sessionStorage.setItem(STORAGE_PREFIX + 'netTree', str);
-    set(locationAtom, setUrlParam('netTree', str));
+    set(atomWithQueryParams, setUrlParam('netTree', str));
   },
 );
 

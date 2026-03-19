@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-import { urlMemoJson } from 'lib/state/map-view/map-url';
+import { atomWithStoredJson } from 'lib/state/map-view/map-url';
 
 export const buildingsStyleState = atom('type');
 
@@ -30,4 +30,4 @@ const defaultBuildingSelection: BuildingSelection = {
   buildings_resort: true,
 };
 
-export const buildingSelectionState = urlMemoJson<BuildingSelection>('buiSel', defaultBuildingSelection);
+export const buildingSelectionState = atomWithStoredJson<BuildingSelection>('buiSel', defaultBuildingSelection);
