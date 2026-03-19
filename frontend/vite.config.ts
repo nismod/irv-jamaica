@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
-import viteTsconfigPaths from 'vite-tsconfig-paths';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 
@@ -28,9 +27,12 @@ const dirname =
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), viteTsconfigPaths(), url(), svgr()],
+  plugins: [react(), url(), svgr()],
   build: {
     outDir: 'build',
+  },
+  resolve: {
+    tsconfigPaths: true,
   },
   server: {
     open: true,
@@ -53,7 +55,6 @@ export default defineConfig({
             provider: playwright(),
             instances: [{ browser: 'chromium' }],
           },
-          setupFiles: ['.storybook/vitest.setup.ts'],
         },
       },
     ],
