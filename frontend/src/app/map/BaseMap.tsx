@@ -25,7 +25,6 @@ export const BaseMapContainer: FC<BaseMapProps> = ({ children }) => {
   const [viewState, setViewState] = useAtom(mapViewStateState);
   const setNonCoordsViewState = useSetAtom(nonCoordsMapViewStateState);
   const { mapStyle } = useBasemapStyle(background, showLabels);
-  console.log('BaseMapContainer render', { viewState });
 
   const hasInvalidViewState =
     !Number.isFinite(viewState.zoom) ||

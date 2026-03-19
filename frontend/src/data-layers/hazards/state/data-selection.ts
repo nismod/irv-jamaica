@@ -1,4 +1,4 @@
-import { Atom, atom } from 'jotai';
+import { Atom } from 'jotai';
 import { atomFamily } from 'jotai-family';
 import fromPairs from 'lodash/fromPairs';
 
