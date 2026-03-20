@@ -27,7 +27,7 @@ services:
         "8080",
         "--verbose",
         "-u",
-        "https://jsrat.licj.org.jm:9443/vector",
+        "https://jsrat.licj.org.jm:9443/vector", #this matches the URL of the hosting server
       ]
     ports:
       - "3002:8080"
