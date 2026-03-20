@@ -1,11 +1,14 @@
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 import { http, HttpResponse } from 'msw';
+import { useHydrateAtoms } from 'jotai/utils';
 
 import mockPixelData from 'mocks/details/pixel-data/mockPixelData.json';
+import { pixelSelectionState } from 'lib/state/pixel-driller';
 import { PixelData } from './PixelData';
 
 function FixedWidthDecorator(Story) {
+  useHydrateAtoms([[pixelSelectionState, { lat: -78, lon: 18 }]]);
   return (
     <div style={{ width: '60ch' }}>
       <Story />
@@ -27,7 +30,7 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get('/pixel/0.000/0.000', () => {
+        http.get('/pixel/18.000/-78.000', () => {
           return HttpResponse.json(mockPixelData);
         }),
       ],

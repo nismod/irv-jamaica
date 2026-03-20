@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import { atom, useAtomValue } from 'jotai';
 
 import { sectionStyleValueState, sectionVisibilityState } from 'lib/state/sections';
+import { mapInteractionModeState } from 'lib/state/map-interaction-state';
 
 import { AdaptationsSidebar } from './adaptations/AdaptationsSidebar';
 import { FeatureSidebar } from './features/FeatureSidebar';
@@ -16,6 +17,7 @@ export const showAdaptationsTableState = atom(
 
 export const DetailsSidebar = () => {
   const showAdaptationsTable = useAtomValue(showAdaptationsTableState);
+  const interactionMode = useAtomValue(mapInteractionModeState);
   return (
     <>
       <Box mb={2}>
@@ -28,9 +30,11 @@ export const DetailsSidebar = () => {
       <Box mb={2}>
         <RegionDetails />
       </Box>
-      <Box mb={2}>
-        <PixelData />
-      </Box>
+      {interactionMode === 'pixel-driller' && (
+        <Box mb={2}>
+          <PixelData />
+        </Box>
+      )}
     </>
   );
 };
