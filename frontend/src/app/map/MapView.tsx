@@ -25,6 +25,8 @@ import { damageSourceState } from 'app/state/damage-mapping/damage-map';
 import { MapLayerSelection } from './layers/MapLayerSelection';
 import { BaseMapContainer } from './BaseMap';
 import { DataMapContainer } from './DataMap';
+import { MapInteractionModeSelector } from 'lib/map/pixel-driller/InteractionModeSelector';
+import { LocationMarker } from 'lib/map/pixel-driller/LocationMarker';
 
 const AppPlaceSearch = () => {
   const setFitBounds = useSetAtom(mapFitBoundsState);
@@ -64,6 +66,7 @@ const MapHudDesktopLayout = () => {
       <MapHudRegion position="top-left" StackProps={{ spacing: 1 }}>
         <AppPlaceSearch />
         <MapLayerSelection />
+        <MapInteractionModeSelector />
       </MapHudRegion>
       <MapHudRegion position="top-right">
         <AppNavigationControl />
@@ -86,6 +89,7 @@ const MapHudMobileLayout = () => {
       <MapHudRegion position="top-left" StackProps={{ spacing: 1 }}>
         <AppPlaceSearch />
         <MapLayerSelection />
+        <MapInteractionModeSelector />
       </MapHudRegion>
       <MapHudRegion position="top-right">
         <AppNavigationControl />
@@ -110,6 +114,7 @@ const MapViewContent = () => {
     <BaseMapContainer>
       <DataMapContainer />
       <MapBoundsFitter />
+      <LocationMarker />
       <DataMapTooltip>
         <DataMapTooltipContent />
       </DataMapTooltip>

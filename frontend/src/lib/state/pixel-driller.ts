@@ -69,14 +69,15 @@ type Row = {
 
 const dataCache = new Map<string, PixelData>();
 
+type MapLocation = {
+  lat: number;
+  lon: number;
+};
+
 /**
  * Latitude and longitude of the selected map pixel.
  */
-export const pixelSelectionState =
-  atom({
-    lat: 0,
-    lon: 0,
-  });
+export const pixelSelectionState = atom<MapLocation | null>(null as MapLocation | null);
 
 /**
  * Query to fetch hazard data for the selected map pixel.

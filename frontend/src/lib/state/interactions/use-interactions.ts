@@ -1,6 +1,6 @@
 import { Texture } from '@luma.gl/core';
 import { BitmapLayer, PickingInfo } from 'deck.gl';
-import { WritableAtom, useSetAtom } from 'jotai';
+import { WritableAtom, useAtomValue, useSetAtom } from 'jotai';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import { useAtomCallback } from 'jotai/utils';
@@ -22,6 +22,7 @@ import {
   allowedGroupLayersState,
 } from './interaction-state';
 import { pixelSelectionState } from '../pixel-driller';
+import { mapInteractionModeState } from '../map-interaction-state';
 
 type DeckPicker = {
   pickMultipleObjects: (params: unknown) => PickingInfo<unknown>[];
@@ -164,10 +165,9 @@ export function useInteractions(
   const setHoverXY = useSetAtom(hoverPositionState);
 
   const setInteractionGroupHover = useSetInteractionGroupState(hoverState);
-  const setInteractionGroupSelection = useSetInteractionGroupState(
-    selectionState,
-  );
+  const setInteractionGroupSelection = useSetInteractionGroupState(selectionState);
   const setPixelSelection = useSetAtom(pixelSelectionState);
+  const interactionMode = useAtomValue(mapInteractionModeState);
 
   const [primaryGroup] = [...interactionGroups.keys()];
   const primaryGroupPickingRadius = interactionGroups.get(primaryGroup).pickingRadius;
@@ -226,8 +226,11 @@ export function useInteractions(
         setInteractionGroupSelection(groupName, selectionTarget);
       }
     }
-    const [lon, lat] = info.coordinate;
-    setPixelSelection({ lon, lat });
+
+    if (interactionMode === 'pixel-driller') {
+      const [lon, lat] = info.coordinate;
+      setPixelSelection({ lon, lat });
+    }
   };
 
   /**
