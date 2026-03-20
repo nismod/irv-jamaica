@@ -1,8 +1,10 @@
 import { TreeItem } from '@mui/x-tree-view';
 import { Box, Checkbox } from '@mui/material';
+import { ReactElement } from 'react';
 
 import { CheckboxTreeState } from './CheckboxTree';
 import { TreeNode } from './tree-node';
+
 
 function handleClick(e) {
   e.stopPropagation();
@@ -19,7 +21,7 @@ export function CheckboxTreeItem<T>({
   root: TreeNode<T>;
   handleChange: (checked: boolean, node: TreeNode<T>) => void;
   checkboxState: CheckboxTreeState;
-  getLabel: (node: TreeNode<T>, checked: boolean) => string | JSX.Element;
+  getLabel: (node: TreeNode<T>, checked: boolean) => string | ReactElement;
   disableCheck?: boolean;
 }) {
   const indeterminate = checkboxState.indeterminate[root.id];

@@ -76,7 +76,7 @@ const MobileTabPanel: FC<{ tabConfig: TabConfig }> = ({ tabConfig: { id, Content
 
 export const MapPageMobileLayout = () => {
   const [bottomTabId, setBottomTabId] = useState('layers');
-  const sheetRef = useRef<BottomSheetRef>();
+  const sheetRef = useRef<BottomSheetRef>(null);
 
   /*
     const handleChange = useCallback(() => {
