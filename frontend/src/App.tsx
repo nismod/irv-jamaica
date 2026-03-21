@@ -13,7 +13,6 @@ import { GuidePage } from './app/pages/GuidePage';
 import { globalStyleVariables, theme } from './app/theme';
 import { Nav, NavItemConfig } from './app/Nav';
 
-import 'react-spring-bottom-sheet/dist/style.css';
 import './index.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Notice } from 'app/Notice';

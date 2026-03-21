@@ -36,9 +36,9 @@
     "react-dom": "^19.2.4",
     "react-map-gl": "^8.0.1",
     "react-router-dom": "^7.4.1",
-    "react-spring-bottom-sheet": "^3.4.1",
     "react-vega": "^8.0.0",
     "usehooks-ts": "^3.1.1",
+    "vaul": "^1.1.2",
     "vega": "^6.1.0",
     "vega-lite": "^6.1.0"
   },
@@ -106,11 +106,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "overrides": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "@types/react": "^19.2.14"
-  },
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
