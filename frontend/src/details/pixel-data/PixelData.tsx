@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -10,9 +11,15 @@ import {
   pixelDrillerDataState,
   pixelSelectionState,
 } from 'lib/state/pixel-driller';
-import { PixelDataGrid } from './PixelDataGrid';
 import Close from '@mui/icons-material/Close';
 import { CopyableLink } from 'lib/nav/CopyableLink';
+
+const domainComponents = {
+  fluvial: lazy(() => import('./domains/fluvial')),
+  surface: lazy(() => import('./domains/surface')),
+  coastal: lazy(() => import('./domains/coastal')),
+  cyclone: lazy(() => import('./domains/cyclone')),
+};
 
 /**
  * Display detailed information about a selected pixel (lat/lon point.)
@@ -32,8 +39,7 @@ export const PixelData = () => {
   if (!headers.length) {
     return null;
   }
-  // Define which pixel layers to include, in display order
-  const pixel_layers = ['fluvial', 'surface', 'coastal', 'cyclone'];
+
   const lat = pixelSelection?.lat;
   const lon = pixelSelection?.lon;
 
@@ -58,11 +64,13 @@ export const PixelData = () => {
             copyTooltip="Copy site URL"
           />
         </Typography>
-        {pixel_layers.map((pixel_layer) => (
-          <Box key={pixel_layer} mt={2}>
-            <PixelDataGrid pixel_layer={pixel_layer} />
-          </Box>
-        ))}
+        {Object.entries(domainComponents).map(([pixel_layer, PixelDataGrid]) => (
+            <Box key={pixel_layer} mt={2}>
+              <Suspense fallback="Loading…">
+                <PixelDataGrid pixel_layer={pixel_layer} />
+              </Suspense>
+            </Box>
+          ))}
       </ErrorBoundary>
     </SidePanel>
   );

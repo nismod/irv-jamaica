@@ -2,13 +2,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { useAtom, useAtomValue } from 'jotai';
-import { useCallback } from 'react';
+import { SyntheticEvent, useCallback } from 'react';
 
 import {
   hazardAccordionExpandedState,
   openAccordionState,
   SINGLE_ACCORDION_MODE,
-} from './accordion-state';
+} from '../accordion-state';
 
 import {
   pixelDrillerDataHeaders,
@@ -16,18 +16,13 @@ import {
   pixelDrillerDataRPs,
 } from 'lib/state/pixel-driller';
 
-import './hazard-table.css';
+import '../hazard-table.css';
 
-const headings = {
-  cyclone: 'Cyclones',
-  fluvial: 'River flooding',
-  surface: 'Surface flooding',
-  coastal: 'Coastal flooding',
-};
+const title = 'Cyclones';
 
 const displayReturnPeriods = new Set([5, 10, 20, 50, 100, 200, 500]);
 
-export const PixelDataGrid = ({ pixel_layer }) => {
+const PixelDataGrid = ({ pixel_layer }) => {
   const [individualExpanded, setIndividualExpanded] = useAtom(
     hazardAccordionExpandedState(pixel_layer),
   );
@@ -52,13 +47,12 @@ export const PixelDataGrid = ({ pixel_layer }) => {
   returnPeriods.forEach((rp) => {
     columns.push({ field: `rp-${rp}`, headerName: `RP ${rp}`, width: 60 });
   });
-  const title = headings[pixel_layer];
 
   // In single-accordion mode, use openAccordionState; otherwise use individual state
   const expanded = SINGLE_ACCORDION_MODE ? openAccordion === title : individualExpanded;
 
   const handleChange = useCallback(
-    (_event: React.SyntheticEvent, isExpanded: boolean) => {
+    (_event: SyntheticEvent, isExpanded: boolean) => {
       if (SINGLE_ACCORDION_MODE) {
         // In single-accordion mode, track which accordion is open
         setOpenAccordion(isExpanded ? title : null);
@@ -67,7 +61,7 @@ export const PixelDataGrid = ({ pixel_layer }) => {
         setIndividualExpanded(isExpanded);
       }
     },
-    [title, setIndividualExpanded, setOpenAccordion],
+    [setIndividualExpanded, setOpenAccordion],
   );
 
   if (!headers.length || !rows.length) {
@@ -81,7 +75,7 @@ export const PixelDataGrid = ({ pixel_layer }) => {
       <Accordion
         expanded={expanded}
         onChange={handleChange}
-        data-hazard-title={headings[pixel_layer]}
+        data-hazard-title={title}
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -94,7 +88,7 @@ export const PixelDataGrid = ({ pixel_layer }) => {
           }}
         >
           <Typography variant="subtitle2" component="h3">
-            {headings[pixel_layer]}: {variable} ({unit})
+            {title}: {variable} ({unit})
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -104,3 +98,5 @@ export const PixelDataGrid = ({ pixel_layer }) => {
     </>
   );
 };
+
+export default PixelDataGrid;
