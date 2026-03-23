@@ -5,7 +5,6 @@ import { ReactElement } from 'react';
 import { CheckboxTreeState } from './CheckboxTree';
 import { TreeNode } from './tree-node';
 
-
 function handleClick(e) {
   e.stopPropagation();
   return true;

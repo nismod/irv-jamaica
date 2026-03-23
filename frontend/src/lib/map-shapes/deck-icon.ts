@@ -37,8 +37,7 @@ const iconMapping = Object.fromEntries(
 );
 
 export function iconType(getIcon: MapShapeType | ((x: unknown) => MapShapeType)) {
-  const iconGetter =
-    typeof getIcon === 'function' ? (x: unknown) => getIcon(x) : () => getIcon;
+  const iconGetter = typeof getIcon === 'function' ? (x: unknown) => getIcon(x) : () => getIcon;
 
   return {
     pointType: 'icon',

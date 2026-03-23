@@ -6,9 +6,7 @@ export const MapInteractionModeSelector = () => {
   const [interactionMode, setInteractionMode] = useAtom(mapInteractionModeState);
   const selected = interactionMode === 'pixel-driller';
   const handleToggle = () => {
-    setInteractionMode(
-      interactionMode === 'pixel-driller' ? 'standard' : 'pixel-driller',
-    );
+    setInteractionMode(interactionMode === 'pixel-driller' ? 'standard' : 'pixel-driller');
   };
   return (
     <ToggleButton
