@@ -65,12 +65,12 @@ export const PixelData = () => {
           />
         </Typography>
         {Object.entries(domainComponents).map(([pixel_layer, PixelDataGrid]) => (
-            <Box key={pixel_layer} mt={2}>
-              <Suspense fallback="Loading…">
-                <PixelDataGrid pixel_layer={pixel_layer} />
-              </Suspense>
-            </Box>
-          ))}
+          <Box key={pixel_layer} mt={2}>
+            <Suspense fallback="Loading…">
+              <PixelDataGrid pixel_layer={pixel_layer} />
+            </Suspense>
+          </Box>
+        ))}
       </ErrorBoundary>
     </SidePanel>
   );
