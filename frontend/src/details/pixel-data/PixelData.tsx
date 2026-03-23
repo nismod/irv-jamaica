@@ -1,6 +1,7 @@
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
+import { Link as RouterLink } from 'react-router-dom';
 
-import { Box, IconButton } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import { SidePanel } from 'details/SidePanel';
 import { ErrorBoundary } from 'lib/react/ErrorBoundary';
 import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
@@ -11,6 +12,7 @@ import {
 } from 'lib/state/pixel-driller';
 import { PixelDataGrid } from './PixelDataGrid';
 import Close from '@mui/icons-material/Close';
+import { CopyableLink } from 'lib/nav/CopyableLink';
 
 /**
  * Display detailed information about a selected pixel (lat/lon point.)
@@ -18,7 +20,7 @@ import Close from '@mui/icons-material/Close';
 export const PixelData = () => {
   const selectedData = useAtomValue(pixelDrillerDataState);
   const headers = useAtomValue(pixelDrillerDataHeaders);
-  const setPixelSelection = useSetAtom(pixelSelectionState);
+  const [pixelSelection, setPixelSelection] = useAtom(pixelSelectionState);
 
   function clearSelectedLocation() {
     setPixelSelection(null);
@@ -32,6 +34,8 @@ export const PixelData = () => {
   }
   // Define which pixel layers to include, in display order
   const pixel_layers = ['fluvial', 'surface', 'coastal', 'cyclone'];
+  const lat = pixelSelection?.lat;
+  const lon = pixelSelection?.lon;
 
   return (
     <SidePanel position="relative">
@@ -42,6 +46,18 @@ export const PixelData = () => {
             <Close />
           </IconButton>
         </Box>
+        <Typography variant="h6" gutterBottom>
+          Site Details
+        </Typography>
+        <Typography variant="body2" color="text.secondary" gutterBottom>
+          Coordinates:{' '}
+          <CopyableLink
+            href={window.location.pathname + window.location.search} // current URL path + query
+            component={RouterLink}
+            label={`${lat?.toFixed(6)}, ${lon?.toFixed(6)}`}
+            copyTooltip="Copy site URL"
+          />
+        </Typography>
         {pixel_layers.map((pixel_layer) => (
           <Box key={pixel_layer} mt={2}>
             <PixelDataGrid pixel_layer={pixel_layer} />

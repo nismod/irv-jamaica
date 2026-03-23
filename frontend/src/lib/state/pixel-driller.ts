@@ -1,6 +1,7 @@
 import { Atom, atom } from 'jotai';
 import { atomFamily } from 'jotai-family';
 import { unwrap } from 'jotai/utils';
+import { atomWithStoredJson } from './map-view/map-url';
 
 const FLOOD_PARAMETERS = [
   { epoch: 2010, rcp: 'baseline' },
@@ -77,7 +78,10 @@ type MapLocation = {
 /**
  * Latitude and longitude of the selected map pixel.
  */
-export const pixelSelectionState = atom<MapLocation | null>(null as MapLocation | null);
+export const pixelSelectionState = atomWithStoredJson<MapLocation | null>(
+  'site',
+  null as MapLocation | null,
+);
 
 /**
  * Query to fetch hazard data for the selected map pixel.

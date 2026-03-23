@@ -20,6 +20,11 @@ export const DetailsSidebar = () => {
   const interactionMode = useAtomValue(mapInteractionModeState);
   return (
     <>
+      {interactionMode === 'pixel-driller' && (
+        <Box mb={2}>
+          <PixelData />
+        </Box>
+      )}
       <Box mb={2}>
         <SolutionsSidebar />
       </Box>
@@ -30,11 +35,6 @@ export const DetailsSidebar = () => {
       <Box mb={2}>
         <RegionDetails />
       </Box>
-      {interactionMode === 'pixel-driller' && (
-        <Box mb={2}>
-          <PixelData />
-        </Box>
-      )}
     </>
   );
 };

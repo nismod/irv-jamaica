@@ -1,5 +1,14 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
+import { useCallback } from 'react';
+
+import {
+  hazardAccordionExpandedState,
+  openAccordionState,
+  SINGLE_ACCORDION_MODE,
+} from './accordion-state';
 
 import {
   pixelDrillerDataHeaders,
@@ -8,7 +17,6 @@ import {
 } from 'lib/state/pixel-driller';
 
 import './hazard-table.css';
-import { Typography } from '@mui/material';
 
 const headings = {
   cyclone: 'Cyclones',
@@ -20,6 +28,11 @@ const headings = {
 const displayReturnPeriods = new Set([5, 10, 20, 50, 100, 200, 500]);
 
 export const PixelDataGrid = ({ pixel_layer }) => {
+  const [individualExpanded, setIndividualExpanded] = useAtom(
+    hazardAccordionExpandedState(pixel_layer),
+  );
+  const [openAccordion, setOpenAccordion] = useAtom(openAccordionState);
+
   const headers = useAtomValue(pixelDrillerDataHeaders);
   const rows = useAtomValue(pixelDrillerDataRows(pixel_layer));
   const dataReturnPeriods = useAtomValue(pixelDrillerDataRPs(pixel_layer));
@@ -39,6 +52,24 @@ export const PixelDataGrid = ({ pixel_layer }) => {
   returnPeriods.forEach((rp) => {
     columns.push({ field: `rp-${rp}`, headerName: `RP ${rp}`, width: 60 });
   });
+  const title = headings[pixel_layer];
+
+  // In single-accordion mode, use openAccordionState; otherwise use individual state
+  const expanded = SINGLE_ACCORDION_MODE ? openAccordion === title : individualExpanded;
+
+  const handleChange = useCallback(
+    (_event: React.SyntheticEvent, isExpanded: boolean) => {
+      if (SINGLE_ACCORDION_MODE) {
+        // In single-accordion mode, track which accordion is open
+        setOpenAccordion(isExpanded ? title : null);
+      } else {
+        // In multi-accordion mode, just update this accordion's state
+        setIndividualExpanded(isExpanded);
+      }
+    },
+    [title, setIndividualExpanded, setOpenAccordion],
+  );
+
   if (!headers.length || !rows.length) {
     return null;
   }
@@ -47,11 +78,29 @@ export const PixelDataGrid = ({ pixel_layer }) => {
 
   return (
     <>
-      <Typography variant="subtitle2" component="h3">
-        {headings[pixel_layer]}: {variable} ({unit})
-      </Typography>
-
-      <DataGrid columns={columns} rows={rows} rowHeight={30} density="compact" />
+      <Accordion
+        expanded={expanded}
+        onChange={handleChange}
+        data-hazard-title={headings[pixel_layer]}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          sx={{
+            '& .MuiAccordionSummary-content': {
+              display: 'flex',
+              alignItems: 'center',
+              flex: 1,
+            },
+          }}
+        >
+          <Typography variant="subtitle2" component="h3">
+            {headings[pixel_layer]}: {variable} ({unit})
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <DataGrid columns={columns} rows={rows} rowHeight={30} density="compact" />
+        </AccordionDetails>
+      </Accordion>
     </>
   );
 };
