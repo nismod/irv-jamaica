@@ -1,3 +1,4 @@
-import { atom } from 'jotai';
+import { atomWithStoredStr } from './map-view/map-url';
+
 export type MapInteractionMode = 'standard' | 'pixel-driller';
-export const mapInteractionModeState = atom<MapInteractionMode>('standard');
+export const mapInteractionModeState = atomWithStoredStr<MapInteractionMode>('mode', 'standard');

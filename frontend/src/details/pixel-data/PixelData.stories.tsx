@@ -42,8 +42,12 @@ export const Default: Story = {
     expect(await canvas.findByText('Surface flooding: depth (m)')).toBeTruthy();
     expect(await canvas.findByText('Coastal flooding: depth (m)')).toBeTruthy();
     expect(await canvas.findByText('Cyclones: speed (m s-1)')).toBeTruthy();
+
+    const floodingAccordion = await canvas.findByRole('button', { name: /River flooding/ });
+    expect(floodingAccordion).toBeTruthy();
+    floodingAccordion.click();
     const grids = await canvas.findAllByRole('grid');
-    expect(grids).toHaveLength(4);
+    expect(grids).toHaveLength(1);
     grids.forEach((grid) => {
       const rowGroup = within(grid).getByRole('rowgroup');
       expect(rowGroup).toBeTruthy();
