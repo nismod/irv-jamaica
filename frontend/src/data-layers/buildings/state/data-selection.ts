@@ -30,4 +30,7 @@ const defaultBuildingSelection: BuildingSelection = {
   buildings_resort: true,
 };
 
-export const buildingSelectionState = atomWithStoredJson<BuildingSelection>('buiSel', defaultBuildingSelection);
+export const buildingSelectionState = atomWithStoredJson<BuildingSelection>(
+  'buiSel',
+  defaultBuildingSelection,
+);

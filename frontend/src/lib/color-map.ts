@@ -17,6 +17,5 @@ export function colorScaleValues(colorSpec: ColorSpec, n: number) {
 export function colorMap(colorSpec: ColorSpec) {
   const scaleFn = colorScaleFn(colorSpec);
 
-  return (value: unknown): string =>
-    value == null ? colorSpec.empty : scaleFn(Number(value));
+  return (value: unknown): string => (value == null ? colorSpec.empty : scaleFn(Number(value)));
 }

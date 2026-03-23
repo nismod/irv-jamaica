@@ -7,9 +7,7 @@ export type ParamDomain<PT = Param> = PT[];
 
 export type ParamGroup = object;
 
-export type ParamDependency<PT, PGT extends ParamGroup> = (
-  params: PGT,
-) => ParamDomain<PT>;
+export type ParamDependency<PT, PGT extends ParamGroup> = (params: PGT) => ParamDomain<PT>;
 
 export type ParamGroupDomains<PGT extends ParamGroup = ParamGroup> = {
   [K in keyof PGT]: ParamDomain<PGT[K]>;

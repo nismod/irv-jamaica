@@ -15,4 +15,7 @@ const defaultMarineFilters: MarineFilters = {
   },
 };
 
-export const marineFiltersState = atomWithStoredJson<MarineFilters>('marFilt', defaultMarineFilters);
+export const marineFiltersState = atomWithStoredJson<MarineFilters>(
+  'marFilt',
+  defaultMarineFilters,
+);
