@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
-import { Link as RouterLink } from 'react-router-dom';
 
 import { Box, IconButton, Typography } from '@mui/material';
 import { SidePanel } from 'details/SidePanel';
@@ -59,7 +58,6 @@ export const PixelData = () => {
           Coordinates:{' '}
           <CopyableLink
             href={window.location.pathname + window.location.search} // current URL path + query
-            component={RouterLink}
             label={`${lat?.toFixed(6)}, ${lon?.toFixed(6)}`}
             copyTooltip="Copy site URL"
           />
