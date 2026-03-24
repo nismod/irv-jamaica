@@ -16,12 +16,13 @@ const CYCLONE_PARAMETERS = [
   { confidence: 95, epoch: 2100, rcp: '8.5' },
 ];
 
-
 const DataSection = ({ pixel_layer }) => {
-  const rows = useAtomValue(pixelDrillerDataRows({
-    pixel_layer,
-    layerParams: CYCLONE_PARAMETERS,
-  }));
+  const rows = useAtomValue(
+    pixelDrillerDataRows({
+      pixel_layer,
+      layerParams: CYCLONE_PARAMETERS,
+    }),
+  );
 
   if (!rows.length) {
     return null;

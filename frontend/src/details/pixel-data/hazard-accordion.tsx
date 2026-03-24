@@ -1,7 +1,10 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Accordion, AccordionSummary, Typography, AccordionDetails } from '@mui/material';
+import { Accordion, AccordionSummary, Typography, AccordionDetails, Box } from '@mui/material';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, SyntheticEvent, ReactNode } from 'react';
+
+import { RagIndicator } from './rag/rag-indicator';
+import { RagStatus } from './rag/rag-types';
 import {
   hazardAccordionExpandedState,
   openAccordionState,
@@ -11,10 +14,16 @@ import {
 interface HazardAccordionProps {
   id: string;
   title: string;
+  status?: RagStatus;
   children: ReactNode;
 }
 
-export function HazardAccordion({ id, title, children }: HazardAccordionProps) {
+export function HazardAccordion({
+  id,
+  title,
+  status = 'green',
+  children,
+}: HazardAccordionProps) {
   const [individualExpanded, setIndividualExpanded] = useAtom(hazardAccordionExpandedState(id));
   const openAccordion = useAtomValue(openAccordionState);
   const setOpenAccordion = useSetAtom(openAccordionState);
@@ -47,9 +56,12 @@ export function HazardAccordion({ id, title, children }: HazardAccordionProps) {
           },
         }}
       >
-        <Typography variant="subtitle2" component="h3">
+        <Typography variant="subtitle2" component="h3" sx={{ flex: 1 }}>
           {title}
         </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', mr: 1 }}>
+          <RagIndicator status={status} />
+        </Box>
       </AccordionSummary>
       <AccordionDetails>{children}</AccordionDetails>
     </Accordion>
