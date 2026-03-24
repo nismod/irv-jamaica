@@ -13,10 +13,12 @@ const displayReturnPeriods = new Set([5, 10, 20, 50, 100, 200, 500]);
 
 export const PixelDataGrid = ({ pixel_layer, parameters }) => {
   const headers = useAtomValue(pixelDrillerDataHeaders);
-  const rows = useAtomValue(pixelDrillerDataRows({
-    pixel_layer,
-    layerParams: parameters,
-  }));
+  const rows = useAtomValue(
+    pixelDrillerDataRows({
+      pixel_layer,
+      layerParams: parameters,
+    }),
+  );
   const dataReturnPeriods = useAtomValue(pixelDrillerDataRPs(pixel_layer));
   const columns = [
     { field: 'epoch', headerName: 'Epoch', width: 55 },

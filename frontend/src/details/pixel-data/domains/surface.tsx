@@ -18,10 +18,12 @@ const FLOOD_PARAMETERS = [
 ];
 
 const DataSection = ({ pixel_layer }) => {
-  const rows = useAtomValue(pixelDrillerDataRows({
-    pixel_layer,
-    layerParams: FLOOD_PARAMETERS,
-  }));
+  const rows = useAtomValue(
+    pixelDrillerDataRows({
+      pixel_layer,
+      layerParams: FLOOD_PARAMETERS,
+    }),
+  );
 
   if (!rows.length) {
     return null;
