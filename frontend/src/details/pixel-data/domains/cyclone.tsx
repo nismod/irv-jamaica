@@ -1,7 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { useAtomValue } from 'jotai';
 
-
 import {
   pixelDrillerDataHeaders,
   pixelDrillerDataRows,
@@ -44,7 +43,7 @@ const PixelDataGrid = ({ pixel_layer }) => {
 
   return (
     <>
-      <HazardAccordion title={`${title}: ${variable} (${unit})`}>
+      <HazardAccordion id={pixel_layer} title={`${title}: ${variable} (${unit})`}>
         <DataGrid columns={columns} rows={rows} rowHeight={30} density="compact" />
       </HazardAccordion>
     </>

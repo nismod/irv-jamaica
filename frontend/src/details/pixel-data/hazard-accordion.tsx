@@ -9,29 +9,30 @@ import {
 } from './accordion-state';
 
 interface HazardAccordionProps {
+  id: string;
   title: string;
   children: ReactNode;
 }
 
-export function HazardAccordion({ title, children }: HazardAccordionProps) {
-  const [individualExpanded, setIndividualExpanded] = useAtom(hazardAccordionExpandedState(title));
+export function HazardAccordion({ id, title, children }: HazardAccordionProps) {
+  const [individualExpanded, setIndividualExpanded] = useAtom(hazardAccordionExpandedState(id));
   const openAccordion = useAtomValue(openAccordionState);
   const setOpenAccordion = useSetAtom(openAccordionState);
 
   // In single-accordion mode, use openAccordionState; otherwise use individual state
-  const expanded = SINGLE_ACCORDION_MODE ? openAccordion === title : individualExpanded;
+  const expanded = SINGLE_ACCORDION_MODE ? openAccordion === id : individualExpanded;
 
   const handleChange = useCallback(
     (_event: SyntheticEvent, isExpanded: boolean) => {
       if (SINGLE_ACCORDION_MODE) {
         // In single-accordion mode, track which accordion is open
-        setOpenAccordion(isExpanded ? title : null);
+        setOpenAccordion(isExpanded ? id : null);
       } else {
         // In multi-accordion mode, just update this accordion's state
         setIndividualExpanded(isExpanded);
       }
     },
-    [title, setIndividualExpanded, setOpenAccordion],
+    [id, setIndividualExpanded, setOpenAccordion],
   );
 
   return (
