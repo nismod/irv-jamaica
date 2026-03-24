@@ -98,7 +98,7 @@ export const ReturnPeriodDamageChart = ({
     options: {
       mode: 'vega-lite',
       padding: {
-        left: 30,
+        left: 10,
         right: 10,
         top: 10,
         bottom: 50,
