@@ -15,15 +15,13 @@ const apiClient = createClient({
   baseUrl: '/api',
 });
 
-type ProtectedFeatureDetailsQuery = { rcp?: string };
-
 /**
  * Fetch a list of all adaptation options, by feature ID and layer,
  * for features protected by the current selected feature,
  * filtered by RCP.
  */
 const protectedFeatureAdaptationOptionsQuery = atomFamily(
-  ({ rcp = '2.6' }: ProtectedFeatureDetailsQuery) =>
+  (rcp: string = '2.6') =>
     atom(async (get) => {
       const selection = get(selectionState('assets'));
       const target = selection?.target as VectorTarget;
@@ -49,9 +47,9 @@ const protectedFeatureAdaptationOptionsQuery = atomFamily(
  * Components using this atom will not suspend while waiting for the API.
  */
 export const protectedFeatureAdaptationOptionsState = atomFamily(
-  ({ rcp = '2.6' }: ProtectedFeatureDetailsQuery) =>
+  (rcp: string = '2.6') =>
     atom((get) => {
-      const l = get(loadable(protectedFeatureAdaptationOptionsQuery({ rcp })));
+      const l = get(loadable(protectedFeatureAdaptationOptionsQuery(rcp ?? '2.6')));
       const data: ProtectedFeatureListItem[] = l.state === 'hasData' ? l.data : [];
       const error = l.state === 'hasError' ? l.error : null;
       return { data, error };
@@ -64,7 +62,7 @@ export const protectedFeatureAdaptationOptionsState = atomFamily(
 export const protectedFeatureLayersQuery = atom(async (get) => {
   const rcpParam = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
   const rcp = rcpParam !== null ? String(rcpParam) : undefined;
-  const features = await get(protectedFeatureAdaptationOptionsQuery({ rcp }));
+  const features = await get(protectedFeatureAdaptationOptionsQuery(rcp ?? '2.6'));
   return new Set(features?.map((feature) => feature.layer));
 });
 
@@ -87,7 +85,7 @@ export const protectedFeatureLayersState = atom((get) => {
 export const protectedFeatureAdaptationsState = atom((get) => {
   const rcpParam = get(dataParamState({ group: 'adaptation', param: 'rcp' }));
   const rcp = rcpParam !== null ? String(rcpParam) : undefined;
-  const { data } = get(protectedFeatureAdaptationOptionsState({ rcp }));
+  const { data } = get(protectedFeatureAdaptationOptionsState(rcp));
   return data;
 });
 
