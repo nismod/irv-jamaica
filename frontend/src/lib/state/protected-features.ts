@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 import { atomFamily } from 'jotai-family';
-import { loadable } from 'jotai/utils';
+import { unwrap } from 'jotai/utils';
 
 import { createClient } from 'lib/api-client/client';
 import { featuresReadProtectedFeatures } from 'lib/api-client/sdk.gen';
@@ -41,6 +41,10 @@ const protectedFeatureAdaptationOptionsQuery = atomFamily(
     }),
 );
 
+const protectedFeatureAdaptationOptionsCached = atomFamily((rcp: string = '2.6') =>
+  unwrap(protectedFeatureAdaptationOptionsQuery(rcp), (prev) => prev ?? []),
+);
+
 /**
  * A list of all adaptation options, by feature ID and layer,
  * for features protected by the current selected feature.
@@ -49,10 +53,12 @@ const protectedFeatureAdaptationOptionsQuery = atomFamily(
 export const protectedFeatureAdaptationOptionsState = atomFamily(
   (rcp: string = '2.6') =>
     atom((get) => {
-      const l = get(loadable(protectedFeatureAdaptationOptionsQuery(rcp ?? '2.6')));
-      const data: ProtectedFeatureListItem[] = l.state === 'hasData' ? l.data : [];
-      const error = l.state === 'hasError' ? l.error : null;
-      return { data, error };
+      try {
+        const data: ProtectedFeatureListItem[] = get(protectedFeatureAdaptationOptionsCached(rcp ?? '2.6'));
+        return { data, error: null };
+      } catch (error) {
+        return { data: [], error };
+      }
     }),
 );
 
@@ -66,6 +72,11 @@ export const protectedFeatureLayersQuery = atom(async (get) => {
   return new Set(features?.map((feature) => feature.layer));
 });
 
+const protectedFeatureLayersCached = unwrap(
+  protectedFeatureLayersQuery,
+  (prev) => prev ?? new Set<string>(),
+);
+
 /**
  * A set of unique feature layer IDs for the protected feature list.
  */
@@ -74,8 +85,11 @@ export const protectedFeatureLayersState = atom((get) => {
   if (!style || style !== 'protectedFeatures') {
     return new Set<string>();
   }
-  const l = get(loadable(protectedFeatureLayersQuery));
-  return l.state === 'hasData' ? l.data : new Set<string>();
+  try {
+    return get(protectedFeatureLayersCached);
+  } catch {
+    return new Set<string>();
+  }
 });
 
 /**
