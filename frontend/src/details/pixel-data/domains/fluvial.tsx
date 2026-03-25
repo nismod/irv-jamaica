@@ -2,8 +2,8 @@ import { useAtomValue } from 'jotai';
 
 import { pixelDrillerDataRows } from 'lib/state/pixel-driller';
 
+import { EpochReturnPeriodChart } from '../epoch-return-period-chart';
 import { HazardAccordion } from '../hazard-accordion';
-import { PixelDataGrid } from '../pixel-data-grid';
 
 const title = 'River flooding';
 
@@ -35,7 +35,7 @@ const DataSection = ({ pixel_layer }) => {
   return (
     <>
       <HazardAccordion id={pixel_layer} title={`${title}: ${variable} (${unit})`}>
-        <PixelDataGrid pixel_layer={pixel_layer} parameters={FLOOD_PARAMETERS} />
+        <EpochReturnPeriodChart rows={rows} fieldTitle={`${variable} (${unit})`} />
       </HazardAccordion>
     </>
   );

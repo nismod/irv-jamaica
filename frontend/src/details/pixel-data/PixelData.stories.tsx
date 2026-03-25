@@ -46,13 +46,8 @@ export const Default: Story = {
     const floodingAccordion = await canvas.findByRole('button', { name: /River flooding/ });
     expect(floodingAccordion).toBeTruthy();
     floodingAccordion.click();
-    const grids = await canvas.findAllByRole('grid');
-    expect(grids).toHaveLength(1);
-    grids.forEach((grid) => {
-      const rowGroup = within(grid).getByRole('rowgroup');
-      expect(rowGroup).toBeTruthy();
-      const rows = within(rowGroup).getAllByRole('row');
-      expect(rows.length).toBeGreaterThan(0);
-    });
+    const toggleButton = await canvas.findByRole('button', { name: /2010/ });
+    expect(toggleButton).toBeTruthy();
+    expect(toggleButton).toHaveAttribute('aria-pressed', 'true');
   },
 };

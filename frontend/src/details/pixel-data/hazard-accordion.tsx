@@ -18,12 +18,7 @@ interface HazardAccordionProps {
   children: ReactNode;
 }
 
-export function HazardAccordion({
-  id,
-  title,
-  status = 'green',
-  children,
-}: HazardAccordionProps) {
+export function HazardAccordion({ id, title, status = 'green', children }: HazardAccordionProps) {
   const [individualExpanded, setIndividualExpanded] = useAtom(hazardAccordionExpandedState(id));
   const openAccordion = useAtomValue(openAccordionState);
   const setOpenAccordion = useSetAtom(openAccordionState);
