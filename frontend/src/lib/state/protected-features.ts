@@ -20,25 +20,24 @@ const apiClient = createClient({
  * for features protected by the current selected feature,
  * filtered by RCP.
  */
-const protectedFeatureAdaptationOptionsQuery = atomFamily(
-  (rcp: string = '2.6') =>
-    atom(async (get) => {
-      const selection = get(selectionState('assets'));
-      const target = selection?.target as VectorTarget;
-      if (!target?.feature?.id) {
-        return [];
-      }
-      const { data } = await featuresReadProtectedFeatures({
-        client: apiClient,
-        path: {
-          protector_id: +target.feature.id,
-        },
-        query: {
-          rcp,
-        },
-      });
-      return data;
-    }),
+const protectedFeatureAdaptationOptionsQuery = atomFamily((rcp: string = '2.6') =>
+  atom(async (get) => {
+    const selection = get(selectionState('assets'));
+    const target = selection?.target as VectorTarget;
+    if (!target?.feature?.id) {
+      return [];
+    }
+    const { data } = await featuresReadProtectedFeatures({
+      client: apiClient,
+      path: {
+        protector_id: +target.feature.id,
+      },
+      query: {
+        rcp,
+      },
+    });
+    return data;
+  }),
 );
 
 const protectedFeatureAdaptationOptionsCached = atomFamily((rcp: string = '2.6') =>
@@ -50,16 +49,17 @@ const protectedFeatureAdaptationOptionsCached = atomFamily((rcp: string = '2.6')
  * for features protected by the current selected feature.
  * Components using this atom will not suspend while waiting for the API.
  */
-export const protectedFeatureAdaptationOptionsState = atomFamily(
-  (rcp: string = '2.6') =>
-    atom((get) => {
-      try {
-        const data: ProtectedFeatureListItem[] = get(protectedFeatureAdaptationOptionsCached(rcp ?? '2.6'));
-        return { data, error: null };
-      } catch (error) {
-        return { data: [], error };
-      }
-    }),
+export const protectedFeatureAdaptationOptionsState = atomFamily((rcp: string = '2.6') =>
+  atom((get) => {
+    try {
+      const data: ProtectedFeatureListItem[] = get(
+        protectedFeatureAdaptationOptionsCached(rcp ?? '2.6'),
+      );
+      return { data, error: null };
+    } catch (error) {
+      return { data: [], error };
+    }
+  }),
 );
 
 /**
