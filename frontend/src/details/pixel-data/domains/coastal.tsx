@@ -35,11 +35,9 @@ const DataSection = ({ pixel_layer }) => {
   const unit = rows[0].unit;
 
   return (
-    <>
-      <HazardAccordion id={pixel_layer} title={`${title}: ${variable} (${unit})`}>
-        <EpochReturnPeriodChart rows={rows} fieldTitle={`${variable} (${unit})`} />
-      </HazardAccordion>
-    </>
+    <HazardAccordion id={pixel_layer} title={`${title}: ${variable} (${unit})`}>
+      <EpochReturnPeriodChart rows={rows} fieldTitle={`${variable} (${unit})`} />
+    </HazardAccordion>
   );
 };
 
