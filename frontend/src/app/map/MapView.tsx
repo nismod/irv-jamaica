@@ -20,7 +20,7 @@ import { TooltipContent } from 'lib/map/tooltip/TooltipContent';
 import { globalStyleVariables } from 'app/theme';
 import { useIsMobile } from 'app/use-is-mobile';
 import { layerHoverStates } from 'app/state/interactions/interaction-state';
-import { damageSourceState } from 'app/state/damage-mapping/damage-map';
+import { damageSourceState } from 'lib/state/damage-map';
 
 import { MapLayerSelection } from './layers/MapLayerSelection';
 import { BaseMapContainer } from './BaseMap';

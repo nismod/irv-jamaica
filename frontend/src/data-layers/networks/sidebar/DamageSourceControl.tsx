@@ -15,10 +15,9 @@ import { InputSection } from 'lib/sidebar/ui/InputSection';
 import { InputRow } from 'lib/sidebar/ui/InputRow';
 import { EpochControl } from 'lib/sidebar/ui/params/EpochControl';
 import { RCPControl } from 'lib/sidebar/ui/params/RCPControl';
+import { damageSourceState, damageTypeState } from 'lib/state/damage-map';
 import {
-  damageSourceState,
   damageSourceStateEffect,
-  damageTypeState,
 } from 'app/state/damage-mapping/damage-map';
 import { LayerStylePanel } from 'lib/sidebar/ui/LayerStylePanel';
 
