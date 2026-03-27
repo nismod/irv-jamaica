@@ -26,6 +26,8 @@ export function HazardAccordion({ id, title, status = 'green', children }: Hazar
   // In single-accordion mode, use openAccordionState; otherwise use individual state
   const expanded = SINGLE_ACCORDION_MODE ? openAccordion === id : individualExpanded;
 
+  const disabled = status === 'no-data';
+
   const handleChange = useCallback(
     (_event: SyntheticEvent, isExpanded: boolean) => {
       if (SINGLE_ACCORDION_MODE) {
@@ -40,7 +42,7 @@ export function HazardAccordion({ id, title, status = 'green', children }: Hazar
   );
 
   return (
-    <Accordion expanded={expanded} onChange={handleChange}>
+    <Accordion expanded={expanded} onChange={handleChange} disabled={disabled}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         sx={{
