@@ -11,6 +11,7 @@ import {
   resolveParamDependencies,
 } from 'lib/controls/data-params';
 import { toDictionary } from 'lib/helpers';
+import { Ops } from 'lib/recoil/state-effects/types';
 
 export type DataParamParam = Readonly<{
   group: string;
@@ -83,4 +84,18 @@ export function useUpdateDataParam(group: string, paramId: string) {
       [group, paramId],
     ),
   );
+}
+
+export function setParamToTopValue(
+  { get, set }: Pick<Ops, 'get' | 'set'>,
+  group: string,
+  param: string,
+) {
+  const damageSourceParamDomain = get(dataParamOptionsState({ group, param }));
+  if (!damageSourceParamDomain || damageSourceParamDomain.length === 0) {
+    // No available options for this param; do not modify the current state.
+    return;
+  }
+  const topParam = damageSourceParamDomain[damageSourceParamDomain.length - 1];
+  set(dataParamState({ group, param }), topParam);
 }

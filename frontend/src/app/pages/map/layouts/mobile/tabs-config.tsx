@@ -7,7 +7,7 @@ import { useAtomValue } from 'jotai';
 
 import { MapLegend } from 'lib/map/legend/MapLegend';
 
-import { damageSourceState } from 'app/state/damage-mapping/damage-map';
+import { damageSourceState } from 'lib/state/damage-map';
 import { LayersSidebar } from 'app/sidebar/SidebarContent';
 import { DetailsSidebar } from 'details/DetailsSidebar';
 
