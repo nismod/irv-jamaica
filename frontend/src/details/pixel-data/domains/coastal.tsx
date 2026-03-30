@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 
-import { pixelDrillerDataRows } from 'lib/state/pixel-driller';
+import { pixelDrillerDataRecords } from 'lib/state/pixel-driller';
 
 import { HazardAccordion } from '../hazard-accordion';
 import { EpochReturnPeriodChart } from '../epoch-return-period-chart';
@@ -134,33 +134,8 @@ export const getMetadata = ({ spatial }: MetadataArgs): RdlsDataset => ({
   sources: [],
 });
 
-const recordsFromRows = (rows) => {
-  const records = rows.flatMap((row) => {
-    const rcp = row.rcp === '-' ? 'baseline' : row.rcp;
-    return Object.entries(row)
-      .filter(([key]) => key.startsWith('rp-'))
-      .map(([key, value]) => {
-        const rp = Number(key.replace('rp-', ''));
-        const numericValue = typeof value === 'string' ? Number(value) : value;
-        if (!Number.isFinite(rp) || !Number.isFinite(numericValue)) {
-          return null;
-        }
-        return {
-          rcp,
-          rp,
-          value: numericValue,
-        };
-      })
-      .filter(
-        (d): d is { rcp: string; rp: number; value: number } => d !== null,
-      );
-  });
-  return records;
-};
-
-const getRagStatus = (rows): RagStatus => {
-  const records = recordsFromRows(rows);
-  if (records.every((rec) => rec.value === null)) {
+const getRagStatus = (records): RagStatus => {
+  if (records.every((rec) => !Number.isFinite(rec.value))) {
     return 'no-data';
   }
   return 'green';
@@ -176,8 +151,8 @@ const exportConfig: ExportConfig = {
 };
 
 const DataSection = ({ pixel_layer }) => {
-  const rows = useAtomValue(
-    pixelDrillerDataRows({
+  const records = useAtomValue(
+    pixelDrillerDataRecords({
       pixel_layer,
       layerParams: COASTAL_FLOOD_PARAMETERS,
     }),
@@ -185,20 +160,20 @@ const DataSection = ({ pixel_layer }) => {
 
   useRegisterExportConfig('coastal', exportConfig);
 
-  if (!rows.length) {
+  if (!records.length) {
     return null;
   }
 
-  const variable = rows[0].variable;
-  const unit = rows[0].unit;
+  const variable = records[0].variable;
+  const unit = records[0].unit;
 
   return (
     <HazardAccordion
       id={pixel_layer}
       title={`${title}: ${variable} (${unit})`}
-      status={getRagStatus(rows)}
+      status={getRagStatus(records)}
     >
-      <EpochReturnPeriodChart rows={rows} fieldTitle={`${variable} (${unit})`} />
+      <EpochReturnPeriodChart records={records} fieldTitle={`${variable} (${unit})`} />
     </HazardAccordion>
   );
 };
