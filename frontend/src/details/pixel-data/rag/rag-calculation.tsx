@@ -71,7 +71,7 @@ export function calculateRagFromSingleValueTwoThresholds(
 ): RagStatus {
   if (!Number.isFinite(value)) {
     return 'no-data';
-  };
+  }
 
   if (value >= redThreshold) {
     return 'red';
