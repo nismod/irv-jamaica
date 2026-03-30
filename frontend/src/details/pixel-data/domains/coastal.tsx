@@ -20,9 +20,12 @@ import {
   COMMON_PUBLISHER,
 } from '../download/metadata-common';
 import type { RagStatus } from '../rag/rag-types';
+import { calculateRagFromReturnPeriodValuesOneThreshold } from '../rag/rag-calculation';
 
 const title = 'Coastal flooding';
 const downloadId = 'coastal_flood';
+
+const FLOOD_HEIGHT_THRESHOLD = 4.0; // meters
 
 const COASTAL_FLOOD_PARAMETERS = [
   { epoch: 2010, rcp: 'baseline' },
@@ -138,7 +141,7 @@ const getRagStatus = (records): RagStatus => {
   if (records.every((rec) => !Number.isFinite(rec.value))) {
     return 'no-data';
   }
-  return 'green';
+  return calculateRagFromReturnPeriodValuesOneThreshold(records, FLOOD_HEIGHT_THRESHOLD);
 };
 
 const exportConfig: ExportConfig = {
