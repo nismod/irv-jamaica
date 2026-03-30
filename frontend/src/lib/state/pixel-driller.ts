@@ -103,11 +103,11 @@ export const pixelDrillerDataHeaders: Atom<string[]> = atom((get) => {
 export const pixelDrillerDataRPs: (hazard: string) => Atom<Set<number>> = atomFamily(
   (hazard: string) =>
     atom((get) => {
-      const pixelData = get(pixelDrillerDataState);
-      if (!pixelData) {
+      const pixelDataRows = get(mapDataArraysToRowObjects);
+      if (!pixelDataRows) {
         return new Set<number>();
       }
-      const data = getFilteredPixelData(pixelData, hazard);
+      const data = getFilteredPixelData(pixelDataRows, hazard);
       return new Set(data.map((d) => d.rp));
     }),
 );
@@ -117,7 +117,11 @@ export const pixelDrillerDataRPs: (hazard: string) => Atom<Set<number>> = atomFa
  * @param data
  * @returns
  */
-function mapDataArraysToRowObjects(data: PixelData): Row[] {
+const mapDataArraysToRowObjects = atom<Row[]>((get) => {
+  const data = get(pixelDrillerDataState);
+  if (!data) {
+    return [];
+  }
   const keys = Object.keys(data);
   return data[keys[0]].map((_, rowNumber) => {
     const row = { id: rowNumber };
@@ -126,7 +130,7 @@ function mapDataArraysToRowObjects(data: PixelData): Row[] {
     });
     return row;
   });
-}
+});
 
 /**
  * Filter pixel data by hazard, epoch, RCP, and confidence level.
@@ -139,13 +143,13 @@ function mapDataArraysToRowObjects(data: PixelData): Row[] {
  * @returns
  */
 function getFilteredPixelData(
-  pixelData: PixelData,
+  pixelDataRows: Row[],
   hazard: string,
   epoch?: number,
   rcp?: string,
   confidence?: number,
 ): Row[] {
-  const rows: Row[] = mapDataArraysToRowObjects(pixelData)
+  const rows: Row[] = pixelDataRows
     .filter((row) => row.hazard === hazard)
     .filter((row) => {
       if (rcp && epoch) {
@@ -226,13 +230,13 @@ export const pixelDrillerDataRows = ({
 const pixelDrillerDataRowsFamily = atomFamily(
   ({ pixel_layer, layerParams }: PixelDrillerRowsKey) =>
     atom((get) => {
-      const pixelData = get(pixelDrillerDataState);
-      if (!pixelData) {
+      const pixelDataRows = get(mapDataArraysToRowObjects);
+      if (!pixelDataRows) {
         return [];
       }
       return layerParams
         .map(({ epoch, rcp, confidence }) => {
-          const data = getFilteredPixelData(pixelData, pixel_layer, epoch, rcp, confidence);
+          const data = getFilteredPixelData(pixelDataRows, pixel_layer, epoch, rcp, confidence);
           const reduced = reducePixelDataRow(data, pixel_layer, epoch, rcp, confidence);
           return reduced;
         })
@@ -241,30 +245,10 @@ const pixelDrillerDataRowsFamily = atomFamily(
   (a, b) => a.pixel_layer === b.pixel_layer && a._serialized === b._serialized,
 );
 
-const recordsFromRows: (rows: Row[]) => PixelDataRecord[] = (rows) => {
-  const records = rows.flatMap((row) => {
-    const rcp = row.rcp === '-' ? 'baseline' : row.rcp;
-    const epoch = row.epoch;
-    const variable = row.variable;
-    const unit = row.unit;
-    return Object.entries(row)
-      .filter(([key]) => key.startsWith('rp-'))
-      .map(([key, value]) => {
-        const rp = Number(key.replace('rp-', ''));
-        const numericValue = typeof value === 'string' ? Number(value) : value;
-        return {
-          epoch,
-          rcp,
-          rp,
-          value: numericValue,
-          variable,
-          unit,
-        };
-      });
-  });
-  return records;
-};
-
+/**
+ * Data records for a specific pixel_layer. Grouped by epoch, RCP, and confidence level, but not reduced to a
+ * single row per group. Used for downloads and charts that require the RP as a variable instead of a column.
+ */
 export const pixelDrillerDataRecords = ({ pixel_layer, layerParams }: PixelDrillerRowsKey) => {
   const key = createPixelDrillerRowsKey(pixel_layer, layerParams);
   return pixelDrillerDataRecordsFamily(key);
@@ -273,8 +257,23 @@ export const pixelDrillerDataRecords = ({ pixel_layer, layerParams }: PixelDrill
 const pixelDrillerDataRecordsFamily = atomFamily(
   ({ pixel_layer, layerParams }: PixelDrillerRowsKey) =>
     atom((get) => {
-      const rows = get(pixelDrillerDataRows({ pixel_layer, layerParams }));
-      return recordsFromRows(rows);
+      const pixelDataRows = get(mapDataArraysToRowObjects);
+      if (!pixelDataRows) {
+        return [];
+      }
+      return layerParams
+        .flatMap(({ epoch, rcp, confidence }) =>
+          getFilteredPixelData(pixelDataRows, pixel_layer, epoch, rcp, confidence),
+        )
+        .filter((row) => row !== null)
+        .map((row) => ({
+          epoch: row.epoch,
+          rcp: row.rcp,
+          rp: row.rp,
+          value: row.band_data || null,
+          variable: row.variable,
+          unit: row.unit,
+        }));
     }),
   (a, b) => a.pixel_layer === b.pixel_layer && a._serialized === b._serialized,
 );
