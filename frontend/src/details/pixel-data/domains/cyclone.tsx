@@ -163,7 +163,12 @@ const getRagStatus = (records): RagStatus => {
   if (records.every((rec) => !Number.isFinite(rec.value))) {
     return 'no-data';
   }
-  return calculateRagFromReturnPeriodValuesOneThreshold(records, CYCLONE_INTENSITY_THRESHOLD);
+  return calculateRagFromReturnPeriodValuesOneThreshold(
+    records,
+    CYCLONE_INTENSITY_THRESHOLD,
+    10,
+    100,
+  );
 };
 
 const DataSection = ({ pixel_layer }) => {

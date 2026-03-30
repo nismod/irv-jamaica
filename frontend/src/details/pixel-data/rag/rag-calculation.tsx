@@ -18,7 +18,7 @@ export function calculateRagFromReturnPeriodValuesOneThreshold(
    * If the value for this return period is above the threshold, the RAG status is red.
    * Default is 10 years.
    */
-  rpMoreFrequent: number = 20,
+  rpMoreFrequent: number = 10,
   /**
    * The less frequent return period.
    * If the value for this return period is above the threshold, the RAG status is amber.

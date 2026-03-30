@@ -148,7 +148,7 @@ const getRagStatus = (records): RagStatus => {
   if (records.every((rec) => !Number.isFinite(rec.value))) {
     return 'no-data';
   }
-  return calculateRagFromReturnPeriodValuesOneThreshold(records, FLOOD_HEIGHT_THRESHOLD);
+  return calculateRagFromReturnPeriodValuesOneThreshold(records, FLOOD_HEIGHT_THRESHOLD, 20, 100);
 };
 
 const DataSection = ({ pixel_layer }) => {
