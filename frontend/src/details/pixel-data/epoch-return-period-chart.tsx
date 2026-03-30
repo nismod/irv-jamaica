@@ -3,28 +3,26 @@ import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 import { unique } from 'lib/helpers';
 import { useSelect } from 'lib/hooks/use-select';
+import type { PixelDataRecord } from 'lib/state/pixel-driller';
 import { ReturnPeriodDamageChart } from 'details/features/damages/ReturnPeriodDamageChart';
 
-type PixelReturnPeriodRow = {
-  epoch: number;
-  rcp: string;
-  [key: string]: string | number | undefined;
-};
-
 type EpochReturnPeriodChartProps = {
-  rows: PixelReturnPeriodRow[];
+  records: PixelDataRecord[];
   fieldTitle: string;
   width?: number;
   height?: number;
 };
 
 export const EpochReturnPeriodChart = ({
-  rows,
+  records,
   fieldTitle,
   width = 280,
   height = 170,
 }: EpochReturnPeriodChartProps) => {
-  const epochs = useMemo(() => unique(rows.map((row) => row.epoch)).sort((a, b) => a - b), [rows]);
+  const epochs = useMemo(
+    () => unique(records.map((record) => record.epoch)).sort((a, b) => a - b),
+    [records],
+  );
   const [selectedEpoch, setSelectedEpoch] = useSelect(epochs);
 
   const handleEpochKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
@@ -60,33 +58,17 @@ export const EpochReturnPeriodChart = ({
   };
 
   const chartData = useMemo(() => {
-    const table = rows
-      .filter((row) => row.epoch === selectedEpoch)
-      .flatMap((row) => {
-        const rcp = row.rcp === '-' ? 'baseline' : row.rcp;
-        return Object.entries(row)
-          .filter(([key]) => key.startsWith('rp-'))
-          .map(([key, value]) => {
-            const rp = Number(key.replace('rp-', ''));
-            const numericValue = typeof value === 'string' ? Number(value) : value;
-            if (!Number.isFinite(rp) || !Number.isFinite(numericValue)) {
-              return null;
-            }
-            return {
-              rcp,
-              rp,
-              probability: 1 / rp,
-              value: numericValue,
-            };
-          })
-          .filter(
-            (d): d is { rcp: string; rp: number; probability: number; value: number } => d !== null,
-          );
-      });
+    const table = records
+      .filter((record) => Number.isFinite(record.rp) && Number.isFinite(record.value))
+      .filter((record) => record.epoch === selectedEpoch)
+      .flatMap((record) => ({
+        ...record,
+        probability: 1 / record.rp,
+      }));
     return { table };
-  }, [rows, selectedEpoch]);
+  }, [records, selectedEpoch]);
 
-  if (!rows.length) {
+  if (!records.length) {
     return null;
   }
 

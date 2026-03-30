@@ -28,6 +28,15 @@ type Row = {
   variable: string;
 };
 
+export type PixelDataRecord = {
+  epoch: number;
+  rcp: string;
+  rp: number;
+  value: number;
+  variable: string;
+  unit: string;
+};
+
 type LayerParam = {
   epoch: number;
   rcp: string;
@@ -228,6 +237,44 @@ const pixelDrillerDataRowsFamily = atomFamily(
           return reduced;
         })
         .filter((row): row is Row => row !== null);
+    }),
+  (a, b) => a.pixel_layer === b.pixel_layer && a._serialized === b._serialized,
+);
+
+const recordsFromRows: (rows: Row[]) => PixelDataRecord[] = (rows) => {
+  const records = rows.flatMap((row) => {
+    const rcp = row.rcp === '-' ? 'baseline' : row.rcp;
+    const epoch = row.epoch;
+    const variable = row.variable;
+    const unit = row.unit;
+    return Object.entries(row)
+      .filter(([key]) => key.startsWith('rp-'))
+      .map(([key, value]) => {
+        const rp = Number(key.replace('rp-', ''));
+        const numericValue = typeof value === 'string' ? Number(value) : value;
+        return {
+          epoch,
+          rcp,
+          rp,
+          value: numericValue,
+          variable,
+          unit,
+        };
+      });
+  });
+  return records;
+};
+
+export const pixelDrillerDataRecords = ({ pixel_layer, layerParams }: PixelDrillerRowsKey) => {
+  const key = createPixelDrillerRowsKey(pixel_layer, layerParams);
+  return pixelDrillerDataRecordsFamily(key);
+};
+
+const pixelDrillerDataRecordsFamily = atomFamily(
+  ({ pixel_layer, layerParams }: PixelDrillerRowsKey) =>
+    atom((get) => {
+      const rows = get(pixelDrillerDataRows({ pixel_layer, layerParams }));
+      return recordsFromRows(rows);
     }),
   (a, b) => a.pixel_layer === b.pixel_layer && a._serialized === b._serialized,
 );
