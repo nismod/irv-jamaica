@@ -1,5 +1,23 @@
 # Extract-transform-load
 
+This workflow follows on from the final steps of the `jamaica-infrastructure` analysis workflow,
+in particular those [rules which "prepare for visualisation"](https://github.com/nismod/jamaica-infrastructure/blob/development/workflow/7_etl/_etl.smk)
+
+In summary:
+- hazard data is input as a set of raster files, output as Cloud-Optimised Geotiffs (for map visualisation, one layer at a time)
+  and Zarr datasets (for point query, all layers at a single location)
+- infrastructure feature layers are input as parquet files from the end of `jamaica-infrastructure`
+  and loaded into a Postgres database (containing the features and full risk/adaptation results)
+  and also processed into .mbtiles files (containing the features as vector tiles for map visualisation).
+
+Before and after running this workflow against a staging or live server, it is recommended to backup and archive 
+the database and updated files. Here's a script: [`archive-data.sh`](../../archive-data.sh)
+
+Coordinate with system administrators on the best way to access development, staging, and production
+servers, for example through University of Oxford, University of the West Indies, or National
+Spatial Data Management Branch (NSDMB). No contact information or further details should be 
+recorded in this public repository.
+
 There are three categories of data that go in roughly three corresponding
 places:
 
