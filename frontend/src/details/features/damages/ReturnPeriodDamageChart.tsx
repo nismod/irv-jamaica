@@ -53,12 +53,21 @@ const makeSpec = (
       scale: {
         domain: ['baseline', '2.6', '4.5', '8.5'],
         // Could do custom colours
-        // range: ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4"]
+        range: ['#737373', '#e77600', '#aec750', '#1f77b4'],
       },
       title: 'RCP',
       legend: {
         orient: 'bottom',
         direction: 'horizontal',
+      },
+    },
+    shape: {
+      field: 'rcp',
+      type: 'ordinal',
+      legend: null,
+      scale: {
+        domain: ['baseline', '2.6', '4.5', '8.5'],
+        range: ['circle', 'square', 'triangle-up', 'diamond'],
       },
     },
     // the tooltip encoding needs to replicate the field definitions in order to customise their ordering
