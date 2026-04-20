@@ -29,7 +29,7 @@ const makeSpec = (
     x: {
       field: 'probability',
       type: 'quantitative',
-      title: 'Probability',
+      title: 'Annual Exceedance Probability',
       axis: {
         gridDash: [2, 2],
         domainColor: '#ccc',
