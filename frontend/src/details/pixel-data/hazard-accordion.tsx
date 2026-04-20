@@ -42,7 +42,7 @@ export function HazardAccordion({ id, title, status = 'green', children }: Hazar
   );
 
   return (
-    <Accordion expanded={expanded} onChange={handleChange} disabled={disabled}>
+    <Accordion expanded={expanded && !disabled} onChange={handleChange} disabled={disabled}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         sx={{
