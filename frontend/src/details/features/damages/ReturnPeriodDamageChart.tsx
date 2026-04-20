@@ -4,6 +4,7 @@ import { VisualizationSpec } from 'vega-embed';
 import { Box } from '@mui/material';
 
 import { unique } from 'lib/helpers';
+import { chartStyles } from './chartStyles';
 
 const makeSpec = (
   rpValues: number[],
@@ -26,6 +27,7 @@ const makeSpec = (
     tooltip: true,
   },
   encoding: {
+    ...chartStyles,
     x: {
       field: 'probability',
       type: 'quantitative',
@@ -47,20 +49,6 @@ const makeSpec = (
       },
     },
 
-    color: {
-      field: 'rcp',
-      type: 'ordinal',
-      scale: {
-        domain: ['baseline', '2.6', '4.5', '8.5'],
-        // Could do custom colours
-        // range: ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4"]
-      },
-      title: 'RCP',
-      legend: {
-        orient: 'bottom',
-        direction: 'horizontal',
-      },
-    },
     // the tooltip encoding needs to replicate the field definitions in order to customise their ordering
     tooltip: [
       { field: field_key, type: 'quantitative', format: ',.3r', title: field_title },

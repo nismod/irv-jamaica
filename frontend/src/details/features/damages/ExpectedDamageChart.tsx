@@ -4,6 +4,7 @@ import { VisualizationSpec } from 'vega-embed';
 import { Box } from '@mui/material';
 
 import { unique } from 'lib/helpers';
+import { chartStyles } from './chartStyles';
 
 const makeSpec = (
   yearValues: number[],
@@ -28,6 +29,7 @@ const makeSpec = (
     tooltip: true,
   },
   encoding: {
+    ...chartStyles,
     x: {
       field: 'epoch',
       type: 'ordinal',
@@ -47,19 +49,6 @@ const makeSpec = (
         gridDash: [2, 2],
         domainColor: '#ccc',
         tickColor: '#ccc',
-      },
-    },
-
-    color: {
-      field: 'rcp',
-      type: 'ordinal',
-      scale: {
-        domain: ['baseline', '2.6', '4.5', '8.5'],
-      },
-      title: 'RCP',
-      legend: {
-        orient: 'bottom',
-        direction: 'horizontal',
       },
     },
     // the tooltip encoding needs to replicate the field definitions in order to customise their ordering
