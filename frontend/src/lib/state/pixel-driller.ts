@@ -67,11 +67,13 @@ const pixelDrillerQuery: Atom<Promise<PixelData | null>> = atom(async (get) => {
     return Promise.resolve(null);
   }
   const { lat, lon } = pixelSelection;
-  const key = `${lat.toFixed(3)}-${lon.toFixed(3)}`;
+  const roundedLat = lat.toFixed(4);
+  const roundedLon = lon.toFixed(4);
+  const key = `${roundedLat}-${roundedLon}`;
   if (dataCache.has(key)) {
     return dataCache.get(key) ?? null;
   }
-  const response = await fetch(`/pixel/${lon.toFixed(3)}/${lat.toFixed(3)}`);
+  const response = await fetch(`/pixel/${roundedLon}/${roundedLat}`);
   const data: PixelData = await response.json();
   dataCache.set(key, data);
   return data;
