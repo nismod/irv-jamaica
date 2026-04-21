@@ -1,6 +1,10 @@
 import { useAtomValue } from 'jotai';
 
-import { pixelDrillerDataRecords } from 'lib/state/pixel-driller';
+import {
+  type PixelRecord,
+  type PixelRecordKeys,
+  pixelDrillerDataRecords,
+} from 'lib/state/pixel-driller';
 
 import { HazardAccordion } from '../hazard-accordion';
 import { EpochReturnPeriodChart } from '../epoch-return-period-chart';
@@ -18,7 +22,6 @@ import {
   COMMON_CREATOR,
 } from '../download/metadata-common';
 import type { DatapackageTableSchemaField, RdlsDataset } from '../download/metadata-types';
-import type { PixelRecordKeys, PixelRecord } from '../types';
 import type { RagStatus } from '../rag/rag-types';
 import { calculateRagFromReturnPeriodValuesOneThreshold } from '../rag/rag-calculation';
 

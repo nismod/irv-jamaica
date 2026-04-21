@@ -3,6 +3,21 @@ import { atomFamily } from 'jotai-family';
 import { unwrap } from 'jotai/utils';
 import { atomWithStoredJson } from './map-view/map-url';
 
+export type PixelDomain = 'fluvial' | 'surface' | 'coastal' | 'cyclone';
+
+// Base type for pixel record keys - all keys are optional strings
+export type PixelRecordKeys = Record<string, string | number | undefined>;
+
+// Generic pixel record that accepts a specific keys type
+export interface PixelRecord<TKeys extends PixelRecordKeys = PixelRecordKeys> {
+  value: number | null;
+  layer: {
+    domain: PixelDomain;
+    keys: TKeys;
+    id: string;
+  };
+}
+
 type PixelData = {
   band_data: number[];
   confidence: number[];
@@ -279,3 +294,54 @@ const pixelDrillerDataRecordsFamily = atomFamily(
     }),
   (a, b) => a.pixel_layer === b.pixel_layer && a._serialized === b._serialized,
 );
+
+const PIXEL_DOMAINS = new Set<PixelDomain>(['fluvial', 'surface', 'coastal', 'cyclone']);
+
+const pixelDrillerRecords = atom((get) => {
+  const selectedData = get(pixelDrillerDataState);
+  if (!selectedData) {
+    return [];
+  }
+  return selectedData.key
+    .map((_, i): PixelRecord | null => {
+      const domain = selectedData.hazard[i];
+      if (!PIXEL_DOMAINS.has(domain as PixelDomain)) {
+        return null;
+      }
+
+      return {
+        value: selectedData.band_data[i] ?? null,
+        layer: {
+          domain: domain as PixelDomain,
+          id: selectedData.key[i] ?? `${domain}-${i}`,
+          keys: {
+            key: selectedData.key[i],
+            rp: selectedData.rp[i] != null ? selectedData.rp[i] : undefined,
+            rcp: selectedData.rcp[i],
+            epoch: selectedData.epoch[i] != null ? selectedData.epoch[i] : undefined,
+            confidence: selectedData.confidence[i] != null ? selectedData.confidence[i] : undefined,
+            unit: selectedData.unit[i],
+            variable: selectedData.variable[i],
+          },
+        },
+      };
+    })
+    .filter((record): record is PixelRecord => record !== null);
+});
+
+function fixedPrecisionNumber(n: number | null, precision: number): number | null {
+  if (Number.isFinite(n)) {
+    return Number(n.toPrecision(precision));
+  }
+  return n;
+}
+
+export const pixelDrillerExportRecords = atom<PixelRecord[]>((get) => {
+  const records = get(pixelDrillerRecords);
+  return records.map((record) => ({
+    value: fixedPrecisionNumber(record.value, 3),
+    layer: {
+      ...record.layer,
+    },
+  }));
+});

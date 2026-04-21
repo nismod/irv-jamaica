@@ -1,10 +1,13 @@
 import { useAtomValue } from 'jotai';
 
-import { pixelDrillerDataRecords } from 'lib/state/pixel-driller';
+import {
+  type PixelRecord,
+  type PixelRecordKeys,
+  pixelDrillerDataRecords,
+} from 'lib/state/pixel-driller';
 
 import { HazardAccordion } from '../hazard-accordion';
 import { EpochReturnPeriodChart } from '../epoch-return-period-chart';
-import type { PixelRecord, PixelRecordKeys } from '../types';
 import { buildDomainExportFile } from '../download/download-generators';
 import {
   ExportConfig,

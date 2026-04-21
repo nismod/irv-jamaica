@@ -1,7 +1,8 @@
 import { d3 } from 'lib/d3';
 
+import type { PixelRecord, PixelRecordKeys } from 'lib/state/pixel-driller';
+
 import type { DownloadFile } from './types';
-import type { PixelRecord, PixelRecordKeys } from '../types';
 import { ExportConfig } from './download-context';
 import type { DatapackageTableSchemaField } from './metadata-types';
 import readmeTemplate from './README.md.txt?raw';

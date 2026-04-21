@@ -1,17 +1,4 @@
-export type PixelDomain = 'fluvial' | 'surface' | 'coastal' | 'cyclone';
-
-// Base type for pixel record keys - all keys are optional strings
-export type PixelRecordKeys = Record<string, string | number | undefined>;
-
-// Generic pixel record that accepts a specific keys type
-export interface PixelRecord<TKeys extends PixelRecordKeys = PixelRecordKeys> {
-  value: number | null;
-  layer: {
-    domain: PixelDomain;
-    keys: TKeys;
-    id: string;
-  };
-}
+import type { PixelDomain, PixelRecord, PixelRecordKeys } from 'lib/state/pixel-driller';
 
 export interface PixelResponse {
   point: {

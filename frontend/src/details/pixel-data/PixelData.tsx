@@ -8,6 +8,7 @@ import { MobileTabContentWatcher } from 'lib/map/layouts/tab-has-content';
 import {
   pixelDrillerDataHeaders,
   pixelDrillerDataState,
+  pixelDrillerExportRecords,
   pixelSelectionState,
 } from 'lib/state/pixel-driller';
 import Close from '@mui/icons-material/Close';
@@ -17,7 +18,6 @@ import { DownloadDataProvider, useDownloadDataContext } from './download/downloa
 import { buildReadmeFile } from './download/download-generators';
 import { createSpatialPoint } from './download/metadata-common';
 import type { RdlsMetadataPackage } from './download/metadata-types';
-import type { PixelDomain, PixelRecord } from './types';
 import { buildZipFile, downloadBlob } from './download/download-utils';
 import type { DownloadFile } from './download/types';
 
@@ -41,43 +41,12 @@ const datasetFetchers = {
   cyclone: await domainModules.cyclone().then((mod) => mod.getMetadata),
 };
 
-const PIXEL_DOMAINS = new Set<PixelDomain>(['fluvial', 'surface', 'coastal', 'cyclone']);
-
-const mapSelectedDataToRecords = (
-  selectedData: NonNullable<ReturnType<typeof useAtomValue<typeof pixelDrillerDataState>>>,
-): PixelRecord[] => {
-  return selectedData.key
-    .map((_, i): PixelRecord | null => {
-      const domain = selectedData.hazard[i];
-      if (!PIXEL_DOMAINS.has(domain as PixelDomain)) {
-        return null;
-      }
-
-      return {
-        value: selectedData.band_data[i] ?? null,
-        layer: {
-          domain: domain as PixelDomain,
-          id: selectedData.key[i] ?? `${domain}-${i}`,
-          keys: {
-            key: selectedData.key[i],
-            rp: selectedData.rp[i] != null ? selectedData.rp[i] : undefined,
-            rcp: selectedData.rcp[i],
-            epoch: selectedData.epoch[i] != null ? selectedData.epoch[i] : undefined,
-            confidence: selectedData.confidence[i] != null ? selectedData.confidence[i] : undefined,
-            unit: selectedData.unit[i],
-            variable: selectedData.variable[i],
-          },
-        },
-      };
-    })
-    .filter((record): record is PixelRecord => record !== null);
-};
-
 /**
  * Display detailed information about a selected pixel (lat/lon point.)
  */
 const PixelDataInner = () => {
   const selectedData = useAtomValue(pixelDrillerDataState);
+  const exportRecords = useAtomValue(pixelDrillerExportRecords);
   const headers = useAtomValue(pixelDrillerDataHeaders);
   const [pixelSelection, setPixelSelection] = useAtom(pixelSelectionState);
   const [downloading, setDownloading] = useState(false);
@@ -101,8 +70,6 @@ const PixelDataInner = () => {
   const makeDownloadZipFile = async () => {
     if (!selectedData || lat == null || lon == null) return;
 
-    const allRecords = mapSelectedDataToRecords(selectedData);
-
     setDownloading(true);
     try {
       const exportConfigs = getAllExportConfigs();
@@ -112,7 +79,7 @@ const PixelDataInner = () => {
         exportConfigs.entries(),
       ).map(async ([key, { exportFunction }]) => {
         try {
-          return await exportFunction(allRecords);
+          return await exportFunction(exportRecords);
         } catch (err) {
           console.error(`Error exporting data for ${key}:`, err);
           return [] as DownloadFile[];
