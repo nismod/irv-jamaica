@@ -9,9 +9,9 @@ import {
   useState,
 } from 'react';
 
-import type { DownloadFile } from './types';
+import type { PixelRecord } from 'lib/state/pixel-driller';
 
-import type { PixelRecord } from '../types';
+import type { DownloadFile } from './types';
 import type { RdlsDataset, RdlsLocation } from './metadata-types';
 
 /**
