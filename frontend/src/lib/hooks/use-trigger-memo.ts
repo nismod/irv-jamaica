@@ -17,7 +17,7 @@ export function useTriggerMemo<T>(
 ) {
   return useMemo(
     callback,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps, react-hooks/use-memo
     [callback, ...dependencies, trigger],
   );
 }
