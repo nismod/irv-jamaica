@@ -18,8 +18,11 @@ export const useChangeEffect = (
   changeDeps: DependencyList,
 ) => {
   const changeRef = useRef(changeDeps || []);
+  //eslint-disable-next-line react-hooks/refs
   const initial = changeRef.current === changeDeps;
+  //eslint-disable-next-line react-hooks/refs
   const changeDepsUpdated = initial || !changeRef.current.every((w, i) => w === changeDeps[i]);
+  //eslint-disable-next-line react-hooks/refs
   changeRef.current = changeDeps;
   const nullDeps = deps.map(() => null);
 
