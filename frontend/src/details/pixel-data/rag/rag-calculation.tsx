@@ -4,6 +4,32 @@ import type { ReturnPeriodRow } from '../types';
 import type { RagStatus } from './rag-types';
 
 /**
+ * Calculate the RAG status based on a single return period and two thresholds.
+ * If the value for the return period is equal to or above the red threshold, the RAG status is red.
+ * If the value for the return period is equal to or above the amber threshold, the RAG status is amber.
+ * If there is no data for the return period, the status is no-data.
+ * Otherwise, the RAG status is green.
+ */
+export function calculateRagFromOneReturnPeriodTwoThresholds(
+  data: Partial<ReturnPeriodRow>[],
+  rp: number,
+  redThreshold: number,
+  amberThreshold: number,
+): RagStatus {
+  if (data.length === 0) {
+    return 'no-data';
+  }
+
+  // Group by return period and take maximum value (worst case scenario)
+  const groupedByRp = groupBy(data, (d) => d.rp);
+  const rpData = groupedByRp[rp] || [];
+  const rpValues = rpData.map((d) => d.value).filter((v) => Number.isFinite(v));
+  const maxRpValue = rpValues.length > 0 ? Math.max(...rpValues) : null;
+
+  return calculateRagFromSingleValueTwoThresholds(maxRpValue, redThreshold, amberThreshold);
+}
+
+/**
  * Calculate the RAG status based on the return period values and a threshold.
  * Uses the maximum value for the more frequent and less frequent return periods.
  * If the value for the more frequent return period is equal to or above the threshold, the RAG status is red.

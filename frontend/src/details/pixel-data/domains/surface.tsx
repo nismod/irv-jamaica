@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai';
 import {
   type PixelRecord,
   type PixelRecordKeys,
-  pixelDrillerDataRecords
+  pixelDrillerDataRecords,
 } from 'lib/state/pixel-driller';
 
 import { HazardAccordion } from '../hazard-accordion';
@@ -23,12 +23,14 @@ import {
 } from '../download/metadata-common';
 import type { DatapackageTableSchemaField, RdlsDataset } from '../download/metadata-types';
 import type { RagStatus } from '../rag/rag-types';
-import { calculateRagFromReturnPeriodValuesOneThreshold } from '../rag/rag-calculation';
+import { calculateRagFromOneReturnPeriodTwoThresholds } from '../rag/rag-calculation';
 
 const title = 'Surface flooding';
 const downloadId = 'surface_flood';
 
-const FLOOD_HEIGHT_THRESHOLD = 4.0; // meters
+const FLOOD_HEIGHT_RP = 20; // years
+const FLOOD_HEIGHT_AMBER_THRESHOLD = 0.3; // meters
+const FLOOD_HEIGHT_RED_THRESHOLD = 1.5; // meters
 
 const FLOOD_PARAMETERS = [
   { epoch: 2010, rcp: 'baseline' },
@@ -151,7 +153,12 @@ const getRagStatus = (records): RagStatus => {
   if (records.every((rec) => !Number.isFinite(rec.value))) {
     return 'no-data';
   }
-  return calculateRagFromReturnPeriodValuesOneThreshold(records, FLOOD_HEIGHT_THRESHOLD, 20, 100);
+  return calculateRagFromOneReturnPeriodTwoThresholds(
+    records,
+    FLOOD_HEIGHT_RP,
+    FLOOD_HEIGHT_RED_THRESHOLD,
+    FLOOD_HEIGHT_AMBER_THRESHOLD,
+  );
 };
 
 const DataSection = ({ pixel_layer }) => {
