@@ -28,7 +28,7 @@ import { calculateRagFromOneReturnPeriodTwoThresholds } from '../rag/rag-calcula
 const title = 'Coastal flooding';
 const downloadId = 'coastal_flood';
 
-const FLOOD_HEIGHT_RP = 20; // years
+const FLOOD_HEIGHT_RP = 10; // years
 const FLOOD_HEIGHT_AMBER_THRESHOLD = 0.3; // meters
 const FLOOD_HEIGHT_RED_THRESHOLD = 1.5; // meters
 
