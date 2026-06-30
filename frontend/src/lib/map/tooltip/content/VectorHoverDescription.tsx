@@ -1,13 +1,11 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
-import { useAtomValue } from 'jotai';
 
 import { DataItem } from '../detail-components';
 import { VectorTarget } from 'lib/data-map/types';
 import { DataDescription } from '../DataDescription';
 import { ColorBox } from './ColorBox';
 import { ViewLayer } from 'lib/data-map/view-layers';
-import { singleViewLayerParamsState } from 'lib/state/layers/view-layers';
 
 type VectorHoverDescriptionProps = {
   viewLayer: ViewLayer;
@@ -21,9 +19,7 @@ export const VectorHoverDescription: FC<VectorHoverDescriptionProps> = ({
   viewLayer,
   feature,
 }) => {
-  const layerParams = useAtomValue(singleViewLayerParamsState(viewLayer.id));
-  const { styleParams } = layerParams;
-  const { colorMap } = styleParams ?? {};
+  const { colorMap } = viewLayer.styleParams ?? {};
 
   const isDataMapped = colorMap != null;
 
